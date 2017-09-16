@@ -1,0 +1,17 @@
+/*
+
+   _                           
+ _| |___ ___ _ _ _____ ___ ___ 
+| . | . |  _| | |     | . |   |
+|___|___|___|___|_|_|_|___|_|_|
+
+----------------
+Documon - %version%
+----------------
+A documentation system for mortals.
+
+Copyright (c) Michael Gieson.
+www.documon.net
+
+
+*/

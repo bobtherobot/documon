@@ -1,0 +1,25 @@
+
+var Tmember = require("./member.jst");
+
+function render(ctx){
+
+	// Treat classes as properties, just so we can list them.
+
+	// If there are "loose" properties and methods in this package, expose everything about them.
+
+	return `
+
+			${Tmember(ctx.packages, "Packages", "properties", true)}
+			${Tmember(ctx.classes, "Classes", "properties", true)}
+			
+		    <div class="parts">
+		        ${Tmember(ctx.properties, "Properties", "properties")}
+		        ${Tmember(ctx.events, "Events", "events")}
+		        ${Tmember(ctx.methods, "Methods", "methods")}
+		    </div>
+			
+		`;
+}
+
+
+module.exports = render;

@@ -1,0 +1,20 @@
+
+/*
+This is a convienience to create a file that resides at the top of the folder structure so lauching the "index.html" page is a littel easier than scrolling down through a huge list to fine the "index.html" file.
+
+By default, this file is saved as "__LAUNCH.html", but you can use the "indexShourcutName" option to change the filename to something better.
+
+ */
+
+function render(ctx) {
+	return `<html>
+	<head>
+		<meta http-equiv="refresh" content="0;URL=index.html" />
+	</head>
+	<body>
+		Redirecting to <a href="index.html">index.html</a>
+	</body>
+</html>`;
+}
+
+module.exports = render;

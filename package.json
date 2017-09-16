@@ -1,0 +1,15 @@
+{
+  "name": "documon",
+  "version": "0.0.1",
+  "description": "Documon is a documentation generator for mortals that is similar to YUIdoc.",
+  "main": "documon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mike Gieson",
+  "license": "MIT",
+  "dependencies": {
+    "markdown-it": "^8.3.1",
+    "markdown-it-deflist": "^2.0.3"
+  }
+}

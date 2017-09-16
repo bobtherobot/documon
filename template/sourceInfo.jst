@@ -1,0 +1,46 @@
+
+/*
+ctx contains:
+
+ {
+	line 		: 30,
+    name 		: 'documon',
+    flagSearchText: ' opn documon',
+    shortText 	: 'A cross-platform way to launch files from Node.',
+    shortHtml 	: '<p>A cross-platform way to launch files from Node.</p>',
+    text 		: 'example',
+    html 		: '<p>example</p>',
+    file 		: 'documon/src/opn.js',
+    filename 	: 'opn.js',
+    klass 		: 'opn',
+    package 	: 'root',
+    docfile 	: 'root.opn.html',
+    id 			: 'root.opn.documon',
+    prettyLangs 	: [],
+    projectName 	: 'Documon',
+    projectVersion 	: '0.0.1',
+    search 		: { 'example', 'terms' }
+}
+
+ */
+function render(ctx, cssTagOn){
+	var data;
+
+	if(ctx && ctx.file){
+		console.log("ctx.file", ctx.file)
+		data = `<div class="source-file">${ctx.file}</div>
+			<div class="source-file">${ctx.file}</div>
+			<div class="source-filename">${ctx.filename}</div>
+			<div class="source-line">${ctx.line}</div>
+		</div>`;
+
+	} else {
+
+		console.log("NO ctx.file", ctx.file)
+		data = "";
+	}
+
+	return data;
+}
+
+module.exports = render;

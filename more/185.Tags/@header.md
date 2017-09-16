@@ -1,0 +1,15 @@
+# Header
+
+A header flag provides a means to place an informational entery at the top of a main section. For example if you want an entry at the top of the Events section that provides a general overview of how the event system operates, create a new comment as follows:
+
+		/**
+		 *
+		 * The event system is really cool, I know you'll love it!
+		 * 
+		 * @event
+		 * @header About Events
+		 */
+
+It's kind of a hacky, but the @event flag tells use that this header is for the events section, and the @header "name" is used as the title for the section in the menu and on the page.
+
+Also note that internally, we use the @order flag to yank this to the top of the list (so it appears first).

@@ -1,0 +1,40 @@
+var config = require("./_config.js");
+
+function make(item){
+
+	var content = item.html; // item.text;
+	if( ! content ){
+		return "";
+	}
+
+	var type = item.type ? item.type : (config.defaultExampleCode || "js"); // default to javascript
+
+	var typeLang = "";
+	if(type == "javascript" || type == "js"){
+		typeLang = "lang-js";
+	} else {
+		typeLang = "lang-" + type;
+	}
+
+	return `<div class="member">
+				<div class="heading-example">Example</div>
+				<div class="example-block">
+		    		${content}
+		        </div>
+		    </div>`;
+}
+
+function render(ctx){
+	var str = "";
+	var list = ctx.example;
+	if(list && list.length){
+		for(var i=0; i<list.length; i++){
+			str += make(list[i]);
+		}
+	}
+
+	return str;
+}
+
+module.exports = render;
+

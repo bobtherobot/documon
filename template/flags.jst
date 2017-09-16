@@ -1,0 +1,65 @@
+
+
+
+function render(item, partKind){
+	var str = "";
+
+	/*
+	if(item.type){
+		str += `<span class="type">${item.type}</span>`;
+	}
+	*/
+
+	// final
+	if(item.konstructor){
+		str += `<span class="flag constructor">constructor</span>`;
+	}
+	
+	// final
+	if(item.final){
+		str += `<span class="flag final">final</span>`;
+	}
+
+	// static
+	if(item.static){
+		str += `<span class="flag static">static</span>`;
+	}
+
+	// public private protected 
+	if(item.access){
+		if(item.access != "public"){
+			str += `<span class="flag ${item.access}">${item.access}</span>  <!-- public private protected -->`;
+		}
+	}
+
+	// optional
+	if(item.inherits){
+		str += `<span class="flag inherited">inherited</span>`;
+	}
+
+	// optional
+	if(item.optional){
+		str += `<span class="flag optional">optional</span>`;
+	}
+
+	// required
+	if(item.required){
+		str += `<div class="flag required">required</span>`;
+	}
+
+	// readonly
+	if(item.readonly){
+		str += `<span class="flag readonly">readonly</span>`;
+	}
+
+	// readonly
+	if(item.deprecated){
+		var message = item.deprecated.text;
+		str += `<span class="flag deprecated" title="${message}">deprecated</span>`;
+	}
+
+	return str;
+
+}
+
+module.exports = render;

@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		
+    	<title>extract</title>
+		<meta name="description" content="Extracts comments from a file into an array or mulit-dementional array when the text" arg contains mulitple __package__ or __namepsace__ definitions.">
+
+		 <!-- Normalize -->
+	    <link rel="stylesheet" href="assets/vendor/normalize.css">
+
+	    
+	    <!-- prettify -->
+	    <link rel="stylesheet" href="assets/vendor/prettify/codamike.css">
+	    
+		<script src="assets/vendor/prettify/prettify.js"></script>
+
+		<!-- Documon Pages Info. (Used by various classes to identify this page.) -->
+		<script>
+	    var pageCtx = {
+	    	id : "documon.extract",
+	    	name: "extract"
+	    }
+	    </script>
+
+	    <!-- theme -->
+	    <link rel="stylesheet" href="assets/fonts/Fira_Sans/FiraSans.css">
+	    <link rel="stylesheet" href="assets/fonts/Inconsolata/inconsolata.css">
+	    <link rel="stylesheet" href="assets/css/pages.css">
+	    <script src="assets/js/documon/Storage.js"></script>
+	    <script src="assets/js/documon/Access.js"></script>
+	    <script src="assets/js/documon/Pages.js"></script>
+
+	</head>
+
+
+
+	<body>
+
+		<div class="page">
+			
+
+			
+
+			<div class="main-method">
+				
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            
+					            <a name="documon.extract"></a><a name="extract"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		extract (<span class="method-arguments">text</span>, <span class="method-arguments method-arg-optional">beginDoc</span>, <span class="method-arguments method-arg-optional">endDoc</span>) 
+						    	</span>
+								<span class="member-name-right">
+						    		
+						    		
+						    		<span class="member-line-number">
+						    			96
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		<div class="meta-block meta-block-klass">
+				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.extract<span></div>
+				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">documon/src/extract.js<span></div>
+			</div>
+						   		
+								<p>Extracts comments from a file into an array or mulit-dementional array when the "text" arg contains mulitple <strong>package</strong> or <strong>namepsace</strong> definitions.</p>
+
+<p>Each entry in the returned array will be an object containing 3 properties <br>
+ - <strong>start</strong> : The line number that the comment started on <br>
+ - <strong>end</strong> : The line number that the comment ended on <br>
+ - <strong>data</strong> : The contents of the comment</p>
+
+<pre class="prettyprint">var myComments = extract(str);
+yields : [
+            { 
+                start : 12,
+                end : 32,
+                data : "the descript"
+            },
+            { 
+                start : 12,
+                end : 32,
+                data : "the descript"
+            }
+    ]</pre>
+
+<h2>A few things of note:</h2>
+
+<ul>
+<li>The data will NOT include the beginDoc, nor the endDoc strings.</li>
+<li>Comment prefixing is stripped  <br>
+    - *  [star space] <br>
+    - tabs <br>
+    - spaces</li>
+<li>Code blocks maintain indentation.</li>
+<li>Splitting on <strong>package</strong> or <strong>namespace</strong>. When a single file contains mulitple references to a "<strong>package</strong>" or "<strong>namespace</strong>" comments will split into multiple arrays -- treating the single source file as being mulitple files. </li>
+</ul>
+
+<p>Split <strong>Example</strong>:</p>
+
+<pre class="prettyprint">/**
+* Class A
+* @package foo &lt;-- this designates a new "page"
+*/
+
+/**
+* Something for A
+* @method something
+*/
+
+/**
+* Class B
+* @package bar &lt;-- this designates a new "page"
+*/
+
+/**
+* Something for B
+* @method something
+*/
+
+var myComments = extract(str);
+yields : [
+            [ // the first "page"
+                { 
+                    start : 12,
+                    end : 32,
+                    data : "Class A ... "
+                },
+                { 
+                    start : 12,
+                    end : 32,
+                    data : "Something for A ..."
+                },
+
+            ],
+            [ // the second "page"
+                { 
+                    start : 64,
+                    end : 96,
+                    data : "Class B ... "
+                },
+                { 
+                    start : 128,
+                    end : 142,
+                    data : "Something for B ..."
+                },
+            ,
+        ]</pre>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">text</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>the entire file as a string</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">beginDoc</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="default-value">
+      				 		 	&#47;**
+       						 </span>
+       			
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		<span class="flag optional">optional</span>
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The string is used to "open" a comment.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">endDoc</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="default-value">
+      				 		 	*&#47;
+       						 </span>
+       			
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		<span class="flag optional">optional</span>
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The string is used to "close" a comment.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">array</span>
+					</div>
+			      	     	<div class="member"><p>An array of comments, or multi-dimentional array oaf page comments.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
+			</div>
+
+		    <div class="parts">
+		        
+		        
+		        
+		    </div>
+		
+		</div>
+
+		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>
+
+	</body>
+
+
+</html>

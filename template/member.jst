@@ -1,0 +1,212 @@
+
+var Texample = require("./example.jst");
+var Tflags = require("./flags.jst");
+var Textendish = require("./extendish.jst");
+var Tproperty = require("./property.jst");
+var TseeAlso = require("./seeAlso.jst");
+var TmethodArgs = require("./methodArgs.jst");
+/*
+// Example parsed property
+
+{
+			"name": "element",
+			"protected": true,
+			"params": [],
+			"text": "The DOM object to manage.\n",
+			"line": 71,
+			"file": "/Volumes/Drives/projects/docs/test_src/display/Box.js",
+			"filename": "Box.js",
+			"klass": "Box",
+			"package": "jbeeb",
+			"id": "jbeeb.Box.element"
+		}
+
+ */
+
+
+
+function makeReturns(item, partKind){
+	var str = "";
+	if(partKind == "methods" && item.returns){
+		
+		var robj = item.returns;
+
+		var type = "";
+		if(robj.type){
+			type = `	
+						<span class="type">${robj.type}</span>
+					`;
+		}
+
+		if(type || robj.html){
+			str = `
+			       		 	<div class="heading-returns">Returns	${type}</div>
+			      	     	<div class="member">${robj.html}</div>
+				`;
+		}
+
+		
+	}
+
+	return str;
+}
+
+function makeItem(item, partKind) {
+
+	var out = "";
+
+	if(partKind == "methods" || partKind == "events"){
+		var access = item.access ? `data-access="${item.access}"` : '';
+		var inherits = item.inherits ? `data-inherits="${item.inherits}"` : '';
+
+		// Build the class file/path meta
+		var klassFileMeta = item.entity == "class" || item.entity == "module" ? `<div class="meta-block meta-block-klass">
+				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">${item.id}<span></div>
+				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">${item.file}<span></div>
+			</div>` : "";
+
+		var EVENT = partKind == "events";
+
+		// Anchor both full xpath for external linking, and name for easier internal page linking.
+
+		out += `<a name="${item.id}"></a><a name="${item.name}"></a>
+
+						<div class="member" ${access} ${inherits}>
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		${item.name}${ EVENT ? "" : TmethodArgs(item)}
+						    	</span>
+								<span class="member-name-right">
+						    		${Tflags(item, partKind)}
+						    		
+						    		<span class="member-line-number">
+						    			${ item.line }
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		${klassFileMeta}
+						   		${Textendish(item, partKind)}
+								${item.html}
+
+					`;
+
+		if(partKind == "methods"){
+
+			
+			out += `
+								${Tproperty(item.params, "Parameters", "parameters")}
+
+							    ${makeReturns(item, partKind)}
+
+					`;
+
+		// Only if event has a signature return params
+		} else if (partKind == "events" && item.params){
+
+			var sig = `Return Signature ${TmethodArgs(item)}`;
+		
+			out += `
+
+							${Tproperty(item.params, sig, "parameters")}
+				`;
+
+	
+
+		}
+
+		out += `
+								${Texample(item, partKind)}
+
+							    ${TseeAlso(item.see, partKind)}
+
+							</div>
+						</div>
+				`;
+
+	}
+
+	return out;
+
+}
+
+
+
+
+/*
+ctx contains:
+
+ {
+	line 		: 30,
+    name 		: 'documon',
+    flagSearchText: ' opn documon',
+    shortText 	: 'A cross-platform way to launch files from Node.',
+    shortHtml 	: '<p>A cross-platform way to launch files from Node.</p>',
+    text 		: 'example',
+    html 		: '<p>example</p>',
+    file 		: 'documon/src/opn.js',
+    filename 	: 'opn.js',
+    klass 		: 'opn',
+    package 	: 'root',
+    docfile 	: 'root.opn.html',
+    id 			: 'root.opn.documon',
+    prettyLangs 	: [],
+    projectName 	: 'Documon',
+    projectVersion 	: '0.0.1',
+    search 		: { 'example', 'terms' }
+}
+
+ */
+function render(ctx, title, partKind, useShortText){
+
+	var str = "";
+	if(ctx){
+
+		// Property
+		if(partKind == "properties"){
+
+			return '<a name="properties"></a>' + Tproperty(ctx, title, "properties", useShortText);
+
+		// Event
+		//} else if(partKind == "events"){
+
+			//return '<a name="events"></a>' + Tproperty(ctx, title, "events", useShortText);
+
+
+		// Class, Module, Method, Events
+		} else {
+
+			if(ctx.length){
+
+				var heading = "";
+				if(title){
+					heading = `<div class="heading-part">${title}</div>`;
+				}
+
+				var list = "";
+
+				for(var i=0; i<ctx.length; i++){
+					list += makeItem(ctx[i], partKind);
+				}
+// TODO: Incorporate a line for the file (e.g. jbeeb/display/Box.js)
+				str += `
+							<a name="${partKind}"></a>
+		            		<div class="part-${partKind}">
+					            ${heading}
+					            ${list}
+				            </div>
+						
+						`;
+			}
+			
+		}
+
+		
+	}
+	return str;
+}
+
+module.exports = render;

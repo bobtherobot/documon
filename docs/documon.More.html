@@ -1,0 +1,1089 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		
+    	<title>More</title>
+		<meta name="description" content="Discovers, parses, converts markdown to HTML and injects menu with more" docs.">
+
+		 <!-- Normalize -->
+	    <link rel="stylesheet" href="assets/vendor/normalize.css">
+
+	    
+	    <!-- prettify -->
+	    <link rel="stylesheet" href="assets/vendor/prettify/codamike.css">
+	    
+		<script src="assets/vendor/prettify/prettify.js"></script>
+
+		<!-- Documon Pages Info. (Used by various classes to identify this page.) -->
+		<script>
+	    var pageCtx = {
+	    	id : "documon.More",
+	    	name: "More"
+	    }
+	    </script>
+
+	    <!-- theme -->
+	    <link rel="stylesheet" href="assets/fonts/Fira_Sans/FiraSans.css">
+	    <link rel="stylesheet" href="assets/fonts/Inconsolata/inconsolata.css">
+	    <link rel="stylesheet" href="assets/css/pages.css">
+	    <script src="assets/js/documon/Storage.js"></script>
+	    <script src="assets/js/documon/Access.js"></script>
+	    <script src="assets/js/documon/Pages.js"></script>
+
+	</head>
+
+
+
+	<body>
+
+		<div class="page">
+			
+
+			
+
+			<div class="main-method">
+				
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            
+					            <a name="documon.More"></a><a name="More"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		More (<span class="method-arguments">params</span>, <span class="method-arguments">sourceDocsMenu</span>, <span class="method-arguments">searchDB</span>) 
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="flag private">private</span>  <!-- public private protected -->
+						    		
+						    		<span class="member-line-number">
+						    			30
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		<div class="meta-block meta-block-klass">
+				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.More<span></div>
+				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">documon/src/more.js<span></div>
+			</div>
+						   		
+								<p>Discovers, parses, converts markdown to HTML and injects menu with "more" docs.</p>
+
+<p>Processes the "more" markdown folder by: <br>
+- Building the menu to reflect the "more folder" directory structure. <br>
+- Translates markdown into HTML</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">params</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">object</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The primary documon configuration <a href="documon.documon.mainConf">documon.js::mainConf</a>, which should contain: <br>
+- moreQuirkDelimiter <br>
+- outputAssetsFolder <br>
+- moreFolder <br>
+- templateFolder <br>
+- outputFolder</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">sourceDocsMenu</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">object</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The menu for the parsed source code documentation. We'll merge it into the "more" menu.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">searchDB</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">object</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The searchData (local to documon's <a href="documon.documon.run">run</a> function, as generated by <a href="documon.documon.seeder">seeder</a> ), we'll include our "more" docs for searching.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">menu | undefined</span>
+					</div>
+			      	     	<div class="member"><p>Serves 2 purposes, when returning <strong>undefined</strong> notifies callee that there aren't any "more" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the "more" menu, or incorporated into the "more" menu at the "DOCS-GO-HERE" injection point.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
+			</div>
+
+		    <div class="parts">
+		        <a name="properties"></a>
+			    	<div class="part-properties">
+				    	
+				    	<div class="heading-part">Properties</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr data-access="private" >
+
+						    	<td>
+						    		<a name="documon.More.docGoesHereStr"></a><a name="docGoesHereStr"></a>
+						        	<span class="member-name">docGoesHereStr</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		<span class="flag private">private</span>  <!-- public private protected -->
+								    		
+								    		<span class="member-line-number">64</span>
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The string used as the flag as to where to insert the parsed source documents into the menu.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr data-access="private" >
+
+						    	<td>
+						    		<a name="documon.More.flat"></a><a name="flat"></a>
+						        	<span class="member-name">flat</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		<span class="flag private">private</span>  <!-- public private protected -->
+								    		
+								    		<span class="member-line-number">44</span>
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>A place to store generated page objects with a direct reference to their ID via flat[id].</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr data-access="private" >
+
+						    	<td>
+						    		<a name="documon.More.metaRx"></a><a name="metaRx"></a>
+						        	<span class="member-name">metaRx</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		<span class="flag private">private</span>  <!-- public private protected -->
+								    		
+								    		<span class="member-line-number">70</span>
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The regular expression use to split the doc on the <a href="#metaString">metaString</a></p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		<a name="documon.More.metaString"></a><a name="metaString"></a>
+						        	<span class="member-name">metaString</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		<span class="member-line-number">58</span>
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The delimiting string used to seperate the meta JSON from normal markdown.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr data-access="private" >
+
+						    	<td>
+						    		<a name="documon.More.quirkDelimiter"></a><a name="quirkDelimiter"></a>
+						        	<span class="member-name">quirkDelimiter</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		<span class="flag private">private</span>  <!-- public private protected -->
+								    		
+								    		<span class="member-line-number">51</span>
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>Used to mark where filename numbering terminates and the "title" begins. User configurable via the <a href="more.options">moreQuirkDelimiter option</a>.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+		        
+		        
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            <div class="heading-part">Methods</div>
+					            <a name="documon.More.cleanID"></a><a name="cleanID"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		cleanID (<span class="method-arguments">id</span>, <span class="method-arguments">amFolder</span>) 
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="flag private">private</span>  <!-- public private protected -->
+						    		
+						    		<span class="member-line-number">
+						    			190
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		
+						   		
+								<p>Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">id</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">type</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>description</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">amFolder</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">type</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>description</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">type</span>
+					</div>
+			      	     	<div class="member"><p>description description</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.More.init"></a><a name="init"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		init (<span class="method-arguments">params</span>, <span class="method-arguments">sourceDocsMenu</span>, <span class="method-arguments">searchDB</span>) 
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="flag private">private</span>  <!-- public private protected -->
+						    		
+						    		<span class="member-line-number">
+						    			257
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		
+						   		
+								<p>See class description.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">params</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">type</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>description</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">sourceDocsMenu</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">type</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>description</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">searchDB</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">type</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>description</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">type</span>
+					</div>
+			      	     	<div class="member"><p>description description</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.More.newItem"></a><a name="newItem"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		newItem (<span class="method-arguments">url</span>, <span class="method-arguments">amFolder</span>) 
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="flag private">private</span>  <!-- public private protected -->
+						    		
+						    		<span class="member-line-number">
+						    			95
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		
+						   		
+								<p>Opens, catalogs and builds a new page from the provided file path.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">url</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>The path to the markdown file.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">amFolder</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">boolean</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>Process as a folder?</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>An object containing structured data:</p>
+
+<pre class="prettyprint">    {
+          id
+        , url // as originally provided 
+        , label // Cleaned up (no numbering) filename
+        , name : // same as label but the page.jst template needs the "name" property.
+        , kind : // The CSS class used on the icon( amFolder ? "more-folder" : "more-file" )
+        , amFolder : // is a folder?
+        , basepath : // The parent folder.
+        , parentID : // The parent's id (e.g.more.foo)
+        , children : // Folders have a children array
+    }</pre></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.More.parseJSON"></a><a name="parseJSON"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		parseJSON (<span class="method-arguments">val</span>) 
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="flag private">private</span>  <!-- public private protected -->
+						    		
+						    		<span class="member-line-number">
+						    			236
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		
+						   		
+								<p>A safe replacement for standard JSON parsing that mitigates errors.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">val</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">string</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>val</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">any</span>
+					</div>
+			      	     	<div class="member"></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.More.quirkyName"></a><a name="quirkyName"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		quirkyName (<span class="method-arguments">filename</span>, <span class="method-arguments">amFolder</span>) 
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="flag private">private</span>  <!-- public private protected -->
+						    		
+						    		<span class="member-line-number">
+						    			203
+						    		</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+						   		
+						   		
+								<p>splits the numbering off of eight filename and returns the filename with out numbering</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">filename</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">type</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>description</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+							
+							<tr  >
+
+						    	<td>
+						    		
+						        	<span class="member-name">amFolder</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		
+							<span class="type">type</span>
+				
+								    	</span>
+										<span class="member-name-right">
+								    		
+								    		
+								    		
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		
+									
+							<div class="member-description">
+      				 		 	<p>description</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+						        	</div>
+						        </td>
+						    </tr>
+				    
+
+							</table>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">type</span>
+					</div>
+			      	     	<div class="member"><p>description description</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
+		    </div>
+		
+		</div>
+
+		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>
+
+	</body>
+
+
+</html>

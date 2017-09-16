@@ -1,0 +1,205 @@
+var Texample = require('./example.jst');
+var TmethodArgs = require("./methodArgs.jst");
+var Textendish = require("./extendish.jst");
+var Tflags = require("./flags.jst");
+
+function makeList(list, title, partKind, useShortText){
+	
+	if( ! list.length){
+		return "";
+	}
+	var writeTitle = "";
+	if(title){
+		writeTitle = `<div class="heading-part">${title}</div>`;
+	}
+
+	var str = "";
+	for(var i=0; i<list.length; i++){
+		str += makeItem(list[i], partKind, useShortText);
+	}
+
+	if( ! str ){
+		return "";
+	}
+
+	return `
+			    	<div class="part-${partKind}">
+				    	
+				    	${writeTitle}
+				    	
+				    	<div class="member">
+					    	<table>
+
+							    ${str}
+
+							</table>
+						</div>
+				
+					</div>
+			`;
+}
+
+function makeItem(item, partKind, useShortText){
+
+	if( ! item ){
+		return "";
+	}
+
+	if( ! item.name ){
+		return "";
+	}
+
+	// useShortText is a kind of flag indicating we're rendering a page that just lists what's within a folder. (e.g. when clicking on the "classes" folder icon, this page appears showing all the classes as list.)
+
+	var isListPage = useShortText;
+
+
+	// Children exist when we "dot" a name e.g. @param {object} parent.child
+	var children = "";
+	if(item.children && !useShortText){
+		children = makeList(item.children, item.name + " properties", "parameters", useShortText);
+	}
+
+	
+	var type = "";
+	var filepath = "";
+	if(item.type){
+	//if(typeof item.type != 'undefined'){
+		type = `
+							<span class="type">${item.type}</span>
+				`;
+	} else {
+		if(isListPage){
+			type = `
+							<span class="list-filepath">${item.file}</span>
+				`;
+		}
+	}
+
+	var defaultVal = "";
+	if(typeof item.defaultVal != 'undefined'){
+		defaultVal = `
+							<span class="default-value">
+      				 		 	${item.defaultVal}
+       						 </span>
+       			`;
+	}
+	
+	var desc = "";
+	if(typeof item.html != 'undefined' && !useShortText){
+		desc = `
+							<div class="member-description">
+      				 		 	${item.html}
+       						 </div>
+       			`;
+       	/*
+       	desc = `
+							<div class="member-description">
+								${Textendish(item)}
+      				 		 	${item.html}
+       						 </div>
+       			`;
+       			*/
+	}
+
+	var example = "";
+	if(typeof item.example != 'undefined'){
+		example = Texample(item);
+	}
+
+	var anchor = "";
+	// Anchor both full xpath for external linking, and name for easier internal page linking.
+	if(item.id){
+		anchor = `<a name="${item.id}"></a><a name="${item.name}"></a>`;
+	}
+
+	var access = "";
+	if(item.access){
+		access = `data-access="${item.access}"`;
+	}
+
+	var inherets = "";
+	if(item.inherits){
+	//if(typeof item.inherits != "undefined" && !useShortText){
+		inherets = `data-inherits="${item.inherits}"`;
+	}
+
+	var descCell;
+	if(useShortText){
+		descCell = item.shortHtml || "";
+	} else {
+		descCell = `
+									${desc}
+						        	${example}
+						        	${children}
+					`;
+	}
+
+	var methodArgs = "";
+	// packages.jst sends partKind as properties for classes (which are renederd as methods)
+	// and we don't want that list to show the params, because it's more-or-less just a list
+	// of classes.
+	//if( (item.params || partKind == "methods") && partKind != "properties"){
+	if( item.params && partKind != "properties"){
+		methodArgs = TmethodArgs(item);
+	}
+
+	var name = item.name;
+	if(useShortText){
+		name = `<a href="${item.docfile + "#" + item.id}">${name}</a>`;
+	}
+
+	// Method arguments don't ahve line number info.
+	var line = !item.line || isListPage ? "" : `<span class="member-line-number">${ item.line }</span>`;
+
+
+	
+	return `
+							
+							<tr ${access} ${inherets}>
+
+						    	<td>
+						    		${anchor}
+						        	<span class="member-name">${name}${methodArgs}</span>
+						        </td>
+						        <td>
+						        	<div class="param-meta clearfix">
+
+						        		<span class="member-name-left">
+								    		${defaultVal}${type}
+								    	</span>
+										<span class="member-name-right">
+								    		${Tflags(item, partKind)}
+								    		
+								    		${line}
+								    	</span>
+
+						        	</div>
+						        	<div class="param-description">
+						        		${descCell}
+						        	</div>
+						        </td>
+						    </tr>
+				    `;
+
+}
+
+function render(todo, title, partKind, useShortText){
+
+	// params.jst and member.jst leverage the same table situation, just with different CSS classes. 
+	// I suppose CSS it'self should be able to handle this without having to hard-wire the block and 
+	// table classes, if we were able to tag the wrapper div with an appropriate "parameter" vs "method" 
+	// class in the CSS. But that could get hairy because some methods may leverage a param table in the 
+	// arguments or returns.
+
+	if( Array.isArray(todo) ){
+		if( ! todo.length ){
+			return "";
+		}
+		return makeList(todo, title, partKind, useShortText);
+	} else {
+		return makeItem(todo, useShortText);
+	}
+}
+
+module.exports = render;

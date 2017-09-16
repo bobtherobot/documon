@@ -1,0 +1,366 @@
+
+## Defining Properties
+
+You can be robust
+
+	/** 
+	 * The width of the display object's bounding box.
+	 * @property width
+	 * @type Number
+	 * @default 0
+	 **/
+	p.width = 0;
+
+
+Or semi-robust
+
+	/** 
+	 * The width of the display object's bounding box.
+	 * @property width=0
+	 * @type Number
+	 **/
+	p.width = 0;
+
+Or one-liner #1 - name after {type}
+
+	/**
+	 * @property {object} width=0 The width of the display object's bounding box.
+	 */
+	p.width = 0;
+
+
+Or one-liner #2 - name before {type} (unconventional, but seems more logical to me?)
+
+	/**
+	 * @property width=0 {object} The width of the display object's bounding box.
+	 */
+	p.width = 0;
+
+---
+
+## Flags
+
+
+The following flags are processed:
+
+@property, @method, @event
+: The three basic kinds of entities normally found in a class or module. Example: `@property {type} name - description`
+
+@package, @namespace
+: Generally only one per page, but can have to. See the "Package / Namespace" section below. Example: `@package foo.bar`
+
+@class, @module
+: Both entities are treated equally, but appear in the final rendered docs as "class". Example: `@class name`
+
+@private, @protected, @static, @public, @readonly
+: Items with these flags can be shown/hidden/filtered. Example `@private`
+
+@overrides, @impliments, @extends, @inherits
+: These items page HTML will incorporate inherited parent properties, methods and events, which can be toggled.
+
+@requires
+: Incorporates a list of dependancies that a module or class needs to run. Generally shows up in the "meta" section. Example `@requires package.Class`
+
+@constructor
+: Generally used in conjunction with a class/module, and places a colored tag near the definition.
+
+@example
+: Multiple examples can exist per item. A nice to have for templating, so the examples can be moved around and they don't have to be hard-coded into the main description. See the "Examples" section below.
+
+@param
+: Classes, modules and methods can have multiple params. See "Params" section below.
+
+@return, @returns
+: Can incorporate a {type}. Example `@return {object}`
+
+@type
+: See "Type" section below
+
+@order
+: By default, everything is sorted alphabetically. Use this flag if you need things to appear in a specific order. Example: `@order 10.4`
+
+// @optional
+// : Generally used to indicate that a param (@
+
+@header
+: Used to push a general informational entry to the top of a list. See the "Header" section below.
+
+@defaultVal, @default (not fully tested, since the @param approach is better)
+: Used for a method's paramter that has a default value.
+
+@see
+: Use this to link to similar or related things. See "See Also" below.
+
+
+
+---
+
+## Header
+
+A header flag provides a means to place an informational entery at the top of a main section. For example if you want an entry at the top of the Events section that provides a general overview of how the event system operates, create a new comment as follows:
+
+		/**
+		 *
+		 * The event system is really cool, I know you'll love it!
+		 * 
+		 * @event
+		 * @header About Events
+		 */
+
+It's kind of a hacky, but the @event flag tells use that this header is for the events section, and the @header "name" is used as the title for the section in the menu and on the page.
+
+Also note that internally, we use the @order flag to yank this to the top of the list (so it appears first).
+
+
+
+
+
+---
+
+## Types
+
+
+There are no strict types, so feel free to put anything you want inbetween the brackets. (No type type-checks :)
+
+	@prop {DOM Element} foo - description	// yields type as a string: "Dom Element"
+
+Delimit with a pipe to offer multiple types
+
+	@prop {string | object} foo - description	// yields an array as ["string", "object"]
+
+Types can be placed either before or after the name. (Note that this is subject to change, since name before type is not "industry standard" [even though I think it should be] ).
+
+	@prop {object} foo - description		// yeilds type as a string: "object"
+	@prop foo {object} description			// yeilds type as a string: "object"
+
+---
+
+## Default Values
+
+To define default values for properties or method parameters, use the equal sign after the name.
+
+		@prop {object} foo="bar"
+
+You can also use the @default or @defaultVal flags:
+
+		@default bar
+
+		@defaultVal bar
+
+
+
+---
+
+## Optional
+
+To define properties or method parameters as optional, wrap the name with quare brackets.
+
+	@prop {object} [foo]
+
+When the property has a default value, keep the value within the square brackets as well
+
+	@prop {object} [foo="bar"]
+
+
+---
+
+## Package / Namespace
+
+There is a commonality between the ideas of namespace and package -- each group code together into a general theme.
+
+Hence @namespace and @package are interchangable and hold the same meaning in Documon.
+
+Can be a stand alone comment or integrated into either the module or class comment:
+
+	/**
+	 * @namespace foo
+	 */
+
+	/**
+	 * My cool class
+	 * @class Cool
+	 * @namespace window
+	 */
+
+	/**
+	 * My cool module
+	 * @class Cool
+	 * @namespace path.to.access
+	 */
+
+You are free to use whichever term suits you, but in the documentation (and in our code), we use the term "package" exclusively to addresses both concepts.
+
+The following will be treated exactly the same as above:
+
+	/**
+	 * @package foo
+	 */
+
+	/**
+	 * My cool class
+	 * @module Cool
+	 * @package window
+	 */
+
+	/**
+	 * My cool module
+	 * @module Cool
+	 * @package path.to.access
+	 */
+
+We split source files whenever @package or @namespace appears -- causing the source file to be treated as multiple source files.
+
+This allows you to define multiple packages within a single file -- without having to incorporate the @package flag into each class, method, property or event definition.
+
+A simple trick is to use a stand-alone comment at the top of your file:
+
+	/**
+	 * @package foo.bar
+	 */
+
+Then further down the same file, you could include another @package definition...
+
+	/**
+	 * @package bob.sally
+	 */
+
+
+... or incorporate a package into a class (or any other) definition:
+
+	/**
+	 * @class sally
+	 * @package foo.bar
+	 */
+
+... and all the classes / methods / events / properties between these @package entries will be grouped together under each @package "section".
+
+Just be aware that if put @package definitions all over the place, you could get lost real fast. Use @package and @namespace sparingly.
+
+
+FYI: "package" is more common across programming languages. The idea being that a larger framework or application has files lumped together that all support a common theme. Traditionally classes that are related to the theme all reside in the same folder and the folder name describes the "theme". Thus, the folder acts as a "package" for a group of common classes. These "package" folders are further organized heirarchically within the overall framework or applicaiton structure.
+
+	app
+	app.display
+	app.display.bitmap
+	app.display.vector
+	app.db
+	app.db.models
+	app.db.models.sql
+	app.db.models.json
+	app.media
+	app.media.audio
+	app.media.audio.player
+	app.media.audio.codecs
+
+
+
+---
+
+## examples
+
+Add code and text to @example tags like normal with indentation or back ticks.
+
+IMPORTANT: For indented examples, LEAVE AN EMTPY LINE BEFORE AND AFTER !!!.
+
+		/**
+		 * @example This is text above the example
+		 * 
+		 * 		var foo = "bar";
+		 * 
+		 * And this is text below the example
+		 */
+
+
+		/**
+		 * @example `var foo="bar"`
+		 */
+
+To set the code language used to for "pretty" printing, use the {type} field. Generally, use the extension of your code files e.g. js, cpp, m.
+
+		/**
+		 * @example {js} - This is causing the following code to be rendered as javascript because the {type} is set to {js}.
+		 *
+		 *		var foo = "bar";
+		 * 
+		 */
+
+Types can be:
+
+> bsh, c, cc, cpp, cs, csh, cyc, cv, htm, html, java, js, m, mxml, perl, pl, pm, py, rb, sh, xhtml, xml, xsl, apollo, basic, clj, css, dart, erlang, go, hs, lasso, lisp, llvm, logtalk, lua, matlab, ml, mumps, n, pascal, proto, r, rd, rust, scala, sql, swift, tcl, tex, vb, vhdl, wiki, xq, yaml
+
+
+When using the @example flag, markdown is not used, and the code is taken "as is" giving you a little more control over indentaion.
+
+
+---
+
+## links
+
+Use markdown notation:
+	This is and example sentance and [my link](http://www.example.com) is all i have to say.
+
+For cross linking to other parts of docs:
+
+> To link to another class, use the full path:
+>
+>		[see Foo](package.Class.method)
+>
+> To link to an internal method/property just use the method/property name:
+>
+>		[see setWidth](setWidth)
+>
+> To link to an anchor, use the traditional #
+
+
+----
+
+## See Also Tags
+
+Use markdown link notation:
+
+		@see [describe the link here](http://www.example.com)
+		@see [describe the link here](#package.path.Foo.setWidth)
+		@see [describe the link here](#setWidth)
+
+
+---
+
+## Inheritance
+
+When defining @extends, you can use a short-hand for classes in the same package.
+
+For example, lets say we have 2 classes as:
+
+		/some/long/winded/package/Foo.js
+		some/long/winded/package/Bar.js
+
+... and "Bar" extends "Foo"... Rather than writing:
+
+		@class Bar
+		@pacakge long.winded.package
+		@extends long.winded.package.Foo
+
+... we can write:
+
+		@class Bar
+		@pacakge long.winded.package
+		@extends Foo
+
+... because Foo and Bar are in the same package. We only need to use the long-form when referencing things outside of the same package.
+
+
+
+---
+
+## Comments in comments
+If you need to include /* style comments in your comments, HTML-entity-ize the slash:
+
+	 * 	&#47;**
+	 *  * Something for B
+	 * 	* @method something
+	 * 	*&#47;
+
+
+
+
+

@@ -1,0 +1,55 @@
+
+var Tmember = require("./member.jst");
+
+
+
+/*
+ctx contains:
+
+ {
+	line 		: 30,
+    name 		: 'documon',
+    flagSearchText: ' opn documon',
+    shortText 	: 'A cross-platform way to launch files from Node.',
+    shortHtml 	: '<p>A cross-platform way to launch files from Node.</p>',
+    text 		: 'example',
+    html 		: '<p>example</p>',
+    file 		: 'documon/src/opn.js',
+    filename 	: 'opn.js',
+    klass 		: 'opn',
+    package 	: 'root',
+    docfile 	: 'root.opn.html',
+    id 			: 'root.opn.documon',
+    prettyLangs 	: [],
+    projectName 	: 'Documon',
+    projectVersion 	: '0.0.1',
+    search 		: { 'example', 'terms' }
+}
+
+ */
+
+
+function render(ctx){
+
+	// A class is essentially the same thing as a method.
+
+	// TODO: Why do we convert main-method ctx to an array as [ctx]... for now if we don't it won't render, but when are we not sending an array?
+
+	return `
+
+			
+
+			<div class="main-method">
+				${ Tmember([ctx], null, "methods", true) /* convert ctx to array */ }
+			</div>
+
+		    <div class="parts">
+		        ${ Tmember(ctx.properties, "Properties", "properties") }
+		        ${ Tmember(ctx.events, "Events", "events") }
+		        ${ Tmember(ctx.methods, "Methods", "methods") }
+		    </div>
+		`;
+}
+
+
+module.exports = render;

@@ -1,0 +1,70 @@
+
+// TODO: Need a way for template makers to access this list without duplication?
+// 
+// Same list in core template engine "tags.js"
+var extendish = ["overrides", "impliments", "extends", "inherits", "requires"];
+
+var classLike = ["extends", "inherits", "requires"];
+
+// Capitalize First Letter
+function cap(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function makeLine(prop, val){
+	var link;
+	if(classLike.indexOf(prop) > -1){
+		link = val + ".html#" + val;
+	} else {
+		var Aid = val.split(".");
+		Aid.pop();
+		link = Aid.join(".") + ".html#" + val;
+	}
+
+	return `
+		<div class="meta-line ${prop}"><span class="meta-label ${prop}" >${cap(prop)}</span> <span class="meta-target"><a href="${link}">${val}</a><span></div>
+	`;
+}
+
+function render(item, partKind){
+
+	var str = "";
+	var itemList = "";
+	for (var prop in item){
+
+		if(extendish.indexOf(prop) > -1){
+			
+			var val = item[prop];
+			var type = typeof val;
+
+			// "requires" will be an array, others just a stirng value
+			if(type == 'object'){
+
+				for(var i=0; i<val.length; i++){
+					itemList += makeLine( prop, val[i] );
+				}
+
+			} else {
+				itemList += makeLine( prop, val );
+			}
+
+		}
+
+
+		
+	}
+
+	if(itemList){
+
+		str += `
+				<div class="meta-block">
+					${itemList}
+				</div>
+				`;
+	}
+	
+
+	return str;
+}
+
+module.exports = render;

@@ -1,0 +1,23 @@
+function render(item){
+
+	var params = item.params;
+
+	var str = " ("; // Opening parenthesis (
+	if(params){
+		var Aargs = [];
+		for(var i=0; i<params.length; i++){
+			var arg = params[i];
+			var opt = arg.optional ? " method-arg-optional" : "";
+			var def = arg.value ? "=" + arg.value : "";
+			var name = arg.name ? arg.name.trim() : "";
+			Aargs.push(`<span class="method-arguments${opt}">${name + def}</span>`);
+		}
+		str += Aargs.join(", ");
+	}
+	str += ") "; // Closing parenthesis )
+
+	return str.replace(/\n/g, "");
+	
+}
+
+module.exports = render;

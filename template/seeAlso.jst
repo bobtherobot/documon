@@ -1,0 +1,33 @@
+
+
+function render(list, partKind){
+
+	if(list && list.length){
+
+		var listItems = "";
+		for(var i=0; i<list.length; i++){
+			var item = list[i];
+			listItems += `
+							<li>${list[i]}</li>
+					`;
+
+		}
+
+		return `
+					<div class="seeAlsoBlock">
+						<div class="heading-seeAlso">See Also</div>
+						<ul>
+							${listItems}
+						</ul>
+					</div>
+				`;
+
+	
+	} else {
+		return "";
+	}
+	
+
+}
+
+module.exports = render;
