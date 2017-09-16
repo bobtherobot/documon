@@ -1,15 +1,41 @@
 {
   "name": "documon",
-  "version": "0.0.1",
-  "description": "Documon is a documentation generator for mortals that is similar to YUIdoc.",
-  "main": "documon.js",
+  "version": "1.0.0",
+  "description": "A documentation system for mortals. Generates a static, searchable documentation website from JavaDoc style comments found within source code. It is similar to YUIdoc, but doesn't infer anything from the source code or directory stucture.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mike Gieson",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobtherobot/documon.git"
+  },
+  "keywords": [
+    "documentation",
+    "javadoc",
+    "doc",
+    "docs",
+    "doc",
+    "generator",
+    "dox",
+    "doxygen",
+    "source code",
+    "source", 
+    "code",
+    "yuidoc",
+    "natural",
+    "javascript",
+    "php",
+    "node",
+    "syntax highlighting"
+  ],
+  "author": "mike gieson",
   "license": "MIT",
-  "dependencies": {
-    "markdown-it": "^8.3.1",
-    "markdown-it-deflist": "^2.0.3"
-  }
+  "bugs": {
+    "url": "https://github.com/bobtherobot/documon/issues"
+  },
+  "homepage": "https://www.documon.net"
 }

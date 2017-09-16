@@ -1530,56 +1530,5 @@ var MenuData = [
 				]
 			}
 		]
-	},
-	{
-		"id": "more.zzz_appletreetrash",
-		"url": "",
-		"label": "zzz_appleTreeTrash",
-		"name": "zzz_appleTreeTrash",
-		"kind": "more-folder",
-		"amFolder": true,
-		"basepath": "more",
-		"parentID": "more",
-		"children": [
-			{
-				"id": "more.zzz_appletreetrash.markdown_10_cheatsheet",
-				"url": "more.zzz_appletreetrash.markdown_10_cheatsheet.html",
-				"label": "Markdown 10 Cheatsheet",
-				"name": "Markdown 10 Cheatsheet",
-				"kind": "more-file",
-				"basepath": "more/zzz_appleTreeTrash/10.Markdown 10 Cheatsheet",
-				"parentID": "more.zzz_appletreetrash"
-			},
-			{
-				"id": "more.zzz_appletreetrash.links_md",
-				"url": "more.zzz_appletreetrash.links_md.html",
-				"label": "Links.md",
-				"name": "Links.md",
-				"kind": "more-file",
-				"basepath": "more/zzz_appleTreeTrash/Links",
-				"parentID": "more.zzz_appletreetrash"
-			},
-			{
-				"id": "more.zzz_appletreetrash.boob",
-				"url": "",
-				"label": "boob",
-				"name": "boob",
-				"kind": "more-folder",
-				"amFolder": true,
-				"basepath": "more/zzz_appleTreeTrash",
-				"parentID": "more.zzz_appletreetrash",
-				"children": [
-					{
-						"id": "more.zzz_appletreetrash.boob.flags_md",
-						"url": "more.zzz_appletreetrash.boob.flags_md.html",
-						"label": "Flags.md",
-						"name": "Flags.md",
-						"kind": "more-file",
-						"basepath": "more/zzz_appleTreeTrash/boob/Flags",
-						"parentID": "more.zzz_appletreetrash.boob"
-					}
-				]
-			}
-		]
 	}
 ]

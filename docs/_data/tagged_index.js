@@ -1,5 +1,5 @@
 {
-	"file": "documon/node_modules_/uc.micro/index.js",
+	"file": "documon/index.js",
 	"filename": "index.js",
 	"package": "root",
 	"docfile": "root.html",
