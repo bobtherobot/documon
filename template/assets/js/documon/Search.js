@@ -1,3 +1,9 @@
+/*
+Part of Documon.
+Copyright (c) Michael Gieson.
+www.documon.net
+ */
+
 /**
  * Provides the search mechanism across the documentation.
  *

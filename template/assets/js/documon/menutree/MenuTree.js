@@ -1,3 +1,9 @@
+/*
+Part of Documon.
+Copyright (c) Michael Gieson.
+www.documon.net
+ */
+
 
 	/**
 	Builds a menu based on a "menu array". The menu array must conform to the following structure:
