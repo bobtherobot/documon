@@ -1,6 +1,6 @@
 # Documon
 
-A documentation system for mortals.
+A documentation system for mortals. Use with any language.
 
 Generates a static, searchable documentation website from [JavaDoc](https://en.wikipedia.org/wiki/Javadoc) style comments found within source code. It is similar to [YUIdoc](http://yui.github.io/yuidoc/), but doesn't infer __*anything*__ from the source code or directory stucture.
 
@@ -18,6 +18,18 @@ Install via NPM:
 
 Or [&#x02186; download Documon][1] directly and use it "stand alone" (via Node).
 
+### Quick Start
+
+Within Node project (javascript):
+
+	var docs = require("documon");
+	docs({
+	    src : "path/to/src"
+	});
+
+From CLI:
+
+	node /path/to/documon/index.js -i "/path/to/source"
 
 
 ### Benefits
@@ -49,7 +61,8 @@ As a result, comment blocks must be robust and include all pertinent details req
 
 ## Get Involved
 
-- Documon on Github.
+- [Documon on Github](https://github.com/bobtherobot/documon)
+- [Documon on NPM](https://www.npmjs.com/package/documon)
 
 ## Platforms
 
@@ -63,8 +76,8 @@ Of course, since templates are JS, you can always roll some other templating sys
 ## Dependancies
 Documon's only dependancy is Node, no additional modules are needed.
 
-## Author and Copyright
-Copyright &copy; Mike Gieson. 
+## Author & Copyright
+Copyright &copy; [Mike Gieson](http://www.gieson.com). 
 Released under the MIT license.
 
 
