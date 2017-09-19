@@ -29,7 +29,7 @@ Within Node project (javascript):
 
 From CLI:
 
-	node /path/to/documon/index.js -i "/path/to/source"
+	node /path/to/documon/index.js "/path/to/source" "/path/to/destination"
 
 
 ### Benefits
