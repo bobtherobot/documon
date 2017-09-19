@@ -49,7 +49,7 @@
 	"id": "documon.More",
 	"methods": [
 		{
-			"line": 190,
+			"line": 189,
 			"name": "cleanID",
 			"entity": "method",
 			"flagSearchText": " cleanID description description description",
@@ -91,7 +91,7 @@
 			"id": "documon.More.cleanID"
 		},
 		{
-			"line": 257,
+			"line": 256,
 			"name": "init",
 			"entity": "method",
 			"flagSearchText": " init description description description description",
@@ -183,7 +183,7 @@
 			"id": "documon.More.newItem"
 		},
 		{
-			"line": 236,
+			"line": 235,
 			"name": "parseJSON",
 			"entity": "method",
 			"flagSearchText": " parseJSON val",
@@ -217,7 +217,7 @@
 			"id": "documon.More.parseJSON"
 		},
 		{
-			"line": 203,
+			"line": 202,
 			"name": "quirkyName",
 			"entity": "method",
 			"flagSearchText": " quirkyName description description description",

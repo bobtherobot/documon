@@ -35,23 +35,23 @@
 		"data": "Opens, catalogs and builds a new page from the provided file path.\n@method     newItem\n@private\n@param      {string}     url         - The path to the markdown file.\n@param      {boolean}    amFolder    - Process as a folder?\n@return     {object}                 - An object containing structured data:\n\n\t \t{\n\t\t\t  id\n\t\t\t, url // as originally provided \n\t\t\t, label // Cleaned up (no numbering) filename\n\t\t\t, name : // same as label but the page.jst template needs the \"name\" property.\n\t\t\t, kind : // The CSS class used on the icon( amFolder ? \"more-folder\" : \"more-file\" )\n\t\t\t, amFolder : // is a folder?\n\t\t\t, basepath : // The parent folder.\n\t\t\t, parentID : // The parent's id (e.g.more.foo)\n\t\t\t, children : // Folders have a children array\n\t\t}\n"
 	},
 	{
-		"start": 182,
-		"end": 189,
+		"start": 181,
+		"end": 188,
 		"data": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.\n@method     cleanID\n@private\n@param      {type}     id          description\n@param      {type}     amFolder    description\n@return     {type}                 description"
 	},
 	{
-		"start": 195,
-		"end": 202,
+		"start": 194,
+		"end": 201,
 		"data": "splits the numbering off of eight filename and returns the filename with out numbering\n@method     quirkyName\n@private\n@param      {type}        filename    description\n@param      {type}        amFolder    description\n@return     {type}                    description"
 	},
 	{
-		"start": 229,
-		"end": 235,
+		"start": 228,
+		"end": 234,
 		"data": "A safe replacement for standard JSON parsing that mitigates errors.\n@method     parseJSON\n@private\n@param      {string}       val\n@return     {any}"
 	},
 	{
-		"start": 248,
-		"end": 256,
+		"start": 247,
+		"end": 255,
 		"data": "See class description.\n@method     init\n@private\n@param      {type}    params            description\n@param      {type}    sourceDocsMenu    description\n@param      {type}    searchDB          description\n@return     {type}                      description"
 	}
 ]

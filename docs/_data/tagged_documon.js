@@ -89,7 +89,7 @@
 			"id": "documon.documon.init"
 		},
 		{
-			"line": 600,
+			"line": 601,
 			"name": "run",
 			"entity": "method",
 			"flagSearchText": " run\n The configuration object. See [mainConf](#mainConf)",
@@ -115,7 +115,7 @@
 			"id": "documon.documon.run"
 		},
 		{
-			"line": 494,
+			"line": 495,
 			"name": "seeder",
 			"entity": "method",
 			"flagSearchText": " seeder The path to the file. The file's search data as computed by tag.js",
@@ -149,7 +149,7 @@
 			"id": "documon.documon.seeder"
 		},
 		{
-			"line": 470,
+			"line": 471,
 			"name": "shouldIgnore",
 			"entity": "method",
 			"flagSearchText": " shouldIgnore The path to the file. true = ignore this file, false = don't ignore.",

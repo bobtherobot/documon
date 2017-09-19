@@ -1,3 +1,9 @@
+/*
+Part of Documon.
+Copyright (c) Michael Gieson.
+www.documon.net
+ */
+
 /**
  * Toggles member parts inheritance, private/public and protected in the menu and on the pages.
  *

@@ -2,7 +2,11 @@
 
 var config = require("./_config.js");
 
+var Tgati = require("./googleAnalytics.jst");
+
 var assetsFolder = config.assetsFolder;
+
+
 
 // The following languages are built into pretty print:
 //		bsh, c, cc, cpp, cs, csh, cyc, cv, htm, html, java,
@@ -41,6 +45,7 @@ function build(ctx, content){
 		
 	}
 
+
 	return `
 <!DOCTYPE html>
 <html>
@@ -69,13 +74,17 @@ function build(ctx, content){
 	    }
 	    </script>
 
-	    <!-- theme -->
+	    <!-- theme 
 	    <link rel="stylesheet" href="${assetsFolder}/fonts/Fira_Sans/FiraSans.css">
 	    <link rel="stylesheet" href="${assetsFolder}/fonts/Inconsolata/inconsolata.css">
+	    -->
 	    <link rel="stylesheet" href="${assetsFolder}/css/pages.css">
 	    <script src="${assetsFolder}/js/documon/Storage.js"></script>
 	    <script src="${assetsFolder}/js/documon/Access.js"></script>
 	    <script src="${assetsFolder}/js/documon/Pages.js"></script>
+
+	    ${Tgati(ctx.gati)}
+	    
 
 	</head>
 

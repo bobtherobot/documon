@@ -234,8 +234,8 @@
 	},
 	{
 		"text": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.\n",
-		"start": 182,
-		"end": 189,
+		"start": 181,
+		"end": 188,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -286,8 +286,8 @@
 	},
 	{
 		"text": "splits the numbering off of eight filename and returns the filename with out numbering\n",
-		"start": 195,
-		"end": 202,
+		"start": 194,
+		"end": 201,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -338,8 +338,8 @@
 	},
 	{
 		"text": "A safe replacement for standard JSON parsing that mitigates errors.\n",
-		"start": 229,
-		"end": 235,
+		"start": 228,
+		"end": 234,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -378,8 +378,8 @@
 	},
 	{
 		"text": "See class description.\n",
-		"start": 248,
-		"end": 256,
+		"start": 247,
+		"end": 255,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{

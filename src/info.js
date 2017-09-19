@@ -52,6 +52,7 @@ Optional arguments
  -x Index shortcut name 
  		(default: __LAUNCH.html)
  -q More quirk delimiter. The character(s) use to seperate the "more" page numbering system from page titles.
+ -y Google Analytics Tracking ID. If present pages will include tracking code.
 
 ----------------
 Examples

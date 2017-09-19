@@ -1,3 +1,9 @@
+/*
+Part of Documon.
+Copyright (c) Michael Gieson.
+www.documon.net
+ */
+
 
 
 

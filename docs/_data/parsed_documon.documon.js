@@ -468,8 +468,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 460,
-		"end": 469,
+		"start": 461,
+		"end": 470,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -509,8 +509,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 484,
-		"end": 493,
+		"start": 485,
+		"end": 494,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -550,8 +550,8 @@
 	},
 	{
 		"text": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n",
-		"start": 586,
-		"end": 599,
+		"start": 587,
+		"end": 600,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{

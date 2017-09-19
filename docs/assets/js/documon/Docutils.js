@@ -1,3 +1,9 @@
+/*
+Part of Documon.
+Copyright (c) Michael Gieson.
+www.documon.net
+ */
+
 this.documon = this.documon || {};
 
 this.documon.Docutils = (function(){

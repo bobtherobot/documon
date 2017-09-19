@@ -95,7 +95,6 @@ var metaRx = new RegExp(metaString, "gi");
  */
 function newItem(url, amFolder){
 
-
 	var Aurl = url.split("/");
 	/*
 	// path.parse('/home/user/dir/file.txt')
@@ -284,7 +283,14 @@ function init(params, sourceDocsMenu, searchDB){
 	var docTargetId;
 	for(var i=0; i<dirList.length; i++){
 		var loc = dirList[i];
+
+		// The "more/" is establishing the xpath we use in the menu (not the file path)
 		var ctx = newItem( "more/" + loc.substr(moreFolder.length) );
+
+		// hacky
+		ctx.gati = params.gati;
+
+
 		flat[ctx.id] = ctx;
 		var skip = false;
 		if(loc.indexOf(docGoesHereStr) > -1) {

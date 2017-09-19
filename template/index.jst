@@ -2,6 +2,7 @@
 
 var config = require("./_config.js");
 
+var Tgati = require("./googleAnalytics.jst");
 
 var assetsFolder = config.assetsFolder;
 
@@ -25,8 +26,9 @@ function build(ctx, menu, content){
 		<!-- Font: Font Awsome -->
 	    <link rel="stylesheet" href="${assetsFolder}/fonts/font-awesome/css/font-awesome.min.css">
 
-		<!-- Font: Fira Sans -->
+		<!-- Font: Fira Sans 
 	    <link rel="stylesheet" href="${assetsFolder}/fonts/Fira_Sans/FiraSans.css">
+	    -->
 
 		<!-- layout -->
 	    <link rel="stylesheet" href="${assetsFolder}/vendor/layout/layout.css">
@@ -54,6 +56,8 @@ function build(ctx, menu, content){
 	    <script src="${assetsFolder}/js/documon/TabManager.js"></script>
 	    <script src="${assetsFolder}/js/documon/PageManager.js"></script>
 	    <script src="${assetsFolder}/js/documon/Search.js"></script>
+
+	    ${Tgati(ctx.gati)}
 
 	</head>
 

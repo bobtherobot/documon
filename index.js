@@ -73,6 +73,7 @@ function cli(){
             docEnd      : argv.z,
             indexShortcutName  : argv.x,
             moreQuirkDelimiter : argv.q,
+            gati 		: argv.y
 
         });
     }
@@ -164,7 +165,8 @@ function run(opts) {
                 docBegin        : opts.docBegin,
                 docEnd          : opts.docEnd,
                 indexShortcutName   : opts.indexShortcutName,
-                moreQuirkDelimiter  : opts.moreQuirkDelimiter
+                moreQuirkDelimiter  : opts.moreQuirkDelimiter,
+                gati  : opts.gati
             };
 
             log(conf, "Config", quiet);

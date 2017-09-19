@@ -229,7 +229,8 @@ function init(conf){
 		dumpData			: conf.dumpData || false,
 		docsDirName			: conf.docsDirName,
 		moreFolder			: conf.more,
-		indexShortcutName	: conf.indexShortcutName || indexRedirectName
+		indexShortcutName	: conf.indexShortcutName || indexRedirectName,
+		gati				: conf.gati
 	}
 
 
@@ -700,6 +701,9 @@ function run(conf){
 				
 				for(var i=0; i<indexed.length; i++){
 					var page = indexed[i];
+					
+					// hacky
+					page.ctx.gati = mainConf.gati;
 
 					var str = Tpage(page.ctx, page.html);
 					var htmlFile = outFolder + page.id + ".html";

@@ -60,18 +60,18 @@
 		"data": ""
 	},
 	{
-		"start": 460,
-		"end": 469,
+		"start": 461,
+		"end": 470,
 		"data": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n@method shouldIgnore\n@private\n@param  {string} item - The path to the file.\n@returns {boolean} - true = ignore this file, false = don't ignore."
 	},
 	{
-		"start": 484,
-		"end": 493,
+		"start": 485,
+		"end": 494,
 		"data": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n@method seeder\n@private\n@param  {string} file - The path to the file.\n@returns {object} - The file's search data as computed by tag.js"
 	},
 	{
-		"start": 586,
-		"end": 599,
+		"start": 587,
+		"end": 600,
 		"data": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n@method run\n\n@param  {object} conf \t\t\t\t\t- The configuration object. See [mainConf](#mainConf)"
 	}
 ]
