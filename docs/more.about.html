@@ -57,7 +57,7 @@
 		<div class="page">
 			<div class="more"><h1>Documon</h1>
 
-<p>A documentation system for mortals.</p>
+<p>A documentation system for mortals. Use with any language.</p>
 
 <p>Generates a static, searchable documentation website from <a href="https://en.wikipedia.org/wiki/Javadoc">JavaDoc</a> style comments found within source code. It is similar to <a href="http://yui.github.io/yuidoc/">YUIdoc</a>, but doesn't infer <strong><em>anything</em></strong> from the source code or directory stucture.</p>
 
@@ -74,6 +74,19 @@
 <pre>npm install documon</pre>
 
 <p>Or <a href="http://www.documon.net/downloads/documon.zip">&#x02186; download Documon</a> directly and use it "stand alone" (via Node).</p>
+
+<h3>Quick Start</h3>
+
+<p>Within Node project (javascript):</p>
+
+<pre>var docs = require("documon");
+docs({
+    src : "path/to/src"
+});</pre>
+
+<p>From CLI:</p>
+
+<pre>node /path/to/documon/index.js -i "/path/to/source"</pre>
 
 <h3>Benefits</h3>
 
@@ -108,7 +121,10 @@
 
 <h2>Get Involved</h2>
 
-<p><a href="https://github.com/bobtherobot/documon">Documon on Github</a></p>
+<ul>
+<li><a href="https://github.com/bobtherobot/documon">Documon on Github</a></li>
+<li><a href="https://www.npmjs.com/package/documon">Documon on NPM</a></li>
+</ul>
 
 <h2>Platforms</h2>
 
