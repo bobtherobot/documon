@@ -104,7 +104,7 @@ function makeItem(item, partKind, useShortText){
 
 	var example = "";
 	if(typeof item.example != 'undefined'){
-		example = Texample(item);
+		example = Texample(item, true); // 2nd arg = "blockOnly" =  just the example block DIV.
 	}
 
 	var anchor = "";
