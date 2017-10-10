@@ -1,6 +1,6 @@
 {
   "name": "documon",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A documentation system for mortals. Generates a static, searchable documentation website from JavaDoc style comments found within source code. It is similar to YUIdoc, but doesn't infer anything from the source code or directory stucture.",
   "main": "index.js",
   "directories": {
@@ -14,16 +14,18 @@
     "url": "git+https://github.com/bobtherobot/documon.git"
   },
   "keywords": [
-    "documentation",
+    "doc",
     "docs",
-    "jsdoc",
+    "documentation",
     "javadoc",
-    "doxygen",
-    "yuidoc",
-    "api",
-    "apidocs",
-    "markdown",
-    "any"
+    "creator",
+    "create",
+    "make",
+    "maker",
+    "parse",
+    "parser",
+    "generate",
+    "generator"
   ],
   "author": "mike gieson",
   "license": "MIT",

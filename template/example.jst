@@ -1,40 +1,51 @@
 var config = require("./_config.js");
 
-function make(item){
+function make(item, blockOnly) {
 
-	var content = item.html; // item.text;
-	if( ! content ){
-		return "";
-	}
+    var content = item.html; // item.text;
+    if (!content) {
+        return "";
+    }
 
-	var type = item.type ? item.type : (config.defaultExampleCode || "js"); // default to javascript
+    var type = item.type ? item.type : (config.defaultExampleCode || "js"); // default to javascript
 
-	var typeLang = "";
-	if(type == "javascript" || type == "js"){
-		typeLang = "lang-js";
-	} else {
-		typeLang = "lang-" + type;
-	}
+    var typeLang = "";
+    if (type == "javascript" || type == "js") {
+        typeLang = "lang-js";
+    } else {
+        typeLang = "lang-" + type;
+    }
 
-	return `<div class="member">
-				<div class="heading-example">Example</div>
-				<div class="example-block">
-		    		${content}
-		        </div>
-		    </div>`;
+    if (blockOnly) {
+        
+        return `<div class="example-block">
+	    		${content}
+	        </div>`;
+
+    } else {
+        
+        return `<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		${content}
+	        </div>
+	    </div>`;
+    
+    }
+
+
 }
 
-function render(ctx){
-	var str = "";
-	var list = ctx.example;
-	if(list && list.length){
-		for(var i=0; i<list.length; i++){
-			str += make(list[i]);
-		}
-	}
+function render(ctx, blockOnly) {
+    var str = "";
+    var list = ctx.example;
+    if (list && list.length) {
+        for (var i = 0; i < list.length; i++) {
+            str += make(list[i], blockOnly);
+        }
+    }
 
-	return str;
+    return str;
 }
 
 module.exports = render;
-
