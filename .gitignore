@@ -1,2 +1,3 @@
 .npmignore
 .DS_Store
+*.code-workspace

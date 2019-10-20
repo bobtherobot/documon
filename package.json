@@ -1,6 +1,6 @@
 {
   "name": "documon",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A documentation system for mortals. Generates a static, searchable documentation website from JavaDoc style comments found within source code. It is similar to YUIdoc, but doesn't infer anything from the source code or directory stucture.",
   "main": "index.js",
   "directories": {
