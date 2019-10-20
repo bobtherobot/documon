@@ -4,21 +4,6 @@
 cd /Volumes/Drives/projects/documon/documon
 node .
 
-cd /Volumes/Drives/projects/documon/documon
-node . /Volumes/Drives/projects/documon/test_src/jbeeb2 -q -l
-
-cd /Volumes/Drives/projects/documon/documon
-node . /Volumes/Drives/projects/documon/documon/src -q -l -s="h m cpp"
-
-cd /Volumes/Drives/projects/documon/documon
-node . /Volumes/Drives/projects/documon/documon/src -d
-
-cd /Volumes/Drives/projects/documon/documon
-node . /Volumes/Drives/projects/documon/test_src/jbeeb2 -d -l
-
-cd /Volumes/Drives/projects/documon/documon
-node . /Volumes/Drives/projects/documon/test_src/hmm -s "boob"
-
  */
 
 // TOOD:
