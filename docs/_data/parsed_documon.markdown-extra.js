@@ -72,9 +72,9 @@
 						"after": "{array} [options.extensions=\"all\"] : (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:",
 						"type": "array",
 						"afterType": "[options.extensions=\"all\"] : (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:",
+						"defaultVal": "\"all\"]",
 						"optional": true,
 						"parent": "options",
-						"defaultVal": "all",
 						"name": "extensions",
 						"text": ": (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:\n\t - tables\r\n\t - fenced_code_gfm\r\n\t - def_list\r\n\t - attr_list\r\n\t - footnotes\r\n\t - smartypants\r\n\t - strikethrough\r\n\t - newlines\r"
 					},

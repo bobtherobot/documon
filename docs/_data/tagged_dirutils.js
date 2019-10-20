@@ -1,13 +1,13 @@
 {
 	"line": 12,
 	"name": "dirutils",
-	"entity": "module",
-	"flagSearchText": " dirutils documon",
-	"package": "documon",
 	"shortText": "A collection of utilities for manipulating directories syncronously.",
 	"shortHtml": "<p>A collection of utilities for manipulating directories syncronously.</p>",
 	"text": "A collection of utilities for manipulating directories syncronously.\n\n",
 	"html": "<p>A collection of utilities for manipulating directories syncronously.</p>",
+	"entity": "module",
+	"flagSearchText": " dirutils documon",
+	"package": "documon",
 	"file": "documon/src/dirutils.js",
 	"filename": "dirutils.js",
 	"klass": "dirutils",
@@ -17,6 +17,10 @@
 		{
 			"line": 193,
 			"name": "copydir",
+			"shortText": "Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.",
+			"shortHtml": "<p>Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.</p>",
+			"text": "Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.\n\n",
+			"html": "<p>Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.</p>",
 			"entity": "method",
 			"flagSearchText": " copydir\n The source folder The destination folder (get's created if not exist)",
 			"params": [
@@ -37,10 +41,6 @@
 					"type": "string"
 				}
 			],
-			"shortText": "Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.",
-			"shortHtml": "<p>Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.</p>",
-			"text": "Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.\n\n",
-			"html": "<p>Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.</p>",
 			"file": "documon/src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
@@ -51,6 +51,10 @@
 		{
 			"line": 224,
 			"name": "emptydir",
+			"shortText": "Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.",
+			"shortHtml": "<p>Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.</p>",
+			"text": "Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.\n\n",
+			"html": "<p>Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.</p>",
 			"entity": "method",
 			"flagSearchText": " emptydir\n The source folder Prevents actual deletion, but still allows the return list to display what \"will\" be deleted.\n An array containing a list of paths to files and folders that we're deleted (or will be deleted when dryrun is true)",
 			"params": [
@@ -78,10 +82,6 @@
 				"shortText": "<p>An array containing a list of paths to files and folders that we're deleted (or will be deleted when dryrun is true)</p>",
 				"shortHtml": "<p>An array containing a list of paths to files and folders that we're deleted (or will be deleted when dryrun is true)</p>"
 			},
-			"shortText": "Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.",
-			"shortHtml": "<p>Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.</p>",
-			"text": "Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.\n\n",
-			"html": "<p>Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.</p>",
 			"file": "documon/src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
@@ -92,6 +92,10 @@
 		{
 			"line": 283,
 			"name": "exists",
+			"shortText": "Checks to see if a folder exists.",
+			"shortHtml": "<p>Checks to see if a folder exists.</p>",
+			"text": "Checks to see if a folder exists.\n\n",
+			"html": "<p>Checks to see if a folder exists.</p>",
 			"entity": "method",
 			"flagSearchText": " exists\n The path to the folder.\n duh",
 			"params": [
@@ -111,10 +115,6 @@
 				"shortText": "<p>duh duh</p>",
 				"shortHtml": "<p>duh duh</p>"
 			},
-			"shortText": "Checks to see if a folder exists.",
-			"shortHtml": "<p>Checks to see if a folder exists.</p>",
-			"text": "Checks to see if a folder exists.\n\n",
-			"html": "<p>Checks to see if a folder exists.</p>",
 			"file": "documon/src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
@@ -125,6 +125,10 @@
 		{
 			"line": 43,
 			"name": "makedir",
+			"shortText": "Creates a folder at the specified location. The sub-folder heirarchy is",
+			"shortHtml": "<p>Creates a folder at the specified location. The sub-folder heirarchy is</p>",
+			"text": "Creates a folder at the specified location. The sub-folder heirarchy is\n constructed as needed.\n\n For example if a folder exists here:\n\n \t/path/to/folder\n\n ... but the following sub-folders don't exists:\n\n\t/path/to/folder/sub/one/two/three\n\n  ... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")\n\n",
+			"html": "<p>Creates a folder at the specified location. The sub-folder heirarchy is <br>\n constructed as needed.</p>\n\n<p>For example if a folder exists here:</p>\n\n<pre class=\"prettyprint\">/path/to/folder</pre>\n\n<p>... but the following sub-folders don't exists:</p>\n\n<pre class=\"prettyprint\">/path/to/folder/sub/one/two/three</pre>\n\n<p>... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")</p>",
 			"entity": "method",
 			"flagSearchText": " makedir The destination folder to create",
 			"params": [
@@ -138,10 +142,6 @@
 					"defaultVal": "path/to/make"
 				}
 			],
-			"shortText": "Creates a folder at the specified location. The sub-folder heirarchy is",
-			"shortHtml": "<p>Creates a folder at the specified location. The sub-folder heirarchy is</p>",
-			"text": "Creates a folder at the specified location. The sub-folder heirarchy is\n constructed as needed.\n\n For example if a folder exists here:\n\n \t/path/to/folder\n\n ... but the following sub-folders don't exists:\n\n\t/path/to/folder/sub/one/two/three\n\n  ... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")\n\n",
-			"html": "<p>Creates a folder at the specified location. The sub-folder heirarchy is <br>\n constructed as needed.</p>\n\n<p>For example if a folder exists here:</p>\n\n<pre class=\"prettyprint\">/path/to/folder</pre>\n\n<p>... but the following sub-folders don't exists:</p>\n\n<pre class=\"prettyprint\">/path/to/folder/sub/one/two/three</pre>\n\n<p>... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")</p>",
 			"file": "documon/src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
@@ -152,6 +152,10 @@
 		{
 			"line": 144,
 			"name": "readdir",
+			"shortText": "Read a folder and returns an object containing all of the files and",
+			"shortHtml": "<p>Read a folder and returns an object containing all of the files and</p>",
+			"text": "Read a folder and returns an object containing all of the files and\n folder in arrays.\n\n",
+			"html": "<p>Read a folder and returns an object containing all of the files and <br>\n folder in arrays.</p>",
 			"entity": "method",
 			"flagSearchText": " readdir\n The path to the folder to read. A custom filter funciton. Should we retrieve sub-folders too? Used internally to store recursive findings.\n Note that you may also provide this argument and readdir will populate your\n existing files/folder list. But is recommended to leave this argument alone.\n An object containing a list of \"files\" and \"folders\"\n (as properties of the returned list), where each is an array.\n \n \tvar contents = readdir(\"/path/to/folder\", null, true);\n \t// yeids contents {\n\t// \t\tfiles : [\n\t// \t\t\t\t\t\"/path/to/folder/1.foo\",\n\t// \t\t\t\t\t\"/path/to/folder/2.bar\",\n\t// \t\t\t\t\t\"/path/to/folder/3.png\",\n\t//\t\t\t\t\t\"/path/to/folder/sub1/1.foo\",\n\t// \t\t\t\t\t\"/path/to/folder/sub2/2.bar\",\n\t// \t\t\t\t\t\"/path/to/folder/sub3/3.png\"\n\t// \t\t\t\t],\n\t// \t\tdirs : [\n\t// \t\t\t\t\t\"/path/to/folder/sub1\",\n\t// \t\t\t\t\t\"/path/to/folder/sub2\",\n\t// \t\t\t\t\t\"/path/to/folder/sub3\"\n\t// \n\t// \t\t\t\t]\n\t// }\n",
 			"params": [
@@ -201,10 +205,6 @@
 					"html": "<pre class=\"prettyprint\">var contents = readdir(\"/path/to/folder\", null, true);\n// yeids contents {\n//      files : [\n//                  \"/path/to/folder/1.foo\",\n//                  \"/path/to/folder/2.bar\",\n//                  \"/path/to/folder/3.png\",\n//                  \"/path/to/folder/sub1/1.foo\",\n//                  \"/path/to/folder/sub2/2.bar\",\n//                  \"/path/to/folder/sub3/3.png\"\n//              ],\n//      dirs : [\n//                  \"/path/to/folder/sub1\",\n//                  \"/path/to/folder/sub2\",\n//                  \"/path/to/folder/sub3\"\n// \n//              ]\n// }</pre>"
 				}
 			],
-			"shortText": "Read a folder and returns an object containing all of the files and",
-			"shortHtml": "<p>Read a folder and returns an object containing all of the files and</p>",
-			"text": "Read a folder and returns an object containing all of the files and\n folder in arrays.\n\n",
-			"html": "<p>Read a folder and returns an object containing all of the files and <br>\n folder in arrays.</p>",
 			"file": "documon/src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
@@ -215,6 +215,10 @@
 		{
 			"line": 79,
 			"name": "readExt",
+			"shortText": "Collects files from a folder based on the specified extension (or",
+			"shortHtml": "<p>Collects files from a folder based on the specified extension (or</p>",
+			"text": "Collects files from a folder based on the specified extension (or\n extensions). Can be used to search recursively through all sub-folders, and can\n search multiple extensions.\n\n Provided as shortcut for [readdir](#readdir) with your own\n extension-checking filter.\n\n",
+			"html": "<p>Collects files from a folder based on the specified extension (or <br>\n extensions). Can be used to search recursively through all sub-folders, and can <br>\n search multiple extensions.</p>\n\n<p>Provided as shortcut for <a href=\"#readdir\">readdir</a> with your own <br>\n extension-checking filter.</p>",
 			"entity": "method",
 			"flagSearchText": " readExt\n The path to search The extension to look for (e.g. \"jpg\"). To\n search for multiple extensions, use an array e.g. [\"jpg\", \"png\", \"gif\"] Find all matching files in all\n sub-folders.\n The resulting array contains only files that mathc the\n specified extension(s).",
 			"params": [
@@ -252,10 +256,6 @@
 				"shortText": "<p>The resulting array contains only files that mathc the</p>",
 				"shortHtml": "<p>The resulting array contains only files that mathc the</p>"
 			},
-			"shortText": "Collects files from a folder based on the specified extension (or",
-			"shortHtml": "<p>Collects files from a folder based on the specified extension (or</p>",
-			"text": "Collects files from a folder based on the specified extension (or\n extensions). Can be used to search recursively through all sub-folders, and can\n search multiple extensions.\n\n Provided as shortcut for [readdir](#readdir) with your own\n extension-checking filter.\n\n",
-			"html": "<p>Collects files from a folder based on the specified extension (or <br>\n extensions). Can be used to search recursively through all sub-folders, and can <br>\n search multiple extensions.</p>\n\n<p>Provided as shortcut for <a href=\"#readdir\">readdir</a> with your own <br>\n extension-checking filter.</p>",
 			"file": "documon/src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
@@ -266,6 +266,10 @@
 		{
 			"line": 261,
 			"name": "removedir",
+			"shortText": "Recursively removes a folder and all of it's sub-folders as well.",
+			"shortHtml": "<p>Recursively removes a folder and all of it's sub-folders as well.</p>",
+			"text": "Recursively removes a folder and all of it's sub-folders as well.\n\n",
+			"html": "<p>Recursively removes a folder and all of it's sub-folders as well.</p>",
 			"entity": "method",
 			"flagSearchText": " removedir\n The path to the folder Prevents actual deletion, but still allows the return to return the list of items that \"will\" be deleted.\n An array of all the items that were deleted (or \"will be\" deleted if dryrun is true.",
 			"params": [
@@ -293,10 +297,6 @@
 				"shortText": "<p>An array of all the items that were deleted (or \"will be\" deleted if dryrun is true.</p>",
 				"shortHtml": "<p>An array of all the items that were deleted (or \"will be\" deleted if dryrun is true.</p>"
 			},
-			"shortText": "Recursively removes a folder and all of it's sub-folders as well.",
-			"shortHtml": "<p>Recursively removes a folder and all of it's sub-folders as well.</p>",
-			"text": "Recursively removes a folder and all of it's sub-folders as well.\n\n",
-			"html": "<p>Recursively removes a folder and all of it's sub-folders as well.</p>",
 			"file": "documon/src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",

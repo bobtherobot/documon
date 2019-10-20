@@ -55,32 +55,32 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
+	margin-top : 2em;
 	font-weight: 200;
 }
 
 h1 {
-	font-size : 1.5em;
+	font-size : 2em;
 }
 
 h2 {
-	font-size : 1.4em;
+	font-size : 1.7em;
 }
 
 h3 {
-	font-size : 1.3em;
+	font-size : 1.5em;
 }
 
 h4 {
-	font-size : 1.2em;
+	font-size : 1.4em;
 }
 
 h5 {
-	font-size : 1.1em;
+	font-size : 1.3em;
 }
 
 h6 {
-	font-weight : bold;
-	font-size : 1em;
+	font-size : 1.2em;
 }
 
 ul, li, table tr {
@@ -461,12 +461,16 @@ members
 	float : right;
 }
 
-.member-line-number {
+.member-file, .member-line-number {
 	font-size : 10px;
 	color : #8C8C8C;
 }
 .member-line-number:before {
-	content : 'line: ';
+	font-weight : bold;
+	content : ' - line: ';
+}
+.member-file {
+
 }
 
 .param-description {

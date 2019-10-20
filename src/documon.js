@@ -87,20 +87,28 @@ var mainConf = {};
 var extensions;
 
 /**
- * @property  {array} ignoreList - A list of strings representing glob patterns for files/folders to ignore.
+ * @property  {array} ignoreList - A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:
+ *
+ * 		'\/\.'
+ * 		'\.git'
+ * 		'node_modules'
+ *
+ * 	Configuration will concat this list with the user provied list.
  */
 
 // -------- NO GLOB ---------------
 // Not using globs but would like to, but the overhead for incorporating:
 //var minimatch = require("minimatch");
-// ... i feel is too expensive for what it's worht? Probably change if anyone actually ever uses this.
+// ... i feel is too expensive for what it's worth? Probably change if anyone actually ever uses this.
 // See shouldIgnore where we could use glob.
 // ---------------------------
 // Glob examples from: https://buckbuild.com/function/glob.html
 // '**/.*'		- All of the files starting with '.' under a regular (non-dot) directory:
 // '.git/**/'	- All of the regular files under the directory '.git':
 // '**/*.java'	- All of the regular .java files under this directory:
-var ignoreList = ['**/.*', '.git/**/'];
+//var ignoreList = ['**/.*', '.git/**/', 'node_modules'];
+var ignoreList = ['\\/\\.', '\\.git', 'node_modules'];
+
 
 /**
  * @property  {boolean} quiet=false - Supress stdout messages.
@@ -342,7 +350,7 @@ function init(conf){
 	// ---------------------------------------------
 
 	// If output folder not defined, place parrallel to source folder.
-	mainConf.outputFolder = mainConf.outputFolder ? path.normalize( mainConf.outputFolder ) : sourceRootFolder;
+	mainConf.outputFolder = mainConf.outputFolder ?  path.normalize( mainConf.outputFolder ) : sourceRootFolder;
 
 	utils.normalizeConfTrailingSlash(mainConf, "remove");
 
@@ -355,8 +363,6 @@ function init(conf){
 	// Put into a sub folder... This is a MUST to protect
 	// against deleting anything that "we" didn't create.
 	mainConf.outputFolder +=  "/" + mainConf.docsDirName;
-
-
 
 	if ( ! du.exists(mainConf.outputFolder) ){
 	    du.make(mainConf.outputFolder);
@@ -433,9 +439,6 @@ function init(conf){
 	ignoreList.push( mainConf.dataFolder );
 	ignoreList.push( mainConf.outputFolder );
 
-
-
-
 	// Weed out anything we need/want to ignore
 	var todoGlobber = [];
 	for(var i=0; i<todoList.length; i++){
@@ -473,12 +476,30 @@ function init(conf){
 function shouldIgnore(item){
 
 	for(var g=0; g<ignoreList.length; g++){
-		if( item.indexOf( ignoreList[g] ) === 0 ){
-		// For glob (if enabled) 
-		//if( minimatch( item, ignoreList[g] ) === 0 ){
-			return true;
+		var str = ignoreList[g];
+		if(str){
+
+			// some regex-y strings caould freak out regex. eg. "*foo.js"
+			try {
+				var re = new RegExp(str, "gi");
+				if( re.test(item) ){
+
+				//if( ~item.indexOf( ignoreList[g] ) ){
+				//if( item.indexOf( ignoreList[g] ) === 0 ){
+				// For glob (if enabled) 
+				//if( minimatch( item, ignoreList[g] ) === 0 ){
+					return true;
+				}
+			} catch(e){
+				return false;
+			}
+
+			return false;
+			
 		}
+		
 	}
+
 	return false;
 
 }
@@ -498,7 +519,7 @@ function seeder(file){
 
 	var searchData = {};
 
-	if(file){
+	if(file && fs.existsSync( file ) ){
 		var fileConf = {};
 		for(var prop in mainConf){
 			fileConf[prop] = mainConf[prop];
@@ -660,7 +681,7 @@ function run(conf){
 
 					if( du.exists(mainConf.moreFolder) ){
 
-						moreMenu = more(mainConf, menuObj, searchData);
+						moreMenu = more(mainConf, menuObj, searchData, shouldIgnore);
 
 						if(moreMenu){
 							menuObj = moreMenu;

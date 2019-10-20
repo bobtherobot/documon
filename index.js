@@ -1,22 +1,22 @@
 /*
 
 # run
-cd /Volumes/Drives/projects/documon
+cd /Volumes/Drives/projects/documon/documon
 node .
 
-cd /Volumes/Drives/projects/documon
+cd /Volumes/Drives/projects/documon/documon
 node . /Volumes/Drives/projects/documon/test_src/jbeeb2 -q -l
 
-cd /Volumes/Drives/projects/documon
+cd /Volumes/Drives/projects/documon/documon
 node . /Volumes/Drives/projects/documon/documon/src -q -l -s="h m cpp"
 
-cd /Volumes/Drives/projects/documon
+cd /Volumes/Drives/projects/documon/documon
 node . /Volumes/Drives/projects/documon/documon/src -d
 
-cd /Volumes/Drives/projects/documon
+cd /Volumes/Drives/projects/documon/documon
 node . /Volumes/Drives/projects/documon/test_src/jbeeb2 -d -l
 
-cd /Volumes/Drives/projects/documon
+cd /Volumes/Drives/projects/documon/documon
 node . /Volumes/Drives/projects/documon/test_src/hmm -s "boob"
 
  */
@@ -31,7 +31,7 @@ var path = require("./src/npath");
 var log = require('./src/log');
 var documon = require('./src/documon');
 var info = require('./src/info');
-//var mist = require('./src/minimist');
+var mist = require('./src/minimist');
 
 var errors = [];
 

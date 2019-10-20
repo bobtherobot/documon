@@ -1,14 +1,14 @@
 {
 	"line": 15,
 	"name": "markdown-extra",
-	"entity": "module",
-	"flagSearchText": " markdown-extra documon \n\r",
-	"package": "documon",
-	"access": "private",
 	"shortText": "This is essentially [pagedown-extra](https://github.com/jmcmanus/pagedown-extra), ported to run as a simple node module.\r",
 	"shortHtml": "<p>This is essentially <a href=\"https://github.com/jmcmanus/pagedown-extra\">pagedown-extra</a>, ported to run as a simple node module.</p>",
 	"text": "This is essentially [pagedown-extra](https://github.com/jmcmanus/pagedown-extra), ported to run as a simple node module.\r\nhttps://github.com/jmcmanus/pagedown-extra\r\n\r\n",
 	"html": "<p>This is essentially <a href=\"https://github.com/jmcmanus/pagedown-extra\">pagedown-extra</a>, ported to run as a simple node module. <br>\n<a href=\"https://github.com/jmcmanus/pagedown-extra\">https://github.com/jmcmanus/pagedown-extra</a></p>",
+	"entity": "module",
+	"flagSearchText": " markdown-extra documon \n\r",
+	"package": "documon",
+	"access": "private",
 	"file": "documon/src/markdown-extra.js",
 	"filename": "markdown-extra.js",
 	"klass": "markdown-extra",
@@ -16,79 +16,12 @@
 	"id": "documon.markdown-extra",
 	"methods": [
 		{
-			"line": 201,
-			"name": "init",
-			"entity": "method",
-			"flagSearchText": " init\n\r A handle to a MarkdownConverter instance. Things you can do. An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.",
-			"params": [
-				{
-					"name": "converter",
-					"shortText": "A handle to a MarkdownConverter instance.",
-					"shortHtml": "<p>A handle to a MarkdownConverter instance.</p>",
-					"text": "A handle to a MarkdownConverter instance.",
-					"html": "<p>A handle to a MarkdownConverter instance.</p>",
-					"type": "Markdown.Converter"
-				},
-				{
-					"name": "options",
-					"shortText": "Things you can do.",
-					"shortHtml": "<p>Things you can do.</p>",
-					"text": "Things you can do.",
-					"html": "<p>Things you can do.</p>",
-					"type": "object",
-					"children": [
-						{
-							"name": "extensions",
-							"shortText": ": (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:",
-							"shortHtml": "<p>: (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:</p>",
-							"text": ": (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:\n\t - tables\r\n\t - fenced_code_gfm\r\n\t - def_list\r\n\t - attr_list\r\n\t - footnotes\r\n\t - smartypants\r\n\t - strikethrough\r\n\t - newlines\r",
-							"html": "<p>: (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are: <br>\n     - tables <br>\n     - fenced_code_gfm <br>\n     - def_list <br>\n     - attr_list <br>\n     - footnotes <br>\n     - smartypants <br>\n     - strikethrough <br>\n     - newlines</p>",
-							"type": "array",
-							"optional": true,
-							"defaultVal": "all"
-						},
-						{
-							"name": "highlighter",
-							"shortText": ": (string) The preferred syntax highlighter. Two options are available: prettify ([google prettify](https://github.com/google/code-prettify)) or \"highlight\" ([highlightJs](https://highlightjs.org/). You'll have to include the script of your choice into your pages manually!",
-							"shortHtml": "<p>: (string) The preferred syntax highlighter. Two options are available: prettify (<a href=\"https://github.com/google/code-prettify\">google prettify</a>) or \"highlight\" (<a href=\"https://highlightjs.org/\">highlightJs</a>. You'll have to include the script of your choice into your pages manually!</p>",
-							"text": ": (string) The preferred syntax highlighter. Two options are available: prettify ([google prettify](https://github.com/google/code-prettify)) or \"highlight\" ([highlightJs](https://highlightjs.org/). You'll have to include the script of your choice into your pages manually!",
-							"html": "<p>: (string) The preferred syntax highlighter. Two options are available: prettify (<a href=\"https://github.com/google/code-prettify\">google prettify</a>) or \"highlight\" (<a href=\"https://highlightjs.org/\">highlightJs</a>. You'll have to include the script of your choice into your pages manually!</p>",
-							"type": "array",
-							"optional": true
-						},
-						{
-							"name": "table_class",
-							"shortText": ": (string) The CSS class to apply to tables.",
-							"shortHtml": "<p>: (string) The CSS class to apply to tables.</p>",
-							"text": ": (string) The CSS class to apply to tables.\n\r",
-							"html": "<p>: (string) The CSS class to apply to tables.</p>",
-							"type": "array",
-							"optional": true
-						}
-					]
-				}
-			],
-			"returns": {
-				"type": "MarkdownExtra",
-				"text": "An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.",
-				"html": "<p>An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.</p>",
-				"shortText": "<p>An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.</p>",
-				"shortHtml": "<p>An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.</p>"
-			},
-			"shortText": "Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.",
-			"shortHtml": "<p>Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.</p>",
-			"text": "Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.\r\n\r\n",
-			"html": "<p>Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.</p>",
-			"file": "documon/src/markdown-extra.js",
-			"filename": "markdown-extra.js",
-			"klass": "markdown-extra",
-			"package": "documon",
-			"docfile": "documon.markdown-extra.html",
-			"id": "documon.markdown-extra.init"
-		},
-		{
 			"line": 446,
 			"name": "applyAttributeBlocks",
+			"shortText": "[applyAttributeBlocks description]",
+			"shortHtml": "<p>[applyAttributeBlocks description]</p>",
+			"text": "[applyAttributeBlocks description]\r\n\r\n",
+			"html": "<p>[applyAttributeBlocks description]</p>",
 			"entity": "method",
 			"flagSearchText": " applyAttributeBlocks description\n\r description",
 			"access": "private",
@@ -109,10 +42,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "[applyAttributeBlocks description]",
-			"shortHtml": "<p>[applyAttributeBlocks description]</p>",
-			"text": "[applyAttributeBlocks description]\r\n\r\n",
-			"html": "<p>[applyAttributeBlocks description]</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -121,8 +50,46 @@
 			"id": "documon.markdown-extra.applyAttributeBlocks"
 		},
 		{
+			"line": 822,
+			"name": "applyPants",
+			"shortText": "[applyPants description]",
+			"shortHtml": "<p>[applyPants description]</p>",
+			"text": "[applyPants description]\r\n\r\n",
+			"html": "<p>[applyPants description]</p>",
+			"entity": "method",
+			"flagSearchText": " applyPants description\n\r description",
+			"access": "private",
+			"params": [
+				{
+					"name": "text",
+					"shortText": "description",
+					"shortHtml": "<p>description</p>",
+					"text": "description\n\r",
+					"html": "<p>description</p>",
+					"type": "type"
+				}
+			],
+			"returns": {
+				"type": "type",
+				"text": "description description",
+				"html": "<p>description description</p>",
+				"shortText": "<p>description description</p>",
+				"shortHtml": "<p>description description</p>"
+			},
+			"file": "documon/src/markdown-extra.js",
+			"filename": "markdown-extra.js",
+			"klass": "markdown-extra",
+			"package": "documon",
+			"docfile": "documon.markdown-extra.html",
+			"id": "documon.markdown-extra.applyPants"
+		},
+		{
 			"line": 910,
 			"name": "definitionLists",
+			"shortText": "Find and convert markdown extra definition lists into html.",
+			"shortHtml": "<p>Find and convert markdown extra definition lists into html.</p>",
+			"text": "Find and convert markdown extra definition lists into html.\r\n\r\n",
+			"html": "<p>Find and convert markdown extra definition lists into html.</p>",
 			"entity": "method",
 			"flagSearchText": " definitionLists description\n\r description",
 			"access": "private",
@@ -143,10 +110,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Find and convert markdown extra definition lists into html.",
-			"shortHtml": "<p>Find and convert markdown extra definition lists into html.</p>",
-			"text": "Find and convert markdown extra definition lists into html.\r\n\r\n",
-			"html": "<p>Find and convert markdown extra definition lists into html.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -157,6 +120,10 @@
 		{
 			"line": 643,
 			"name": "doFootnotes",
+			"shortText": "Find and convert footnotes references.",
+			"shortHtml": "<p>Find and convert footnotes references.</p>",
+			"text": "Find and convert footnotes references.\r\n\r\n",
+			"html": "<p>Find and convert footnotes references.</p>",
 			"entity": "method",
 			"flagSearchText": " doFootnotes description\n\r description",
 			"access": "private",
@@ -177,10 +144,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Find and convert footnotes references.",
-			"shortHtml": "<p>Find and convert footnotes references.</p>",
-			"text": "Find and convert footnotes references.\r\n\r\n",
-			"html": "<p>Find and convert footnotes references.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -191,6 +154,10 @@
 		{
 			"line": 301,
 			"name": "doTransform",
+			"shortText": "Do transformations",
+			"shortHtml": "<p>Do transformations</p>",
+			"text": "Do transformations\r\n\r\n",
+			"html": "<p>Do transformations</p>",
 			"entity": "method",
 			"flagSearchText": " doTransform transformations text",
 			"access": "private",
@@ -219,10 +186,6 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"shortText": "Do transformations",
-			"shortHtml": "<p>Do transformations</p>",
-			"text": "Do transformations\r\n\r\n",
-			"html": "<p>Do transformations</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -233,6 +196,10 @@
 		{
 			"line": 762,
 			"name": "educatePants",
+			"shortText": "[educatePants description]",
+			"shortHtml": "<p>[educatePants description]</p>",
+			"text": "[educatePants description]\r\n\r\n",
+			"html": "<p>[educatePants description]</p>",
 			"entity": "method",
 			"flagSearchText": " educatePants description\n\r description",
 			"access": "private",
@@ -253,10 +220,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "[educatePants description]",
-			"shortHtml": "<p>[educatePants description]</p>",
-			"text": "[educatePants description]\r\n\r\n",
-			"html": "<p>[educatePants description]</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -267,6 +230,10 @@
 		{
 			"line": 709,
 			"name": "fencedCodeBlocks",
+			"shortText": "Find and convert gfm-inspired fenced code blocks into html.",
+			"shortHtml": "<p>Find and convert gfm-inspired fenced code blocks into html.</p>",
+			"text": "Find and convert gfm-inspired fenced code blocks into html.\r\n\r\n",
+			"html": "<p>Find and convert gfm-inspired fenced code blocks into html.</p>",
 			"entity": "method",
 			"flagSearchText": " fencedCodeBlocks description\n\r description",
 			"access": "private",
@@ -287,10 +254,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Find and convert gfm-inspired fenced code blocks into html.",
-			"shortHtml": "<p>Find and convert gfm-inspired fenced code blocks into html.</p>",
-			"text": "Find and convert gfm-inspired fenced code blocks into html.\r\n\r\n",
-			"html": "<p>Find and convert gfm-inspired fenced code blocks into html.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -301,6 +264,10 @@
 		{
 			"line": 318,
 			"name": "hashExtraBlock",
+			"shortText": "Return a placeholder containing a key, which is the block's index in the\r",
+			"shortHtml": "<p>Return a placeholder containing a key, which is the block's index in the</p>",
+			"text": "Return a placeholder containing a key, which is the block's index in the\r\nhashBlocks array. We wrap our output in a <p> tag here so Pagedown won't.\r\n\r\n",
+			"html": "<p>Return a placeholder containing a key, which is the block's index in the <br>\nhashBlocks array. We wrap our output in a <p> tag here so Pagedown won't.</p>",
 			"entity": "method",
 			"flagSearchText": " hashExtraBlock block",
 			"access": "private",
@@ -321,10 +288,6 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"shortText": "Return a placeholder containing a key, which is the block's index in the\r",
-			"shortHtml": "<p>Return a placeholder containing a key, which is the block's index in the</p>",
-			"text": "Return a placeholder containing a key, which is the block's index in the\r\nhashBlocks array. We wrap our output in a <p> tag here so Pagedown won't.\r\n\r\n",
-			"html": "<p>Return a placeholder containing a key, which is the block's index in the <br>\nhashBlocks array. We wrap our output in a <p> tag here so Pagedown won't.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -335,6 +298,10 @@
 		{
 			"line": 328,
 			"name": "hashExtraInline",
+			"shortText": "hashExtraInline",
+			"shortHtml": "<p>hashExtraInline</p>",
+			"text": "hashExtraInline",
+			"html": "<p>hashExtraInline</p>",
 			"entity": "method",
 			"flagSearchText": " hashExtraInline block",
 			"access": "private",
@@ -365,6 +332,10 @@
 		{
 			"line": 424,
 			"name": "hashFcbAttributeBlocks",
+			"shortText": "Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.",
+			"shortHtml": "<p>Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
+			"text": "Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.\r\n\r\n",
+			"html": "<p>Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
 			"entity": "method",
 			"flagSearchText": " hashFcbAttributeBlocks description\n\r description",
 			"access": "private",
@@ -385,10 +356,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.",
-			"shortHtml": "<p>Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
-			"text": "Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.\r\n\r\n",
-			"html": "<p>Extract FCB attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -399,6 +366,10 @@
 		{
 			"line": 402,
 			"name": "hashHeaderAttributeBlocks",
+			"shortText": "Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.",
+			"shortHtml": "<p>Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
+			"text": "Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.\r\n\r\n",
+			"html": "<p>Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
 			"entity": "method",
 			"flagSearchText": " hashHeaderAttributeBlocks description\n\r description",
 			"access": "private",
@@ -419,10 +390,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.",
-			"shortHtml": "<p>Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
-			"text": "Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.\r\n\r\n",
-			"html": "<p>Extract headers attribute blocks, move them above the element they will be applied to, and hash them for later.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -431,42 +398,83 @@
 			"id": "documon.markdown-extra.hashHeaderAttributeBlocks"
 		},
 		{
-			"line": 822,
-			"name": "applyPants",
+			"line": 201,
+			"name": "init",
+			"shortText": "Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.",
+			"shortHtml": "<p>Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.</p>",
+			"text": "Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.\r\n\r\n",
+			"html": "<p>Hooks into the main Markdown Converter to do pre and post processing on the source markdown-to-HTML conversions.</p>",
 			"entity": "method",
-			"flagSearchText": " applyPants description\n\r description",
-			"access": "private",
+			"flagSearchText": " init\n\r A handle to a MarkdownConverter instance. Things you can do. An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.",
 			"params": [
 				{
-					"name": "text",
-					"shortText": "description",
-					"shortHtml": "<p>description</p>",
-					"text": "description\n\r",
-					"html": "<p>description</p>",
-					"type": "type"
+					"name": "converter",
+					"shortText": "A handle to a MarkdownConverter instance.",
+					"shortHtml": "<p>A handle to a MarkdownConverter instance.</p>",
+					"text": "A handle to a MarkdownConverter instance.",
+					"html": "<p>A handle to a MarkdownConverter instance.</p>",
+					"type": "Markdown.Converter"
+				},
+				{
+					"name": "options",
+					"shortText": "Things you can do.",
+					"shortHtml": "<p>Things you can do.</p>",
+					"text": "Things you can do.",
+					"html": "<p>Things you can do.</p>",
+					"type": "object",
+					"children": [
+						{
+							"name": "extensions",
+							"shortText": ": (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:",
+							"shortHtml": "<p>: (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:</p>",
+							"text": ": (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are:\n\t - tables\r\n\t - fenced_code_gfm\r\n\t - def_list\r\n\t - attr_list\r\n\t - footnotes\r\n\t - smartypants\r\n\t - strikethrough\r\n\t - newlines\r",
+							"html": "<p>: (array) A list of extras to process. By default all extras are processed. This option allows you to only process specific kinds of extras. The full list of available extras are: <br>\n     - tables <br>\n     - fenced_code_gfm <br>\n     - def_list <br>\n     - attr_list <br>\n     - footnotes <br>\n     - smartypants <br>\n     - strikethrough <br>\n     - newlines</p>",
+							"type": "array",
+							"optional": true,
+							"defaultVal": "\"all\"]"
+						},
+						{
+							"name": "highlighter",
+							"shortText": ": (string) The preferred syntax highlighter. Two options are available: prettify ([google prettify](https://github.com/google/code-prettify)) or \"highlight\" ([highlightJs](https://highlightjs.org/). You'll have to include the script of your choice into your pages manually!",
+							"shortHtml": "<p>: (string) The preferred syntax highlighter. Two options are available: prettify (<a href=\"https://github.com/google/code-prettify\">google prettify</a>) or \"highlight\" (<a href=\"https://highlightjs.org/\">highlightJs</a>. You'll have to include the script of your choice into your pages manually!</p>",
+							"text": ": (string) The preferred syntax highlighter. Two options are available: prettify ([google prettify](https://github.com/google/code-prettify)) or \"highlight\" ([highlightJs](https://highlightjs.org/). You'll have to include the script of your choice into your pages manually!",
+							"html": "<p>: (string) The preferred syntax highlighter. Two options are available: prettify (<a href=\"https://github.com/google/code-prettify\">google prettify</a>) or \"highlight\" (<a href=\"https://highlightjs.org/\">highlightJs</a>. You'll have to include the script of your choice into your pages manually!</p>",
+							"type": "array",
+							"optional": true
+						},
+						{
+							"name": "table_class",
+							"shortText": ": (string) The CSS class to apply to tables.",
+							"shortHtml": "<p>: (string) The CSS class to apply to tables.</p>",
+							"text": ": (string) The CSS class to apply to tables.\n\r",
+							"html": "<p>: (string) The CSS class to apply to tables.</p>",
+							"type": "array",
+							"optional": true
+						}
+					]
 				}
 			],
 			"returns": {
-				"type": "type",
-				"text": "description description",
-				"html": "<p>description description</p>",
-				"shortText": "<p>description description</p>",
-				"shortHtml": "<p>description description</p>"
+				"type": "MarkdownExtra",
+				"text": "An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.",
+				"html": "<p>An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.</p>",
+				"shortText": "<p>An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.</p>",
+				"shortHtml": "<p>An instance of MarkdownExtra. Not really needed for anything other than for testing and development purposes.</p>"
 			},
-			"shortText": "[applyPants description]",
-			"shortHtml": "<p>[applyPants description]</p>",
-			"text": "[applyPants description]\r\n\r\n",
-			"html": "<p>[applyPants description]</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
 			"package": "documon",
 			"docfile": "documon.markdown-extra.html",
-			"id": "documon.markdown-extra.applyPants"
+			"id": "documon.markdown-extra.init"
 		},
 		{
 			"line": 1073,
 			"name": "newlines",
+			"shortText": "[newlines description]",
+			"shortHtml": "<p>[newlines description]</p>",
+			"text": "[newlines description]\r\n\r\n",
+			"html": "<p>[newlines description]</p>",
 			"entity": "method",
 			"flagSearchText": " newlines description\n\r description",
 			"access": "private",
@@ -487,10 +495,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "[newlines description]",
-			"shortHtml": "<p>[newlines description]</p>",
-			"text": "[newlines description]\r\n\r\n",
-			"html": "<p>[newlines description]</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -501,6 +505,10 @@
 		{
 			"line": 674,
 			"name": "printFootnotes",
+			"shortText": "Print footnotes at the end of the document",
+			"shortHtml": "<p>Print footnotes at the end of the document</p>",
+			"text": "Print footnotes at the end of the document\r\n\r\n",
+			"html": "<p>Print footnotes at the end of the document</p>",
 			"entity": "method",
 			"flagSearchText": " printFootnotes description\n\r description",
 			"access": "private",
@@ -521,10 +529,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Print footnotes at the end of the document",
-			"shortHtml": "<p>Print footnotes at the end of the document</p>",
-			"text": "Print footnotes at the end of the document\r\n\r\n",
-			"html": "<p>Print footnotes at the end of the document</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -535,6 +539,10 @@
 		{
 			"line": 968,
 			"name": "processDefListItems",
+			"shortText": "Process the contents of a single definition list, splitting it\r",
+			"shortHtml": "<p>Process the contents of a single definition list, splitting it</p>",
+			"text": "Process the contents of a single definition list, splitting it\r\ninto individual term and definition list items.\r\n\r\n",
+			"html": "<p>Process the contents of a single definition list, splitting it <br>\ninto individual term and definition list items.</p>",
 			"entity": "method",
 			"flagSearchText": " processDefListItems description\n\r description",
 			"access": "private",
@@ -555,10 +563,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Process the contents of a single definition list, splitting it\r",
-			"shortHtml": "<p>Process the contents of a single definition list, splitting it</p>",
-			"text": "Process the contents of a single definition list, splitting it\r\ninto individual term and definition list items.\r\n\r\n",
-			"html": "<p>Process the contents of a single definition list, splitting it <br>\ninto individual term and definition list items.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -569,6 +573,10 @@
 		{
 			"line": 801,
 			"name": "revertPants",
+			"shortText": "[revertPants description]",
+			"shortHtml": "<p>[revertPants description]</p>",
+			"text": "[revertPants description]\r\n\r\n",
+			"html": "<p>[revertPants description]</p>",
 			"entity": "method",
 			"flagSearchText": " revertPants description description\n\r description",
 			"access": "private",
@@ -597,10 +605,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "[revertPants description]",
-			"shortHtml": "<p>[revertPants description]</p>",
-			"text": "[revertPants description]\r\n\r\n",
-			"html": "<p>[revertPants description]</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -611,6 +615,10 @@
 		{
 			"line": 889,
 			"name": "runSmartyPants",
+			"shortText": "Find and convert markdown extra definition lists into html.",
+			"shortHtml": "<p>Find and convert markdown extra definition lists into html.</p>",
+			"text": "Find and convert markdown extra definition lists into html.\r\n\r\n",
+			"html": "<p>Find and convert markdown extra definition lists into html.</p>",
 			"entity": "method",
 			"flagSearchText": " runSmartyPants description\n\r description",
 			"access": "private",
@@ -631,10 +639,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Find and convert markdown extra definition lists into html.",
-			"shortHtml": "<p>Find and convert markdown extra definition lists into html.</p>",
-			"text": "Find and convert markdown extra definition lists into html.\r\n\r\n",
-			"html": "<p>Find and convert markdown extra definition lists into html.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -645,6 +649,10 @@
 		{
 			"line": 1053,
 			"name": "strikethrough",
+			"shortText": "[strikethrough description]",
+			"shortHtml": "<p>[strikethrough description]</p>",
+			"text": "[strikethrough description]\r\n\r\n",
+			"html": "<p>[strikethrough description]</p>",
 			"entity": "method",
 			"flagSearchText": " strikethrough description\n\r description",
 			"access": "private",
@@ -665,10 +673,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "[strikethrough description]",
-			"shortHtml": "<p>[strikethrough description]</p>",
-			"text": "[strikethrough description]\r\n\r\n",
-			"html": "<p>[strikethrough description]</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -679,6 +683,10 @@
 		{
 			"line": 617,
 			"name": "stripFootnoteDefinitions",
+			"shortText": "Strip footnote, store in hashes.",
+			"shortHtml": "<p>Strip footnote, store in hashes.</p>",
+			"text": "Strip footnote, store in hashes.\r\n\r\n",
+			"html": "<p>Strip footnote, store in hashes.</p>",
 			"entity": "method",
 			"flagSearchText": " stripFootnoteDefinitions description\n\r description",
 			"access": "private",
@@ -699,10 +707,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Strip footnote, store in hashes.",
-			"shortHtml": "<p>Strip footnote, store in hashes.</p>",
-			"text": "Strip footnote, store in hashes.\r\n\r\n",
-			"html": "<p>Strip footnote, store in hashes.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -713,6 +717,10 @@
 		{
 			"line": 493,
 			"name": "tables",
+			"shortText": "Find and convert Markdown Extra tables into html.",
+			"shortHtml": "<p>Find and convert Markdown Extra tables into html.</p>",
+			"text": "Find and convert Markdown Extra tables into html.\r\n\r\n",
+			"html": "<p>Find and convert Markdown Extra tables into html.</p>",
 			"entity": "method",
 			"flagSearchText": " tables description\n\r description",
 			"access": "private",
@@ -733,10 +741,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Find and convert Markdown Extra tables into html.",
-			"shortHtml": "<p>Find and convert Markdown Extra tables into html.</p>",
-			"text": "Find and convert Markdown Extra tables into html.\r\n\r\n",
-			"html": "<p>Find and convert Markdown Extra tables into html.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -747,6 +751,10 @@
 		{
 			"line": 342,
 			"name": "unHashExtraBlocks",
+			"shortText": "Replace placeholder blocks in `text` with their corresponding\r",
+			"shortHtml": "<p>Replace placeholder blocks in <pre class=\"prettyprint\">text</pre> with their corresponding</p>",
+			"text": "Replace placeholder blocks in `text` with their corresponding\r\nhtml blocks in the hashBlocks array.\r\n",
+			"html": "<p>Replace placeholder blocks in <pre class=\"prettyprint\">text</pre> with their corresponding <br>\nhtml blocks in the hashBlocks array.</p>",
 			"entity": "method",
 			"flagSearchText": " unHashExtraBlocks text",
 			"access": "private",
@@ -767,10 +775,6 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"shortText": "Replace placeholder blocks in `text` with their corresponding\r",
-			"shortHtml": "<p>Replace placeholder blocks in <pre class=\"prettyprint\">text</pre> with their corresponding</p>",
-			"text": "Replace placeholder blocks in `text` with their corresponding\r\nhtml blocks in the hashBlocks array.\r\n",
-			"html": "<p>Replace placeholder blocks in <pre class=\"prettyprint\">text</pre> with their corresponding <br>\nhtml blocks in the hashBlocks array.</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",
@@ -781,6 +785,10 @@
 		{
 			"line": 368,
 			"name": "wrapHeaders",
+			"shortText": "Wrap headers to make sure they won't be in def lists",
+			"shortHtml": "<p>Wrap headers to make sure they won't be in def lists</p>",
+			"text": "Wrap headers to make sure they won't be in def lists\r\n\r\n",
+			"html": "<p>Wrap headers to make sure they won't be in def lists</p>",
 			"entity": "method",
 			"flagSearchText": " wrapHeaders text",
 			"access": "private",
@@ -801,10 +809,6 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"shortText": "Wrap headers to make sure they won't be in def lists",
-			"shortHtml": "<p>Wrap headers to make sure they won't be in def lists</p>",
-			"text": "Wrap headers to make sure they won't be in def lists\r\n\r\n",
-			"html": "<p>Wrap headers to make sure they won't be in def lists</p>",
 			"file": "documon/src/markdown-extra.js",
 			"filename": "markdown-extra.js",
 			"klass": "markdown-extra",

@@ -3,11 +3,11 @@
 	"package": "documon",
 	"flagSearchText": " documon fileutils",
 	"name": "fileutils",
-	"entity": "class",
 	"shortText": "Basic, common and simplified asyncronous file methods.",
 	"shortHtml": "<p>Basic, common and simplified asyncronous file methods.</p>",
 	"text": "Basic, common and simplified asyncronous file methods.\n\n",
 	"html": "<p>Basic, common and simplified asyncronous file methods.</p>",
+	"entity": "class",
 	"file": "documon/src/fileutils.js",
 	"filename": "fileutils.js",
 	"klass": "fileutils",
@@ -17,6 +17,10 @@
 		{
 			"line": 24,
 			"name": "copy",
+			"shortText": "Copies a file from one location to another.",
+			"shortHtml": "<p>Copies a file from one location to another.</p>",
+			"text": "Copies a file from one location to another.\n\n",
+			"html": "<p>Copies a file from one location to another.</p>",
 			"entity": "method",
 			"flagSearchText": " copy The source file path. The destination to copy the source to.",
 			"params": [
@@ -37,10 +41,6 @@
 					"type": "string"
 				}
 			],
-			"shortText": "Copies a file from one location to another.",
-			"shortHtml": "<p>Copies a file from one location to another.</p>",
-			"text": "Copies a file from one location to another.\n\n",
-			"html": "<p>Copies a file from one location to another.</p>",
 			"file": "documon/src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
@@ -51,6 +51,10 @@
 		{
 			"line": 96,
 			"name": "exists",
+			"shortText": "Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.",
+			"shortHtml": "<p>Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.</p>",
+			"text": "Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.\n",
+			"html": "<p>Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.</p>",
 			"entity": "method",
 			"flagSearchText": " exists The source file path. True if exists, false if no file nor folder exists.",
 			"access": "private",
@@ -71,10 +75,6 @@
 				"shortText": "<p>True if exists, false if no file nor folder exists.</p>",
 				"shortHtml": "<p>True if exists, false if no file nor folder exists.</p>"
 			},
-			"shortText": "Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.",
-			"shortHtml": "<p>Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.</p>",
-			"text": "Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.\n",
-			"html": "<p>Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.</p>",
 			"file": "documon/src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
@@ -85,6 +85,10 @@
 		{
 			"line": 45,
 			"name": "Open",
+			"shortText": "Reads the entire file as a string. NOTE: This is an alias for [read](#read).",
+			"shortHtml": "<p>Reads the entire file as a string. NOTE: This is an alias for <a href=\"#read\">read</a>.</p>",
+			"text": "Reads the entire file as a string. NOTE: This is an alias for [read](#read).\n\n",
+			"html": "<p>Reads the entire file as a string. NOTE: This is an alias for <a href=\"#read\">read</a>.</p>",
 			"entity": "method",
 			"flagSearchText": " Open The source file path. description",
 			"params": [
@@ -104,10 +108,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Reads the entire file as a string. NOTE: This is an alias for [read](#read).",
-			"shortHtml": "<p>Reads the entire file as a string. NOTE: This is an alias for <a href=\"#read\">read</a>.</p>",
-			"text": "Reads the entire file as a string. NOTE: This is an alias for [read](#read).\n\n",
-			"html": "<p>Reads the entire file as a string. NOTE: This is an alias for <a href=\"#read\">read</a>.</p>",
 			"file": "documon/src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
@@ -118,6 +118,10 @@
 		{
 			"line": 53,
 			"name": "read",
+			"shortText": "Reads the entire file as a string.",
+			"shortHtml": "<p>Reads the entire file as a string.</p>",
+			"text": "Reads the entire file as a string.\n\n",
+			"html": "<p>Reads the entire file as a string.</p>",
 			"entity": "method",
 			"flagSearchText": " read The source file path. description",
 			"params": [
@@ -137,10 +141,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Reads the entire file as a string.",
-			"shortHtml": "<p>Reads the entire file as a string.</p>",
-			"text": "Reads the entire file as a string.\n\n",
-			"html": "<p>Reads the entire file as a string.</p>",
 			"file": "documon/src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
@@ -151,6 +151,10 @@
 		{
 			"line": 85,
 			"name": "remove",
+			"shortText": "Deletes a file from the system.",
+			"shortHtml": "<p>Deletes a file from the system.</p>",
+			"text": "Deletes a file from the system.\n",
+			"html": "<p>Deletes a file from the system.</p>",
 			"entity": "method",
 			"flagSearchText": " remove The source file path.",
 			"params": [
@@ -163,10 +167,6 @@
 					"type": "string"
 				}
 			],
-			"shortText": "Deletes a file from the system.",
-			"shortHtml": "<p>Deletes a file from the system.</p>",
-			"text": "Deletes a file from the system.\n",
-			"html": "<p>Deletes a file from the system.</p>",
 			"file": "documon/src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
@@ -177,6 +177,10 @@
 		{
 			"line": 68,
 			"name": "save",
+			"shortText": "Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for [write](#write).",
+			"shortHtml": "<p>Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for <a href=\"#write\">write</a>.</p>",
+			"text": "Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for [write](#write).\n\n",
+			"html": "<p>Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for <a href=\"#write\">write</a>.</p>",
 			"entity": "method",
 			"flagSearchText": " save The source file path. The text data to save.",
 			"params": [
@@ -197,10 +201,6 @@
 					"type": "string"
 				}
 			],
-			"shortText": "Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for [write](#write).",
-			"shortHtml": "<p>Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for <a href=\"#write\">write</a>.</p>",
-			"text": "Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for [write](#write).\n\n",
-			"html": "<p>Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for <a href=\"#write\">write</a>.</p>",
 			"file": "documon/src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
@@ -211,6 +211,10 @@
 		{
 			"line": 76,
 			"name": "write",
+			"shortText": "Saves text data to a file. Overwrites entire file with provided data.",
+			"shortHtml": "<p>Saves text data to a file. Overwrites entire file with provided data.</p>",
+			"text": "Saves text data to a file. Overwrites entire file with provided data.\n\n",
+			"html": "<p>Saves text data to a file. Overwrites entire file with provided data.</p>",
 			"entity": "method",
 			"flagSearchText": " write The source file path. The text data to save.",
 			"params": [
@@ -231,10 +235,6 @@
 					"type": "string"
 				}
 			],
-			"shortText": "Saves text data to a file. Overwrites entire file with provided data.",
-			"shortHtml": "<p>Saves text data to a file. Overwrites entire file with provided data.</p>",
-			"text": "Saves text data to a file. Overwrites entire file with provided data.\n\n",
-			"html": "<p>Saves text data to a file. Overwrites entire file with provided data.</p>",
 			"file": "documon/src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",

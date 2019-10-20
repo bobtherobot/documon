@@ -1,13 +1,13 @@
 {
 	"line": 71,
 	"name": "organizer",
-	"entity": "class",
-	"flagSearchText": " organizer documon\n",
-	"package": "documon",
 	"shortText": "Organizes the parsed source-code data into a single object that takes the following form:",
 	"shortHtml": "<p>Organizes the parsed source-code data into a single object that takes the following form:</p>",
 	"text": "Organizes the parsed source-code data into a single object that takes the following form:\n\n\torgan = {\n\n\t\t// There will always be a root node with an absolute ID of \"root\"\n\t\tid : \"root\",\n\t\tname : \"root\",\n\t\tfile : \"root.html\",\n\t\tdocfile : \"root.html\",\n\n\t\tpackages : [\n\n\t\t\t\t{ \n\t\t\t\t\tpackages : foo\n\n\t\t\t\t\t// Classes included in this package\n\t\t\t\t\tclasses : [\n\n\t\t\t\t\t\t{\t\n\t\t\t\t\t\t\tclass : \"foo\"\n\t\t\t\t\t\t\tmethods : [],\n\t\t\t\t\t\t\tproperties : [],\n\t\t\t\t\t\t\tevents : []\n\t\t\t\t\t\t},\n\n\t\t\t\t\t\t... etc ... \n\t\t\t\t\t],\n\n\t\t\t\t\t// Loose stuff found in this package\n\t\t\t\t\tmethods : [],\n\t\t\t\t\tproperties : [],\n\t\t\t\t\tevents : []\n\t\t\t\t}\n\t\t\n\t\t],\n\n\t\t// Independent classes that are not part of any package\n\t\tclasses : [\n\t\t\t{\t\n\t\t\t\tclass : \"foo\"\n\t\t\t\tmethods : [],\n\t\t\t\tproperties : [],\n\t\t\t\tevents : []\n\t\t\t}\n\t\t\t... etc ... \n\t\t],\n\n\t\t// Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope)\n\t\tmethods : [],\n\t\tproperties : [],\n\t\tevents : [],\n\n\t};\n \n\nAll source code hangs off of the \"root\" node and is organized according it's relationship to a package or class.\n\nThis organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.\n\n",
 	"html": "<p>Organizes the parsed source-code data into a single object that takes the following form:</p>\n\n<pre class=\"prettyprint\">organ = {\n\n    // There will always be a root node with an absolute ID of \"root\"\n    id : \"root\",\n    name : \"root\",\n    file : \"root.html\",\n    docfile : \"root.html\",\n\n    packages : [\n\n            { \n                packages : foo\n\n                // Classes included in this package\n                classes : [\n\n                    {   \n                        class : \"foo\"\n                        methods : [],\n                        properties : [],\n                        events : []\n                    },\n\n                    ... etc ... \n                ],\n\n                // Loose stuff found in this package\n                methods : [],\n                properties : [],\n                events : []\n            }\n\n    ],\n\n    // Independent classes that are not part of any package\n    classes : [\n        {   \n            class : \"foo\"\n            methods : [],\n            properties : [],\n            events : []\n        }\n        ... etc ... \n    ],\n\n    // Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope)\n    methods : [],\n    properties : [],\n    events : [],\n\n};</pre>\n\n<p>All source code hangs off of the \"root\" node and is organized according it's relationship to a package or class.</p>\n\n<p>This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.</p>",
+	"entity": "class",
+	"flagSearchText": " organizer documon\n",
+	"package": "documon",
 	"file": "documon/src/organizer.js",
 	"filename": "organizer.js",
 	"klass": "organizer",
@@ -17,6 +17,10 @@
 		{
 			"line": 550,
 			"name": "add",
+			"shortText": "Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.",
+			"shortHtml": "<p>Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.</p>",
+			"text": "Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.\n\n",
+			"html": "<p>Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.</p>",
 			"entity": "method",
 			"flagSearchText": " add Source-code data parse by the tag.js processor.",
 			"params": [
@@ -29,10 +33,6 @@
 					"type": "type"
 				}
 			],
-			"shortText": "Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.",
-			"shortHtml": "<p>Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.</p>",
-			"text": "Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.\n\n",
-			"html": "<p>Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.</p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
@@ -43,6 +43,10 @@
 		{
 			"line": 522,
 			"name": "addToClassList",
+			"shortText": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.",
+			"shortHtml": "<p>Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.</p>",
+			"text": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.\n\n",
+			"html": "<p>Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.</p>",
 			"entity": "method",
 			"flagSearchText": " addToClassList\n The class array to add the item to. The data to add.",
 			"params": [
@@ -63,10 +67,6 @@
 					"type": "type"
 				}
 			],
-			"shortText": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.",
-			"shortHtml": "<p>Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.</p>",
-			"text": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.\n\n",
-			"html": "<p>Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.</p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
@@ -77,6 +77,10 @@
 		{
 			"line": 480,
 			"name": "addToPackageList",
+			"shortText": "Adds a new package to the main packages list. Creates a namespace (package) if not exist.",
+			"shortHtml": "<p>Adds a new package to the main packages list. Creates a namespace (package) if not exist.</p>",
+			"text": "Adds a new package to the main packages list. Creates a namespace (package) if not exist.\n\n",
+			"html": "<p>Adds a new package to the main packages list. Creates a namespace (package) if not exist.</p>",
 			"entity": "method",
 			"flagSearchText": " addToPackageList\n The main package list to add the package to. The package data.",
 			"params": [
@@ -97,10 +101,6 @@
 					"type": "type"
 				}
 			],
-			"shortText": "Adds a new package to the main packages list. Creates a namespace (package) if not exist.",
-			"shortHtml": "<p>Adds a new package to the main packages list. Creates a namespace (package) if not exist.</p>",
-			"text": "Adds a new package to the main packages list. Creates a namespace (package) if not exist.\n\n",
-			"html": "<p>Adds a new package to the main packages list. Creates a namespace (package) if not exist.</p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
@@ -111,6 +111,10 @@
 		{
 			"line": 437,
 			"name": "appendPage",
+			"shortText": "Adds a class or package to the class or package object.",
+			"shortHtml": "<p>Adds a class or package to the class or package object.</p>",
+			"text": "Adds a class or package to the class or package object.\n\n",
+			"html": "<p>Adds a class or package to the class or package object.</p>",
 			"entity": "method",
 			"flagSearchText": " appendPage\n The object ot add the thing to. THe thing we're adding.",
 			"params": [
@@ -131,10 +135,6 @@
 					"type": "type"
 				}
 			],
-			"shortText": "Adds a class or package to the class or package object.",
-			"shortHtml": "<p>Adds a class or package to the class or package object.</p>",
-			"text": "Adds a class or package to the class or package object.\n\n",
-			"html": "<p>Adds a class or package to the class or package object.</p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
@@ -145,6 +145,10 @@
 		{
 			"line": 632,
 			"name": "buildMenu",
+			"shortText": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht [menuBuilder](documon.menuBuilder)",
+			"shortHtml": "<p>Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht <a href=\"documon.menuBuilder\">menuBuilder</a></p>",
+			"text": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht [menuBuilder](documon.menuBuilder)\n\n",
+			"html": "<p>Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht <a href=\"documon.menuBuilder\">menuBuilder</a></p>",
 			"entity": "method",
 			"flagSearchText": " buildMenu\n description",
 			"returns": {
@@ -154,10 +158,6 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"shortText": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht [menuBuilder](documon.menuBuilder)",
-			"shortHtml": "<p>Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht <a href=\"documon.menuBuilder\">menuBuilder</a></p>",
-			"text": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht [menuBuilder](documon.menuBuilder)\n\n",
-			"html": "<p>Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht <a href=\"documon.menuBuilder\">menuBuilder</a></p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
@@ -168,6 +168,10 @@
 		{
 			"line": 309,
 			"name": "init",
+			"shortText": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.",
+			"shortHtml": "<p>Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.</p>",
+			"text": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.\n\n",
+			"html": "<p>Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.</p>\n\n<p>We'll also be grabbing the templates needed based on the location defined in the params.</p>",
 			"entity": "method",
 			"flagSearchText": " init The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
 			"params": [
@@ -190,10 +194,6 @@
 					]
 				}
 			],
-			"shortText": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.",
-			"shortHtml": "<p>Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.</p>",
-			"text": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.\n\n",
-			"html": "<p>Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.</p>\n\n<p>We'll also be grabbing the templates needed based on the location defined in the params.</p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
@@ -204,6 +204,10 @@
 		{
 			"line": 381,
 			"name": "merge",
+			"shortText": "A classic array merge routine.",
+			"shortHtml": "<p>A classic array merge routine.</p>",
+			"text": "A classic array merge routine.\n\n",
+			"html": "<p>A classic array merge routine.</p>",
 			"entity": "method",
 			"flagSearchText": " merge\n The array that we will add items to if \"prop\" The array we will merge into A if one of it's item[prop] doesn't exists in A. The property used to validate if items in B need to be merged into A.\n A new array containing all unique elements from A and B.",
 			"params": [
@@ -239,10 +243,6 @@
 				"shortText": "<p>A new array containing all unique elements from A and B.</p>",
 				"shortHtml": "<p>A new array containing all unique elements from A and B.</p>"
 			},
-			"shortText": "A classic array merge routine.",
-			"shortHtml": "<p>A classic array merge routine.</p>",
-			"text": "A classic array merge routine.\n\n",
-			"html": "<p>A classic array merge routine.</p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
@@ -253,6 +253,10 @@
 		{
 			"line": 585,
 			"name": "sortObj",
+			"shortText": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.",
+			"shortHtml": "<p>Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.</p>",
+			"text": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.\n\n",
+			"html": "<p>Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.</p>",
 			"entity": "method",
 			"flagSearchText": " sortObj\n The object to sort The key to sort on.",
 			"params": [
@@ -272,13 +276,9 @@
 					"html": "<p>The key to sort on.</p>",
 					"type": "string",
 					"optional": true,
-					"defaultVal": "id"
+					"defaultVal": "\"id\"]"
 				}
 			],
-			"shortText": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.",
-			"shortHtml": "<p>Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.</p>",
-			"text": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.\n\n",
-			"html": "<p>Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.</p>",
 			"file": "documon/src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",

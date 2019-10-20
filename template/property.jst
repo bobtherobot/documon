@@ -150,7 +150,7 @@ function makeItem(item, partKind, useShortText){
 	}
 
 	// Method arguments don't ahve line number info.
-	var line = !item.line || isListPage ? "" : `<span class="member-line-number">${ item.line }</span>`;
+	var line = !item.line || isListPage ? "" : `<span class="member-file">${ item.file }</span><span class="member-line-number" title="${ item.file }">${ item.line }</span>`;
 
 
 	

@@ -2,7 +2,7 @@
 	{
 		"text": "\nDiscovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML\n\n\n",
 		"start": 7,
-		"end": 29,
+		"end": 31,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -29,48 +29,112 @@
 				"after": ""
 			},
 			{
-				"source": "@param      {object}    params\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:\n- moreQuirkDelimiter\n- outputAssetsFolder\n- moreFolder\n- templateFolder\n- outputFolder",
+				"source": "@param      {object}    params\t\t\t\t\t\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:",
 				"flag": "param",
-				"after": "{object}    params\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:",
+				"after": "{object}    params\t\t\t\t\t\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:",
 				"type": "object",
-				"afterType": "params\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:",
+				"afterType": "params\t\t\t\t\t\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:",
 				"name": "params",
-				"text": "The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:\n- moreQuirkDelimiter\n- outputAssetsFolder\n- moreFolder\n- templateFolder\n- outputFolder"
+				"text": "The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:",
+				"children": [
+					{
+						"source": "@param      {object}    [params.moreQuirkDelimiter=\".\"] \t- Set's the [quirkDelimiter](#quirkDelimiter).Set's the [quirkDelimiter](#quirkDelimiter).",
+						"flag": "param",
+						"after": "{object}    [params.moreQuirkDelimiter=\".\"] \t- Set's the [quirkDelimiter](#quirkDelimiter).",
+						"type": "object",
+						"afterType": "[params.moreQuirkDelimiter=\".\"] \t- Set's the [quirkDelimiter](#quirkDelimiter).",
+						"defaultVal": "\".\"]",
+						"optional": true,
+						"parent": "params",
+						"name": "moreQuirkDelimiter",
+						"text": "Set's the [quirkDelimiter](#quirkDelimiter)."
+					},
+					{
+						"source": "@param      {object}    params.outputAssetsFolder \t\t\t- The asset folder to copy into the final documentation. The More pages may refer to assets outside of the template, such as css, images, etc.The asset folder to copy into the final documentation. The More pages may refer to assets outside of the template, such as css, images, etc.",
+						"flag": "param",
+						"after": "{object}    params.outputAssetsFolder \t\t\t- The asset folder to copy into the final documentation. The More pages may refer to assets outside of the template, such as css, images, etc.",
+						"type": "object",
+						"afterType": "params.outputAssetsFolder \t\t\t- The asset folder to copy into the final documentation. The More pages may refer to assets outside of the template, such as css, images, etc.",
+						"parent": "params",
+						"name": "outputAssetsFolder",
+						"text": "The asset folder to copy into the final documentation. The More pages may refer to assets outside of the template, such as css, images, etc."
+					},
+					{
+						"source": "@param      {object}    params.moreFolder \t\t\t\t\t- The folder to process.The folder to process.",
+						"flag": "param",
+						"after": "{object}    params.moreFolder \t\t\t\t\t- The folder to process.",
+						"type": "object",
+						"afterType": "params.moreFolder \t\t\t\t\t- The folder to process.",
+						"parent": "params",
+						"name": "moreFolder",
+						"text": "The folder to process."
+					},
+					{
+						"source": "@param      {object}    params.templateFolder  \t\t\t\t- The path to the template folder.The path to the template folder.",
+						"flag": "param",
+						"after": "{object}    params.templateFolder  \t\t\t\t- The path to the template folder.",
+						"type": "object",
+						"afterType": "params.templateFolder  \t\t\t\t- The path to the template folder.",
+						"parent": "params",
+						"name": "templateFolder",
+						"text": "The path to the template folder."
+					},
+					{
+						"source": "@param      {object}    params.outputFolder \t\t\t\t- THe destination folder.THe destination folder.",
+						"flag": "param",
+						"after": "{object}    params.outputFolder \t\t\t\t- THe destination folder.",
+						"type": "object",
+						"afterType": "params.outputFolder \t\t\t\t- THe destination folder.",
+						"parent": "params",
+						"name": "outputFolder",
+						"text": "THe destination folder."
+					},
+					{
+						"source": "@param      {object}    params.gati \t\t\t\t\t\t- Your Google Analytics Tracking IDYour Google Analytics Tracking ID\n",
+						"flag": "param",
+						"after": "{object}    params.gati \t\t\t\t\t\t- Your Google Analytics Tracking ID",
+						"type": "object",
+						"afterType": "params.gati \t\t\t\t\t\t- Your Google Analytics Tracking ID",
+						"parent": "params",
+						"name": "gati",
+						"text": "Your Google Analytics Tracking ID\n"
+					}
+				]
 			},
 			{
-				"source": "@param      {object}    sourceDocsMenu\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.",
+				"source": "@param      {object}    sourceDocsMenu\t\t\t\t\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.",
 				"flag": "param",
-				"after": "{object}    sourceDocsMenu\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.",
+				"after": "{object}    sourceDocsMenu\t\t\t\t\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.",
 				"type": "object",
-				"afterType": "sourceDocsMenu\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.",
+				"afterType": "sourceDocsMenu\t\t\t\t\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.",
 				"name": "sourceDocsMenu",
 				"text": "The menu for the parsed source code documentation. We'll merge it into the \"more\" menu."
 			},
 			{
-				"source": "@param      {object}    searchDB\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.",
+				"source": "@param      {object}    searchDB\t\t\t\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.",
 				"flag": "param",
-				"after": "{object}    searchDB\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.",
+				"after": "{object}    searchDB\t\t\t\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.",
 				"type": "object",
-				"afterType": "searchDB\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.",
+				"afterType": "searchDB\t\t\t\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.",
 				"name": "searchDB",
 				"text": "The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching."
 			},
 			{
-				"source": "@return     {menu | undefined}\t\t\t- Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.",
+				"source": "@return     {menu | undefined}\t\t\t\t\t\t\t- Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.",
 				"flag": "return",
-				"after": "{menu | undefined}\t\t\t- Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.",
+				"after": "{menu | undefined}\t\t\t\t\t\t\t- Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.",
 				"type": "menu | undefined",
 				"afterType": "Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.",
 				"text": "Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.\n"
 			}
 		],
-		"source": "\nDiscovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML\n\n\n@class More\n@package documon\n@private\n@param      {object}    params\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:\n- moreQuirkDelimiter\n- outputAssetsFolder\n- moreFolder\n- templateFolder\n- outputFolder\n@param      {object}    sourceDocsMenu\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.\n@param      {object}    searchDB\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.\n@return     {menu | undefined}\t\t\t- Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.\n",
+		"source": "\nDiscovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML\n\n\n@class More\n@package documon\n@private\n@param      {object}    params\t\t\t\t\t\t\t\t- The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:\n@param      {object}    [params.moreQuirkDelimiter=\".\"] \t- Set's the [quirkDelimiter](#quirkDelimiter).\n@param      {object}    params.outputAssetsFolder \t\t\t- The asset folder to copy into the final documentation. The More pages may refer to assets outside of the template, such as css, images, etc.\n@param      {object}    params.moreFolder \t\t\t\t\t- The folder to process.\n@param      {object}    params.templateFolder  \t\t\t\t- The path to the template folder.\n@param      {object}    params.outputFolder \t\t\t\t- THe destination folder.\n@param      {object}    params.gati \t\t\t\t\t\t- Your Google Analytics Tracking ID\n\n@param      {object}    sourceDocsMenu\t\t\t\t\t- The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.\n@param      {object}    searchDB\t\t\t\t\t\t- The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.\n@return     {menu | undefined}\t\t\t\t\t\t\t- Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point.\n",
 		"id": "documon.More"
 	},
 	{
 		"text": "",
-		"start": 40,
-		"end": 43,
+		"start": 42,
+		"end": 45,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -93,8 +157,8 @@
 	},
 	{
 		"text": "",
-		"start": 47,
-		"end": 50,
+		"start": 49,
+		"end": 52,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -117,8 +181,8 @@
 	},
 	{
 		"text": "",
-		"start": 55,
-		"end": 57,
+		"start": 57,
+		"end": 59,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -136,8 +200,8 @@
 	},
 	{
 		"text": "",
-		"start": 60,
-		"end": 63,
+		"start": 62,
+		"end": 65,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -160,8 +224,8 @@
 	},
 	{
 		"text": "",
-		"start": 66,
-		"end": 69,
+		"start": 68,
+		"end": 71,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -184,8 +248,8 @@
 	},
 	{
 		"text": "Opens, catalogs and builds a new page from the provided file path.\n",
-		"start": 74,
-		"end": 94,
+		"start": 76,
+		"end": 96,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -234,8 +298,8 @@
 	},
 	{
 		"text": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.\n",
-		"start": 181,
-		"end": 188,
+		"start": 183,
+		"end": 190,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -286,8 +350,8 @@
 	},
 	{
 		"text": "splits the numbering off of eight filename and returns the filename with out numbering\n",
-		"start": 194,
-		"end": 201,
+		"start": 196,
+		"end": 203,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -338,8 +402,8 @@
 	},
 	{
 		"text": "A safe replacement for standard JSON parsing that mitigates errors.\n",
-		"start": 228,
-		"end": 234,
+		"start": 231,
+		"end": 237,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -378,63 +442,21 @@
 	},
 	{
 		"text": "See class description.\n",
-		"start": 247,
-		"end": 255,
+		"start": 250,
+		"end": 253,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
-				"source": "@method     initinit",
+				"source": "@method     init",
 				"flag": "method",
 				"after": "init",
 				"afterType": "init",
 				"name": "init",
 				"single": true,
 				"text": "init"
-			},
-			{
-				"source": "@private",
-				"flag": "private",
-				"after": ""
-			},
-			{
-				"source": "@param      {type}    params            descriptiondescription",
-				"flag": "param",
-				"after": "{type}    params            description",
-				"type": "type",
-				"afterType": "params            description",
-				"name": "params",
-				"text": "description"
-			},
-			{
-				"source": "@param      {type}    sourceDocsMenu    descriptiondescription",
-				"flag": "param",
-				"after": "{type}    sourceDocsMenu    description",
-				"type": "type",
-				"afterType": "sourceDocsMenu    description",
-				"name": "sourceDocsMenu",
-				"text": "description"
-			},
-			{
-				"source": "@param      {type}    searchDB          descriptiondescription",
-				"flag": "param",
-				"after": "{type}    searchDB          description",
-				"type": "type",
-				"afterType": "searchDB          description",
-				"name": "searchDB",
-				"text": "description"
-			},
-			{
-				"source": "@return     {type}                      description",
-				"flag": "return",
-				"after": "{type}                      description",
-				"type": "type",
-				"afterType": "description",
-				"name": "description",
-				"single": true,
-				"text": "description"
 			}
 		],
-		"source": "See class description.\n@method     init\n@private\n@param      {type}    params            description\n@param      {type}    sourceDocsMenu    description\n@param      {type}    searchDB          description\n@return     {type}                      description",
+		"source": "See class description.\n@method     init",
 		"id": "documon.More.init"
 	}
 ]

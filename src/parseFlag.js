@@ -203,6 +203,17 @@ function processName(name, obj, output) {
 
     var parent;
 
+    // --------------
+    // MUST BE FIRST - because the default value may contain a bracket or dot!
+    // --------------
+    // Look for defautl value:  name=1 or name="1" and strip quotes
+    // e.g. 
+    if (name.indexOf("=") > -1) {
+        var Aname = name.split("=");
+        name = Aname.shift();
+        obj.defaultVal = Aname.join("=").trim().replace(/^["'](.*)["']$/g, '$1'); // strip surrounding quotes
+    }
+
     // See if optional
     var hasBrackets = name.match(re_optional);
     if (hasBrackets) {
@@ -224,13 +235,7 @@ function processName(name, obj, output) {
         
     }
 
-    // Look for name=1
-    // e.g. 
-    if (name.indexOf("=") > -1) {
-        var Aname = name.split("=");
-        name = Aname.shift();
-        obj.defaultVal = Aname.join("=").trim().replace(/^["'](.*)["']$/, '$1'); // strip surrounding quotes
-    }
+
 
     obj.name = name;
 

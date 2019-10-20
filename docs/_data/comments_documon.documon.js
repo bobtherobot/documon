@@ -16,62 +16,62 @@
 	},
 	{
 		"start": 88,
-		"end": 90,
-		"data": "@property  {array} ignoreList - A list of strings representing glob patterns for files/folders to ignore."
+		"end": 96,
+		"data": "@property  {array} ignoreList - A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list."
 	},
 	{
-		"start": 100,
-		"end": 101,
+		"start": 106,
+		"end": 107,
 		"data": ""
 	},
 	{
-		"start": 102,
-		"end": 106,
-		"data": "\n\nlse - Supress stdout messages."
+		"start": 108,
+		"end": 114,
+		"data": "t', 'node_modules'];\n\n\n\ne - Supress stdout messages."
 	},
 	{
-		"start": 109,
-		"end": 111,
+		"start": 117,
+		"end": 119,
 		"data": "@property  {boolean} dumpData=false - Whether or not to write intermediary files used during processing to the output data folder."
 	},
 	{
-		"start": 114,
-		"end": 116,
+		"start": 122,
+		"end": 124,
 		"data": "@property  {string} indexRedirectName - The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file."
 	},
 	{
-		"start": 124,
-		"end": 132,
+		"start": 132,
+		"end": 140,
 		"data": "Simplify file write for text or json.\n\n@method     writeData\n@private\n@param      {string}       fpath    - The path to save to.\n@param      {string}       data     - The string to save\n@param      {boolean}      json     - Whether the data should be serialized to JSON or not."
 	},
 	{
-		"start": 137,
-		"end": 143,
+		"start": 145,
+		"end": 151,
 		"data": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.\n@method     filterFileTypes\n@private\n@param      {string}             fpath    - The path or full file name.\n@return     {boolean}                     - Whether or not it's an OK extension."
 	},
 	{
-		"start": 164,
-		"end": 178,
+		"start": 172,
+		"end": 186,
 		"data": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates\n\n@method init\n@private\n\n@param  {object} conf - See (run)[run], as this configuration object is simply passed through.\n@returns {boolean} - False when there's an error or misconfiguration. True when everything seems cool."
 	},
 	{
-		"start": 224,
-		"end": 225,
+		"start": 232,
+		"end": 233,
 		"data": ""
 	},
 	{
-		"start": 461,
-		"end": 470,
+		"start": 464,
+		"end": 473,
 		"data": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n@method shouldIgnore\n@private\n@param  {string} item - The path to the file.\n@returns {boolean} - true = ignore this file, false = don't ignore."
 	},
 	{
-		"start": 485,
-		"end": 494,
+		"start": 506,
+		"end": 515,
 		"data": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n@method seeder\n@private\n@param  {string} file - The path to the file.\n@returns {object} - The file's search data as computed by tag.js"
 	},
 	{
-		"start": 587,
-		"end": 600,
+		"start": 608,
+		"end": 621,
 		"data": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n@method run\n\n@param  {object} conf \t\t\t\t\t- The configuration object. See [mainConf](#mainConf)"
 	}
 ]

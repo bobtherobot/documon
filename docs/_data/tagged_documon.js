@@ -1,6 +1,10 @@
 {
 	"line": 26,
 	"name": "documon",
+	"shortText": "The main entry point and processor for Documon, which allows you to run Documon directly from Node.",
+	"shortHtml": "<p>The main entry point and processor for Documon, which allows you to run Documon directly from Node.</p>",
+	"text": "The main entry point and processor for Documon, which allows you to run Documon directly from Node.\n\n",
+	"html": "<p>The main entry point and processor for Documon, which allows you to run Documon directly from Node.</p>",
 	"entity": "module",
 	"flagSearchText": " documon documon \n\n\t\tvar myDocumon = require(\"path/to/documon/src/documon.js\");\n\t\tmyDocumon.run({\n  \t\tfiles : \"path/to/src\"\n\t\t});\n\t\t",
 	"package": "documon",
@@ -10,10 +14,6 @@
 			"html": "<pre class=\"prettyprint\">    var myDocumon = require(\"path/to/documon/src/documon.js\");\n    myDocumon.run({\n    files : \"path/to/src\"\n    });</pre>"
 		}
 	],
-	"shortText": "The main entry point and processor for Documon, which allows you to run Documon directly from Node.",
-	"shortHtml": "<p>The main entry point and processor for Documon, which allows you to run Documon directly from Node.</p>",
-	"text": "The main entry point and processor for Documon, which allows you to run Documon directly from Node.\n\n",
-	"html": "<p>The main entry point and processor for Documon, which allows you to run Documon directly from Node.</p>",
 	"file": "documon/src/documon.js",
 	"filename": "documon.js",
 	"klass": "documon",
@@ -21,8 +21,12 @@
 	"id": "documon.documon",
 	"methods": [
 		{
-			"line": 144,
+			"line": 152,
 			"name": "filterFileTypes",
+			"shortText": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
+			"shortHtml": "<p>Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.</p>",
+			"text": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.\n",
+			"html": "<p>Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.</p>",
 			"entity": "method",
 			"flagSearchText": " filterFileTypes The path or full file name. Whether or not it's an OK extension.",
 			"access": "private",
@@ -43,10 +47,6 @@
 				"shortText": "<p>Whether or not it's an OK extension.</p>",
 				"shortHtml": "<p>Whether or not it's an OK extension.</p>"
 			},
-			"shortText": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
-			"shortHtml": "<p>Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.</p>",
-			"text": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.\n",
-			"html": "<p>Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.</p>",
 			"file": "documon/src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
@@ -55,8 +55,12 @@
 			"id": "documon.documon.filterFileTypes"
 		},
 		{
-			"line": 179,
+			"line": 187,
 			"name": "init",
+			"shortText": "Initializes Documan based on the configuration settings",
+			"shortHtml": "<p>Initializes Documan based on the configuration settings</p>",
+			"text": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates\n\n",
+			"html": "<p>Initializes Documan based on the configuration settings</p>\n\n<ul>\n<li>Parses configuration</li>\n<li>Finds source files</li>\n<li>Creates output folder</li>\n<li>Copies template assets to output folder</li>\n<li>Initializes main templates</li>\n</ul>",
 			"entity": "method",
 			"flagSearchText": " init \n See (run)[run], as this configuration object is simply passed through. False when there's an error or misconfiguration. True when everything seems cool.",
 			"access": "private",
@@ -77,10 +81,6 @@
 				"shortText": "<p>False when there's an error or misconfiguration. True when everything seems cool.</p>",
 				"shortHtml": "<p>False when there's an error or misconfiguration. True when everything seems cool.</p>"
 			},
-			"shortText": "Initializes Documan based on the configuration settings",
-			"shortHtml": "<p>Initializes Documan based on the configuration settings</p>",
-			"text": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates\n\n",
-			"html": "<p>Initializes Documan based on the configuration settings</p>\n\n<ul>\n<li>Parses configuration</li>\n<li>Finds source files</li>\n<li>Creates output folder</li>\n<li>Copies template assets to output folder</li>\n<li>Initializes main templates</li>\n</ul>",
 			"file": "documon/src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
@@ -89,8 +89,12 @@
 			"id": "documon.documon.init"
 		},
 		{
-			"line": 601,
+			"line": 622,
 			"name": "run",
+			"shortText": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  ",
+			"shortHtml": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  </p>",
+			"text": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n",
+			"html": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and <br>\nconstruction of the documentation.</p>\n\n<p>After <a href=\"#init\">init</a> configures things based on the settings, and generates a list of files to process <br>\nthis method process and sends each file to the <a href=\"#seeder\">seeder</a> of evaluation and processing.</p>\n\n<ul>\n<li>Generates HTML pages</li>\n<li>Generates _menuData.js</li>\n</ul>",
 			"entity": "method",
 			"flagSearchText": " run\n The configuration object. See [mainConf](#mainConf)",
 			"params": [
@@ -103,10 +107,6 @@
 					"type": "object"
 				}
 			],
-			"shortText": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  ",
-			"shortHtml": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  </p>",
-			"text": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n",
-			"html": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and <br>\nconstruction of the documentation.</p>\n\n<p>After <a href=\"#init\">init</a> configures things based on the settings, and generates a list of files to process <br>\nthis method process and sends each file to the <a href=\"#seeder\">seeder</a> of evaluation and processing.</p>\n\n<ul>\n<li>Generates HTML pages</li>\n<li>Generates _menuData.js</li>\n</ul>",
 			"file": "documon/src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
@@ -115,8 +115,12 @@
 			"id": "documon.documon.run"
 		},
 		{
-			"line": 495,
+			"line": 516,
 			"name": "seeder",
+			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
+			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
+			"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
+			"html": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>\n\n<ul>\n<li>Generates data files (if dumpData enabled)</li>\n</ul>",
 			"entity": "method",
 			"flagSearchText": " seeder The path to the file. The file's search data as computed by tag.js",
 			"access": "private",
@@ -137,10 +141,6 @@
 				"shortText": "<p>The file's search data as computed by tag.js</p>",
 				"shortHtml": "<p>The file's search data as computed by tag.js</p>"
 			},
-			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
-			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
-			"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-			"html": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>\n\n<ul>\n<li>Generates data files (if dumpData enabled)</li>\n</ul>",
 			"file": "documon/src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
@@ -149,8 +149,12 @@
 			"id": "documon.documon.seeder"
 		},
 		{
-			"line": 471,
+			"line": 474,
 			"name": "shouldIgnore",
+			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
+			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
+			"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
+			"html": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>\n\n<ul>\n<li>Generates data files (if dumpData enabled)</li>\n</ul>",
 			"entity": "method",
 			"flagSearchText": " shouldIgnore The path to the file. true = ignore this file, false = don't ignore.",
 			"access": "private",
@@ -171,10 +175,6 @@
 				"shortText": "<p>true = ignore this file, false = don't ignore.</p>",
 				"shortHtml": "<p>true = ignore this file, false = don't ignore.</p>"
 			},
-			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
-			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
-			"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-			"html": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>\n\n<ul>\n<li>Generates data files (if dumpData enabled)</li>\n</ul>",
 			"file": "documon/src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
@@ -183,8 +183,12 @@
 			"id": "documon.documon.shouldIgnore"
 		},
 		{
-			"line": 133,
+			"line": 141,
 			"name": "writeData",
+			"shortText": "Simplify file write for text or json.",
+			"shortHtml": "<p>Simplify file write for text or json.</p>",
+			"text": "Simplify file write for text or json.\n\n",
+			"html": "<p>Simplify file write for text or json.</p>",
 			"entity": "method",
 			"flagSearchText": " writeData The path to save to. The string to save Whether the data should be serialized to JSON or not.",
 			"access": "private",
@@ -214,10 +218,6 @@
 					"type": "boolean"
 				}
 			],
-			"shortText": "Simplify file write for text or json.",
-			"shortHtml": "<p>Simplify file write for text or json.</p>",
-			"text": "Simplify file write for text or json.\n\n",
-			"html": "<p>Simplify file write for text or json.</p>",
 			"file": "documon/src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
@@ -228,7 +228,7 @@
 	],
 	"properties": [
 		{
-			"line": 112,
+			"line": 120,
 			"name": "dumpData",
 			"shortText": "Whether or not to write intermediary files used during processing to the output data folder.",
 			"shortHtml": "<p>Whether or not to write intermediary files used during processing to the output data folder.</p>",
@@ -263,15 +263,15 @@
 			"id": "documon.documon.extensions"
 		},
 		{
-			"line": 91,
+			"line": 97,
 			"name": "ignoreList",
-			"shortText": "A list of strings representing glob patterns for files/folders to ignore.",
-			"shortHtml": "<p>A list of strings representing glob patterns for files/folders to ignore.</p>",
-			"text": "A list of strings representing glob patterns for files/folders to ignore.",
-			"html": "<p>A list of strings representing glob patterns for files/folders to ignore.</p>",
+			"shortText": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
+			"shortHtml": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>",
+			"text": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
+			"html": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>\n\n<pre class=\"prettyprint\">    '\\/\\.'\n    '\\.git'\n    'node_modules'\n\nConfiguration will concat this list with the user provied list.</pre>",
 			"type": "array",
 			"entity": "property",
-			"flagSearchText": " A list of strings representing glob patterns for files/folders to ignore.",
+			"flagSearchText": " A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
 			"file": "documon/src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
@@ -280,7 +280,7 @@
 			"id": "documon.documon.ignoreList"
 		},
 		{
-			"line": 117,
+			"line": 125,
 			"name": "indexRedirectName",
 			"shortText": "The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
 			"shortHtml": "<p>The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.</p>",
@@ -365,7 +365,7 @@
 					"html": "<p>Delimiter used to signify the START of a source-code comment.</p>",
 					"type": "string",
 					"optional": true,
-					"defaultVal": "&#47;**"
+					"defaultVal": "\"&#47;**\"]"
 				},
 				{
 					"name": "docEnd",
@@ -375,7 +375,7 @@
 					"html": "<p>Delimiter used to signify the END of a source-code comment.</p>",
 					"type": "string",
 					"optional": true,
-					"defaultVal": "*&#47;"
+					"defaultVal": "\"*&#47;\"]"
 				},
 				{
 					"name": "launchWhenDone",
@@ -385,7 +385,7 @@
 					"html": "<p>Launch the documentation in the browser when done?</p>",
 					"type": "boolean",
 					"optional": true,
-					"defaultVal": "false"
+					"defaultVal": "false]"
 				},
 				{
 					"name": "sourceExt",
@@ -395,7 +395,7 @@
 					"html": "<p>The extension of your source code files to parse. For multiple kinds, use a space delimited string (e.g. \"js jsx py php\").</p>",
 					"type": "string | array",
 					"optional": true,
-					"defaultVal": "js"
+					"defaultVal": "\"js\"]"
 				},
 				{
 					"name": "dumpData",
@@ -405,7 +405,7 @@
 					"html": "<p>Whether or not to save intermediary data objects.</p>",
 					"type": "boolean",
 					"optional": true,
-					"defaultVal": "false"
+					"defaultVal": "false]"
 				},
 				{
 					"name": "docsDirName",
@@ -415,7 +415,7 @@
 					"html": "<p>The folder name used to house the docs.</p>",
 					"type": "String",
 					"optional": true,
-					"defaultVal": "docs"
+					"defaultVal": "\"docs\"]"
 				},
 				{
 					"name": "sourceRootFolder",
@@ -452,7 +452,7 @@
 					"html": "<p>The name of the index shortcut file to push it to the top of the folder so you don't have to scroll and hunt andpeck for hte \"index.html\" file to launch the docs.</p>",
 					"type": "String",
 					"optional": true,
-					"defaultVal": "__LAUNCH.html"
+					"defaultVal": "__LAUNCH.html]"
 				},
 				{
 					"name": "moreQuirkDelimiter",
@@ -462,7 +462,7 @@
 					"html": "<p>More quirk delimiter. The character(s) use to seperate the \"more\" page numbering system from page titles.</p>",
 					"type": "String",
 					"optional": true,
-					"defaultVal": "."
+					"defaultVal": "\".\"]"
 				}
 			],
 			"entity": "property",
@@ -488,7 +488,7 @@
 		"documon.documon.run": "run : main processing loop that executes manages main flow control parsing evaluating construction documentation After init init configures things based settings generates list files process this method process sends each file seeder seeder evaluation processing Generates HTML pages Generates menuDataconfiguration object mainConf mainConf",
 		"documon.documon.mainConf": "mainConf : NOTE sourceRootFolder dataFolder injected into mainConf documon Example link other class root documon dirutils makedir root documon dirutils makedir Example link other class documon dirutils makedir documon dirutils makedir Example link other class documon dirutils documon dirutils Example link localUsed store user supplied config settings",
 		"documon.documon.extensions": "extensions : list extensions search source codelist extensions search source code",
-		"documon.documon.ignoreList": "ignoreList : list strings representing glob patterns files folders ignorelist strings representing glob patterns files folders ignore",
+		"documon.documon.ignoreList": "ignoreList : list strings representing regex patterns files folders ignore default following patterns already included node modules Configuration will concat this list with user provied listlist strings representing regex patterns files folders ignore default following patterns already included node modules Configuration will concat this list with user provied list",
 		"documon.documon.dumpData": "dumpData : Whether write intermediary files used during processing output data folderWhether write intermediary files used during processing output data folder",
 		"documon.documon.indexRedirectName": "indexRedirectName : filename shortcut index html file name that will push name folder quicker access index hrml filefilename shortcut index html file name that will push name folder quicker access index hrml file"
 	}

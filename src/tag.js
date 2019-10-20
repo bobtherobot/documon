@@ -442,26 +442,35 @@ module.exports = (function() {
 
     	if(basicKinds.indexOf(flag) > -1){
 
-    		obj.name = item.name;
+    		if(item.name){
+
+				obj.name = item.name;
+	    		
+	    		// Allow properties to be written as parameters, rather than the long form.
+	    		// ------------
+	    		// Long form:
+	    		// ------------
+	    		// Description
+	    		// @property foo
+	    		// @type string
+	    		// 
+	    		// ------------
+	    		// Param form
+	    		// ------------
+	    		// @property {string} foo - Description
+
+	    		// We can be more leient and do this for methods too
+	    		// @method foo - This does xyz.
+
+	    		//if(flag == "property"){ 
+	    			fillParam(item, obj);
+	    		//}
+
+	    		obj.entity = flag;
+
+	    	}
+
     		
-    		// Allow properties to be written as parameters, rather than the long form.
-    		// ------------
-    		// Long form:
-    		// ------------
-    		// Description
-    		// @property foo
-    		// @type string
-    		// 
-    		// ------------
-    		// Param form
-    		// ------------
-    		// @property {string} foo - Description
-
-    		if(flag == "property"){
-    			fillParam(item, obj);
-    		}
-
-    		obj.entity = flag;
 
     	// ------------------------------------------------
 		// package, namespace
@@ -484,6 +493,11 @@ module.exports = (function() {
 				obj.example = [];
 			}
 
+			// convert existing single object to an array
+			if( ! Array.isArray(obj.example) ){
+				obj.example = [obj.example];
+			}
+
 			obj.example.push( processExample(item) )
 
 
@@ -493,8 +507,15 @@ module.exports = (function() {
 			if( ! obj.params ){
 				obj.params = [];
 			}
+
+			// convert existing single object to an array
+			if( ! Array.isArray(obj.params) ){
+				obj.params = [obj.params];
+			}
+
 			var pobj = {};
 			fillParam(item, pobj);
+
 			obj.params.push(pobj);
 
 
@@ -562,6 +583,12 @@ module.exports = (function() {
 			if( ! obj.requires ){
 				obj.requires = [];
 			}
+
+			// convert existing single object to an array
+			if( ! Array.isArray(obj.requires) ){
+				obj.requires = [obj.requires];
+			}
+			
 			obj.requires.push(  item.after.trim() );
 		
 		} else {
