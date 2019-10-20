@@ -20,8 +20,8 @@
 						"after": "{kind} name.child=defaultVal - description \\n stuff on next line \\n and other next lines...",
 						"type": "kind",
 						"afterType": "name.child=defaultVal - description \\n stuff on next line \\n and other next lines...",
-						"parent": "name",
 						"defaultVal": "defaultVal",
+						"parent": "name",
 						"name": "child",
 						"text": "description \\n stuff on next line \\n and other next lines...\n\t\t|flag|\n\t\t                       |defaultVal|\n\t\t                 |child|\n\t\t            |parent|\n\t\t            |name|\n\t\t                                     |text ------------------------------------------------------|\n\t\t            |afterType ---------------------------|\n\t\t      |after -------------------------------------|\n\t\t|source ------------------------------------------|\n\n\n"
 					}

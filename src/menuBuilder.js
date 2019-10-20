@@ -75,6 +75,7 @@ function hasAnyPart(item){
 	return false;
 }
 
+
 /**
  * Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.
  *
@@ -134,11 +135,22 @@ function section(ctx, prop){
 	
 	}
 
+	//prune(obj);
+
 	return obj;
 
 	
 }
 
+
+function prune(obj){
+	for(var i=obj.length; i--;){
+		var item = obj[i];
+		if(item.children && item.children.length < 1){
+			obj.splice(i, 1);
+		}
+	}
+}
 
 
 /**
@@ -151,8 +163,10 @@ function section(ctx, prop){
  * @return  {array}       description
  */
 function render(ctx){
+
 	var menuObj = [];
 	buildSections(ctx, menuObj);
+	//prune(menuObj);
 	return menuObj;
 }
 

@@ -75,9 +75,9 @@
 								<span class="member-name-right">
 						    		
 						    		
-						    		<span class="member-line-number">
-						    			26
-						    		</span>
+						    		<span class="member-file">documon/src/documon.js</span>
+						    		
+						    		<span class="member-line-number">26</span>
 						    	</span>
 						    </div>
 
@@ -96,15 +96,12 @@
 							    
 
 					
-								<div class="member">
-				<div class="heading-example">Example</div>
-				<div class="example-block">
-		    		<pre class="prettyprint">    var myDocumon = require("path/to/documon/src/documon.js");
+								<div class="example-block">
+	    		<pre class="prettyprint">    var myDocumon = require("path/to/documon/src/documon.js");
     myDocumon.run({
     files : "path/to/src"
     });</pre>
-		        </div>
-		    </div>
+	        </div>
 
 							    
 
@@ -148,7 +145,7 @@
 										<span class="member-name-right">
 								    		
 								    		
-								    		<span class="member-line-number">112</span>
+								    		<span class="member-file">documon/src/documon.js</span><span class="member-line-number" title="documon/src/documon.js">120</span>
 								    	</span>
 
 						        	</div>
@@ -184,7 +181,7 @@
 										<span class="member-name-right">
 								    		
 								    		
-								    		<span class="member-line-number">86</span>
+								    		<span class="member-file">documon/src/documon.js</span><span class="member-line-number" title="documon/src/documon.js">86</span>
 								    	</span>
 
 						        	</div>
@@ -220,7 +217,7 @@
 										<span class="member-name-right">
 								    		
 								    		
-								    		<span class="member-line-number">91</span>
+								    		<span class="member-file">documon/src/documon.js</span><span class="member-line-number" title="documon/src/documon.js">97</span>
 								    	</span>
 
 						        	</div>
@@ -228,7 +225,13 @@
 						        		
 									
 							<div class="member-description">
-      				 		 	<p>A list of strings representing glob patterns for files/folders to ignore.</p>
+      				 		 	<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>
+
+<pre class="prettyprint">    '\/\.'
+    '\.git'
+    'node_modules'
+
+Configuration will concat this list with the user provied list.</pre>
        						 </div>
        			
 						        	
@@ -256,7 +259,7 @@
 										<span class="member-name-right">
 								    		
 								    		
-								    		<span class="member-line-number">117</span>
+								    		<span class="member-file">documon/src/documon.js</span><span class="member-line-number" title="documon/src/documon.js">125</span>
 								    	</span>
 
 						        	</div>
@@ -292,7 +295,7 @@
 										<span class="member-name-right">
 								    		
 								    		
-								    		<span class="member-line-number">81</span>
+								    		<span class="member-file">documon/src/documon.js</span><span class="member-line-number" title="documon/src/documon.js">81</span>
 								    	</span>
 
 						        	</div>
@@ -547,7 +550,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	&#47;**
+      				 		 	"&#47;**"]
        						 </span>
        			
 							<span class="type">string</span>
@@ -587,7 +590,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	*&#47;
+      				 		 	"*&#47;"]
        						 </span>
        			
 							<span class="type">string</span>
@@ -627,7 +630,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	false
+      				 		 	false]
        						 </span>
        			
 							<span class="type">boolean</span>
@@ -667,7 +670,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	js
+      				 		 	"js"]
        						 </span>
        			
 							<span class="type">string | array</span>
@@ -707,7 +710,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	false
+      				 		 	false]
        						 </span>
        			
 							<span class="type">boolean</span>
@@ -747,7 +750,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	docs
+      				 		 	"docs"]
        						 </span>
        			
 							<span class="type">String</span>
@@ -895,7 +898,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	__LAUNCH.html
+      				 		 	__LAUNCH.html]
        						 </span>
        			
 							<span class="type">String</span>
@@ -935,7 +938,7 @@ Example link <a href="#run">local to #run</a></p>
 						        		<span class="member-name-left">
 								    		
 							<span class="default-value">
-      				 		 	.
+      				 		 	"."]
        						 </span>
        			
 							<span class="type">String</span>
@@ -995,9 +998,9 @@ Example link <a href="#run">local to #run</a></p>
 								<span class="member-name-right">
 						    		<span class="flag private">private</span>  <!-- public private protected -->
 						    		
-						    		<span class="member-line-number">
-						    			144
-						    		</span>
+						    		<span class="member-file">documon/src/documon.js</span>
+						    		
+						    		<span class="member-line-number">152</span>
 						    	</span>
 						    </div>
 
@@ -1085,9 +1088,9 @@ Example link <a href="#run">local to #run</a></p>
 								<span class="member-name-right">
 						    		<span class="flag private">private</span>  <!-- public private protected -->
 						    		
-						    		<span class="member-line-number">
-						    			179
-						    		</span>
+						    		<span class="member-file">documon/src/documon.js</span>
+						    		
+						    		<span class="member-line-number">187</span>
 						    	</span>
 						    </div>
 
@@ -1183,9 +1186,9 @@ Example link <a href="#run">local to #run</a></p>
 								<span class="member-name-right">
 						    		
 						    		
-						    		<span class="member-line-number">
-						    			601
-						    		</span>
+						    		<span class="member-file">documon/src/documon.js</span>
+						    		
+						    		<span class="member-line-number">622</span>
 						    	</span>
 						    </div>
 
@@ -1277,9 +1280,9 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 								<span class="member-name-right">
 						    		<span class="flag private">private</span>  <!-- public private protected -->
 						    		
-						    		<span class="member-line-number">
-						    			495
-						    		</span>
+						    		<span class="member-file">documon/src/documon.js</span>
+						    		
+						    		<span class="member-line-number">516</span>
 						    	</span>
 						    </div>
 
@@ -1371,9 +1374,9 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 								<span class="member-name-right">
 						    		<span class="flag private">private</span>  <!-- public private protected -->
 						    		
-						    		<span class="member-line-number">
-						    			471
-						    		</span>
+						    		<span class="member-file">documon/src/documon.js</span>
+						    		
+						    		<span class="member-line-number">474</span>
 						    	</span>
 						    </div>
 
@@ -1465,9 +1468,9 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 								<span class="member-name-right">
 						    		<span class="flag private">private</span>  <!-- public private protected -->
 						    		
-						    		<span class="member-line-number">
-						    			133
-						    		</span>
+						    		<span class="member-file">documon/src/documon.js</span>
+						    		
+						    		<span class="member-line-number">141</span>
 						    	</span>
 						    </div>
 

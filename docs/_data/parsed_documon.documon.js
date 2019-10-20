@@ -118,9 +118,9 @@
 						"after": "{string} [mainConf.docBegin=\"&#47;**\"] \t- Delimiter used to signify the START of a source-code comment.",
 						"type": "string",
 						"afterType": "[mainConf.docBegin=\"&#47;**\"] \t- Delimiter used to signify the START of a source-code comment.",
+						"defaultVal": "\"&#47;**\"]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": "&#47;**",
 						"name": "docBegin",
 						"text": "Delimiter used to signify the START of a source-code comment."
 					},
@@ -130,9 +130,9 @@
 						"after": "{string} [mainConf.docEnd=\"*&#47;\"] \t\t- Delimiter used to signify the END of a source-code comment.",
 						"type": "string",
 						"afterType": "[mainConf.docEnd=\"*&#47;\"] \t\t- Delimiter used to signify the END of a source-code comment.",
+						"defaultVal": "\"*&#47;\"]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": "*&#47;",
 						"name": "docEnd",
 						"text": "Delimiter used to signify the END of a source-code comment."
 					},
@@ -142,9 +142,9 @@
 						"after": "{boolean} [mainConf.launchWhenDone=false] \t- Launch the documentation in the browser when done?",
 						"type": "boolean",
 						"afterType": "[mainConf.launchWhenDone=false] \t- Launch the documentation in the browser when done?",
+						"defaultVal": "false]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": "false",
 						"name": "launchWhenDone",
 						"text": "Launch the documentation in the browser when done?"
 					},
@@ -154,9 +154,9 @@
 						"after": "{string | array} [mainConf.sourceExt=\"js\"] \t\t- The extension of your source code files to parse. For multiple kinds, use a space delimited string (e.g. \"js jsx py php\").",
 						"type": "string | array",
 						"afterType": "[mainConf.sourceExt=\"js\"] \t\t- The extension of your source code files to parse. For multiple kinds, use a space delimited string (e.g. \"js jsx py php\").",
+						"defaultVal": "\"js\"]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": "js",
 						"name": "sourceExt",
 						"text": "The extension of your source code files to parse. For multiple kinds, use a space delimited string (e.g. \"js jsx py php\")."
 					},
@@ -166,9 +166,9 @@
 						"after": "{boolean} [mainConf.dumpData=false]\t\t- Whether or not to save intermediary data objects.",
 						"type": "boolean",
 						"afterType": "[mainConf.dumpData=false]\t\t- Whether or not to save intermediary data objects.",
+						"defaultVal": "false]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": "false",
 						"name": "dumpData",
 						"text": "Whether or not to save intermediary data objects."
 					},
@@ -178,9 +178,9 @@
 						"after": "{String} [mainConf.docsDirName=\"docs\"]\t- The folder name used to house the docs.",
 						"type": "String",
 						"afterType": "[mainConf.docsDirName=\"docs\"]\t- The folder name used to house the docs.",
+						"defaultVal": "\"docs\"]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": "docs",
 						"name": "docsDirName",
 						"text": "The folder name used to house the docs.\n"
 					},
@@ -223,9 +223,9 @@
 						"after": "{String} [mainConf.indexShortcutName=__LAUNCH.html]\t- The name of the index shortcut file to push it to the top of the folder so you don't have to scroll and hunt andpeck for hte \"index.html\" file to launch the docs.",
 						"type": "String",
 						"afterType": "[mainConf.indexShortcutName=__LAUNCH.html]\t- The name of the index shortcut file to push it to the top of the folder so you don't have to scroll and hunt andpeck for hte \"index.html\" file to launch the docs.",
+						"defaultVal": "__LAUNCH.html]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": "__LAUNCH.html",
 						"name": "indexShortcutName",
 						"text": "The name of the index shortcut file to push it to the top of the folder so you don't have to scroll and hunt andpeck for hte \"index.html\" file to launch the docs."
 					},
@@ -235,9 +235,9 @@
 						"after": "{String} [mainConf.moreQuirkDelimiter=\".\"]\t- More quirk delimiter. The character(s) use to seperate the \"more\" page numbering system from page titles.",
 						"type": "String",
 						"afterType": "[mainConf.moreQuirkDelimiter=\".\"]\t- More quirk delimiter. The character(s) use to seperate the \"more\" page numbering system from page titles.",
+						"defaultVal": "\".\"]",
 						"optional": true,
 						"parent": "mainConf",
-						"defaultVal": ".",
 						"name": "moreQuirkDelimiter",
 						"text": "More quirk delimiter. The character(s) use to seperate the \"more\" page numbering system from page titles.\n"
 					}
@@ -269,34 +269,34 @@
 	{
 		"text": "",
 		"start": 88,
-		"end": 90,
+		"end": 96,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
-				"source": "@property  {array} ignoreList - A list of strings representing glob patterns for files/folders to ignore.",
+				"source": "@property  {array} ignoreList - A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
 				"flag": "property",
-				"after": "{array} ignoreList - A list of strings representing glob patterns for files/folders to ignore.",
+				"after": "{array} ignoreList - A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
 				"type": "array",
-				"afterType": "ignoreList - A list of strings representing glob patterns for files/folders to ignore.",
+				"afterType": "ignoreList - A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
 				"name": "ignoreList",
-				"text": "A list of strings representing glob patterns for files/folders to ignore."
+				"text": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list."
 			}
 		],
-		"source": "@property  {array} ignoreList - A list of strings representing glob patterns for files/folders to ignore.",
+		"source": "@property  {array} ignoreList - A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
 		"id": "documon.documon.ignoreList"
 	},
 	{
-		"text": "\n\nlse - Supress stdout messages.\n",
-		"start": 102,
-		"end": 106,
+		"text": "t', 'node_modules'];\n\n\n\ne - Supress stdout messages.\n",
+		"start": 108,
+		"end": 114,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [],
-		"source": "\n\nlse - Supress stdout messages."
+		"source": "t', 'node_modules'];\n\n\n\ne - Supress stdout messages."
 	},
 	{
 		"text": "",
-		"start": 109,
-		"end": 111,
+		"start": 117,
+		"end": 119,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -315,8 +315,8 @@
 	},
 	{
 		"text": "",
-		"start": 114,
-		"end": 116,
+		"start": 122,
+		"end": 124,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -334,8 +334,8 @@
 	},
 	{
 		"text": "Simplify file write for text or json.\n\n",
-		"start": 124,
-		"end": 132,
+		"start": 132,
+		"end": 140,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -385,8 +385,8 @@
 	},
 	{
 		"text": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.\n",
-		"start": 137,
-		"end": 143,
+		"start": 145,
+		"end": 151,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -426,8 +426,8 @@
 	},
 	{
 		"text": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates\n\n",
-		"start": 164,
-		"end": 178,
+		"start": 172,
+		"end": 186,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -468,8 +468,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 461,
-		"end": 470,
+		"start": 464,
+		"end": 473,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -509,8 +509,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 485,
-		"end": 494,
+		"start": 506,
+		"end": 515,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -550,8 +550,8 @@
 	},
 	{
 		"text": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n",
-		"start": 587,
-		"end": 600,
+		"start": 608,
+		"end": 621,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{

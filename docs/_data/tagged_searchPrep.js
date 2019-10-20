@@ -1,6 +1,10 @@
 {
 	"line": 21,
 	"name": "searchPrep",
+	"shortText": "Clean text so it has:",
+	"shortHtml": "<p>Clean text so it has:</p>",
+	"text": "Clean text so it has:\n- only alpha numeric characters\n- strips newlines and tabs.\n- single word results ignored\n\nUsed by [tag.js](root.documon.tag) and [more.js](root.documon.more)\n\n\n",
+	"html": "<p>Clean text so it has: <br>\n- only alpha numeric characters <br>\n- strips newlines and tabs. <br>\n- single word results ignored</p>\n\n<p>Used by <a href=\"root.documon.tag\">tag.js</a> and <a href=\"root.documon.more\">more.js</a></p>",
 	"entity": "class",
 	"flagSearchText": " searchPrep documon text The clean text",
 	"package": "documon",
@@ -22,10 +26,6 @@
 		"shortText": "<p>The clean text</p>",
 		"shortHtml": "<p>The clean text</p>"
 	},
-	"shortText": "Clean text so it has:",
-	"shortHtml": "<p>Clean text so it has:</p>",
-	"text": "Clean text so it has:\n- only alpha numeric characters\n- strips newlines and tabs.\n- single word results ignored\n\nUsed by [tag.js](root.documon.tag) and [more.js](root.documon.more)\n\n\n",
-	"html": "<p>Clean text so it has: <br>\n- only alpha numeric characters <br>\n- strips newlines and tabs. <br>\n- single word results ignored</p>\n\n<p>Used by <a href=\"root.documon.tag\">tag.js</a> and <a href=\"root.documon.more\">more.js</a></p>",
 	"file": "documon/src/searchPrep.js",
 	"filename": "searchPrep.js",
 	"klass": "searchPrep",

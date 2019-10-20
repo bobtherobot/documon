@@ -404,8 +404,8 @@
 				"after": "{string}   [prop=\"id\"]  - The key to sort on.",
 				"type": "string",
 				"afterType": "[prop=\"id\"]  - The key to sort on.",
+				"defaultVal": "\"id\"]",
 				"optional": true,
-				"defaultVal": "id",
 				"name": "prop",
 				"text": "The key to sort on."
 			}

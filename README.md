@@ -18,6 +18,10 @@ Install via NPM:
 
 Or [&#x02186; download Documon][1] directly and use it "stand alone" (via Node).
 
+Or via github:
+
+
+
 ### Quick Start
 
 Within Node project (javascript):
@@ -75,6 +79,15 @@ Of course, since templates are JS, you can always roll some other templating sys
 
 ## Dependancies
 Documon's only dependancy is Node, no additional modules are needed.
+
+## Change Log
+
+v1.1 - 2019-10-20 @ 13:10:18
+- updates
+
+v1.0 - 2017-01-28 @ 13:09:49
+- initial release
+
 
 ## Author & Copyright
 Copyright &copy; [Mike Gieson](http://www.gieson.com). 
