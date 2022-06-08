@@ -470,7 +470,8 @@ members
 	content : ' - line: ';
 }
 .member-file {
-
+	font-size : 10px;
+	color : #8C8C8C;
 }
 
 .param-description {
