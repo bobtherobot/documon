@@ -107,8 +107,8 @@ var extensions;
 // '.git/**/'	- All of the regular files under the directory '.git':
 // '**/*.java'	- All of the regular .java files under this directory:
 //var ignoreList = ['**/.*', '.git/**/', 'node_modules'];
-var ignoreList = ['\\/\\.', '\\.git', 'node_modules'];
-
+//var ignoreList = ['\\/\\.', '\\.git', 'node_modules'];
+var ignoreList = ['**/.*', '.git/**/', 'node_modules'];
 
 /**
  * @property  {boolean} quiet=false - Supress stdout messages.

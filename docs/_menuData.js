@@ -1,5 +1,15 @@
 var MenuData = [
 	{
+		"id": "more.quick_reference",
+		"url": "more.quick_reference.html",
+		"label": "Quick Reference",
+		"name": "Quick Reference",
+		"kind": "more-file",
+		"basepath": "more/050.Quick Reference",
+		"parentID": "more",
+		"gati": "UA-106684927-1"
+	},
+	{
 		"id": "more.about",
 		"url": "more.about.html",
 		"label": "About",
@@ -70,270 +80,270 @@ var MenuData = [
 		"parentID": "more",
 		"children": [
 			{
-				"id": "more.tags._class",
-				"url": "more.tags._class.html",
-				"label": "@class",
-				"name": "@class",
+				"id": "more.tags._class_md",
+				"url": "more.tags._class_md.html",
+				"label": "@class.md",
+				"name": "@class.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@class",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._constructor",
-				"url": "more.tags._constructor.html",
-				"label": "@constructor",
-				"name": "@constructor",
+				"id": "more.tags._constructor_md",
+				"url": "more.tags._constructor_md.html",
+				"label": "@constructor.md",
+				"name": "@constructor.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@constructor",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._default",
-				"url": "more.tags._default.html",
-				"label": "@default",
-				"name": "@default",
+				"id": "more.tags._default_md",
+				"url": "more.tags._default_md.html",
+				"label": "@default.md",
+				"name": "@default.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@default",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._event",
-				"url": "more.tags._event.html",
-				"label": "@event",
-				"name": "@event",
+				"id": "more.tags._event_md",
+				"url": "more.tags._event_md.html",
+				"label": "@event.md",
+				"name": "@event.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@event",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._example",
-				"url": "more.tags._example.html",
-				"label": "@example",
-				"name": "@example",
+				"id": "more.tags._example_md",
+				"url": "more.tags._example_md.html",
+				"label": "@example.md",
+				"name": "@example.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@example",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._extends",
-				"url": "more.tags._extends.html",
-				"label": "@extends",
-				"name": "@extends",
+				"id": "more.tags._extends_md",
+				"url": "more.tags._extends_md.html",
+				"label": "@extends.md",
+				"name": "@extends.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@extends",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._header",
-				"url": "more.tags._header.html",
-				"label": "@header",
-				"name": "@header",
+				"id": "more.tags._header_md",
+				"url": "more.tags._header_md.html",
+				"label": "@header.md",
+				"name": "@header.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@header",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._impliments",
-				"url": "more.tags._impliments.html",
-				"label": "@impliments",
-				"name": "@impliments",
+				"id": "more.tags._impliments_md",
+				"url": "more.tags._impliments_md.html",
+				"label": "@impliments.md",
+				"name": "@impliments.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@impliments",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._inherits",
-				"url": "more.tags._inherits.html",
-				"label": "@inherits",
-				"name": "@inherits",
+				"id": "more.tags._inherits_md",
+				"url": "more.tags._inherits_md.html",
+				"label": "@inherits.md",
+				"name": "@inherits.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@inherits",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._method",
-				"url": "more.tags._method.html",
-				"label": "@method",
-				"name": "@method",
+				"id": "more.tags._method_md",
+				"url": "more.tags._method_md.html",
+				"label": "@method.md",
+				"name": "@method.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@method",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._module",
-				"url": "more.tags._module.html",
-				"label": "@module",
-				"name": "@module",
+				"id": "more.tags._module_md",
+				"url": "more.tags._module_md.html",
+				"label": "@module.md",
+				"name": "@module.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@module",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._namespace",
-				"url": "more.tags._namespace.html",
-				"label": "@namespace",
-				"name": "@namespace",
+				"id": "more.tags._namespace_md",
+				"url": "more.tags._namespace_md.html",
+				"label": "@namespace.md",
+				"name": "@namespace.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@namespace",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._optional",
-				"url": "more.tags._optional.html",
-				"label": "@optional",
-				"name": "@optional",
+				"id": "more.tags._optional_md",
+				"url": "more.tags._optional_md.html",
+				"label": "@optional.md",
+				"name": "@optional.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@optional",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._order",
-				"url": "more.tags._order.html",
-				"label": "@order",
-				"name": "@order",
+				"id": "more.tags._order_md",
+				"url": "more.tags._order_md.html",
+				"label": "@order.md",
+				"name": "@order.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@order",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._overrides",
-				"url": "more.tags._overrides.html",
-				"label": "@overrides",
-				"name": "@overrides",
+				"id": "more.tags._overrides_md",
+				"url": "more.tags._overrides_md.html",
+				"label": "@overrides.md",
+				"name": "@overrides.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@overrides",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._package",
-				"url": "more.tags._package.html",
-				"label": "@package",
-				"name": "@package",
+				"id": "more.tags._package_md",
+				"url": "more.tags._package_md.html",
+				"label": "@package.md",
+				"name": "@package.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@package",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._param",
-				"url": "more.tags._param.html",
-				"label": "@param",
-				"name": "@param",
+				"id": "more.tags._param_md",
+				"url": "more.tags._param_md.html",
+				"label": "@param.md",
+				"name": "@param.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@param",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._private",
-				"url": "more.tags._private.html",
-				"label": "@private",
-				"name": "@private",
+				"id": "more.tags._private_md",
+				"url": "more.tags._private_md.html",
+				"label": "@private.md",
+				"name": "@private.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@private",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._property",
-				"url": "more.tags._property.html",
-				"label": "@property",
-				"name": "@property",
+				"id": "more.tags._property_md",
+				"url": "more.tags._property_md.html",
+				"label": "@property.md",
+				"name": "@property.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@property",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._protected",
-				"url": "more.tags._protected.html",
-				"label": "@protected",
-				"name": "@protected",
+				"id": "more.tags._protected_md",
+				"url": "more.tags._protected_md.html",
+				"label": "@protected.md",
+				"name": "@protected.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@protected",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._public",
-				"url": "more.tags._public.html",
-				"label": "@public",
-				"name": "@public",
+				"id": "more.tags._public_md",
+				"url": "more.tags._public_md.html",
+				"label": "@public.md",
+				"name": "@public.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@public",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._readonly",
-				"url": "more.tags._readonly.html",
-				"label": "@readonly",
-				"name": "@readonly",
+				"id": "more.tags._readonly_md",
+				"url": "more.tags._readonly_md.html",
+				"label": "@readonly.md",
+				"name": "@readonly.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@readonly",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._requires",
-				"url": "more.tags._requires.html",
-				"label": "@requires",
-				"name": "@requires",
+				"id": "more.tags._requires_md",
+				"url": "more.tags._requires_md.html",
+				"label": "@requires.md",
+				"name": "@requires.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@requires",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._return",
-				"url": "more.tags._return.html",
-				"label": "@return",
-				"name": "@return",
+				"id": "more.tags._return_md",
+				"url": "more.tags._return_md.html",
+				"label": "@return.md",
+				"name": "@return.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@return",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._see",
-				"url": "more.tags._see.html",
-				"label": "@see",
-				"name": "@see",
+				"id": "more.tags._see_md",
+				"url": "more.tags._see_md.html",
+				"label": "@see.md",
+				"name": "@see.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@see",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._static",
-				"url": "more.tags._static.html",
-				"label": "@static",
-				"name": "@static",
+				"id": "more.tags._static_md",
+				"url": "more.tags._static_md.html",
+				"label": "@static.md",
+				"name": "@static.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@static",
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1"
 			},
 			{
-				"id": "more.tags._type",
-				"url": "more.tags._type.html",
-				"label": "@type",
-				"name": "@type",
+				"id": "more.tags._type_md",
+				"url": "more.tags._type_md.html",
+				"label": "@type.md",
+				"name": "@type.md",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@type",
 				"parentID": "more.tags",
@@ -729,6 +739,14 @@ var MenuData = [
 														"id": "documon.documon.mainConf",
 														"url": "documon.documon.html#documon.documon.mainConf",
 														"label": "mainConf",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.documon.quiet",
+														"url": "documon.documon.html#documon.documon.quiet",
+														"label": "quiet",
 														"kind": "properties-item",
 														"access": "public",
 														"inherits": 0
@@ -1666,6 +1684,186 @@ var MenuData = [
 												]
 											}
 										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example",
+						"url": "example.html#example",
+						"label": "example",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example-classes",
+								"url": "example.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
+									{
+										"id": "example.fetch",
+										"url": "example.fetch.html#example.fetch",
+										"label": "fetch",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.parse",
+										"url": "example.parse.html#example.parse",
+										"label": "parse",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.send",
+										"url": "example.send.html#example.send",
+										"label": "send",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.Iaudio",
+										"url": "example.Iaudio.html#example.Iaudio",
+										"label": "Iaudio",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.read.formats.wav",
+										"url": "example.read.formats.wav.html#example.read.formats.wav",
+										"label": "read.formats.wav",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.read.rif",
+										"url": "example.read.rif.html#example.read.rif",
+										"label": "read.rif",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.write.meta.id3v1",
+										"url": "example.write.meta.id3v1.html#example.write.meta.id3v1",
+										"label": "write.meta.id3v1",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.write.meta.id3v2",
+										"url": "example.write.meta.id3v2.html#example.write.meta.id3v2",
+										"label": "write.meta.id3v2",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.write.meta.m3u",
+										"url": "example.write.meta.m3u.html#example.write.meta.m3u",
+										"label": "write.meta.m3u",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.write.rif",
+										"url": "example.write.rif.html#example.write.rif",
+										"label": "write.rif",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.main",
+										"url": "example.main.html#example.main",
+										"label": "main",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.controls.button",
+										"url": "example.controls.button.html#example.controls.button",
+										"label": "controls.button",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.controls.select",
+										"url": "example.controls.select.html#example.controls.select",
+										"label": "controls.select",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.controls.toggle",
+										"url": "example.controls.toggle.html#example.controls.toggle",
+										"label": "controls.toggle",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.view.footer",
+										"url": "example.view.footer.html#example.view.footer",
+										"label": "view.footer",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.view.header",
+										"url": "example.view.header.html#example.view.header",
+										"label": "view.header",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.view.section",
+										"url": "example.view.section.html#example.view.section",
+										"label": "view.section",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.audio.read.formats",
+						"url": "example.audio.read.formats.html#example.audio.read.formats",
+						"label": "example.audio.read.formats",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.audio.read.formats-classes",
+								"url": "example.audio.read.formats.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
+									{
+										"id": "example.audio.read.formats.mp3",
+										"url": "example.audio.read.formats.mp3.html#example.audio.read.formats.mp3",
+										"label": "mp3",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
 									}
 								]
 							}

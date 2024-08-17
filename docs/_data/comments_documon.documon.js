@@ -26,8 +26,13 @@
 	},
 	{
 		"start": 108,
+		"end": 110,
+		"data": "git', 'node_modules'];"
+	},
+	{
+		"start": 112,
 		"end": 114,
-		"data": "t', 'node_modules'];\n\n\n\ne - Supress stdout messages."
+		"data": "@property  {boolean} quiet=false - Supress stdout messages."
 	},
 	{
 		"start": 117,

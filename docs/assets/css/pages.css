@@ -147,9 +147,11 @@ table tr:last-child {
 
 pre {
 	white-space : pre !important; /* over-rule prettyprint */
-    font-size: 14px;
-    line-height: 1.5em;
-    padding : 0.1em 0.5em 0.3em 0.5em;
+	overflow-x : auto;
+    font-size: 11.5px;
+    line-height: 1.3em;
+    padding : 0.5em 0.5em 0.3em 0.5em;
+	font-family : Monaco, Consolas, "Andale Mono WT", "Lucida Console", "Lucida Sans Typewriter", "DejaVu SansMono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
 }
 
 /* give some space after (couldn't just add to pre because prettyprint is consuming css? )*/
@@ -470,7 +472,8 @@ members
 	content : ' - line: ';
 }
 .member-file {
-
+	font-size : 10px;
+	color : #8C8C8C;
 }
 
 .param-description {

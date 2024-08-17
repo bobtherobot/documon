@@ -286,12 +286,32 @@
 		"id": "documon.documon.ignoreList"
 	},
 	{
-		"text": "t', 'node_modules'];\n\n\n\ne - Supress stdout messages.\n",
+		"text": "git', 'node_modules'];\n",
 		"start": 108,
-		"end": 114,
+		"end": 110,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [],
-		"source": "t', 'node_modules'];\n\n\n\ne - Supress stdout messages."
+		"source": "git', 'node_modules'];"
+	},
+	{
+		"text": "",
+		"start": 112,
+		"end": 114,
+		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
+		"flags": [
+			{
+				"source": "@property  {boolean} quiet=false - Supress stdout messages.",
+				"flag": "property",
+				"after": "{boolean} quiet=false - Supress stdout messages.",
+				"type": "boolean",
+				"afterType": "quiet=false - Supress stdout messages.",
+				"defaultVal": "false",
+				"name": "quiet",
+				"text": "Supress stdout messages."
+			}
+		],
+		"source": "@property  {boolean} quiet=false - Supress stdout messages.",
+		"id": "documon.documon.quiet"
 	},
 	{
 		"text": "",

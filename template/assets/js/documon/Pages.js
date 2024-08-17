@@ -101,6 +101,12 @@ this.documon.Pages = (function(){
 		//documon.Linker.init();
 		document.addEventListener('click', interceptClick);
 
+		// Set prettyprint class to <PRE> tags
+		var pres = document.querySelectorAll("pre");
+		for(var i=0; i<pres.length; i++){
+			pres[i].className = "prettyprint linenums"
+		}
+
 		prettyPrint();
 
 	}

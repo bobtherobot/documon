@@ -208,11 +208,11 @@ function quirkyName(filename, amFolder){
 	var Afilename = filename.split(".");
 	if( ! amFolder ){
 		Afilename.pop();
-		filename = Afilename.join(".");
+		//filename = Afilename.join(".");
 	}
 
 	// Re-apply naked name
-	var basename = filename; // Afilename.join(".");
+	var basename = Afilename.join(".");
 
 	// Build label sans quirks sorting
 	Afilename = basename.split(quirkDelimiter);

@@ -473,6 +473,24 @@
 			"package": "documon",
 			"docfile": "documon.documon.html",
 			"id": "documon.documon.mainConf"
+		},
+		{
+			"line": 115,
+			"name": "quiet",
+			"shortText": "Supress stdout messages.",
+			"shortHtml": "<p>Supress stdout messages.</p>",
+			"text": "Supress stdout messages.",
+			"html": "<p>Supress stdout messages.</p>",
+			"type": "boolean",
+			"defaultVal": "false",
+			"entity": "property",
+			"flagSearchText": " Supress stdout messages.",
+			"file": "documon/src/documon.js",
+			"filename": "documon.js",
+			"klass": "documon",
+			"package": "documon",
+			"docfile": "documon.documon.html",
+			"id": "documon.documon.quiet"
 		}
 	],
 	"prettyLangs": [],
@@ -489,6 +507,7 @@
 		"documon.documon.mainConf": "mainConf : NOTE sourceRootFolder dataFolder injected into mainConf documon Example link other class root documon dirutils makedir root documon dirutils makedir Example link other class documon dirutils makedir documon dirutils makedir Example link other class documon dirutils documon dirutils Example link localUsed store user supplied config settings",
 		"documon.documon.extensions": "extensions : list extensions search source codelist extensions search source code",
 		"documon.documon.ignoreList": "ignoreList : list strings representing regex patterns files folders ignore default following patterns already included node modules Configuration will concat this list with user provied listlist strings representing regex patterns files folders ignore default following patterns already included node modules Configuration will concat this list with user provied list",
+		"documon.documon.quiet": "quiet : Supress stdout messagesSupress stdout messages",
 		"documon.documon.dumpData": "dumpData : Whether write intermediary files used during processing output data folderWhether write intermediary files used during processing output data folder",
 		"documon.documon.indexRedirectName": "indexRedirectName : filename shortcut index html file name that will push name folder quicker access index hrml filefilename shortcut index html file name that will push name folder quicker access index hrml file"
 	}
