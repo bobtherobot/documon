@@ -18,8 +18,7 @@ menu
     margin-top : 0px; /* rather than left/top, we need to defeat the "menu ul" selector. */
     margin-left : -40px;
     font-size : 13px;
-    line-height: 1.67em;
-    line-height: 2em;
+    line-height: 1.6em;
     cursor: default;
     /*overflow : hidden;   prevents horizontal scroll bar */
     min-width : 100%; /* allows the selected item's background to extend to the right after scroll */
@@ -34,7 +33,7 @@ menu
 
 .menu ul {
 	list-style: none;
-    margin-left: 1.5em;  /* +1 for indentation, +0.5 for overall menu margin-left */
+    margin-left: 1.2em;  /* +1 for indentation, +0.5 for overall menu margin-left, -.2 to tighten up */
 }
 
  /* Use a negative margin to push way off to the left 

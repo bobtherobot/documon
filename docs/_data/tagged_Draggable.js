@@ -71,7 +71,7 @@
 	"example": [
 		{
 			"text": "\n\n\t\tvar myDrag = new documon.Draggable({\n\t\t\t  target\t: obj \n\t\t\t, callback\t: fn\n\t\t\t, constrain\t: \"x\"\n\t\t\t, constrainRect\t: obj\n\t\t\t, threshold : 5\n\t\t});",
-			"html": "<pre><code>    var myDrag = new documon.Draggable({\n          target    : obj \n        , callback  : fn\n        , constrain : \"x\"\n        , constrainRect : obj\n        , threshold : 5\n    });\n</code></pre>"
+			"html": "<pre><code>    var myDrag = new documon.Draggable({\n          target    : obj \n        , callback  : fn\n        , constrain : \"x\"\n        , constrainRect : obj\n        , threshold : 5\n    });</code></pre>"
 		}
 	],
 	"file": "documon/template/assets/js/documon/Draggable.js",
@@ -635,9 +635,9 @@
 			"access": "private",
 			"name": "_down_bound",
 			"shortText": "_down_bound",
-			"shortHtml": "<p><em>down</em>bound</p>",
+			"shortHtml": "<p>_down_bound</p>",
 			"text": "_down_bound",
-			"html": "<p><em>down</em>bound</p>",
+			"html": "<p>_down_bound</p>",
 			"type": "object",
 			"entity": "property",
 			"flagSearchText": " _down_bound",
@@ -671,9 +671,9 @@
 			"access": "private",
 			"name": "_move_bound",
 			"shortText": "_move_bound",
-			"shortHtml": "<p><em>move</em>bound</p>",
+			"shortHtml": "<p>_move_bound</p>",
 			"text": "_move_bound",
-			"html": "<p><em>move</em>bound</p>",
+			"html": "<p>_move_bound</p>",
 			"type": "object",
 			"entity": "property",
 			"flagSearchText": " _move_bound",
@@ -779,9 +779,9 @@
 			"access": "private",
 			"name": "_up_bound",
 			"shortText": "_up_bound",
-			"shortHtml": "<p><em>up</em>bound</p>",
+			"shortHtml": "<p>_up_bound</p>",
 			"text": "_up_bound",
-			"html": "<p><em>up</em>bound</p>",
+			"html": "<p>_up_bound</p>",
 			"type": "object",
 			"entity": "property",
 			"flagSearchText": " _up_bound",

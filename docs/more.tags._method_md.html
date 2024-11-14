@@ -55,7 +55,7 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1 id="method">@method</h1>
+			<div class="more"><h1 id="method"><a href="https://github.com/method">@method</a></h1>
 <p>Methods consist of arguments and an optional "return". </p>
 <pre><code>/**
 * Method description
@@ -68,70 +68,58 @@
 
 function myMethod(arg1, arg2){
     return arg1 + arg2;
-}
-</code></pre>
-<p>The word after the @method tag should be identical to the function name in your source code.</p>
+}</code></pre>
+<p>The word after the <a href="https://github.com/method">@method</a> tag should be identical to the function name in your source code.</p>
 <pre><code>@method myMethod
 
 function myMethod(){
 
-}
-</code></pre>
+}</code></pre>
 <blockquote>
   <p>This line is essential for registering this comment block as one of the foundational kinds (package, namespace, class, module, property, method, event)</p>
 </blockquote>
-<h3 id="param">@param</h3>
+<h3 id="param"><a href="https://github.com/param">@param</a></h3>
 <p>The param tag is used to explain the arguments that the function can receive. Param tags consist of 4 parts:</p>
 <pre><code>   1     2     3         4
-@param {type} arg1 - description
-</code></pre>
+@param {type} arg1 - description</code></pre>
 <dl>
-1 - @param tag
-<dd>Each param tag represents an argument, the order in which these tags are listed must match the order that they appear in the function.</dd>
+<dt>1 - @param tag</dt>
+<dd><p>Each param tag represents an argument, the order in which these tags are listed must match the order that they appear in the function.</p></dd>
 
 <dt>2 - {type}</dt>
-<dd>
-The expected type that the argument should be, usually a primative such as "object" or "string". For weak typed languages where multiple types can be sent in separate types with a pipe charater.
-
-    {number | string | object}
-It's questionable whether to use Initial caps (Number String, Object), so I've left that to be dealt with in the template CSS. 
-
-Documon doesn't enforce anything within the brackets, so you can put anything in ther you want.
-
-    {WhatEver}
-And that's what'll get rendered.
-
-
-</dd>
+<dd><p>The expected type that the argument should be, usually a primative such as "object" or "string". For weak typed languages where multiple types can be sent in separate types with a pipe charater.</p>
+<pre><code>{number | string | object}</code></pre>
+<p>It's questionable whether to use Initial caps (Number String, Object), so I've left that to be dealt with in the template CSS. </p>
+<p>Documon doesn't enforce anything within the brackets, so you can put anything in ther you want.</p>
+<pre><code>{WhatEver}</code></pre>
+<p>And that's what'll get rendered.</p></dd>
 
 <dt>3 - name</dt>
-<dd>The argument name should be identical to what you've used in your source code. Again, Doumon doesn't read your source code, so it's up to you to ensure a commonality.</dd>
+<dd><p>The argument name should be identical to what you've used in your source code. Again, Doumon doesn't read your source code, so it's up to you to ensure a commonality.</p></dd>
 
 <dt>4 - description</dt>
-: The remaining text after the first word will get picked up as the description. 
-
-    >Placing a dash in front of the description to provides visual speration between the name and the description. The dash also helps Documon differentiate between the name and the description, which may be required for some fringe cases. When used, Documon will strip out the initial dash.
+<dd><p>The remaining text after the first word will get picked up as the description. </p>
+<blockquote>
+  <p>Placing a dash in front of the description to provides visual speration between the name and the description. The dash also helps Documon differentiate between the name and the description, which may be required for some fringe cases. When used, Documon will strip out the initial dash. </p>
+</blockquote></dd>
 </dl>
-<h3 id="defaultvalues">Default Values</h3>
+<h3 id="default-values">Default Values</h3>
 <p>See <a href="more.writing_comments.default_values">Default Values</a></p>
-<h3 id="multidimensionalobjectparameters">Multi-dimensional object parameters.</h3>
+<h3 id="multi-dimensional-object-parameters">Multi-dimensional object parameters.</h3>
 <p>Often times objects are sent in as arguments, and details about the properties of the object need to be explained.</p>
 <p>To handle this use a "object.prop" pattern:</p>
 <pre><code>@param {object}     foo         - description
 @param {string}     foo.bar     - description
 @param {Earthling}  foo.bob     - description
-@param {Martian}    foo.sally   - description
-</code></pre>
-<p>The sub-properties carry all the rules of a normal @param.</p>
-<h3 id="returnlines">@return lines</h3>
-<p>The @return tag can be plural or singular, since no one agrees which we should use, both have valid arguments, use whichever you want:</p>
+@param {Martian}    foo.sally   - description</code></pre>
+<p>The sub-properties carry all the rules of a normal <a href="https://github.com/param">@param</a>.</p>
+<h3 id="return-lines"><a href="https://github.com/return">@return</a> lines</h3>
+<p>The <a href="https://github.com/return">@return</a> tag can be plural or singular, since no one agrees which we should use, both have valid arguments, use whichever you want:</p>
 <pre><code>@return
-@returns
-</code></pre>
-<p>The @return tag is similar to a param, but shouldn't include a "name", just use a description.</p>
+@returns</code></pre>
+<p>The <a href="https://github.com/return">@return</a> tag is similar to a param, but shouldn't include a "name", just use a description.</p>
 <p>You can also choose to include a {type} in the return line to indicate what kind of thign your returning.</p>
-<pre><code>@return {type} - description
-</code></pre>
+<pre><code>@return {type} - description</code></pre>
 <p>I've included a dash in front of the description simply for consistency sake, it's not required, but helps my weak and foolish brain.</p></div>
 		</div>
 

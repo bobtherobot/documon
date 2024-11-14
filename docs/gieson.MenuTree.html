@@ -96,9 +96,8 @@
         "children"  : []            // An array of menu item just like this one.
     }
     ... etc...
-];
-</code></pre>
-<p>When an item has children, a sub-menu will be constructed as the immediate "nextSibling" UL, 
+];</code></pre>
+<p>When an item has children, a sub-menu will be constructed as the immediate "nextSibling" UL, <br />
 which will house all the items within the "children" array. Thus, one may have as many sub-menus as needed.</p>
 <p>The menu will be build using the following HTML structure:</p>
 <pre><code>&lt;ul&gt;
@@ -122,8 +121,7 @@ which will house all the items within the "children" array. Thus, one may have a
         &lt;li&gt;foo&lt;/li&gt;
         &lt;li&gt;foo&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/ul&gt;
-</code></pre>
+&lt;/ul&gt;</code></pre>
 
 					
 								
@@ -144,8 +142,7 @@ function opHandler(action, item){
 var myMenu = new gieson.MenuTree({
             callback : opHandler,
             menuData : MenuData // MenuData should be located on the window object, since it is loaded in via &lt;script src="_menuData.js"&gt;
-    });
-</code></pre>
+    });</code></pre>
 	        </div>
 	    </div>
 
@@ -190,7 +187,7 @@ var myMenu = new gieson.MenuTree({
                                         
 									
 							<div class="member-description">
-      				 		 	<p>TODO: We should convert the items we store in the list to a seperate class. For berevity we've just inlined it during development.
+      				 		 	<p>TODO: We should convert the items we store in the list to a seperate class. For berevity we've just inlined it during development.<br />
 A data store for each menu item. The keys for the listData refer to item ID's. Each item consists of the following:</p>
 <pre><code>    item = {
         id          // Optional (will be assigned unique one if none)
@@ -215,8 +212,7 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
                     ulOriginalDisplay // The source node's original css style.display kind (for open/close so we go back to normal -- defaults to "block" when not set in CSS)
 
         }
-    }
-</code></pre>
+    }</code></pre>
        						 </div>
        			
 						        	

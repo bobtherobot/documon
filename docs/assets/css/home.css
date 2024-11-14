@@ -105,7 +105,7 @@ header
 .header-left {
     z-index: 2;
     white-space : nowrap;
-    padding : 5px;
+    padding: 3px 0 0 10px;
 }
 
 .header-left .title {

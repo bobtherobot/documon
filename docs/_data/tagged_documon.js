@@ -11,7 +11,7 @@
 	"example": [
 		{
 			"text": "\n\n\t\tvar myDocumon = require(\"path/to/documon/src/documon.js\");\n\t\tmyDocumon.run({\n  \t\tfiles : \"path/to/src\"\n\t\t});\n\t\t",
-			"html": "<pre><code>    var myDocumon = require(\"path/to/documon/src/documon.js\");\n    myDocumon.run({\n      files : \"path/to/src\"\n    });\n</code></pre>"
+			"html": "<pre><code>    var myDocumon = require(\"path/to/documon/src/documon.js\");\n    myDocumon.run({\n      files : \"path/to/src\"\n    });</code></pre>"
 		}
 	],
 	"file": "documon/src/documon.js",
@@ -94,7 +94,7 @@
 			"shortText": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  ",
 			"shortHtml": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  </p>",
 			"text": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n",
-			"html": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and<br />\nconstruction of the documentation.</p>\n<p>After <a href=\"#init\">init</a> configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the <a href=\"#seeder\">seeder</a> of evaluation and processing.</p>\n<ul>\n<li>Generates HTML pages</li>\n<li>Generates _menuData.js</li>\n</ul>",
+			"html": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  <br />\nconstruction of the documentation.</p>\n<p>After <a href=\"#init\">init</a> configures things based on the settings, and generates a list of files to process<br />\nthis method process and sends each file to the <a href=\"#seeder\">seeder</a> of evaluation and processing.</p>\n<ul>\n<li>Generates HTML pages</li>\n<li>Generates _menuData.js</li>\n</ul>",
 			"entity": "method",
 			"flagSearchText": " run\n The configuration object. See [mainConf](#mainConf)",
 			"params": [
@@ -268,7 +268,7 @@
 			"shortText": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
 			"shortHtml": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>",
 			"text": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
-			"html": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>\n<pre><code>    '\\/\\.'\n    '\\.git'\n    'node_modules'\n\nConfiguration will concat this list with the user provied list.\n</code></pre>",
+			"html": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>\n<pre><code>    '\\/\\.'\n    '\\.git'\n    'node_modules'\n\nConfiguration will concat this list with the user provied list.</code></pre>",
 			"type": "array",
 			"entity": "property",
 			"flagSearchText": " A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
@@ -302,7 +302,7 @@
 			"shortText": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.",
 			"shortHtml": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>",
 			"text": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
-			"html": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>\n<p>Example link <a href=\"root.documon.dirutils.makedir\">other class to root.documon.dirutils.makedir</a>\nExample link <a href=\"documon.dirutils.makedir\">other class to documon.dirutils.makedir</a>\nExample link <a href=\"documon.dirutils\">other class to documon.dirutils</a>\nExample link <a href=\"#run\">local to #run</a></p>",
+			"html": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>\n<p>Example link <a href=\"root.documon.dirutils.makedir\">other class to root.documon.dirutils.makedir</a><br />\nExample link <a href=\"documon.dirutils.makedir\">other class to documon.dirutils.makedir</a><br />\nExample link <a href=\"documon.dirutils\">other class to documon.dirutils</a><br />\nExample link <a href=\"#run\">local to #run</a></p>",
 			"type": "Object",
 			"children": [
 				{

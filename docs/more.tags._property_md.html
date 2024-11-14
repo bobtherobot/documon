@@ -55,9 +55,9 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1 id="property">@property</h1>
+			<div class="more"><h1 id="property"><a href="https://github.com/property">@property</a></h1>
 <p>There are 2 ways to define properties, using the traditional JavaDoc style, or using Documon's "quick prop" one-liner. It all depends on how robust you wish to be.</p>
-<p>Since Documon relies soley on @tags within comments, each property needs to be registered manually using the @property tag.</p>
+<p>Since Documon relies soley on <a href="https://github.com/tags">@tags</a> within comments, each property needs to be registered manually using the <a href="https://github.com/property">@property</a> tag.</p>
 <h3 id="example">Example</h3>
 <pre><code>/** 
  * The width of the display object's bounding box.
@@ -65,8 +65,7 @@
  * @type Number
  * @default 0
  **/
-p.width = 0;
-</code></pre>
+p.width = 0;</code></pre>
 <p>Above, we used a pretty robust definition, which is great but slow. Here are a few things that make documenting a little easier.</p>
 <p>Set the default value by attaching an equal sign + value:</p>
 <pre><code>/** 
@@ -74,22 +73,19 @@ p.width = 0;
  * @property width=0
  * @type Number
  **/
-p.width = 0;
-</code></pre>
-<h4 id="usethequickproponeliner">Use the Quick Prop One Liner</h4>
+p.width = 0;</code></pre>
+<h4 id="use-the-quick-prop-one-liner">Use the Quick Prop One Liner</h4>
 <p>Or one-liner #1 - name after {type}</p>
 <pre><code>/**
  * @property {object} width=0 - The width of the display object's bounding box.
  */
-p.width = 0;
-</code></pre>
+p.width = 0;</code></pre>
 <p>Or one-liner #2 - name before {type} (unconventional, but seems more logical to me?)</p>
 <pre><code>/**
  * @property width=0 {object} - The width of the display object's bounding box.
  */
-p.width = 0;
-</code></pre>
-<h3 id="defaultvalues">Default Values</h3>
+p.width = 0;</code></pre>
+<h3 id="default-values">Default Values</h3>
 <p>See <a href="more.writing_comments.default_values">Default Values</a></p></div>
 		</div>
 

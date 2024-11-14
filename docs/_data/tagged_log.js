@@ -37,7 +37,7 @@
 	"example": [
 		{
 			"text": "\n\n\tvar log = require(\"log\");\n\tlog([\"foo\", \"bar\"], \"Some Title\", false);\n\nprints:\n\n\t\t--------------------\n\t\tSome Title\n\t\t--------------------\n\t\t[\n\t\t\t'foo',\n\t\t\t'bar'\n\t\t]\n\t\t",
-			"html": "<pre><code>var log = require(\"log\");\nlog([\"foo\", \"bar\"], \"Some Title\", false);\n</code></pre>\n<p>prints:</p>\n<pre><code>    --------------------\n    Some Title\n    --------------------\n    [\n        'foo',\n        'bar'\n    ]\n</code></pre>"
+			"html": "<pre><code>var log = require(\"log\");\nlog([\"foo\", \"bar\"], \"Some Title\", false);</code></pre>\n<p>prints:</p>\n<pre><code>    --------------------\n    Some Title\n    --------------------\n    [\n        'foo',\n        'bar'\n    ]</code></pre>"
 		}
 	],
 	"file": "documon/src/log.js",

@@ -92,26 +92,26 @@
 <li><p><strong>start</strong> : The line number that the comment started on</p></li>
 <li><p><strong>end</strong> : The line number that the comment ended on</p></li>
 <li><p><strong>data</strong> : The contents of the comment</p>
-<p>var myComments = extract(str);
-yields : [
-            { 
-                start : 12,
-                end : 32,
-                data : "the descript"
-            },
-            { 
-                start : 12,
-                end : 32,
-                data : "the descript"
-            }
+<p>var myComments = extract(str);<br />
+yields : [<br />
+            { <br />
+                start : 12,<br />
+                end : 32,<br />
+                data : "the descript"<br />
+            },<br />
+            { <br />
+                start : 12,<br />
+                end : 32,<br />
+                data : "the descript"<br />
+            }<br />
     ]</p></li>
 </ul>
-<h2 id="afewthingsofnote">A few things of note:</h2>
+<h2 id="a-few-things-of-note">A few things of note:</h2>
 <ul>
 <li>The data will NOT include the beginDoc, nor the endDoc strings.</li>
-<li>Comment prefixing is stripped 
-    - *  [star space]
-    - tabs
+<li>Comment prefixing is stripped <br />
+    - *  [star space]<br />
+    - tabs<br />
     - spaces</li>
 <li>Code blocks maintain indentation.</li>
 <li>Splitting on <strong>package</strong> or <strong>namespace</strong>. When a single file contains mulitple references to a "<strong>package</strong>" or "<strong>namespace</strong>" comments will split into multiple arrays -- treating the single source file as being mulitple files. </li>
@@ -164,8 +164,7 @@ yields : [
                     data : "Something for B ..."
                 },
             ,
-        ]
-</code></pre>
+        ]</code></pre>
 
 					
 								

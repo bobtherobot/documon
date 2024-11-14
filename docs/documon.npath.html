@@ -140,17 +140,14 @@
 							<div class="member-description">
       				 		 	<p>Platform environment PATH delimiter.</p>
 <p>Example of how PATH appears on Windows:</p>
-<pre><code>    'C:\Windows\system32;C:\Windows;C:\Program Files\node\'
-</code></pre>
+<pre><code>    'C:\Windows\system32;C:\Windows;C:\Program Files\node\'</code></pre>
 <p>Example of how PATH appears on POSIX systems (Mac Unix):</p>
-<pre><code>    '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin'
-</code></pre>
+<pre><code>    '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin'</code></pre>
 <p>Read the PATH with Node:</p>
 <pre><code>    console.log(process.env.PATH)
 
     Windows     = ;
-  POSIX   = : 
-</code></pre>
+  POSIX   = : </code></pre>
        						 </div>
        			
 						        	
@@ -277,7 +274,7 @@
 						   	<div class="member-description">
                                 
                                 
-								<p>npath.basename("/foo/bar/bob.txt") --&gt; "bob.txt"
+								<p>npath.basename("/foo/bar/bob.txt") --&gt; "bob.txt"<br />
    npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</p>
 
 					
@@ -483,8 +480,7 @@
                                 
 								<p>Returns the path to the parent folder that the item resides within.</p>
 <pre><code>    npath.dirname("/foo/bar/bob.txt") --&gt; "/foo/bar"
-  npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"
-</code></pre>
+  npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"</code></pre>
 
 					
 								
@@ -571,8 +567,7 @@
                                 
 								<p>Yes, this includes the dot.</p>
 <pre><code>    npath.extname("/foo/bar/bob.txt") --&gt; ".txt"
-  npath.extname("/foo/sally/yoyo/boob") --&gt; ""
-</code></pre>
+  npath.extname("/foo/sally/yoyo/boob") --&gt; ""</code></pre>
 
 					
 								
@@ -666,11 +661,9 @@
         base : "file.txt",
         ext : ".txt",
         name : "file"
-    }
-</code></pre>
+    }</code></pre>
 <p>Is converted to</p>
-<pre><code>    /home/user/dir/file.txt
-</code></pre>
+<pre><code>    /home/user/dir/file.txt</code></pre>
 
 					
 								
@@ -842,8 +835,7 @@
                                 
 								<p>Joins path segments and resolves relativity.</p>
 <pre><code>    path.join('/foo', 'bar', 'baz/asdf', 'quux', '..')
-    Returns: '/foo/bar/baz/asdf'
-</code></pre>
+    Returns: '/foo/bar/baz/asdf'</code></pre>
 
 					
 								
@@ -928,14 +920,13 @@
 						   	<div class="member-description">
                                 
                                 
-								<p>Resolves ".." and "." portions of a path.
-Reduces double slashes to single (e.g. // -&gt; /  )
+								<p>Resolves ".." and "." portions of a path.<br />
+Reduces double slashes to single (e.g. // -&gt; /  )<br />
 Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 <p>Retains trailing slash if exists.</p>
 <pre><code>  npath.normalize("/foo/////bar") --&gt; "/foo/bar"
   npath.normalize("/foo/bar/../boob") --&gt; "/foo/boob"
-  npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"
-</code></pre>
+  npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</code></pre>
 
 					
 								
@@ -1030,8 +1021,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
     base : "file.txt",
     ext : ".txt",
     name : "file"
-}
-</code></pre>
+}</code></pre>
 
 					
 								
@@ -1094,8 +1084,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
     base : "file.txt",
     ext : ".txt",
     name : "file"
-}
-</code></pre></div>
+}</code></pre></div>
 				
 
 					
@@ -1126,8 +1115,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
                                 
 								<p>Creates a relative path between <code>from</code> adn <code>to</code>.</p>
 <pre><code>    path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb')
-    // Returns: '../../impl/bbb'
-</code></pre>
+    // Returns: '../../impl/bbb'</code></pre>
 
 					
 								
@@ -1332,17 +1320,13 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
                                 
 								<p>Generates an absolute path based on thenprovided arguments.</p>
 <p>Path construction occurs from right &lt; to &lt; left</p>
-<pre><code>    resolve("/a", "b", "c"); // yields: "/a/b/c"
-</code></pre>
+<pre><code>    resolve("/a", "b", "c"); // yields: "/a/b/c"</code></pre>
 <p>If an absolute path is resolved during construction, the items to the left are ignored.</p>
-<pre><code>    resolve("a", "/b", "c"); // yields: "/b/c" ("a" is ignored)
-</code></pre>
+<pre><code>    resolve("a", "/b", "c"); // yields: "/b/c" ("a" is ignored)</code></pre>
 <p>If an absolute path is not resolved after constructing all arguments, the CWD is inserted.</p>
-<pre><code>    resolve("a", "b", "c"); // yields: "/current/working/dir/a/b/c"
-</code></pre>
+<pre><code>    resolve("a", "b", "c"); // yields: "/current/working/dir/a/b/c"</code></pre>
 <p>Relative paths are automatically resolved:</p>
-<pre><code>    resolve("/a", "../b", "c"); // yields "/a/c"
-</code></pre>
+<pre><code>    resolve("/a", "../b", "c"); // yields "/a/c"</code></pre>
 
 					
 								

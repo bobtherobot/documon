@@ -448,14 +448,12 @@
 						   	<div class="member-description">
                                 
                                 
-								<p>Creates a folder at the specified location. The sub-folder heirarchy is
+								<p>Creates a folder at the specified location. The sub-folder heirarchy is<br />
  constructed as needed.</p>
 <p>For example if a folder exists here:</p>
-<pre><code> /path/to/folder
-</code></pre>
+<pre><code> /path/to/folder</code></pre>
 <p>… but the following sub-folders don't exists:</p>
-<pre><code>/path/to/folder/sub/one/two/three
-</code></pre>
+<pre><code>/path/to/folder/sub/one/two/three</code></pre>
 <p>… Then the "sub/one/two/three" tree will be constructed inside "/path/to/folder")</p>
 
 					
@@ -540,7 +538,7 @@
 						   	<div class="member-description">
                                 
                                 
-								<p>Read a folder and returns an object containing all of the files and
+								<p>Read a folder and returns an object containing all of the files and<br />
  folder in arrays.</p>
 
 					
@@ -673,8 +671,8 @@
                                         
 									
 							<div class="member-description">
-      				 		 	<p>Used internally to store recursive findings.
- Note that you may also provide this argument and readdir will populate your
+      				 		 	<p>Used internally to store recursive findings.<br />
+ Note that you may also provide this argument and readdir will populate your<br />
  existing files/folder list. But is recommended to leave this argument alone.</p>
        						 </div>
        			
@@ -698,7 +696,7 @@
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">object</span>
 					</div>
-			      	     	<div class="member"><p>An object containing a list of "files" and "folders"
+			      	     	<div class="member"><p>An object containing a list of "files" and "folders"<br />
  (as properties of the returned list), where each is an array.</p></div>
 				
 
@@ -722,8 +720,7 @@
 //                  "/path/to/folder/sub3"
 // 
 //              ]
-// }
-</code></pre>
+// }</code></pre>
 	        </div>
 	    </div>
 
@@ -750,10 +747,10 @@
 						   	<div class="member-description">
                                 
                                 
-								<p>Collects files from a folder based on the specified extension (or
- extensions). Can be used to search recursively through all sub-folders, and can
+								<p>Collects files from a folder based on the specified extension (or<br />
+ extensions). Can be used to search recursively through all sub-folders, and can<br />
  search multiple extensions.</p>
-<p>Provided as shortcut for <a href="#readdir">readdir</a> with your own
+<p>Provided as shortcut for <a href="#readdir">readdir</a> with your own<br />
  extension-checking filter.</p>
 
 					
@@ -820,7 +817,7 @@
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The extension to look for (e.g. "jpg"). To
+      				 		 	<p>The extension to look for (e.g. "jpg"). To<br />
  search for multiple extensions, use an array e.g. ["jpg", "png", "gif"]</p>
        						 </div>
        			
@@ -854,7 +851,7 @@
                                         
 									
 							<div class="member-description">
-      				 		 	<p>Find all matching files in all
+      				 		 	<p>Find all matching files in all<br />
  sub-folders.</p>
        						 </div>
        			
@@ -878,7 +875,7 @@
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">array</span>
 					</div>
-			      	     	<div class="member"><p>The resulting array contains only files that mathc the
+			      	     	<div class="member"><p>The resulting array contains only files that mathc the<br />
  specified extension(s).</p></div>
 				
 

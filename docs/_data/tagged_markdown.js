@@ -6,7 +6,7 @@
 	"id": "root",
 	"methods": [
 		{
-			"line": 24,
+			"line": 26,
 			"name": "definitionLists",
 			"shortText": "Find and convert markdown extra definition lists into html.",
 			"shortHtml": "<p>Find and convert markdown extra definition lists into html.</p>",
@@ -39,12 +39,12 @@
 			"id": "root.definitionLists"
 		},
 		{
-			"line": 92,
+			"line": 94,
 			"name": "processDefListItems",
 			"shortText": "Process the contents of a single definition list, splitting it",
 			"shortHtml": "<p>Process the contents of a single definition list, splitting it</p>",
 			"text": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.\n\n",
-			"html": "<p>Process the contents of a single definition list, splitting it\ninto individual term and definition list items.</p>",
+			"html": "<p>Process the contents of a single definition list, splitting it<br />\ninto individual term and definition list items.</p>",
 			"entity": "method",
 			"flagSearchText": " processDefListItems description\n description",
 			"access": "private",

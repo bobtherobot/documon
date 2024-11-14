@@ -5,6 +5,8 @@ var showdown = require("showdown");
 
 function run(str){
     var converter = new showdown.Converter({
+        tables : true,
+        omitExtraWLInCodeBlocks : true,
         extensions: ['def_list']
     });
     return converter.makeHtml(str)
@@ -22,7 +24,7 @@ function run(str){
  *
  * @return  {type}                 description
  */
-function definitionLists (text) {
+function definitionLists (text, converter, options) {
     var wholeList = new RegExp(
         ['(\\x02\\n?|\\n\\n)',
             '(?:',
@@ -58,17 +60,17 @@ function definitionLists (text) {
     );
 
     //var self = this;
-    //text = addAnchors(text);
+    text = addAnchors(text);
 
-    text = text.replace(wholeList, function(match, pre, list) {
-        var result = trim(processDefListItems(list));
+    text = text.replace(wholeList, (match, pre, list) => {
+        var result = trim(processDefListItems(list, converter));
         result = "<dl>\n" + result + "\n</dl>";
         //return pre + self.hashExtraBlock(result) + "\n\n";
         return pre + result + "\n\n";
     });
 
-    //return removeAnchors(text);
-    return text;
+    return removeAnchors(text);
+    //return text;
 };
 
 function trim(str) {
@@ -90,7 +92,7 @@ function rtrim(str) {
  *
  * @return  {type}                        description
  */
-function processDefListItems (listStr) {
+function processDefListItems (listStr, converter) {
 
     var dt = new RegExp(
         ['(\\x02\\n?|\\n\\n+)', // leading line
@@ -122,12 +124,12 @@ function processDefListItems (listStr) {
         'gm'
     );
 
-    //listStr = addAnchors(listStr);
+    listStr = addAnchors(listStr);
     // trim trailing blank lines:
     listStr = listStr.replace(/\n{2,}(?=\\x03)/, "\n");
 
     // Process definition terms.
-    listStr = listStr.replace(dt, function(match, pre, termsStr) {
+    listStr = listStr.replace(dt, (match, pre, termsStr) => {
         var terms = trim(termsStr).split("\n");
         var text = '';
         for (var i = 0; i < terms.length; i++) {
@@ -141,7 +143,7 @@ function processDefListItems (listStr) {
     });
 
     // Process actual definitions.
-    listStr = listStr.replace(dd, function(match, leadingLine, markerSpace, def) {
+    listStr = listStr.replace(dd, (match, leadingLine, markerSpace, def) => {
         if (leadingLine || def.match(/\n{2,}/)) {
             // replace marker with the appropriate whitespace indentation
             def = Array(markerSpace.length + 1).join(' ') + def;
@@ -157,16 +159,37 @@ function processDefListItems (listStr) {
             def = outdent(def);
         }
 
-        return "\n<dd>" + def + "</dd>\n";
+        return "\n<dd>" + converter.makeHtml(def) + "</dd>\n";
     });
 
-    //return removeAnchors(listStr);
-    return listStr;
+    return removeAnchors(listStr);
+    //return listStr;
 };
 
 // Remove one level of indentation from text. Indent is 4 spaces.
 function outdent(text) {
     return text.replace(new RegExp('^(\\t|[ ]{1,4})', 'gm'), '');
+}
+
+// JS regexes don't support \A or \Z, so we add sentinels, as Pagedown
+// does. In this case, we add the ascii codes for start of text (STX) and
+// end of text (ETX), an idea borrowed from:
+// https://github.com/tanakahisateru/js-markdown-extra
+function addAnchors(text) {
+    if (text.charAt(0) != '\x02')
+        text = '\x02' + text;
+    if (text.charAt(text.length - 1) != '\x03')
+        text = text + '\x03';
+    return text;
+}
+
+// Remove STX and ETX sentinels.
+function removeAnchors(text) {
+    if (text.charAt(0) == '\x02')
+        text = text.substr(1);
+    if (text.charAt(text.length - 1) == '\x03')
+        text = text.substr(0, text.length - 1);
+    return text;
 }
 
 var def_list = {
@@ -175,6 +198,7 @@ var def_list = {
 };
 
 showdown.extension('def_list', def_list);
+showdown.setFlavor('github'); // original  vanilla  github
 
 module.exports = run;
 

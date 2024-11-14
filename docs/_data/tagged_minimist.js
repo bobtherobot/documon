@@ -4,7 +4,7 @@
 	"shortText": "A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.",
 	"shortHtml": "<p>A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.</p>",
 	"text": "A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.\nhttps://github.com/substack/minimist\n\n",
-	"html": "<p>A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.\nhttps://github.com/substack/minimist</p>",
+	"html": "<p>A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.<br />\n<a href=\"https://github.com/substack/minimist\">https://github.com/substack/minimist</a></p>",
 	"entity": "class",
 	"flagSearchText": " mimimist documon",
 	"package": "documon",

@@ -83,6 +83,7 @@ table tr {
 }
 ul {
   padding-left: 1em;
+  padding-bottom: 1em;
   list-style: none;
   /*text-indent: -1.5em;*/
 }
@@ -104,6 +105,13 @@ table th {
   border: 1px solid #ECECEC;
   padding: 0 10px 0 10px;
   text-align: left;
+}
+p > code {
+  background-color: #EFEFEF;
+  font-size: 12px;
+  color: #0036c5;
+  padding: 2px 5px 2px 5px;
+  border-radius: 3px;
 }
 /* prevents evenly spaced cells (horizontially), and makes the last cell the largest */
 /* pick alternating or underline */
@@ -392,6 +400,7 @@ members
   content: ' - line: ';
 }
 .member-file {
+  font-weight: normal;
   font-size: 10px;
   color: #8C8C8C;
 }
