@@ -55,7 +55,7 @@
 			"id": "documon.documon.filterFileTypes"
 		},
 		{
-			"line": 187,
+			"line": 188,
 			"name": "init",
 			"shortText": "Initializes Documan based on the configuration settings",
 			"shortHtml": "<p>Initializes Documan based on the configuration settings</p>",
@@ -89,7 +89,7 @@
 			"id": "documon.documon.init"
 		},
 		{
-			"line": 622,
+			"line": 623,
 			"name": "run",
 			"shortText": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  ",
 			"shortHtml": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  </p>",
@@ -115,7 +115,7 @@
 			"id": "documon.documon.run"
 		},
 		{
-			"line": 516,
+			"line": 517,
 			"name": "seeder",
 			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
 			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
@@ -149,7 +149,7 @@
 			"id": "documon.documon.seeder"
 		},
 		{
-			"line": 474,
+			"line": 475,
 			"name": "shouldIgnore",
 			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
 			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
@@ -301,7 +301,7 @@
 			"name": "mainConf",
 			"shortText": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.",
 			"shortHtml": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>",
-			"text": "\nNOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
+			"text": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
 			"html": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>\n<p>Example link <a href=\"root.documon.dirutils.makedir\">other class to root.documon.dirutils.makedir</a>\nExample link <a href=\"documon.dirutils.makedir\">other class to documon.dirutils.makedir</a>\nExample link <a href=\"documon.dirutils\">other class to documon.dirutils</a>\nExample link <a href=\"#run\">local to #run</a></p>",
 			"type": "Object",
 			"children": [
@@ -495,7 +495,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"documon.documon": "documon : main entry point processor Documon which allows Documon directly from Nodedocumon documon myDocumon require path documon documon myDocumon files path",
 		"documon.documon.writeData": "writeData : Simplify file write text jsonwriteData path save string save Whether data should serialized JSON",

@@ -614,7 +614,7 @@
 		"source": "are style markers (e.g., PR_COMMENT) that run from that position until\nthe end.\n@type {DecorationsT}"
 	},
 	{
-		"text": "\nThis code treats \", ', and ` as string delimiters, and \\ as a string\nescape.  It does not recognize perl's qq() style strings.\nIt has no special handling for double delimiter escapes as in basic, or\nthe tripled delimiters used in python, but should work on those regardless\nalthough in those cases a single string literal may be broken up into\nmultiple adjacent string literals.\n\nIt recognizes C, C++, and shell style comments.\n\n",
+		"text": "This code treats \", ', and ` as string delimiters, and \\ as a string\nescape.  It does not recognize perl's qq() style strings.\nIt has no special handling for double delimiter escapes as in basic, or\nthe tripled delimiters used in python, but should work on those regardless\nalthough in those cases a single string literal may be broken up into\nmultiple adjacent string literals.\n\nIt recognizes C, C++, and shell style comments.\n\n",
 		"start": 1105,
 		"end": 1120,
 		"file": "/Volumes/Drives/projects/documon/documon/template/assets/vendor/prettify/run_prettify.js",

@@ -15,7 +15,7 @@
 	"id": "example.audio.read.formats.wav",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"example.audio.read.formats.wav": "wav : example audio read formats"
 	}

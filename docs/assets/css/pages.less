@@ -175,6 +175,17 @@ dl dd {
 	margin-bottom: 1em;
 }
 
+blockquote {
+    border: 1px solid #f3d97b;
+    background-color: #fffdeb;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    p {
+        margin-bottom : 0px;
+    }
+}
+
 /* -----------------------------------------------------------------
 Page
 ----------------------------------------------------------------- */
@@ -230,6 +241,7 @@ Headings -- for each kind of section
 .heading-returns,
 .heading-seeAlso,
 .source-file,
+.heading-example,
 .part-parameters > .heading-part {
 	margin : 2em 0 2em 0;
 	/* background-color: #F6FBFF; */
@@ -242,14 +254,13 @@ Headings -- for each kind of section
     font-size : 0.8em;
 	
 }
-.heading-returns {
+.heading-returns, .heading-seeAlso, .heading-example, {
     margin : 2em 0 0em 0;
 }
 
 
 .heading-example {
-	font-weight : bold;
-	margin : 2em 0 1em -1em ;
+	margin : 2em 0 1em -2em;
 }
 
 /* method parameter that is an object with sub.props */
@@ -266,10 +277,11 @@ Headings -- for each kind of section
 .heading-example {
 	font-weight : bold;
 }
-*/
+
 .example-block {
     margin-bottom: 2em;
 }
+*/
 
 /* "Extendish" stuff (e.g. inherits, extends, requires, etc) */
 .meta-block {

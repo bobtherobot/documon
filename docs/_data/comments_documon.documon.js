@@ -55,28 +55,28 @@
 		"data": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.\n@method     filterFileTypes\n@private\n@param      {string}             fpath    - The path or full file name.\n@return     {boolean}                     - Whether or not it's an OK extension."
 	},
 	{
-		"start": 172,
-		"end": 186,
+		"start": 173,
+		"end": 187,
 		"data": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates\n\n@method init\n@private\n\n@param  {object} conf - See (run)[run], as this configuration object is simply passed through.\n@returns {boolean} - False when there's an error or misconfiguration. True when everything seems cool."
 	},
 	{
-		"start": 232,
-		"end": 233,
+		"start": 233,
+		"end": 234,
 		"data": ""
 	},
 	{
-		"start": 464,
-		"end": 473,
+		"start": 465,
+		"end": 474,
 		"data": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n@method shouldIgnore\n@private\n@param  {string} item - The path to the file.\n@returns {boolean} - true = ignore this file, false = don't ignore."
 	},
 	{
-		"start": 506,
-		"end": 515,
+		"start": 507,
+		"end": 516,
 		"data": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n@method seeder\n@private\n@param  {string} file - The path to the file.\n@returns {object} - The file's search data as computed by tag.js"
 	},
 	{
-		"start": 608,
-		"end": 621,
+		"start": 609,
+		"end": 622,
 		"data": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n@method run\n\n@param  {object} conf \t\t\t\t\t- The configuration object. See [mainConf](#mainConf)"
 	}
 ]

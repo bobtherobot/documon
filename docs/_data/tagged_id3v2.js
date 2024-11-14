@@ -15,7 +15,7 @@
 	"id": "example.audio.write.meta.id3v2",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"example.audio.write.meta.id3v2": "id3v2 : id3v2 example audio write meta"
 	}

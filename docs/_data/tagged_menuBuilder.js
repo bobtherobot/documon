@@ -3,7 +3,7 @@
 	"name": "menuBuilder",
 	"shortText": "Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".",
 	"shortHtml": "<p>Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".</p>",
-	"text": "\nTakes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".\n\nConstructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output \"out/_menuData.js\" file, which is formatted for and picked up by the \"MenuTree.js\" on the index.html page.\n\n",
+	"text": "Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".\n\nConstructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output \"out/_menuData.js\" file, which is formatted for and picked up by the \"MenuTree.js\" on the index.html page.\n\n",
 	"html": "<p>Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".</p>\n<p>Constructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output \"out/_menuData.js\" file, which is formatted for and picked up by the \"MenuTree.js\" on the index.html page.</p>",
 	"entity": "class",
 	"flagSearchText": " menuBuilder documon \n",
@@ -169,7 +169,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"documon.menuBuilder": "menuBuilder : Takes source context object which contains entire resolved documentation data extracts meta data refactors organizes into object formatted MenuTree Constructs multi dimensional object array that represents menu tree ultimately resulting output menuData file which formatted picked MenuTree index html pagemenuBuilder documon",
 		"documon.menuBuilder.buildSections": "buildSections : Checks provided context array items exists associated major kind sections packages classes property events methods example provided context will take form context classes properties array exists build that major kind section Builds context major sections into target arraybuildSections parsed documentation object array childeren into description",

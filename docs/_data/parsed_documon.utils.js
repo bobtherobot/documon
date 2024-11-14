@@ -1,6 +1,6 @@
 [
 	{
-		"text": "\nA collection of useful helper untilities.\n\n",
+		"text": "A collection of useful helper untilities.\n\n",
 		"start": 6,
 		"end": 12,
 		"file": "/Volumes/Drives/projects/documon/documon/src/utils.js",

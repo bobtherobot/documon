@@ -85,24 +85,33 @@ function myMethod(){
 <pre><code>   1     2     3         4
 @param {type} arg1 - description
 </code></pre>
-<p>1 - @param tag
-: Each param tag represents an argument, the order in which these tags are listed must match the order that they appear in the function.</p>
-<p>2 - {type}
-: The expected type that the argument should be, usually a primative such as "object" or "string". For weak typed languages where multiple types can be sent in separate types with a pipe charater.</p>
-<pre><code>    {number | string | object}
+<dl>
+1 - @param tag
+<dd>Each param tag represents an argument, the order in which these tags are listed must match the order that they appear in the function.</dd>
+
+<dt>2 - {type}</dt>
+<dd>
+The expected type that the argument should be, usually a primative such as "object" or "string". For weak typed languages where multiple types can be sent in separate types with a pipe charater.
+
+    {number | string | object}
 It's questionable whether to use Initial caps (Number String, Object), so I've left that to be dealt with in the template CSS. 
 
 Documon doesn't enforce anything within the brackets, so you can put anything in ther you want.
 
     {WhatEver}
 And that's what'll get rendered.
-</code></pre>
-<p>3 - name
-: The argument name should be identical to what you've used in your source code. Again, Doumon doesn't read your source code, so it's up to you to ensure a commonality.</p>
-<p>4 - description
-: The remaining text after the first word will get picked up as the description. </p>
-<pre><code>&gt;Placing a dash in front of the description to provides visual speration between the name and the description. The dash also helps Documon differentiate between the name and the description, which may be required for some fringe cases. When used, Documon will strip out the initial dash. 
-</code></pre>
+
+
+</dd>
+
+<dt>3 - name</dt>
+<dd>The argument name should be identical to what you've used in your source code. Again, Doumon doesn't read your source code, so it's up to you to ensure a commonality.</dd>
+
+<dt>4 - description</dt>
+: The remaining text after the first word will get picked up as the description. 
+
+    >Placing a dash in front of the description to provides visual speration between the name and the description. The dash also helps Documon differentiate between the name and the description, which may be required for some fringe cases. When used, Documon will strip out the initial dash.
+</dl>
 <h3 id="defaultvalues">Default Values</h3>
 <p>See <a href="more.writing_comments.default_values">Default Values</a></p>
 <h3 id="multidimensionalobjectparameters">Multi-dimensional object parameters.</h3>

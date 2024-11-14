@@ -47,7 +47,7 @@
 	"id": "documon.log",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"documon.log": "log : Writes console Will accept object array well string boolena other prepare them proper presentation consoledocumon string array object output title message Disables logging prevents console output require Some Title false prints Some Title"
 	}

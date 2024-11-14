@@ -307,7 +307,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"documon.dirutils": "dirutils : collection utilities manipulating directories syncronouslydirutils documon",
 		"documon.dirutils.makedir": "makedir : Creates folder specified location folder heirarchy constructed needed example folder exists here path folder following folders exists path folder three Then three tree will constructed inside path foldermakedir destination folder create",

@@ -3,7 +3,7 @@
 	"name": "utils",
 	"shortText": "A collection of useful helper untilities.",
 	"shortHtml": "<p>A collection of useful helper untilities.</p>",
-	"text": "\nA collection of useful helper untilities.\n\n",
+	"text": "A collection of useful helper untilities.\n\n",
 	"html": "<p>A collection of useful helper untilities.</p>",
 	"entity": "class",
 	"flagSearchText": " utils documon",
@@ -66,7 +66,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"documon.utils": "utils : collection useful helper untilitiesutils documon",
 		"documon.utils.sort_by": "sort_by : sort field FunctionExpression"

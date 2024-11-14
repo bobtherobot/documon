@@ -15,7 +15,7 @@
 	"id": "example.ui.controls.button",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"example.ui.controls.button": "button : button example controls"
 	}

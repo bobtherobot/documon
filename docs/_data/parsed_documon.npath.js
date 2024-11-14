@@ -83,7 +83,7 @@
 		"id": "documon.npath.clean"
 	},
 	{
-		"text": "   \n   npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n",
+		"text": "   npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n",
 		"start": 98,
 		"end": 107,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",

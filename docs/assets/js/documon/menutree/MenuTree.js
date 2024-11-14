@@ -528,7 +528,7 @@ this.gieson.MenuTree = (function(params){
 
 	function hashChanged(e){
 
-		var hash = window.location.hash.substr(1);
+		var hash = window.location.hash.substring(1);
 		if(hash){
 			openById(hash, true);
 		}
@@ -539,7 +539,7 @@ this.gieson.MenuTree = (function(params){
 		// This will be useful for SPA
 		/*
 		if( ! consumeHash ){
-			var link = window.location.hash.substr(1);
+			var link = window.location.hash.substring(1);
 			e.preventDefault();
 
 			if(link.indexOf(".") < 0){
@@ -614,7 +614,7 @@ this.gieson.MenuTree = (function(params){
 			// ------------
 			// Open if there is a hash in the address 
 			// e.g. index.html#path.class.a.ClassC-properties
-			var hash = window.location.hash.substr(1);
+			var hash = window.location.hash.substring(1);
 			if(hash){
 				openById(hash, true);
 			}

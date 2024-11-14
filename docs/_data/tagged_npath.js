@@ -52,7 +52,7 @@
 			"name": "basename",
 			"shortText": "npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"",
 			"shortHtml": "<p>npath.basename(\"/foo/bar/bob.txt\") --&gt; \"bob.txt\"</p>",
-			"text": "   \n   npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n",
+			"text": "   npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n",
 			"html": "<p>npath.basename(\"/foo/bar/bob.txt\") --&gt; \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --&gt; \"bob\"</p>",
 			"entity": "method",
 			"flagSearchText": " basename The full path Lops off the extension if it matches. The last portion of a path, generally the \"filename\".",
@@ -484,7 +484,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"documon.npath": "npath : drop replacement path that provides cross playform normalization Easing development cross platform modules Essentially what doing processing methods with path normalization always enforcing forward slashesnpath documon",
 		"documon.npath.clean": "clean : Normalizes slashes converting double single based current platform requirements",

@@ -15,7 +15,7 @@
 	"id": "example.audio.Iaudio",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"example.audio.Iaudio": "Iaudio : Iaudio example audio"
 	}

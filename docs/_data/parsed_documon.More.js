@@ -1,6 +1,6 @@
 [
 	{
-		"text": "\nDiscovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML\n\n\n",
+		"text": "Discovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML\n\n\n",
 		"start": 7,
 		"end": 31,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
@@ -402,8 +402,8 @@
 	},
 	{
 		"text": "A safe replacement for standard JSON parsing that mitigates errors.\n",
-		"start": 232,
-		"end": 238,
+		"start": 233,
+		"end": 239,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -442,8 +442,8 @@
 	},
 	{
 		"text": "See class description.\n",
-		"start": 251,
-		"end": 254,
+		"start": 252,
+		"end": 255,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{

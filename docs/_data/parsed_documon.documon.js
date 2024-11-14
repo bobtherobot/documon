@@ -34,7 +34,7 @@
 		"id": "documon.documon"
 	},
 	{
-		"text": "\nNOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
+		"text": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
 		"start": 51,
 		"end": 80,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
@@ -446,8 +446,8 @@
 	},
 	{
 		"text": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates\n\n",
-		"start": 172,
-		"end": 186,
+		"start": 173,
+		"end": 187,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -488,8 +488,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 464,
-		"end": 473,
+		"start": 465,
+		"end": 474,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -529,8 +529,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 506,
-		"end": 515,
+		"start": 507,
+		"end": 516,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -570,8 +570,8 @@
 	},
 	{
 		"text": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n",
-		"start": 608,
-		"end": 621,
+		"start": 609,
+		"end": 622,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{

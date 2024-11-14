@@ -45,13 +45,13 @@
 		"data": "splits the numbering off of eight filename and returns the filename with out numbering\n@method     quirkyName\n@private\n@param      {type}        filename    description\n@param      {type}        amFolder    description\n@return     {type}                    description"
 	},
 	{
-		"start": 232,
-		"end": 238,
+		"start": 233,
+		"end": 239,
 		"data": "A safe replacement for standard JSON parsing that mitigates errors.\n@method     parseJSON\n@private\n@param      {string}       val\n@return     {any}"
 	},
 	{
-		"start": 251,
-		"end": 254,
+		"start": 252,
+		"end": 255,
 		"data": "See class description.\n@method     init"
 	}
 ]

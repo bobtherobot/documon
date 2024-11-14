@@ -15,7 +15,7 @@
 	"id": "example.ui.view.footer",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"example.ui.view.footer": "footer : footer example view"
 	}

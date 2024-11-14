@@ -296,7 +296,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.0.0",
+	"projectVersion": "2.5.0",
 	"search": {
 		"gieson.MenuTree": "MenuTree : Builds menu based menu array menu array must conform following structure myMenuData Unique used identify menu list item html optional open when menu item clicked label display text menu item kind myCssRule class apply item good including icons children array menu item just like this When item children menu will constructed immediate nextSibling which will house items within children array Thus have many menus needed menu will build using following HTML structure opener used open close next immediate sibling opener used open close next immediate sibling opener used open close next immediate siblingMenuTree gieson only action ping select function opHandler action item action select sole item myMenu gieson MenuTree callback opHandler menuData MenuData MenuData should located window object since loaded script menuData",
 		"gieson.MenuTree.toggleClick": "toggleClick : Used toggle mouse click Toggles item open closed prevents further mouse bubblingtoggleClick mouse event object menu item",
