@@ -82,7 +82,10 @@ this.documon.Pages = (function(){
 		// index.html to (this) page communication
 		// Used to manage tabs.
 		window.onmessage = receiveMessage;
-		window.parent.postMessage({id: 'getAccess', pageId:window.frameElement.id}, '*');
+        if(window.frameElement){
+            window.parent.postMessage({id: 'getAccess', pageId:window.frameElement.id}, '*');
+        }
+		
 
 		
 		// Remember last place we scrolled to so next time page is opened, 

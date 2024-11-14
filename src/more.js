@@ -40,6 +40,7 @@ var markdown = require('./markdown');
 var searchPrep = require("./searchPrep");
 
 
+
 /**
  * @property {string} flat - A place to store generated page objects with a direct reference to their ID via flat[id].
  * @private
@@ -219,7 +220,8 @@ function quirkyName(filename, amFolder){
 	if(Afilename.length > 1){
 		// Ensure character immediately before the dot (or quirkDelimiter) is a numeric value.
 		var numberVal = Afilename.shift();
-		var rightEdge = numberVal.substr(-1);
+        // path.substr(-1) == path.slice(-1)
+		var rightEdge = numberVal.slice(-1);
 		if(parseInt(rightEdge) == rightEdge){
 			return Afilename.join(quirkDelimiter);
 		}
@@ -292,7 +294,7 @@ function init(params, sourceDocsMenu, searchDB, shouldIgnore){
 		var loc = dirList[i];
 
 		// The "more/" is establishing the xpath we use in the menu (not the file path)
-		var ctx = newItem( "more/" + loc.substr(moreFolder.length) );
+		var ctx = newItem( "more/" + loc.substring(moreFolder.length) );
 
 		// hacky
 		ctx.gati = params.gati;

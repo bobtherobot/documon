@@ -1,4 +1,4 @@
 /**
- * @class audio.Iaudio
- * @package example
+ * @class Iaudio
+ * @package example.audio
  */

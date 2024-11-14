@@ -45,16 +45,58 @@ function buildSections(ctx, target){
 	
 	// Only the main menu get's a class, and is shown by default, otherwise no style and hidden;
 
+    
+
 	for(var i=0; i<sectionProps.length; i++){
 		var prop = sectionProps[i]
 		var item = ctx[ prop ];
 		// Only when it exists and has stuff
 		if(item && item.length > 0){
+        //if(item){
 			target.push( section(ctx, prop) );
 		}
 	}
 	
 }
+
+
+/*
+var packageList = {};
+function mapPackages(ctx){
+    var list = ctx.packages;
+
+    if(list){
+        for(var i=0; i<list.length; i++){
+            var item = list[i];
+            var pk = item.package;
+
+            if( ! packageList[pk] ) {
+                packageList[pk] = [];
+            }
+
+            var Apk = pk.split(".");
+            var Aseg = [];
+            for( var ii=0; ii < Apk.length; ii++) {
+                Aseg.push(Apk[ii]);
+                var seg = Aseg.join(".");
+                if( ! packageList[seg] ) {
+                    packageList[seg] = [];
+                }
+            }
+            
+            // if(pk){
+            // seg.push( pk.shift() );
+            // var Sseg = seg.join(".")
+            // if( ! packageList[Sseg] ) {
+            //     packageList[Sseg] = [];
+            // }
+        }
+        console.log(pk)
+    }
+
+    console.log("packageList", packageList)
+}
+*/
 
 /**
  * Checks to see if a major type exists.
@@ -94,6 +136,8 @@ function hasAnyPart(item){
 			"children": [ ] <-- only added when needed
 		}
  */
+
+var existlist = {};
 function section(ctx, prop){
 	
 	var obj = {
@@ -102,6 +146,13 @@ function section(ctx, prop){
 		label : prop,
 		kind : prop
 	}
+
+    // var exists = false;
+    // if( ! existlist[obj.id] ){
+    //     existlist[obj.id] = obj;
+    // } else {
+    //     exists = existlist[obj.id];
+    // }
 
 	// If there are items for thei property (and array of children), then build-out the children, and expand the limbs of the tree.
 	var list = ctx[prop];
@@ -114,22 +165,24 @@ function section(ctx, prop){
 
 			var item = list[i];
 
-			var itemObj = {
-				id 			: item.id,
-				url 		: item.docfile + "#" + item.id,
-				label 		: item.name,
-				kind 		: prop + "-item",
-				access 		: item.access ? item.access : "public",
-				inherits 	: item.inherits ? 1 : 0
-			}
+
+            var itemObj = {
+                id 			: item.id,
+                url 		: item.docfile + "#" + item.id,
+                label 		: item.name,
+                kind 		: prop + "-item",
+                access 		: item.access ? item.access : "public",
+                inherits 	: item.inherits ? 1 : 0
+            }
 
 			// Check if children exist, if so, build them in.
 			if( hasAnyPart(item) ){
-				itemObj.children = [];
+                itemObj.children = [];
 				buildSections(item, itemObj.children);
 			}
 
-			kids.push(itemObj);
+            kids.push(itemObj);
+			
 
 		}
 	
@@ -163,6 +216,9 @@ function prune(obj){
  * @return  {array}       description
  */
 function render(ctx){
+
+    //mapPackages(ctx);
+    //console.log("packageList", packageList);
 
 	var menuObj = [];
 	buildSections(ctx, menuObj);

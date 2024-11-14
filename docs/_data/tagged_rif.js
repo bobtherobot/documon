@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "write.rif",
-	"shortText": "audio.write.rif",
-	"shortHtml": "<p>audio.write.rif</p>",
-	"text": "audio.write.rif",
-	"html": "<p>audio.write.rif</p>",
+	"name": "rif",
+	"shortText": "rif",
+	"shortHtml": "<p>rif</p>",
+	"text": "rif",
+	"html": "<p>rif</p>",
 	"entity": "class",
-	"flagSearchText": " audio.write.rif example",
-	"package": "example",
+	"flagSearchText": " rif example.audio.write",
+	"package": "example.audio.write",
 	"file": "documon/example/audio/write/rif.js",
 	"filename": "rif.js",
-	"klass": "write.rif",
-	"docfile": "example.write.rif.html",
-	"id": "example.write.rif",
+	"klass": "rif",
+	"docfile": "example.audio.write.rif.html",
+	"id": "example.audio.write.rif",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.write.rif": "write.rif : audio writeaudio write example"
+		"example.audio.write.rif": "rif : example audio write"
 	}
 }

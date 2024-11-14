@@ -37,7 +37,7 @@
 	"example": [
 		{
 			"text": "\n\n\tvar log = require(\"log\");\n\tlog([\"foo\", \"bar\"], \"Some Title\", false);\n\nprints:\n\n\t\t--------------------\n\t\tSome Title\n\t\t--------------------\n\t\t[\n\t\t\t'foo',\n\t\t\t'bar'\n\t\t]\n\t\t",
-			"html": "<pre class=\"prettyprint\">var log = require(\"log\");\nlog([\"foo\", \"bar\"], \"Some Title\", false);</pre>\n\n<p>prints:</p>\n\n<pre class=\"prettyprint\">    --------------------\n    Some Title\n    --------------------\n    [\n        'foo',\n        'bar'\n    ]</pre>"
+			"html": "<pre><code>var log = require(\"log\");\nlog([\"foo\", \"bar\"], \"Some Title\", false);\n</code></pre>\n<p>prints:</p>\n<pre><code>    --------------------\n    Some Title\n    --------------------\n    [\n        'foo',\n        'bar'\n    ]\n</code></pre>"
 		}
 	],
 	"file": "documon/src/log.js",
@@ -47,7 +47,7 @@
 	"id": "documon.log",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
 		"documon.log": "log : Writes console Will accept object array well string boolena other prepare them proper presentation consoledocumon string array object output title message Disables logging prevents console output require Some Title false prints Some Title"
 	}

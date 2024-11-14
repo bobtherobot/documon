@@ -1,120 +1,70 @@
-/*
-Part of Documon.
-Copyright (c) Michael Gieson.
-www.documon.net
- */
 
-/**
- * A front-end for the markdown processor that provides a simple interface so markdown processors can be swapped out fairly easily.
- *
- * @module  markdown
- * @package  documon
- * @private
- */
-
-//*
-// --------------------
-// Pagedown -- (no dependancies -- but may be a little wonky in unknown parts, BUT, has def lists and tables.)
-// --------------------
-var markdownC = require("./markdown-core").Converter;
-var converter = new markdownC();
-var markdownExtra = require("./markdown-extra");
-
-//markdownExtra.init(converter);
-// All available extensions (defaults to ["all"]):
-// ["tables", "fenced_code_gfm", "def_list", "attr_list", "footnotes", "smartypants", "strikethrough", "newlines"]
-// We're removing smartypants to prevent smartquotes.
-markdownExtra.init(converter, {
-	highlighter: "prettify",
-	extensions : ["tables", "fenced_code_gfm", "def_list", "attr_list", "footnotes", "strikethrough", "newlines"]
-} );
-
-
-module.exports = converter.makeHtml;
-
-//*/
-
-
-
-
-/*
-// --------------------
-// MarkdownIt -- lots of overhead
-// --------------------
-
-//var hljs = require('highlight.js'); // https://highlightjs.org/
-
-var highlighter = "prettify"; // Google Code Prettify
-//var highlighter = "hjs"; // Highlight JS
-
-
-// node.js, "classic" way:
-var MarkdownIt = require('markdown-it');
-var md = new MarkdownIt({
-	html:         true,        	// Enable HTML tags in source
-	xhtmlOut:     false,        // Use '/' to close single tags (<br />).
-	                          	// This is only for full CommonMark compatibility.
-	breaks:       true,        	// Convert '\n' in paragraphs into <br>
-	//langPrefix:   'language-',  // CSS language prefix for fenced blocks. Can be
-	                          	// useful for external highlighters.
-	linkify:      false,        // Autoconvert URL-like text to links
-
-	// Enable some language-neutral replacement + quotes beautification
-	typographer:  false,
-
-	// Double + single quotes replacement pairs, when typographer enabled,
-	// and smartquotes on. Could be either a String or an Array.
-	//
-	// For example, you can use '«»„“' for Russian, '„“‚‘' for German,
-	// and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
-	//quotes: '“”‘’',
-
-	// Highlighter function. Should return escaped HTML,
-	// or '' if the source string is not changed and should be escaped externaly.
-	// If result starts with <pre... internal wrapper is skipped.
-	//highlight: function (str, lang) { return ''; }
-
-	highlight: function (str, lang) {
-
-		var preclass = highlighter == "prettify" ? ' class="prettyprint"' : '';
-		var codeclass = '';
-		if (lang) {
-		    // use html5 language- class names. supported by both prettify and highlight.js
-		    codeclass = ' class="language-' + lang + '"';
-		}
-
-		return '<pre class="prettyprint"><code' + codeclass + '>' + md.utils.escapeHtml(str) + '</code></pre>';
-
-	}
-
-}).use(require('markdown-it-deflist'));
-
-
-
+var showdown = require("showdown");
 
 function run(str){
-	return md.render(str);
+    var converter = new showdown.Converter();
+    return converter.makeHtml(str)
 }
-
 
 module.exports = run;
 
-//*/
+// //=== simple markdown parser
+// function simpleMarkdown(mdText) {
+
+//     // first, handle syntax for code-block
+//     mdText = mdText.replace(/\r\n/gm, '\n')
+//     mdText = mdText.replace(/\n~~~ *(.*?)\n([\s\S]*?)\n~~~/gm, '<pre><code>$2</code></pre>' );
+//     mdText = mdText.replace(/\n``` *(.*?)\n([\s\S]*?)\n```/gm, '<pre><code>$2</code></pre>' );
+  
+//     // split by "pre>", skip for code-block and process normal text
+//     var mdHTML = ''
+//     var mdCode = mdText.split( 'pre>')
+  
+//     for (var i=0; i<mdCode.length; i++) {
+//       if ( mdCode[i].substr(-2) == '</' ) {
+//         mdHTML += '<pre>' + mdCode[i] + 'pre>'
+//       } else {
+//         mdHTML += mdCode[i].replace(/(.*)<$/, '$1')
+//           .replace(/^##### (.*?)\s*#*$/gm, '<h5>$1</h5>')
+//           .replace(/^#### (.*?)\s*#*$/gm, '<h4>$1</h4>')
+//           .replace(/^### (.*?)\s*#*$/gm, '<h3>$1</h3>')
+//           .replace(/^## (.*?)\s*#*$/gm, '<h2>$1</h2>')
+//           .replace(/^# (.*?)\s*#*$/gm, '<h1>$1</h1>')    
+//           .replace(/^-{3,}|^\_{3,}|^\*{3,}/gm, '<hr/>')    
+//           .replace(/``(.*?)``/gm, '<code>$1</code>' )
+//           .replace(/`(.*?)`/gm, '<code>$1</code>' )
+//           .replace(/^\>> (.*$)/gm, '<blockquote><blockquote>$1</blockquote></blockquote>')
+//           .replace(/^\> (.*$)/gm, '<blockquote>$1</blockquote>')
+//           .replace(/<\/blockquote\>\n<blockquote\>/g, '\n<br>' )
+//           .replace(/<\/blockquote\>\n<br\><blockquote\>/g, '\n<br>' )
+//           .replace(/!\[(.*?)\]\((.*?) "(.*?)"\)/gm, '<img alt="$1" src="$2" $3 />')
+//           .replace(/!\[(.*?)\]\((.*?)\)/gm, '<img alt="$1" src="$2" />')
+//           .replace(/\[(.*?)\]\((.*?) "(.*?)"\)/gm, '<a href="$2" title="$3">$1</a>')
+//           .replace(/<http(.*?)\>/gm, '<a href="http$1">http$1</a>')
+//           .replace(/\[(.*?)\]\(\)/gm, '<a href="$1">$1</a>')
+//           .replace(/\[(.*?)\]\((.*?)\)/gm, '<a href="$2">$1</a>')
+//           .replace(/^[\*|+|-][ |.](.*)/gm, '<ul><li>$1</li></ul>' ).replace(/<\/ul\>\n<ul\>/g, '\n' )
+//           .replace(/^\d[ |.](.*)/gm, '<ol><li>$1</li></ol>' ).replace(/<\/ol\>\n<ol\>/g, '\n' )
+//           .replace(/\*\*\*(.*)\*\*\*/gm, '<b><em>$1</em></b>')
+//           .replace(/\*\*(.*)\*\*/gm, '<b>$1</b>')
+//           .replace(/\*([\w \d]*)\*/gm, '<em>$1</em>')
+//           .replace(/___(.*)___/gm, '<b><em>$1</em></b>')
+//           .replace(/__(.*)__/gm, '<u>$1</u>')
+//           .replace(/_([\w \d]*)_/gm, '<em>$1</em>')
+//           .replace(/~~(.*)~~/gm, '<del>$1</del>')
+//           .replace(/\^\^(.*)\^\^/gm, '<ins>$1</ins>')
+//           .replace(/ +\n/g, '\n<br/>')
+//           .replace(/\n\s*\n/g, '\n<p>\n')
+//           .replace(/^ {4,}(.*)/gm, '<pre><code>$1</code></pre>' )
+//           .replace(/^\t(.*)/gm, '<pre><code>$1</code></pre>' )
+//           .replace(/<\/code\><\/pre\>\n<pre\><code\>/g, '\n' )
+//           .replace(/\\([`_\\\*\+\-\.\(\)\[\]\{\}])/gm, '$1' )
+//       }  
+//     }
+  
+//     return mdHTML.trim()
+//   }
 
 
 
-
-
-
-/*
-function encodeCode(code) {
-    code = code.replace(/&/g, "&amp;");
-    code = code.replace(/</g, "&lt;");
-    code = code.replace(/>/g, "&gt;");
-    // These were escaped by PageDown before postNormalization 
-    //code = code.replace(/~D/g, "$$");
-    //code = code.replace(/~T/g, "~");
-    return code;
-}
-*/
-
+//module.exports = simpleMarkdown;

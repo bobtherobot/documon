@@ -15,7 +15,7 @@
 	"id": "documon.Search",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
 		"documon.Search": "Search : Provides search mechanism across documentationSearch documon"
 	}

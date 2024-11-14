@@ -128,7 +128,7 @@
 			"shortText": "Creates a folder at the specified location. The sub-folder heirarchy is",
 			"shortHtml": "<p>Creates a folder at the specified location. The sub-folder heirarchy is</p>",
 			"text": "Creates a folder at the specified location. The sub-folder heirarchy is\n constructed as needed.\n\n For example if a folder exists here:\n\n \t/path/to/folder\n\n ... but the following sub-folders don't exists:\n\n\t/path/to/folder/sub/one/two/three\n\n  ... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")\n\n",
-			"html": "<p>Creates a folder at the specified location. The sub-folder heirarchy is <br>\n constructed as needed.</p>\n\n<p>For example if a folder exists here:</p>\n\n<pre class=\"prettyprint\">/path/to/folder</pre>\n\n<p>... but the following sub-folders don't exists:</p>\n\n<pre class=\"prettyprint\">/path/to/folder/sub/one/two/three</pre>\n\n<p>... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")</p>",
+			"html": "<p>Creates a folder at the specified location. The sub-folder heirarchy is\n constructed as needed.</p>\n<p>For example if a folder exists here:</p>\n<pre><code> /path/to/folder\n</code></pre>\n<p>… but the following sub-folders don't exists:</p>\n<pre><code>/path/to/folder/sub/one/two/three\n</code></pre>\n<p>… Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")</p>",
 			"entity": "method",
 			"flagSearchText": " makedir The destination folder to create",
 			"params": [
@@ -155,7 +155,7 @@
 			"shortText": "Read a folder and returns an object containing all of the files and",
 			"shortHtml": "<p>Read a folder and returns an object containing all of the files and</p>",
 			"text": "Read a folder and returns an object containing all of the files and\n folder in arrays.\n\n",
-			"html": "<p>Read a folder and returns an object containing all of the files and <br>\n folder in arrays.</p>",
+			"html": "<p>Read a folder and returns an object containing all of the files and\n folder in arrays.</p>",
 			"entity": "method",
 			"flagSearchText": " readdir\n The path to the folder to read. A custom filter funciton. Should we retrieve sub-folders too? Used internally to store recursive findings.\n Note that you may also provide this argument and readdir will populate your\n existing files/folder list. But is recommended to leave this argument alone.\n An object containing a list of \"files\" and \"folders\"\n (as properties of the returned list), where each is an array.\n \n \tvar contents = readdir(\"/path/to/folder\", null, true);\n \t// yeids contents {\n\t// \t\tfiles : [\n\t// \t\t\t\t\t\"/path/to/folder/1.foo\",\n\t// \t\t\t\t\t\"/path/to/folder/2.bar\",\n\t// \t\t\t\t\t\"/path/to/folder/3.png\",\n\t//\t\t\t\t\t\"/path/to/folder/sub1/1.foo\",\n\t// \t\t\t\t\t\"/path/to/folder/sub2/2.bar\",\n\t// \t\t\t\t\t\"/path/to/folder/sub3/3.png\"\n\t// \t\t\t\t],\n\t// \t\tdirs : [\n\t// \t\t\t\t\t\"/path/to/folder/sub1\",\n\t// \t\t\t\t\t\"/path/to/folder/sub2\",\n\t// \t\t\t\t\t\"/path/to/folder/sub3\"\n\t// \n\t// \t\t\t\t]\n\t// }\n",
 			"params": [
@@ -188,21 +188,21 @@
 					"shortText": "Used internally to store recursive findings.",
 					"shortHtml": "<p>Used internally to store recursive findings.</p>",
 					"text": "Used internally to store recursive findings.\n Note that you may also provide this argument and readdir will populate your\n existing files/folder list. But is recommended to leave this argument alone.\n",
-					"html": "<p>Used internally to store recursive findings. <br>\n Note that you may also provide this argument and readdir will populate your <br>\n existing files/folder list. But is recommended to leave this argument alone.</p>",
+					"html": "<p>Used internally to store recursive findings.\n Note that you may also provide this argument and readdir will populate your\n existing files/folder list. But is recommended to leave this argument alone.</p>",
 					"type": "object"
 				}
 			],
 			"returns": {
 				"type": "object",
 				"text": "An object containing a list of \"files\" and \"folders\"\n (as properties of the returned list), where each is an array.\n",
-				"html": "<p>An object containing a list of \"files\" and \"folders\" <br>\n (as properties of the returned list), where each is an array.</p>",
+				"html": "<p>An object containing a list of \"files\" and \"folders\"\n (as properties of the returned list), where each is an array.</p>",
 				"shortText": "<p>An object containing a list of \"files\" and \"folders\"</p>",
 				"shortHtml": "<p>An object containing a list of \"files\" and \"folders\"</p>"
 			},
 			"example": [
 				{
 					"text": "\n \tvar contents = readdir(\"/path/to/folder\", null, true);\n \t// yeids contents {\n\t// \t\tfiles : [\n\t// \t\t\t\t\t\"/path/to/folder/1.foo\",\n\t// \t\t\t\t\t\"/path/to/folder/2.bar\",\n\t// \t\t\t\t\t\"/path/to/folder/3.png\",\n\t//\t\t\t\t\t\"/path/to/folder/sub1/1.foo\",\n\t// \t\t\t\t\t\"/path/to/folder/sub2/2.bar\",\n\t// \t\t\t\t\t\"/path/to/folder/sub3/3.png\"\n\t// \t\t\t\t],\n\t// \t\tdirs : [\n\t// \t\t\t\t\t\"/path/to/folder/sub1\",\n\t// \t\t\t\t\t\"/path/to/folder/sub2\",\n\t// \t\t\t\t\t\"/path/to/folder/sub3\"\n\t// \n\t// \t\t\t\t]\n\t// }\n",
-					"html": "<pre class=\"prettyprint\">var contents = readdir(\"/path/to/folder\", null, true);\n// yeids contents {\n//      files : [\n//                  \"/path/to/folder/1.foo\",\n//                  \"/path/to/folder/2.bar\",\n//                  \"/path/to/folder/3.png\",\n//                  \"/path/to/folder/sub1/1.foo\",\n//                  \"/path/to/folder/sub2/2.bar\",\n//                  \"/path/to/folder/sub3/3.png\"\n//              ],\n//      dirs : [\n//                  \"/path/to/folder/sub1\",\n//                  \"/path/to/folder/sub2\",\n//                  \"/path/to/folder/sub3\"\n// \n//              ]\n// }</pre>"
+					"html": "<pre><code> var contents = readdir(\"/path/to/folder\", null, true);\n // yeids contents {\n//      files : [\n//                  \"/path/to/folder/1.foo\",\n//                  \"/path/to/folder/2.bar\",\n//                  \"/path/to/folder/3.png\",\n//                  \"/path/to/folder/sub1/1.foo\",\n//                  \"/path/to/folder/sub2/2.bar\",\n//                  \"/path/to/folder/sub3/3.png\"\n//              ],\n//      dirs : [\n//                  \"/path/to/folder/sub1\",\n//                  \"/path/to/folder/sub2\",\n//                  \"/path/to/folder/sub3\"\n// \n//              ]\n// }\n</code></pre>"
 				}
 			],
 			"file": "documon/src/dirutils.js",
@@ -218,7 +218,7 @@
 			"shortText": "Collects files from a folder based on the specified extension (or",
 			"shortHtml": "<p>Collects files from a folder based on the specified extension (or</p>",
 			"text": "Collects files from a folder based on the specified extension (or\n extensions). Can be used to search recursively through all sub-folders, and can\n search multiple extensions.\n\n Provided as shortcut for [readdir](#readdir) with your own\n extension-checking filter.\n\n",
-			"html": "<p>Collects files from a folder based on the specified extension (or <br>\n extensions). Can be used to search recursively through all sub-folders, and can <br>\n search multiple extensions.</p>\n\n<p>Provided as shortcut for <a href=\"#readdir\">readdir</a> with your own <br>\n extension-checking filter.</p>",
+			"html": "<p>Collects files from a folder based on the specified extension (or\n extensions). Can be used to search recursively through all sub-folders, and can\n search multiple extensions.</p>\n<p>Provided as shortcut for <a href=\"#readdir\">readdir</a> with your own\n extension-checking filter.</p>",
 			"entity": "method",
 			"flagSearchText": " readExt\n The path to search The extension to look for (e.g. \"jpg\"). To\n search for multiple extensions, use an array e.g. [\"jpg\", \"png\", \"gif\"] Find all matching files in all\n sub-folders.\n The resulting array contains only files that mathc the\n specified extension(s).",
 			"params": [
@@ -235,7 +235,7 @@
 					"shortText": "The extension to look for (e.g. \"jpg\"). To",
 					"shortHtml": "<p>The extension to look for (e.g. \"jpg\"). To</p>",
 					"text": "The extension to look for (e.g. \"jpg\"). To\n search for multiple extensions, use an array e.g. [\"jpg\", \"png\", \"gif\"]",
-					"html": "<p>The extension to look for (e.g. \"jpg\"). To <br>\n search for multiple extensions, use an array e.g. [\"jpg\", \"png\", \"gif\"]</p>",
+					"html": "<p>The extension to look for (e.g. \"jpg\"). To\n search for multiple extensions, use an array e.g. [\"jpg\", \"png\", \"gif\"]</p>",
 					"type": "string | array",
 					"optional": true
 				},
@@ -244,7 +244,7 @@
 					"shortText": "Find all matching files in all",
 					"shortHtml": "<p>Find all matching files in all</p>",
 					"text": "Find all matching files in all\n sub-folders.\n",
-					"html": "<p>Find all matching files in all <br>\n sub-folders.</p>",
+					"html": "<p>Find all matching files in all\n sub-folders.</p>",
 					"type": "boolean",
 					"optional": true
 				}
@@ -252,7 +252,7 @@
 			"returns": {
 				"type": "array",
 				"text": "The resulting array contains only files that mathc the\n specified extension(s).",
-				"html": "<p>The resulting array contains only files that mathc the <br>\n specified extension(s).</p>",
+				"html": "<p>The resulting array contains only files that mathc the\n specified extension(s).</p>",
 				"shortText": "<p>The resulting array contains only files that mathc the</p>",
 				"shortHtml": "<p>The resulting array contains only files that mathc the</p>"
 			},
@@ -307,7 +307,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
 		"documon.dirutils": "dirutils : collection utilities manipulating directories syncronouslydirutils documon",
 		"documon.dirutils.makedir": "makedir : Creates folder specified location folder heirarchy constructed needed example folder exists here path folder following folders exists path folder three Then three tree will constructed inside path foldermakedir destination folder create",

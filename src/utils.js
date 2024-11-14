@@ -18,21 +18,21 @@ var path = require('path');
 
 function capitalize(str){
 	if(str){
-		return str.charAt(0).toUpperCase() + str.substr(1);
+		return str.charAt(0).toUpperCase() + str.substring(1);
 	}
 	return str;
 }
 
 
 function removeTrailingSlash(str) {
-    if (str && str.substr(-1) == "/") {
-        str = str.substr(0, str.length-1);
+    if (str && str.slice(-1) == "/") {
+        str = str.slice(0, -1);
     }
     return str;
 }
 
 function addTrailingSlash(str) {
-    if (str && str.substr(-1) != "/") {
+    if (str && str.slice(-1) != "/") {
         str = str + "/";
     }
     return str;

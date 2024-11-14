@@ -1,4 +1,4 @@
 /**
- * @class audio.read.rif
- * @package example
+ * @class rif
+ * @package example.audio.read
  */

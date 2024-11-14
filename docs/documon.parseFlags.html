@@ -71,26 +71,23 @@
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		parseFlags () 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/parseFlag.js</span>
-						    		
 						    		<span class="member-line-number">192</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		<div class="meta-block meta-block-klass">
+                                
+                                <div class="meta-block meta-block-klass">
 				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.parseFlags<span></div>
 				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">documon/src/parseFlag.js<span></div>
 			</div>
-						   		
 								<p>Fills the output object with the following properties (if they exist)</p>
-
-<pre class="prettyprint">    object {
+<pre><code>    object {
         source      // Entire first line inlcuding the @flag (only first line)
         after       // Everything after the @flag
         name        // One word following {type}. Or first word after the @flag definition when no {type}.
@@ -100,22 +97,16 @@
         defaultVal  // name=val
         afterType   // first line after
         text        // 
-    }</pre>
-
+    }
+</code></pre>
 <p>Here's an expanded and exmple'd definition list</p>
-
-<dl>
-<dt>source</dt>
-<dd>The entire comment block</dd>
-
-<dt>after</dt>
-<dd>Everything after the @flag token "as is" (kinda like source)</dd>
-</dl>
-
+<p>source
+: The entire comment block</p>
+<p>after
+: Everything after the @flag token "as is" (kinda like source)</p>
 <ul>
-<li><strong>source</strong> : The entire comment block</li>
-<li><p><strong>after</strong> :       Everything after the @flag token "as is" (kinda like source)</p>
-
+<li><p><strong>source</strong> : The entire comment block</p></li>
+<li><p><strong>after</strong> :         Everything after the @flag token "as is" (kinda like source)</p>
 <p>e.g. in this line:</p></li>
 </ul>
 

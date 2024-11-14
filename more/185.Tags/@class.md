@@ -49,4 +49,4 @@ s into the class.
 Common practice is to use one file per class, and that's why we assume that all the MPE's are part of that class.
 
 When more than one @class tag appears within a page, the page will essentially get 
-if there are more than two class preferences page  I am not sure what happensOkay
+if there are more than two class preferences pageI am not sure what happensOkay

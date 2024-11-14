@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "view.section",
-	"shortText": "ui.view.section",
-	"shortHtml": "<p>ui.view.section</p>",
-	"text": "ui.view.section",
-	"html": "<p>ui.view.section</p>",
+	"name": "section",
+	"shortText": "section",
+	"shortHtml": "<p>section</p>",
+	"text": "section",
+	"html": "<p>section</p>",
 	"entity": "class",
-	"flagSearchText": " ui.view.section example",
-	"package": "example",
+	"flagSearchText": " section example.ui.view",
+	"package": "example.ui.view",
 	"file": "documon/example/ui/view/section.js",
 	"filename": "section.js",
-	"klass": "view.section",
-	"docfile": "example.view.section.html",
-	"id": "example.view.section",
+	"klass": "section",
+	"docfile": "example.ui.view.section.html",
+	"id": "example.ui.view.section",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.view.section": "view.section : view sectionview section example"
+		"example.ui.view.section": "section : section example view"
 	}
 }

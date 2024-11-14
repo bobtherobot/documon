@@ -1,4 +1,4 @@
 /**
- * @class audio.write.meta.m3u
- * @package example
+ * @class m3u
+ * @package example.audio.write.meta
  */

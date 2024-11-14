@@ -43,9 +43,9 @@
 				{
 					"name": "constrainRect",
 					"shortText": "Constrain movement within a rectangle. The rectangle can be any object (including a DisplayObject) that contains the following properties `x, y, width, height`",
-					"shortHtml": "<p>Constrain movement within a rectangle. The rectangle can be any object (including a DisplayObject) that contains the following properties <pre class=\"prettyprint\">x, y, width, height</pre></p>",
+					"shortHtml": "<p>Constrain movement within a rectangle. The rectangle can be any object (including a DisplayObject) that contains the following properties <code>x, y, width, height</code></p>",
 					"text": "Constrain movement within a rectangle. The rectangle can be any object (including a DisplayObject) that contains the following properties `x, y, width, height`",
-					"html": "<p>Constrain movement within a rectangle. The rectangle can be any object (including a DisplayObject) that contains the following properties <pre class=\"prettyprint\">x, y, width, height</pre></p>",
+					"html": "<p>Constrain movement within a rectangle. The rectangle can be any object (including a DisplayObject) that contains the following properties <code>x, y, width, height</code></p>",
 					"type": "Object"
 				},
 				{
@@ -71,7 +71,7 @@
 	"example": [
 		{
 			"text": "\n\n\t\tvar myDrag = new documon.Draggable({\n\t\t\t  target\t: obj \n\t\t\t, callback\t: fn\n\t\t\t, constrain\t: \"x\"\n\t\t\t, constrainRect\t: obj\n\t\t\t, threshold : 5\n\t\t});",
-			"html": "<pre class=\"prettyprint\">    var myDrag = new documon.Draggable({\n          target    : obj \n        , callback  : fn\n        , constrain : \"x\"\n        , constrainRect : obj\n        , threshold : 5\n    });</pre>"
+			"html": "<pre><code>    var myDrag = new documon.Draggable({\n          target    : obj \n        , callback  : fn\n        , constrain : \"x\"\n        , constrainRect : obj\n        , threshold : 5\n    });\n</code></pre>"
 		}
 	],
 	"file": "documon/template/assets/js/documon/Draggable.js",
@@ -357,9 +357,9 @@
 				{
 					"name": "val",
 					"shortText": "An object containing the following properties: `x, y, width, height`. Use \"null\" or no argument to clear contstraint.",
-					"shortHtml": "<p>An object containing the following properties: <pre class=\"prettyprint\">x, y, width, height</pre>. Use \"null\" or no argument to clear contstraint.</p>",
+					"shortHtml": "<p>An object containing the following properties: <code>x, y, width, height</code>. Use \"null\" or no argument to clear contstraint.</p>",
 					"text": "An object containing the following properties: `x, y, width, height`. Use \"null\" or no argument to clear contstraint.",
-					"html": "<p>An object containing the following properties: <pre class=\"prettyprint\">x, y, width, height</pre>. Use \"null\" or no argument to clear contstraint.</p>",
+					"html": "<p>An object containing the following properties: <code>x, y, width, height</code>. Use \"null\" or no argument to clear contstraint.</p>",
 					"type": "Object"
 				}
 			],
@@ -635,9 +635,9 @@
 			"access": "private",
 			"name": "_down_bound",
 			"shortText": "_down_bound",
-			"shortHtml": "<p>_down_bound</p>",
+			"shortHtml": "<p><em>down</em>bound</p>",
 			"text": "_down_bound",
-			"html": "<p>_down_bound</p>",
+			"html": "<p><em>down</em>bound</p>",
 			"type": "object",
 			"entity": "property",
 			"flagSearchText": " _down_bound",
@@ -671,9 +671,9 @@
 			"access": "private",
 			"name": "_move_bound",
 			"shortText": "_move_bound",
-			"shortHtml": "<p>_move_bound</p>",
+			"shortHtml": "<p><em>move</em>bound</p>",
 			"text": "_move_bound",
-			"html": "<p>_move_bound</p>",
+			"html": "<p><em>move</em>bound</p>",
 			"type": "object",
 			"entity": "property",
 			"flagSearchText": " _move_bound",
@@ -779,9 +779,9 @@
 			"access": "private",
 			"name": "_up_bound",
 			"shortText": "_up_bound",
-			"shortHtml": "<p>_up_bound</p>",
+			"shortHtml": "<p><em>up</em>bound</p>",
 			"text": "_up_bound",
-			"html": "<p>_up_bound</p>",
+			"html": "<p><em>up</em>bound</p>",
 			"type": "object",
 			"entity": "property",
 			"flagSearchText": " _up_bound",
@@ -795,7 +795,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
 		"root.Draggable": "Draggable : Makes Element draggable NOTE This stand alone implementation jbeeb utils Draggable class used jbeeb objects Whereas this class used element outside jbeebDraggable Configuration settings myDrag documon Draggable target callback constrain constrainRect threshold",
 		"root.Draggable.setX": "setX : Shortcut style positionsetX element move position pixels",

@@ -83,9 +83,9 @@
 		"id": "documon.npath.clean"
 	},
 	{
-		"text": "\t\tnpath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n  \tnpath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n",
+		"text": "   \n   npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n",
 		"start": 98,
-		"end": 106,
+		"end": 107,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -124,13 +124,13 @@
 				"text": "The last portion of a path, generally the \"filename\"."
 			}
 		],
-		"source": "\t\tnpath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n  \tnpath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n@method basename\n@param  {string} path - The full path\n@param  {string} ext - Lops off the extension if it matches.\n@return {string} - The last portion of a path, generally the \"filename\".",
+		"source": "   \n   npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"\n\n@method basename\n@param  {string} path - The full path\n@param  {string} ext - Lops off the extension if it matches.\n@return {string} - The last portion of a path, generally the \"filename\".",
 		"id": "documon.npath.basename"
 	},
 	{
 		"text": "Returns the path to the parent folder that the item resides within.\n\t\n\t\tnpath.dirname(\"/foo/bar/bob.txt\") --> \"/foo/bar\"\n  \tnpath.dirname(\"/foo/sally/yoyo/boob\") --> \"/foo/sally/yoyo\"\n\n",
-		"start": 112,
-		"end": 121,
+		"start": 113,
+		"end": 122,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -165,8 +165,8 @@
 	},
 	{
 		"text": "Yes, this includes the dot.\n\n\t\tnpath.extname(\"/foo/bar/bob.txt\") --> \".txt\"\n  \tnpath.extname(\"/foo/sally/yoyo/boob\") --> \"\"\n\n",
-		"start": 126,
-		"end": 135,
+		"start": 127,
+		"end": 136,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -201,8 +201,8 @@
 	},
 	{
 		"text": "Determines if path is an absolute path.\n\n",
-		"start": 141,
-		"end": 147,
+		"start": 142,
+		"end": 148,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -235,8 +235,8 @@
 	},
 	{
 		"text": "Resolves \"..\" and \".\" portions of a path.\nReduces double slashes to single (e.g. // -> /  )\nForces back-slashes to forward slashes (e.g. \\ -> /  )\n\nRetains trailing slash if exists.\n\t\t\n  \tnpath.normalize(\"/foo/////bar\") --> \"/foo/bar\"\n  \tnpath.normalize(\"/foo/bar/../boob\") --> \"/foo/boob\"\n  \tnpath.normalize(\"./foo/\") --> \"/current/working/dir/foo/\"\n\n",
-		"start": 152,
-		"end": 166,
+		"start": 153,
+		"end": 167,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -269,8 +269,8 @@
 	},
 	{
 		"text": "Extracts basic path and file parts.\n\n\tpath.parse('/home/user/dir/file.txt')\n\n\t// Yeilds\n\t{\n\t\troot : \"/\",\n\t\tdir : \"/home/user/dir\",\n\t\tbase : \"file.txt\",\n\t\text : \".txt\",\n\t\tname : \"file\"\n\t}\n\n",
-		"start": 173,
-		"end": 198,
+		"start": 174,
+		"end": 199,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -305,8 +305,8 @@
 	},
 	{
 		"text": "Creates a relative path between `from` adn `to`.\n\n\t\tpath.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb')\n\t\t// Returns: '../../impl/bbb'\n\n",
-		"start": 204,
-		"end": 216,
+		"start": 205,
+		"end": 217,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -351,9 +351,9 @@
 		"id": "documon.npath.relative"
 	},
 	{
-		"text": "The opposite of path.parse().\n\nCombines the elements of an object into a string. \n\nExample:\n\t\t\n\t\t{\n\t\t\troot : \"/\",\n\t\t\tdir : \"/home/user/dir\",\n\t\t\tbase : \"file.txt\",\n\t\t\text : \".txt\",\n\t\t\tname : \"file\"\n\t\t}\n\t\t\n\t... is converted to\n\n\t\t/home/user/dir/file.txt\n\t\t\n\n",
-		"start": 221,
-		"end": 244,
+		"text": "The opposite of path.parse().\n\nCombines the elements of an object into a string. \n\nExample:\n\t\t\n\t    {\n\t        root : \"/\",\n\t        dir : \"/home/user/dir\",\n\t        base : \"file.txt\",\n\t        ext : \".txt\",\n\t        name : \"file\"\n\t    }\n\n\nIs converted to\n\n\t    /home/user/dir/file.txt\n\n\n",
+		"start": 222,
+		"end": 246,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -383,13 +383,13 @@
 				"text": "The string representaiton of the object."
 			}
 		],
-		"source": "The opposite of path.parse().\n\nCombines the elements of an object into a string. \n\nExample:\n\t\t\n\t\t{\n\t\t\troot : \"/\",\n\t\t\tdir : \"/home/user/dir\",\n\t\t\tbase : \"file.txt\",\n\t\t\text : \".txt\",\n\t\t\tname : \"file\"\n\t\t}\n\t\t\n\t... is converted to\n\n\t\t/home/user/dir/file.txt\n\t\t\n\n@method  format\n@param   {object}  obj  - The object containing some of the required keys to formulate a path.\n@return  {type} - The string representaiton of the object.",
+		"source": "The opposite of path.parse().\n\nCombines the elements of an object into a string. \n\nExample:\n\t\t\n\t    {\n\t        root : \"/\",\n\t        dir : \"/home/user/dir\",\n\t        base : \"file.txt\",\n\t        ext : \".txt\",\n\t        name : \"file\"\n\t    }\n\n\nIs converted to\n\n\t    /home/user/dir/file.txt\n\n\n@method  format\n@param   {object}  obj  - The object containing some of the required keys to formulate a path.\n@return  {type} - The string representaiton of the object.",
 		"id": "documon.npath.format"
 	},
 	{
 		"text": "Joins path segments and resolves relativity.\n\n\t\tpath.join('/foo', 'bar', 'baz/asdf', 'quux', '..')\n\t\tReturns: '/foo/bar/baz/asdf'\n\n\n",
-		"start": 250,
-		"end": 260,
+		"start": 252,
+		"end": 262,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -426,8 +426,8 @@
 	},
 	{
 		"text": "Generates an absolute path based on thenprovided arguments.\n\nPath construction occurs from right < to < left\n\n\t\tresolve(\"/a\", \"b\", \"c\"); // yields: \"/a/b/c\"\n\nIf an absolute path is resolved during construction, the items to the left are ignored.\n\n\t\tresolve(\"a\", \"/b\", \"c\"); // yields: \"/b/c\" (\"a\" is ignored)\n\nIf an absolute path is not resolved after constructing all arguments, the CWD is inserted.\n\n\t\tresolve(\"a\", \"b\", \"c\"); // yields: \"/current/working/dir/a/b/c\"\n\nRelative paths are automatically resolved:\n\n\t\tresolve(\"/a\", \"../b\", \"c\"); // yields \"/a/c\"\n\n\n\n",
-		"start": 267,
-		"end": 291,
+		"start": 269,
+		"end": 293,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -461,8 +461,8 @@
 	},
 	{
 		"text": "Removes a trailing slash from path (if exists).\n\n",
-		"start": 297,
-		"end": 303,
+		"start": 299,
+		"end": 305,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{
@@ -496,8 +496,8 @@
 	},
 	{
 		"text": "Adds a trailing slash from path (if doesn't exist).\n\n",
-		"start": 312,
-		"end": 318,
+		"start": 314,
+		"end": 320,
 		"file": "/Volumes/Drives/projects/documon/documon/src/npath.js",
 		"flags": [
 			{

@@ -43,7 +43,7 @@ this.documon.PageManager = (function(){
 	var currentPageId = null;
 	var loadedPageIds = [];
 	function loadPage(action, item){
-console.log("action, item", action, item)
+
 		if(action == "select" && item.url){
 			
 			var url = item.url;

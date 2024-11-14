@@ -55,107 +55,85 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1>Markdown Cheatsheet</h1>
-
+			<div class="more"><h1 id="markdowncheatsheet">Markdown Cheatsheet</h1>
 <p>Other nice visual references:</p>
-
 <ul>
 <li><a href="https://markdown-it.github.io/">https://markdown-it.github.io/</a></li>
 <li><a href="https://en.support.wordpress.com/markdown-quick-reference/">https://en.support.wordpress.com/markdown-quick-reference/</a></li>
 </ul>
-
-<h2>Headings</h2>
-
-<pre># h1 Heading
+<h2 id="headings">Headings</h2>
+<pre><code># h1 Heading
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
 ##### h5 Heading
-###### h6 Heading</pre>
-
-<h2>Horizontial Rule</h2>
-
+###### h6 Heading
+</code></pre>
+<h2 id="horizontialrule">Horizontial Rule</h2>
 <p>(3 or more dash or underscore characters)</p>
-
-<pre>---  or ___</pre>
-
-<h2>Italic</h2>
-
-<pre>*my words*   or   _my words_</pre>
-
-<h2>Bold</h2>
-
-<pre>**my words**   or   __my words__</pre>
-
-<h2>Links</h2>
-
+<pre><code>---  or ___
+</code></pre>
+<h2 id="italic">Italic</h2>
+<pre><code>*my words*   or   _my words_
+</code></pre>
+<h2 id="bold">Bold</h2>
+<pre><code>**my words**   or   __my words__
+</code></pre>
+<h2 id="links">Links</h2>
 <p>Inline:</p>
-
-<pre>[display text](http://example.com "Shows when hover")</pre>
-
+<pre><code>[display text](http://example.com "Shows when hover")
+</code></pre>
 <p>Referenced:</p>
-
-<pre>For more [click me][1] and another [or me][2].
+<pre><code>For more [click me][1] and another [or me][2].
 
 -- then somewhere else (like at the bottom of the page) ---
 
 [1]: http://example.com/ "Shows when hover 1"
-[2]: http://example.org/ "Shows when hover 2"</pre>
-
-<h2>Images</h2>
-
+[2]: http://example.org/ "Shows when hover 2"
+</code></pre>
+<h2 id="images">Images</h2>
 <p>Bare bones:</p>
-
-<pre>![](assets/example.jpg)</pre>
-
+<pre><code>![](assets/example.jpg)
+</code></pre>
 <p>All the bells and whistles</p>
-
-<pre>!["alt" text here](assets/example.jpg "Hover over image text")</pre>
-
+<pre><code>!["alt" text here](assets/example.jpg "Hover over image text")
+</code></pre>
 <p>Referenced</p>
-
-<pre>![][1]
+<pre><code>![][1]
 
 -- then somewhere else (like at the bottom of the page) ---
 
-[1]: url/to/image.jpg "Shows when hover 1"</pre>
-
+[1]: url/to/image.jpg "Shows when hover 1"
+</code></pre>
 <p>Linked image (simple)</p>
-
-<pre>Click this image [![](/example.jpg)](http://example.com/)</pre>
-
+<pre><code>Click this image [![](/example.jpg)](http://example.com/)
+</code></pre>
 <p>Linked image (bells and whistles)</p>
-
-<pre>Click this image [![alt text](/example.jpg)](http://example.com/ "Hover text here")</pre>
-
-<h2>Blockquotes</h2>
-
-<pre>&gt; Add a "&gt;" symbol in front of paragraph. 
+<pre><code>Click this image [![alt text](/example.jpg)](http://example.com/ "Hover text here")
+</code></pre>
+<h2 id="blockquotes">Blockquotes</h2>
+<pre><code>&gt; Add a "&gt;" symbol in front of paragraph. 
 &gt; Connected "&gt;" symbols (vertically) 
-&gt; get lumped together as one.</pre>
-
-<p><strong>Code within blockquotes</strong> <br>
+&gt; get lumped together as one.
+</code></pre>
+<p><strong>Code within blockquotes</strong>
 Use a tab or spaces like usual, just pretend the &gt; is the edge. <strong>IMPORTANT:</strong> Multi-line code requires one additional blockquote &gt; after the code all by itself at the bottom.</p>
-
-<pre> &gt;  function(){
+<pre><code> &gt;  function(){
  &gt;      var foo
  &gt;      var bar
  &gt;  }
- &gt; &lt;------------------- need this guy here</pre>
-
-<h2>Footnotes</h2>
-
-<pre>I have more [^1] to say up here.
+ &gt; &lt;------------------- need this guy here
+</code></pre>
+<h2 id="footnotes">Footnotes</h2>
+<pre><code>I have more [^1] to say up here.
 
 -- then somewhere else (like at the bottom of the page) ---
 
-[^1]: To say down here.</pre>
-
-<h2>Lists</h2>
-
+[^1]: To say down here.
+</code></pre>
+<h2 id="lists">Lists</h2>
 <p>Unordered</p>
-
-<pre>* item 1
+<pre><code>* item 1
 * item 2
 * item3
 
@@ -167,11 +145,10 @@ Use a tab or spaces like usual, just pretend the &gt; is the edge. <strong>IMPOR
     * is
     * fine
     * too
-- item 3</pre>
-
+- item 3
+</code></pre>
 <p>Ordered</p>
-
-<pre>1. item 1
+<pre><code>1. item 1
 2. item 2
 3. item3
 
@@ -179,47 +156,41 @@ Use a tab or spaces like usual, just pretend the &gt; is the edge. <strong>IMPOR
 
 1. item 1
 1. item 2
-1. item 3</pre>
-
-<h2>Preformatted</h2>
-
-<pre>    Begin line with 2 or more spaces or a tab.</pre>
-
-<h2>Code</h2>
-
+1. item 3
+</code></pre>
+<h2 id="preformatted">Preformatted</h2>
+<pre><code>    Begin line with 2 or more spaces or a tab.
+</code></pre>
+<h2 id="code">Code</h2>
 <p>Inline</p>
-
-<pre>`This is code`</pre>
-
+<pre><code>`This is code`
+</code></pre>
 <p>Block</p>
-
-<pre>```
+<pre><code>```
 This is too
-```</pre>
-
+```
+</code></pre>
 <p>Syntax Highlighted</p>
-
-<pre>```css
+<pre><code>```css
 #button {
     border: none;
 }
-```</pre>
-
-<h2>Definition List</h2>
-
-<pre>Javascipt
+```
+</code></pre>
+<h2 id="definitionlist">Definition List</h2>
+<pre><code>Javascipt
 :  A relatively easy language to learn
 
 Markdown
-:  Text-to-HTML conversion tool</pre>
-
-<h2>Abreviations</h2>
-
-<pre>For example HTML stands for (hover over HTML)
+:  Text-to-HTML conversion tool
+</code></pre>
+<h2 id="abreviations">Abreviations</h2>
+<pre><code>For example HTML stands for (hover over HTML)
 
 -- then somewhere else (like at the bottom of the page) ---
 
-*[HTML]: HyperText Markup Language</pre></div>
+*[HTML]: HyperText Markup Language
+</code></pre></div>
 		</div>
 
 		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>

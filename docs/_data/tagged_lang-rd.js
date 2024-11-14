@@ -6,6 +6,6 @@
 	"id": "root",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {}
 }

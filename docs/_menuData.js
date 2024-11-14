@@ -910,250 +910,6 @@ var MenuData = [
 										"inherits": 0
 									},
 									{
-										"id": "documon.markdown-core",
-										"url": "documon.markdown-core.html#documon.markdown-core",
-										"label": "markdown-core",
-										"kind": "classes-item",
-										"access": "private",
-										"inherits": 0,
-										"children": [
-											{
-												"id": "documon.markdown-core-methods",
-												"url": "documon.markdown-core.html#methods",
-												"label": "methods",
-												"kind": "methods",
-												"children": [
-													{
-														"id": "documon.markdown-core.Converter",
-														"url": "documon.markdown-core.html#documon.markdown-core.Converter",
-														"label": "Converter",
-														"kind": "methods-item",
-														"access": "public",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-core.HookCollection",
-														"url": "documon.markdown-core.html#documon.markdown-core.HookCollection",
-														"label": "HookCollection",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-core.SaveHash",
-														"url": "documon.markdown-core.html#documon.markdown-core.SaveHash",
-														"label": "SaveHash",
-														"kind": "methods-item",
-														"access": "public",
-														"inherits": 0
-													}
-												]
-											}
-										]
-									},
-									{
-										"id": "documon.markdown-extra",
-										"url": "documon.markdown-extra.html#documon.markdown-extra",
-										"label": "markdown-extra",
-										"kind": "classes-item",
-										"access": "private",
-										"inherits": 0,
-										"children": [
-											{
-												"id": "documon.markdown-extra-methods",
-												"url": "documon.markdown-extra.html#methods",
-												"label": "methods",
-												"kind": "methods",
-												"children": [
-													{
-														"id": "documon.markdown-extra.applyAttributeBlocks",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.applyAttributeBlocks",
-														"label": "applyAttributeBlocks",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.applyPants",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.applyPants",
-														"label": "applyPants",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.definitionLists",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.definitionLists",
-														"label": "definitionLists",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.doFootnotes",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.doFootnotes",
-														"label": "doFootnotes",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.doTransform",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.doTransform",
-														"label": "doTransform",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.educatePants",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.educatePants",
-														"label": "educatePants",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.fencedCodeBlocks",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.fencedCodeBlocks",
-														"label": "fencedCodeBlocks",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.hashExtraBlock",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.hashExtraBlock",
-														"label": "hashExtraBlock",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.hashExtraInline",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.hashExtraInline",
-														"label": "hashExtraInline",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.hashFcbAttributeBlocks",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.hashFcbAttributeBlocks",
-														"label": "hashFcbAttributeBlocks",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.hashHeaderAttributeBlocks",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.hashHeaderAttributeBlocks",
-														"label": "hashHeaderAttributeBlocks",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.init",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.init",
-														"label": "init",
-														"kind": "methods-item",
-														"access": "public",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.newlines",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.newlines",
-														"label": "newlines",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.printFootnotes",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.printFootnotes",
-														"label": "printFootnotes",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.processDefListItems",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.processDefListItems",
-														"label": "processDefListItems",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.revertPants",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.revertPants",
-														"label": "revertPants",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.runSmartyPants",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.runSmartyPants",
-														"label": "runSmartyPants",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.strikethrough",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.strikethrough",
-														"label": "strikethrough",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.stripFootnoteDefinitions",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.stripFootnoteDefinitions",
-														"label": "stripFootnoteDefinitions",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.tables",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.tables",
-														"label": "tables",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.unHashExtraBlocks",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.unHashExtraBlocks",
-														"label": "unHashExtraBlocks",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													},
-													{
-														"id": "documon.markdown-extra.wrapHeaders",
-														"url": "documon.markdown-extra.html#documon.markdown-extra.wrapHeaders",
-														"label": "wrapHeaders",
-														"kind": "methods-item",
-														"access": "private",
-														"inherits": 0
-													}
-												]
-											}
-										]
-									},
-									{
-										"id": "documon.markdown",
-										"url": "documon.markdown.html#documon.markdown",
-										"label": "markdown",
-										"kind": "classes-item",
-										"access": "private",
-										"inherits": 0
-									},
-									{
 										"id": "documon.menuBuilder",
 										"url": "documon.menuBuilder.html#documon.menuBuilder",
 										"label": "menuBuilder",
@@ -1704,137 +1460,87 @@ var MenuData = [
 								"kind": "classes",
 								"children": [
 									{
-										"id": "example.fetch",
-										"url": "example.fetch.html#example.fetch",
-										"label": "fetch",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.parse",
-										"url": "example.parse.html#example.parse",
-										"label": "parse",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.send",
-										"url": "example.send.html#example.send",
-										"label": "send",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.Iaudio",
-										"url": "example.Iaudio.html#example.Iaudio",
-										"label": "Iaudio",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.read.formats.wav",
-										"url": "example.read.formats.wav.html#example.read.formats.wav",
-										"label": "read.formats.wav",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.read.rif",
-										"url": "example.read.rif.html#example.read.rif",
-										"label": "read.rif",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.write.meta.id3v1",
-										"url": "example.write.meta.id3v1.html#example.write.meta.id3v1",
-										"label": "write.meta.id3v1",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.write.meta.id3v2",
-										"url": "example.write.meta.id3v2.html#example.write.meta.id3v2",
-										"label": "write.meta.id3v2",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.write.meta.m3u",
-										"url": "example.write.meta.m3u.html#example.write.meta.m3u",
-										"label": "write.meta.m3u",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.write.rif",
-										"url": "example.write.rif.html#example.write.rif",
-										"label": "write.rif",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
 										"id": "example.main",
 										"url": "example.main.html#example.main",
 										"label": "main",
 										"kind": "classes-item",
 										"access": "public",
 										"inherits": 0
-									},
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.api",
+						"url": "example.api.html#example.api",
+						"label": "example.api",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.api-methods",
+								"url": "example.api.html#methods",
+								"label": "methods",
+								"kind": "methods",
+								"children": [
 									{
-										"id": "example.controls.button",
-										"url": "example.controls.button.html#example.controls.button",
-										"label": "controls.button",
+										"id": "example.api.send",
+										"url": "example.api.html#example.api.send",
+										"label": "send",
+										"kind": "methods-item",
+										"access": "public",
+										"inherits": 0
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.audio",
+						"url": "example.audio.html#example.audio",
+						"label": "example.audio",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.audio-classes",
+								"url": "example.audio.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
+									{
+										"id": "example.audio.Iaudio",
+										"url": "example.audio.Iaudio.html#example.audio.Iaudio",
+										"label": "Iaudio",
 										"kind": "classes-item",
 										"access": "public",
 										"inherits": 0
-									},
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.audio.read",
+						"url": "example.audio.read.html#example.audio.read",
+						"label": "example.audio.read",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.audio.read-classes",
+								"url": "example.audio.read.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
 									{
-										"id": "example.controls.select",
-										"url": "example.controls.select.html#example.controls.select",
-										"label": "controls.select",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.controls.toggle",
-										"url": "example.controls.toggle.html#example.controls.toggle",
-										"label": "controls.toggle",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.view.footer",
-										"url": "example.view.footer.html#example.view.footer",
-										"label": "view.footer",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.view.header",
-										"url": "example.view.header.html#example.view.header",
-										"label": "view.header",
-										"kind": "classes-item",
-										"access": "public",
-										"inherits": 0
-									},
-									{
-										"id": "example.view.section",
-										"url": "example.view.section.html#example.view.section",
-										"label": "view.section",
+										"id": "example.audio.read.rif",
+										"url": "example.audio.read.rif.html#example.audio.read.rif",
+										"label": "rif",
 										"kind": "classes-item",
 										"access": "public",
 										"inherits": 0
@@ -1861,6 +1567,166 @@ var MenuData = [
 										"id": "example.audio.read.formats.mp3",
 										"url": "example.audio.read.formats.mp3.html#example.audio.read.formats.mp3",
 										"label": "mp3",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.audio.read.formats.wav",
+										"url": "example.audio.read.formats.wav.html#example.audio.read.formats.wav",
+										"label": "wav",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.audio.write",
+						"url": "example.audio.write.html#example.audio.write",
+						"label": "example.audio.write",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.audio.write-classes",
+								"url": "example.audio.write.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
+									{
+										"id": "example.audio.write.rif",
+										"url": "example.audio.write.rif.html#example.audio.write.rif",
+										"label": "rif",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.audio.write.meta",
+						"url": "example.audio.write.meta.html#example.audio.write.meta",
+						"label": "example.audio.write.meta",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.audio.write.meta-classes",
+								"url": "example.audio.write.meta.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
+									{
+										"id": "example.audio.write.meta.id3v1",
+										"url": "example.audio.write.meta.id3v1.html#example.audio.write.meta.id3v1",
+										"label": "id3v1",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.audio.write.meta.id3v2",
+										"url": "example.audio.write.meta.id3v2.html#example.audio.write.meta.id3v2",
+										"label": "id3v2",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.audio.write.meta.m3u",
+										"url": "example.audio.write.meta.m3u.html#example.audio.write.meta.m3u",
+										"label": "m3u",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.ui.controls",
+						"url": "example.ui.controls.html#example.ui.controls",
+						"label": "example.ui.controls",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.ui.controls-classes",
+								"url": "example.ui.controls.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
+									{
+										"id": "example.ui.controls.button",
+										"url": "example.ui.controls.button.html#example.ui.controls.button",
+										"label": "button",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.ui.controls.select",
+										"url": "example.ui.controls.select.html#example.ui.controls.select",
+										"label": "select",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.ui.controls.toggle",
+										"url": "example.ui.controls.toggle.html#example.ui.controls.toggle",
+										"label": "toggle",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									}
+								]
+							}
+						]
+					},
+					{
+						"id": "example.ui.view",
+						"url": "example.ui.view.html#example.ui.view",
+						"label": "example.ui.view",
+						"kind": "packages-item",
+						"access": "public",
+						"inherits": 0,
+						"children": [
+							{
+								"id": "example.ui.view-classes",
+								"url": "example.ui.view.html#classes",
+								"label": "classes",
+								"kind": "classes",
+								"children": [
+									{
+										"id": "example.ui.view.footer",
+										"url": "example.ui.view.footer.html#example.ui.view.footer",
+										"label": "footer",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.ui.view.header",
+										"url": "example.ui.view.header.html#example.ui.view.header",
+										"label": "header",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0
+									},
+									{
+										"id": "example.ui.view.section",
+										"url": "example.ui.view.section.html#example.ui.view.section",
+										"label": "section",
 										"kind": "classes-item",
 										"access": "public",
 										"inherits": 0

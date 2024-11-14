@@ -1,4 +1,4 @@
 /**
- * @class api.parse
- * @package example
+ * @method parse
+ * @package example.api
  */

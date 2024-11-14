@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "view.header",
-	"shortText": "ui.view.header",
-	"shortHtml": "<p>ui.view.header</p>",
-	"text": "ui.view.header",
-	"html": "<p>ui.view.header</p>",
+	"name": "header",
+	"shortText": "header",
+	"shortHtml": "<p>header</p>",
+	"text": "header",
+	"html": "<p>header</p>",
 	"entity": "class",
-	"flagSearchText": " ui.view.header example",
-	"package": "example",
+	"flagSearchText": " header example.ui.view",
+	"package": "example.ui.view",
 	"file": "documon/example/ui/view/header.js",
 	"filename": "header.js",
-	"klass": "view.header",
-	"docfile": "example.view.header.html",
-	"id": "example.view.header",
+	"klass": "header",
+	"docfile": "example.ui.view.header.html",
+	"id": "example.ui.view.header",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.view.header": "view.header : view headerview header example"
+		"example.ui.view.header": "header : header example view"
 	}
 }

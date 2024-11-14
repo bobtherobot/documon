@@ -1,4 +1,4 @@
 /**
- * @class ui.controls.button
- * @package example
+ * @class button
+ * @package example.ui.controls
  */

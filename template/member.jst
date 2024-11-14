@@ -76,20 +76,18 @@ function makeItem(item, partKind) {
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		${item.name}${ EVENT ? "" : TmethodArgs(item)}
+                                    ${Tflags(item, partKind)}
 						    	</span>
 								<span class="member-name-right">
-						    		${Tflags(item, partKind)}
-						    		
 						    		<span class="member-file">${ item.file }</span>
-						    		
 						    		<span class="member-line-number">${ item.line }</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		${klassFileMeta}
-						   		${Textendish(item, partKind)}
+                                ${Textendish(item, partKind)}
+                                ${klassFileMeta}
 								${item.html}
 
 					`;

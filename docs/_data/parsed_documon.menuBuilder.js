@@ -87,8 +87,8 @@
 	},
 	{
 		"text": "Checks to see if a major type exists.\n\n",
-		"start": 58,
-		"end": 65,
+		"start": 100,
+		"end": 107,
 		"file": "/Volumes/Drives/projects/documon/documon/src/menuBuilder.js",
 		"flags": [
 			{
@@ -126,8 +126,8 @@
 	},
 	{
 		"text": "Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.\n\n",
-		"start": 78,
-		"end": 95,
+		"start": 120,
+		"end": 137,
 		"file": "/Volumes/Drives/projects/documon/documon/src/menuBuilder.js",
 		"flags": [
 			{
@@ -176,8 +176,8 @@
 	},
 	{
 		"text": "The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh \"window\" scope. So they just dnagle out there on the tree.\n\n",
-		"start": 155,
-		"end": 163,
+		"start": 208,
+		"end": 216,
 		"file": "/Volumes/Drives/projects/documon/documon/src/menuBuilder.js",
 		"flags": [
 			{

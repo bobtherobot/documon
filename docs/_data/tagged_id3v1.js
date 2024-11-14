@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "write.meta.id3v1",
-	"shortText": "audio.write.meta.id3v1",
-	"shortHtml": "<p>audio.write.meta.id3v1</p>",
-	"text": "audio.write.meta.id3v1",
-	"html": "<p>audio.write.meta.id3v1</p>",
+	"name": "id3v1",
+	"shortText": "id3v1",
+	"shortHtml": "<p>id3v1</p>",
+	"text": "id3v1",
+	"html": "<p>id3v1</p>",
 	"entity": "class",
-	"flagSearchText": " audio.write.meta.id3v1 example",
-	"package": "example",
+	"flagSearchText": " id3v1 example.audio.write.meta",
+	"package": "example.audio.write.meta",
 	"file": "documon/example/audio/write/meta/id3v1.js",
 	"filename": "id3v1.js",
-	"klass": "write.meta.id3v1",
-	"docfile": "example.write.meta.id3v1.html",
-	"id": "example.write.meta.id3v1",
+	"klass": "id3v1",
+	"docfile": "example.audio.write.meta.id3v1.html",
+	"id": "example.audio.write.meta.id3v1",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.write.meta.id3v1": "write.meta.id3v1 : audio write meta id3v1audio write meta id3v1 example"
+		"example.audio.write.meta.id3v1": "id3v1 : id3v1 example audio write meta"
 	}
 }

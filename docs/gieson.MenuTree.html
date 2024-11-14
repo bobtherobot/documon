@@ -71,26 +71,23 @@
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		MenuTree () 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span>
-						    		
 						    		<span class="member-line-number">69</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		<div class="meta-block meta-block-klass">
+                                
+                                <div class="meta-block meta-block-klass">
 				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">gieson.MenuTree<span></div>
 				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">documon/template/assets/js/documon/menutree/MenuTree.js<span></div>
 			</div>
-						   		
 								<p>Builds a menu based on a "menu array". The menu array must conform to the following structure:</p>
-
-<pre class="prettyprint">var myMenuData = [
+<pre><code>var myMenuData = [
     {
         "id"        : "foo",        // Unique ID used to identify a menu list item.
         "url"       : "foo.html",   // (optional) The URL to open when the menu item is clicked.
@@ -99,14 +96,12 @@
         "children"  : []            // An array of menu item just like this one.
     }
     ... etc...
-];</pre>
-
-<p>When an item has children, a sub-menu will be constructed as the immediate "nextSibling" UL,  <br>
+];
+</code></pre>
+<p>When an item has children, a sub-menu will be constructed as the immediate "nextSibling" UL, 
 which will house all the items within the "children" array. Thus, one may have as many sub-menus as needed.</p>
-
 <p>The menu will be build using the following HTML structure:</p>
-
-<pre class="prettyprint">&lt;ul&gt;
+<pre><code>&lt;ul&gt;
     &lt;li&gt;foo&lt;/li&gt; &lt;-- opener - used to open/close the next immediate sibling UL
     &lt;ul&gt;
         &lt;li&gt;foo&lt;/li&gt;
@@ -127,7 +122,8 @@ which will house all the items within the "children" array. Thus, one may have a
         &lt;li&gt;foo&lt;/li&gt;
         &lt;li&gt;foo&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/ul&gt;</pre>
+&lt;/ul&gt;
+</code></pre>
 
 					
 								
@@ -135,8 +131,10 @@ which will house all the items within the "children" array. Thus, one may have a
 							    
 
 					
-								<div class="example-block">
-	    		<pre class="prettyprint">// For now, the only action we ping is "select"
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>// For now, the only action we ping is "select"
 function opHandler(action, item){
     if(action == "select"){
         //con sole.log(item);
@@ -146,8 +144,10 @@ function opHandler(action, item){
 var myMenu = new gieson.MenuTree({
             callback : opHandler,
             menuData : MenuData // MenuData should be located on the window object, since it is loaded in via &lt;script src="_menuData.js"&gt;
-    });</pre>
+    });
+</code></pre>
 	        </div>
+	    </div>
 
 							    
 
@@ -166,39 +166,33 @@ var myMenu = new gieson.MenuTree({
 				    	<div class="heading-part">Properties</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="gieson.MenuTree.listdata"></a><a name="listdata"></a>
+                                    <span class="member-name">listdata</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		<a name="gieson.MenuTree.listdata"></a><a name="listdata"></a>
-						        	<span class="member-name">listdata</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span><span class="member-line-number" title="documon/template/assets/js/documon/menutree/MenuTree.js">193</span>
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">Object</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span><span class="member-line-number" title="documon/template/assets/js/documon/menutree/MenuTree.js">193</span>
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
-      				 		 	<p>TODO: We should convert the items we store in the list to a seperate class. For berevity we've just inlined it during development. <br>
+      				 		 	<p>TODO: We should convert the items we store in the list to a seperate class. For berevity we've just inlined it during development.
 A data store for each menu item. The keys for the listData refer to item ID's. Each item consists of the following:</p>
-
-<pre class="prettyprint">    item = {
+<pre><code>    item = {
         id          // Optional (will be assigned unique one if none)
         children    // A list of other items.
         access      // Specific to documon
@@ -221,18 +215,21 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
                     ulOriginalDisplay // The source node's original css style.display kind (for open/close so we go back to normal -- defaults to "block" when not set in CSS)
 
         }
-    }</pre>
+    }
+</code></pre>
        						 </div>
        			
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -249,20 +246,18 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		getDataById (<span class="method-arguments">id</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span>
-						    		
 						    		<span class="member-line-number">388</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Gets the item's source data as provided during init. Convient way to retrive source data without navigating the source tree becuase we maintain a flat-list cross reference. This methods simply hooks into the cross reference.</p>
 
 					
@@ -272,33 +267,28 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">id</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">id</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The menu item id.</p>
@@ -307,12 +297,14 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -339,20 +331,18 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		openById (<span class="method-arguments">id</span>, <span class="method-arguments method-arg-optional">andSelect</span>, <span class="method-arguments method-arg-optional">scrollIntoView</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span>
-						    		
 						    		<span class="member-line-number">371</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Opens all decendants of a branch.</p>
 
 					
@@ -362,33 +352,28 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">id</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">id</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The menu item id.</p>
@@ -397,38 +382,35 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">andSelect</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">andSelect</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
-							<span class="default-value">
-      				 		 	false]
-       						 </span>
-       			
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">boolean</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		<span class="flag optional">optional</span>
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	false
+       						 </span>
+       			
+                                        
 									
 							<div class="member-description">
       				 		 	<p>Should the item be highlighted?</p>
@@ -437,38 +419,35 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">scrollIntoView</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">scrollIntoView</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
-							<span class="default-value">
-      				 		 	false]
-       						 </span>
-       			
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">boolean</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		<span class="flag optional">optional</span>
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	false
+       						 </span>
+       			
+                                        
 									
 							<div class="member-description">
       				 		 	<p>Should the menu scroll to show the item?</p>
@@ -477,12 +456,14 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -509,20 +490,18 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		select (<span class="method-arguments">id</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span>
-						    		
 						    		<span class="member-line-number">252</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Opens and/or highlights an item in the menu.</p>
 
 					
@@ -532,33 +511,28 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">id</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">id</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The menu item id.</p>
@@ -567,12 +541,14 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -594,20 +570,18 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		selectClick (<span class="method-arguments">evt</span>, <span class="method-arguments">id</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span>
-						    		
 						    		<span class="member-line-number">232</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Opens and/or highlights an item in the menu when user physically clicks.</p>
 
 					
@@ -617,33 +591,28 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">evt</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">evt</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">Event</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The mouse event object.</p>
@@ -652,34 +621,31 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">id</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">id</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The menu item id.</p>
@@ -688,12 +654,14 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -715,20 +683,18 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		toggle (<span class="method-arguments">id</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span>
-						    		
 						    		<span class="member-line-number">216</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Toggles an item open/closed.</p>
 
 					
@@ -738,33 +704,28 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">id</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">id</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The menu item id.</p>
@@ -773,12 +734,14 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -800,20 +763,18 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		toggleClick (<span class="method-arguments">evt</span>, <span class="method-arguments">id</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/template/assets/js/documon/menutree/MenuTree.js</span>
-						    		
 						    		<span class="member-line-number">204</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Used to toggle via mouse click. Toggles an item open/closed and prevents any further mouse bubbling.</p>
 
 					
@@ -823,33 +784,28 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">evt</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">evt</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">Event</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The mouse event object.</p>
@@ -858,34 +814,31 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">id</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">id</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The menu item id.</p>
@@ -894,12 +847,14 @@ A data store for each menu item. The keys for the listData refer to item ID's. E
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>

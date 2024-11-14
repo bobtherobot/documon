@@ -1,4 +1,4 @@
 /**
- * @class audio.write.meta.id3v1
- * @package example
+ * @class id3v1
+ * @package example.audio.write.meta
  */

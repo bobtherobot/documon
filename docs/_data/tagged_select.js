@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "controls.select",
-	"shortText": "ui.controls.select",
-	"shortHtml": "<p>ui.controls.select</p>",
-	"text": "ui.controls.select",
-	"html": "<p>ui.controls.select</p>",
+	"name": "select",
+	"shortText": "select",
+	"shortHtml": "<p>select</p>",
+	"text": "select",
+	"html": "<p>select</p>",
 	"entity": "class",
-	"flagSearchText": " ui.controls.select example",
-	"package": "example",
+	"flagSearchText": " select example.ui.controls",
+	"package": "example.ui.controls",
 	"file": "documon/example/ui/controls/select.js",
 	"filename": "select.js",
-	"klass": "controls.select",
-	"docfile": "example.controls.select.html",
-	"id": "example.controls.select",
+	"klass": "select",
+	"docfile": "example.ui.controls.select.html",
+	"id": "example.ui.controls.select",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.controls.select": "controls.select : controls selectcontrols select example"
+		"example.ui.controls.select": "select : select example controls"
 	}
 }

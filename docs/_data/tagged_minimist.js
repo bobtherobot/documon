@@ -4,7 +4,7 @@
 	"shortText": "A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.",
 	"shortHtml": "<p>A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.</p>",
 	"text": "\nA localized version of mimimist (minimist has no dependancies), for processing CLI arguments.\nhttps://github.com/substack/minimist\n\n",
-	"html": "<p>A localized version of mimimist (minimist has no dependancies), for processing CLI arguments. <br>\n<a href=\"https://github.com/substack/minimist\">https://github.com/substack/minimist</a></p>",
+	"html": "<p>A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.\nhttps://github.com/substack/minimist</p>",
 	"entity": "class",
 	"flagSearchText": " mimimist documon",
 	"package": "documon",
@@ -16,7 +16,7 @@
 	"id": "documon.mimimist",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
 		"documon.mimimist": "mimimist : localized version mimimist minimist dependancies processing arguments https github substack minimistmimimist documon"
 	}

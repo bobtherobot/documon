@@ -75,7 +75,7 @@ this.documon.Docutils = (function(){
 	        // well then we don't want to just show the seperator,
 	        // so just show right hand side of the string.
 	        if(seplen > max) {
-	            return str.substr(len - max);
+	            return str.substring(len - max);
 	        }
 	        
 	        // Difference between max and string length.
@@ -85,8 +85,8 @@ this.documon.Docutils = (function(){
 	        // This gives us the centerline.
 	        var center = len/2;
 	        
-	        var front = str.substr(0, center - n);
-	        var back = str.substr(len - center + n);
+	        var front = str.slice(0, center - n);
+	        var back = str.slice(len - center + n);
 	        
 	        return front + sep + back;
 	        

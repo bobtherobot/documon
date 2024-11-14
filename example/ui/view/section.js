@@ -1,4 +1,4 @@
 /**
- * @class ui.view.section
- * @package example
+ * @class section
+ * @package example.ui.view
  */

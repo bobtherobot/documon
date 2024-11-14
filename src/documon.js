@@ -163,7 +163,8 @@ function filterFileTypes(fpath){
 	// }
 
 	var item = path.parse( fpath );
-	return extensions.indexOf(item.ext.substr(1)) > -1;
+    // path.substr(1) == path.substring(1)
+	return extensions.indexOf(item.ext.substring(1)) > -1;
 }
 
 
@@ -302,8 +303,8 @@ function init(conf){
 	if( du.exists(fpath) ){
 
 		// Remove trailing slash to prep for popping. 
-		if( fpath.substr(-1) == "/" ){
-			fpath = fpath.substr(0, -1);
+		if( fpath.slice(-1) == "/" ){
+			fpath = fpath.slice(0, -1);
 		}
 
 		Afpath = fpath.split("/");

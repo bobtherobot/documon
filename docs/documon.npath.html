@@ -71,25 +71,22 @@
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		npath () 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
 						    		<span class="member-line-number">15</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		<div class="meta-block meta-block-klass">
+                                
+                                <div class="meta-block meta-block-klass">
 				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.npath<span></div>
 				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">documon/src/npath.js<span></div>
 			</div>
-						   		
 								<p>A drop-in replacement for path, that provides cross-playform normalization. Easing the development of cross-platform modules.</p>
-
 <p>Essentially what we're doing is pre-processing all methods with a path normalization -- always enforcing forward slashes.</p>
 
 					
@@ -117,62 +114,56 @@
 				    	<div class="heading-part">Properties</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.npath.delimiter"></a><a name="delimiter"></a>
+                                    <span class="member-name">delimiter</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		<a name="documon.npath.delimiter"></a><a name="delimiter"></a>
-						        	<span class="member-name">delimiter</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">documon/src/npath.js</span><span class="member-line-number" title="documon/src/npath.js">45</span>
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		<span class="member-file">documon/src/npath.js</span><span class="member-line-number" title="documon/src/npath.js">45</span>
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>Platform environment PATH delimiter.</p>
-
 <p>Example of how PATH appears on Windows:</p>
-
-<pre class="prettyprint">    'C:\Windows\system32;C:\Windows;C:\Program Files\node\'</pre>
-
+<pre><code>    'C:\Windows\system32;C:\Windows;C:\Program Files\node\'
+</code></pre>
 <p>Example of how PATH appears on POSIX systems (Mac Unix):</p>
-
-<pre class="prettyprint">    '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin'</pre>
-
+<pre><code>    '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin'
+</code></pre>
 <p>Read the PATH with Node:</p>
-
-<pre class="prettyprint">    console.log(process.env.PATH)
+<pre><code>    console.log(process.env.PATH)
 
     Windows     = ;
-POSIX   = : </pre>
+  POSIX   = : 
+</code></pre>
        						 </div>
        			
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -189,20 +180,18 @@ POSIX   = : </pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		addTrailingSlash (<span class="method-arguments">path</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">319</span>
+						    		<span class="member-line-number">321</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Adds a trailing slash from path (if doesn't exist).</p>
 
 					
@@ -212,33 +201,28 @@ POSIX   = : </pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">path</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">path</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>path</p>
@@ -247,12 +231,14 @@ POSIX   = : </pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -279,22 +265,20 @@ POSIX   = : </pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		basename (<span class="method-arguments">path</span>, <span class="method-arguments">ext</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">107</span>
+						    		<span class="member-line-number">108</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
-								<pre class="prettyprint">    npath.basename("/foo/bar/bob.txt") --&gt; "bob.txt"
-npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
+                                
+                                
+								<p>npath.basename("/foo/bar/bob.txt") --&gt; "bob.txt"
+   npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</p>
 
 					
 								
@@ -303,33 +287,28 @@ npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">path</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">path</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The full path</p>
@@ -338,34 +317,31 @@ npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">ext</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">ext</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>Lops off the extension if it matches.</p>
@@ -374,12 +350,14 @@ npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -406,20 +384,18 @@ npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		clean (<span class="method-arguments">arg</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
 						    		<span class="member-line-number">59</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Normalizes slashes by converting double \ to single \ and / to \ or \ tp / based on the current platform requirements.</p>
 
 					
@@ -429,33 +405,28 @@ npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">arg</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">arg</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string | array</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>arg</p>
@@ -464,12 +435,14 @@ npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -496,24 +469,22 @@ npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		dirname (<span class="method-arguments">Vpath</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">122</span>
+						    		<span class="member-line-number">123</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Returns the path to the parent folder that the item resides within.</p>
-
-<pre class="prettyprint">    npath.dirname("/foo/bar/bob.txt") --&gt; "/foo/bar"
-npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"</pre>
+<pre><code>    npath.dirname("/foo/bar/bob.txt") --&gt; "/foo/bar"
+  npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"
+</code></pre>
 
 					
 								
@@ -522,33 +493,28 @@ npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">Vpath</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">Vpath</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The path to parse.</p>
@@ -557,12 +523,14 @@ npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -589,24 +557,22 @@ npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		extname (<span class="method-arguments">Vpath</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">136</span>
+						    		<span class="member-line-number">137</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Yes, this includes the dot.</p>
-
-<pre class="prettyprint">    npath.extname("/foo/bar/bob.txt") --&gt; ".txt"
-npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
+<pre><code>    npath.extname("/foo/bar/bob.txt") --&gt; ".txt"
+  npath.extname("/foo/sally/yoyo/boob") --&gt; ""
+</code></pre>
 
 					
 								
@@ -615,33 +581,28 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">Vpath</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">Vpath</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The path to parse.</p>
@@ -650,12 +611,14 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -682,37 +645,32 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		format (<span class="method-arguments">obj</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">245</span>
+						    		<span class="member-line-number">247</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>The opposite of path.parse().</p>
-
 <p>Combines the elements of an object into a string. </p>
-
 <p>Example:</p>
-
-<pre class="prettyprint">    {
+<pre><code>    {
         root : "/",
         dir : "/home/user/dir",
         base : "file.txt",
         ext : ".txt",
         name : "file"
     }
-
-... is converted to
-
-    /home/user/dir/file.txt</pre>
+</code></pre>
+<p>Is converted to</p>
+<pre><code>    /home/user/dir/file.txt
+</code></pre>
 
 					
 								
@@ -721,33 +679,28 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">obj</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">obj</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">object</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The object containing some of the required keys to formulate a path.</p>
@@ -756,12 +709,14 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -788,20 +743,18 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		isAbsolute (<span class="method-arguments">Vpath</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">148</span>
+						    		<span class="member-line-number">149</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Determines if path is an absolute path.</p>
 
 					
@@ -811,33 +764,28 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">Vpath</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">Vpath</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The path to parse.</p>
@@ -846,12 +794,14 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -878,24 +828,22 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		join (<span class="method-arguments">paths...</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">261</span>
+						    		<span class="member-line-number">263</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Joins path segments and resolves relativity.</p>
-
-<pre class="prettyprint">    path.join('/foo', 'bar', 'baz/asdf', 'quux', '..')
-    Returns: '/foo/bar/baz/asdf'</pre>
+<pre><code>    path.join('/foo', 'bar', 'baz/asdf', 'quux', '..')
+    Returns: '/foo/bar/baz/asdf'
+</code></pre>
 
 					
 								
@@ -904,33 +852,28 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">paths...</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">paths...</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>All arguments are evaluated as paths for construction</p>
@@ -939,12 +882,14 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -971,29 +916,26 @@ npath.extname("/foo/sally/yoyo/boob") --&gt; ""</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		normalize (<span class="method-arguments">Vpath</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">167</span>
+						    		<span class="member-line-number">168</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
-								<p>Resolves ".." and "." portions of a path. <br>
-Reduces double slashes to single (e.g. // -> /  ) <br>
-Forces back-slashes to forward slashes (e.g. \ -> /  )</p>
-
+                                
+                                
+								<p>Resolves ".." and "." portions of a path.
+Reduces double slashes to single (e.g. // -&gt; /  )
+Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 <p>Retains trailing slash if exists.</p>
-
-<pre class="prettyprint">npath.normalize("/foo/////bar") --&gt; "/foo/bar"
-npath.normalize("/foo/bar/../boob") --&gt; "/foo/boob"
-npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
+<pre><code>  npath.normalize("/foo/////bar") --&gt; "/foo/bar"
+  npath.normalize("/foo/bar/../boob") --&gt; "/foo/boob"
+  npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"
+</code></pre>
 
 					
 								
@@ -1002,33 +944,28 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">Vpath</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">Vpath</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The path to parse.</p>
@@ -1037,12 +974,14 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -1069,23 +1008,20 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		parse (<span class="method-arguments">Vpath</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">199</span>
+						    		<span class="member-line-number">200</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Extracts basic path and file parts.</p>
-
-<pre class="prettyprint">path.parse('/home/user/dir/file.txt')
+<pre><code>path.parse('/home/user/dir/file.txt')
 
 // Yeilds
 {
@@ -1094,7 +1030,8 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
     base : "file.txt",
     ext : ".txt",
     name : "file"
-}</pre>
+}
+</code></pre>
 
 					
 								
@@ -1103,33 +1040,28 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">Vpath</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">Vpath</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The path to parse.</p>
@@ -1138,12 +1070,14 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -1154,14 +1088,14 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 						<span class="type">object</span>
 					</div>
 			      	     	<div class="member"><p>An object containing the following properties:</p>
-
-<pre class="prettyprint">{
+<pre><code>{
     root : "/",
     dir : "/home/user/dir",
     base : "file.txt",
     ext : ".txt",
     name : "file"
-}</pre></div>
+}
+</code></pre></div>
 				
 
 					
@@ -1178,24 +1112,22 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		relative (<span class="method-arguments method-arg-optional">from</span>, <span class="method-arguments method-arg-optional">to</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">217</span>
+						    		<span class="member-line-number">218</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
-								<p>Creates a relative path between <pre class="prettyprint">from</pre> adn <pre class="prettyprint">to</pre>.</p>
-
-<pre class="prettyprint">    path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb')
-    // Returns: '../../impl/bbb'</pre>
+                                
+                                
+								<p>Creates a relative path between <code>from</code> adn <code>to</code>.</p>
+<pre><code>    path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb')
+    // Returns: '../../impl/bbb'
+</code></pre>
 
 					
 								
@@ -1204,33 +1136,28 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">from</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">from</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		<span class="flag optional">optional</span>
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>When null, the cwd is used for this value.</p>
@@ -1239,34 +1166,31 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">to</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">to</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		<span class="flag optional">optional</span>
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>When null, the cwd is used for this value.</p>
@@ -1275,12 +1199,14 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -1290,7 +1216,7 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">string</span>
 					</div>
-			      	     	<div class="member"><p>The relative path between <pre class="prettyprint">from</pre> and <pre class="prettyprint">to</pre></p></div>
+			      	     	<div class="member"><p>The relative path between <code>from</code> and <code>to</code></p></div>
 				
 
 					
@@ -1307,20 +1233,18 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		removeTrailingSlash (<span class="method-arguments">path</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">304</span>
+						    		<span class="member-line-number">306</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Removes a trailing slash from path (if exists).</p>
 
 					
@@ -1330,33 +1254,28 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">path</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">path</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>path</p>
@@ -1365,12 +1284,14 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -1397,37 +1318,31 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		resolve (<span class="method-arguments method-arg-optional">path...</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/npath.js</span>
-						    		
-						    		<span class="member-line-number">292</span>
+						    		<span class="member-line-number">294</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		
-						   		
+                                
+                                
 								<p>Generates an absolute path based on thenprovided arguments.</p>
-
 <p>Path construction occurs from right &lt; to &lt; left</p>
-
-<pre class="prettyprint">    resolve("/a", "b", "c"); // yields: "/a/b/c"</pre>
-
+<pre><code>    resolve("/a", "b", "c"); // yields: "/a/b/c"
+</code></pre>
 <p>If an absolute path is resolved during construction, the items to the left are ignored.</p>
-
-<pre class="prettyprint">    resolve("a", "/b", "c"); // yields: "/b/c" ("a" is ignored)</pre>
-
+<pre><code>    resolve("a", "/b", "c"); // yields: "/b/c" ("a" is ignored)
+</code></pre>
 <p>If an absolute path is not resolved after constructing all arguments, the CWD is inserted.</p>
-
-<pre class="prettyprint">    resolve("a", "b", "c"); // yields: "/current/working/dir/a/b/c"</pre>
-
+<pre><code>    resolve("a", "b", "c"); // yields: "/current/working/dir/a/b/c"
+</code></pre>
 <p>Relative paths are automatically resolved:</p>
-
-<pre class="prettyprint">    resolve("/a", "../b", "c"); // yields "/a/c"</pre>
+<pre><code>    resolve("/a", "../b", "c"); // yields "/a/c"
+</code></pre>
 
 					
 								
@@ -1436,33 +1351,28 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">path...</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">path...</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		<span class="flag optional">optional</span>
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>All arguments are evaluated as paths for construction.</p>
@@ -1471,12 +1381,14 @@ npath.normalize("./foo/") --&gt; "/current/working/dir/foo/"</pre>
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>

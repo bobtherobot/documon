@@ -14,16 +14,8 @@
 
 pre {
 	tab-size : 2;
-	-o-tab-size : 2;
-	-ms-tab-size : 2;
-	-moz-tab-size : 2;
-	-webkit-tab-size : 2;
 	background-color: #F6F6F6;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	   -moz-border-radius:5px;
-	    -ms-border-radius:5px;
-	     -o-border-radius:5px;
+	border-radius:3px;
 	border: 1px solid #E1E1E1;
 	display: inline-block;
 	font-family: "Inconsolata", "Monoco", "Lucida Grande", "Courier New", Courier, monospace;
@@ -41,7 +33,8 @@ pre.prettyprint {
 	width:97%;
 	overflow:auto;
 	margin : 0;
-	padding : 3px 0 3px 3px; /*10px;*/
+	padding : 0 0.5em 0.5em 0.3em;
+	/* padding : 3px 0 3px 3px; 10px; */
 	white-space: pre-wrap;
 }
 pre .nocode { 
@@ -64,7 +57,7 @@ pre .dec { color: #1F00FF;} /* decimal */
 /* Specify class=linenums on a pre to get line numbering */
 ol.linenums {
 	margin : 0;
-	padding: 0 0 0 3em;
+	padding: 0 0 0 2em;
 	background: #F7F7F7;
 	color : #bbbbbb;
 }
@@ -86,7 +79,8 @@ ol.linenums li:before {
 				margin-left : 0;
 				margin-right : 10px;
             }
-*/
+
+
 ol.linenums li:before {
 	counter-increment : number;
 	content:counter(number)"\a0";
@@ -94,7 +88,7 @@ ol.linenums li:before {
 	display:inline-block;
 	width : 2.5em;
 	border-right : 1px solid #eee;
-}
+}    */
 
 ol.linenums li span:first-child {
 	padding-left : 0.5em;
@@ -107,13 +101,14 @@ ol.linenums > :last-child {
 	/*padding-bottom: 40px !important;*/
 }
 
-/* IE indents via margin-left */
+/* IE indents via margin-left 
 li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9 {
 	background: #FFFFFF;
 	position : relative;
 	padding: 0 3em 0 8px;
 	margin : 0;
 }
+*/
 
 /* Alternate shading for lines 
 li.L1,li.L3,li.L5,li.L7,li.L9 {

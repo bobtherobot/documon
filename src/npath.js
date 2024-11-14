@@ -97,8 +97,9 @@ function clean(arg){
 
 
 /**
- * 		npath.basename("/foo/bar/bob.txt") --> "bob.txt"
- *   	npath.basename("/foo/bar/bob.txt", ".txt") --> "bob"
+ *    
+ *    npath.basename("/foo/bar/bob.txt") --> "bob.txt"
+ *    npath.basename("/foo/bar/bob.txt", ".txt") --> "bob"
  * 
  * @method basename
  * @param  {string} path - The full path
@@ -226,18 +227,19 @@ function relative(Vfrom, Vto){
  *
  * Example:
  * 		
- * 		{
- * 			root : "/",
- * 			dir : "/home/user/dir",
- * 			base : "file.txt",
- * 			ext : ".txt",
- * 			name : "file"
- * 		}
- * 		
- * 	... is converted to
+ * 	    {
+ * 	        root : "/",
+ * 	        dir : "/home/user/dir",
+ * 	        base : "file.txt",
+ * 	        ext : ".txt",
+ *	        name : "file"
+ *	    }
+ * 
+ * 
+ * Is converted to
  *
- * 		/home/user/dir/file.txt
- * 		
+ * 	    /home/user/dir/file.txt
+ * 
  *
  * @method  format
  * @param   {object}  obj  - The object containing some of the required keys to formulate a path.
@@ -304,8 +306,8 @@ function resolve(){
  */
 function removeTrailingSlash(dpath){
 	var dpath = clean(dpath);
-	if( dpath.substr(-sep.length) == sep ){
-		dpath = dpath.substr(0, -sep.length);
+	if( dpath.slice(-sep.length) == sep ){
+		dpath = dpath.slice(0, -sep.length);
 	}
 	return dpath;
 }
@@ -319,7 +321,7 @@ function removeTrailingSlash(dpath){
  */
 function addTrailingSlash(dpath){
 	var dpath = clean(dpath);
-	if( dpath.substr(-sep.length) != sep ){
+	if( dpath.slice(-sep.length) != sep ){
 		dpath = dpath + sep;
 	}
 	return dpath;

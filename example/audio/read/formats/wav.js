@@ -1,4 +1,4 @@
 /**
- * @class audio.read.formats.wav
- * @package example
+ * @class wav
+ * @package example.audio.read.formats
  */

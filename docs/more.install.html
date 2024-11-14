@@ -55,31 +55,23 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1>Installation</h1>
-
+			<div class="more"><h1 id="installation">Installation</h1>
 <p>Nothing special needs ot be done to run Documon, aside from ensuring that <a href="http://nodejs.org">Node</a> is installed on your system.</p>
-
 <p><a href="http://www.documon.net/downloads/documon.zip">&#x02186; Download Documon</a></p>
-
 <p>Download it, unzip it, then run it:</p>
-
-<pre>cd "path/to/documon"
-node ./index.js "path/to/source/files"</pre>
-
-<h3>Project Installation with NPM</h3>
-
+<pre><code>cd "path/to/documon"
+node ./index.js "path/to/source/files"
+</code></pre>
+<h3 id="projectinstallationwithnpm">Project Installation with NPM</h3>
 <p>To incorporate Documon into your project / build system use:</p>
-
-<pre>cd "/your/project/path"
-npm install documon</pre>
-
-<p>... this allows you to build documentation from within your project using:</p>
-
-<pre>var docs = require("documon");
-docs("/path/to/src");</pre>
-
-<h3>See Also</h3>
-
+<pre><code>cd "/your/project/path"
+npm install documon
+</code></pre>
+<p>… this allows you to build documentation from within your project using:</p>
+<pre><code>var docs = require("documon");
+docs("/path/to/src");
+</code></pre>
+<h3 id="seealso">See Also</h3>
 <ul>
 <li><a href="more.options">Options</a></li>
 <li><a href="more.examples">Examples</a></li>

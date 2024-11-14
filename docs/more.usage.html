@@ -55,76 +55,62 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1>Usage</h1>
-
+			<div class="more"><h1 id="usage">Usage</h1>
 <p>Documon can be used within your existing Javascript-based project, or from the command line via Node (CLI)</p>
-
-<h2>Project-based Usage</h2>
-
+<h2 id="projectbasedusage">Project-based Usage</h2>
 <p>Install Documon:</p>
-
-<pre>npm install documon</pre>
-
-<p>... then build documentation from within your project using:</p>
-
-<pre>var docs = require("documon");
+<pre><code>npm install documon
+</code></pre>
+<p>… then build documentation from within your project using:</p>
+<pre><code>var docs = require("documon");
 docs({
     src : "path/to/src",
     out : "put/docs/here",
     name : "My Cool Project",
     version : "1.0"
-});</pre>
-
-<h2>CLI Usage</h2>
-
+});
+</code></pre>
+<h2 id="cliusage">CLI Usage</h2>
 <p>Documon can be run from command line via Node:</p>
-
-<pre>cd /path/to/documon
+<pre><code>cd /path/to/documon
 node ./index.js -h
 
 # or (if you're cool)
 node ./index -h
 
 # or (if you're really, cool)
-node . -h</pre>
-
+node . -h
+</code></pre>
 <p>Point Documon at your source folder:</p>
-
-<pre>node ./index.js "/path/to/source"
+<pre><code>node ./index.js "/path/to/source"
 
 # Documon generates a "docs" folder parallel 
 # to your source. In the example above the 
 # "docs" folder ends up here:
 
-/path/to/docs</pre>
-
+/path/to/docs
+</code></pre>
 <p>To specify the output folder, set the the second argument to the folder</p>
-
-<pre>node ./index.js [source] [output]</pre>
-
+<pre><code>node ./index.js [source] [output]
+</code></pre>
 <p><strong>Example</strong></p>
-
-<pre>node ./index.js "/path/to/source" "/path/to/output/folder"
+<pre><code>node ./index.js "/path/to/source" "/path/to/output/folder"
 
 # ... places the "docs" folder here:
 
-"/path/to/output/folder/docs"</pre>
-
+"/path/to/output/folder/docs"
+</code></pre>
 <blockquote>
   <p>NOTE: For safety measures, a "docs" folder is always generated inside the output folder. Because each time docs are generated, the docs file is emptied. We empty the docs folder to prevent "stragglers" from collecting and building up over time. By creating and managing a "docs" folder, we can prevents wiping out everything within a folder Documon doesn't manage.</p>
 </blockquote>
-
 <p>To explicitly set input/output paths, use the following flags</p>
-
-<pre>-i  - Source file or folder.
--o  - Output path.</pre>
-
+<pre><code>-i  - Source file or folder.
+-o    - Output path.
+</code></pre>
 <p>Example</p>
-
-<pre>node ./index.js -i "/path/to/source" -o "/path/to/output/folder"</pre>
-
+<pre><code>node ./index.js -i "/path/to/source" -o "/path/to/output/folder"
+</code></pre>
 <p>See the <a href="more.Options">Options</a> for an in-depth look at all available options.</p>
-
 <p>.</p></div>
 		</div>
 

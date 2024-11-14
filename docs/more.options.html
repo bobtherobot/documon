@@ -55,121 +55,28 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1>Options</h1>
-
+			<div class="more"><h1 id="options">Options</h1>
 <p>The following options are available for both Command Line (CLI) and native JS processing:  </p>
-
-<table>
-<thead>
-<tr>
-  <th>cli flag</th>
-  <th>js prop</th>
-  <th>default</th>
-  <th>description</th>
-</tr>
-</thead>
-<tr>
-  <td>-i</td>
-  <td>src</td>
-  <td></td>
-  <td>Path to source file or folder.</td>
-</tr>
-<tr>
-  <td>-o</td>
-  <td>out</td>
-  <td>parallel to source folder</td>
-  <td>Path to build docs into.</td>
-</tr>
-<tr>
-  <td>-n</td>
-  <td>name</td>
-  <td></td>
-  <td>Name of your project / docs (displayed on the home page)</td>
-</tr>
-<tr>
-  <td>-v</td>
-  <td>version</td>
-  <td></td>
-  <td>Version of your project / docs (displayed on the home page)</td>
-</tr>
-<tr>
-  <td>-t</td>
-  <td>template</td>
-  <td></td>
-  <td>Path to template folder</td>
-</tr>
-<tr>
-  <td>-l</td>
-  <td>launch</td>
-  <td>false</td>
-  <td>Launch docs in browser when done</td>
-</tr>
-<tr>
-  <td>-p</td>
-  <td>print</td>
-  <td>false</td>
-  <td>Print activity to the console (verbose).</td>
-</tr>
-<tr>
-  <td>-e</td>
-  <td>sourceExt</td>
-  <td>"js"</td>
-  <td>Extension(s) to parse. Space delimit multiple extensions</td>
-</tr>
-<tr>
-  <td>-d</td>
-  <td>dumpData</td>
-  <td>false</td>
-  <td>Dumps intermediary data into the "docs/_data" folder.</td>
-</tr>
-<tr>
-  <td>-m</td>
-  <td>more</td>
-  <td></td>
-  <td>"More docs" folder containing additional documentation.</td>
-</tr>
-<tr>
-  <td>-g</td>
-  <td>ignore</td>
-  <td></td>
-  <td>An array of files/folders to ignore. See "Ignoring Files" section below.</td>
-</tr>
-<tr>
-  <td>-a</td>
-  <td>docBegin</td>
-  <td>/**</td>
-  <td>Comment begin string</td>
-</tr>
-<tr>
-  <td>-z</td>
-  <td>docEnd</td>
-  <td>*/</td>
-  <td>Comment end string</td>
-</tr>
-<tr>
-  <td>-x</td>
-  <td>indexShortcutName</td>
-  <td>__LAUNCH.html</td>
-  <td>Index shortcut name (so the file will appear at the top of the folder list so you don't have to scroll and poke around to find the "index.html" file).</td>
-</tr>
-<tr>
-  <td>-q</td>
-  <td>moreQuirkDelimiter</td>
-  <td>.</td>
-  <td>More quirk delimiter. The character(s) use to seperate the "more" page numbering system from page titles.</td>
-</tr>
-<tr>
-  <td>-y</td>
-  <td>gati</td>
-  <td></td>
-  <td>Google Analytics Tracking ID. If present pages will include tracking code.</td>
-</tr>
-</table>
-
-
-<h3>Using the "js prop" in your project</h3>
-
-<pre>var docs = require("documon");
+<p>|cli flag  |js prop        |default        |description  |
+|----------|-------------|----------------|---------|
+| -i        | src         |  | Path to source file or folder. 
+| -o       | out         | parallel to source folder| Path to build docs into.
+| -n       | name        |    | Name of your project / docs (displayed on the home page)
+| -v       | version     |    | Version of your project / docs (displayed on the home page) 
+| -t       | template    |    | Path to template folder
+| -l       | launch      | false | Launch docs in browser when done
+| -p       | print       | false | Print activity to the console (verbose).
+| -e       | sourceExt   | "js" | Extension(s) to parse. Space delimit multiple extensions
+| -d       | dumpData    | false | Dumps intermediary data into the "docs/_data" folder.
+| -m       | more        |  | "More docs" folder containing additional documentation.
+| -g       | ignore      |  | An array of files/folders to ignore. See "Ignoring Files" section below.
+| -a       | docBegin    |  /** | Comment begin string
+| -z       | docEnd      | */   | Comment end string
+| -x       | indexShortcutName  | __LAUNCH.html  | Index shortcut name (so the file will appear at the top of the folder list so you don't have to scroll and poke around to find the "index.html" file).
+| -q       | moreQuirkDelimiter  | .  | More quirk delimiter. The character(s) use to seperate the "more" page numbering system from page titles.
+| -y         | gati      |   | Google Analytics Tracking ID. If present pages will include tracking code.</p>
+<h3 id="usingthejspropinyourproject">Using the "js prop" in your project</h3>
+<pre><code>var docs = require("documon");
 docs({
     name        : "My Cool Project",
     version     : "1.0",
@@ -184,20 +91,17 @@ docs({
     ignore      : ["**/*.md", "/path/to/example/**"],
     gati        : "UA-106684927-1"
 
-});</pre>
-
-<h3>Using the CLI flags</h3>
-
-<pre>cd /path/to/documon
-node ./index.js -l -p -d -i "path/to/src" -o "put/docs/here" -n "My Cool Project" -v "1.0" -t "path/to/template/folder" -e "js jsx php" -m "path/to/more/folder"</pre>
-
-<h3>Ignoring Files</h3>
-
+});
+</code></pre>
+<h3 id="usingthecliflags">Using the CLI flags</h3>
+<pre><code>cd /path/to/documon
+node ./index.js -l -p -d -i "path/to/src" -o "put/docs/here" -n "My Cool Project" -v "1.0" -t "path/to/template/folder" -e "js jsx php" -m "path/to/more/folder"
+</code></pre>
+<h3 id="ignoringfiles">Ignoring Files</h3>
 <p>We're using a simple "indexOf" to match for ignores, which is designed for speed to just deal with file/folder full-path matching, or word matching. Sorry no globs.</p>
-
 <p>To include more than one file/folder with CLI, use a semicolon delimted list. </p>
-
-<pre>node ./index -g "foo; bar"</pre></div>
+<pre><code>node ./index -g "foo; bar"
+</code></pre></div>
 		</div>
 
 		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>

@@ -59,7 +59,7 @@ this.documon.Pages = (function(){
 		        	e.preventDefault();
 		        	//gieson.MenuTree.openById(id, true, true);
 		        	
-		        	if(href.substr(0, 4) == 'more'){
+		        	if(href.slice(0, 4) == 'more'){
 		        		href = href.toLowerCase();
 		        	}
 					window.parent.postMessage({id: 'menuOpenById', openMeId:href}, '*');
@@ -82,7 +82,10 @@ this.documon.Pages = (function(){
 		// index.html to (this) page communication
 		// Used to manage tabs.
 		window.onmessage = receiveMessage;
-		window.parent.postMessage({id: 'getAccess', pageId:window.frameElement.id}, '*');
+        if(window.frameElement){
+            window.parent.postMessage({id: 'getAccess', pageId:window.frameElement.id}, '*');
+        }
+		
 
 		
 		// Remember last place we scrolled to so next time page is opened, 

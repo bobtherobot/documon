@@ -71,31 +71,28 @@
 							<div class="member-name clearfix">
 								<span class="member-name-left">
 						    		extract (<span class="method-arguments">text</span>, <span class="method-arguments method-arg-optional">beginDoc</span>, <span class="method-arguments method-arg-optional">endDoc</span>) 
+                                    
 						    	</span>
 								<span class="member-name-right">
-						    		
-						    		
 						    		<span class="member-file">documon/src/extract.js</span>
-						    		
 						    		<span class="member-line-number">96</span>
 						    	</span>
 						    </div>
 
 
 						   	<div class="member-description">
-						   		<div class="meta-block meta-block-klass">
+                                
+                                <div class="meta-block meta-block-klass">
 				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.extract<span></div>
 				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">documon/src/extract.js<span></div>
 			</div>
-						   		
 								<p>Extracts comments from a file into an array or mulit-dementional array when the "text" arg contains mulitple <strong>package</strong> or <strong>namepsace</strong> definitions.</p>
-
-<p>Each entry in the returned array will be an object containing 3 properties <br>
- - <strong>start</strong> : The line number that the comment started on <br>
- - <strong>end</strong> : The line number that the comment ended on <br>
- - <strong>data</strong> : The contents of the comment</p>
-
-<pre class="prettyprint">var myComments = extract(str);
+<p>Each entry in the returned array will be an object containing 3 properties</p>
+<ul>
+<li><p><strong>start</strong> : The line number that the comment started on</p></li>
+<li><p><strong>end</strong> : The line number that the comment ended on</p></li>
+<li><p><strong>data</strong> : The contents of the comment</p>
+<p>var myComments = extract(str);
 yields : [
             { 
                 start : 12,
@@ -107,41 +104,38 @@ yields : [
                 end : 32,
                 data : "the descript"
             }
-    ]</pre>
-
-<h2>A few things of note:</h2>
-
+    ]</p></li>
+</ul>
+<h2 id="afewthingsofnote">A few things of note:</h2>
 <ul>
 <li>The data will NOT include the beginDoc, nor the endDoc strings.</li>
-<li>Comment prefixing is stripped  <br>
-    - *  [star space] <br>
-    - tabs <br>
+<li>Comment prefixing is stripped 
+    - *  [star space]
+    - tabs
     - spaces</li>
 <li>Code blocks maintain indentation.</li>
 <li>Splitting on <strong>package</strong> or <strong>namespace</strong>. When a single file contains mulitple references to a "<strong>package</strong>" or "<strong>namespace</strong>" comments will split into multiple arrays -- treating the single source file as being mulitple files. </li>
 </ul>
-
 <p>Split <strong>Example</strong>:</p>
-
-<pre class="prettyprint">/**
+<pre><code>&amp;#47;**
 * Class A
 * @package foo &lt;-- this designates a new "page"
-*/
+*&amp;#47;
 
-/**
+&amp;#47;**
 * Something for A
 * @method something
-*/
+*&amp;#47;
 
-/**
+&amp;#47;**
 * Class B
 * @package bar &lt;-- this designates a new "page"
-*/
+*&amp;#47;
 
-/**
+&amp;#47;**
 * Something for B
 * @method something
-*/
+*&amp;#47;
 
 var myComments = extract(str);
 yields : [
@@ -170,7 +164,8 @@ yields : [
                     data : "Something for B ..."
                 },
             ,
-        ]</pre>
+        ]
+</code></pre>
 
 					
 								
@@ -179,33 +174,28 @@ yields : [
 				    	<div class="heading-part">Parameters</div>
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">text</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">text</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        
+                                        
+                                        
 									
 							<div class="member-description">
       				 		 	<p>the entire file as a string</p>
@@ -214,38 +204,35 @@ yields : [
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">beginDoc</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">beginDoc</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
-							<span class="default-value">
-      				 		 	"&#47;**"]
-       						 </span>
-       			
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		<span class="flag optional">optional</span>
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	&#47;**
+       						 </span>
+       			
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The string is used to "open" a comment.</p>
@@ -254,38 +241,35 @@ yields : [
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
-							
-							<tr  >
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">endDoc</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		
-						        	<span class="member-name">endDoc</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
-
-						        		<span class="member-name-left">
-								    		
-							<span class="default-value">
-      				 		 	"*&#47;"]
-       						 </span>
-       			
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
 							<span class="type">string</span>
 				
-								    	</span>
-										<span class="member-name-right">
-								    		<span class="flag optional">optional</span>
-								    		
-								    		
-								    	</span>
-
-						        	</div>
-						        	<div class="param-description">
-						        		
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	*&#47;
+       						 </span>
+       			
+                                        
 									
 							<div class="member-description">
       				 		 	<p>The string is used to "close" a comment.</p>
@@ -294,12 +278,14 @@ yields : [
 						        	
 						        	
 					
-						        	</div>
-						        </td>
-						    </tr>
+                                    </div>
+                                </div>
+
+
+                            </div>
 				    
 
-							</table>
+							</div>
 						</div>
 				
 					</div>

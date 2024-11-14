@@ -4,7 +4,7 @@
 	"shortText": "Clean text so it has:",
 	"shortHtml": "<p>Clean text so it has:</p>",
 	"text": "Clean text so it has:\n- only alpha numeric characters\n- strips newlines and tabs.\n- single word results ignored\n\nUsed by [tag.js](root.documon.tag) and [more.js](root.documon.more)\n\n\n",
-	"html": "<p>Clean text so it has: <br>\n- only alpha numeric characters <br>\n- strips newlines and tabs. <br>\n- single word results ignored</p>\n\n<p>Used by <a href=\"root.documon.tag\">tag.js</a> and <a href=\"root.documon.more\">more.js</a></p>",
+	"html": "<p>Clean text so it has:</p>\n<ul>\n<li>only alpha numeric characters</li>\n<li>strips newlines and tabs.</li>\n<li>single word results ignored</li>\n</ul>\n<p>Used by <a href=\"root.documon.tag\">tag.js</a> and <a href=\"root.documon.more\">more.js</a></p>",
 	"entity": "class",
 	"flagSearchText": " searchPrep documon text The clean text",
 	"package": "documon",
@@ -33,7 +33,7 @@
 	"id": "documon.searchPrep",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
 		"documon.searchPrep": "searchPrep : Clean text only alpha numeric characters strips newlines tabs single word results ignored Used root documon more root documon moresearchPrep documon text clean text"
 	}

@@ -12,7 +12,7 @@ www.documon.net
  */
 
 var copyright = `
-Documon - version 0.1 - Copyright 2017 Mike Gieson. www.documon.net
+Documon - version 2.0 - Copyright Mike Gieson. www.documon.net
 `;
 
 var usage = `

@@ -55,85 +55,61 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1>Linking</h1>
-
+			<div class="more"><h1 id="linking">Linking</h1>
 <p>Use markdown notation:</p>
-
-<pre>For more [click here](http://example.com) now.</pre>
-
+<pre><code>For more [click here](http://example.com) now.
+</code></pre>
 <p>Or HTML notation:</p>
-
-<pre>For more &lt;a href="http://example.com"&gt;click here&lt;/a&gt; now.</pre>
-
+<pre><code>For more &lt;a href="http://example.com"&gt;click here&lt;/a&gt; now.
+</code></pre>
 <p>For cross linking to other parts of docs use the ID:</p>
-
-<pre>[see Foo](package.Class.method)</pre>
-
+<pre><code>[see Foo](package.Class.method)
+</code></pre>
 <p>Use the # + id to link to a method/property on the same page (traditional anchor linking):</p>
-
-<pre>[see setWidth](#setWidth)</pre>
-
-<h3>Website and Page Structure</h3>
-
+<pre><code>[see setWidth](#setWidth)
+</code></pre>
+<h3 id="websiteandpagestructure">Website and Page Structure</h3>
 <ol>
 <li>Classes and modules are full HTML pages. </li>
 <li>Methods, properties, and events (MPE's) are included within a class HTML file.</li>
 </ol>
-
 <p>Documon generates a unique ID for each entity. The ID represents a "dot.path" to the entity based on it's relationship to the package and class structure.</p>
-
 <p>Example:</p>
-
-<pre>package.class.entity</pre>
-
-<p>... where "entity" is a reference to a method, property or event (MPE) within a class or module.</p>
-
+<pre><code>package.class.entity
+</code></pre>
+<p>… where "entity" is a reference to a method, property or event (MPE) within a class or module.</p>
 <blockquote>
   <p>NOTE: Documon treats modules and classes the same, so for brevity we'll only refer to "class".</p>
 </blockquote>
-
 <p>The Documon website intercepts links and interprets dot.path ID's.</p>
-
-<h3>Interal Method, Property, Event (MPE) links</h3>
-
+<h3 id="interalmethodpropertyeventmpelinks">Interal Method, Property, Event (MPE) links</h3>
 <p>Each MPE has a standard HTML anchors within the page, therefore to link to an internal MPE within a class, use a normal anchor URL's (#example):</p>
-
-<pre>[See foo](#foo)</pre>
-
+<pre><code>[See foo](#foo)
+</code></pre>
 <p>This makes writing an internal link (within a class file) pretty easy.</p>
-
 <p>You can use the full dot.path, or for simplicity, if you're cross linking within the same class, you can just refernce the MPE. Either or will work because the template should incorporate both #entity adn #package.class.entity</p>
-
-<pre>[See foo](#foo)
+<pre><code>[See foo](#foo)
 -- or --
-[See foo](#package.class.foo)</pre>
-
-<h3>External classes and MPE's</h3>
-
+[See foo](#package.class.foo)
+</code></pre>
+<h3 id="externalclassesandmpes">External classes and MPE's</h3>
 <p>To link to an external class or a MPE in some other class, use the full ID:</p>
-
-<pre>[Link to My Class](package.MyClass)
-[Link to the foo property](package.MyClass.foo)</pre>
-
-<p>... in the example above we're targeting the location of the "foo" property in the "MyClass" HTML file. Again, the Documon website intercepts and interprets the ID's for you automatically.</p>
-
-<h3>External URL's</h3>
-
+<pre><code>[Link to My Class](package.MyClass)
+[Link to the foo property](package.MyClass.foo)
+</code></pre>
+<p>… in the example above we're targeting the location of the "foo" property in the "MyClass" HTML file. Again, the Documon website intercepts and interprets the ID's for you automatically.</p>
+<h3 id="externalurls">External URL's</h3>
 <p>And to link to external websites, just use a full URL:</p>
-
-<pre>[External Website Link](http://www.example.com)</pre>
-
-<h3>More Pages</h3>
-
+<pre><code>[External Website Link](http://www.example.com)
+</code></pre>
+<h3 id="morepages">More Pages</h3>
 <p>Each <a href="more.more_docs">"more" page</a> is provided a unique ID that is prefixed with "more". So you can link to these pages using the ID:</p>
-
-<pre>[See the About Page](more.about)</pre>
-
+<pre><code>[See the About Page](more.about)
+</code></pre>
 <p>Review the <a href="more.more_docs">"More Docs"</a> page for details on how the ID's are derived.</p>
-
-<p>&nbsp; <br>
-&nbsp; <br>
-&nbsp; <br>
+<p>&nbsp;
+&nbsp;
+&nbsp;
 170906</p></div>
 		</div>
 

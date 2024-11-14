@@ -1,22 +1,22 @@
 {
 	"line": 4,
 	"name": "Iaudio",
-	"shortText": "audio.Iaudio",
-	"shortHtml": "<p>audio.Iaudio</p>",
-	"text": "audio.Iaudio",
-	"html": "<p>audio.Iaudio</p>",
+	"shortText": "Iaudio",
+	"shortHtml": "<p>Iaudio</p>",
+	"text": "Iaudio",
+	"html": "<p>Iaudio</p>",
 	"entity": "class",
-	"flagSearchText": " audio.Iaudio example",
-	"package": "example",
+	"flagSearchText": " Iaudio example.audio",
+	"package": "example.audio",
 	"file": "documon/example/audio/Iaudio.js",
 	"filename": "Iaudio.js",
 	"klass": "Iaudio",
-	"docfile": "example.Iaudio.html",
-	"id": "example.Iaudio",
+	"docfile": "example.audio.Iaudio.html",
+	"id": "example.audio.Iaudio",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.Iaudio": "Iaudio : audio Iaudioaudio Iaudio example"
+		"example.audio.Iaudio": "Iaudio : Iaudio example audio"
 	}
 }

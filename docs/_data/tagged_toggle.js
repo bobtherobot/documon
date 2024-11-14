@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "controls.toggle",
-	"shortText": "ui.controls.toggle",
-	"shortHtml": "<p>ui.controls.toggle</p>",
-	"text": "ui.controls.toggle",
-	"html": "<p>ui.controls.toggle</p>",
+	"name": "toggle",
+	"shortText": "toggle",
+	"shortHtml": "<p>toggle</p>",
+	"text": "toggle",
+	"html": "<p>toggle</p>",
 	"entity": "class",
-	"flagSearchText": " ui.controls.toggle example",
-	"package": "example",
+	"flagSearchText": " toggle example.ui.controls",
+	"package": "example.ui.controls",
 	"file": "documon/example/ui/controls/toggle.js",
 	"filename": "toggle.js",
-	"klass": "controls.toggle",
-	"docfile": "example.controls.toggle.html",
-	"id": "example.controls.toggle",
+	"klass": "toggle",
+	"docfile": "example.ui.controls.toggle.html",
+	"id": "example.ui.controls.toggle",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.controls.toggle": "controls.toggle : controls togglecontrols toggle example"
+		"example.ui.controls.toggle": "toggle : toggle example controls"
 	}
 }

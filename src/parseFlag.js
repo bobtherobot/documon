@@ -211,7 +211,10 @@ function processName(name, obj, output) {
     if (name.indexOf("=") > -1) {
         var Aname = name.split("=");
         name = Aname.shift();
-        obj.defaultVal = Aname.join("=").trim().replace(/^["'](.*)["']$/g, '$1'); // strip surrounding quotes
+        
+        //obj.defaultVal = Aname.join("=").trim().replace(/^["'](.*)["']$/g, '$1'); // strip surrounding quotes
+        obj.defaultVal = Aname.join("=").trim().replace(/("|'|\[|\])/g, ''); // strip quotes and brackets
+
     }
 
     // See if optional
@@ -370,7 +373,7 @@ function parseFlag(line, output) {
                             // 	= "foo" description here
                             // 	
                             // So just chop off the = sign
-                            line = line.substr(1).trim();
+                            line = line.substring(1).trim();
 
                             // ... and grab the first word, which is the value. (same "var first..." above)
                             var val = line.match(/^(.*?)(?:\s|$)/)[1];
@@ -407,7 +410,7 @@ function parseFlag(line, output) {
             if (line) {
 
                 if (line.charAt(0) == "-") {
-                    line = line.substr(1).trim();
+                    line = line.substring(1).trim();
                 }
 
                 obj.text = line;

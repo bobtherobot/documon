@@ -793,8 +793,8 @@ module.exports = (function() {
 		/*
 		if(str){
     		if( str.charAt(0) == "\n" ){
-    			return str.substr(1);
-	    		//return doMarkdown( str.substr(1) );
+    			return str.substring(1);
+	    		//return doMarkdown( str.substring(1) );
 	    	}
     	}
     	*/

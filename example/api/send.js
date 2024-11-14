@@ -1,4 +1,4 @@
 /**
- * @class api.send
- * @package example
+ * @method send
+ * @package example.api
  */

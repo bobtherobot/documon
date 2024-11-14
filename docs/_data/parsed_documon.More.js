@@ -43,7 +43,7 @@
 						"after": "{object}    [params.moreQuirkDelimiter=\".\"] \t- Set's the [quirkDelimiter](#quirkDelimiter).",
 						"type": "object",
 						"afterType": "[params.moreQuirkDelimiter=\".\"] \t- Set's the [quirkDelimiter](#quirkDelimiter).",
-						"defaultVal": "\".\"]",
+						"defaultVal": ".",
 						"optional": true,
 						"parent": "params",
 						"name": "moreQuirkDelimiter",
@@ -133,8 +133,8 @@
 	},
 	{
 		"text": "",
-		"start": 42,
-		"end": 45,
+		"start": 43,
+		"end": 46,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -157,8 +157,8 @@
 	},
 	{
 		"text": "",
-		"start": 49,
-		"end": 52,
+		"start": 50,
+		"end": 53,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -181,8 +181,8 @@
 	},
 	{
 		"text": "",
-		"start": 57,
-		"end": 59,
+		"start": 58,
+		"end": 60,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -200,8 +200,8 @@
 	},
 	{
 		"text": "",
-		"start": 62,
-		"end": 65,
+		"start": 63,
+		"end": 66,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -224,8 +224,8 @@
 	},
 	{
 		"text": "",
-		"start": 68,
-		"end": 71,
+		"start": 69,
+		"end": 72,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -248,8 +248,8 @@
 	},
 	{
 		"text": "Opens, catalogs and builds a new page from the provided file path.\n",
-		"start": 76,
-		"end": 96,
+		"start": 77,
+		"end": 97,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -298,8 +298,8 @@
 	},
 	{
 		"text": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.\n",
-		"start": 183,
-		"end": 190,
+		"start": 184,
+		"end": 191,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -350,8 +350,8 @@
 	},
 	{
 		"text": "splits the numbering off of eight filename and returns the filename with out numbering\n",
-		"start": 196,
-		"end": 203,
+		"start": 197,
+		"end": 204,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -402,8 +402,8 @@
 	},
 	{
 		"text": "A safe replacement for standard JSON parsing that mitigates errors.\n",
-		"start": 231,
-		"end": 237,
+		"start": 232,
+		"end": 238,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{
@@ -442,8 +442,8 @@
 	},
 	{
 		"text": "See class description.\n",
-		"start": 250,
-		"end": 253,
+		"start": 251,
+		"end": 254,
 		"file": "/Volumes/Drives/projects/documon/documon/src/more.js",
 		"flags": [
 			{

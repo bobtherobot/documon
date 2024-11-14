@@ -1,4 +1,4 @@
 /**
- * @class audio.write.rif
- * @package example
+ * @class rif
+ * @package example.audio.write
  */

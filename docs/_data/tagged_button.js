@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "controls.button",
-	"shortText": "ui.controls.button",
-	"shortHtml": "<p>ui.controls.button</p>",
-	"text": "ui.controls.button",
-	"html": "<p>ui.controls.button</p>",
+	"name": "button",
+	"shortText": "button",
+	"shortHtml": "<p>button</p>",
+	"text": "button",
+	"html": "<p>button</p>",
 	"entity": "class",
-	"flagSearchText": " ui.controls.button example",
-	"package": "example",
+	"flagSearchText": " button example.ui.controls",
+	"package": "example.ui.controls",
 	"file": "documon/example/ui/controls/button.js",
 	"filename": "button.js",
-	"klass": "controls.button",
-	"docfile": "example.controls.button.html",
-	"id": "example.controls.button",
+	"klass": "button",
+	"docfile": "example.ui.controls.button.html",
+	"id": "example.ui.controls.button",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.controls.button": "controls.button : controls buttoncontrols button example"
+		"example.ui.controls.button": "button : button example controls"
 	}
 }

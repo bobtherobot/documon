@@ -249,7 +249,7 @@
 				"after": "{boolean}  \t[andSelect=false]  \t\t- Should the item be highlighted?",
 				"type": "boolean",
 				"afterType": "[andSelect=false]  \t\t- Should the item be highlighted?",
-				"defaultVal": "false]",
+				"defaultVal": "false",
 				"optional": true,
 				"name": "andSelect",
 				"text": "Should the item be highlighted?"
@@ -260,7 +260,7 @@
 				"after": "{boolean}  \t[scrollIntoView=false]  - Should the menu scroll to show the item?",
 				"type": "boolean",
 				"afterType": "[scrollIntoView=false]  - Should the menu scroll to show the item?",
-				"defaultVal": "false]",
+				"defaultVal": "false",
 				"optional": true,
 				"name": "scrollIntoView",
 				"text": "Should the menu scroll to show the item?"

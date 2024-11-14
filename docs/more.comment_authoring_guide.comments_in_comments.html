@@ -55,26 +55,20 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><h1>Comments in comments</h1>
-
+			<div class="more"><h1 id="commentsincomments">Comments in comments</h1>
 <p>To include /* style comments in your comments, HTML-entity-ize the slash:</p>
-
 <p>For example to render this:</p>
-
-<pre>/**
+<pre><code>&amp;#47;**
 Something for B
 @method something
-*/</pre>
-
-<p>... you would write:</p>
-
-<p>&amp;#47;** <br>
-Something for B <br>
-@method something <br>
+*&amp;#47;
+</code></pre>
+<p>… you would write:</p>
+<p>&amp;#47;**
+Something for B
+@method something
 *&amp;#47;</p>
-
-<p>... because we are HTML encoding the "/" as "&amp;#47;"</p>
-
+<p>… because we are HTML encoding the "/" as "&amp;#47;"</p>
 <p>NOTE: It was super tricky to write this explaination, that's why the above is not in a code-block.</p></div>
 		</div>
 

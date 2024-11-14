@@ -38,7 +38,7 @@
 				"after": "{string} [beginDoc=\"&#47;**\"] - The string is used to \"open\" a comment.",
 				"type": "string",
 				"afterType": "[beginDoc=\"&#47;**\"] - The string is used to \"open\" a comment.",
-				"defaultVal": "\"&#47;**\"]",
+				"defaultVal": "&#47;**",
 				"optional": true,
 				"name": "beginDoc",
 				"text": "The string is used to \"open\" a comment."
@@ -49,7 +49,7 @@
 				"after": "{string} [endDoc=\"*&#47;\"] - The string is used to \"close\" a comment.",
 				"type": "string",
 				"afterType": "[endDoc=\"*&#47;\"] - The string is used to \"close\" a comment.",
-				"defaultVal": "\"*&#47;\"]",
+				"defaultVal": "*&#47;",
 				"optional": true,
 				"name": "endDoc",
 				"text": "The string is used to \"close\" a comment."

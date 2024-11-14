@@ -1,22 +1,30 @@
 {
-	"line": 4,
-	"name": "send",
-	"shortText": "api.send",
-	"shortHtml": "<p>api.send</p>",
-	"text": "api.send",
-	"html": "<p>api.send</p>",
-	"entity": "class",
-	"flagSearchText": " api.send example",
-	"package": "example",
 	"file": "documon/example/api/send.js",
 	"filename": "send.js",
-	"klass": "send",
-	"docfile": "example.send.html",
-	"id": "example.send",
+	"package": "example.api",
+	"docfile": "example.api.html",
+	"id": "example.api",
+	"methods": [
+		{
+			"line": 4,
+			"name": "send",
+			"shortText": "send",
+			"shortHtml": "<p>send</p>",
+			"text": "send",
+			"html": "<p>send</p>",
+			"entity": "method",
+			"flagSearchText": " send example.api",
+			"package": "example.api",
+			"file": "documon/example/api/send.js",
+			"filename": "send.js",
+			"docfile": "example.api.html",
+			"id": "example.api.send"
+		}
+	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.send": "send : send example"
+		"example.api.send": "send : send example"
 	}
 }

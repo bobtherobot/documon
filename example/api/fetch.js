@@ -1,4 +1,4 @@
 /**
- * @class api.fetch
- * @package example
+ * @method fetch
+ * @package example.api
  */

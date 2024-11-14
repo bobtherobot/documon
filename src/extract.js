@@ -141,7 +141,8 @@ module.exports = function(text, beginDoc, endDoc) {
                 	data : section.join('\n')
                 });
             } else {
-                substr = line.substr(depth);
+                //substr = line.substr(depth);
+                substr = line.substring(depth);
                 search = substr.match(re_lead);
                 if( search ){
                 	substr = substr.replace(re_lead, "")

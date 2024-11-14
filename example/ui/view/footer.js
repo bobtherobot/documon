@@ -1,4 +1,4 @@
 /**
- * @class ui.view.footer
- * @package example
+ * @class footer
+ * @package example.ui.view
  */

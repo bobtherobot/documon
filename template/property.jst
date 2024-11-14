@@ -28,11 +28,11 @@ function makeList(list, title, partKind, useShortText){
 				    	${writeTitle}
 				    	
 				    	<div class="member">
-					    	<table>
+                            <div class="member-block-group">
 
 							    ${str}
 
-							</table>
+							</div>
 						</div>
 				
 					</div>
@@ -155,31 +155,28 @@ function makeItem(item, partKind, useShortText){
 
 	
 	return `
-							
-							<tr ${access} ${inherets}>
+                            <div class="member-block" ${access} ${inherets}>
+                            
+                                <div class="member-block-left">
+                                    ${anchor}
+                                    <span class="member-name">${name}${methodArgs}</span>
+                                    
+                                </div>
 
-						    	<td>
-						    		${anchor}
-						        	<span class="member-name">${name}${methodArgs}</span>
-						        </td>
-						        <td>
-						        	<div class="param-meta clearfix">
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                ${line}
+                                </span>
+                                    <div class="param-description">
+                                        ${type}
+                                        ${Tflags(item, partKind)}
+                                        ${defaultVal}
+                                        ${descCell}
+                                    </div>
+                                </div>
 
-						        		<span class="member-name-left">
-								    		${defaultVal}${type}
-								    	</span>
-										<span class="member-name-right">
-								    		${Tflags(item, partKind)}
-								    		
-								    		${line}
-								    	</span>
 
-						        	</div>
-						        	<div class="param-description">
-						        		${descCell}
-						        	</div>
-						        </td>
-						    </tr>
+                            </div>
 				    `;
 
 }

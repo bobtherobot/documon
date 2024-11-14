@@ -4,7 +4,7 @@
 	"shortText": "Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".",
 	"shortHtml": "<p>Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".</p>",
 	"text": "\nTakes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".\n\nConstructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output \"out/_menuData.js\" file, which is formatted for and picked up by the \"MenuTree.js\" on the index.html page.\n\n",
-	"html": "<p>Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".</p>\n\n<p>Constructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output \"out/_menuData.js\" file, which is formatted for and picked up by the \"MenuTree.js\" on the index.html page.</p>",
+	"html": "<p>Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".</p>\n<p>Constructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output \"out/_menuData.js\" file, which is formatted for and picked up by the \"MenuTree.js\" on the index.html page.</p>",
 	"entity": "class",
 	"flagSearchText": " menuBuilder documon \n",
 	"package": "documon",
@@ -21,7 +21,7 @@
 			"shortText": "Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).",
 			"shortHtml": "<p>Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).</p>",
 			"text": "Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).\n\nFor example, the provided context will take the form of:\n\n\t\tcontext : {\n\t\t\tclasses \t: [ a, b, c ]\n\t\t\tproperties \t: [ a, b, c ]\n\t\t\tetc\n\t\t}\n\nIf the array exists, we build out that major kind as a section\n\nBuilds the context's major sections into the target array (kds)\n\n",
-			"html": "<p>Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).</p>\n\n<p>For example, the provided context will take the form of:</p>\n\n<pre class=\"prettyprint\">    context : {\n        classes     : [ a, b, c ]\n        properties  : [ a, b, c ]\n        etc\n    }</pre>\n\n<p>If the array exists, we build out that major kind as a section</p>\n\n<p>Builds the context's major sections into the target array (kds)</p>",
+			"html": "<p>Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).</p>\n<p>For example, the provided context will take the form of:</p>\n<pre><code>    context : {\n        classes     : [ a, b, c ]\n        properties  : [ a, b, c ]\n        etc\n    }\n</code></pre>\n<p>If the array exists, we build out that major kind as a section</p>\n<p>Builds the context's major sections into the target array (kds)</p>",
 			"entity": "method",
 			"flagSearchText": " buildSections The parsed documentation object. The array to put any childeren into.\n description",
 			"access": "private",
@@ -58,7 +58,7 @@
 			"id": "documon.menuBuilder.buildSections"
 		},
 		{
-			"line": 66,
+			"line": 108,
 			"name": "hasAnyPart",
 			"shortText": "Checks to see if a major type exists.",
 			"shortHtml": "<p>Checks to see if a major type exists.</p>",
@@ -92,7 +92,7 @@
 			"id": "documon.menuBuilder.hasAnyPart"
 		},
 		{
-			"line": 164,
+			"line": 217,
 			"name": "render",
 			"shortText": "The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh \"window\" scope. So they just dnagle out there on the tree.",
 			"shortHtml": "<p>The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh \"window\" scope. So they just dnagle out there on the tree.</p>",
@@ -125,7 +125,7 @@
 			"id": "documon.menuBuilder.render"
 		},
 		{
-			"line": 96,
+			"line": 138,
 			"name": "section",
 			"shortText": "Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.",
 			"shortHtml": "<p>Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.</p>",
@@ -155,7 +155,7 @@
 			"returns": {
 				"type": "type",
 				"text": "A simplified (meta-only) object that represents the provided context.\n\nExample of returned \n\t\t{\n\t\t\t\"id\": \"packageName.className-propMethodEventEtcName\",\n\t\t\t\"url\": \"packageName.className.html#propMethodEventEtcName\",\n\t\t\t\"label\": \"propMethodEventEtcName\",\n\t\t\t\"kind\": \"propMethodEvent\",\n\t\t\t\"children\": [ ] <-- only added when needed\n\t\t}",
-				"html": "<p>A simplified (meta-only) object that represents the provided context.</p>\n\n<p>Example of returned  <br>\n        { <br>\n            \"id\": \"packageName.className-propMethodEventEtcName\", <br>\n            \"url\": \"packageName.className.html#propMethodEventEtcName\", <br>\n            \"label\": \"propMethodEventEtcName\", <br>\n            \"kind\": \"propMethodEvent\", <br>\n            \"children\": [ ] &lt;-- only added when needed <br>\n        }</p>",
+				"html": "<p>A simplified (meta-only) object that represents the provided context.</p>\n<p>Example of returned \n        {\n            \"id\": \"packageName.className-propMethodEventEtcName\",\n            \"url\": \"packageName.className.html#propMethodEventEtcName\",\n            \"label\": \"propMethodEventEtcName\",\n            \"kind\": \"propMethodEvent\",\n            \"children\": [ ] &lt;-- only added when needed\n        }</p>",
 				"shortText": "<p>A simplified (meta-only) object that represents the provided context.</p>",
 				"shortHtml": "<p>A simplified (meta-only) object that represents the provided context.</p>"
 			},
@@ -169,7 +169,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
 		"documon.menuBuilder": "menuBuilder : Takes source context object which contains entire resolved documentation data extracts meta data refactors organizes into object formatted MenuTree Constructs multi dimensional object array that represents menu tree ultimately resulting output menuData file which formatted picked MenuTree index html pagemenuBuilder documon",
 		"documon.menuBuilder.buildSections": "buildSections : Checks provided context array items exists associated major kind sections packages classes property events methods example provided context will take form context classes properties array exists build that major kind section Builds context major sections into target arraybuildSections parsed documentation object array childeren into description",

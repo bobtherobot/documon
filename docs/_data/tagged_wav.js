@@ -1,22 +1,22 @@
 {
 	"line": 4,
-	"name": "read.formats.wav",
-	"shortText": "audio.read.formats.wav",
-	"shortHtml": "<p>audio.read.formats.wav</p>",
-	"text": "audio.read.formats.wav",
-	"html": "<p>audio.read.formats.wav</p>",
+	"name": "wav",
+	"shortText": "wav",
+	"shortHtml": "<p>wav</p>",
+	"text": "wav",
+	"html": "<p>wav</p>",
 	"entity": "class",
-	"flagSearchText": " audio.read.formats.wav example",
-	"package": "example",
+	"flagSearchText": " wav example.audio.read.formats",
+	"package": "example.audio.read.formats",
 	"file": "documon/example/audio/read/formats/wav.js",
 	"filename": "wav.js",
-	"klass": "read.formats.wav",
-	"docfile": "example.read.formats.wav.html",
-	"id": "example.read.formats.wav",
+	"klass": "wav",
+	"docfile": "example.audio.read.formats.wav.html",
+	"id": "example.audio.read.formats.wav",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "0.0.1",
+	"projectVersion": "2.0.0",
 	"search": {
-		"example.read.formats.wav": "read.formats.wav : audio read formatsaudio read formats example"
+		"example.audio.read.formats.wav": "wav : example audio read formats"
 	}
 }

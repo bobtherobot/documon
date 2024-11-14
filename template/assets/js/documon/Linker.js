@@ -24,10 +24,10 @@ this.documon.Linker = (function(){
 	        } else {
 		        if(href.charAt(0) != "#"){
 		        	e.preventDefault();
-		        	if(href.substr(0, 4) == 'more'){
+		        	if(href.slice(0, 4) == 'more'){
 		        		href = href.toLowerCase();
 		        	}
-		        	console.log("href", href, href.substr(0, 4));
+		        	console.log("href", href, href.slice(0, 4));
 		        	gieson.MenuTree.openById(href, true, true);
 		        }
 
