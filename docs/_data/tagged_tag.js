@@ -118,7 +118,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.tag": "tag : Processes following flags property package namespace property method event class module private protected static public readonly overrides impliments extends inherits constructor example param return returns type order optional header defaultVal default requires Fills flags object Source Item manufactured from parseFlag parseFlag class generally provided many methods item argument they contain following fields Source Item source Entire first line inlcuding flag only first line after Everything after flag name word following type first word after flag definition when type children name Array children parent child this parent flag flag token with stripped defaultVal name afterType first line after text",
 		"documon.tag.processOne": "processOne : processOne source item parsed from comments object containing flag data",

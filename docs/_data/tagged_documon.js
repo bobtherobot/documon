@@ -495,7 +495,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.documon": "documon : main entry point processor Documon which allows Documon directly from Nodedocumon documon myDocumon require path documon documon myDocumon files path",
 		"documon.documon.writeData": "writeData : Simplify file write text jsonwriteData path save string save Whether data should serialized JSON",

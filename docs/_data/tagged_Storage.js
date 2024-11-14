@@ -84,7 +84,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"gieson.Storage": "Storage : convienence methods localStorageStorage gieson",
 		"gieson.Storage.setStore": "setStore : Stores data store string number boolean objectssetStore name thing store this later actual thing store",

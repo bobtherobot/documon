@@ -370,7 +370,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.More": "More : Discovers parses converts markdown HTML injects menu with more docs Processes more markdown folder Building menu reflect more folder directory structure Translates markdown into HTMLMore documon primary documon configuration documon mainConf documon documon mainConf which should contain menu parsed source code documentation merge into more menu searchData local documon documon documon function generated seeder documon documon seeder include more docs searching Serves purposes when returning undefined notifies callee that there aren more docs Otherwise modified menu return with original sourceDocsMenu either tacked onto more menu incorporated into more menu DOCS HERE injection point",
 		"documon.More.newItem": "newItem : Opens catalogs builds page from provided file pathnewItem path markdown file Process folder object containing structured data originally provided label Cleaned numbering filename name same label page template needs name property kind class used icon amFolder more folder more file amFolder folder basepath parent folder parentID parent more children Folders have children array",

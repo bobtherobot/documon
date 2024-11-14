@@ -40,7 +40,7 @@
 	"id": "documon.parseFlags",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.parseFlags": "parseFlags : Fills output object with following properties they exist object source Entire first line inlcuding flag only first line after Everything after flag name word following type first word after flag definition when type children name Array children parent child this parent flag flag token with stripped defaultVal name afterType first line after text Here expanded exmple definition list source entire comment block after Everything after flag token kinda like source source entire comment block after Everything after flag token kinda like source this linedescr after yields type name descr name first word following type definition first word after flag definition children name written then parent child Future processing fills array forming heirarchy parent parent flag child This property only exists children flags defaultVal When name then default value will Note that quotes stripped sets default property without quotes name property flag flag kind stripped afterType Everything after type definition flag type name descr yields name descr text description paramter Note that additional description text provided below flag flag type name description more description below flag here parseFlags documon"
 	}

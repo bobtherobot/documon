@@ -183,7 +183,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.Access": "Access : Toggles member parts inheritance private public protected menu pages This class serves dual purpose loaded main index html page well individual pages that loaded into main page Since individual pages loaded iframes messaging system communicate between index content pagesAccess documon",
 		"documon.Access.applyAccess": "applyAccess : Applies access current page When showQuery hideQuery provided then these will used apply access when provided previous values will used Generallly index page defines showQuery hideQuery values checkbox actions content pages rely sending arguments function apply access pageapplyAccess string selector querySelectorAll hideQuery",

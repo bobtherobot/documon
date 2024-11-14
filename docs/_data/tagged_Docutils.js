@@ -56,7 +56,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"root.sort_by": "sort_by : sort field FunctionExpression"
 	}

@@ -52,7 +52,7 @@
 	"id": "documon.extract",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.extract": "extract : Extracts comments from file into array mulit dementional array when text contains mulitple package namepsace definitions Each entry returned array will object containing properties start line number that comment started line number that comment ended data contents comment myComments extract yields start data descript start data descript things note data will include beginDoc endDoc strings Comment prefixing stripped star space tabs spaces Code blocks maintain indentation Splitting package namespace When single file contains mulitple references package namespace comments will split into multiple arrays treating single source file being mulitple files Split Example Class package this designates page Something method something Class package this designates page Something method something myComments extract yields first page start data Class start data Something second page start data Class start data Somethingextract documon entire file string string used open comment string used close comment array comments multi dimentional array page comments"
 	}

@@ -15,7 +15,7 @@
 	"id": "example.ui.controls.select",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"example.ui.controls.select": "select : select example controls"
 	}

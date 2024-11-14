@@ -795,7 +795,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"root.Draggable": "Draggable : Makes Element draggable NOTE This stand alone implementation jbeeb utils Draggable class used jbeeb objects Whereas this class used element outside jbeebDraggable Configuration settings myDrag documon Draggable target callback constrain constrainRect threshold",
 		"root.Draggable.setX": "setX : Shortcut style positionsetX element move position pixels",

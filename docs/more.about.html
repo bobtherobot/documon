@@ -58,17 +58,21 @@
 			<div class="more"><h1 id="documon">Documon</h1>
 <p>A documentation system for mortals. Use with any language.</p>
 <p>Generates a static, searchable JSDoc style documentation from source code. Uses a customizable template system, and will process a markdown folder (aka "more" folder) where auxiliary documentation (outside of source code) can reside.</p>
-<p>Since documon doesn't infer anything from the source code (all methods and arguments must be tagged manually), you maintain full control over the final output structure. And can be used for any programming language.</p>
+<p>Since documon doesn't infer anything from the source code (all methods and arguments must be tagged manually), you maintain full control over the final output structure.</p>
+<p>Run from CLI, or integrate into node project.</p>
 <h2 id="full-documentation">Full Documentation</h2>
 <p>See full documentation at:<br />
-<a href="http://www.documon.net">http://www.documon.net</a> </p>
-<p><img src="http://www.documon.net/assets/screenshot1.jpg" alt="" /></p>
+<a href="https://www.documon.net">https://www.documon.net</a> </p>
+<p><img src="https://www.documon.net/assets/screenshot1.jpg" alt="" /></p>
 <h2 id="get-it">Get It</h2>
-<p>Install via NPM:</p>
-<pre><code>npm install documon</code></pre>
-<p>Or <a href="http://www.documon.net/downloads/documon.zip">&#x02186; download Documon</a> directly and use it "stand alone" (via Node).</p>
+<p>NPM: <a href="https://www.npmjs.com/package/documon">https://www.npmjs.com/package/documon</a></p>
+<p>Github: <a href="https://github.com/bobtherobot/documon">https://github.com/bobtherobot/documon</a></p>
+<p>Directly: <a href="https://www.documon.net">https://www.documon.net</a>  (as "stand alone" )</p>
 <h3 id="quick-start">Quick Start</h3>
 <p><strong>In Node (javascript)</strong></p>
+<p>Install via NPM:</p>
+<pre><code>npm install documon</code></pre>
+<p>Generate Docs:</p>
 <pre><code>var docs = require("documon");
 doc({
     src            : "/path/to/src/code",
@@ -87,7 +91,8 @@ doc({
     gati         : 'UA-106684927-1'
 });</code></pre>
 <p><strong>From CLI</strong></p>
-<pre><code>node /path/to/documon/index.js "/path/to/source" "/path/to/destination"</code></pre>
+<p>Generate docs:</p>
+<pre><code>node /path/to/documon/index.js "/path/to/source/code" "/path/to/destination"</code></pre>
 <h3 id="benefits">Benefits</h3>
 <p>Comment tags are soley responsible for organizing the resulting heirarchy (inheritence and membership).</p>
 <ul>
@@ -119,14 +124,14 @@ doc({
 <li><a href="https://www.npmjs.com/package/documon">Documon on NPM</a></li>
 </ul>
 <h2 id="platforms">Platforms</h2>
-<p>Documon is written in Javascript and runs on the <a href="https://www.nodejs.com">Node</a> platform, which runs on Linux, Mac, and Windows systems. Documon can be installed using <a href="https://www.npmjs.com/documon">NPM</a>, or <a href="http://www.documon.net/downloads/documon.zip">&#x02186; downloaded directly</a>.</p>
+<p>Documon is written in Javascript and runs on the <a href="https://www.nodejs.com">Node</a> platform, which runs on Linux, Mac, and Windows systems. Documon can be installed using <a href="https://www.npmjs.com/documon">NPM</a>, or <a href="https://www.documon.net/downloads/documon.zip">&#x02186; downloaded directly</a>.</p>
 <h2 id="templates">Templates</h2>
 <p>Templating is handled through vanilla javascript modules, leveraging ES6's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">Template Literals</a>. This provides the highest level of flexability with zero-dependancies, unlimited logic constraints, and nothing new to learn.</p>
 <p>Of course, since templates are JS, you can always roll some other templating system, such as Twig, or Handlebars, into your custom template.</p>
 <h2 id="dependancies">Dependancies</h2>
 <p>Documon's only dependancy is Node, no additional modules are needed.</p>
 <h2 id="author--copyright">Author &amp; Copyright</h2>
-<p>Copyright &copy; <a href="http://www.gieson.com">Mike Gieson</a>. <br />
+<p>Copyright &copy; <a href="https://www.gieson.com">Mike Gieson</a>. <br />
 Released under the MIT license.</p>
 <p>.</p></div>
 		</div>

@@ -16,7 +16,7 @@
 	"id": "documon.mimimist",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.mimimist": "mimimist : localized version mimimist minimist dependancies processing arguments https github substack minimistmimimist documon"
 	}

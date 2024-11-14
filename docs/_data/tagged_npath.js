@@ -484,7 +484,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.npath": "npath : drop replacement path that provides cross playform normalization Easing development cross platform modules Essentially what doing processing methods with path normalization always enforcing forward slashesnpath documon",
 		"documon.npath.clean": "clean : Normalizes slashes converting double single based current platform requirements",

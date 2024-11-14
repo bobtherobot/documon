@@ -393,7 +393,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.0",
+	"projectVersion": "2.5.5",
 	"search": {
 		"documon.organizer": "organizer : Organizes parsed source code data into single object that takes following form organ There will always root node with absolute root root name root file root html docfile root html packages packages Classes included this package classes class methods properties events Loose stuff found this package methods properties events Independent classes that part package classes class methods properties events Loose stuff that part package class assumed accessible this javascript would window scope methods properties events source code hangs root node organized according relationship package class This organizer initialized prior parsing source code each file parsed added organizer After source code finished parsing organizer wires cross references inheritanceorganizer documon",
 		"documon.organizer.init": "init : Initializes organ which object that inserting tagged data into also grabbing templates needed based location defined paramsinit configuration options sent user during documon mainConf documon mainConf keep refence here know where things Note that documon derives some additional properties onto object",
