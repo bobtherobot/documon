@@ -1,4 +1,0 @@
-/**
- * @class main
- * @package example
- */

@@ -107,6 +107,9 @@ Of course, since templates are JS, you can always roll some other templating sys
 Documon's only dependancy is Node, no additional modules are needed.
 
 ## Change Log
+v2.6.1 - 2026-03-17 @ 21:41:02
+- fixed fatal flaw in markdown.js, reference to require "showdown" needed local "./showdown.min.js"
+
 v2.5.5 - 2024-11-14 @ 12:31:42
 - updates
 
