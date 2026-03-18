@@ -1,5 +1,5 @@
 
-var showdown = require("showdown");
+var showdown = require("./showdown.min.js");
 
 
 

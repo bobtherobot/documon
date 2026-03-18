@@ -33,7 +33,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.5",
+	"projectVersion": "2.6.0",
 	"search": {
 		"documon.Main": "Main : main entry point initializing other classesMain documon",
 		"documon.Main.init": "init : Called DOMContentReady listener window once page fully loaded Initilizes MenuTree PageManager loads previously loaded pages"

@@ -33,7 +33,7 @@
 	"id": "documon.searchPrep",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.5",
+	"projectVersion": "2.6.0",
 	"search": {
 		"documon.searchPrep": "searchPrep : Clean text only alpha numeric characters strips newlines tabs single word results ignored Used root documon more root documon moresearchPrep documon text clean text"
 	}

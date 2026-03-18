@@ -15,7 +15,7 @@
 	"id": "documon.info",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.5",
+	"projectVersion": "2.6.0",
 	"search": {
 		"documon.info": "info : place store text heavy data copyright usage informationinfo documon"
 	}

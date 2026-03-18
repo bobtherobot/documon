@@ -245,7 +245,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.5",
+	"projectVersion": "2.6.0",
 	"search": {
 		"documon.fileutils": "fileutils : Basic common simplified asyncronous file methodsdocumon fileutils",
 		"documon.fileutils.copy": "copy : Copies file from location anothercopy source file path destination copy source",

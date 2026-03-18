@@ -1,6 +1,6 @@
 {
   "name": "documon",
-  "version": "2.5.5",
+  "version": "2.6.0",
   "description": "A documentation system for mortals. Use with any language.",
   "main": "index.js",
   "directories": {

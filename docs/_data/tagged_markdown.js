@@ -74,7 +74,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.5.5",
+	"projectVersion": "2.6.0",
 	"search": {
 		"root.definitionLists": "definitionLists : Find convert markdown extra definition lists into htmldefinitionLists description description",
 		"root.processDefListItems": "processDefListItems : Process contents single definition list splitting into individual term definition list itemsprocessDefListItems description description"
