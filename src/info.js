@@ -12,71 +12,89 @@ www.documon.net
  */
 
 var copyright = `
-Documon - version 2.0 - Copyright Mike Gieson. www.documon.net
+Documon - v${require("../package.json").version} - Copyright Mike Gieson. www.documon.net
 `;
 
 var usage = `
 ----------------
-CLI Arguments
+Documon -- CLI
 ----------------
 
-First and second arguments are reserved for input/output paths, flags trail.
-index.js [source] [output] [flags]
+Generates static, searchable documentation from source-code comments.
+Documon infers nothing from your code: structure comes only from the tags you write.
+Tag reference: TAGS.md (shipped with the package) or https://www.documon.net
 
-Example:
-index.js /path/to/source /path/to/output/folder -v 1.0
+USAGE
+  documon [source] [output] [flags]
+  documon --check [flags]
 
-Explicitely set input/output paths
- -i Input source file, or folder containing source files.
- -o Output path.
+  First and second positional arguments are the input/output paths; flags trail.
 
-Optional arguments
- -n Name of your project / docs 
-        (displayed on the home page)
- -v Version of your project / docs
-        (displayed on the home page)
- -t Template folder path
- -g A comma seperated list of files to ignore.
- -l Launch docs in browser when done 
-        (default: false)
- -q Quit - don't print activity to the console (non-verbose). 
-        (default: true)
- -e Extension(s) to parse. Space delimit multiple extensions,  
-        (e.g. -s "js jsx php")
-        (default: js)
- -d Dumps intermediary data into the "docs/_data" folder. 
-        (default: false)
- -m More docs folder containing additional documentation.
- -a Comment begin string
- -z Comment end string
- -x Index shortcut name 
- 		(default: __LAUNCH.html)
- -q More quirk delimiter. The character(s) use to seperate the "more" page numbering system from page titles.
- -y Google Analytics Tracking ID. If present pages will include tracking code.
+PATHS
+ -i, --src                 Input source file, or folder containing source files.
+ -o, --out                 Output path. Created automatically if missing.
+ -t, --template            Template folder path.
+ -m, --more                "More docs" folder of additional markdown.
+     --config              Path to a config file. When omitted, Documon looks for
+                           documon.json, documon.config.json, .documonrc, or a
+                           "documon" key in package.json, walking up from the cwd.
 
-----------------
-Examples
-----------------
+PROJECT
+ -n, --name                Name of your project (shown on the home page).
+ -v, --version             Version of your project (shown on the home page).
+     --description         One-line project description (meta tags + llms.txt).
+     --baseUrl             Public base URL, used to build absolute links in llms.txt.
 
-# Build a single file. Builds docs into the "path" folder 
-# at /path/docs <-- one level above the JS source location.
-node ./documon.js "/path/to/foo.js"
+PARSING
+ -e, --sourceExt           Extension(s) to parse, space delimited (e.g. -e "js jsx php").
+                           (default: js)
+ -g, --ignore              Semicolon delimited list of files/folders to skip.
+                           Substrings and simple globs both work.
+ -a, --docBegin            Comment begin string. (default: /**)
+ -z, --docEnd              Comment end string.   (default: */)
 
-# Builds docs from a folder. Builds docs into the "src" 
-# folder at src/docs
-node ./documon.js "/src/path"
+OUTPUT
+ -l, --launch              Launch docs in the browser when done. (default: false)
+ -p, --print               Print activity to the console. (default: false)
+ -d, --dumpData            Dump intermediary data into the "docs/_data" folder.
+ -x, --indexShortcutName   Index shortcut name. (default: __LAUNCH.html)
+ -q, --moreQuirkDelimiter  Separator between "more" page numbering and the title.
+ -y, --gati                Google Analytics Tracking ID.
+     --no-emitLlms         Skip writing llms.txt / llms-full.txt.
+     --no-emitModel        Skip writing model.json.
 
-# Specify output folder. Builds into docs folder at /output/path/docs
-node ./documon.js "/src/path" "/output/path"
+VALIDATE
+     --check               Validate comments and exit. Writes nothing.
+     --coverage            With --check, also report symbols that have no doc block.
+     --strict              With --check, treat warnings as failures.
+     --json                Emit machine-readable JSON instead of prose.
+                           Works with --check and with a normal build.
 
-# Specify template folder and version
-node ./documon.js "/src/path" "/output/path" -t "/template/path" -v 1.0
+OTHER
+ -h, --help                This text.
+     --version             Print the Documon version.
 
-# Explicitly set input/output, template folder and version
-node ./documon.js -i "/src/path" -o "/output/path" -t "/template/path" -v 1.0
+EXIT CODES
+  0  success
+  1  configuration error (nothing was built)
+  2  --check found problems
 
-# Set the type of source files to parse
-node ./documon.js "/src/path" -e "h m cpp"
+EXAMPLES
+
+  # Build a folder of sources into ./docs
+  documon ./src ./
+
+  # Name and version the project, and print progress
+  documon -i ./src -o ./ -n "My Project" -v 1.0 -p
+
+  # Parse something other than JavaScript
+  documon ./src -e "h m cpp"
+
+  # Validate before building, machine-readable
+  documon --check --json -i ./src
+
+  # Validate strictly, including undocumented symbols
+  documon --check --strict --coverage -i ./src
 
 `;
 

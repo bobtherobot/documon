@@ -42,6 +42,8 @@ var tag = require('./tag');
 var organizer = require('./organizer');
 var menuBuilder = require('./menuBuilder');
 var more = require('./more');
+var ignoreModule = require('./ignore');
+var llms = require('./llms');
 //var minimatch = require("minimatch");
 
 // We'll require these dynamically because the user may have defined some other template folder.
@@ -96,19 +98,17 @@ var extensions;
  * 	Configuration will concat this list with the user provied list.
  */
 
-// -------- NO GLOB ---------------
-// Not using globs but would like to, but the overhead for incorporating:
-//var minimatch = require("minimatch");
-// ... i feel is too expensive for what it's worth? Probably change if anyone actually ever uses this.
-// See shouldIgnore where we could use glob.
-// ---------------------------
-// Glob examples from: https://buckbuild.com/function/glob.html
-// '**/.*'		- All of the files starting with '.' under a regular (non-dot) directory:
-// '.git/**/'	- All of the regular files under the directory '.git':
-// '**/*.java'	- All of the regular .java files under this directory:
-//var ignoreList = ['**/.*', '.git/**/', 'node_modules'];
-//var ignoreList = ['\\/\\.', '\\.git', 'node_modules'];
-var ignoreList = ['**/.*', '.git/**/', 'node_modules'];
+// Ignore handling lives in src/ignore.js, shared with --check so the builder and the
+// validator always agree on which files are part of the project. Simple globs
+// ("*.test.js", "src/**/tmp") are translated there, so the old "no glob" caveat no
+// longer applies.
+var ignoreList = [];
+
+/**
+ * @property {object} matcher - The compiled ignore matcher, built during init from the
+ * default patterns plus whatever the caller supplied.
+ */
+var matcher = null;
 
 /**
  * @property  {boolean} quiet=false - Supress stdout messages.
@@ -239,7 +239,11 @@ function init(conf){
 		docsDirName			: conf.docsDirName,
 		moreFolder			: conf.more,
 		indexShortcutName	: conf.indexShortcutName || indexRedirectName,
-		gati				: conf.gati
+		gati				: conf.gati,
+		projectDescription	: conf.description || "",
+		baseUrl				: conf.baseUrl || "",
+		emitLlms			: conf.emitLlms === false ? false : true,
+		emitModel			: conf.emitModel === false ? false : true
 	}
 
 
@@ -427,18 +431,14 @@ function init(conf){
 	// Ignore list (used by shouldIgnore, a globalist function.
 	// - Kinda want to do this at the end so we can ignore folders we're writing to (in case we're writing into a place where source files exists).
 	// ---------------------------------------------
-	var ignore = mainConf.ignoreList;
-	if( ignore ){
-		if( typeof(ignore) == "string" ){
-			ignoreList.push(ignore);
-		} else {
-			ignoreList = ignoreList.concat(ignore);
-		}
-	}
+	matcher = ignoreModule.create( mainConf.ignoreList, [
+		  templateFolder
+		, mainConf.dataFolder
+		, mainConf.outputFolder
+	]);
 
-	ignoreList.push( templateFolder );
-	ignoreList.push( mainConf.dataFolder );
-	ignoreList.push( mainConf.outputFolder );
+	ignoreList = matcher.patterns;
+	mainConf.ignorePatterns = ignoreList;
 
 	// Weed out anything we need/want to ignore
 	var todoGlobber = [];
@@ -476,34 +476,16 @@ function init(conf){
 
 function shouldIgnore(item){
 
-	for(var g=0; g<ignoreList.length; g++){
-		var str = ignoreList[g];
-		if(str){
-
-			// some regex-y strings caould freak out regex. eg. "*foo.js"
-			try {
-				var re = new RegExp(str, "gi");
-				if( re.test(item) ){
-
-				//if( ~item.indexOf( ignoreList[g] ) ){
-				//if( item.indexOf( ignoreList[g] ) === 0 ){
-				// For glob (if enabled) 
-				//if( minimatch( item, ignoreList[g] ) === 0 ){
-					return true;
-				}
-			} catch(e){
-				return false;
-			}
-
-			return false;
-			
-		}
-		
+	// Delegates to the shared matcher (src/ignore.js). The previous inline version
+	// returned false for every path -- see the notes in that module.
+	if( ! matcher ){
+		matcher = ignoreModule.create(null, null);
 	}
 
-	return false;
+	return matcher.test(item);
 
 }
+
 
 /**
  * Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).
@@ -623,6 +605,8 @@ function seeder(file){
  */
 
 function run(conf){
+
+	var result = null;
 
 	if(conf){
 
@@ -763,6 +747,15 @@ function run(conf){
 				fs.writeFileSync(outFolder + mainConf.indexShortcutName, TindexShortcut(page.ctx), 'utf8');
 				
 
+				// ------------------
+				// Machine-readable companions (llms.txt, llms-full.txt, model.json)
+				// ------------------
+				var emitted = {};
+				if(mainConf.emitLlms !== false || mainConf.emitModel !== false){
+					log(" - writing machine-readable companions", null, quiet);
+					emitted = llms.write(mainConf, indexed, log);
+				}
+
 				// Done
 				log(mainConf.outputFolder, "DONE mon! Docs ready at:", quiet);
 
@@ -772,6 +765,14 @@ function run(conf){
 				if(mainConf.launchWhenDone){
 					opn( homePagePath, {wait : false});
 				}
+
+				result = {
+					outputFolder : mainConf.outputFolder,
+					pages        : indexed.length,
+					files        : files.length,
+					index        : homePagePath,
+					emitted      : emitted
+				};
 				
 			}
 
@@ -781,10 +782,9 @@ function run(conf){
 	} else {
 		log("ERROR: (3) Configuration not specified.", null, quiet);
 	}
-	
 
+	return result;
 
-	
 }
 
 module.exports = {

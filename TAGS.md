@@ -1,0 +1,178 @@
+# Documon Tag Reference
+
+Everything Documon knows about your project comes from comment tags. It never reads,
+parses, or executes your source code. An untagged function is invisible; a misspelled tag
+is silently dropped. That is the trade: **you control the output structure completely.**
+
+Run `documon --check` to find tags that won't work before you build.
+
+---
+
+## The shape of a comment block
+
+```js
+/**
+ * One-line summary. Markdown is supported here.
+ *
+ * Longer description, still markdown.
+ *
+ * @method  doThing
+ * @param   {string}  name  - What it's for.
+ * @return  {boolean}       - What comes back.
+ */
+```
+
+- Blocks open with `/**` and close with `*/` (configurable via `--docBegin` / `--docEnd`,
+  which is how you document non-C-style languages).
+- Free text **before** the first `@tag` is the description.
+- Text on lines after a tag belongs to that tag.
+- Every block needs exactly one *kind* tag (below), or it renders nothing.
+
+Two argument orders are both accepted:
+
+```
+@param {string} name - description      <- type first
+@param name {string} - description      <- name first
+```
+
+---
+
+## Kind tags — what the thing *is*
+
+One per block. Without one, the block is discarded.
+
+| Tag | Purpose | Example |
+|---|---|---|
+| `@module` | A file-level unit. Renders as a page. | `@module dirutils` |
+| `@class` | A class. Renders as a page. | `@class MenuTree` |
+| `@method` | A callable member. | `@method readExt` |
+| `@property` | A data member. | `@property {array} extensions` |
+| `@event` | An emitted event. | `@event change` |
+
+`@module` and `@class` are treated identically; both appear as "class" in the output.
+
+## Scope tags — where it lives
+
+| Tag | Purpose | Example |
+|---|---|---|
+| `@package` | Groups pages under a namespace. Usually one per file. | `@package documon` |
+| `@namespace` | Synonym for `@package`. | `@namespace documon` |
+
+Ids are built as `package.container.member`, which is also the generated filename:
+`@package documon` + `@module dirutils` produces `documon.dirutils.html`. Use that dotted
+id when cross-referencing.
+
+## Signature tags
+
+| Tag | Syntax |
+|---|---|
+| `@param` | `@param {type} name - description` |
+| `@param` (optional) | `@param {type} [name] - description` |
+| `@param` (default) | `@param {type} [name="fallback"] - description` |
+| `@param` (child) | `@param {type} name.child - description` |
+| `@return` / `@returns` | `@return {type} - description` |
+| `@type` | `@type {string}` |
+| `@default` | `@default 0` (also `@defaultVal`, `@defaultValue`) |
+| `@optional` | Marks the item optional. |
+
+Parameters render on `@method` and on `@event`. On a `@class` or `@module` they are parsed
+but never displayed — put that information in the description instead.
+
+## Visibility tags
+
+`@private` · `@protected` · `@public` · `@static` · `@readonly`
+
+Flags, no value. The generated site can filter on these.
+
+## Inheritance tags
+
+| Tag | Meaning |
+|---|---|
+| `@extends` | Parent whose members are cross-filled into this page. |
+| `@inherits` | Synonym for `@extends`. |
+| `@overrides` | This member replaces the parent's. |
+| `@impliments` | Interface conformance. *(Spelled with an "i" — `@implements` is not recognized.)* |
+
+The value must be a documented id: `@extends documon.Base`. `--check` reports targets
+that don't resolve.
+
+## Supporting tags
+
+| Tag | Meaning |
+|---|---|
+| `@constructor` | Marks a constructor; usually paired with `@class`. |
+| `@example` | A code example. Repeatable — each renders separately. |
+| `@requires` | A dependency, e.g. `@requires documon.utils`. |
+| `@see` | A related item or URL. |
+| `@order` | Sort weight within its section. |
+| `@header` | Section heading in the rendered page. |
+
+---
+
+## Cross-linking
+
+Markdown link syntax, with a dotted id as the target:
+
+```
+[the dirutils module](documon.dirutils)
+[makedir](documon.dirutils.makedir)
+[jump to run on this page](#run)
+```
+
+`--check` flags dotted targets that match no documented id.
+
+---
+
+## Tags that do NOT exist in Documon
+
+Common in JSDoc, inert here. `--check` names the replacement where there is one.
+
+| You might write | Use instead |
+|---|---|
+| `@arg`, `@argument`, `@parameter` | `@param` |
+| `@function`, `@func` | `@method` |
+| `@prop`, `@member` | `@property` |
+| `@fires`, `@emits` | `@event` |
+| `@augments` | `@extends` |
+| `@implements` | `@impliments` |
+| `@desc`, `@description`, `@summary` | plain text before the tags |
+| `@throws`, `@deprecated`, `@since`, `@author`, `@typedef`, `@async` | fold into the description |
+
+---
+
+## Worked example
+
+```js
+/**
+ * Directory helpers.
+ *
+ * @module  dirutils
+ * @package documon
+ */
+
+/**
+ * Creates a folder, including any missing parents.
+ *
+ * @method  make
+ * @param   {string}   dest        - Absolute path to create.
+ * @param   {boolean}  [quiet=false] - Suppress logging.
+ * @return  {boolean}              - True when the folder exists afterwards.
+ * @example
+ *
+ * 		dirutils.make("/tmp/a/b/c");
+ */
+function makedir(dest, quiet){ ... }
+```
+
+Produces `documon.dirutils.html` containing a `make` method with two parameters, one
+optional with a default, plus a return type and a runnable example.
+
+---
+
+## Checklist before you build
+
+1. Every file that should produce a page has a `@package` and a `@module` or `@class`.
+2. Every documented member has a kind tag and a name.
+3. Every `@param` has `{type}` and a name.
+4. Every `@extends` target is a real, documented id.
+5. `documon --check` exits 0.

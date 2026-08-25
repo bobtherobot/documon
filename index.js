@@ -1,15 +1,26 @@
+#!/usr/bin/env node
 /*
-
-# run
-cd /Volumes/Drives/projects/documon/documon
-node .
-
+Part of Documon.
+Copyright (c) Michael Gieson.
+www.documon.net
  */
 
-// TOOD:
-// - template css has a nowrap in a properties list
-// - windows ie check
-
+/**
+ * The command-line and programmatic entry point for Documon.
+ *
+ * Resolves configuration from three sources (later wins):
+ *
+ * 	1. built-in defaults
+ * 	2. a config file (`documon.json`, `.documonrc`, or a `documon` key in `package.json`)
+ * 	3. CLI flags / the options object passed to `run()`
+ *
+ * @module  index
+ * @package documon
+ * @example
+ *
+ * 		var documon = require("documon");
+ * 		documon({ src : "./src", out : "./docs" });
+ */
 
 var fs = require("fs");
 var path = require("./src/npath");
@@ -17,167 +28,451 @@ var log = require('./src/log');
 var documon = require('./src/documon');
 var info = require('./src/info');
 var mist = require('./src/minimist');
+var check = require('./src/check');
 
-var errors = [];
+/**
+ * @property {object} EXIT - Process exit codes. Documon used to always exit 0, which
+ * made failures invisible to CI and to automated (AI agent) tooling. Callers can now
+ * branch on these.
+ * @property {number} EXIT.OK=0        - Everything worked.
+ * @property {number} EXIT.CONFIG=1    - Bad or missing configuration, nothing was built.
+ * @property {number} EXIT.FINDINGS=2  - `--check` ran and found problems.
+ */
+var EXIT = {
+	OK       : 0,
+	CONFIG   : 1,
+	FINDINGS : 2
+};
 
+/**
+ * @property {object} LONG - Maps the historical single-letter CLI flags to readable
+ * long-form equivalents. Both forms are accepted; the long form is what an agent (or a
+ * human reading a build script six months later) will actually reach for.
+ */
+var LONG = {
+	i : "src",
+	o : "out",
+	t : "template",
+	p : "print",
+	n : "name",
+	g : "ignore",
+	v : "version",
+	l : "launch",
+	d : "dumpData",
+	e : "sourceExt",
+	m : "more",
+	a : "docBegin",
+	z : "docEnd",
+	x : "indexShortcutName",
+	q : "moreQuirkDelimiter",
+	y : "gati"
+};
+
+/**
+ * @property {array} LONG_ONLY - Options that have no historical single-letter flag. They
+ * are accepted as long flags (`--description "..."`) and as config-file keys.
+ */
+var LONG_ONLY = [
+	"description",
+	"baseUrl",
+	"docsDirName",
+	"emitLlms",
+	"emitModel"
+];
+
+/**
+ * @property {array} CONFIG_FILES - Filenames searched for when no `--config` is given.
+ */
+var CONFIG_FILES = ["documon.json", "documon.config.json", ".documonrc"];
+
+/**
+ * Reads a config file from disk, or plucks the `documon` key out of a `package.json`.
+ *
+ * @method     readConfigFile
+ * @private
+ * @param      {string}   fpath  - Path to the config file.
+ * @return     {object}          - The parsed config, or null when unreadable.
+ */
+function readConfigFile(fpath, errors){
+	try {
+		var raw = JSON.parse( fs.readFileSync(fpath, 'utf8') );
+		if( path.parse(fpath).base === "package.json" ){
+			return raw.documon || null;
+		}
+		return raw;
+	} catch(e) {
+		errors.push("Could not parse config file: " + fpath + " (" + e.message + ")");
+		return null;
+	}
+}
+
+/**
+ * Walks up from a starting folder looking for a Documon config file. Lets an agent run
+ * `documon` from anywhere inside a project and still pick up the project's settings.
+ *
+ * @method     findConfig
+ * @private
+ * @param      {string}   from  - Folder to start searching from.
+ * @return     {string}         - Absolute path to the config file, or null.
+ */
+function findConfig(from){
+	var dir = path.resolve(from || process.cwd());
+	var last = null;
+
+	while(dir && dir !== last){
+		for(var i=0; i<CONFIG_FILES.length; i++){
+			var candidate = path.join(dir, CONFIG_FILES[i]);
+			if( fs.existsSync(candidate) ){
+				return candidate;
+			}
+		}
+		var pkg = path.join(dir, "package.json");
+		if( fs.existsSync(pkg) ){
+			try {
+				if( JSON.parse(fs.readFileSync(pkg, 'utf8')).documon ){
+					return pkg;
+				}
+			} catch(e) { /* not our problem, keep walking */ }
+		}
+		last = dir;
+		dir = path.dirname(dir);
+	}
+
+	return null;
+}
+
+/**
+ * Turns raw CLI argv into a Documon options object, folding in any config file found.
+ *
+ * @method     optsFromArgv
+ * @private
+ * @param      {object}   argv    - Parsed minimist output.
+ * @param      {array}    errors  - Collector for problems found along the way.
+ * @return     {object}           - Documon options.
+ */
+function optsFromArgv(argv, errors){
+
+	var opts = {};
+
+	// Config file first, so explicit flags can override it.
+	var configPath = argv.config || argv.c;
+	if(configPath === true){
+		configPath = null; // "--config" with no value
+	}
+	if( ! configPath ){
+		configPath = findConfig(process.cwd());
+	}
+	if(configPath){
+		var fromFile = readConfigFile(path.resolve(configPath), errors);
+		if(fromFile){
+			for(var prop in fromFile){
+				opts[prop] = fromFile[prop];
+			}
+			opts.configFile = path.resolve(configPath);
+		}
+	}
+
+	// Short flags, mapped to their long names.
+	for(var short in LONG){
+		if(typeof argv[short] !== "undefined"){
+			opts[ LONG[short] ] = argv[short];
+		}
+	}
+
+	// Long flags win over short ones.
+	for(var key in LONG){
+		var longName = LONG[key];
+		if(typeof argv[longName] !== "undefined"){
+			opts[longName] = argv[longName];
+		}
+	}
+
+	// Long-only options.
+	for(var n=0; n<LONG_ONLY.length; n++){
+		var only = LONG_ONLY[n];
+		if(typeof argv[only] !== "undefined"){
+			opts[only] = argv[only];
+		}
+	}
+
+	// Positional: [source] [output]
+	if( ! opts.src && argv._ && argv._[0] ){
+		opts.src = argv._[0];
+	}
+	if( ! opts.out && argv._ && argv._[1] ){
+		opts.out = argv._[1];
+	}
+
+	// Modes
+	opts.check    = argv.check    ? true : false;
+	opts.json     = argv.json     ? true : false;
+	opts.coverage = argv.coverage ? true : false;
+	opts.strict   = argv.strict   ? true : false;
+
+	// Ignore list arrives as a semicolon delimited string from the CLI.
+	if(typeof opts.ignore === "string"){
+		opts.ignore = opts.ignore.split(";").map(function(item){
+			return item.trim();
+		}).filter(Boolean);
+	}
+
+	return opts;
+}
+
+/**
+ * Verifies a path exists.
+ *
+ * Note: the previous implementation pushed "not specified" onto the error list
+ * unconditionally (outside the `else`), so every successful run still reported phantom
+ * errors like "Input folder not specified" for folders that plainly existed.
+ *
+ * @method     exists
+ * @private
+ * @param      {string}   fpath   - The path to test.
+ * @param      {string}   kind    - Human label used in error messages.
+ * @param      {array}    errors  - Collector for problems.
+ * @return     {boolean}          - Whether the path exists.
+ */
+function exists(fpath, kind, errors) {
+
+	if( ! fpath ){
+		errors.push(kind + " not specified.");
+		return false;
+	}
+
+	var resolved = path.resolve(fpath);
+
+	if( ! fs.existsSync(resolved) ){
+		errors.push(kind + " doesn't exist: " + resolved);
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * The CLI wrapper. Parses argv, runs, and sets an exit code.
+ *
+ * @method  cli
+ * @private
+ */
 function cli(){
-    var argv = mist(process.argv.slice(2));
 
-    var help = argv.h ? true : false;
+	var argv = mist(process.argv.slice(2));
 
-    if (help) {
+	if(argv.h || argv.help){
+		log(info.usage);
+		process.exitCode = EXIT.OK;
+		return;
+	}
 
-        log(info.usage);
+	if(argv.version === true || argv.V){
+		log( require("./package.json").version );
+		process.exitCode = EXIT.OK;
+		return;
+	}
 
-        return null;
+	var errors = [];
+	var opts = optsFromArgv(argv, errors);
 
-    } else {
+	if(errors.length){
+		log(errors, "Errors", false);
+		process.exitCode = EXIT.CONFIG;
+		return;
+	}
 
-        // Build array from semicolon delimted list of ignore files
-        var ig = argv.g;
-        if(ig){
-            ig = ig.split(";");
-            for(var i=0; i<ig.length; i++){
-                ig[i] = ig[i].trim();
-            }
-        }
+	var result = run(opts);
 
-        run({
-            src         : argv.i || argv._[0],
-            out         : argv.o || argv._[1],
-            template    : argv.t,
-            print       : argv.p,
-            name        : argv.n,
-            ignore      : ig,
-            version     : argv.v,
-            launch      : argv.l,
-            dumpData    : argv.d,
-            sourceExt   : argv.e,
-            more        : argv.m,
-            docBegin    : argv.a,
-            docEnd      : argv.z,
-            indexShortcutName  : argv.x,
-            moreQuirkDelimiter : argv.q,
-            gati 		: argv.y
-
-        });
-    }
+	process.exitCode = result && typeof result.exitCode === "number" ? result.exitCode : EXIT.OK;
 }
 
-
-function exists(fpath, kind) {
-    var result = false;
-    if (fpath) {
-        fpath = path.resolve(fpath);
-        if (!fs.existsSync(fpath)) {
-            errors.push(kind + " doesn't exists: " + fpath);
-        } else {
-            result = true;
-        }
-    }
-    errors.push(kind + " not specified.")
-    return result;
-}
-
-
+/**
+ * Runs Documon.
+ *
+ * @method  run
+ * @param   {object|string}  opts - Options object, or a string treated as `src`.
+ * @return  {object}              - A result object: `{ ok, exitCode, errors, findings, pages }`.
+ * @example
+ *
+ * 		var documon = require("documon");
+ * 		var result = documon({ src : "./src", out : "./docs" });
+ * 		if( ! result.ok ){ process.exit(result.exitCode); }
+ */
 function run(opts) {
 
-    if( ! opts ){
-    
-        errors.push("No source defined.")
-        log(errors, "Errors");
-    
-    } else {
+	var errors = [];
 
-        if(typeof opts === 'string'){
-            opts = {
-                src : opts
-            }
-        }
+	if( ! opts ){
+		errors.push("No configuration specified.");
+		return fail(errors, false);
+	}
 
-        var quiet = opts.print ? false : true;
+	if(typeof opts === 'string'){
+		opts = { src : opts };
+	}
 
-        var src = opts.src;
-        var out = opts.out;
-        var template = opts.template;
+	// --json implies quiet: an agent parsing stdout shouldn't have to skip banners.
+	var quiet = opts.json ? true : (opts.print ? false : true);
 
-        var inputOK;
-        if( ! src ){
-            inputOK = false;
-        } else {
-            if(typeof src == 'object'){
-                for(var i=0; i<src.length; i++){
-                    inputOK = exists(src[i], "Input folder");
-                    if( ! inputOK ){
-                        break;
-                    }
-                }
-            } else {
-                inputOK = exists(src, "Input folder");
-            }
-        }
-            
+	var src = opts.src;
+	var out = opts.out;
+	var template = opts.template;
 
-        // Can be empty, but if set, ensure it exists.
-        var outputOK = true;
-        if (out) {
-            outputOK = exists(out, "Output folder");
-        }
+	// -------------
+	// Input must exist.
+	var inputOK;
+	if( ! src ){
+		errors.push("Input folder not specified.");
+		inputOK = false;
+	} else if(typeof src === 'object'){
+		inputOK = true;
+		for(var i=0; i<src.length; i++){
+			if( ! exists(src[i], "Input folder", errors) ){
+				inputOK = false;
+				break;
+			}
+		}
+	} else {
+		inputOK = exists(src, "Input folder", errors);
+	}
 
-        // Can be empty, but if set, ensure it exists.
-        var templateOK = true;
-        if (template) {
-            templateOK = exists(template, "Template folder");
-        }
+	// -------------
+	// Template, when specified, must exist.
+	var templateOK = true;
+	if (template) {
+		templateOK = exists(template, "Template folder", errors);
+	}
 
+	// -------------
+	// Output does NOT have to exist -- we create it. Requiring the caller to pre-create
+	// the output folder was the single biggest first-run failure for scripted callers.
+	var outputOK = true;
+	if (out && ! opts.check) {
+		var outResolved = path.resolve(out);
+		if( ! fs.existsSync(outResolved) ){
+			try {
+				require('./src/dirutils').make(outResolved);
+				log("Created output folder: " + outResolved, null, quiet);
+			} catch(e) {
+				errors.push("Could not create output folder: " + outResolved + " (" + e.message + ")");
+				outputOK = false;
+			}
+		}
+	}
 
-        log(info.copyright, null, quiet);
+	if( !(inputOK && outputOK && templateOK) ){
+		if( ! opts.json ){
+			log(info.usage, null, quiet);
+			log(opts, "Specified Options", quiet);
+		}
+		return fail(errors, opts.json);
+	}
 
-        if (inputOK && outputOK && templateOK) {
+	log(info.copyright, null, quiet);
 
-            var conf = {
-                src             : src,
-                out             : out,
-                template        : template,
-                name            : opts.name,
-                version         : opts.version,
-                launch          : opts.launch,
-                ignore          : opts.ignore,
-                print           : opts.print,
-                dumpData        : opts.dumpData,
-                sourceExt       : opts.sourceExt,
-                more            : opts.more,
-                docBegin        : opts.docBegin,
-                docEnd          : opts.docEnd,
-                indexShortcutName   : opts.indexShortcutName,
-                moreQuirkDelimiter  : opts.moreQuirkDelimiter,
-                gati  : opts.gati
-            };
+	var conf = {
+		src                 : src,
+		out                 : out,
+		template            : template,
+		name                : opts.name,
+		description         : opts.description,
+		version             : opts.version,
+		launch              : opts.launch,
+		ignore              : opts.ignore,
+		print               : opts.print,
+		dumpData            : opts.dumpData,
+		sourceExt           : opts.sourceExt,
+		more                : opts.more,
+		docBegin            : opts.docBegin,
+		docEnd              : opts.docEnd,
+		indexShortcutName   : opts.indexShortcutName,
+		moreQuirkDelimiter  : opts.moreQuirkDelimiter,
+		gati                : opts.gati,
+		baseUrl             : opts.baseUrl,
+		emitLlms            : opts.emitLlms === false ? false : true,
+		emitModel           : opts.emitModel === false ? false : true,
+		quiet               : quiet
+	};
 
-            log(conf, "Config", quiet);
+	log(conf, "Config", quiet);
 
-            documon.run(conf);
+	// -------------
+	// Check mode: validate only, never write.
+	if(opts.check){
+		var report = check.run(conf, { coverage : opts.coverage });
 
+		if(opts.json){
+			process.stdout.write(JSON.stringify(report, null, "\t") + "\n");
+		} else {
+			check.print(report, log);
+		}
 
-        } else {
+		var bad = report.counts.error > 0 || (opts.strict && report.counts.warning > 0);
 
-            log(info.usage, null, quiet);
-            log(opts, "Specified Options", quiet);
-            log(errors, "Errors", quiet);
+		return {
+			ok       : ! bad,
+			exitCode : bad ? EXIT.FINDINGS : EXIT.OK,
+			errors   : [],
+			findings : report.findings,
+			counts   : report.counts
+		};
+	}
 
-        }
+	// -------------
+	// Build.
+	var built = documon.run(conf);
 
-    }
+	var result = {
+		ok       : true,
+		exitCode : EXIT.OK,
+		errors   : [],
+		findings : [],
+		out      : built && built.outputFolder,
+		pages    : built && built.pages,
+		files    : built && built.files
+	};
 
-  
+	if(opts.json){
+		process.stdout.write(JSON.stringify(result, null, "\t") + "\n");
+	}
+
+	return result;
+}
+
+/**
+ * Builds a failure result, printing or serializing it as appropriate.
+ *
+ * @method     fail
+ * @private
+ * @param      {array}    errors  - The collected error strings.
+ * @param      {boolean}  json    - Whether to emit JSON instead of human output.
+ * @return     {object}           - A result object.
+ */
+function fail(errors, json){
+
+	var result = {
+		ok       : false,
+		exitCode : EXIT.CONFIG,
+		errors   : errors,
+		findings : []
+	};
+
+	if(json){
+		process.stdout.write(JSON.stringify(result, null, "\t") + "\n");
+	} else {
+		log(errors, "Errors", false);
+	}
+
+	return result;
 }
 
 // -------------------------
 // If running as CLI (direct access via shell):
-// Note this is the same as in documon.js parallel to this file.
 if (require.main === module) {
-    cli();
+	cli();
 }
 
-// Expose "run" for running locally (as a require)
 module.exports = run;
+module.exports.run = run;
+module.exports.check = check;
+module.exports.EXIT = EXIT;

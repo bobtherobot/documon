@@ -1,13 +1,30 @@
 {
   "name": "documon",
-  "version": "2.6.0",
-  "description": "A documentation system for mortals. Use with any language.",
+  "version": "2.7.0",
+  "description": "A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.",
   "main": "index.js",
+  "bin": {
+    "documon": "index.js"
+  },
   "directories": {
     "doc": "docs"
   },
+  "files": [
+    "index.js",
+    "src/",
+    "template/",
+    "TAGS.md",
+    "AGENTS.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/run.js",
+    "check": "node index.js --check -i src",
+    "docs": "node index.js -i src -o . -n Documon -v 2.7.0 -p"
   },
   "repository": {
     "type": "git",
@@ -17,9 +34,21 @@
     "documentation",
     "doc",
     "docs",
+    "documentation-generator",
+    "api-documentation",
+    "static-site",
     "YUIdoc",
     "javadoc",
-    "JSdoc"
+    "JSdoc",
+    "jsdoc-alternative",
+    "llms-txt",
+    "ai",
+    "ai-friendly",
+    "agent",
+    "llm",
+    "zero-dependencies",
+    "polyglot",
+    "any-language"
   ],
   "author": "mike gieson",
   "license": "MIT",
