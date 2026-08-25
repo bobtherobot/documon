@@ -36,8 +36,8 @@
 	},
 	{
 		"text": "",
-		"start": 34,
-		"end": 37,
+		"start": 35,
+		"end": 38,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -56,8 +56,8 @@
 	},
 	{
 		"text": "",
-		"start": 40,
-		"end": 42,
+		"start": 41,
+		"end": 43,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -76,8 +76,8 @@
 	},
 	{
 		"text": "",
-		"start": 45,
-		"end": 48,
+		"start": 46,
+		"end": 49,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -96,8 +96,8 @@
 	},
 	{
 		"text": "",
-		"start": 56,
-		"end": 59,
+		"start": 57,
+		"end": 60,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -116,8 +116,8 @@
 	},
 	{
 		"text": "",
-		"start": 85,
-		"end": 88,
+		"start": 86,
+		"end": 89,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -136,8 +136,8 @@
 	},
 	{
 		"text": "Creates a finding.\n\n",
-		"start": 100,
-		"end": 112,
+		"start": 101,
+		"end": 113,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -224,8 +224,8 @@
 	},
 	{
 		"text": "Collects the source files that would be parsed by a build with this config.\n\n",
-		"start": 124,
-		"end": 131,
+		"start": 125,
+		"end": 132,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -265,9 +265,52 @@
 		"id": "documon.check.collect"
 	},
 	{
+		"text": "Lists the ids of the prose pages the \"more\" folder will produce.\n\nThose pages are real link targets (`[the options](more.options)`), but they come\nfrom markdown, not comments, so the cross-reference pass has no way to know they\nexist. Without this, every link into the manual reads as broken.\n\n",
+		"start": 173,
+		"end": 184,
+		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
+		"flags": [
+			{
+				"source": "@method  moreIdsmoreIds",
+				"flag": "method",
+				"after": "moreIds",
+				"afterType": "moreIds",
+				"name": "moreIds",
+				"single": true,
+				"text": "moreIds"
+			},
+			{
+				"source": "@private",
+				"flag": "private",
+				"after": ""
+			},
+			{
+				"source": "@param   {object} conf - The resolved configuration.The resolved configuration.",
+				"flag": "param",
+				"after": "{object} conf - The resolved configuration.",
+				"type": "object",
+				"afterType": "conf - The resolved configuration.",
+				"name": "conf",
+				"text": "The resolved configuration."
+			},
+			{
+				"source": "@return  {object} A map of id -> true. Empty when no more folder is configured.",
+				"flag": "return",
+				"after": "{object} A map of id -> true. Empty when no more folder is configured.",
+				"type": "object",
+				"afterType": "A map of id -> true. Empty when no more folder is configured.",
+				"name": "A",
+				"text": "map of id -> true. Empty when no more folder is configured."
+			}
+		],
+		"source": "Lists the ids of the prose pages the \"more\" folder will produce.\n\nThose pages are real link targets (`[the options](more.options)`), but they come\nfrom markdown, not comments, so the cross-reference pass has no way to know they\nexist. Without this, every link into the manual reads as broken.\n\n@method  moreIds\n@private\n@param   {object} conf - The resolved configuration.\n@return  {object} A map of id -> true. Empty when no more folder is configured.",
+		"meta": [],
+		"id": "documon.check.moreIds"
+	},
+	{
 		"text": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.\n\nIds are scoped `package.container.member` -- the same shape as the generated filenames\n(`documon.dirutils.html`). A `@method` therefore inherits the `@class` or `@module`\ndeclared above it in the same file; without that scope every `run()` in the project\nwould look like a collision.\n\n",
-		"start": 172,
-		"end": 185,
+		"start": 224,
+		"end": 237,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -318,8 +361,8 @@
 	},
 	{
 		"text": "Reduces a parsed comment block to the facts the rules care about.\n\n",
-		"start": 210,
-		"end": 217,
+		"start": 262,
+		"end": 269,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -360,8 +403,8 @@
 	},
 	{
 		"text": "A deliberately shallow symbol scan used only by the coverage advisory.\n\nThis never feeds the render path -- Documon still derives structure exclusively from\ncomments. It exists so an automated writer can be told \"you documented 4 of 11 exported\nthings\" instead of silently shipping a near-empty manual.\n\n",
-		"start": 287,
-		"end": 298,
+		"start": 342,
+		"end": 353,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -402,8 +445,8 @@
 	},
 	{
 		"text": "Runs the validator.\n\n",
-		"start": 326,
-		"end": 338,
+		"start": 381,
+		"end": 393,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -469,8 +512,8 @@
 	},
 	{
 		"text": "Prints a report for humans.\n\n",
-		"start": 640,
-		"end": 646,
+		"start": 701,
+		"end": 707,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{

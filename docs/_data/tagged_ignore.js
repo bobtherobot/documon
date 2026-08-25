@@ -96,6 +96,39 @@
 			"package": "documon",
 			"docfile": "documon.ignore.html",
 			"id": "documon.ignore.globToRegExp"
+		},
+		{
+			"line": 160,
+			"name": "test",
+			"shortText": "test",
+			"shortHtml": "<p>test</p>",
+			"text": "test",
+			"html": "<p>test</p>",
+			"entity": "method",
+			"flagSearchText": " test The path to test. True when the path should be skipped.",
+			"params": [
+				{
+					"name": "item",
+					"shortText": "The path to test.",
+					"shortHtml": "<p>The path to test.</p>",
+					"text": "The path to test.",
+					"html": "<p>The path to test.</p>",
+					"type": "string"
+				}
+			],
+			"returns": {
+				"type": "boolean",
+				"text": "True when the path should be skipped.",
+				"html": "<p>True when the path should be skipped.</p>",
+				"shortText": "<p>True when the path should be skipped.</p>",
+				"shortHtml": "<p>True when the path should be skipped.</p>"
+			},
+			"file": "src/ignore.js",
+			"filename": "ignore.js",
+			"klass": "ignore",
+			"package": "documon",
+			"docfile": "documon.ignore.html",
+			"id": "documon.ignore.test"
 		}
 	],
 	"properties": [
@@ -124,6 +157,7 @@
 		"documon.ignore": "ignore : Decides whether given file folder should skipped Shared builder check both agree exactly which files project History original implementation lived inside documon defects that made entire ignore system inert return false from inside loop only first pattern ever consulted That first default pattern valid regular expression RegExp throws Nothing repeat catch also returned false effect shouldIgnore always returned false node modules template folder output folder every user supplied ignore entry were silently walked Running Documon project root would happily parse dependenciesignore documon",
 		"documon.ignore.globToRegExp": "globToRegExp : Translates simple glob into regular expression Supports within path segment across segments Anything else escaped literallyglobToRegExp glob pattern compiled expression null when still compile",
 		"documon.ignore.create": "create : Builds matcher User supplied entries matched documented plain substring simple indexOf test first then convenience regular expression when string happens compile Patterns that compile nothing useful simply never match instead aborting whole check Internal paths extra matched literally never expressions They real filesystem paths treating them patterns actively dangerous output folder compiles regular expression which matches character followed slash that every path projectcreate Caller supplied ignore entries Internal paths exclude template output data folders object exposing test path resolved patterns ignore require ignore create test outputFolder ignore test somePath continue",
+		"documon.ignore.test": "test : test path test True when path should skipped",
 		"documon.ignore.DEFAULTS": "DEFAULTS : Patterns always applied expressed valid regular expressions glob looking strings never compiledPatterns always applied expressed valid regular expressions glob looking strings never compiled"
 	}
 }

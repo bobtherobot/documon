@@ -142,7 +142,7 @@ non-zero. Write comments, check, repair, repeat.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">60</span>
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">61</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -176,7 +176,7 @@ reach for that Documon does not implement, mapped to the right answer.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">43</span>
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">44</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -209,7 +209,7 @@ reach for that Documon does not implement, mapped to the right answer.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">38</span>
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">39</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -243,7 +243,7 @@ needs one of these to become anything at all.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">49</span>
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">50</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -277,7 +277,7 @@ inert -- it will be silently dropped from the output.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">89</span>
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">90</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -323,7 +323,7 @@ but genuinely have no Documon equivalent.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">186</span>
+						    		<span class="member-line-number">238</span>
 						    	</span>
 						    </div>
 
@@ -446,7 +446,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">132</span>
+						    		<span class="member-line-number">133</span>
 						    	</span>
 						    </div>
 
@@ -532,7 +532,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">113</span>
+						    		<span class="member-line-number">114</span>
 						    	</span>
 						    </div>
 
@@ -772,6 +772,95 @@ would look like a collision.</p>
 
 							</div>
 						</div>
+				<a name="documon.check.moreIds"></a><a name="moreIds"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		moreIds (<span class="method-arguments">conf</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">185</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Lists the ids of the prose pages the "more" folder will produce.</p>
+<p>Those pages are real link targets (<code>[the options](more.options)</code>), but they come<br />
+from markdown, not comments, so the cross-reference pass has no way to know they<br />
+exist. Without this, every link into the manual reads as broken.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">conf</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The resolved configuration.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>A map of id -&gt; true. Empty when no more folder is configured.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
 				<a name="documon.check.print"></a><a name="print"></a>
 
 						<div class="member"  >
@@ -783,7 +872,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">647</span>
+						    		<span class="member-line-number">708</span>
 						    	</span>
 						    </div>
 
@@ -897,7 +986,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">339</span>
+						    		<span class="member-line-number">394</span>
 						    	</span>
 						    </div>
 
@@ -1073,7 +1162,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">299</span>
+						    		<span class="member-line-number">354</span>
 						    	</span>
 						    </div>
 
@@ -1162,7 +1251,7 @@ things" instead of silently shipping a near-empty manual.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">218</span>
+						    		<span class="member-line-number">270</span>
 						    	</span>
 						    </div>
 

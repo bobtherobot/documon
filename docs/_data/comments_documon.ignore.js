@@ -20,8 +20,8 @@
 		"data": "Builds a matcher.\n\nUser supplied entries are matched as documented: a plain substring (\"simple indexOf\")\ntest first, then -- as a convenience -- as a regular expression when the string happens\nto compile as one. Patterns that compile to nothing useful simply never match instead\nof aborting the whole check.\n\nInternal paths (`extra`) are matched literally, never as expressions. They are real\nfilesystem paths, and treating them as patterns is actively dangerous: an output folder\nof `\"./\"` compiles to the regular expression `./`, which matches any character followed\nby a slash -- that is, every path in the project.\n\n@method  create\n@param   {array|string}  [userList]  - Caller supplied ignore entries.\n@param   {array}         [extra]     - Internal paths to exclude (template, output, data folders).\n@return  {object}                    - An object exposing `test(path)` and the resolved `patterns`.\n@example\n\n\t\tvar ignore = require(\"./ignore\").create([\"*.test.js\"], [outputFolder]);\n\t\tif( ignore.test(somePath) ){ continue; }"
 	},
 	{
-		"start": 143,
+		"start": 155,
 		"end": 159,
-		"data": " glob syntax\n\n\n\n\n\n\n\n\n\n\n\n\n\nd."
+		"data": "@method  test\n@param   {string}   item - The path to test.\n@return  {boolean}       - True when the path should be skipped."
 	}
 ]

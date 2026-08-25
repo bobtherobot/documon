@@ -57,7 +57,6 @@ var TindexShortcut;
  *
  * NOTE: // sourceRootFolder and dataFolder are injected into the "mainConf" by documon.
  *
- * Example link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)
  * Example link [other class to documon.dirutils.makedir](documon.dirutils.makedir)
  * Example link [other class to documon.dirutils](documon.dirutils)
  * Example link [local to #run](#run)

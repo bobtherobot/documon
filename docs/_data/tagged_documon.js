@@ -21,7 +21,7 @@
 	"id": "documon.documon",
 	"methods": [
 		{
-			"line": 160,
+			"line": 159,
 			"name": "filterFileTypes",
 			"shortText": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
 			"shortHtml": "<p>Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.</p>",
@@ -55,7 +55,7 @@
 			"id": "documon.documon.filterFileTypes"
 		},
 		{
-			"line": 196,
+			"line": 195,
 			"name": "init",
 			"shortText": "Initializes Documan based on the configuration settings",
 			"shortHtml": "<p>Initializes Documan based on the configuration settings</p>",
@@ -89,7 +89,7 @@
 			"id": "documon.documon.init"
 		},
 		{
-			"line": 629,
+			"line": 628,
 			"name": "run",
 			"shortText": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  ",
 			"shortHtml": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  </p>",
@@ -115,7 +115,7 @@
 			"id": "documon.documon.run"
 		},
 		{
-			"line": 507,
+			"line": 506,
 			"name": "seeder",
 			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
 			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
@@ -149,7 +149,7 @@
 			"id": "documon.documon.seeder"
 		},
 		{
-			"line": 483,
+			"line": 482,
 			"name": "shouldIgnore",
 			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
 			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
@@ -183,7 +183,7 @@
 			"id": "documon.documon.shouldIgnore"
 		},
 		{
-			"line": 149,
+			"line": 148,
 			"name": "writeData",
 			"shortText": "Simplify file write for text or json.",
 			"shortHtml": "<p>Simplify file write for text or json.</p>",
@@ -228,7 +228,7 @@
 	],
 	"properties": [
 		{
-			"line": 128,
+			"line": 127,
 			"name": "dumpData",
 			"shortText": "Whether or not to write intermediary files used during processing to the output data folder.",
 			"shortHtml": "<p>Whether or not to write intermediary files used during processing to the output data folder.</p>",
@@ -246,7 +246,7 @@
 			"id": "documon.documon.dumpData"
 		},
 		{
-			"line": 90,
+			"line": 89,
 			"name": "extensions",
 			"shortText": "The list of extensions to search for source code.",
 			"shortHtml": "<p>The list of extensions to search for source code.</p>",
@@ -263,7 +263,7 @@
 			"id": "documon.documon.extensions"
 		},
 		{
-			"line": 101,
+			"line": 100,
 			"name": "ignoreList",
 			"shortText": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
 			"shortHtml": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>",
@@ -280,7 +280,7 @@
 			"id": "documon.documon.ignoreList"
 		},
 		{
-			"line": 133,
+			"line": 132,
 			"name": "indexRedirectName",
 			"shortText": "The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
 			"shortHtml": "<p>The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.</p>",
@@ -297,12 +297,12 @@
 			"id": "documon.documon.indexRedirectName"
 		},
 		{
-			"line": 85,
+			"line": 84,
 			"name": "mainConf",
 			"shortText": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.",
 			"shortHtml": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>",
-			"text": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
-			"html": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>\n<p>Example link <a href=\"root.documon.dirutils.makedir\">other class to root.documon.dirutils.makedir</a><br />\nExample link <a href=\"documon.dirutils.makedir\">other class to documon.dirutils.makedir</a><br />\nExample link <a href=\"documon.dirutils\">other class to documon.dirutils</a><br />\nExample link <a href=\"#run\">local to #run</a></p>",
+			"text": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
+			"html": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>\n<p>Example link <a href=\"documon.dirutils.makedir\">other class to documon.dirutils.makedir</a><br />\nExample link <a href=\"documon.dirutils\">other class to documon.dirutils</a><br />\nExample link <a href=\"#run\">local to #run</a></p>",
 			"type": "Object",
 			"children": [
 				{
@@ -475,7 +475,24 @@
 			"id": "documon.documon.mainConf"
 		},
 		{
-			"line": 123,
+			"line": 111,
+			"name": "matcher",
+			"shortText": "The compiled ignore matcher, built during init from the",
+			"shortHtml": "<p>The compiled ignore matcher, built during init from the</p>",
+			"text": "The compiled ignore matcher, built during init from the\ndefault patterns plus whatever the caller supplied.",
+			"html": "<p>The compiled ignore matcher, built during init from the<br />\ndefault patterns plus whatever the caller supplied.</p>",
+			"type": "object",
+			"entity": "property",
+			"flagSearchText": " The compiled ignore matcher, built during init from the\ndefault patterns plus whatever the caller supplied.",
+			"file": "src/documon.js",
+			"filename": "documon.js",
+			"klass": "documon",
+			"package": "documon",
+			"docfile": "documon.documon.html",
+			"id": "documon.documon.matcher"
+		},
+		{
+			"line": 122,
 			"name": "quiet",
 			"shortText": "Supress stdout messages.",
 			"shortHtml": "<p>Supress stdout messages.</p>",
@@ -493,7 +510,7 @@
 			"id": "documon.documon.quiet"
 		},
 		{
-			"line": 118,
+			"line": 117,
 			"name": "tally",
 			"shortText": "Counts of tags that were normalized or ignored during a",
 			"shortHtml": "<p>Counts of tags that were normalized or ignored during a</p>",
@@ -521,9 +538,10 @@
 		"documon.documon.shouldIgnore": "shouldIgnore : Extracts parses tags comments from source file stuffs result into organizer organizer Generates data files dumpData enabledshouldIgnore path file true ignore this file false ignore",
 		"documon.documon.seeder": "seeder : Extracts parses tags comments from source file stuffs result into organizer organizer Generates data files dumpData enabledseeder path file file search data computed",
 		"documon.documon.run": "run : main processing loop that executes manages main flow control parsing evaluating construction documentation After init init configures things based settings generates list files process this method process sends each file seeder seeder evaluation processing Generates HTML pages Generates menuDataconfiguration object mainConf mainConf",
-		"documon.documon.mainConf": "mainConf : NOTE sourceRootFolder dataFolder injected into mainConf documon Example link other class root documon dirutils makedir root documon dirutils makedir Example link other class documon dirutils makedir documon dirutils makedir Example link other class documon dirutils documon dirutils Example link localUsed store user supplied config settings",
+		"documon.documon.mainConf": "mainConf : NOTE sourceRootFolder dataFolder injected into mainConf documon Example link other class documon dirutils makedir documon dirutils makedir Example link other class documon dirutils documon dirutils Example link localUsed store user supplied config settings",
 		"documon.documon.extensions": "extensions : list extensions search source codelist extensions search source code",
 		"documon.documon.ignoreList": "ignoreList : list strings representing regex patterns files folders ignore default following patterns already included node modules Configuration will concat this list with user provied listlist strings representing regex patterns files folders ignore default following patterns already included node modules Configuration will concat this list with user provied list",
+		"documon.documon.matcher": "matcher : compiled ignore matcher built during init from default patterns plus whatever caller suppliedcompiled ignore matcher built during init from default patterns plus whatever caller supplied",
 		"documon.documon.tally": "tally : Counts tags that were normalized ignored during build reported single line when build finishesCounts tags that were normalized ignored during build reported single line when build finishes",
 		"documon.documon.quiet": "quiet : Supress stdout messagesSupress stdout messages",
 		"documon.documon.dumpData": "dumpData : Whether write intermediary files used during processing output data folderWhether write intermediary files used during processing output data folder",

@@ -7,7 +7,7 @@
 	{
 		"start": 77,
 		"end": 79,
-		"data": "@property  {Object} mainConf - A reference to the main configuration object. See [documon.mainConf](documon.mainConf)."
+		"data": "@property  {Object} mainConf - A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf)."
 	},
 	{
 		"start": 82,
@@ -37,7 +37,7 @@
 	{
 		"start": 300,
 		"end": 308,
-		"data": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.\n\n@method  init\n@param   {type}  params  - The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.\n@param   {type}  params.templateFolder -  The base path to the template folder."
+		"data": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.\n\n@method  init\n@param   {type}  params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.\n@param   {type}  params.templateFolder -  The base path to the template folder."
 	},
 	{
 		"start": 370,

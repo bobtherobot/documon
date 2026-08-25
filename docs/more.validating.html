@@ -139,12 +139,12 @@ FAIL</code></pre>
 <tr>
 <td><code>param-on-non-method</code></td>
 <td>warning</td>
-<td><code>@param</code> on a <code>@class</code> or <code>@module</code>, where it is parsed but never displayed.</td>
+<td><code>@param</code> on a kind that never displays it (<code>@property</code>, <code>@namespace</code>, <code>@package</code>). Methods, events, and the <code>@class</code> / <code>@module</code> that heads a page all render a parameter table.</td>
 </tr>
 <tr>
 <td><code>broken-link</code></td>
 <td>warning</td>
-<td>A dotted cross-reference that matches no id.</td>
+<td>A dotted cross-reference that matches no id. Ids from the <code>more</code> folder (<code>more.options</code>) count as valid targets.</td>
 </tr>
 <tr>
 <td><code>no-description</code></td>

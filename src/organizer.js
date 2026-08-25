@@ -76,7 +76,7 @@ var fs = require('fs');
 
 
 /**
- * @property  {Object} mainConf - A reference to the main configuration object. See [documon.mainConf](documon.mainConf).
+ * @property  {Object} mainConf - A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf).
  */
 var mainConf;
 
@@ -304,7 +304,7 @@ function buildPages(){
  * We'll also be grabbing the templates needed based on the location defined in the params.
  *
  * @method  init
- * @param   {type}  params  - The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.
+ * @param   {type}  params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.
 * @param   {type}  params.templateFolder -  The base path to the template folder.
  */
 function init(params){

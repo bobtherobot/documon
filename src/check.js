@@ -31,6 +31,7 @@ var extract = require('./extract');
 var parse   = require('./parse');
 var ignoreModule = require('./ignore');
 var aliases = require('./aliases');
+var more    = require('./more');
 
 /**
  * @property {array} KIND_TAGS - Tags that declare what an entity *is*. A comment block
@@ -171,6 +172,57 @@ function collect(conf){
 }
 
 /**
+ * Lists the ids of the prose pages the "more" folder will produce.
+ *
+ * Those pages are real link targets (`[the options](more.options)`), but they come
+ * from markdown, not comments, so the cross-reference pass has no way to know they
+ * exist. Without this, every link into the manual reads as broken.
+ *
+ * @method  moreIds
+ * @private
+ * @param   {object} conf - The resolved configuration.
+ * @return  {object} A map of id -> true. Empty when no more folder is configured.
+ */
+function moreIds(conf){
+
+	var found = {};
+
+	if( ! conf.more ){
+		return found;
+	}
+
+	var folder = path.normalize( path.resolve(conf.more) );
+
+	if( ! du.exists(folder) ){
+		return found;
+	}
+
+	var files = du.readExt(folder, ["md"], true);
+
+	for(var i=0; i<files.length; i++){
+
+		var relative = path.normalize(files[i]).substring(folder.length).replace(/^\/+/, "");
+
+		if( ! relative ){
+			continue;
+		}
+
+		var id = more.pageId(relative, conf.moreQuirkDelimiter);
+		found[id] = true;
+
+		// Folders are pages too, so register every ancestor: "more.tags" as well
+		// as "more.tags._implements_md".
+		var parts = id.split(".");
+		while(parts.length > 1){
+			parts.pop();
+			found[ parts.join(".") ] = true;
+		}
+	}
+
+	return found;
+}
+
+/**
  * Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.
  *
  * Ids are scoped `package.container.member` -- the same shape as the generated filenames
@@ -257,7 +309,10 @@ function summarize(parsed){
 				if(flag === "method"){
 					info.isMethod = true;
 				}
-				if(flag === "method" || flag === "event"){
+				// class.jst hands a @class or @module to member.jst as a "methods"
+				// part, so those pages render a signature, a parameter table and
+				// a returns block just like a method does.
+				if(flag === "method" || flag === "event" || flag === "class" || flag === "module"){
 					info.takesParams = true;
 				}
 			}
@@ -525,12 +580,14 @@ function run(conf, opts){
 			}
 		}
 
-		// The templates render parameters for methods and for events with a signature
-		// (template/member.jst). On a @class or @module they are parsed but never shown.
+		// template/member.jst renders parameters for methods, for events with a
+		// signature, and for the @class or @module that heads a page (class.jst
+		// routes it through the same "methods" part). On any other kind they are
+		// parsed and then dropped.
 		if(blk.params.length && blk.kind && ! blk.takesParams){
 			findings.push( finding("warning", "param-on-non-method", blk.file, blk.line,
-				"@param used on @" + blk.kind + ". Parameters only render on @method and @event.",
-				"Change the kind to @method, or move the parameter list into the description.") );
+				"@param used on @" + blk.kind + ". Parameters only render on @method, @event, @class and @module.",
+				"Change the kind, or move the parameter list into the description.") );
 		}
 	}
 
@@ -549,6 +606,10 @@ function run(conf, opts){
 		}
 	}
 
+	// Prose pages are link targets too, but they come from markdown rather than
+	// comments, so they are not in `ids`.
+	var prose = moreIds(conf);
+
 	for(var l=0; l<linkRefs.length; l++){
 		var ref = linkRefs[l];
 		var target = ref.target;
@@ -559,7 +620,7 @@ function run(conf, opts){
 		}
 
 		// Documon cross-links look like dotted ids.
-		if( target.indexOf(".") > -1 && ! ids[target] ){
+		if( target.indexOf(".") > -1 && ! ids[target] && ! prose[target] ){
 			findings.push( finding("warning", "broken-link", ref.file, ref.line,
 				'Cross-reference "' + target + '" does not match any documented id.',
 				"Check the id, or use a full URL.") );

@@ -145,12 +145,40 @@
 		"id": "documon.ignore.create"
 	},
 	{
-		"text": " glob syntax\n\n\n\n\n\n\n\n\n\n\n\n\n\nd.\n",
-		"start": 143,
+		"text": "",
+		"start": 155,
 		"end": 159,
 		"file": "/Volumes/Drives/projects/documon/documon/src/ignore.js",
-		"flags": [],
-		"source": " glob syntax\n\n\n\n\n\n\n\n\n\n\n\n\n\nd.",
-		"meta": []
+		"flags": [
+			{
+				"source": "@method  testtest",
+				"flag": "method",
+				"after": "test",
+				"afterType": "test",
+				"name": "test",
+				"single": true,
+				"text": "test"
+			},
+			{
+				"source": "@param   {string}   item - The path to test.The path to test.",
+				"flag": "param",
+				"after": "{string}   item - The path to test.",
+				"type": "string",
+				"afterType": "item - The path to test.",
+				"name": "item",
+				"text": "The path to test."
+			},
+			{
+				"source": "@return  {boolean}       - True when the path should be skipped.",
+				"flag": "return",
+				"after": "{boolean}       - True when the path should be skipped.",
+				"type": "boolean",
+				"afterType": "True when the path should be skipped.",
+				"text": "True when the path should be skipped."
+			}
+		],
+		"source": "@method  test\n@param   {string}   item - The path to test.\n@return  {boolean}       - True when the path should be skipped.",
+		"meta": [],
+		"id": "documon.ignore.test"
 	}
 ]

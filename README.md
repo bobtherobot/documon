@@ -188,6 +188,21 @@ Added:
 Fixed:
 - `--check` no longer scans `@example` content for cross-references; examples legitimately
   contain ids that were never meant to resolve.
+- A comment opener inside a string literal or after a `//` line comment no longer starts a
+  comment block. The extractor matched `/**` anywhere on a line, so a line like
+  `var s = "/** ..."` opened a block that swallowed every comment after it until the next
+  `*/` -- the entities did not render wrong, they disappeared. Documon was losing entries
+  from its own source this way.
+- A comment opened and closed on one line (`/** @method foo */`) now ends on that line.
+  Previously it stayed open and consumed the code and comments that followed.
+- Cross-references to `more` pages (`[the options](more.options)`) resolve in `--check`.
+  Those pages come from markdown rather than comments, so every link into the manual was
+  reported as broken.
+- `--check` no longer warns about `@param` on a `@class` or `@module`. Those pages are
+  rendered through the same template path as methods and *do* show a signature, a parameter
+  table and a returns block -- the rule was sending authors to delete documentation that
+  works. It still fires for kinds that genuinely drop parameters (`@property`,
+  `@namespace`, `@package`).
 
 v2.7.0 - 2026-08-25
 - Added a `bin` entry, so `npx documon` and a global `documon` command work.

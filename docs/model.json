@@ -294,7 +294,7 @@
 					"name": "COMMON_TYPOS",
 					"type": "object",
 					"access": "public",
-					"line": 60,
+					"line": 61,
 					"inherited": null,
 					"description": "Tags people (and models trained on other doc systems)\nreach for that Documon does not implement, mapped to the right answer.",
 					"meta": [],
@@ -307,7 +307,7 @@
 					"name": "EXTENDISH",
 					"type": "array",
 					"access": "public",
-					"line": 43,
+					"line": 44,
 					"inherited": null,
 					"description": "Tags whose value must resolve to another documented id.",
 					"meta": [],
@@ -320,7 +320,7 @@
 					"name": "KIND_TAGS",
 					"type": "array",
 					"access": "public",
-					"line": 38,
+					"line": 39,
 					"inherited": null,
 					"description": "Tags that declare what an entity *is*. A comment block\nneeds one of these to become anything at all.",
 					"meta": [],
@@ -333,7 +333,7 @@
 					"name": "KNOWN_TAGS",
 					"type": "array",
 					"access": "public",
-					"line": 49,
+					"line": 50,
 					"inherited": null,
 					"description": "Every tag Documon actually acts on. Anything else is\ninert -- it will be silently dropped from the output.",
 					"meta": [],
@@ -346,7 +346,7 @@
 					"name": "TAG_NOTES",
 					"type": "object",
 					"access": "public",
-					"line": 89,
+					"line": 90,
 					"inherited": null,
 					"description": "Extra guidance for tags that look like they should work\nbut genuinely have no Documon equivalent.",
 					"meta": [],
@@ -359,7 +359,7 @@
 					"name": "blockId",
 					"type": null,
 					"access": "private",
-					"line": 186,
+					"line": 238,
 					"inherited": null,
 					"description": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.\n\nIds are scoped `package.container.member` -- the same shape as the generated filenames\n(`documon.dirutils.html`). A `@method` therefore inherits the `@class` or `@module`\ndeclared above it in the same file; without that scope every `run()` in the project\nwould look like a collision.",
 					"meta": [],
@@ -386,7 +386,7 @@
 					"name": "collect",
 					"type": null,
 					"access": "private",
-					"line": 132,
+					"line": 133,
 					"inherited": null,
 					"description": "Collects the source files that would be parsed by a build with this config.",
 					"meta": [],
@@ -408,7 +408,7 @@
 					"name": "finding",
 					"type": null,
 					"access": "private",
-					"line": 113,
+					"line": 114,
 					"inherited": null,
 					"description": "Creates a finding.",
 					"meta": [],
@@ -450,12 +450,34 @@
 					}
 				},
 				{
+					"id": "documon.check.moreIds",
+					"kind": "method",
+					"name": "moreIds",
+					"type": null,
+					"access": "private",
+					"line": 185,
+					"inherited": null,
+					"description": "Lists the ids of the prose pages the \"more\" folder will produce.\n\nThose pages are real link targets (`[the options](more.options)`), but they come\nfrom markdown, not comments, so the cross-reference pass has no way to know they\nexist. Without this, every link into the manual reads as broken.",
+					"meta": [],
+					"params": [
+						{
+							"name": "conf",
+							"type": "object",
+							"description": "The resolved configuration."
+						}
+					],
+					"returns": {
+						"type": "object",
+						"description": "A map of id -> true. Empty when no more folder is configured."
+					}
+				},
+				{
 					"id": "documon.check.print",
 					"kind": "method",
 					"name": "print",
 					"type": null,
 					"access": "public",
-					"line": 647,
+					"line": 708,
 					"inherited": null,
 					"description": "Prints a report for humans.",
 					"meta": [],
@@ -479,7 +501,7 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 339,
+					"line": 394,
 					"inherited": null,
 					"description": "Runs the validator.",
 					"meta": [],
@@ -506,7 +528,7 @@
 					"name": "scanSymbols",
 					"type": null,
 					"access": "private",
-					"line": 299,
+					"line": 354,
 					"inherited": null,
 					"description": "A deliberately shallow symbol scan used only by the coverage advisory.\n\nThis never feeds the render path -- Documon still derives structure exclusively from\ncomments. It exists so an automated writer can be told \"you documented 4 of 11 exported\nthings\" instead of silently shipping a near-empty manual.",
 					"meta": [],
@@ -528,7 +550,7 @@
 					"name": "summarize",
 					"type": null,
 					"access": "private",
-					"line": 218,
+					"line": 270,
 					"inherited": null,
 					"description": "Reduces a parsed comment block to the facts the rules care about.",
 					"meta": [],
@@ -762,7 +784,7 @@
 					"name": "dumpData",
 					"type": "boolean",
 					"access": "public",
-					"line": 128,
+					"line": 127,
 					"inherited": null,
 					"description": "Whether or not to write intermediary files used during processing to the output data folder.",
 					"meta": [],
@@ -775,7 +797,7 @@
 					"name": "extensions",
 					"type": "array",
 					"access": "public",
-					"line": 90,
+					"line": 89,
 					"inherited": null,
 					"description": "The list of extensions to search for source code.",
 					"meta": [],
@@ -788,7 +810,7 @@
 					"name": "ignoreList",
 					"type": "array",
 					"access": "public",
-					"line": 101,
+					"line": 100,
 					"inherited": null,
 					"description": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
 					"meta": [],
@@ -801,7 +823,7 @@
 					"name": "indexRedirectName",
 					"type": "string",
 					"access": "public",
-					"line": 133,
+					"line": 132,
 					"inherited": null,
 					"description": "The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
 					"meta": [],
@@ -814,9 +836,22 @@
 					"name": "mainConf",
 					"type": "Object",
 					"access": "public",
-					"line": 85,
+					"line": 84,
 					"inherited": null,
-					"description": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)",
+					"description": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
+					"id": "documon.documon.matcher",
+					"kind": "property",
+					"name": "matcher",
+					"type": "object",
+					"access": "public",
+					"line": 111,
+					"inherited": null,
+					"description": "The compiled ignore matcher, built during init from the\ndefault patterns plus whatever the caller supplied.",
 					"meta": [],
 					"params": [],
 					"returns": null
@@ -827,7 +862,7 @@
 					"name": "quiet",
 					"type": "boolean",
 					"access": "public",
-					"line": 123,
+					"line": 122,
 					"inherited": null,
 					"description": "Supress stdout messages.",
 					"meta": [],
@@ -840,7 +875,7 @@
 					"name": "tally",
 					"type": "object",
 					"access": "public",
-					"line": 118,
+					"line": 117,
 					"inherited": null,
 					"description": "Counts of tags that were normalized or ignored during a\nbuild, reported as a single line when the build finishes.",
 					"meta": [],
@@ -853,7 +888,7 @@
 					"name": "filterFileTypes",
 					"type": null,
 					"access": "private",
-					"line": 160,
+					"line": 159,
 					"inherited": null,
 					"description": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
 					"meta": [],
@@ -875,7 +910,7 @@
 					"name": "init",
 					"type": null,
 					"access": "private",
-					"line": 196,
+					"line": 195,
 					"inherited": null,
 					"description": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates",
 					"meta": [],
@@ -897,7 +932,7 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 629,
+					"line": 628,
 					"inherited": null,
 					"description": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js",
 					"meta": [],
@@ -916,7 +951,7 @@
 					"name": "seeder",
 					"type": null,
 					"access": "private",
-					"line": 507,
+					"line": 506,
 					"inherited": null,
 					"description": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)",
 					"meta": [],
@@ -938,7 +973,7 @@
 					"name": "shouldIgnore",
 					"type": null,
 					"access": "private",
-					"line": 483,
+					"line": 482,
 					"inherited": null,
 					"description": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)",
 					"meta": [],
@@ -960,7 +995,7 @@
 					"name": "writeData",
 					"type": null,
 					"access": "private",
-					"line": 149,
+					"line": 148,
 					"inherited": null,
 					"description": "Simplify file write for text or json.",
 					"meta": [],
@@ -1235,6 +1270,28 @@
 					"returns": {
 						"type": "RegExp",
 						"description": "The compiled expression, or null when it still won't compile."
+					}
+				},
+				{
+					"id": "documon.ignore.test",
+					"kind": "method",
+					"name": "test",
+					"type": null,
+					"access": "public",
+					"line": 160,
+					"inherited": null,
+					"description": "test",
+					"meta": [],
+					"params": [
+						{
+							"name": "item",
+							"type": "string",
+							"description": "The path to test."
+						}
+					],
+					"returns": {
+						"type": "boolean",
+						"description": "True when the path should be skipped."
 					}
 				}
 			]
@@ -1656,9 +1713,9 @@
 			"name": "More",
 			"kind": "class",
 			"package": "documon",
-			"description": "Discovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML",
+			"description": "Discovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML\n\n\nThe work is done by [init](#init), which is what this module exports.",
 			"file": "src/more.js",
-			"line": 32,
+			"line": 23,
 			"meta": [],
 			"members": [
 				{
@@ -1667,7 +1724,7 @@
 					"name": "docGoesHereStr",
 					"type": "string",
 					"access": "private",
-					"line": 67,
+					"line": 58,
 					"inherited": null,
 					"description": "The string used as the flag as to where to insert the parsed source documents into the menu.",
 					"meta": [],
@@ -1680,7 +1737,7 @@
 					"name": "flat",
 					"type": "string",
 					"access": "private",
-					"line": 47,
+					"line": 38,
 					"inherited": null,
 					"description": "A place to store generated page objects with a direct reference to their ID via flat[id].",
 					"meta": [],
@@ -1693,7 +1750,7 @@
 					"name": "metaRx",
 					"type": "string",
 					"access": "private",
-					"line": 73,
+					"line": 64,
 					"inherited": null,
 					"description": "The regular expression use to split the doc on the [metaString](#metaString)",
 					"meta": [],
@@ -1706,7 +1763,7 @@
 					"name": "metaString",
 					"type": "string",
 					"access": "public",
-					"line": 61,
+					"line": 52,
 					"inherited": null,
 					"description": "The delimiting string used to seperate the meta JSON from normal markdown.",
 					"meta": [],
@@ -1719,7 +1776,7 @@
 					"name": "quirkDelimiter",
 					"type": "string",
 					"access": "private",
-					"line": 54,
+					"line": 45,
 					"inherited": null,
 					"description": "Used to mark where filename numbering terminates and the \"title\" begins. User configurable via the [moreQuirkDelimiter option](more.options).",
 					"meta": [],
@@ -1732,7 +1789,7 @@
 					"name": "cleanID",
 					"type": null,
 					"access": "private",
-					"line": 192,
+					"line": 183,
 					"inherited": null,
 					"description": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.",
 					"meta": [],
@@ -1759,12 +1816,36 @@
 					"name": "init",
 					"type": null,
 					"access": "public",
-					"line": 256,
+					"line": 260,
 					"inherited": null,
-					"description": "See class description.",
+					"description": "Builds the \"more\" pages and merges them into the menu. See the class description\nfor what the module does as a whole.",
 					"meta": [],
-					"params": [],
-					"returns": null
+					"params": [
+						{
+							"name": "params",
+							"type": "object",
+							"description": "The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:"
+						},
+						{
+							"name": "sourceDocsMenu",
+							"type": "object",
+							"description": "The menu for the parsed source code documentation. We'll merge it into the \"more\" menu."
+						},
+						{
+							"name": "searchDB",
+							"type": "object",
+							"description": "The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching."
+						},
+						{
+							"name": "shouldIgnore",
+							"type": "function",
+							"description": "The ignore matcher, so the more folder honours the same ignore list as the source tree."
+						}
+					],
+					"returns": {
+						"type": "menu | undefined",
+						"description": "Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point."
+					}
 				},
 				{
 					"id": "documon.More.newItem",
@@ -1772,7 +1853,7 @@
 					"name": "newItem",
 					"type": null,
 					"access": "private",
-					"line": 98,
+					"line": 89,
 					"inherited": null,
 					"description": "Opens, catalogs and builds a new page from the provided file path.",
 					"meta": [],
@@ -1794,12 +1875,39 @@
 					}
 				},
 				{
+					"id": "documon.More.pageId",
+					"kind": "method",
+					"name": "pageId",
+					"type": null,
+					"access": "public",
+					"line": 461,
+					"inherited": null,
+					"description": "Derives the id a \"more\" file will be filed under, without building anything.\n\n`check.js` uses this so a cross-link to a prose page resolves the same way the\nsite resolves it. The derivation must live in one place -- a second copy would\ndrift and start reporting working links as broken.",
+					"meta": [],
+					"params": [
+						{
+							"name": "relative",
+							"type": "string",
+							"description": "Path relative to the more folder, e.g. \"104.Options.md\"."
+						},
+						{
+							"name": "delimiter",
+							"type": "string",
+							"description": "The moreQuirkDelimiter; defaults to the module's."
+						}
+					],
+					"returns": {
+						"type": "string",
+						"description": "The dotted id, e.g. \"more.options\"."
+					}
+				},
+				{
 					"id": "documon.More.parseJSON",
 					"kind": "method",
 					"name": "parseJSON",
 					"type": null,
 					"access": "private",
-					"line": 240,
+					"line": 231,
 					"inherited": null,
 					"description": "A safe replacement for standard JSON parsing that mitigates errors.",
 					"meta": [],
@@ -1821,7 +1929,7 @@
 					"name": "quirkyName",
 					"type": null,
 					"access": "private",
-					"line": 205,
+					"line": 196,
 					"inherited": null,
 					"description": "splits the numbering off of eight filename and returns the filename with out numbering",
 					"meta": [],
@@ -2207,7 +2315,7 @@
 					"access": "public",
 					"line": 80,
 					"inherited": null,
-					"description": "A reference to the main configuration object. See [documon.mainConf](documon.mainConf).",
+					"description": "A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf).",
 					"meta": [],
 					"params": [],
 					"returns": null
@@ -2385,7 +2493,7 @@
 						{
 							"name": "params",
 							"type": "type",
-							"description": "The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object."
+							"description": "The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object."
 						}
 					],
 					"returns": null
@@ -2478,7 +2586,7 @@
 			"name": "searchPrep",
 			"kind": "class",
 			"package": "documon",
-			"description": "Clean text so it has:\n- only alpha numeric characters\n- strips newlines and tabs.\n- single word results ignored\n\nUsed by [tag.js](root.documon.tag) and [more.js](root.documon.more)",
+			"description": "Clean text so it has:\n- only alpha numeric characters\n- strips newlines and tabs.\n- single word results ignored\n\nUsed by [tag.js](documon.tag) and [more.js](documon.More)",
 			"file": "src/searchPrep.js",
 			"line": 21,
 			"meta": [],

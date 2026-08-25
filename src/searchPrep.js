@@ -10,7 +10,7 @@ www.documon.net
  * - strips newlines and tabs.
  * - single word results ignored
  *
- * Used by [tag.js](root.documon.tag) and [more.js](root.documon.more)
+ * Used by [tag.js](documon.tag) and [more.js](documon.More)
  *
  *
  * @class searchPrep

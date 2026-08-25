@@ -449,6 +449,126 @@ ok(matcher.test("/out/dir/f.js"), "ignores the output folder");
 ok(!matcher.test("/p/src/real.js"), "keeps ordinary source files");
 
 // ------------------------------------------------------------------
+console.log("\ncheck: where parameters actually render");
+// ------------------------------------------------------------------
+// class.jst routes the @class/@module that heads a page through member.jst as a
+// "methods" part, so those pages DO show a signature and a parameter table. The
+// rule used to warn about them, which sent authors to delete working docs.
+var paramDir = tmp();
+fs.writeFileSync(path.join(paramDir, "p.js"), [
+	"/**", " * A callable module.", " * @class   Runner", " * @package app",
+	" * @param   {string} text - Input.", " * @returns {string} - Output.", " */",
+	"",
+	"/**", " * A module.", " * @module  Helper", " * @package app",
+	" * @param   {string} text - Input.", " */",
+	"",
+	"/**", " * A property.", " * @property {object} conf",
+	" * @param   {string} nope - Never rendered.", " */"
+].join("\n"));
+
+var paramRun = cli(["--check", "--json", "-i", paramDir]);
+var paramFindings = JSON.parse(paramRun.stdout).findings
+	.filter(function(f){ return f.rule === "param-on-non-method"; });
+
+ok(paramFindings.length === 1, "@param on @class and @module is not flagged",
+	JSON.stringify(paramFindings));
+ok(paramFindings.length === 1 && /@property/.test(paramFindings[0].message),
+	"@param on a kind that drops it is still flagged",
+	paramFindings.length ? paramFindings[0].message : "nothing reported");
+
+// ------------------------------------------------------------------
+console.log("\ncheck: links into the more folder");
+// ------------------------------------------------------------------
+var moreDir = tmp();
+var moreSrc = path.join(moreDir, "src");
+var morePro = path.join(moreDir, "more");
+fs.mkdirSync(moreSrc);
+fs.mkdirSync(morePro);
+fs.mkdirSync(path.join(morePro, "185.Tags"));
+fs.writeFileSync(path.join(morePro, "104.Options.md"), "# Options\n");
+fs.writeFileSync(path.join(morePro, "185.Tags", "@implements.md"), "# implements\n");
+fs.writeFileSync(path.join(moreSrc, "thing.js"), [
+	"/**",
+	" * A thing.",
+	" *",
+	" * See [options](more.options), [the tags folder](more.tags),",
+	" * [a tag page](more.tags._implements_md) and [a typo](more.nosuchpage).",
+	" * @module  thing",
+	" * @package app",
+	" */"
+].join("\n"));
+
+var moreRun = cli(["--check", "--json", "-i", moreSrc, "-m", morePro]);
+var moreReport = JSON.parse(moreRun.stdout);
+var moreBroken = moreReport.findings.filter(function(f){ return f.rule === "broken-link"; });
+
+ok(moreBroken.length === 1, "prose pages resolve as link targets",
+	JSON.stringify(moreBroken));
+ok(moreBroken.length === 1 && moreBroken[0].message.indexOf("more.nosuchpage") > -1,
+	"a mistyped prose link is still reported",
+	moreBroken.length ? moreBroken[0].message : "nothing reported");
+
+// ------------------------------------------------------------------
+console.log("\nextract: openers that are not openers");
+// ------------------------------------------------------------------
+var extract = require(path.join(ROOT, "src", "extract.js"));
+
+// Built from pieces so this file does not contain the very thing it tests.
+var OPEN  = "/*" + "*";
+var CLOSE = "*" + "/";
+
+function blocks(lines){
+	return extract(lines.join("\n"));
+}
+
+// A doc opener inside a string literal used to start a real block, which then
+// swallowed every comment after it -- losing those entities entirely.
+var inString = blocks([
+	'var sample = "' + OPEN + ' looks like a comment";',
+	OPEN,
+	' * @method survivor',
+	' ' + CLOSE
+]);
+ok(inString.length === 1, "an opener inside a string literal is not a comment",
+	JSON.stringify(inString));
+ok(/@method survivor/.test(inString[0] ? inString[0].data : ""),
+	"the comment after a string-literal opener still parses");
+
+var inLineComment = blocks([
+	'// see "src/' + '**' + '/tmp" for the glob form',
+	OPEN,
+	' * @method survivor',
+	' ' + CLOSE
+]);
+ok(inLineComment.length === 1, "an opener inside a // line comment is not a comment",
+	JSON.stringify(inLineComment));
+ok(/@method survivor/.test(inLineComment[0] ? inLineComment[0].data : ""),
+	"the comment after a commented-out opener still parses");
+
+// A "//" inside a string is not a line comment, so a real opener after it counts.
+var urlLine = blocks([
+	'var url = "http://example.com"; ' + OPEN + ' @method trailing ' + CLOSE
+]);
+ok(urlLine.length === 1 && urlLine[0].data === "@method trailing",
+	"a // inside a string does not hide a later opener", JSON.stringify(urlLine));
+
+// Opened and closed on the same line: the block used to stay open and eat code.
+var oneLine = blocks([
+	OPEN + ' @method oneLiner ' + CLOSE,
+	'function oneLiner(){}',
+	OPEN,
+	' * @method second',
+	' ' + CLOSE
+]);
+ok(oneLine.length === 2, "a single-line block closes on its own line",
+	JSON.stringify(oneLine));
+ok(oneLine[0] && oneLine[0].data === "@method oneLiner",
+	"a single-line block keeps only its own contents",
+	oneLine[0] ? oneLine[0].data : "");
+ok(/@method second/.test(oneLine[1] ? oneLine[1].data : ""),
+	"the block after a single-line block still parses");
+
+// ------------------------------------------------------------------
 console.log("\ncli: basics");
 // ------------------------------------------------------------------
 var help = cli(["-h"]);

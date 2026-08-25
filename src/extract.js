@@ -95,6 +95,59 @@ www.documon.net
  * 
  */
 
+var LINE_COMMENT = "//";
+
+/*
+Finds the column of a real comment opener on a single line, or -1.
+
+A beginDoc sequence that sits inside a quoted string, or after a "//" line
+comment, is code -- not the start of a doc block. Treating it as an opener
+swallows every comment that follows it, so those entities go missing rather
+than merely rendering wrong.
+
+String state is per line: a beginDoc inside a template literal that spans
+lines is still read as an opener.
+*/
+function findOpener(line, beginDoc, skipLineComments) {
+
+	var quote = 0; // the open quote character, or 0 when outside a string
+	var len = line.length;
+	var i = 0;
+	var ch;
+
+	while (i < len) {
+		ch = line.charAt(i);
+
+		if (quote) {
+			if (ch === "\\") {
+				i += 2;
+				continue;
+			}
+			if (ch === quote) {
+				quote = 0;
+			}
+			i++;
+			continue;
+		}
+
+		if (line.startsWith(beginDoc, i)) {
+			return i;
+		}
+
+		if (skipLineComments && line.startsWith(LINE_COMMENT, i)) {
+			return -1;
+		}
+
+		if (ch === '"' || ch === "'" || ch === "`") {
+			quote = ch;
+		}
+
+		i++;
+	}
+
+	return -1;
+}
+
 module.exports = function(text, beginDoc, endDoc) {
 
 	//var re_lead = /^([\s\*]*[^\S])/g
@@ -122,11 +175,24 @@ module.exports = function(text, beginDoc, endDoc) {
     var lineStart = 0;
     var lineEnd = 0;
 
+    // "//" only means "line comment" for C-style delimiters.
+    var skipLineComments = beginDoc.indexOf("/*") === 0;
+
     for (i = 0; i < len; i++) {
         line = ref[i];
         if ( ! inside) {
-            depth = line.indexOf(beginDoc);
+            depth = findOpener(line, beginDoc, skipLineComments);
             if (depth >= 0) {
+                idx = line.indexOf(endDoc, depth + beginDoc.length);
+                if (idx >= 0) {
+                    // Opened and closed on the same line: /** ... */
+                    result.push({
+                    	start : i,
+                    	end : i,
+                    	data : line.substring(depth + beginDoc.length, idx).trim()
+                    });
+                    continue;
+                }
                 inside = true;
                 section = [];
                 lineStart = i;

@@ -21,7 +21,7 @@
 	"id": "documon.check",
 	"methods": [
 		{
-			"line": 186,
+			"line": 238,
 			"name": "blockId",
 			"shortText": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.",
 			"shortHtml": "<p>Derives the id a comment block will be filed under, mirroring how <code>tag.js</code> builds ids.</p>",
@@ -64,7 +64,7 @@
 			"id": "documon.check.blockId"
 		},
 		{
-			"line": 132,
+			"line": 133,
 			"name": "collect",
 			"shortText": "Collects the source files that would be parsed by a build with this config.",
 			"shortHtml": "<p>Collects the source files that would be parsed by a build with this config.</p>",
@@ -98,7 +98,7 @@
 			"id": "documon.check.collect"
 		},
 		{
-			"line": 113,
+			"line": 114,
 			"name": "finding",
 			"shortText": "Creates a finding.",
 			"shortHtml": "<p>Creates a finding.</p>",
@@ -173,7 +173,41 @@
 			"id": "documon.check.finding"
 		},
 		{
-			"line": 647,
+			"line": 185,
+			"name": "moreIds",
+			"shortText": "Lists the ids of the prose pages the \"more\" folder will produce.",
+			"shortHtml": "<p>Lists the ids of the prose pages the \"more\" folder will produce.</p>",
+			"text": "Lists the ids of the prose pages the \"more\" folder will produce.\n\nThose pages are real link targets (`[the options](more.options)`), but they come\nfrom markdown, not comments, so the cross-reference pass has no way to know they\nexist. Without this, every link into the manual reads as broken.\n\n",
+			"html": "<p>Lists the ids of the prose pages the \"more\" folder will produce.</p>\n<p>Those pages are real link targets (<code>[the options](more.options)</code>), but they come<br />\nfrom markdown, not comments, so the cross-reference pass has no way to know they<br />\nexist. Without this, every link into the manual reads as broken.</p>",
+			"entity": "method",
+			"flagSearchText": " moreIds The resolved configuration. map of id -> true. Empty when no more folder is configured.",
+			"access": "private",
+			"params": [
+				{
+					"name": "conf",
+					"shortText": "The resolved configuration.",
+					"shortHtml": "<p>The resolved configuration.</p>",
+					"text": "The resolved configuration.",
+					"html": "<p>The resolved configuration.</p>",
+					"type": "object"
+				}
+			],
+			"returns": {
+				"type": "object",
+				"text": "A map of id -> true. Empty when no more folder is configured.",
+				"html": "<p>A map of id -&gt; true. Empty when no more folder is configured.</p>",
+				"shortText": "<p>A map of id -&gt; true. Empty when no more folder is configured.</p>",
+				"shortHtml": "<p>A map of id -&gt; true. Empty when no more folder is configured.</p>"
+			},
+			"file": "src/check.js",
+			"filename": "check.js",
+			"klass": "check",
+			"package": "documon",
+			"docfile": "documon.check.html",
+			"id": "documon.check.moreIds"
+		},
+		{
+			"line": 708,
 			"name": "print",
 			"shortText": "Prints a report for humans.",
 			"shortHtml": "<p>Prints a report for humans.</p>",
@@ -207,7 +241,7 @@
 			"id": "documon.check.print"
 		},
 		{
-			"line": 339,
+			"line": 394,
 			"name": "run",
 			"shortText": "Runs the validator.",
 			"shortHtml": "<p>Runs the validator.</p>",
@@ -267,7 +301,7 @@
 			"id": "documon.check.run"
 		},
 		{
-			"line": 299,
+			"line": 354,
 			"name": "scanSymbols",
 			"shortText": "A deliberately shallow symbol scan used only by the coverage advisory.",
 			"shortHtml": "<p>A deliberately shallow symbol scan used only by the coverage advisory.</p>",
@@ -301,7 +335,7 @@
 			"id": "documon.check.scanSymbols"
 		},
 		{
-			"line": 218,
+			"line": 270,
 			"name": "summarize",
 			"shortText": "Reduces a parsed comment block to the facts the rules care about.",
 			"shortHtml": "<p>Reduces a parsed comment block to the facts the rules care about.</p>",
@@ -337,7 +371,7 @@
 	],
 	"properties": [
 		{
-			"line": 60,
+			"line": 61,
 			"name": "COMMON_TYPOS",
 			"shortText": "Tags people (and models trained on other doc systems)",
 			"shortHtml": "<p>Tags people (and models trained on other doc systems)</p>",
@@ -354,7 +388,7 @@
 			"id": "documon.check.COMMON_TYPOS"
 		},
 		{
-			"line": 43,
+			"line": 44,
 			"name": "EXTENDISH",
 			"shortText": "Tags whose value must resolve to another documented id.",
 			"shortHtml": "<p>Tags whose value must resolve to another documented id.</p>",
@@ -371,7 +405,7 @@
 			"id": "documon.check.EXTENDISH"
 		},
 		{
-			"line": 38,
+			"line": 39,
 			"name": "KIND_TAGS",
 			"shortText": "Tags that declare what an entity *is*. A comment block",
 			"shortHtml": "<p>Tags that declare what an entity <em>is</em>. A comment block</p>",
@@ -388,7 +422,7 @@
 			"id": "documon.check.KIND_TAGS"
 		},
 		{
-			"line": 49,
+			"line": 50,
 			"name": "KNOWN_TAGS",
 			"shortText": "Every tag Documon actually acts on. Anything else is",
 			"shortHtml": "<p>Every tag Documon actually acts on. Anything else is</p>",
@@ -405,7 +439,7 @@
 			"id": "documon.check.KNOWN_TAGS"
 		},
 		{
-			"line": 89,
+			"line": 90,
 			"name": "TAG_NOTES",
 			"shortText": "Extra guidance for tags that look like they should work",
 			"shortHtml": "<p>Extra guidance for tags that look like they should work</p>",
@@ -429,6 +463,7 @@
 		"documon.check": "check : Validates documentation comments without generating anything Because Documon infers nothing from source code missing misspelled doesn produce warning produces silence symbol simply never appears output That fine human eyeballs result useless automated writer that needs know whether succeeded check that feedback signal parse everything report what work exit zero Write comments check repair repeatcheck documon documon check human readable documon check json machine readable documon check coverage plus undocumented symbol advisory",
 		"documon.check.finding": "finding : Creates findingfinding error warning info Stable machine readable rule Source file based line number What wrong finding",
 		"documon.check.collect": "collect : Collects source files that would parsed build with this configcollect Documon config Absolute file paths",
+		"documon.check.moreIds": "moreIds : Lists prose pages more folder will produce Those pages real link targets options more options they come from markdown comments cross reference pass know they exist Without this every link into manual reads brokenmoreIds resolved configuration true Empty when more folder configured",
 		"documon.check.blockId": "blockId : Derives comment block will filed under mirroring builds scoped package container member same shape generated filenames documon dirutils html method therefore inherits class module declared above same file without that scope every project would look like collisionblockId Summarized block enclosing class module name Dotted null",
 		"documon.check.summarize": "summarize : Reduces parsed comment block facts rules care aboutsummarize Output parse Summary",
 		"documon.check.scanSymbols": "scanSymbols : deliberately shallow symbol scan used only coverage advisory This never feeds render path Documon still derives structure exclusively from comments exists automated writer told documented exported things instead silently shipping near empty manualscanSymbols File contents name line records",

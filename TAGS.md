@@ -75,8 +75,10 @@ id when cross-referencing.
 | `@default` | `@default 0` (also `@defaultVal`, `@defaultValue`) |
 | `@optional` | Marks the item optional. |
 
-Parameters render on `@method` and on `@event`. On a `@class` or `@module` they are parsed
-but never displayed — put that information in the description instead.
+Parameters render on `@method`, on `@event`, and on the `@class` or `@module` that heads a
+page — a module exporting a single function documents its signature there. On any other kind
+(`@property`, `@namespace`, `@package`) they are parsed but never displayed; put that
+information in the description instead.
 
 ## Visibility tags
 

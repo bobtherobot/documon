@@ -736,6 +736,14 @@ var MenuData = [
 														"inherits": 0
 													},
 													{
+														"id": "documon.check.moreIds",
+														"url": "documon.check.html#documon.check.moreIds",
+														"label": "moreIds",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
 														"id": "documon.check.print",
 														"url": "documon.check.html#documon.check.print",
 														"label": "print",
@@ -895,6 +903,14 @@ var MenuData = [
 														"id": "documon.documon.mainConf",
 														"url": "documon.documon.html#documon.documon.mainConf",
 														"label": "mainConf",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.documon.matcher",
+														"url": "documon.documon.html#documon.documon.matcher",
+														"label": "matcher",
 														"kind": "properties-item",
 														"access": "public",
 														"inherits": 0
@@ -1101,6 +1117,14 @@ var MenuData = [
 														"label": "globToRegExp",
 														"kind": "methods-item",
 														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.ignore.test",
+														"url": "documon.ignore.html#documon.ignore.test",
+														"label": "test",
+														"kind": "methods-item",
+														"access": "public",
 														"inherits": 0
 													}
 												]
@@ -1381,6 +1405,14 @@ var MenuData = [
 														"label": "newItem",
 														"kind": "methods-item",
 														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.More.pageId",
+														"url": "documon.More.html#documon.More.pageId",
+														"label": "pageId",
+														"kind": "methods-item",
+														"access": "public",
 														"inherits": 0
 													},
 													{

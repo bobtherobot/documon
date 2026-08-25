@@ -35,16 +35,16 @@
 		"file": "/Volumes/Drives/projects/documon/documon/src/organizer.js",
 		"flags": [
 			{
-				"source": "@property  {Object} mainConf - A reference to the main configuration object. See [documon.mainConf](documon.mainConf).",
+				"source": "@property  {Object} mainConf - A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf).",
 				"flag": "property",
-				"after": "{Object} mainConf - A reference to the main configuration object. See [documon.mainConf](documon.mainConf).",
+				"after": "{Object} mainConf - A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf).",
 				"type": "Object",
-				"afterType": "mainConf - A reference to the main configuration object. See [documon.mainConf](documon.mainConf).",
+				"afterType": "mainConf - A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf).",
 				"name": "mainConf",
-				"text": "A reference to the main configuration object. See [documon.mainConf](documon.mainConf)."
+				"text": "A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf)."
 			}
 		],
-		"source": "@property  {Object} mainConf - A reference to the main configuration object. See [documon.mainConf](documon.mainConf).",
+		"source": "@property  {Object} mainConf - A reference to the main configuration object. See [documon.documon.mainConf](documon.documon.mainConf).",
 		"meta": [],
 		"id": "documon.organizer.mainConf"
 	},
@@ -164,13 +164,13 @@
 				"text": "init"
 			},
 			{
-				"source": "@param   {type}  params  - The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
+				"source": "@param   {type}  params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
 				"flag": "param",
-				"after": "{type}  params  - The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
+				"after": "{type}  params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
 				"type": "type",
-				"afterType": "params  - The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
+				"afterType": "params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
 				"name": "params",
-				"text": "The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
+				"text": "The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.",
 				"children": [
 					{
 						"source": "@param   {type}  params.templateFolder -  The base path to the template folder.",
@@ -185,7 +185,7 @@
 				]
 			}
 		],
-		"source": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.\n\n@method  init\n@param   {type}  params  - The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.\n@param   {type}  params.templateFolder -  The base path to the template folder.",
+		"source": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.\n\n@method  init\n@param   {type}  params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.\n@param   {type}  params.templateFolder -  The base path to the template folder.",
 		"meta": [],
 		"id": "documon.organizer.init"
 	},
