@@ -21,7 +21,7 @@
 	"id": "documon.check",
 	"methods": [
 		{
-			"line": 185,
+			"line": 186,
 			"name": "blockId",
 			"shortText": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.",
 			"shortHtml": "<p>Derives the id a comment block will be filed under, mirroring how <code>tag.js</code> builds ids.</p>",
@@ -64,7 +64,7 @@
 			"id": "documon.check.blockId"
 		},
 		{
-			"line": 131,
+			"line": 132,
 			"name": "collect",
 			"shortText": "Collects the source files that would be parsed by a build with this config.",
 			"shortHtml": "<p>Collects the source files that would be parsed by a build with this config.</p>",
@@ -98,7 +98,7 @@
 			"id": "documon.check.collect"
 		},
 		{
-			"line": 112,
+			"line": 113,
 			"name": "finding",
 			"shortText": "Creates a finding.",
 			"shortHtml": "<p>Creates a finding.</p>",
@@ -173,7 +173,7 @@
 			"id": "documon.check.finding"
 		},
 		{
-			"line": 637,
+			"line": 647,
 			"name": "print",
 			"shortText": "Prints a report for humans.",
 			"shortHtml": "<p>Prints a report for humans.</p>",
@@ -207,7 +207,7 @@
 			"id": "documon.check.print"
 		},
 		{
-			"line": 338,
+			"line": 339,
 			"name": "run",
 			"shortText": "Runs the validator.",
 			"shortHtml": "<p>Runs the validator.</p>",
@@ -267,7 +267,7 @@
 			"id": "documon.check.run"
 		},
 		{
-			"line": 298,
+			"line": 299,
 			"name": "scanSymbols",
 			"shortText": "A deliberately shallow symbol scan used only by the coverage advisory.",
 			"shortHtml": "<p>A deliberately shallow symbol scan used only by the coverage advisory.</p>",
@@ -301,7 +301,7 @@
 			"id": "documon.check.scanSymbols"
 		},
 		{
-			"line": 217,
+			"line": 218,
 			"name": "summarize",
 			"shortText": "Reduces a parsed comment block to the facts the rules care about.",
 			"shortHtml": "<p>Reduces a parsed comment block to the facts the rules care about.</p>",

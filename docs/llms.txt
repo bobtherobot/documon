@@ -24,7 +24,7 @@ derived entirely from source-code comment tags.
 - [@example](https://www.documon.net/more.tags._example_md.html)
 - [@extends](https://www.documon.net/more.tags._extends_md.html)
 - [@header](https://www.documon.net/more.tags._header_md.html)
-- [@impliments](https://www.documon.net/more.tags._impliments_md.html)
+- [@implements](https://www.documon.net/more.tags._implements_md.html)
 - [@inherits](https://www.documon.net/more.tags._inherits_md.html)
 - [@method](https://www.documon.net/more.tags._method_md.html)
 - [@module](https://www.documon.net/more.tags._module_md.html)
@@ -62,10 +62,12 @@ derived entirely from source-code comment tags.
 - [classes](https://www.documon.net/documon.html#classes)
 - [properties](https://www.documon.net/documon.aliases.html#properties)
 - [ACCESS_VALUES](https://www.documon.net/documon.aliases.html#documon.aliases.ACCESS_VALUES)
+- [DEPRECATED](https://www.documon.net/documon.aliases.html#documon.aliases.DEPRECATED)
 - [DESCRIPTION_TAGS](https://www.documon.net/documon.aliases.html#documon.aliases.DESCRIPTION_TAGS)
 - [META_TAGS](https://www.documon.net/documon.aliases.html#documon.aliases.META_TAGS)
 - [TAGS](https://www.documon.net/documon.aliases.html#documon.aliases.TAGS)
 - [methods](https://www.documon.net/documon.aliases.html#methods)
+- [deprecatedFor](https://www.documon.net/documon.aliases.html#documon.aliases.deprecatedFor)
 - [inlineLinks](https://www.documon.net/documon.aliases.html#documon.aliases.inlineLinks)
 - [isAlias](https://www.documon.net/documon.aliases.html#documon.aliases.isAlias)
 - [isDescription](https://www.documon.net/documon.aliases.html#documon.aliases.isDescription)
@@ -182,6 +184,15 @@ derived entirely from source-code comment tags.
 - [init](https://www.documon.net/documon.organizer.html#documon.organizer.init)
 - [merge](https://www.documon.net/documon.organizer.html#documon.organizer.merge)
 - [sortObj](https://www.documon.net/documon.organizer.html#documon.organizer.sortObj)
+- [properties](https://www.documon.net/documon.parseFlags.html#properties)
+- [DOTTED_CHILD_TAGS](https://www.documon.net/documon.parseFlags.html#documon.parseFlags.DOTTED_CHILD_TAGS)
+- [properties](https://www.documon.net/documon.splitParsed.html#properties)
+- [packageTags](https://www.documon.net/documon.splitParsed.html#documon.splitParsed.packageTags)
+- [spliton](https://www.documon.net/documon.splitParsed.html#documon.splitParsed.spliton)
+- [methods](https://www.documon.net/documon.splitParsed.html#methods)
+- [declaredPackage](https://www.documon.net/documon.splitParsed.html#documon.splitParsed.declaredPackage)
+- [propagatePackage](https://www.documon.net/documon.splitParsed.html#documon.splitParsed.propagatePackage)
+- [split](https://www.documon.net/documon.splitParsed.html#documon.splitParsed.split)
 - [methods](https://www.documon.net/documon.tag.html#methods)
 - [fillFlag](https://www.documon.net/documon.tag.html#documon.tag.fillFlag)
 - [processItems](https://www.documon.net/documon.tag.html#documon.tag.processItems)
@@ -215,6 +226,7 @@ derived entirely from source-code comment tags.
 - [organizer](https://www.documon.net/documon.organizer.html): Organizes the parsed source-code data into a single object that takes the following form:
 - [parseFlags](https://www.documon.net/documon.parseFlags.html): Fills the output object with the following properties (if they exist)
 - [searchPrep](https://www.documon.net/documon.searchPrep.html): Clean text so it has:
+- [splitParsed](https://www.documon.net/documon.splitParsed.html): Splits one file's parsed comments into independent groups, so a file containing several
 - [tag](https://www.documon.net/documon.tag.html): Processes the following flags
 - [utils](https://www.documon.net/documon.utils.html): A collection of useful helper untilities.
 

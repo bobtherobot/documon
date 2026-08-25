@@ -59,7 +59,6 @@ var TAGS = {
 
 	// Inheritance
 	, "augments"    : "extends"
-	, "implements"  : "impliments"   // Documon's canonical spelling carries the typo
 
 	// Returns
 	, "yields"      : "return"
@@ -68,6 +67,19 @@ var TAGS = {
 	// Misc
 	, "constructs"  : "constructor"
 	, "defaultvalue": "default"
+};
+
+/**
+ * @property {object} DEPRECATED - Spellings that Documon used to accept and no longer
+ * does. These are **not** aliased -- they are listed so `--check` and the build summary
+ * can name the replacement instead of reporting a generic "unknown tag".
+ *
+ * `@impliments` was Documon's own misspelling of `@implements` and was corrected in
+ * v2.7.0. Since structure comes only from tags, leaving it as a silent alias would have
+ * meant the typo propagating into new projects forever.
+ */
+var DEPRECATED = {
+	"impliments" : "implements"
 };
 
 /**
@@ -119,6 +131,20 @@ function resolve(flag){
 	var key = String(flag).toLowerCase();
 
 	return TAGS[key] || flag;
+}
+
+/**
+ * The current spelling of a retired tag, or null when the tag was never retired.
+ *
+ * @method  deprecatedFor
+ * @param   {string}  flag - The tag as written.
+ * @return  {string}       - The replacement tag name, or null.
+ * @example
+ *
+ * 		aliases.deprecatedFor("impliments");  // "implements"
+ */
+function deprecatedFor(flag){
+	return DEPRECATED[ String(flag || "").toLowerCase() ] || null;
 }
 
 /**
@@ -185,10 +211,12 @@ function inlineLinks(text){
 module.exports = {
 	  resolve          : resolve
 	, isAlias          : isAlias
+	, deprecatedFor    : deprecatedFor
 	, isDescription    : isDescription
 	, metaLabel        : metaLabel
 	, inlineLinks      : inlineLinks
 	, TAGS             : TAGS
+	, DEPRECATED       : DEPRECATED
 	, DESCRIPTION_TAGS : DESCRIPTION_TAGS
 	, META_TAGS        : META_TAGS
 	, ACCESS_VALUES    : ACCESS_VALUES

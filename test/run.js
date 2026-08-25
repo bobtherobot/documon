@@ -136,7 +136,10 @@ ok(fires && /emits/.test(fires.fix || ""), "@fires advice explains the differenc
 // aliases module, directly
 var aliases = require(path.join(ROOT, "src", "aliases.js"));
 ok(aliases.resolve("function") === "method", "resolve maps @function");
-ok(aliases.resolve("implements") === "impliments", "resolve maps @implements");
+ok(aliases.resolve("implements") === "implements", "@implements is the canonical spelling");
+ok(aliases.resolve("impliments") === "impliments", "@impliments is not aliased back");
+ok(aliases.deprecatedFor("impliments") === "implements", "@impliments is flagged as retired");
+ok(aliases.deprecatedFor("implements") === null, "@implements is not flagged as retired");
 ok(aliases.resolve("method") === "method", "resolve leaves canonical tags alone");
 ok(aliases.resolve("fires") === "fires", "resolve does not touch @fires");
 ok(aliases.inlineLinks("See {@link geo.Circle}.") === "See [geo.Circle](geo.Circle).",
@@ -326,6 +329,111 @@ ok(explicit.version === "0.0.1", "explicit version wins");
 
 ok(JSON.parse(cli(["--check", "--json", "-i", pkgSrc], pkgDir).stdout).ok === true,
 	"check runs clean inside a bare project");
+
+// ------------------------------------------------------------------
+console.log("\nspelling: @implements is canonical, @impliments is retired");
+// ------------------------------------------------------------------
+var spellDir = tmp();
+var spellSrc = path.join(spellDir, "src");
+fs.mkdirSync(spellSrc);
+fs.writeFileSync(path.join(spellSrc, "s.js"), [
+	"/**", " * A module.", " * @module thing", " * @package app", " */", "",
+	"/**", " * Correct spelling.", " * @class Good", " * @implements app.Iface", " */",
+	"function Good(){}", "",
+	"/**", " * The interface.", " * @class Iface", " */",
+	"function Iface(){}"
+].join("\n"), "utf8");
+
+var spellReport = JSON.parse( cli(["--check", "--json", "-i", spellSrc], spellDir).stdout );
+ok(spellReport.counts.error === 0, "@implements resolves inheritance",
+	JSON.stringify(spellReport.findings.filter(function(f){ return f.level === "error"; })));
+
+fs.writeFileSync(path.join(spellSrc, "old.js"), [
+	"/**", " * Retired spelling.", " * @class Legacy", " * @package app",
+	" * @impliments app.Iface", " */", "function Legacy(){}"
+].join("\n"), "utf8");
+
+var retired = cli(["--check", "--json", "-i", spellSrc], spellDir);
+var retiredReport = JSON.parse(retired.stdout);
+
+ok(retired.status === 2, "@impliments fails the check", "got " + retired.status);
+ok(hasRule(retiredReport, "retired-tag"), "reports it as retired, not merely unknown");
+
+var retiredFinding = retiredReport.findings.filter(function(f){ return f.rule === "retired-tag"; })[0];
+ok(retiredFinding && /Rename it to @implements/.test(retiredFinding.fix || ""),
+	"names the replacement spelling", retiredFinding && retiredFinding.fix);
+
+var retiredBuild = cli(["-i", spellSrc, "-o", path.join(tmp(), "r"), "-p"], spellDir);
+ok(/was retired/.test(retiredBuild.stdout), "the build says so too, rather than staying quiet",
+	retiredBuild.stdout.slice(-300));
+
+// ------------------------------------------------------------------
+console.log("\nscope: a file's @package carries to later classes");
+// ------------------------------------------------------------------
+var scopeDir = tmp();
+var scopeSrc = path.join(scopeDir, "src");
+fs.mkdirSync(scopeSrc);
+fs.writeFileSync(path.join(scopeSrc, "multi.js"), [
+	"/**", " * First.", " * @module first", " * @package app", " */", "",
+	"/**", " * Second class in the same file.", " * @class Second", " */",
+	"function Second(){}", "",
+	"/**", " * Third, explicitly in another package.", " * @class Third", " * @package other", " */",
+	"function Third(){}", "",
+	"/**", " * Fourth, back to the inherited package.", " * @class Fourth", " */",
+	"function Fourth(){}"
+].join("\n"), "utf8");
+
+var scopeOut = path.join(scopeDir, "out");
+cli(["-i", scopeSrc, "-o", scopeOut, "-n", "Scope"], scopeDir);
+var scopeModel = JSON.parse( fs.readFileSync(path.join(scopeOut, "docs", "model.json"), "utf8") );
+var scopeIds = scopeModel.pages.map(function(p){ return p.id; });
+
+ok(scopeIds.indexOf("app.Second") > -1, "a later class inherits the file's @package",
+	scopeIds.join(", "));
+ok(scopeIds.indexOf("root.Second") === -1, "and no longer falls back to root");
+ok(scopeIds.indexOf("other.Third") > -1, "an explicit @package still wins", scopeIds.join(", "));
+ok(scopeIds.indexOf("other.Fourth") > -1, "and becomes the package for what follows",
+	scopeIds.join(", "));
+
+// ------------------------------------------------------------------
+console.log("\nqualified ids: dotted references are not re-parented");
+// ------------------------------------------------------------------
+var qDir = tmp();
+var qSrc = path.join(qDir, "src");
+fs.mkdirSync(qSrc);
+
+// The killer case: the SAME block declares @package app and @extends app.Base.
+// The dotted-name logic used to nest the @extends under the @package tag, so the
+// inheritance vanished entirely.
+fs.writeFileSync(path.join(qSrc, "q.js"), [
+	"/**", " * The parent.", " * @class Base", " * @package app", " */",
+	"function Base(){}", "",
+	"/**", " * The child.", " * @class Child", " * @package app", " * @extends app.Base", " */",
+	"function Child(){}", "",
+	"/**", " * Nested params still nest.", " * @method configure",
+	" * @param {object} opts - Options.",
+	" * @param {number} opts.timeout - How long.", " */",
+	"function configure(opts){}"
+].join("\n"), "utf8");
+
+var qReport = JSON.parse( cli(["--check", "--json", "-i", qSrc], qDir).stdout );
+ok(qReport.counts.error === 0, "@extends app.Base resolves when the block also sets @package",
+	JSON.stringify(qReport.findings.filter(function(f){ return f.level === "error"; })));
+
+var qOut = path.join(qDir, "out");
+cli(["-i", qSrc, "-o", qOut, "-n", "Q"], qDir);
+var qModel = JSON.parse( fs.readFileSync(path.join(qOut, "docs", "model.json"), "utf8") );
+
+var childPage = qModel.pages.filter(function(p){ return p.id === "app.Child"; })[0];
+ok(!!childPage, "the child class is in the right package",
+	qModel.pages.map(function(p){ return p.id; }).join(", "));
+
+// Nested params must still nest -- that is what the dot means on @param.
+var confMethod = qModel.pages.reduce(function(acc, p){ return acc.concat(p.members); }, [])
+	.filter(function(m){ return m.name === "configure"; })[0];
+ok(confMethod && confMethod.params.length === 1,
+	"@param opts.timeout still nests under opts rather than becoming a sibling",
+	confMethod && JSON.stringify(confMethod.params.map(function(p){ return p.name; })));
 
 // ------------------------------------------------------------------
 console.log("\nignore: patterns actually apply");

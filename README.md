@@ -151,6 +151,16 @@ Documon's only dependancy is Node, no additional modules are needed.
 
 ## Change Log
 v2.7.0 - 2026-08-25
+- BREAKING: `@impliments` was Documon's own misspelling and has been retired. Use
+  `@implements`. `--check` reports the old spelling by name, and builds print a line
+  about it, so the change can't fail silently.
+- Fixed qualified references being silently destroyed. A dotted name was always treated
+  as parent/child, so `@extends app.Base` had its name truncated to `Base` -- and when
+  the same block also declared `@package app`, the tag was re-parented as a child of the
+  package tag and disappeared. Dotted names now mean parent/child only on `@param` and
+  `@property`, where that is what a dot means.
+- Fixed a second `@class` in a file falling into the `root` package instead of inheriting
+  the file's `@package`.
 - Accept the common JSDoc tag spellings as exact synonyms (`@function`, `@arg`, `@prop`,
   `@augments`, `@implements`, `@const`, `@access`, and the description tags), plus inline
   `{@link}`. Previously these were dropped, which silently cost the whole entity.

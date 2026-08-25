@@ -149,7 +149,7 @@ the same as <code>&amp;#64;event</code>, which declares an event entity.</li>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">99</span>
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">111</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -176,6 +176,44 @@ onto a Documon visibility flag of the same name.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
+                                    <a name="documon.aliases.DEPRECATED"></a><a name="DEPRECATED"></a>
+                                    <span class="member-name">DEPRECATED</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">80</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Spellings that Documon used to accept and no longer<br />
+does. These are <strong>not</strong> aliased -- they are listed so <code>--check</code> and the build summary<br />
+can name the replacement instead of reporting a generic "unknown tag".</p>
+<p><code>@impliments</code> was Documon's own misspelling of <code>@implements</code> and was corrected in<br />
+v2.7.0. Since structure comes only from tags, leaving it as a silent alias would have<br />
+meant the typo propagating into new projects forever.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
                                     <a name="documon.aliases.DESCRIPTION_TAGS"></a><a name="DESCRIPTION_TAGS"></a>
                                     <span class="member-name">DESCRIPTION_TAGS</span>
                                     
@@ -183,7 +221,7 @@ onto a Documon visibility flag of the same name.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">77</span>
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">89</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -218,7 +256,7 @@ into it rather than dropped.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">84</span>
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">96</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -288,7 +326,98 @@ Documon tag it becomes.</p>
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            <div class="heading-part">Methods</div>
-					            <a name="documon.aliases.inlineLinks"></a><a name="inlineLinks"></a>
+					            <a name="documon.aliases.deprecatedFor"></a><a name="deprecatedFor"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		deprecatedFor (<span class="method-arguments">flag</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">145</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>The current spelling of a retired tag, or null when the tag was never retired.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">flag</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The tag as written.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">string</span>
+					</div>
+			      	     	<div class="member"><p>The replacement tag name, or null.</p></div>
+				
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    aliases.deprecatedFor("impliments");  // "implements"</code></pre>
+	        </div>
+	    </div>
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.aliases.inlineLinks"></a><a name="inlineLinks"></a>
 
 						<div class="member"  >
 
@@ -299,7 +428,7 @@ Documon tag it becomes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">170</span>
+						    		<span class="member-line-number">196</span>
 						    	</span>
 						    </div>
 
@@ -393,7 +522,7 @@ Documon tag it becomes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">130</span>
+						    		<span class="member-line-number">156</span>
 						    	</span>
 						    </div>
 
@@ -479,7 +608,7 @@ Documon tag it becomes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">141</span>
+						    		<span class="member-line-number">167</span>
 						    	</span>
 						    </div>
 
@@ -565,7 +694,7 @@ Documon tag it becomes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">152</span>
+						    		<span class="member-line-number">178</span>
 						    	</span>
 						    </div>
 
@@ -651,7 +780,7 @@ Documon tag it becomes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">112</span>
+						    		<span class="member-line-number">124</span>
 						    	</span>
 						    </div>
 

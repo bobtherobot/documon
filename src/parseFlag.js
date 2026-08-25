@@ -152,7 +152,7 @@ after
 - __after__ : 		Everything after the @flag token "as is" (kinda like source)
 
 	e.g. in this line:
-			@foo {type} name descr
+			\@foo {type} name descr
 		 after yields:
 		 	{type} name descr
 
@@ -174,7 +174,7 @@ after
 
 
 
-		@flag {kind} name.child=defaultVal - description \n stuff on next line \n and other next lines...
+		\@flag {kind} name.child=defaultVal - description \n stuff on next line \n and other next lines...
 		|flag|
 		                       |defaultVal|
 		                 |child|
@@ -198,6 +198,12 @@ after
 
 
 var re_optional = /[\[\]]/g;
+
+/**
+ * @property {array} DOTTED_CHILD_TAGS - Tags where a dotted name means "member of",
+ * rather than a fully qualified id. Only these get parent/child treatment.
+ */
+var DOTTED_CHILD_TAGS = ["param", "property"];
 
 function processName(name, obj, output) {
 
@@ -225,7 +231,17 @@ function processName(name, obj, output) {
     }
 
     // Look for sub.property
-    if (name.indexOf(".") > -1) {
+    //
+    // A dot means two different things depending on the tag. On @param and @property it
+    // marks a member of an object ("opts.timeout" belongs under "opts"). On a reference
+    // tag it is part of a fully qualified id ("app.Iface" IS the name).
+    //
+    // Treating every dot as parent/child broke qualified references twice over:
+    // "@extends app.Iface" had its name truncated to "Iface", and when the same block
+    // also declared "@package app" the flag was re-parented as a child of that package
+    // tag and disappeared from the block altogether. Inheritance written the way the
+    // docs recommend silently did nothing.
+    if (name.indexOf(".") > -1 && DOTTED_CHILD_TAGS.indexOf(obj.flag) > -1) {
 
     	// Allow REST notation for args... 
     	if(name.indexOf("...") < 0){

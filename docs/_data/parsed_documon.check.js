@@ -136,8 +136,8 @@
 	},
 	{
 		"text": "Creates a finding.\n\n",
-		"start": 99,
-		"end": 111,
+		"start": 100,
+		"end": 112,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -224,8 +224,8 @@
 	},
 	{
 		"text": "Collects the source files that would be parsed by a build with this config.\n\n",
-		"start": 123,
-		"end": 130,
+		"start": 124,
+		"end": 131,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -266,8 +266,8 @@
 	},
 	{
 		"text": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.\n\nIds are scoped `package.container.member` -- the same shape as the generated filenames\n(`documon.dirutils.html`). A `@method` therefore inherits the `@class` or `@module`\ndeclared above it in the same file; without that scope every `run()` in the project\nwould look like a collision.\n\n",
-		"start": 171,
-		"end": 184,
+		"start": 172,
+		"end": 185,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -318,8 +318,8 @@
 	},
 	{
 		"text": "Reduces a parsed comment block to the facts the rules care about.\n\n",
-		"start": 209,
-		"end": 216,
+		"start": 210,
+		"end": 217,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -360,8 +360,8 @@
 	},
 	{
 		"text": "A deliberately shallow symbol scan used only by the coverage advisory.\n\nThis never feeds the render path -- Documon still derives structure exclusively from\ncomments. It exists so an automated writer can be told \"you documented 4 of 11 exported\nthings\" instead of silently shipping a near-empty manual.\n\n",
-		"start": 286,
-		"end": 297,
+		"start": 287,
+		"end": 298,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -402,8 +402,8 @@
 	},
 	{
 		"text": "Runs the validator.\n\n",
-		"start": 325,
-		"end": 337,
+		"start": 326,
+		"end": 338,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{
@@ -469,8 +469,8 @@
 	},
 	{
 		"text": "Prints a report for humans.\n\n",
-		"start": 630,
-		"end": 636,
+		"start": 640,
+		"end": 646,
 		"file": "/Volumes/Drives/projects/documon/documon/src/check.js",
 		"flags": [
 			{

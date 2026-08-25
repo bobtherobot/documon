@@ -41,7 +41,7 @@ var KIND_TAGS = ["property", "method", "event", "class", "module", "package", "n
 /**
  * @property {array} EXTENDISH - Tags whose value must resolve to another documented id.
  */
-var EXTENDISH = ["overrides", "impliments", "extends", "inherits"];
+var EXTENDISH = ["overrides", "implements", "extends", "inherits"];
 
 /**
  * @property {array} KNOWN_TAGS - Every tag Documon actually acts on. Anything else is
@@ -88,7 +88,8 @@ var COMMON_TYPOS = {
  * but genuinely have no Documon equivalent.
  */
 var TAG_NOTES = {
-	  "fires"      : "@fires documents which event a method emits; @event declares the event itself. Document the event separately with @event and mention it in the description."
+	  "impliments" : "@impliments was Documon's own misspelling and was retired in v2.7.0. Rename it to @implements."
+	, "fires"      : "@fires documents which event a method emits; @event declares the event itself. Document the event separately with @event and mention it in the description."
 	, "emits"      : "@emits documents which event a method emits; @event declares the event itself. Document the event separately with @event and mention it in the description."
 	, "memberof"   : "Documon scopes by @package plus the enclosing @class/@module, not by @memberof."
 	, "typedef"    : "Documon has no type registry. Describe the shape in the description, or document it as a @class."
@@ -451,6 +452,15 @@ function run(conf, opts){
 				findings.push( finding("info", "normalized-tag", blk.file, blk.line,
 					'@' + tag.writtenFlag + ' was read as @' + tag.flag + '.',
 					"Write @" + tag.flag + " to match the rest of Documon.") );
+				continue;
+			}
+
+			// A retired spelling used to work, so silence would look like success.
+			var replacement = aliases.deprecatedFor(tag.flag);
+			if(replacement){
+				findings.push( finding("error", "retired-tag", blk.file, blk.line,
+					'@' + tag.flag + ' was retired in v2.7.0 and is no longer read.',
+					"Rename it to @" + replacement + ".") );
 				continue;
 			}
 

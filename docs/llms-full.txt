@@ -61,7 +61,7 @@ The following flags are processed:
 @private, @protected, @static, @public, @readonly
 : Items with these flags can be shown/hidden/filtered. Example `@private`
 
-@overrides, @impliments, @extends, @inherits
+@overrides, @implements, @extends, @inherits
 : These items page HTML will incorporate inherited parent properties, methods and events, which can be toggled.
 
 @requires
@@ -753,7 +753,7 @@ It exits `2` when it finds problems, so it drops straight into a build script:
 | `unknown-tag` | warning | A tag Documon doesn't implement, and doesn't alias. Anything you wrote under it is dropped. The `fix` explains why there is no equivalent. |
 | `normalized-tag` | info | A tag accepted under another spelling (`@arg` read as `@param`). Nothing is lost; shown so you can converge on one spelling. |
 | `duplicate-id` | error | Two blocks resolve to the same id, so one page overwrites the other. |
-| `unresolved-inheritance` | error | An `@extends` / `@inherits` / `@impliments` target that matches no documented id. |
+| `unresolved-inheritance` | error | An `@extends` / `@inherits` / `@implements` target that matches no documented id. |
 | `missing-name` | error | A kind tag with no name, e.g. a bare `@method`. |
 | `no-kind` | warning | A block with tags but no `@method`, `@property`, `@event`, `@class` or `@module`. It will never appear. |
 | `param-no-name` | warning | A `@param` that can't be rendered. |
@@ -943,7 +943,7 @@ Example: `@class name`
 : Items with these flags can be shown/hidden/filtered. 
 Example `@private`
 
-@overrides, @impliments, @extends, @inherits
+@overrides, @implements, @extends, @inherits
 : These items page HTML will incorporate inherited parent properties, methods and events, which can be toggled.
 
 @requires
@@ -983,7 +983,7 @@ Example: `@order 10.4`
 
 Documon accepts the common JSDoc spellings as exact synonyms — `@function`/`@func` for
 `@method`, `@arg`/`@argument` for `@param`, `@prop`/`@member` for `@property`,
-`@augments` for `@extends`, `@implements` for `@impliments`, `@constructs` for
+`@augments` for `@extends`, `@constructs` for
 `@constructor`, and `@const`/`@constant` for a read-only `@property`. `@access private`
 becomes `@private`.
 
@@ -994,6 +994,12 @@ folded into the block description, and inline `{@link target}` becomes a markdow
 structural role, but are rendered as metadata rows on the member rather than discarded.
 
 Run `documon --check` to see exactly what was normalized or ignored.
+
+## Retired spellings
+
+`@impliments` was Documon's own misspelling of `@implements`. It was retired in v2.7.0
+rather than kept as a silent alias, so the typo doesn't propagate into new projects.
+`documon --check` reports it by name and tells you what to rename it to.
 
 ---
 
@@ -1111,7 +1117,26 @@ Also note that internally, we use the @order flag to yank this to the top of the
 
 ---
 
-# @impliments
+# @implements
+
+Declares that a class conforms to an interface.
+
+	/**
+	 * @class    Circle
+	 * @package  geo
+	 * @implements geo.Drawable
+	 */
+
+The value must be a fully qualified id — `package.Class` — matching a documented entity.
+`documon --check` reports targets that don't resolve.
+
+Like [@extends](more.tags._extends_md), the parent's members are cross-filled into this
+page so readers see the full surface in one place.
+
+> **Renamed in v2.7.0.** Documon previously spelled this tag `@impliments`. That was a
+> typo in Documon itself, and it has been retired rather than kept as an alias — leaving
+> it in place would have propagated the misspelling into new projects indefinitely.
+> `documon --check` reports the old spelling by name and tells you to rename it.
 
 ---
 
@@ -1541,7 +1566,7 @@ or Documon's quick prop:
 The following tags are used to organize the relationship tree:
 
 - @extends
-- @impliments
+- @implements
 - @inherits
 - @overrides
 
@@ -2247,6 +2272,16 @@ rather than producing quietly wrong documentation:
 Legal values of an `@access` tag, each of which maps
 onto a Documon visibility flag of the same name.
 
+### DEPRECATED (property) -> object
+
+Spellings that Documon used to accept and no longer
+does. These are **not** aliased -- they are listed so `--check` and the build summary
+can name the replacement instead of reporting a generic "unknown tag".
+
+`@impliments` was Documon's own misspelling of `@implements` and was corrected in
+v2.7.0. Since structure comes only from tags, leaving it as a silent alias would have
+meant the typo propagating into new projects forever.
+
 ### DESCRIPTION_TAGS (property) -> array
 
 Tags whose content is really just the description.
@@ -2263,6 +2298,13 @@ section. The value is the label shown to the reader.
 
 Exact synonyms. The key is what was written, the value is the
 Documon tag it becomes.
+
+### deprecatedFor (method)
+
+The current spelling of a retired tag, or null when the tag was never retired.
+
+- param flag {string} - The tag as written.
+- returns {string} - The replacement tag name, or null.
 
 ### inlineLinks (method)
 
@@ -3446,6 +3488,43 @@ after
 - __after__ : 		Everything after the @flag token "as is" (kinda like source)
 
 	e.g. in this line:
+			\@foo {type} name descr
+		 after yields:
+		 	{type} name descr
+
+- __name__ : 		The first word following the {type} definition. Or the first word after the @flag definition
+
+- __children__ : 	If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy.
+- __parent__ : 		The parent flag of a child. This property only exists on children flags.
+- __defaultVal__ : 	When name=foo then default value will be foo. Note that quotes are stripped.
+				e.g. foo="bar" sets default property to "bar" (without the quotes) and name property to "foo".
+- __flag__ : 		The flag kind - the @ is stripped
+- __afterType__ : 	Everything after the {type} definition
+				e.g. @flag {type} name - descr
+					... yields:
+					name - descr
+- __text__ : 		The description for the paramter. Note that additional description text can be provided below the @flag.
+					e.g. @flag {type} name - description
+					more description
+					below the flag here
+
+
+
+		\@flag {kind} name.child=defaultVal - description \n stuff on next line \n and other next lines...
+		|flag|
+		                       |defaultVal|
+		                 |child|
+		            |parent|
+		            |name|
+		                                     |text ------------------------------------------------------|
+		            |afterType ---------------------------|
+		      |after -------------------------------------|
+		|source ------------------------------------------|
+
+### DOTTED_CHILD_TAGS (property) -> array
+
+Tags where a dotted name means "member of",
+rather than a fully qualified id. Only these get parent/child treatment.
 
 ---
 
@@ -3457,6 +3536,58 @@ Clean text so it has:
 - single word results ignored
 
 Used by [tag.js](root.documon.tag) and [more.js](root.documon.more)
+
+---
+
+## splitParsed (module)
+
+Splits one file's parsed comments into independent groups, so a file containing several
+classes behaves like several one-class files.
+
+`tag.js` assumes everything handed to it belongs to a single page, so the split has to
+happen first.
+
+### packageTags (property) -> array
+
+Tags that declare the enclosing package.
+
+### spliton (property) -> array
+
+Tags that begin a new group.
+
+### declaredPackage (method) [private]
+
+Finds the package a group declares for itself, if any.
+
+- param chunk {array} - A group of parsed comment blocks.
+- returns {string} - The package name, or null.
+
+### propagatePackage (method) [private]
+
+Carries a file's `@package` forward into later groups.
+
+Splitting on `@class` means a second class in a file starts a group of its own, and
+that group contains no `@package` tag -- the file declared it once, at the top. Without
+this, `tag.js` finds nothing and falls back to the `root` package, so a file like
+
+		&#47;** &#64;module thing &#64;package app *&#47;
+		&#47;** &#64;class Good *&#47;
+
+produced `app.thing` and `root.Good` rather than `app.thing` and `app.Good` -- and any
+`&#64;extends app.Good` elsewhere then failed to resolve.
+
+A group that declares its own `@package` is left alone, so an explicit declaration
+always wins and a file can still switch packages part way down.
+
+- param chunks {array} - Groups, in source order.
+- returns {array} - The same groups, with inherited packages filled in.
+
+### split (method)
+
+Splits a file's parsed comments into groups.
+
+- param parsed {array} - Parsed comment blocks, in source order.
+- returns {array} - An array of groups.
 
 ---
 
@@ -3480,7 +3611,7 @@ Processes the following flags
 - readonly
 - 
 - overrides
-- impliments
+- implements
 - extends
 - inherits
 - 

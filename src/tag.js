@@ -29,7 +29,7 @@ var searchPrep = require("./searchPrep");
 - readonly
 - 
 - overrides
-- impliments
+- implements
 - extends
 - inherits
 - 
@@ -373,7 +373,7 @@ module.exports = (function() {
  	var truths = ["private", "protected", "static", "public", "readonly"];
 
  	// Same list in template extendish.jst
- 	var extendish = ["overrides", "impliments", "extends", "inherits"];
+ 	var extendish = ["overrides", "implements", "extends", "inherits"];
  	
 
  	
@@ -544,7 +544,7 @@ module.exports = (function() {
 		
 
 		// ------------------------------------------------
-		// Extendish (extends, impliments, inherits, etc)
+		// Extendish (extends, implements, inherits, etc)
 		} else if(extendish.indexOf(flag) > -1){
 			obj[flag] = (item.name || item.type).trim();
 		

@@ -91,7 +91,7 @@ Flags, no value. The generated site can filter on these.
 | `@extends` | Parent whose members are cross-filled into this page. |
 | `@inherits` | Synonym for `@extends`. |
 | `@overrides` | This member replaces the parent's. |
-| `@impliments` | Interface conformance. *(Spelled with an "i" — `@implements` is not recognized.)* |
+| `@implements` | Interface conformance. |
 
 The value must be a documented id: `@extends documon.Base`. `--check` reports targets
 that don't resolve.
@@ -135,7 +135,6 @@ guessed.
 | `@arg`, `@argument`, `@parameter` | `@param` |
 | `@prop`, `@member`, `@var` | `@property` |
 | `@augments` | `@extends` |
-| `@implements` | `@impliments` |
 | `@returns`, `@yields` | `@return` |
 | `@constructs` | `@constructor` |
 | `@const`, `@constant` | `@property` + `@readonly` |
@@ -147,6 +146,16 @@ markdown links, so inline cross-references work too.
 
 `--check` reports each of these at `info` level so you can converge on one spelling if you
 care. The documentation builds correctly either way.
+
+## Retired spellings
+
+| Retired | Use |
+|---|---|
+| `@impliments` | `@implements` |
+
+`@impliments` was Documon's own misspelling. It was retired in v2.7.0 rather than kept as
+a silent alias, so the typo doesn't spread into new projects. `--check` reports it as an
+error and names the replacement; a build prints a line about it too.
 
 ## Tags that are kept, but shown as metadata
 

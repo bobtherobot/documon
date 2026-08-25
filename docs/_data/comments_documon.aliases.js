@@ -10,43 +10,53 @@
 		"data": "@property {object} TAGS - Exact synonyms. The key is what was written, the value is the\nDocumon tag it becomes."
 	},
 	{
-		"start": 72,
-		"end": 76,
+		"start": 71,
+		"end": 79,
+		"data": "@property {object} DEPRECATED - Spellings that Documon used to accept and no longer\ndoes. These are **not** aliased -- they are listed so `--check` and the build summary\ncan name the replacement instead of reporting a generic \"unknown tag\".\n\n`@impliments` was Documon's own misspelling of `@implements` and was corrected in\nv2.7.0. Since structure comes only from tags, leaving it as a silent alias would have\nmeant the typo propagating into new projects forever."
+	},
+	{
+		"start": 84,
+		"end": 88,
 		"data": "@property {array} DESCRIPTION_TAGS - Tags whose content is really just the description.\nDocumon takes the description from the free text above the tags, so these are folded\ninto it rather than dropped."
 	},
 	{
-		"start": 79,
-		"end": 83,
+		"start": 91,
+		"end": 95,
 		"data": "@property {object} META_TAGS - Tags with genuine meaning and no Documon equivalent.\nRather than discarding them, they are collected and rendered in the page's meta\nsection. The value is the label shown to the reader."
 	},
 	{
-		"start": 95,
-		"end": 98,
+		"start": 107,
+		"end": 110,
 		"data": "@property {array} ACCESS_VALUES - Legal values of an `@access` tag, each of which maps\nonto a Documon visibility flag of the same name."
 	},
 	{
-		"start": 101,
-		"end": 111,
+		"start": 113,
+		"end": 123,
 		"data": "Resolves a written tag name to its Documon equivalent.\n\n@method  resolve\n@param   {string}  flag - The tag as written, without the leading \"@\".\n@return  {string}       - The Documon tag name, or the input unchanged.\n@example\n\n\t\taliases.resolve(\"function\");  // \"method\"\n\t\taliases.resolve(\"method\");    // \"method\""
 	},
 	{
-		"start": 123,
-		"end": 129,
+		"start": 135,
+		"end": 144,
+		"data": "The current spelling of a retired tag, or null when the tag was never retired.\n\n@method  deprecatedFor\n@param   {string}  flag - The tag as written.\n@return  {string}       - The replacement tag name, or null.\n@example\n\n\t\taliases.deprecatedFor(\"impliments\");  // \"implements\""
+	},
+	{
+		"start": 149,
+		"end": 155,
 		"data": "Whether a tag is an alias of something else (used to report normalizations).\n\n@method  isAlias\n@param   {string}   flag - The tag as written.\n@return  {boolean}       - True when `resolve()` would change it."
 	},
 	{
-		"start": 134,
-		"end": 140,
+		"start": 160,
+		"end": 166,
 		"data": "Whether a tag's content should be folded into the description.\n\n@method  isDescription\n@param   {string}   flag - The tag as written.\n@return  {boolean}"
 	},
 	{
-		"start": 145,
-		"end": 151,
+		"start": 171,
+		"end": 177,
 		"data": "The display label for a metadata tag, or null when it isn't one.\n\n@method  metaLabel\n@param   {string}  flag - The tag as written.\n@return  {string}       - Label, or null."
 	},
 	{
-		"start": 156,
-		"end": 169,
+		"start": 182,
+		"end": 195,
 		"data": "Rewrites JSDoc's inline link syntax as the markdown Documon already understands.\n\nHandles `{@link target}`, `{@link target|label}`, `{@link target label}`, and the\n`linkcode` / `linkplain` / `tutorial` variants.\n\n@method  inlineLinks\n@param   {string}  text - Text possibly containing inline links.\n@return  {string}       - Text with markdown links.\n@example\n\n\t\taliases.inlineLinks(\"See {@link geo.Circle}.\");\n\t\t// \"See [geo.Circle](geo.Circle).\""
 	}
 ]

@@ -110,7 +110,7 @@ var sectionNames = ["methods", "properties", "events"];
 // methods, properties, events
 
 
-// "overrides", "impliments", "extends", "inherits"
+// "overrides", "implements", "extends", "inherits"
 function processInheritance(){
 	for(var prop in flatClassList){
 		var item = flatClassList[prop];

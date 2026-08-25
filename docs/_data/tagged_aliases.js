@@ -15,7 +15,46 @@
 	"id": "documon.aliases",
 	"methods": [
 		{
-			"line": 170,
+			"line": 145,
+			"name": "deprecatedFor",
+			"shortText": "The current spelling of a retired tag, or null when the tag was never retired.",
+			"shortHtml": "<p>The current spelling of a retired tag, or null when the tag was never retired.</p>",
+			"text": "The current spelling of a retired tag, or null when the tag was never retired.\n\n",
+			"html": "<p>The current spelling of a retired tag, or null when the tag was never retired.</p>",
+			"entity": "method",
+			"flagSearchText": " deprecatedFor The tag as written. The replacement tag name, or null. \n\n\t\taliases.deprecatedFor(\"impliments\");  // \"implements\"",
+			"params": [
+				{
+					"name": "flag",
+					"shortText": "The tag as written.",
+					"shortHtml": "<p>The tag as written.</p>",
+					"text": "The tag as written.",
+					"html": "<p>The tag as written.</p>",
+					"type": "string"
+				}
+			],
+			"returns": {
+				"type": "string",
+				"text": "The replacement tag name, or null.",
+				"html": "<p>The replacement tag name, or null.</p>",
+				"shortText": "<p>The replacement tag name, or null.</p>",
+				"shortHtml": "<p>The replacement tag name, or null.</p>"
+			},
+			"example": [
+				{
+					"text": "\n\n\t\taliases.deprecatedFor(\"impliments\");  // \"implements\"",
+					"html": "<pre><code>    aliases.deprecatedFor(\"impliments\");  // \"implements\"</code></pre>"
+				}
+			],
+			"file": "src/aliases.js",
+			"filename": "aliases.js",
+			"klass": "aliases",
+			"package": "documon",
+			"docfile": "documon.aliases.html",
+			"id": "documon.aliases.deprecatedFor"
+		},
+		{
+			"line": 196,
 			"name": "inlineLinks",
 			"shortText": "Rewrites JSDoc's inline link syntax as the markdown Documon already understands.",
 			"shortHtml": "<p>Rewrites JSDoc's inline link syntax as the markdown Documon already understands.</p>",
@@ -54,7 +93,7 @@
 			"id": "documon.aliases.inlineLinks"
 		},
 		{
-			"line": 130,
+			"line": 156,
 			"name": "isAlias",
 			"shortText": "Whether a tag is an alias of something else (used to report normalizations).",
 			"shortHtml": "<p>Whether a tag is an alias of something else (used to report normalizations).</p>",
@@ -87,7 +126,7 @@
 			"id": "documon.aliases.isAlias"
 		},
 		{
-			"line": 141,
+			"line": 167,
 			"name": "isDescription",
 			"shortText": "Whether a tag's content should be folded into the description.",
 			"shortHtml": "<p>Whether a tag's content should be folded into the description.</p>",
@@ -120,7 +159,7 @@
 			"id": "documon.aliases.isDescription"
 		},
 		{
-			"line": 152,
+			"line": 178,
 			"name": "metaLabel",
 			"shortText": "The display label for a metadata tag, or null when it isn't one.",
 			"shortHtml": "<p>The display label for a metadata tag, or null when it isn't one.</p>",
@@ -153,7 +192,7 @@
 			"id": "documon.aliases.metaLabel"
 		},
 		{
-			"line": 112,
+			"line": 124,
 			"name": "resolve",
 			"shortText": "Resolves a written tag name to its Documon equivalent.",
 			"shortHtml": "<p>Resolves a written tag name to its Documon equivalent.</p>",
@@ -194,7 +233,7 @@
 	],
 	"properties": [
 		{
-			"line": 99,
+			"line": 111,
 			"name": "ACCESS_VALUES",
 			"shortText": "Legal values of an `@access` tag, each of which maps",
 			"shortHtml": "<p>Legal values of an <code>@access</code> tag, each of which maps</p>",
@@ -211,7 +250,24 @@
 			"id": "documon.aliases.ACCESS_VALUES"
 		},
 		{
-			"line": 77,
+			"line": 80,
+			"name": "DEPRECATED",
+			"shortText": "Spellings that Documon used to accept and no longer",
+			"shortHtml": "<p>Spellings that Documon used to accept and no longer</p>",
+			"text": "Spellings that Documon used to accept and no longer\ndoes. These are **not** aliased -- they are listed so `--check` and the build summary\ncan name the replacement instead of reporting a generic \"unknown tag\".\n\n`@impliments` was Documon's own misspelling of `@implements` and was corrected in\nv2.7.0. Since structure comes only from tags, leaving it as a silent alias would have\nmeant the typo propagating into new projects forever.",
+			"html": "<p>Spellings that Documon used to accept and no longer<br />\ndoes. These are <strong>not</strong> aliased -- they are listed so <code>--check</code> and the build summary<br />\ncan name the replacement instead of reporting a generic \"unknown tag\".</p>\n<p><code>@impliments</code> was Documon's own misspelling of <code>@implements</code> and was corrected in<br />\nv2.7.0. Since structure comes only from tags, leaving it as a silent alias would have<br />\nmeant the typo propagating into new projects forever.</p>",
+			"type": "object",
+			"entity": "property",
+			"flagSearchText": " Spellings that Documon used to accept and no longer\ndoes. These are **not** aliased -- they are listed so `--check` and the build summary\ncan name the replacement instead of reporting a generic \"unknown tag\".\n\n`@impliments` was Documon's own misspelling of `@implements` and was corrected in\nv2.7.0. Since structure comes only from tags, leaving it as a silent alias would have\nmeant the typo propagating into new projects forever.",
+			"file": "src/aliases.js",
+			"filename": "aliases.js",
+			"klass": "aliases",
+			"package": "documon",
+			"docfile": "documon.aliases.html",
+			"id": "documon.aliases.DEPRECATED"
+		},
+		{
+			"line": 89,
 			"name": "DESCRIPTION_TAGS",
 			"shortText": "Tags whose content is really just the description.",
 			"shortHtml": "<p>Tags whose content is really just the description.</p>",
@@ -228,7 +284,7 @@
 			"id": "documon.aliases.DESCRIPTION_TAGS"
 		},
 		{
-			"line": 84,
+			"line": 96,
 			"name": "META_TAGS",
 			"shortText": "Tags with genuine meaning and no Documon equivalent.",
 			"shortHtml": "<p>Tags with genuine meaning and no Documon equivalent.</p>",
@@ -268,11 +324,13 @@
 	"search": {
 		"documon.aliases": "aliases : Accepts spellings people tools trained other documentation systems actually write maps them onto Documon vocabulary Documon derives structure exclusively from tags which means unrecognised cosmetic problem missing page block written function area number Radius kind Documon concerned whole entity silently disappears Since function exact JSDoc synonyms method param refusing them buys nothing costs page Aliasing does weaken structure comes only from comments rule alias still explicit just spelled differently What deliberately aliased Tags whose meaning differs even slightly left alone they surface check rather than producing quietly wrong documentation fires emits documents which events method emits That same event which declares event entity memberof parents entity Documon scopes package instead typedef callback enum inheritdoc equivalent conceptaliases documon",
 		"documon.aliases.resolve": "resolve : Resolves written name Documon equivalentresolve written without leading Documon name input unchanged aliases resolve function method aliases resolve method method",
+		"documon.aliases.deprecatedFor": "deprecatedFor : current spelling retired null when never retireddeprecatedFor written replacement name null aliases deprecatedFor impliments implements",
 		"documon.aliases.isAlias": "isAlias : Whether alias something else used report normalizationsisAlias written True when resolve would change",
 		"documon.aliases.isDescription": "isDescription : Whether content should folded into descriptionisDescription written",
 		"documon.aliases.metaLabel": "metaLabel : display label metadata null whenmetaLabel written Label null",
 		"documon.aliases.inlineLinks": "inlineLinks : Rewrites JSDoc inline link syntax markdown Documon already understands Handles link target link target label link target label linkcode linkplain tutorial variantsinlineLinks Text possibly containing inline links Text with markdown links aliases inlineLinks link Circle Circle Circle",
 		"documon.aliases.TAGS": "TAGS : Exact synonyms what written value Documon becomesExact synonyms what written value Documon becomes",
+		"documon.aliases.DEPRECATED": "DEPRECATED : Spellings that Documon used accept longer does These aliased they listed check build summary name replacement instead reporting generic unknown impliments Documon misspelling implements corrected Since structure comes only from tags leaving silent alias would have meant typo propagating into projects foreverSpellings that Documon used accept longer does These aliased they listed check build summary name replacement instead reporting generic unknown impliments Documon misspelling implements corrected Since structure comes only from tags leaving silent alias would have meant typo propagating into projects forever",
 		"documon.aliases.DESCRIPTION_TAGS": "DESCRIPTION_TAGS : Tags whose content really just description Documon takes description from free text above tags these folded into rather than droppedTags whose content really just description Documon takes description from free text above tags these folded into rather than dropped",
 		"documon.aliases.META_TAGS": "META_TAGS : Tags with genuine meaning Documon equivalent Rather than discarding them they collected rendered page meta section value label shown readerTags with genuine meaning Documon equivalent Rather than discarding them they collected rendered page meta section value label shown reader",
 		"documon.aliases.ACCESS_VALUES": "ACCESS_VALUES : Legal values access each which maps onto Documon visibility flag same nameLegal values access each which maps onto Documon visibility flag same name"

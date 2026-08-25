@@ -50,8 +50,28 @@
 	},
 	{
 		"text": "",
-		"start": 72,
-		"end": 76,
+		"start": 71,
+		"end": 79,
+		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
+		"flags": [
+			{
+				"source": "@property {object} DEPRECATED - Spellings that Documon used to accept and no longer",
+				"flag": "property",
+				"after": "{object} DEPRECATED - Spellings that Documon used to accept and no longer",
+				"type": "object",
+				"afterType": "DEPRECATED - Spellings that Documon used to accept and no longer",
+				"name": "DEPRECATED",
+				"text": "Spellings that Documon used to accept and no longer\ndoes. These are **not** aliased -- they are listed so `--check` and the build summary\ncan name the replacement instead of reporting a generic \"unknown tag\".\n\n`@impliments` was Documon's own misspelling of `@implements` and was corrected in\nv2.7.0. Since structure comes only from tags, leaving it as a silent alias would have\nmeant the typo propagating into new projects forever."
+			}
+		],
+		"source": "@property {object} DEPRECATED - Spellings that Documon used to accept and no longer\ndoes. These are **not** aliased -- they are listed so `--check` and the build summary\ncan name the replacement instead of reporting a generic \"unknown tag\".\n\n`@impliments` was Documon's own misspelling of `@implements` and was corrected in\nv2.7.0. Since structure comes only from tags, leaving it as a silent alias would have\nmeant the typo propagating into new projects forever.",
+		"meta": [],
+		"id": "documon.aliases.DEPRECATED"
+	},
+	{
+		"text": "",
+		"start": 84,
+		"end": 88,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{
@@ -70,8 +90,8 @@
 	},
 	{
 		"text": "",
-		"start": 79,
-		"end": 83,
+		"start": 91,
+		"end": 95,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{
@@ -90,8 +110,8 @@
 	},
 	{
 		"text": "",
-		"start": 95,
-		"end": 98,
+		"start": 107,
+		"end": 110,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{
@@ -110,8 +130,8 @@
 	},
 	{
 		"text": "Resolves a written tag name to its Documon equivalent.\n\n",
-		"start": 101,
-		"end": 111,
+		"start": 113,
+		"end": 123,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{
@@ -152,9 +172,52 @@
 		"id": "documon.aliases.resolve"
 	},
 	{
+		"text": "The current spelling of a retired tag, or null when the tag was never retired.\n\n",
+		"start": 135,
+		"end": 144,
+		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
+		"flags": [
+			{
+				"source": "@method  deprecatedFordeprecatedFor",
+				"flag": "method",
+				"after": "deprecatedFor",
+				"afterType": "deprecatedFor",
+				"name": "deprecatedFor",
+				"single": true,
+				"text": "deprecatedFor"
+			},
+			{
+				"source": "@param   {string}  flag - The tag as written.The tag as written.",
+				"flag": "param",
+				"after": "{string}  flag - The tag as written.",
+				"type": "string",
+				"afterType": "flag - The tag as written.",
+				"name": "flag",
+				"text": "The tag as written."
+			},
+			{
+				"source": "@return  {string}       - The replacement tag name, or null.The replacement tag name, or null.",
+				"flag": "return",
+				"after": "{string}       - The replacement tag name, or null.",
+				"type": "string",
+				"afterType": "The replacement tag name, or null.",
+				"text": "The replacement tag name, or null."
+			},
+			{
+				"source": "@example",
+				"flag": "example",
+				"after": "",
+				"text": "\n\n\t\taliases.deprecatedFor(\"impliments\");  // \"implements\""
+			}
+		],
+		"source": "The current spelling of a retired tag, or null when the tag was never retired.\n\n@method  deprecatedFor\n@param   {string}  flag - The tag as written.\n@return  {string}       - The replacement tag name, or null.\n@example\n\n\t\taliases.deprecatedFor(\"impliments\");  // \"implements\"",
+		"meta": [],
+		"id": "documon.aliases.deprecatedFor"
+	},
+	{
 		"text": "Whether a tag is an alias of something else (used to report normalizations).\n\n",
-		"start": 123,
-		"end": 129,
+		"start": 149,
+		"end": 155,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{
@@ -190,8 +253,8 @@
 	},
 	{
 		"text": "Whether a tag's content should be folded into the description.\n\n",
-		"start": 134,
-		"end": 140,
+		"start": 160,
+		"end": 166,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{
@@ -225,8 +288,8 @@
 	},
 	{
 		"text": "The display label for a metadata tag, or null when it isn't one.\n\n",
-		"start": 145,
-		"end": 151,
+		"start": 171,
+		"end": 177,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{
@@ -262,8 +325,8 @@
 	},
 	{
 		"text": "Rewrites JSDoc's inline link syntax as the markdown Documon already understands.\n\nHandles `{@link target}`, `{@link target|label}`, `{@link target label}`, and the\n`linkcode` / `linkplain` / `tutorial` variants.\n\n",
-		"start": 156,
-		"end": 169,
+		"start": 182,
+		"end": 195,
 		"file": "/Volumes/Drives/projects/documon/documon/src/aliases.js",
 		"flags": [
 			{

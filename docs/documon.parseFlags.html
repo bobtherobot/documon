@@ -112,7 +112,34 @@
 <ul>
 <li><p><strong>source</strong> : The entire comment block</p></li>
 <li><p><strong>after</strong> :         Everything after the <a href="https://github.com/flag">@flag</a> token "as is" (kinda like source)</p>
-<p>e.g. in this line:</p></li>
+<p>e.g. in this line:<br />
+        @foo {type} name descr<br />
+     after yields:<br />
+        {type} name descr</p></li>
+<li><p><strong>name</strong> :         The first word following the {type} definition. Or the first word after the <a href="https://github.com/flag">@flag</a> definition</p></li>
+<li><p><strong>children</strong> :     If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy.</p></li>
+<li><p><strong>parent</strong> :         The parent flag of a child. This property only exists on children flags.</p></li>
+<li><p><strong>defaultVal</strong> :     When name=foo then default value will be foo. Note that quotes are stripped.<br />
+            e.g. foo="bar" sets default property to "bar" (without the quotes) and name property to "foo".</p></li>
+<li><p><strong>flag</strong> :         The flag kind - the @ is stripped</p></li>
+<li><p><strong>afterType</strong> :     Everything after the {type} definition<br />
+            e.g. <a href="https://github.com/flag">@flag</a> {type} name - descr<br />
+                … yields:<br />
+                name - descr</p></li>
+<li><p><strong>text</strong> :         The description for the paramter. Note that additional description text can be provided below the <a href="https://github.com/flag">@flag</a>.<br />
+                e.g. <a href="https://github.com/flag">@flag</a> {type} name - description<br />
+                more description<br />
+                below the flag here</p>
+<pre><code>\@flag {kind} name.child=defaultVal - description \n stuff on next line \n and other next lines...
+|flag|
+                       |defaultVal|
+                 |child|
+            |parent|
+            |name|
+                                     |text ------------------------------------------------------|
+            |afterType ---------------------------|
+      |after -------------------------------------|
+|source ------------------------------------------|</code></pre></li>
 </ul>
 
 					
@@ -134,7 +161,55 @@
 			</div>
 
 		    <div class="parts">
-		        
+		        <a name="properties"></a>
+			    	<div class="part-properties">
+				    	
+				    	<div class="heading-part">Properties</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.parseFlags.DOTTED_CHILD_TAGS"></a><a name="DOTTED_CHILD_TAGS"></a>
+                                    <span class="member-name">DOTTED_CHILD_TAGS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/parseFlag.js</span><span class="member-line-number" title="src/parseFlag.js">205</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Tags where a dotted name means "member of",<br />
+rather than a fully qualified id. Only these get parent/child treatment.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
 		        
 		        
 		    </div>

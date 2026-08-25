@@ -45,6 +45,7 @@ var more = require('./more');
 var ignoreModule = require('./ignore');
 var llms = require('./llms');
 var checkTags = require('./check');
+var tagAliases = require('./aliases');
 //var minimatch = require("minimatch");
 
 // We'll require these dynamically because the user may have defined some other template folder.
@@ -115,7 +116,7 @@ var matcher = null;
  * @property {object} tally - Counts of tags that were normalized or ignored during a
  * build, reported as a single line when the build finishes.
  */
-var tally = { unknown : 0, normalized : 0, unknownNames : {} };
+var tally = { unknown : 0, normalized : 0, unknownNames : {}, retired : {} };
 
 /**
  * @property  {boolean} quiet=false - Supress stdout messages.
@@ -542,6 +543,8 @@ function seeder(file){
 					var flg = com.flags[t];
 					if(flg.writtenFlag && flg.writtenFlag !== flg.flag){
 						tally.normalized++;
+					} else if( tagAliases.deprecatedFor(flg.flag) ){
+						tally.retired[flg.flag] = tagAliases.deprecatedFor(flg.flag);
 					} else if( checkTags.KNOWN_TAGS.indexOf(flg.flag) === -1 ){
 						tally.unknown++;
 						if( ! tally.unknownNames[flg.flag] ){
@@ -629,7 +632,7 @@ function run(conf){
 
 	var result = null;
 
-	tally = { unknown : 0, normalized : 0, unknownNames : {} };
+	tally = { unknown : 0, normalized : 0, unknownNames : {}, retired : {} };
 
 	if(conf){
 
@@ -779,6 +782,16 @@ function run(conf){
 				if(mainConf.emitLlms !== false || mainConf.emitModel !== false){
 					log(" - writing machine-readable companions", null, quiet);
 					emitted = llms.write(mainConf, indexed, log, menuObj);
+				}
+
+				// Retired spellings get their own line: they used to work, so a generic
+				// "unrecognized tag" would undersell the breakage.
+				var retiredNames = Object.keys(tally.retired);
+				if(retiredNames.length){
+					for(var rn=0; rn<retiredNames.length; rn++){
+						log(" ! @" + retiredNames[rn] + " was retired -- rename it to @"
+							+ tally.retired[ retiredNames[rn] ], null, quiet);
+					}
 				}
 
 				// One-line summary of anything that didn't make it into the output.

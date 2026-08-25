@@ -36,8 +36,8 @@
 	},
 	{
 		"text": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)\n\n",
-		"start": 54,
-		"end": 83,
+		"start": 55,
+		"end": 84,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -251,8 +251,8 @@
 	},
 	{
 		"text": "",
-		"start": 86,
-		"end": 88,
+		"start": 87,
+		"end": 89,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -271,8 +271,8 @@
 	},
 	{
 		"text": "",
-		"start": 91,
-		"end": 99,
+		"start": 92,
+		"end": 100,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -291,8 +291,8 @@
 	},
 	{
 		"text": " matcher - The compiled ignore matcher, built during init from the\nlus whatever the caller supplied.\n",
-		"start": 103,
-		"end": 110,
+		"start": 104,
+		"end": 111,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [],
 		"source": "\n\n\n\n matcher - The compiled ignore matcher, built during init from the\nlus whatever the caller supplied.",
@@ -300,8 +300,8 @@
 	},
 	{
 		"text": "",
-		"start": 113,
-		"end": 116,
+		"start": 114,
+		"end": 117,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -320,8 +320,8 @@
 	},
 	{
 		"text": "",
-		"start": 119,
-		"end": 121,
+		"start": 120,
+		"end": 122,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -341,8 +341,8 @@
 	},
 	{
 		"text": "",
-		"start": 124,
-		"end": 126,
+		"start": 125,
+		"end": 127,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -362,8 +362,8 @@
 	},
 	{
 		"text": "",
-		"start": 129,
-		"end": 131,
+		"start": 130,
+		"end": 132,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -382,8 +382,8 @@
 	},
 	{
 		"text": "Simplify file write for text or json.\n\n",
-		"start": 139,
-		"end": 147,
+		"start": 140,
+		"end": 148,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -434,8 +434,8 @@
 	},
 	{
 		"text": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.\n",
-		"start": 152,
-		"end": 158,
+		"start": 153,
+		"end": 159,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -476,8 +476,8 @@
 	},
 	{
 		"text": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates\n\n",
-		"start": 180,
-		"end": 194,
+		"start": 181,
+		"end": 195,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -519,8 +519,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 472,
-		"end": 481,
+		"start": 473,
+		"end": 482,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -561,8 +561,8 @@
 	},
 	{
 		"text": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)\n\n",
-		"start": 496,
-		"end": 505,
+		"start": 497,
+		"end": 506,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{
@@ -603,8 +603,8 @@
 	},
 	{
 		"text": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js\n\n",
-		"start": 612,
-		"end": 625,
+		"start": 615,
+		"end": 628,
 		"file": "/Volumes/Drives/projects/documon/documon/src/documon.js",
 		"flags": [
 			{

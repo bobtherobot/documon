@@ -21,7 +21,7 @@
 	"id": "documon.documon",
 	"methods": [
 		{
-			"line": 159,
+			"line": 160,
 			"name": "filterFileTypes",
 			"shortText": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
 			"shortHtml": "<p>Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.</p>",
@@ -55,7 +55,7 @@
 			"id": "documon.documon.filterFileTypes"
 		},
 		{
-			"line": 195,
+			"line": 196,
 			"name": "init",
 			"shortText": "Initializes Documan based on the configuration settings",
 			"shortHtml": "<p>Initializes Documan based on the configuration settings</p>",
@@ -89,7 +89,7 @@
 			"id": "documon.documon.init"
 		},
 		{
-			"line": 626,
+			"line": 629,
 			"name": "run",
 			"shortText": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  ",
 			"shortHtml": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  </p>",
@@ -115,7 +115,7 @@
 			"id": "documon.documon.run"
 		},
 		{
-			"line": 506,
+			"line": 507,
 			"name": "seeder",
 			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
 			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
@@ -149,7 +149,7 @@
 			"id": "documon.documon.seeder"
 		},
 		{
-			"line": 482,
+			"line": 483,
 			"name": "shouldIgnore",
 			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
 			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
@@ -183,7 +183,7 @@
 			"id": "documon.documon.shouldIgnore"
 		},
 		{
-			"line": 148,
+			"line": 149,
 			"name": "writeData",
 			"shortText": "Simplify file write for text or json.",
 			"shortHtml": "<p>Simplify file write for text or json.</p>",
@@ -228,7 +228,7 @@
 	],
 	"properties": [
 		{
-			"line": 127,
+			"line": 128,
 			"name": "dumpData",
 			"shortText": "Whether or not to write intermediary files used during processing to the output data folder.",
 			"shortHtml": "<p>Whether or not to write intermediary files used during processing to the output data folder.</p>",
@@ -246,7 +246,7 @@
 			"id": "documon.documon.dumpData"
 		},
 		{
-			"line": 89,
+			"line": 90,
 			"name": "extensions",
 			"shortText": "The list of extensions to search for source code.",
 			"shortHtml": "<p>The list of extensions to search for source code.</p>",
@@ -263,7 +263,7 @@
 			"id": "documon.documon.extensions"
 		},
 		{
-			"line": 100,
+			"line": 101,
 			"name": "ignoreList",
 			"shortText": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
 			"shortHtml": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>",
@@ -280,7 +280,7 @@
 			"id": "documon.documon.ignoreList"
 		},
 		{
-			"line": 132,
+			"line": 133,
 			"name": "indexRedirectName",
 			"shortText": "The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
 			"shortHtml": "<p>The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.</p>",
@@ -297,7 +297,7 @@
 			"id": "documon.documon.indexRedirectName"
 		},
 		{
-			"line": 84,
+			"line": 85,
 			"name": "mainConf",
 			"shortText": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.",
 			"shortHtml": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>",
@@ -475,7 +475,7 @@
 			"id": "documon.documon.mainConf"
 		},
 		{
-			"line": 122,
+			"line": 123,
 			"name": "quiet",
 			"shortText": "Supress stdout messages.",
 			"shortHtml": "<p>Supress stdout messages.</p>",
@@ -493,7 +493,7 @@
 			"id": "documon.documon.quiet"
 		},
 		{
-			"line": 117,
+			"line": 118,
 			"name": "tally",
 			"shortText": "Counts of tags that were normalized or ignored during a",
 			"shortHtml": "<p>Counts of tags that were normalized or ignored during a</p>",

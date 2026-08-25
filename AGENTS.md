@@ -94,7 +94,7 @@ tags. The essentials:
 ### Coming from JSDoc
 
 Most JSDoc spellings are accepted and mapped automatically — `@function`, `@arg`, `@prop`,
-`@augments`, `@implements`, `@returns`, `@const`, `@access`, and the description tags
+`@augments`, `@returns`, `@const`, `@access`, and the description tags
 (`@desc`, `@description`, `@classdesc`, `@fileoverview`) all work, as does inline
 `{@link target}`. Type expressions pass through untouched, including `{string|number}`,
 `{Array<string>}`, `{*}`, `{?string}` and `{...number}`. `--check` reports what it
