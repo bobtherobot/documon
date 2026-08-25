@@ -8,8 +8,7 @@
   "js"
  ],
  "ignore": [
-  "showdown.min.js",
-  "markdown copy.js"
+  "showdown.min.js"
  ],
  "print": true,
  "gati": "UA-106684927-1"

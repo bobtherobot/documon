@@ -51,8 +51,11 @@ function ok(cond, label, extra){
  * @param   {array}  args - CLI arguments.
  * @return  {object}      - `{ status, stdout }`.
  */
-function cli(args){
-	var res = cp.spawnSync(process.execPath, [CLI].concat(args), { encoding : "utf8" });
+function cli(args, cwd){
+	var res = cp.spawnSync(process.execPath, [CLI].concat(args), {
+		encoding : "utf8",
+		cwd      : cwd || ROOT
+	});
 	return { status : res.status, stdout : res.stdout || "", stderr : res.stderr || "" };
 }
 
@@ -212,7 +215,9 @@ fs.writeFileSync(path.join(pkgDir, "package.json"), JSON.stringify({
 	description : "Borrowed from package.json."
 }), "utf8");
 
-cli(["-i", pkgSrc, "-o", pkgDir]);
+// Run from inside the temp project, so the repo's own documon.json
+// (which sets a name) doesn't supply one first.
+cli(["-i", pkgSrc, "-o", pkgDir], pkgDir);
 var borrowed = JSON.parse( fs.readFileSync(path.join(pkgDir, "docs", "model.json"), "utf8") );
 
 ok(borrowed.project === "borrowed-name", "adopts name from the nearest package.json",
@@ -221,10 +226,13 @@ ok(borrowed.version === "4.5.6", "adopts version from the nearest package.json",
 	"got " + borrowed.version);
 ok(borrowed.description === "Borrowed from package.json.", "adopts the description");
 
-cli(["-i", pkgSrc, "-o", pkgDir, "-n", "Explicit", "-v", "0.0.1"]);
+cli(["-i", pkgSrc, "-o", pkgDir, "-n", "Explicit", "-v", "0.0.1"], pkgDir);
 var explicit = JSON.parse( fs.readFileSync(path.join(pkgDir, "docs", "model.json"), "utf8") );
 ok(explicit.project === "Explicit", "explicit flags beat package.json", "got " + explicit.project);
 ok(explicit.version === "0.0.1", "explicit version wins");
+
+ok(JSON.parse(cli(["--check", "--json", "-i", pkgSrc], pkgDir).stdout).ok === true,
+	"check runs clean inside a bare project");
 
 // ------------------------------------------------------------------
 console.log("\nignore: patterns actually apply");
