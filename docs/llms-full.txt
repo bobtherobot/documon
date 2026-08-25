@@ -1,6 +1,6 @@
 # Documon v2.7.0
 
-A documentation system for mortals. Use with any language. Zero dependencies.
+A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.
 
 ---
 
@@ -655,6 +655,16 @@ anywhere in the project. A `documon` key inside `package.json` works too, as do
 	}
 
 Point at a specific file with `--config path/to/file.json`.
+
+### Project identity comes from package.json
+
+If you don't set `name`, `version` or `description`, Documon reads them from the nearest
+`package.json`, searching up from your source folder. So this is usually enough:
+
+	documon -i ./src -o ./
+
+and the project name and version on the home page stay correct through every release
+without you touching a build script. Anything you set explicitly wins.
 
 ### Using the "js prop" in your project
 
@@ -2153,21 +2163,6 @@ yo yo yo
 
 ## root (package)
 
-### definitionLists (method) [private]
-
-Find and convert markdown extra definition lists into html.
-
-- param text {type} - description
-- returns {type} - description description
-
-### processDefListItems (method) [private]
-
-Process the contents of a single definition list, splitting it
-into individual term and definition list items.
-
-- param listStr {type} - description
-- returns {type} - description description
-
 ---
 
 ## documon (package)
@@ -2728,6 +2723,37 @@ Writes `llms.txt`, `llms-full.txt` and `model.json`.
 ## log (module)
 
 Writes to the console. Will accept an object or array as well as string, boolena and other and prepare them for proper presentation to the console.
+
+---
+
+## markdown (module)
+
+Converts markdown to HTML, with the "definition list" extension from markdown-extra
+wired in.
+
+Used for comment descriptions and for the markdown files in the "more" folder.
+
+### definitionLists (method) [private]
+
+Find and convert markdown extra definition lists into html.
+
+- param text {type} - description
+- returns {type} - description description
+
+### processDefListItems (method) [private]
+
+Process the contents of a single definition list, splitting it
+into individual term and definition list items.
+
+- param listStr {type} - description
+- returns {type} - description description
+
+### run (method)
+
+Converts a markdown string to HTML.
+
+- param str {string} - The markdown source.
+- returns {string} - The rendered HTML.
 
 ---
 

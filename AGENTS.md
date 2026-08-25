@@ -119,6 +119,10 @@ tree (it also reads a `documon` key inside `package.json`):
 
 Then just `documon` — or `documon --check`.
 
+`name`, `version` and `description` default to the nearest `package.json`, so don't
+restate them unless you need to override. Never hard-code a version into a build script;
+it will go stale.
+
 ## Consuming Documon output
 
 Every build writes machine-readable companions next to the HTML:

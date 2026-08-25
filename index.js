@@ -142,6 +142,47 @@ function findConfig(from){
 }
 
 /**
+ * Finds the nearest `package.json` and borrows the project's identity from it.
+ *
+ * Without this, `name`, `version` and `description` have to be repeated in a config file
+ * or on the command line, and then kept in sync by hand -- which is exactly the kind of
+ * duplication that goes stale.
+ *
+ * @method     packageDefaults
+ * @private
+ * @param      {string}  from - Folder to start searching from.
+ * @return     {object}       - `{ name, version, description }`, any of which may be absent.
+ */
+function packageDefaults(from){
+
+	var dir  = path.resolve(from || process.cwd());
+	var last = null;
+
+	while(dir && dir !== last){
+
+		var pkgPath = path.join(dir, "package.json");
+
+		if( fs.existsSync(pkgPath) ){
+			try {
+				var pkg = JSON.parse( fs.readFileSync(pkgPath, 'utf8') );
+				return {
+					name        : pkg.name,
+					version     : pkg.version,
+					description : pkg.description
+				};
+			} catch(e) {
+				return {};
+			}
+		}
+
+		last = dir;
+		dir = path.dirname(dir);
+	}
+
+	return {};
+}
+
+/**
  * Turns raw CLI argv into a Documon options object, folding in any config file found.
  *
  * @method     optsFromArgv
@@ -368,6 +409,23 @@ function run(opts) {
 		return fail(errors, opts.json);
 	}
 
+	// Fall back to the nearest package.json for project identity, so name/version/
+	// description live in exactly one place instead of being restated per build script.
+	// Searched from the source folder, which is what a caller means even when the process
+	// was launched from somewhere else. Anything explicitly supplied wins.
+	var seed = typeof src === "object" ? src[0] : src;
+	var pkg  = packageDefaults( seed ? path.dirname(path.resolve(seed)) : process.cwd() );
+
+	if( ! opts.name && pkg.name ){
+		opts.name = pkg.name;
+	}
+	if( ! opts.version && pkg.version ){
+		opts.version = pkg.version;
+	}
+	if( ! opts.description && pkg.description ){
+		opts.description = pkg.description;
+	}
+
 	log(info.copyright, null, quiet);
 
 	var conf = {
@@ -385,6 +443,7 @@ function run(opts) {
 		more                : opts.more,
 		docBegin            : opts.docBegin,
 		docEnd              : opts.docEnd,
+		docsDirName         : opts.docsDirName,
 		indexShortcutName   : opts.indexShortcutName,
 		moreQuirkDelimiter  : opts.moreQuirkDelimiter,
 		gati                : opts.gati,

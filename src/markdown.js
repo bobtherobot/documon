@@ -1,8 +1,34 @@
+/*
+Part of Documon.
+Copyright (c) Michael Gieson.
+www.documon.net
+ */
+
+/**
+ * Converts markdown to HTML, with the "definition list" extension from markdown-extra
+ * wired in.
+ *
+ * Used for comment descriptions and for the markdown files in the "more" folder.
+ *
+ * @module  markdown
+ * @package documon
+ * @example
+ *
+ * 		var markdown = require("./markdown");
+ * 		var html = markdown("Some **bold** text.");
+ */
 
 var showdown = require("./showdown.min.js");
 
 
 
+/**
+ * Converts a markdown string to HTML.
+ *
+ * @method  run
+ * @param   {string}  str - The markdown source.
+ * @return  {string}      - The rendered HTML.
+ */
 function run(str){
     var converter = new showdown.Converter({
         tables : true,

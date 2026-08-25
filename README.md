@@ -76,6 +76,9 @@ anywhere in the project tree, and a `documon` key inside `package.json` works to
 		"description" : "One line about the project."
 	}
 
+`name`, `version` and `description` fall back to the nearest `package.json`, so they only
+need to live in one place.
+
 __Check before you build__
 
 Documon derives structure only from your comments, so an untagged symbol is invisible and
@@ -156,6 +159,7 @@ v2.7.0 - 2026-08-25
 - Every build now emits `llms.txt`, `llms-full.txt` and `model.json`.
 - Added config file discovery (`documon.json`, `.documonrc`, a `documon` key in
   `package.json`) and long-form flags (`--src`, `--out`, ...).
+- Project `name`, `version` and `description` now default to the nearest `package.json`.
 - Added `description` and `baseUrl` options; generated pages now carry a real meta
   description, canonical link and Open Graph tags instead of a hard-coded string.
 - Fixed the ignore system, which never worked: the matcher returned after testing one

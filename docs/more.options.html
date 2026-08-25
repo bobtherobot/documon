@@ -266,6 +266,12 @@ anywhere in the project. A <code>documon</code> key inside <code>package.json</c
     "ignore"      : ["*.test.js", "vendor/**"]
 }</code></pre>
 <p>Point at a specific file with <code>--config path/to/file.json</code>.</p>
+<h3 id="project-identity-comes-from-packagejson">Project identity comes from package.json</h3>
+<p>If you don't set <code>name</code>, <code>version</code> or <code>description</code>, Documon reads them from the nearest<br />
+<code>package.json</code>, searching up from your source folder. So this is usually enough:</p>
+<pre><code>documon -i ./src -o ./</code></pre>
+<p>and the project name and version on the home page stay correct through every release<br />
+without you touching a build script. Anything you set explicitly wins.</p>
 <h3 id="using-the-js-prop-in-your-project">Using the "js prop" in your project</h3>
 <pre><code>var docs = require("documon");
 docs({

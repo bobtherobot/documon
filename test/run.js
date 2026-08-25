@@ -200,6 +200,33 @@ ok(configModel.project === "FromConfig", "picked up name from the config file",
 ok(configModel.version === "3.2.1", "picked up version from the config file");
 
 // ------------------------------------------------------------------
+console.log("\nconfig: package.json supplies project identity");
+// ------------------------------------------------------------------
+var pkgDir = tmp();
+var pkgSrc = path.join(pkgDir, "src");
+fs.mkdirSync(pkgSrc);
+fs.copyFileSync(path.join(FIXTURES, "good.js"), path.join(pkgSrc, "good.js"));
+fs.writeFileSync(path.join(pkgDir, "package.json"), JSON.stringify({
+	name : "borrowed-name",
+	version : "4.5.6",
+	description : "Borrowed from package.json."
+}), "utf8");
+
+cli(["-i", pkgSrc, "-o", pkgDir]);
+var borrowed = JSON.parse( fs.readFileSync(path.join(pkgDir, "docs", "model.json"), "utf8") );
+
+ok(borrowed.project === "borrowed-name", "adopts name from the nearest package.json",
+	"got " + borrowed.project);
+ok(borrowed.version === "4.5.6", "adopts version from the nearest package.json",
+	"got " + borrowed.version);
+ok(borrowed.description === "Borrowed from package.json.", "adopts the description");
+
+cli(["-i", pkgSrc, "-o", pkgDir, "-n", "Explicit", "-v", "0.0.1"]);
+var explicit = JSON.parse( fs.readFileSync(path.join(pkgDir, "docs", "model.json"), "utf8") );
+ok(explicit.project === "Explicit", "explicit flags beat package.json", "got " + explicit.project);
+ok(explicit.version === "0.0.1", "explicit version wins");
+
+// ------------------------------------------------------------------
 console.log("\nignore: patterns actually apply");
 // ------------------------------------------------------------------
 var ignore = require(path.join(ROOT, "src", "ignore.js"));

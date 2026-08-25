@@ -2,7 +2,7 @@
 	"generator": "documon",
 	"project": "Documon",
 	"version": "2.7.0",
-	"description": "A documentation system for mortals. Use with any language. Zero dependencies.",
+	"description": "A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.",
 	"baseUrl": "https://www.documon.net",
 	"pages": [
 		{
@@ -13,50 +13,7 @@
 			"description": "",
 			"file": "root.html",
 			"line": null,
-			"members": [
-				{
-					"id": "root.definitionLists",
-					"kind": "method",
-					"name": "definitionLists",
-					"type": null,
-					"access": "private",
-					"line": 26,
-					"inherited": null,
-					"description": "Find and convert markdown extra definition lists into html.",
-					"params": [
-						{
-							"name": "text",
-							"type": "type",
-							"description": "description"
-						}
-					],
-					"returns": {
-						"type": "type",
-						"description": "description description"
-					}
-				},
-				{
-					"id": "root.processDefListItems",
-					"kind": "method",
-					"name": "processDefListItems",
-					"type": null,
-					"access": "private",
-					"line": 94,
-					"inherited": null,
-					"description": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.",
-					"params": [
-						{
-							"name": "listStr",
-							"type": "type",
-							"description": "description"
-						}
-					],
-					"returns": {
-						"type": "type",
-						"description": "description description"
-					}
-				}
-			]
+			"members": []
 		},
 		{
 			"id": "documon",
@@ -1138,6 +1095,80 @@
 			"file": "src/log.js",
 			"line": 32,
 			"members": []
+		},
+		{
+			"id": "documon.markdown",
+			"name": "markdown",
+			"kind": "module",
+			"package": "documon",
+			"description": "Converts markdown to HTML, with the \"definition list\" extension from markdown-extra\nwired in.\n\nUsed for comment descriptions and for the markdown files in the \"more\" folder.",
+			"file": "src/markdown.js",
+			"line": 19,
+			"members": [
+				{
+					"id": "documon.markdown.definitionLists",
+					"kind": "method",
+					"name": "definitionLists",
+					"type": null,
+					"access": "private",
+					"line": 52,
+					"inherited": null,
+					"description": "Find and convert markdown extra definition lists into html.",
+					"params": [
+						{
+							"name": "text",
+							"type": "type",
+							"description": "description"
+						}
+					],
+					"returns": {
+						"type": "type",
+						"description": "description description"
+					}
+				},
+				{
+					"id": "documon.markdown.processDefListItems",
+					"kind": "method",
+					"name": "processDefListItems",
+					"type": null,
+					"access": "private",
+					"line": 120,
+					"inherited": null,
+					"description": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.",
+					"params": [
+						{
+							"name": "listStr",
+							"type": "type",
+							"description": "description"
+						}
+					],
+					"returns": {
+						"type": "type",
+						"description": "description description"
+					}
+				},
+				{
+					"id": "documon.markdown.run",
+					"kind": "method",
+					"name": "run",
+					"type": null,
+					"access": "public",
+					"line": 31,
+					"inherited": null,
+					"description": "Converts a markdown string to HTML.",
+					"params": [
+						{
+							"name": "str",
+							"type": "string",
+							"description": "The markdown source."
+						}
+					],
+					"returns": {
+						"type": "string",
+						"description": "The rendered HTML."
+					}
+				}
+			]
 		},
 		{
 			"id": "documon.menuBuilder",

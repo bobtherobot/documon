@@ -1060,6 +1060,48 @@ var MenuData = [
 										"inherits": 0
 									},
 									{
+										"id": "documon.markdown",
+										"url": "documon.markdown.html#documon.markdown",
+										"label": "markdown",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0,
+										"children": [
+											{
+												"id": "documon.markdown-methods",
+												"url": "documon.markdown.html#methods",
+												"label": "methods",
+												"kind": "methods",
+												"children": [
+													{
+														"id": "documon.markdown.definitionLists",
+														"url": "documon.markdown.html#documon.markdown.definitionLists",
+														"label": "definitionLists",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.markdown.processDefListItems",
+														"url": "documon.markdown.html#documon.markdown.processDefListItems",
+														"label": "processDefListItems",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.markdown.run",
+														"url": "documon.markdown.html#documon.markdown.run",
+														"label": "run",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													}
+												]
+											}
+										]
+									},
+									{
 										"id": "documon.menuBuilder",
 										"url": "documon.menuBuilder.html#documon.menuBuilder",
 										"label": "menuBuilder",
@@ -1594,30 +1636,6 @@ var MenuData = [
 								]
 							}
 						]
-					}
-				]
-			},
-			{
-				"id": "root-methods",
-				"url": "root.html#methods",
-				"label": "methods",
-				"kind": "methods",
-				"children": [
-					{
-						"id": "root.definitionLists",
-						"url": "root.html#root.definitionLists",
-						"label": "definitionLists",
-						"kind": "methods-item",
-						"access": "private",
-						"inherits": 0
-					},
-					{
-						"id": "root.processDefListItems",
-						"url": "root.html#root.processDefListItems",
-						"label": "processDefListItems",
-						"kind": "methods-item",
-						"access": "private",
-						"inherits": 0
 					}
 				]
 			}

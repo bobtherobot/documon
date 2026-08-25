@@ -1,8 +1,78 @@
 [
 	{
+		"text": "Converts markdown to HTML, with the \"definition list\" extension from markdown-extra\nwired in.\n\nUsed for comment descriptions and for the markdown files in the \"more\" folder.\n\n",
+		"start": 6,
+		"end": 18,
+		"file": "/Volumes/Drives/projects/documon/documon/src/markdown.js",
+		"flags": [
+			{
+				"source": "@module  markdownmarkdown",
+				"flag": "module",
+				"after": "markdown",
+				"afterType": "markdown",
+				"name": "markdown",
+				"single": true,
+				"text": "markdown"
+			},
+			{
+				"source": "@package documondocumon",
+				"flag": "package",
+				"after": "documon",
+				"afterType": "documon",
+				"name": "documon",
+				"single": true,
+				"text": "documon"
+			},
+			{
+				"source": "@example",
+				"flag": "example",
+				"after": "",
+				"text": "\n\n\t\tvar markdown = require(\"./markdown\");\n\t\tvar html = markdown(\"Some **bold** text.\");"
+			}
+		],
+		"source": "Converts markdown to HTML, with the \"definition list\" extension from markdown-extra\nwired in.\n\nUsed for comment descriptions and for the markdown files in the \"more\" folder.\n\n@module  markdown\n@package documon\n@example\n\n\t\tvar markdown = require(\"./markdown\");\n\t\tvar html = markdown(\"Some **bold** text.\");",
+		"id": "documon.markdown"
+	},
+	{
+		"text": "Converts a markdown string to HTML.\n\n",
+		"start": 24,
+		"end": 30,
+		"file": "/Volumes/Drives/projects/documon/documon/src/markdown.js",
+		"flags": [
+			{
+				"source": "@method  runrun",
+				"flag": "method",
+				"after": "run",
+				"afterType": "run",
+				"name": "run",
+				"single": true,
+				"text": "run"
+			},
+			{
+				"source": "@param   {string}  str - The markdown source.The markdown source.",
+				"flag": "param",
+				"after": "{string}  str - The markdown source.",
+				"type": "string",
+				"afterType": "str - The markdown source.",
+				"name": "str",
+				"text": "The markdown source."
+			},
+			{
+				"source": "@return  {string}      - The rendered HTML.",
+				"flag": "return",
+				"after": "{string}      - The rendered HTML.",
+				"type": "string",
+				"afterType": "The rendered HTML.",
+				"text": "The rendered HTML."
+			}
+		],
+		"source": "Converts a markdown string to HTML.\n\n@method  run\n@param   {string}  str - The markdown source.\n@return  {string}      - The rendered HTML.",
+		"id": "documon.markdown.run"
+	},
+	{
 		"text": "Find and convert markdown extra definition lists into html.\n\n",
-		"start": 17,
-		"end": 25,
+		"start": 43,
+		"end": 51,
 		"file": "/Volumes/Drives/projects/documon/documon/src/markdown.js",
 		"flags": [
 			{
@@ -40,12 +110,12 @@
 			}
 		],
 		"source": "Find and convert markdown extra definition lists into html.\n\n@method  definitionLists\n@private\n@param   {type}           text  description\n\n@return  {type}                 description",
-		"id": "root.definitionLists"
+		"id": "documon.markdown.definitionLists"
 	},
 	{
 		"text": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.\n\n",
-		"start": 84,
-		"end": 93,
+		"start": 110,
+		"end": 119,
 		"file": "/Volumes/Drives/projects/documon/documon/src/markdown.js",
 		"flags": [
 			{
@@ -83,6 +153,6 @@
 			}
 		],
 		"source": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.\n\n@method  processDefListItems\n@private\n@param   {type}               listStr  description\n\n@return  {type}                        description",
-		"id": "root.processDefListItems"
+		"id": "documon.markdown.processDefListItems"
 	}
 ]
