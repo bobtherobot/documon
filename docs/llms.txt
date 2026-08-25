@@ -1,4 +1,4 @@
-# Documon v2.7.0
+# Documon v3.0.0
 
 > A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.
 

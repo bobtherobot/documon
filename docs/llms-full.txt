@@ -1,4 +1,4 @@
-# Documon v2.7.0
+# Documon v3.0.0
 
 A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.
 
@@ -997,7 +997,7 @@ Run `documon --check` to see exactly what was normalized or ignored.
 
 ## Retired spellings
 
-`@impliments` was Documon's own misspelling of `@implements`. It was retired in v2.7.0
+`@impliments` was Documon's own misspelling of `@implements`. It was retired in v3.0.0
 rather than kept as a silent alias, so the typo doesn't propagate into new projects.
 `documon --check` reports it by name and tells you what to rename it to.
 
@@ -1133,7 +1133,7 @@ The value must be a fully qualified id — `package.Class` — matching a docume
 Like [@extends](more.tags._extends_md), the parent's members are cross-filled into this
 page so readers see the full surface in one place.
 
-> **Renamed in v2.7.0.** Documon previously spelled this tag `@impliments`. That was a
+> **Renamed in v3.0.0.** Documon previously spelled this tag `@impliments`. That was a
 > typo in Documon itself, and it has been retired rather than kept as an alias — leaving
 > it in place would have propagated the misspelling into new projects indefinitely.
 > `documon --check` reports the old spelling by name and tells you to rename it.
@@ -2279,7 +2279,7 @@ does. These are **not** aliased -- they are listed so `--check` and the build su
 can name the replacement instead of reporting a generic "unknown tag".
 
 `@impliments` was Documon's own misspelling of `@implements` and was corrected in
-v2.7.0. Since structure comes only from tags, leaving it as a silent alias would have
+v3.0.0. Since structure comes only from tags, leaving it as a silent alias would have
 meant the typo propagating into new projects forever.
 
 ### DESCRIPTION_TAGS (property) -> array

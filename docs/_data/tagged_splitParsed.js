@@ -154,7 +154,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.7.0",
+	"projectVersion": "3.0.0",
 	"search": {
 		"documon.splitParsed": "splitParsed : Splits file parsed comments into independent groups file containing several classes behaves like several class files assumes everything handed belongs single page split happen firstsplitParsed documon",
 		"documon.splitParsed.declaredPackage": "declaredPackage : Finds package group declares itselfdeclaredPackage group parsed comment blocks package name null",

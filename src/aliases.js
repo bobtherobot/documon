@@ -75,7 +75,7 @@ var TAGS = {
  * can name the replacement instead of reporting a generic "unknown tag".
  *
  * `@impliments` was Documon's own misspelling of `@implements` and was corrected in
- * v2.7.0. Since structure comes only from tags, leaving it as a silent alias would have
+ * v3.0.0. Since structure comes only from tags, leaving it as a silent alias would have
  * meant the typo propagating into new projects forever.
  */
 var DEPRECATED = {

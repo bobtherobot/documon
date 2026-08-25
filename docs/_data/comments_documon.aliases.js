@@ -12,7 +12,7 @@
 	{
 		"start": 71,
 		"end": 79,
-		"data": "@property {object} DEPRECATED - Spellings that Documon used to accept and no longer\ndoes. These are **not** aliased -- they are listed so `--check` and the build summary\ncan name the replacement instead of reporting a generic \"unknown tag\".\n\n`@impliments` was Documon's own misspelling of `@implements` and was corrected in\nv2.7.0. Since structure comes only from tags, leaving it as a silent alias would have\nmeant the typo propagating into new projects forever."
+		"data": "@property {object} DEPRECATED - Spellings that Documon used to accept and no longer\ndoes. These are **not** aliased -- they are listed so `--check` and the build summary\ncan name the replacement instead of reporting a generic \"unknown tag\".\n\n`@impliments` was Documon's own misspelling of `@implements` and was corrected in\nv3.0.0. Since structure comes only from tags, leaving it as a silent alias would have\nmeant the typo propagating into new projects forever."
 	},
 	{
 		"start": 84,

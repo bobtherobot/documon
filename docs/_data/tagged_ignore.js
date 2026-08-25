@@ -119,7 +119,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.7.0",
+	"projectVersion": "3.0.0",
 	"search": {
 		"documon.ignore": "ignore : Decides whether given file folder should skipped Shared builder check both agree exactly which files project History original implementation lived inside documon defects that made entire ignore system inert return false from inside loop only first pattern ever consulted That first default pattern valid regular expression RegExp throws Nothing repeat catch also returned false effect shouldIgnore always returned false node modules template folder output folder every user supplied ignore entry were silently walked Running Documon project root would happily parse dependenciesignore documon",
 		"documon.ignore.globToRegExp": "globToRegExp : Translates simple glob into regular expression Supports within path segment across segments Anything else escaped literallyglobToRegExp glob pattern compiled expression null when still compile",

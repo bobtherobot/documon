@@ -124,7 +124,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.7.0",
+	"projectVersion": "3.0.0",
 	"search": {
 		"documon.markdown": "markdown : Converts markdown HTML with definition list extension from markdown extra wired Used comment descriptions markdown files more foldermarkdown documon markdown require markdown html markdown Some bold text",
 		"documon.markdown.run": "run : Converts markdown string HTMLmarkdown source rendered HTML",

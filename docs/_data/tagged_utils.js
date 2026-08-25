@@ -66,7 +66,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.7.0",
+	"projectVersion": "3.0.0",
 	"search": {
 		"documon.utils": "utils : collection useful helper untilitiesutils documon",
 		"documon.utils.sort_by": "sort_by : sort field FunctionExpression"

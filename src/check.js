@@ -88,7 +88,7 @@ var COMMON_TYPOS = {
  * but genuinely have no Documon equivalent.
  */
 var TAG_NOTES = {
-	  "impliments" : "@impliments was Documon's own misspelling and was retired in v2.7.0. Rename it to @implements."
+	  "impliments" : "@impliments was Documon's own misspelling and was retired in v3.0.0. Rename it to @implements."
 	, "fires"      : "@fires documents which event a method emits; @event declares the event itself. Document the event separately with @event and mention it in the description."
 	, "emits"      : "@emits documents which event a method emits; @event declares the event itself. Document the event separately with @event and mention it in the description."
 	, "memberof"   : "Documon scopes by @package plus the enclosing @class/@module, not by @memberof."
@@ -459,7 +459,7 @@ function run(conf, opts){
 			var replacement = aliases.deprecatedFor(tag.flag);
 			if(replacement){
 				findings.push( finding("error", "retired-tag", blk.file, blk.line,
-					'@' + tag.flag + ' was retired in v2.7.0 and is no longer read.',
+					'@' + tag.flag + ' was retired in v3.0.0 and is no longer read.',
 					"Rename it to @" + replacement + ".") );
 				continue;
 			}

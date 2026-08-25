@@ -424,7 +424,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.7.0",
+	"projectVersion": "3.0.0",
 	"search": {
 		"documon.check": "check : Validates documentation comments without generating anything Because Documon infers nothing from source code missing misspelled doesn produce warning produces silence symbol simply never appears output That fine human eyeballs result useless automated writer that needs know whether succeeded check that feedback signal parse everything report what work exit zero Write comments check repair repeatcheck documon documon check human readable documon check json machine readable documon check coverage plus undocumented symbol advisory",
 		"documon.check.finding": "finding : Creates findingfinding error warning info Stable machine readable rule Source file based line number What wrong finding",

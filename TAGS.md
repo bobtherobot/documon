@@ -153,7 +153,7 @@ care. The documentation builds correctly either way.
 |---|---|
 | `@impliments` | `@implements` |
 
-`@impliments` was Documon's own misspelling. It was retired in v2.7.0 rather than kept as
+`@impliments` was Documon's own misspelling. It was retired in v3.0.0 rather than kept as
 a silent alias, so the typo doesn't spread into new projects. `--check` reports it as an
 error and names the replacement; a build prints a line about it too.
 

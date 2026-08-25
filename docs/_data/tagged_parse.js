@@ -67,7 +67,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.7.0",
+	"projectVersion": "3.0.0",
 	"search": {
 		"root.flagBody": "flagBody : Recovers full text carried after holds everything line text holds parsed description that line plus continuation lines appended afterwards Concatenating them duplicates first line take after line only continuations from textflagBody parsed flag full text",
 		"root.normalize": "normalize : Post parse cleanup tags that onto Documon Description tags desc description classdesc fileoverview have Documon equivalent because description simply free text above tags Their content folded into that text instead being thrown away access private becomes private flag const constant becomes read only property Metadata tags deprecated throws since collected onto meta template render them rather than vanishingnormalize parsed comment block modified place"

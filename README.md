@@ -150,23 +150,46 @@ Of course, since templates are JS, you can always roll some other templating sys
 Documon's only dependancy is Node, no additional modules are needed.
 
 ## Change Log
+v3.0.0 - 2026-08-25
+
+Breaking:
+- `@impliments` was Documon's own misspelling and has been retired. Use `@implements`.
+  It is not aliased back, so the typo doesn't propagate into new projects. `--check`
+  reports the old spelling by name as an error, and builds print a line about it, so the
+  change cannot fail silently.
+- Dotted names now mean parent/child only on `@param` and `@property`. Previously *every*
+  dotted name was split, which silently destroyed qualified references: `@extends
+  app.Base` had its name truncated to `Base` and matched no id, and when the same block
+  also declared `@package app` the tag was re-parented as a child of the package tag and
+  vanished entirely. Inheritance written the way the docs recommend did nothing at all.
+  Nested `@param opts.timeout` and `@property conf.host` are unchanged.
+- A second `@class` in a file now inherits that file's `@package` instead of falling into
+  `root`. A file declaring `@module thing` / `@package app` produced `app.thing` and
+  `root.Good`; it now produces `app.thing` and `app.Good`. An explicit `@package` still
+  wins and becomes the package for everything after it.
+
+Added:
+- Accept the common JSDoc tag spellings as exact synonyms -- `@function`/`@func`,
+  `@arg`/`@argument`/`@parameter`, `@prop`/`@member`/`@var`, `@augments`,
+  `@returns`/`@yields`, `@constructs`, `@const`/`@constant`, `@access private` -- plus the
+  description tags (`@desc`, `@description`, `@summary`, `@classdesc`, `@fileoverview`)
+  and inline `{@link target}`. These were previously dropped, which cost the whole entity,
+  not just the tag.
+- `@deprecated`, `@throws`, `@since`, `@author`, `@license`, `@copyright` and `@todo` are
+  rendered as metadata rows instead of being discarded, and appear in `model.json` and
+  `llms-full.txt`.
+- Tags whose meaning differs are deliberately *not* aliased -- `@fires`/`@emits`,
+  `@memberof`, `@typedef`, `@callback`, `@enum`, `@inheritdoc`. `--check` explains each
+  rather than suggesting a wrong replacement.
+- `--check` reports normalizations at info level (`normalized-tag`) and retired spellings
+  as errors (`retired-tag`).
+- Builds print a one-line summary of any tags they ignored.
+
+Fixed:
+- `--check` no longer scans `@example` content for cross-references; examples legitimately
+  contain ids that were never meant to resolve.
+
 v2.7.0 - 2026-08-25
-- BREAKING: `@impliments` was Documon's own misspelling and has been retired. Use
-  `@implements`. `--check` reports the old spelling by name, and builds print a line
-  about it, so the change can't fail silently.
-- Fixed qualified references being silently destroyed. A dotted name was always treated
-  as parent/child, so `@extends app.Base` had its name truncated to `Base` -- and when
-  the same block also declared `@package app`, the tag was re-parented as a child of the
-  package tag and disappeared. Dotted names now mean parent/child only on `@param` and
-  `@property`, where that is what a dot means.
-- Fixed a second `@class` in a file falling into the `root` package instead of inheriting
-  the file's `@package`.
-- Accept the common JSDoc tag spellings as exact synonyms (`@function`, `@arg`, `@prop`,
-  `@augments`, `@implements`, `@const`, `@access`, and the description tags), plus inline
-  `{@link}`. Previously these were dropped, which silently cost the whole entity.
-- Keep `@deprecated`, `@throws`, `@since`, `@author`, `@license` and `@todo` as rendered
-  metadata instead of discarding them.
-- Builds now print a one-line summary of any tags they ignored.
 - Added a `bin` entry, so `npx documon` and a global `documon` command work.
 - The output folder is now created when missing, instead of erroring.
 - Real exit codes: 0 success, 1 configuration error, 2 `--check` findings.

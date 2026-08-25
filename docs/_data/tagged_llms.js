@@ -295,7 +295,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.7.0",
+	"projectVersion": "3.0.0",
 	"search": {
 		"documon.llms": "llms : Emits machine readable companions alongside generated HTML llms llms convention https llmstxt short linkable index documentation meant read language model rather than rendered browser llms full every page prose concatenated into plain text file model ingest whole manual single fetch model json structured documentation model packages classes members params types other tools consume Documon output data instead scraping HTML three written output folder Disable with emitLlms false emitModel falsellms documon",
 		"documon.llms.deHtml": "deHtml : Strips HTML tags collapses whitespace leaving readable plain textdeHtml Source HTML Plain text",

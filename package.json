@@ -1,6 +1,6 @@
 {
   "name": "documon",
-  "version": "2.7.0",
+  "version": "3.0.0",
   "description": "A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.",
   "main": "index.js",
   "bin": {
@@ -24,7 +24,7 @@
   "scripts": {
     "test": "node test/run.js",
     "check": "node index.js --check -i src",
-    "docs": "node index.js -i src -o . -n Documon -v 2.7.0 -p"
+    "docs": "node index.js -p"
   },
   "repository": {
     "type": "git",
