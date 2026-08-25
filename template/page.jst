@@ -26,7 +26,17 @@ var prettyBuiltIn = ["bsh", " c", " cc", " cpp", " cs", " csh", " cyc", " cv", "
 
 function build(ctx, content){
 
-	var metaDescription = (ctx.shortText || ctx.id || ctx.name || "").replace('"', ""); // strip quotes
+	// Strip markup and escape, rather than dropping only the first quote character.
+	var metaDescription = String(ctx.shortText || ctx.id || ctx.name || "")
+		.replace(/<[^>]+>/g, " ")
+		.replace(/\s+/g, " ")
+		.replace(/&/g, "&amp;")
+		.replace(/"/g, "&quot;")
+		.trim();
+
+	if(metaDescription.length > 300){
+		metaDescription = metaDescription.substring(0, 297) + "...";
+	}
 
 	var prettyLangs = ctx.prettyLangs;
 	var prettyLangsStr = "";
@@ -46,6 +56,17 @@ function build(ctx, content){
 	}
 
 
+	// Qualify the tab title with the project, so a page is identifiable out of context
+	// (search results, a pile of open tabs, a model citing a source).
+	var pageTitle = (ctx.name || ctx.id || "");
+	if(ctx.projectName && ctx.projectName !== pageTitle){
+		pageTitle += " - " + ctx.projectName;
+	}
+
+	var pageCanonical = ctx.baseUrl
+		? '<link rel="canonical" href="' + ctx.baseUrl.replace(/\/+$/, "") + "/" + (ctx.id || "index") + '.html">'
+		: "";
+
 	return `
 <!DOCTYPE html>
 <html>
@@ -54,8 +75,10 @@ function build(ctx, content){
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		
-    	<title>${ctx.name || ctx.id || ""}</title>
+    	<title>${pageTitle}</title>
 		<meta name="description" content="${metaDescription}">
+		<meta name="generator" content="Documon">
+		${pageCanonical}
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="${assetsFolder}/vendor/normalize.css">

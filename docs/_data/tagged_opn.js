@@ -8,14 +8,14 @@
 	"entity": "class",
 	"flagSearchText": " opn documon",
 	"package": "documon",
-	"file": "documon/src/opn.js",
+	"file": "src/opn.js",
 	"filename": "opn.js",
 	"klass": "opn",
 	"docfile": "documon.opn.html",
 	"id": "documon.opn",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.opn": "opn : cross platform launch files from Node Direct copy npmjs https npmjs package github https github sindresorhus USAGE const require Opens image default image viewer unicorn then image viewer closed Opens default browser http sindresorhus Specify open http sindresorhus firefox Specify arguments http sindresorhus google chrome incognito"
 	}

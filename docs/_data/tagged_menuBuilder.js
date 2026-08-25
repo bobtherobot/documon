@@ -9,7 +9,7 @@
 	"flagSearchText": " menuBuilder documon \n",
 	"package": "documon",
 	"access": "private",
-	"file": "documon/src/menuBuilder.js",
+	"file": "src/menuBuilder.js",
 	"filename": "menuBuilder.js",
 	"klass": "menuBuilder",
 	"docfile": "documon.menuBuilder.html",
@@ -50,7 +50,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/menuBuilder.js",
+			"file": "src/menuBuilder.js",
 			"filename": "menuBuilder.js",
 			"klass": "menuBuilder",
 			"package": "documon",
@@ -84,7 +84,7 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"file": "documon/src/menuBuilder.js",
+			"file": "src/menuBuilder.js",
 			"filename": "menuBuilder.js",
 			"klass": "menuBuilder",
 			"package": "documon",
@@ -117,7 +117,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/menuBuilder.js",
+			"file": "src/menuBuilder.js",
 			"filename": "menuBuilder.js",
 			"klass": "menuBuilder",
 			"package": "documon",
@@ -159,7 +159,7 @@
 				"shortText": "<p>A simplified (meta-only) object that represents the provided context.</p>",
 				"shortHtml": "<p>A simplified (meta-only) object that represents the provided context.</p>"
 			},
-			"file": "documon/src/menuBuilder.js",
+			"file": "src/menuBuilder.js",
 			"filename": "menuBuilder.js",
 			"klass": "menuBuilder",
 			"package": "documon",
@@ -169,7 +169,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.menuBuilder": "menuBuilder : Takes source context object which contains entire resolved documentation data extracts meta data refactors organizes into object formatted MenuTree Constructs multi dimensional object array that represents menu tree ultimately resulting output menuData file which formatted picked MenuTree index html pagemenuBuilder documon",
 		"documon.menuBuilder.buildSections": "buildSections : Checks provided context array items exists associated major kind sections packages classes property events methods example provided context will take form context classes properties array exists build that major kind section Builds context major sections into target arraybuildSections parsed documentation object array childeren into description",

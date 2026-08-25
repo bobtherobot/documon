@@ -8,6 +8,8 @@
 		
     	<title>Options</title>
 		<meta name="description" content="more.options">
+		<meta name="generator" content="Documon">
+		
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
@@ -61,110 +63,209 @@
 <thead>
 <tr>
 <th id="cli_flag">cli flag</th>
-<th id="js_prop">js prop</th>
+<th id="js_prop_/_config_key">js prop / config key</th>
 <th id="default">default</th>
 <th id="description">description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>-i</td>
+<td>-i, --src</td>
 <td>src</td>
 <td></td>
 <td>Path to source file or folder.</td>
 </tr>
 <tr>
-<td>-o</td>
+<td>-o, --out</td>
 <td>out</td>
 <td>parallel to source folder</td>
-<td>Path to build docs into.</td>
+<td>Path to build docs into. Created for you if it doesn't exist.</td>
 </tr>
 <tr>
-<td>-n</td>
+<td>-n, --name</td>
 <td>name</td>
 <td></td>
 <td>Name of your project / docs (displayed on the home page)</td>
 </tr>
 <tr>
-<td>-v</td>
+<td>-v, --version</td>
 <td>version</td>
 <td></td>
 <td>Version of your project / docs (displayed on the home page)</td>
 </tr>
 <tr>
-<td>-t</td>
+<td>--description</td>
+<td>description</td>
+<td></td>
+<td>One-line project description. Used in the page <code>&lt;meta&gt;</code> tags and in <code>llms.txt</code>.</td>
+</tr>
+<tr>
+<td>--baseUrl</td>
+<td>baseUrl</td>
+<td></td>
+<td>Public base URL of the published docs. Produces canonical links and absolute URLs in <code>llms.txt</code>.</td>
+</tr>
+<tr>
+<td>-t, --template</td>
 <td>template</td>
 <td></td>
 <td>Path to template folder</td>
 </tr>
 <tr>
-<td>-l</td>
+<td>-l, --launch</td>
 <td>launch</td>
 <td>false</td>
 <td>Launch docs in browser when done</td>
 </tr>
 <tr>
-<td>-p</td>
+<td>-p, --print</td>
 <td>print</td>
 <td>false</td>
 <td>Print activity to the console (verbose).</td>
 </tr>
 <tr>
-<td>-e</td>
+<td>-e, --sourceExt</td>
 <td>sourceExt</td>
 <td>"js"</td>
 <td>Extension(s) to parse. Space delimit multiple extensions</td>
 </tr>
 <tr>
-<td>-d</td>
+<td>-d, --dumpData</td>
 <td>dumpData</td>
 <td>false</td>
 <td>Dumps intermediary data into the "docs/_data" folder.</td>
 </tr>
 <tr>
-<td>-m</td>
+<td>-m, --more</td>
 <td>more</td>
 <td></td>
 <td>"More docs" folder containing additional documentation.</td>
 </tr>
 <tr>
-<td>-g</td>
+<td>-g, --ignore</td>
 <td>ignore</td>
 <td></td>
-<td>An array of files/folders to ignore. See "Ignoring Files" section below.</td>
+<td>Files/folders to ignore. See "Ignoring Files" below.</td>
 </tr>
 <tr>
-<td>-a</td>
+<td>-a, --docBegin</td>
 <td>docBegin</td>
 <td>/**</td>
 <td>Comment begin string</td>
 </tr>
 <tr>
-<td>-z</td>
+<td>-z, --docEnd</td>
 <td>docEnd</td>
 <td>*/</td>
 <td>Comment end string</td>
 </tr>
 <tr>
-<td>-x</td>
+<td>-x, --indexShortcutName</td>
 <td>indexShortcutName</td>
 <td>__LAUNCH.html</td>
-<td>Index shortcut name (so the file will appear at the top of the folder list so you don't have to scroll and poke around to find the "index.html" file).</td>
+<td>Index shortcut name (so the file appears at the top of the folder list and you don't have to hunt for "index.html").</td>
 </tr>
 <tr>
-<td>-q</td>
+<td>-q, --moreQuirkDelimiter</td>
 <td>moreQuirkDelimiter</td>
 <td>.</td>
-<td>More quirk delimiter. The character(s) use to seperate the "more" page numbering system from page titles.</td>
+<td>The character(s) used to separate the "more" page numbering system from page titles.</td>
 </tr>
 <tr>
-<td>-y</td>
+<td>-y, --gati</td>
 <td>gati</td>
 <td></td>
 <td>Google Analytics Tracking ID. If present pages will include tracking code.</td>
 </tr>
+<tr>
+<td>--no-emitLlms</td>
+<td>emitLlms</td>
+<td>true</td>
+<td>Write <code>llms.txt</code> and <code>llms-full.txt</code> alongside the HTML.</td>
+</tr>
+<tr>
+<td>--no-emitModel</td>
+<td>emitModel</td>
+<td>true</td>
+<td>Write <code>model.json</code>, the documentation as structured data.</td>
+</tr>
 </tbody>
 </table>
+<h3 id="validation-flags">Validation flags</h3>
+<p>These never write anything.</p>
+<table>
+<thead>
+<tr>
+<th id="cli_flag">cli flag</th>
+<th id="description">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--check</td>
+<td>Parse and validate the comments, report problems, and exit.</td>
+</tr>
+<tr>
+<td>--coverage</td>
+<td>With <code>--check</code>, also list symbols that have no documentation block (advisory only).</td>
+</tr>
+<tr>
+<td>--strict</td>
+<td>With <code>--check</code>, treat warnings as failures.</td>
+</tr>
+<tr>
+<td>--json</td>
+<td>Emit machine-readable JSON. Works with <code>--check</code> and with a normal build.</td>
+</tr>
+<tr>
+<td>-h, --help</td>
+<td>Usage.</td>
+</tr>
+<tr>
+<td>--version</td>
+<td>Print the Documon version.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="exit-codes">Exit codes</h3>
+<table>
+<thead>
+<tr>
+<th id="code">code</th>
+<th id="meaning">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Success.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Configuration error -- nothing was built.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>--check</code> found problems.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="config-file">Config file</h3>
+<p>Instead of passing flags every time, put a <code>documon.json</code> next to your <code>package.json</code>.<br />
+Documon walks up from the current folder to find it, so you can run <code>documon</code> from<br />
+anywhere in the project. A <code>documon</code> key inside <code>package.json</code> works too, as do<br />
+<code>documon.config.json</code> and <code>.documonrc</code>.</p>
+<pre><code>{
+    "src"         : "./src",
+    "out"         : "./",
+    "name"        : "My Project",
+    "version"     : "1.0.0",
+    "description" : "One line about the project.",
+    "baseUrl"     : "https://example.com/docs",
+    "sourceExt"   : ["js"],
+    "ignore"      : ["*.test.js", "vendor/**"]
+}</code></pre>
+<p>Point at a specific file with <code>--config path/to/file.json</code>.</p>
 <h3 id="using-the-js-prop-in-your-project">Using the "js prop" in your project</h3>
 <pre><code>var docs = require("documon");
 docs({
@@ -186,9 +287,17 @@ docs({
 <pre><code>cd /path/to/documon
 node ./index.js -l -p -d -i "path/to/src" -o "put/docs/here" -n "My Cool Project" -v "1.0" -t "path/to/template/folder" -e "js jsx php" -m "path/to/more/folder"</code></pre>
 <h3 id="ignoring-files">Ignoring Files</h3>
-<p>We're using a simple "indexOf" to match for ignores, which is designed for speed to just deal with file/folder full-path matching, or word matching. Sorry no globs.</p>
-<p>To include more than one file/folder with CLI, use a semicolon delimted list. </p>
-<pre><code>node ./index -g "foo; bar"</code></pre></div>
+<p>Each entry is matched as a plain substring first, and then as a pattern. Simple globs<br />
+(<code>*</code>, <code>**</code>, <code>?</code>) are translated for you:</p>
+<pre><code>"ignore" : [
+    "*.test.js",        // any test file
+    "src/**/scratch",   // a folder at any depth
+    "/abs/path/to/thing"
+]</code></pre>
+<p>These are always ignored, without asking: dot-files and dot-folders, <code>node_modules</code>,<br />
+<code>bower_components</code>, <code>vendor</code>, your template folder, and the output folder.</p>
+<p>To pass more than one from the CLI, use a semicolon delimited list:</p>
+<pre><code>documon -g "*.test.js; scratch"</code></pre></div>
 		</div>
 
 		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>

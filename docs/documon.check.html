@@ -1,0 +1,1211 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		
+    	<title>check - Documon</title>
+		<meta name="description" content="Validates documentation comments without generating anything.">
+		<meta name="generator" content="Documon">
+		<link rel="canonical" href="https://www.documon.net/documon.check.html">
+
+		 <!-- Normalize -->
+	    <link rel="stylesheet" href="assets/vendor/normalize.css">
+
+	    
+	    <!-- prettify -->
+	    <link rel="stylesheet" href="assets/vendor/prettify/codamike.css">
+	    
+		<script src="assets/vendor/prettify/prettify.js"></script>
+
+		<!-- Documon Pages Info. (Used by various classes to identify this page.) -->
+		<script>
+	    var pageCtx = {
+	    	id : "documon.check",
+	    	name: "check"
+	    }
+	    </script>
+
+	    <!-- theme 
+	    <link rel="stylesheet" href="assets/fonts/Fira_Sans/FiraSans.css">
+	    <link rel="stylesheet" href="assets/fonts/Inconsolata/inconsolata.css">
+	    -->
+	    <link rel="stylesheet" href="assets/css/pages.css">
+	    <script src="assets/js/documon/Storage.js"></script>
+	    <script src="assets/js/documon/Access.js"></script>
+	    <script src="assets/js/documon/Pages.js"></script>
+
+	    
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-106684927-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+	    
+
+	</head>
+
+
+
+	<body>
+
+		<div class="page">
+			
+
+			
+
+			<div class="main-method">
+				
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            
+					            <a name="documon.check"></a><a name="check"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		check () 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">25</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                <div class="meta-block meta-block-klass">
+				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.check<span></div>
+				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/check.js<span></div>
+			</div>
+								<p>Validates documentation comments without generating anything.</p>
+<p>Because Documon infers nothing from source code, a missing or misspelled tag doesn't<br />
+produce a warning -- it produces <em>silence</em>, and the symbol simply never appears in the<br />
+output. That is fine for a human who eyeballs the result, and useless for an automated<br />
+writer that needs to know whether it succeeded.</p>
+<p><code>--check</code> is that feedback signal: parse everything, report what won't work, exit<br />
+non-zero. Write comments, check, repair, repeat.</p>
+
+					
+								
+
+							    
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    documon --check -i ./src            # human readable
+    documon --check --json -i ./src     # machine readable
+    documon --check --coverage -i ./src # plus undocumented-symbol advisory</code></pre>
+	        </div>
+	    </div>
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
+			</div>
+
+		    <div class="parts">
+		        <a name="properties"></a>
+			    	<div class="part-properties">
+				    	
+				    	<div class="heading-part">Properties</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.check.COMMON_TYPOS"></a><a name="COMMON_TYPOS"></a>
+                                    <span class="member-name">COMMON_TYPOS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">59</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Tags people (and models trained on other doc systems)<br />
+reach for that Documon does not implement, mapped to the right answer.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.check.EXTENDISH"></a><a name="EXTENDISH"></a>
+                                    <span class="member-name">EXTENDISH</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">42</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Tags whose value must resolve to another documented id.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.check.KIND_TAGS"></a><a name="KIND_TAGS"></a>
+                                    <span class="member-name">KIND_TAGS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">37</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Tags that declare what an entity <em>is</em>. A comment block<br />
+needs one of these to become anything at all.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.check.KNOWN_TAGS"></a><a name="KNOWN_TAGS"></a>
+                                    <span class="member-name">KNOWN_TAGS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">48</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Every tag Documon actually acts on. Anything else is<br />
+inert -- it will be silently dropped from the output.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+		        
+		        
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            <div class="heading-part">Methods</div>
+					            <a name="documon.check.blockId"></a><a name="blockId"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		blockId (<span class="method-arguments">info</span>, <span class="method-arguments method-arg-optional">scope</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">181</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Derives the id a comment block will be filed under, mirroring how <code>tag.js</code> builds ids.</p>
+<p>Ids are scoped <code>package.container.member</code> -- the same shape as the generated filenames<br />
+(<code>documon.dirutils.html</code>). A <code>@method</code> therefore inherits the <code>@class</code> or <code>@module</code><br />
+declared above it in the same file; without that scope every <code>run()</code> in the project<br />
+would look like a collision.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">info</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Summarized block.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">scope</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The enclosing class/module name.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">string</span>
+					</div>
+			      	     	<div class="member"><p>Dotted id, or null.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.check.collect"></a><a name="collect"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		collect (<span class="method-arguments">conf</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">127</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Collects the source files that would be parsed by a build with this config.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">conf</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Documon config.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">array</span>
+					</div>
+			      	     	<div class="member"><p>Absolute file paths.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.check.finding"></a><a name="finding"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		finding (<span class="method-arguments">level</span>, <span class="method-arguments">rule</span>, <span class="method-arguments">file</span>, <span class="method-arguments">line</span>, <span class="method-arguments">message</span>, <span class="method-arguments method-arg-optional">fix</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">108</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Creates a finding.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">level</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>"error", "warning" or "info".</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">rule</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Stable machine-readable rule id.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">file</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Source file.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">line</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">number</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>1-based line number.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">message</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>What is wrong.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">fix</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>How to fix it.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>The finding.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.check.print"></a><a name="print"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		print (<span class="method-arguments">report</span>, <span class="method-arguments">log</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">615</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Prints a report for humans.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">report</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The result of <code>run()</code>.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">log</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">function</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The logger.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.check.run"></a><a name="run"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		run (<span class="method-arguments">conf</span>, <span class="method-arguments method-arg-optional">opts</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">334</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Runs the validator.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">conf</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Documon config (same shape the builder receives).</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">opts</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Options.</p>
+       						 </div>
+       			
+						        	
+						        	
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">opts properties</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">coverage</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">boolean</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	false
+       						 </span>
+       			
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Include the undocumented-symbol advisory.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p><code>{ ok, counts, findings, stats }</code>.</p></div>
+				
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    var report = require("documon").check.run({ src : "./src" }, { coverage : true });
+    if(report.counts.error){ process.exit(2); }</code></pre>
+	        </div>
+	    </div>
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.check.scanSymbols"></a><a name="scanSymbols"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		scanSymbols (<span class="method-arguments">source</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">294</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>A deliberately shallow symbol scan used only by the coverage advisory.</p>
+<p>This never feeds the render path -- Documon still derives structure exclusively from<br />
+comments. It exists so an automated writer can be told "you documented 4 of 11 exported<br />
+things" instead of silently shipping a near-empty manual.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">source</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>File contents.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">array</span>
+					</div>
+			      	     	<div class="member"><p><code>{ name, line }</code> records.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.check.summarize"></a><a name="summarize"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		summarize (<span class="method-arguments">parsed</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">213</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Reduces a parsed comment block to the facts the rules care about.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">parsed</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Output of <code>parse()</code>.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>Summary.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
+		    </div>
+		
+		</div>
+
+		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>
+
+	</body>
+
+
+</html>

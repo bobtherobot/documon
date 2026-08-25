@@ -8,7 +8,7 @@
 	"entity": "module",
 	"flagSearchText": " dirutils documon",
 	"package": "documon",
-	"file": "documon/src/dirutils.js",
+	"file": "src/dirutils.js",
 	"filename": "dirutils.js",
 	"klass": "dirutils",
 	"docfile": "documon.dirutils.html",
@@ -41,7 +41,7 @@
 					"type": "string"
 				}
 			],
-			"file": "documon/src/dirutils.js",
+			"file": "src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
 			"package": "documon",
@@ -82,7 +82,7 @@
 				"shortText": "<p>An array containing a list of paths to files and folders that we're deleted (or will be deleted when dryrun is true)</p>",
 				"shortHtml": "<p>An array containing a list of paths to files and folders that we're deleted (or will be deleted when dryrun is true)</p>"
 			},
-			"file": "documon/src/dirutils.js",
+			"file": "src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
 			"package": "documon",
@@ -115,7 +115,7 @@
 				"shortText": "<p>duh duh</p>",
 				"shortHtml": "<p>duh duh</p>"
 			},
-			"file": "documon/src/dirutils.js",
+			"file": "src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
 			"package": "documon",
@@ -142,7 +142,7 @@
 					"defaultVal": "path/to/make"
 				}
 			],
-			"file": "documon/src/dirutils.js",
+			"file": "src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
 			"package": "documon",
@@ -205,7 +205,7 @@
 					"html": "<pre><code> var contents = readdir(\"/path/to/folder\", null, true);\n // yeids contents {\n//      files : [\n//                  \"/path/to/folder/1.foo\",\n//                  \"/path/to/folder/2.bar\",\n//                  \"/path/to/folder/3.png\",\n//                  \"/path/to/folder/sub1/1.foo\",\n//                  \"/path/to/folder/sub2/2.bar\",\n//                  \"/path/to/folder/sub3/3.png\"\n//              ],\n//      dirs : [\n//                  \"/path/to/folder/sub1\",\n//                  \"/path/to/folder/sub2\",\n//                  \"/path/to/folder/sub3\"\n// \n//              ]\n// }</code></pre>"
 				}
 			],
-			"file": "documon/src/dirutils.js",
+			"file": "src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
 			"package": "documon",
@@ -256,7 +256,7 @@
 				"shortText": "<p>The resulting array contains only files that mathc the</p>",
 				"shortHtml": "<p>The resulting array contains only files that mathc the</p>"
 			},
-			"file": "documon/src/dirutils.js",
+			"file": "src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
 			"package": "documon",
@@ -297,7 +297,7 @@
 				"shortText": "<p>An array of all the items that were deleted (or \"will be\" deleted if dryrun is true.</p>",
 				"shortHtml": "<p>An array of all the items that were deleted (or \"will be\" deleted if dryrun is true.</p>"
 			},
-			"file": "documon/src/dirutils.js",
+			"file": "src/dirutils.js",
 			"filename": "dirutils.js",
 			"klass": "dirutils",
 			"package": "documon",
@@ -307,7 +307,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.dirutils": "dirutils : collection utilities manipulating directories syncronouslydirutils documon",
 		"documon.dirutils.makedir": "makedir : Creates folder specified location folder heirarchy constructed needed example folder exists here path folder following folders exists path folder three Then three tree will constructed inside path foldermakedir destination folder create",

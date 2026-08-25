@@ -8,7 +8,7 @@
 	"entity": "class",
 	"flagSearchText": " tag documon\n",
 	"package": "documon",
-	"file": "documon/src/tag.js",
+	"file": "src/tag.js",
 	"filename": "tag.js",
 	"klass": "tag",
 	"docfile": "documon.tag.html",
@@ -48,7 +48,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/tag.js",
+			"file": "src/tag.js",
 			"filename": "tag.js",
 			"klass": "tag",
 			"package": "documon",
@@ -75,7 +75,7 @@
 					"type": "array"
 				}
 			],
-			"file": "documon/src/tag.js",
+			"file": "src/tag.js",
 			"filename": "tag.js",
 			"klass": "tag",
 			"package": "documon",
@@ -108,7 +108,7 @@
 				"shortText": "<p>An object containing flag data</p>",
 				"shortHtml": "<p>An object containing flag data</p>"
 			},
-			"file": "documon/src/tag.js",
+			"file": "src/tag.js",
 			"filename": "tag.js",
 			"klass": "tag",
 			"package": "documon",
@@ -118,7 +118,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.tag": "tag : Processes following flags property package namespace property method event class module private protected static public readonly overrides impliments extends inherits constructor example param return returns type order optional header defaultVal default requires Fills flags object Source Item manufactured from parseFlag parseFlag class generally provided many methods item argument they contain following fields Source Item source Entire first line inlcuding flag only first line after Everything after flag name word following type first word after flag definition when type children name Array children parent child this parent flag flag token with stripped defaultVal name afterType first line after text",
 		"documon.tag.processOne": "processOne : processOne source item parsed from comments object containing flag data",

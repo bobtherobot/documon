@@ -14,7 +14,7 @@
 			"html": "<pre><code>    var myDocumon = require(\"path/to/documon/src/documon.js\");\n    myDocumon.run({\n      files : \"path/to/src\"\n    });</code></pre>"
 		}
 	],
-	"file": "documon/src/documon.js",
+	"file": "src/documon.js",
 	"filename": "documon.js",
 	"klass": "documon",
 	"docfile": "documon.documon.html",
@@ -47,7 +47,7 @@
 				"shortText": "<p>Whether or not it's an OK extension.</p>",
 				"shortHtml": "<p>Whether or not it's an OK extension.</p>"
 			},
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -81,7 +81,7 @@
 				"shortText": "<p>False when there's an error or misconfiguration. True when everything seems cool.</p>",
 				"shortHtml": "<p>False when there's an error or misconfiguration. True when everything seems cool.</p>"
 			},
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -89,7 +89,7 @@
 			"id": "documon.documon.init"
 		},
 		{
-			"line": 623,
+			"line": 605,
 			"name": "run",
 			"shortText": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  ",
 			"shortHtml": "<p>The main processing loop that executes and manages the main flow control of parsing, evaluating and  </p>",
@@ -107,7 +107,7 @@
 					"type": "object"
 				}
 			],
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -115,7 +115,7 @@
 			"id": "documon.documon.run"
 		},
 		{
-			"line": 517,
+			"line": 499,
 			"name": "seeder",
 			"shortText": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).",
 			"shortHtml": "<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href=\"#organizer\">organizer</a>.</p>",
@@ -141,7 +141,7 @@
 				"shortText": "<p>The file's search data as computed by tag.js</p>",
 				"shortHtml": "<p>The file's search data as computed by tag.js</p>"
 			},
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -175,7 +175,7 @@
 				"shortText": "<p>true = ignore this file, false = don't ignore.</p>",
 				"shortHtml": "<p>true = ignore this file, false = don't ignore.</p>"
 			},
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -218,7 +218,7 @@
 					"type": "boolean"
 				}
 			],
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -238,7 +238,7 @@
 			"defaultVal": "false",
 			"entity": "property",
 			"flagSearchText": " Whether or not to write intermediary files used during processing to the output data folder.",
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -246,7 +246,7 @@
 			"id": "documon.documon.dumpData"
 		},
 		{
-			"line": 86,
+			"line": 88,
 			"name": "extensions",
 			"shortText": "The list of extensions to search for source code.",
 			"shortHtml": "<p>The list of extensions to search for source code.</p>",
@@ -255,7 +255,7 @@
 			"type": "array",
 			"entity": "property",
 			"flagSearchText": " The list of extensions to search for source code.",
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -263,7 +263,7 @@
 			"id": "documon.documon.extensions"
 		},
 		{
-			"line": 97,
+			"line": 99,
 			"name": "ignoreList",
 			"shortText": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:",
 			"shortHtml": "<p>A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:</p>",
@@ -272,7 +272,7 @@
 			"type": "array",
 			"entity": "property",
 			"flagSearchText": " A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -289,7 +289,7 @@
 			"type": "string",
 			"entity": "property",
 			"flagSearchText": " The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -297,7 +297,7 @@
 			"id": "documon.documon.indexRedirectName"
 		},
 		{
-			"line": 81,
+			"line": 83,
 			"name": "mainConf",
 			"shortText": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.",
 			"shortHtml": "<p>NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.</p>",
@@ -467,7 +467,7 @@
 			],
 			"entity": "property",
 			"flagSearchText": " Used to store user supplied config settings.",
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -485,7 +485,7 @@
 			"defaultVal": "false",
 			"entity": "property",
 			"flagSearchText": " Supress stdout messages.",
-			"file": "documon/src/documon.js",
+			"file": "src/documon.js",
 			"filename": "documon.js",
 			"klass": "documon",
 			"package": "documon",
@@ -495,7 +495,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.documon": "documon : main entry point processor Documon which allows Documon directly from Nodedocumon documon myDocumon require path documon documon myDocumon files path",
 		"documon.documon.writeData": "writeData : Simplify file write text jsonwriteData path save string save Whether data should serialized JSON",

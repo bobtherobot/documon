@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		
+    	<title>ignore - Documon</title>
+		<meta name="description" content="Decides whether a given file or folder should be skipped.">
+		<meta name="generator" content="Documon">
+		<link rel="canonical" href="https://www.documon.net/documon.ignore.html">
+
+		 <!-- Normalize -->
+	    <link rel="stylesheet" href="assets/vendor/normalize.css">
+
+	    
+	    <!-- prettify -->
+	    <link rel="stylesheet" href="assets/vendor/prettify/codamike.css">
+	    
+		<script src="assets/vendor/prettify/prettify.js"></script>
+
+		<!-- Documon Pages Info. (Used by various classes to identify this page.) -->
+		<script>
+	    var pageCtx = {
+	    	id : "documon.ignore",
+	    	name: "ignore"
+	    }
+	    </script>
+
+	    <!-- theme 
+	    <link rel="stylesheet" href="assets/fonts/Fira_Sans/FiraSans.css">
+	    <link rel="stylesheet" href="assets/fonts/Inconsolata/inconsolata.css">
+	    -->
+	    <link rel="stylesheet" href="assets/css/pages.css">
+	    <script src="assets/js/documon/Storage.js"></script>
+	    <script src="assets/js/documon/Access.js"></script>
+	    <script src="assets/js/documon/Pages.js"></script>
+
+	    
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-106684927-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+	    
+
+	</head>
+
+
+
+	<body>
+
+		<div class="page">
+			
+
+			
+
+			<div class="main-method">
+				
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            
+					            <a name="documon.ignore"></a><a name="ignore"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		ignore () 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/ignore.js</span>
+						    		<span class="member-line-number">31</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                <div class="meta-block meta-block-klass">
+				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.ignore<span></div>
+				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/ignore.js<span></div>
+			</div>
+								<p>Decides whether a given file or folder should be skipped.</p>
+<p>Shared by the builder and by <code>--check</code> so both agree on exactly which files are "in"<br />
+the project.</p>
+<h3 id="history">History</h3>
+<p>The original implementation lived inside <code>documon.js</code> and had two defects that made<br />
+the entire ignore system inert:</p>
+<ol>
+<li>It <code>return false</code>'d from <em>inside</em> the loop, so only the first pattern was ever<br />
+consulted.</li>
+<li>That first default pattern (<code>**&amp;#47;.*</code>) is not a valid regular expression --<br />
+<code>new RegExp("**&amp;#47;.*")</code> throws "Nothing to repeat" -- and the <code>catch</code> also<br />
+returned false.</li>
+</ol>
+<p>Net effect: <code>shouldIgnore()</code> always returned false, so <code>node_modules</code>, <code>.git</code>, the<br />
+template folder, the output folder, and every user supplied ignore entry were all<br />
+silently walked. Running Documon at a project root would happily parse its own<br />
+dependencies.</p>
+
+					
+								
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
+			</div>
+
+		    <div class="parts">
+		        <a name="properties"></a>
+			    	<div class="part-properties">
+				    	
+				    	<div class="heading-part">Properties</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.ignore.DEFAULTS"></a><a name="DEFAULTS"></a>
+                                    <span class="member-name">DEFAULTS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/ignore.js</span><span class="member-line-number" title="src/ignore.js">38</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Patterns always applied, expressed as valid regular<br />
+expressions (the old glob-looking strings never compiled).</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+		        
+		        
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            <div class="heading-part">Methods</div>
+					            <a name="documon.ignore.create"></a><a name="create"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		create (<span class="method-arguments method-arg-optional">userList</span>, <span class="method-arguments method-arg-optional">extra</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/ignore.js</span>
+						    		<span class="member-line-number">107</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Builds a matcher.</p>
+<p>User supplied entries are matched as documented: a plain substring ("simple indexOf")<br />
+test first, then -- as a convenience -- as a regular expression when the string happens<br />
+to compile as one. Patterns that compile to nothing useful simply never match instead<br />
+of aborting the whole check.</p>
+<p>Internal paths (<code>extra</code>) are matched literally, never as expressions. They are real<br />
+filesystem paths, and treating them as patterns is actively dangerous: an output folder<br />
+of <code>"./"</code> compiles to the regular expression <code>./</code>, which matches any character followed<br />
+by a slash -- that is, every path in the project.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">userList</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array|string</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Caller supplied ignore entries.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">extra</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Internal paths to exclude (template, output, data folders).</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>An object exposing <code>test(path)</code> and the resolved <code>patterns</code>.</p></div>
+				
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    var ignore = require("./ignore").create(["*.test.js"], [outputFolder]);
+    if( ignore.test(somePath) ){ continue; }</code></pre>
+	        </div>
+	    </div>
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.ignore.globToRegExp"></a><a name="globToRegExp"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		globToRegExp (<span class="method-arguments">glob</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/ignore.js</span>
+						    		<span class="member-line-number">54</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								<p>Translates a simple glob into a regular expression. Supports <code>*</code> (within a path<br />
+segment), <code>**</code> (across segments) and <code>?</code>. Anything else is escaped literally.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">glob</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The glob pattern.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">RegExp</span>
+					</div>
+			      	     	<div class="member"><p>The compiled expression, or null when it still won't compile.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
+		    </div>
+		
+		</div>
+
+		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>
+
+	</body>
+
+
+</html>

@@ -708,8 +708,10 @@ function run(conf){
 				for(var i=0; i<indexed.length; i++){
 					var page = indexed[i];
 					
-					// hacky
+					// Values the page template needs that don't come through the tagger.
 					page.ctx.gati = mainConf.gati;
+					page.ctx.baseUrl = mainConf.baseUrl;
+					page.ctx.projectDescription = mainConf.projectDescription;
 
 					var str = Tpage(page.ctx, page.html);
 					var htmlFile = outFolder + page.id + ".html";
@@ -753,7 +755,7 @@ function run(conf){
 				var emitted = {};
 				if(mainConf.emitLlms !== false || mainConf.emitModel !== false){
 					log(" - writing machine-readable companions", null, quiet);
-					emitted = llms.write(mainConf, indexed, log);
+					emitted = llms.write(mainConf, indexed, log, menuObj);
 				}
 
 				// Done

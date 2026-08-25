@@ -40,14 +40,14 @@
 			"html": "<pre><code>var log = require(\"log\");\nlog([\"foo\", \"bar\"], \"Some Title\", false);</code></pre>\n<p>prints:</p>\n<pre><code>    --------------------\n    Some Title\n    --------------------\n    [\n        'foo',\n        'bar'\n    ]</code></pre>"
 		}
 	],
-	"file": "documon/src/log.js",
+	"file": "src/log.js",
 	"filename": "log.js",
 	"klass": "log",
 	"docfile": "documon.log.html",
 	"id": "documon.log",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.log": "log : Writes console Will accept object array well string boolena other prepare them proper presentation consoledocumon string array object output title message Disables logging prevents console output require Some Title false prints Some Title"
 	}

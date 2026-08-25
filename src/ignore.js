@@ -30,6 +30,8 @@ www.documon.net
  * @package documon
  */
 
+var nodePath = require('path');
+
 /**
  * @property {array} DEFAULTS - Patterns always applied, expressed as valid regular
  * expressions (the old glob-looking strings never compiled).
@@ -89,6 +91,11 @@ function globToRegExp(glob){
  * to compile as one. Patterns that compile to nothing useful simply never match instead
  * of aborting the whole check.
  *
+ * Internal paths (`extra`) are matched literally, never as expressions. They are real
+ * filesystem paths, and treating them as patterns is actively dangerous: an output folder
+ * of `"./"` compiles to the regular expression `./`, which matches any character followed
+ * by a slash -- that is, every path in the project.
+ *
  * @method  create
  * @param   {array|string}  [userList]  - Caller supplied ignore entries.
  * @param   {array}         [extra]     - Internal paths to exclude (template, output, data folders).
@@ -110,8 +117,17 @@ function create(userList, extra){
 		}
 	}
 
+	// Internal paths are resolved and matched literally.
+	var literals = [];
 	if(extra){
-		patterns = patterns.concat(extra);
+		for(var x=0; x<extra.length; x++){
+			if(extra[x] && typeof extra[x] === "string"){
+				var abs = nodePath.resolve(extra[x]).split("\\").join("/").replace(/\/+$/, "");
+				if(abs && abs !== "/"){
+					literals.push(abs);
+				}
+			}
+		}
 	}
 
 	// Pre-compile once, rather than building a RegExp per pattern per file.
@@ -135,7 +151,7 @@ function create(userList, extra){
 
 	return {
 
-		patterns : patterns,
+		patterns : patterns.concat(literals),
 
 		/**
 		 * @method  test
@@ -149,6 +165,14 @@ function create(userList, extra){
 			}
 
 			var norm = String(item).split("\\").join("/");
+			var abs  = nodePath.resolve(norm).split("\\").join("/");
+
+			// Internal paths: literal prefix match only.
+			for(var L=0; L<literals.length; L++){
+				if( abs === literals[L] || abs.indexOf(literals[L] + "/") === 0 ){
+					return true;
+				}
+			}
 
 			for(var i=0; i<compiled.length; i++){
 				var pat = compiled[i];

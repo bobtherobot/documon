@@ -1,0 +1,13 @@
+{
+	"src"         : "./src",
+	"out"         : "./",
+	"more"        : "./more",
+	"name"        : "Documon",
+	"version"     : "2.7.0",
+	"description" : "A documentation system for mortals. Use with any language. Zero dependencies.",
+	"baseUrl"     : "https://www.documon.net",
+	"sourceExt"   : ["js"],
+	"ignore"      : ["showdown.min.js", "markdown copy.js"],
+	"print"       : true,
+	"gati"        : "UA-106684927-1"
+}

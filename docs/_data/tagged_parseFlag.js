@@ -33,14 +33,14 @@
 	"html": "<p>Fills the output object with the following properties (if they exist)</p>\n<pre><code>    object {\n        source      // Entire first line inlcuding the @flag (only first line)\n        after       // Everything after the @flag\n        name        // One word following {type}. Or first word after the @flag definition when no {type}.\n        children    // name.kid - Array of children\n        parent      // if am a child, this is my parent.\n        flag        // @flag token with @ stripped\n        defaultVal  // name=val\n        afterType   // first line after\n        text        // \n    }</code></pre>\n<p>Here's an expanded and exmple'd definition list</p>\n<dl>\n<dt>source</dt>\n<dd><p>The entire comment block</p></dd>\n\n<dt>after</dt>\n<dd><p>Everything after the <a href=\"https://github.com/flag\">@flag</a> token \"as is\" (kinda like source)</p></dd>\n</dl>\n<ul>\n<li><p><strong>source</strong> : The entire comment block</p></li>\n<li><p><strong>after</strong> :         Everything after the <a href=\"https://github.com/flag\">@flag</a> token \"as is\" (kinda like source)</p>\n<p>e.g. in this line:</p></li>\n</ul>",
 	"entity": "class",
 	"package": "documon",
-	"file": "documon/src/parseFlag.js",
+	"file": "src/parseFlag.js",
 	"filename": "parseFlag.js",
 	"klass": "parseFlags",
 	"docfile": "documon.parseFlags.html",
 	"id": "documon.parseFlags",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.parseFlags": "parseFlags : Fills output object with following properties they exist object source Entire first line inlcuding flag only first line after Everything after flag name word following type first word after flag definition when type children name Array children parent child this parent flag flag token with stripped defaultVal name afterType first line after text Here expanded exmple definition list source entire comment block after Everything after flag token kinda like source source entire comment block after Everything after flag token kinda like source this linedescr after yields type name descr name first word following type definition first word after flag definition children name written then parent child Future processing fills array forming heirarchy parent parent flag child This property only exists children flags defaultVal When name then default value will Note that quotes stripped sets default property without quotes name property flag flag kind stripped afterType Everything after type definition flag type name descr yields name descr text description paramter Note that additional description text provided below flag flag type name description more description below flag here parseFlags documon"
 	}

@@ -26,14 +26,14 @@
 		"shortText": "<p>The clean text</p>",
 		"shortHtml": "<p>The clean text</p>"
 	},
-	"file": "documon/src/searchPrep.js",
+	"file": "src/searchPrep.js",
 	"filename": "searchPrep.js",
 	"klass": "searchPrep",
 	"docfile": "documon.searchPrep.html",
 	"id": "documon.searchPrep",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.searchPrep": "searchPrep : Clean text only alpha numeric characters strips newlines tabs single word results ignored Used root documon more root documon moresearchPrep documon text clean text"
 	}

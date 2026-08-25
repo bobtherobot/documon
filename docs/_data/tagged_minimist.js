@@ -9,14 +9,14 @@
 	"flagSearchText": " mimimist documon",
 	"package": "documon",
 	"access": "private",
-	"file": "documon/src/minimist.js",
+	"file": "src/minimist.js",
 	"filename": "minimist.js",
 	"klass": "mimimist",
 	"docfile": "documon.mimimist.html",
 	"id": "documon.mimimist",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.mimimist": "mimimist : localized version mimimist minimist dependancies processing arguments https github substack minimistmimimist documon"
 	}

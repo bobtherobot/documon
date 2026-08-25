@@ -8,7 +8,7 @@
 	"text": "Basic, common and simplified asyncronous file methods.\n\n",
 	"html": "<p>Basic, common and simplified asyncronous file methods.</p>",
 	"entity": "class",
-	"file": "documon/src/fileutils.js",
+	"file": "src/fileutils.js",
 	"filename": "fileutils.js",
 	"klass": "fileutils",
 	"docfile": "documon.fileutils.html",
@@ -41,7 +41,7 @@
 					"type": "string"
 				}
 			],
-			"file": "documon/src/fileutils.js",
+			"file": "src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
 			"package": "documon",
@@ -75,7 +75,7 @@
 				"shortText": "<p>True if exists, false if no file nor folder exists.</p>",
 				"shortHtml": "<p>True if exists, false if no file nor folder exists.</p>"
 			},
-			"file": "documon/src/fileutils.js",
+			"file": "src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
 			"package": "documon",
@@ -108,7 +108,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/fileutils.js",
+			"file": "src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
 			"package": "documon",
@@ -141,7 +141,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/fileutils.js",
+			"file": "src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
 			"package": "documon",
@@ -167,7 +167,7 @@
 					"type": "string"
 				}
 			],
-			"file": "documon/src/fileutils.js",
+			"file": "src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
 			"package": "documon",
@@ -201,7 +201,7 @@
 					"type": "string"
 				}
 			],
-			"file": "documon/src/fileutils.js",
+			"file": "src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
 			"package": "documon",
@@ -235,7 +235,7 @@
 					"type": "string"
 				}
 			],
-			"file": "documon/src/fileutils.js",
+			"file": "src/fileutils.js",
 			"filename": "fileutils.js",
 			"klass": "fileutils",
 			"package": "documon",
@@ -245,7 +245,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.fileutils": "fileutils : Basic common simplified asyncronous file methodsdocumon fileutils",
 		"documon.fileutils.copy": "copy : Copies file from location anothercopy source file path destination copy source",

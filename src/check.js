@@ -137,7 +137,13 @@ function collect(conf){
 		list = [list];
 	}
 
-	var ignore = ignoreModule.create(conf.ignore, [conf.out]);
+	// Exclude the generated docs folder -- not `out` itself, which is usually the parent
+	// of the source tree.
+	var docsFolder = conf.out
+		? path.resolve(conf.out) + "/" + (conf.docsDirName || "docs")
+		: null;
+
+	var ignore = ignoreModule.create(conf.ignore, docsFolder ? [docsFolder] : []);
 	var files = [];
 
 	for(var i=0; i<list.length; i++){

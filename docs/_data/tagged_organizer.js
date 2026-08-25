@@ -8,7 +8,7 @@
 	"entity": "class",
 	"flagSearchText": " organizer documon\n",
 	"package": "documon",
-	"file": "documon/src/organizer.js",
+	"file": "src/organizer.js",
 	"filename": "organizer.js",
 	"klass": "organizer",
 	"docfile": "documon.organizer.html",
@@ -33,7 +33,7 @@
 					"type": "type"
 				}
 			],
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -67,7 +67,7 @@
 					"type": "type"
 				}
 			],
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -101,7 +101,7 @@
 					"type": "type"
 				}
 			],
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -135,7 +135,7 @@
 					"type": "type"
 				}
 			],
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -158,7 +158,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -194,7 +194,7 @@
 					]
 				}
 			],
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -243,7 +243,7 @@
 				"shortText": "<p>A new array containing all unique elements from A and B.</p>",
 				"shortHtml": "<p>A new array containing all unique elements from A and B.</p>"
 			},
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -279,7 +279,7 @@
 					"defaultVal": "id"
 				}
 			],
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -298,7 +298,7 @@
 			"type": "Object",
 			"entity": "property",
 			"flagSearchText": " We maintain a \"flat list\" as a means to cross reference items that are stuffed into the main array.",
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -315,7 +315,7 @@
 			"type": "Object",
 			"entity": "property",
 			"flagSearchText": " A reference to the main configuration object. See [documon.mainConf](documon.mainConf).",
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -332,7 +332,7 @@
 			"type": "Object",
 			"entity": "property",
 			"flagSearchText": " The primary object we store all data into.",
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -349,7 +349,7 @@
 			"type": "Array",
 			"entity": "property",
 			"flagSearchText": " The complete list of sections a class or package can contain.",
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -366,7 +366,7 @@
 			"type": "Template",
 			"entity": "property",
 			"flagSearchText": " The class template processor (jst file).",
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -383,7 +383,7 @@
 			"type": "Template",
 			"entity": "property",
 			"flagSearchText": " The package template processor (jst file).",
-			"file": "documon/src/organizer.js",
+			"file": "src/organizer.js",
 			"filename": "organizer.js",
 			"klass": "organizer",
 			"package": "documon",
@@ -393,7 +393,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.organizer": "organizer : Organizes parsed source code data into single object that takes following form organ There will always root node with absolute root root name root file root html docfile root html packages packages Classes included this package classes class methods properties events Loose stuff found this package methods properties events Independent classes that part package classes class methods properties events Loose stuff that part package class assumed accessible this javascript would window scope methods properties events source code hangs root node organized according relationship package class This organizer initialized prior parsing source code each file parsed added organizer After source code finished parsing organizer wires cross references inheritanceorganizer documon",
 		"documon.organizer.init": "init : Initializes organ which object that inserting tagged data into also grabbing templates needed based location defined paramsinit configuration options sent user during documon mainConf documon mainConf keep refence here know where things Note that documon derives some additional properties onto object",

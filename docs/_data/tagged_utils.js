@@ -8,7 +8,7 @@
 	"entity": "class",
 	"flagSearchText": " utils documon",
 	"package": "documon",
-	"file": "documon/src/utils.js",
+	"file": "src/utils.js",
 	"filename": "utils.js",
 	"klass": "utils",
 	"docfile": "documon.utils.html",
@@ -56,7 +56,7 @@
 				"shortText": "<p>FunctionExpression FunctionExpression</p>",
 				"shortHtml": "<p>FunctionExpression FunctionExpression</p>"
 			},
-			"file": "documon/src/utils.js",
+			"file": "src/utils.js",
 			"filename": "utils.js",
 			"klass": "utils",
 			"package": "documon",
@@ -66,7 +66,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.utils": "utils : collection useful helper untilitiesutils documon",
 		"documon.utils.sort_by": "sort_by : sort field FunctionExpression"

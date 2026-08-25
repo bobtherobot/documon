@@ -1,5 +1,5 @@
 {
-	"file": "documon/src/markdown.js",
+	"file": "src/markdown.js",
 	"filename": "markdown.js",
 	"package": "root",
 	"docfile": "root.html",
@@ -32,7 +32,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/markdown.js",
+			"file": "src/markdown.js",
 			"filename": "markdown.js",
 			"package": "root",
 			"docfile": "root.html",
@@ -65,7 +65,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/markdown.js",
+			"file": "src/markdown.js",
 			"filename": "markdown.js",
 			"package": "root",
 			"docfile": "root.html",
@@ -74,7 +74,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"root.definitionLists": "definitionLists : Find convert markdown extra definition lists into htmldefinitionLists description description",
 		"root.processDefListItems": "processDefListItems : Process contents single definition list splitting into individual term definition list itemsprocessDefListItems description description"

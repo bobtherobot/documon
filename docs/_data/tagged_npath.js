@@ -8,7 +8,7 @@
 	"entity": "module",
 	"flagSearchText": " npath documon\n",
 	"package": "documon",
-	"file": "documon/src/npath.js",
+	"file": "src/npath.js",
 	"filename": "npath.js",
 	"klass": "npath",
 	"docfile": "documon.npath.html",
@@ -40,7 +40,7 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -81,7 +81,7 @@
 				"shortText": "<p>The last portion of a path, generally the \"filename\".</p>",
 				"shortHtml": "<p>The last portion of a path, generally the \"filename\".</p>"
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -114,7 +114,7 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -147,7 +147,7 @@
 				"shortText": "<p>The path to the file/folder.</p>",
 				"shortHtml": "<p>The path to the file/folder.</p>"
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -180,7 +180,7 @@
 				"shortText": "<p>The extension (if exists), including the dot.</p>",
 				"shortHtml": "<p>The extension (if exists), including the dot.</p>"
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -213,7 +213,7 @@
 				"shortText": "<p>The string representaiton of the object.</p>",
 				"shortHtml": "<p>The string representaiton of the object.</p>"
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -246,7 +246,7 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -279,7 +279,7 @@
 				"shortText": "<p>description description</p>",
 				"shortHtml": "<p>description description</p>"
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -312,7 +312,7 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -345,7 +345,7 @@
 				"shortText": "<p>An object containing the following properties:</p>",
 				"shortHtml": "<p>An object containing the following properties:</p>"
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -388,7 +388,7 @@
 				"shortText": "<p>The relative path between <code>from</code> and <code>to</code></p>",
 				"shortHtml": "<p>The relative path between <code>from</code> and <code>to</code></p>"
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -421,7 +421,7 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -455,7 +455,7 @@
 				"shortText": "",
 				"shortHtml": ""
 			},
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -474,7 +474,7 @@
 			"type": "string",
 			"entity": "property",
 			"flagSearchText": " delimiter",
-			"file": "documon/src/npath.js",
+			"file": "src/npath.js",
 			"filename": "npath.js",
 			"klass": "npath",
 			"package": "documon",
@@ -484,7 +484,7 @@
 	],
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.npath": "npath : drop replacement path that provides cross playform normalization Easing development cross platform modules Essentially what doing processing methods with path normalization always enforcing forward slashesnpath documon",
 		"documon.npath.clean": "clean : Normalizes slashes converting double single based current platform requirements",

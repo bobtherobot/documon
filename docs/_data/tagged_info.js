@@ -8,14 +8,14 @@
 	"entity": "module",
 	"flagSearchText": " info documon",
 	"package": "documon",
-	"file": "documon/src/info.js",
+	"file": "src/info.js",
 	"filename": "info.js",
 	"klass": "info",
 	"docfile": "documon.info.html",
 	"id": "documon.info",
 	"prettyLangs": [],
 	"projectName": "Documon",
-	"projectVersion": "2.6.0",
+	"projectVersion": "2.7.0",
 	"search": {
 		"documon.info": "info : place store text heavy data copyright usage informationinfo documon"
 	}

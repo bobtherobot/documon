@@ -1,0 +1,3373 @@
+# Documon v2.7.0
+
+A documentation system for mortals. Use with any language. Zero dependencies.
+
+---
+
+# Quick Refernce
+
+## Defining Properties
+
+You can be robust
+
+	/** 
+	 * The width of the display object's bounding box.
+	 * @property width
+	 * @type Number
+	 * @default 0
+	 **/
+	p.width = 0;
+
+
+Or semi-robust
+
+	/** 
+	 * The width of the display object's bounding box.
+	 * @property width=0
+	 * @type Number
+	 **/
+	p.width = 0;
+
+Or one-liner #1 - name after {type}
+
+	/**
+	 * @property {object} width=0 The width of the display object's bounding box.
+	 */
+	p.width = 0;
+
+
+Or one-liner #2 - name before {type} (unconventional, but seems more logical to me?)
+
+	/**
+	 * @property width=0 {object} The width of the display object's bounding box.
+	 */
+	p.width = 0;
+
+
+
+## Tags
+
+The following flags are processed:
+
+@property, @method, @event
+: The three basic kinds of entities normally found in a class or module. Example: `@property {type} name - description`
+
+@package, @namespace
+: Generally only one per page, but can have to. See the "Package / Namespace" section below. Example: `@package foo.bar`
+
+@class, @module
+: Both entities are treated equally, but appear in the final rendered docs as "class". Example: `@class name`
+
+@private, @protected, @static, @public, @readonly
+: Items with these flags can be shown/hidden/filtered. Example `@private`
+
+@overrides, @impliments, @extends, @inherits
+: These items page HTML will incorporate inherited parent properties, methods and events, which can be toggled.
+
+@requires
+: Incorporates a list of dependancies that a module or class needs to run. Generally shows up in the "meta" section. Example `@requires package.Class`
+
+@constructor
+: Generally used in conjunction with a class/module, and places a colored tag near the definition.
+
+@example
+: Multiple examples can exist per item. A nice to have for templating, so the examples can be moved around and they don't have to be hard-coded into the main description. See the "Examples" section below.
+
+@param
+: Classes, modules and methods can have multiple params. See "Params" section below.
+
+@return, @returns
+: Can incorporate a {type}. Example `@return {object}`
+
+@type
+: See "Type" section below
+
+@order
+: By default, everything is sorted alphabetically. Use this flag if you need things to appear in a specific order. Example: ```@order 10.4```
+
+@header
+: Used to push a general informational entry to the top of a list. See the "Header" section below.
+
+@defaultVal, @default (not fully tested, since the @param approach is better)
+: Used for a method's paramter that has a default value.
+
+@see
+: Use this to link to similar or related things. See "See Also" below.
+
+
+
+---
+
+## Header
+
+A header flag provides a means to place an informational entry at the top of a main section. For example if you want an entry at the top of the Events section that provides a general overview of how the event system operates, create a new comment as follows:
+
+		/**
+		 *
+		 * The event system is really cool, I know you'll love it!
+		 * 
+		 * @event
+		 * @header About Events
+		 */
+
+It's kind of a hacky, but the @event flag tells use that this header is for the events section, and the @header "name" is used as the title for the section in the menu and on the page.
+
+Also note that internally, we use the @order flag to yank this to the top of the list (so it appears first).
+
+
+
+
+## Types
+
+Types are wrapped in brackets and indicate what kind of data is represented, usually:
+- string
+- object
+- number
+- boolean
+- whatever you want 
+ 
+
+Types are placed before the name
+
+	@prop {object} foo - description		// yeilds type as a string: "object"
+
+Delimit with a pipe to offer multiple types
+
+	@prop {string | object} foo - description	// yields an array as ["string", "object"]
+
+Example of indicating this property holds a DOM Element
+    
+	@prop {DOM Element} foo - description	// yields type as a string: "Dom Element"
+
+
+---
+
+## Default Values
+
+To define default values for properties or method parameters, use the equal sign after the name.
+
+		@prop {object} foo="bar"
+
+You can also use the @default or @defaultVal flags:
+
+		@default bar
+
+		@defaultVal bar
+
+
+
+## Optional
+
+To define properties or method parameters as optional, wrap the name with quare brackets.
+
+	@prop {object} [foo]
+
+When the property has a default value, keep the value within the square brackets as well
+
+	@prop {object} [foo="bar"]
+
+
+## Package / Namespace
+
+There is a commonality between the ideas of namespace and package -- each group code together into a general theme.
+
+Hence @namespace and @package are interchangable and hold the same meaning in Documon.
+
+Can be a stand alone comment or integrated into either the module or class comment:
+
+	/**
+	 * @namespace foo
+	 */
+
+	/**
+	 * My cool class
+	 * @class Cool
+	 * @namespace window
+	 */
+
+	/**
+	 * My cool module
+	 * @class Cool
+	 * @namespace path.to.access
+	 */
+
+You are free to use whichever term suits you, but in the documentation (and in our code), we use the term "package" exclusively to addresses both concepts.
+
+The following will be treated exactly the same as above:
+
+	/**
+	 * @package foo
+	 */
+
+	/**
+	 * My cool class
+	 * @module Cool
+	 * @package window
+	 */
+
+	/**
+	 * My cool module
+	 * @module Cool
+	 * @package path.to.access
+	 */
+
+We split source files whenever @package or @namespace appears -- causing the source file to be treated as multiple source files.
+
+This allows you to define multiple packages within a single file -- without having to incorporate the @package flag into each class, method, property or event definition.
+
+A simple trick is to use a stand-alone comment at the top of your file:
+
+	/**
+	 * @package foo.bar
+	 */
+
+Then further down the same file, you could include another @package definition...
+
+	/**
+	 * @package bob.sally
+	 */
+
+
+... or incorporate a package into a class (or any other) definition:
+
+	/**
+	 * @class sally
+	 * @package foo.bar
+	 */
+
+... and all the classes / methods / events / properties between these @package entries will be grouped together under each @package "section".
+
+Just be aware that if put @package definitions all over the place, you could get lost real fast. Use @package and @namespace sparingly.
+
+
+FYI: "package" is more common across programming languages. The idea being that a larger framework or application has files lumped together that all support a common theme. Traditionally classes that are related to the theme all reside in the same folder and the folder name describes the "theme". Thus, the folder acts as a "package" for a group of common classes. These "package" folders are further organized heirarchically within the overall framework or applicaiton structure.
+
+	app
+	app.display
+	app.display.bitmap
+	app.display.vector
+	app.db
+	app.db.models
+	app.db.models.sql
+	app.db.models.json
+	app.media
+	app.media.audio
+	app.media.audio.player
+	app.media.audio.codecs
+
+
+
+## examples
+
+Add code and text to @example tags like normal with indentation or back ticks.
+
+IMPORTANT: For indented examples, LEAVE AN EMTPY LINE BEFORE AND AFTER !!!.
+
+		/**
+		 * @example This is text above the example
+		 * 
+		 * 		var foo = "bar";
+		 * 
+		 * And this is text below the example
+		 */
+
+
+		/**
+		 * @example `var foo="bar"`
+		 */
+
+To set the code language used to for "pretty" printing, use the {type} field. Generally, use the extension of your code files e.g. js, cpp, m.
+
+		/**
+		 * @example {js} - This is causing the following code to be rendered as javascript because the {type} is set to {js}.
+		 *
+		 *		var foo = "bar";
+		 * 
+		 */
+
+Types can be:
+
+> bsh, c, cc, cpp, cs, csh, cyc, cv, htm, html, java, js, m, mxml, perl, pl, pm, py, rb, sh, xhtml, xml, xsl, apollo, basic, clj, css, dart, erlang, go, hs, lasso, lisp, llvm, logtalk, lua, matlab, ml, mumps, n, pascal, proto, r, rd, rust, scala, sql, swift, tcl, tex, vb, vhdl, wiki, xq, yaml
+
+
+When using the @example flag, markdown is not used, and the code is taken "as is" giving you a little more control over indentaion.
+
+
+
+## links
+
+Use markdown notation:
+	This is and example sentance and [my link](http://www.example.com) is all i have to say.
+
+For cross linking to other parts of docs:
+
+> To link to another class, use the full path:
+>
+>		[see Foo](package.Class.method)
+>
+> To link to an internal method/property just use the method/property name:
+>
+>		[see setWidth](setWidth)
+>
+> To link to an anchor, use the traditional #
+
+
+
+## See Also Tags
+
+Use markdown link notation:
+
+		@see [describe the link here](http://www.example.com)
+		@see [describe the link here](#package.path.Foo.setWidth)
+		@see [describe the link here](#setWidth)
+
+
+
+## Inheritance
+
+When defining @extends, you can use a short-hand for classes in the same package.
+
+For example, lets say we have 2 classes as:
+
+		/some/long/winded/package/Foo.js
+		some/long/winded/package/Bar.js
+
+... and "Bar" extends "Foo"... Rather than writing:
+
+		@class Bar
+		@pacakge long.winded.package
+		@extends long.winded.package.Foo
+
+... we can write:
+
+		@class Bar
+		@pacakge long.winded.package
+		@extends Foo
+
+... because Foo and Bar are in the same package. We only need to use the long-form when referencing things outside of the same package.
+
+
+
+## Comments in comments
+If you need to include /* style comments in your comments, HTML-entity-ize the slash:
+
+	 * 	&#47;**
+	 *  * Something for B
+	 * 	* @method something
+	 * 	*&#47;
+
+---
+
+# Documon
+
+A documentation system for mortals. Use with any language.
+
+Generates a static, searchable JSDoc style documentation from source code. Uses a customizable template system, and will process a markdown folder (aka "more" folder) where auxiliary documentation (outside of source code) can reside.
+
+Since documon doesn't infer anything from the source code (all methods and arguments must be tagged manually), you maintain full control over the final output structure.
+
+Run from CLI, or integrate into node project.
+
+## Full Documentation
+
+See full documentation at:
+https://www.documon.net 
+
+![](https://www.documon.net/assets/screenshot1.jpg)
+
+
+## Get It
+
+NPM: https://www.npmjs.com/package/documon
+
+Github: https://github.com/bobtherobot/documon
+
+Directly: https://www.documon.net  (as "stand alone" )
+
+
+### Quick Start
+
+__In Node (javascript)__
+
+Install via NPM:
+
+	npm install documon
+
+Generate Docs:
+
+	var docs = require("documon");
+	doc({
+        src			: "/path/to/src/code",
+        out			: "/path/to/docs/output",
+        more 		: "/where/are/more/markdowns",
+        ignore		: [
+                        '/path/to/src/dont/process/me',
+                        '/path/to/src/node_modules'
+                      ],
+        name		: "My Project",
+        version		: "1.0.0",
+        launch		: false,
+        print		: true,
+        dumpData	: true,
+        sourceExt	: ["js"],
+        gati 		: 'UA-106684927-1'
+    });
+
+__From CLI__
+
+Generate docs:
+
+	node /path/to/documon/index.js "/path/to/source/code" "/path/to/destination"
+
+
+
+### Benefits
+
+Comment tags are soley responsible for organizing the resulting heirarchy (inheritence and membership).
+
+- Built for mortals, runs on Node.
+- Generates static website (no server-side stuff).
+- Search enabled (low overhead, no database)
+- Use within any Node build system.
+- Zero dependancies.
+- Use with any programming language.
+- Plain-text + markdown based.
+- JavaDoc syntax.
+- Structure is derived soley from the comments.
+- Direct control over final structure of the resulting website.
+- Great for small and large projects.
+- Auto inheritance cross fill and referencing (links to and fills children classes with inherited methods, props and events).
+
+## Documon does NOT:
+
+- Actual source code not required.
+- Doesn't interpret / execute source code.
+- No over-arching code organization required.
+- Doesn't infer inheritence / membership from the directory structure.
+- Doesn't infer property / method names, arguments, etc, from the source code.
+
+As a result, comment blocks must be robust and include all pertinent details required to generate documentation.
+
+## Get Involved
+
+- [Documon on Github](https://github.com/bobtherobot/documon)
+- [Documon on NPM](https://www.npmjs.com/package/documon)
+
+## Platforms
+
+Documon is written in Javascript and runs on the [Node](https://www.nodejs.com) platform, which runs on Linux, Mac, and Windows systems. Documon can be installed using [NPM](https://www.npmjs.com/documon), or [&#x02186; downloaded directly][1].
+
+## Templates
+Templating is handled through vanilla javascript modules, leveraging ES6's [Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals). This provides the highest level of flexability with zero-dependancies, unlimited logic constraints, and nothing new to learn.
+
+Of course, since templates are JS, you can always roll some other templating system, such as Twig, or Handlebars, into your custom template.
+
+## Dependancies
+Documon's only dependancy is Node, no additional modules are needed.
+
+## Author & Copyright
+Copyright &copy; [Mike Gieson](https://www.gieson.com). 
+Released under the MIT license.
+
+
+[1]: https://www.documon.net/downloads/documon.zip
+.
+
+---
+
+# Installation
+
+Nothing special needs ot be done to run Documon, aside from ensuring that [Node](https://nodejs.org) is installed on your system.
+
+[&#x02186; Download Documon](https://www.documon.net/downloads/documon.zip)
+
+Download it, unzip it, then run it:
+
+	cd "path/to/documon"
+	node ./index.js "path/to/source/files"
+
+### Project Installation with NPM
+
+To incorporate Documon into your project / build system use:
+
+	cd "/your/project/path"
+	npm install documon
+
+... this allows you to build documentation from within your project using:
+
+	var docs = require("documon");
+	docs("/path/to/src");
+
+
+### See Also
+
+- [Options](more.options)
+- [Examples](more.examples)
+
+---
+
+# Usage
+
+Documon can be used within your existing Javascript-based project, or from the command line via Node (CLI)
+
+## Project-based Usage
+
+Install Documon:
+
+	npm install documon
+	
+... then build documentation from within your project using:
+
+	var docs = require("documon");
+	docs({
+		src : "path/to/src",
+		out : "put/docs/here",
+		name : "My Cool Project",
+		version : "1.0"
+	});
+	
+
+## CLI Usage 
+
+Documon can be run from command line via Node:
+
+    cd /path/to/documon
+    node ./index.js -h
+    
+    # or (if you're cool)
+    node ./index -h
+    
+    # or (if you're really, cool)
+    node . -h
+
+
+Point Documon at your source folder:
+
+    node ./index.js "/path/to/source"
+
+    # Documon generates a "docs" folder parallel 
+    # to your source. In the example above the 
+    # "docs" folder ends up here:
+    
+    /path/to/docs
+
+To specify the output folder, set the the second argument to the folder
+
+    node ./index.js [source] [output]
+
+__Example__
+
+    node ./index.js "/path/to/source" "/path/to/output/folder"
+
+    # ... places the "docs" folder here:
+
+    "/path/to/output/folder/docs"
+
+
+> NOTE: For safety measures, a "docs" folder is always generated inside the output folder. Because each time docs are generated, the docs file is emptied. We empty the docs folder to prevent "stragglers" from collecting and building up over time. By creating and managing a "docs" folder, we can prevents wiping out everything within a folder Documon doesn't manage.
+
+
+To explicitly set input/output paths, use the following flags
+
+    -i  - Source file or folder.
+    -o	- Output path.
+
+Example
+
+    node ./index.js -i "/path/to/source" -o "/path/to/output/folder"
+
+
+
+See the [Options](more.Options) for an in-depth look at all available options.
+
+
+
+
+
+ .
+
+---
+
+# Options
+
+The following options are available for both Command Line (CLI) and native JS processing:  
+
+|cli flag  |js prop / config key |default |description  |
+|----------|-------------|----------------|---------|
+| -i, --src        | src         |	| Path to source file or folder. 
+| -o, --out        | out	     | parallel to source folder| Path to build docs into. Created for you if it doesn't exist.
+| -n, --name       | name        |	| Name of your project / docs (displayed on the home page)
+| -v, --version    | version     |	| Version of your project / docs (displayed on the home page) 
+| --description    | description |  | One-line project description. Used in the page `<meta>` tags and in `llms.txt`.
+| --baseUrl        | baseUrl     |  | Public base URL of the published docs. Produces canonical links and absolute URLs in `llms.txt`.
+| -t, --template   | template    |	| Path to template folder
+| -l, --launch     | launch      | false | Launch docs in browser when done
+| -p, --print      | print       | false | Print activity to the console (verbose).
+| -e, --sourceExt  | sourceExt   | "js" | Extension(s) to parse. Space delimit multiple extensions
+| -d, --dumpData   | dumpData    | false | Dumps intermediary data into the "docs/_data" folder.
+| -m, --more       | more        |  | "More docs" folder containing additional documentation.
+| -g, --ignore     | ignore      |  | Files/folders to ignore. See "Ignoring Files" below.
+| -a, --docBegin   | docBegin    |  /** | Comment begin string
+| -z, --docEnd     | docEnd      | */   | Comment end string
+| -x, --indexShortcutName  | indexShortcutName  | __LAUNCH.html  | Index shortcut name (so the file appears at the top of the folder list and you don't have to hunt for "index.html").
+| -q, --moreQuirkDelimiter | moreQuirkDelimiter | .  | The character(s) used to separate the "more" page numbering system from page titles.
+| -y, --gati       | gati        | 	| Google Analytics Tracking ID. If present pages will include tracking code.
+| --no-emitLlms    | emitLlms    | true | Write `llms.txt` and `llms-full.txt` alongside the HTML.
+| --no-emitModel   | emitModel   | true | Write `model.json`, the documentation as structured data.
+
+### Validation flags
+
+These never write anything.
+
+|cli flag  |description  |
+|----------|-------------|
+| --check     | Parse and validate the comments, report problems, and exit. |
+| --coverage  | With `--check`, also list symbols that have no documentation block (advisory only). |
+| --strict    | With `--check`, treat warnings as failures. |
+| --json      | Emit machine-readable JSON. Works with `--check` and with a normal build. |
+| -h, --help  | Usage. |
+| --version   | Print the Documon version. |
+
+### Exit codes
+
+| code | meaning |
+|------|---------|
+| 0 | Success. |
+| 1 | Configuration error -- nothing was built. |
+| 2 | `--check` found problems. |
+
+### Config file
+
+Instead of passing flags every time, put a `documon.json` next to your `package.json`.
+Documon walks up from the current folder to find it, so you can run `documon` from
+anywhere in the project. A `documon` key inside `package.json` works too, as do
+`documon.config.json` and `.documonrc`.
+
+	{
+		"src"         : "./src",
+		"out"         : "./",
+		"name"        : "My Project",
+		"version"     : "1.0.0",
+		"description" : "One line about the project.",
+		"baseUrl"     : "https://example.com/docs",
+		"sourceExt"   : ["js"],
+		"ignore"      : ["*.test.js", "vendor/**"]
+	}
+
+Point at a specific file with `--config path/to/file.json`.
+
+### Using the "js prop" in your project
+
+	var docs = require("documon");
+	docs({
+		name		: "My Cool Project",
+		version 	: "1.0",
+		src 		: "path/to/src",
+		out 		: "put/docs/here",
+		more		: "path/to/more/folder",
+		template	: "path/to/template/folder",
+		launch		: true,
+		quiet		: false,
+		sourceExt	: ["js", "jsx", "php"],
+		dumpData	: true,
+		ignore		: ["**/*.md", "/path/to/example/**"],
+		gati		: "UA-106684927-1"
+		
+	});
+
+### Using the CLI flags
+
+	cd /path/to/documon
+	node ./index.js -l -p -d -i "path/to/src" -o "put/docs/here" -n "My Cool Project" -v "1.0" -t "path/to/template/folder" -e "js jsx php" -m "path/to/more/folder"
+
+
+### Ignoring Files
+
+Each entry is matched as a plain substring first, and then as a pattern. Simple globs
+(`*`, `**`, `?`) are translated for you:
+
+	"ignore" : [
+		"*.test.js",        // any test file
+		"src/**/scratch",   // a folder at any depth
+		"/abs/path/to/thing"
+	]
+
+These are always ignored, without asking: dot-files and dot-folders, `node_modules`,
+`bower_components`, `vendor`, your template folder, and the output folder.
+
+To pass more than one from the CLI, use a semicolon delimited list:
+
+	documon -g "*.test.js; scratch"
+
+---
+
+# Validating
+
+Documon derives structure **only** from your comments. That is its main strength — you
+decide exactly what the output looks like — but it has one consequence worth naming: a
+symbol you forget to tag doesn't produce a warning, it produces nothing at all. A
+misspelled tag is discarded in silence.
+
+`--check` is the antidote. It parses everything, tells you what won't work, and writes
+nothing.
+
+	documon --check -i ./src
+
+	------------------
+	Findings
+	------------------
+	ERROR  src/menu.js:42
+	      [unresolved-inheritance] @extends "Base" does not match any documented id.
+	      fix: Use the fully qualified id (package.Class), or document the parent.
+	WARNING  src/menu.js:88
+	      [unknown-tag] @arg is not a Documon tag and will be ignored.
+	      fix: Use @param instead.
+	------------------
+	Summary
+	------------------
+	  files : 25
+	  comments : 117
+	  entities : 111
+	  errors : 1
+	  warnings : 1
+	FAIL
+
+It exits `2` when it finds problems, so it drops straight into a build script:
+
+	documon --check -i ./src && documon -i ./src -o ./
+
+## What it looks for
+
+|rule|level|meaning|
+|----|-----|-------|
+| `unknown-tag` | warning | A tag Documon doesn't implement. Anything you wrote under it is dropped. Where there's an obvious equivalent (`@arg` &rarr; `@param`) the fix names it. |
+| `duplicate-id` | error | Two blocks resolve to the same id, so one page overwrites the other. |
+| `unresolved-inheritance` | error | An `@extends` / `@inherits` / `@impliments` target that matches no documented id. |
+| `missing-name` | error | A kind tag with no name, e.g. a bare `@method`. |
+| `no-kind` | warning | A block with tags but no `@method`, `@property`, `@event`, `@class` or `@module`. It will never appear. |
+| `param-no-name` | warning | A `@param` that can't be rendered. |
+| `duplicate-param` | warning | The same parameter documented twice. |
+| `param-on-non-method` | warning | `@param` on a `@class` or `@module`, where it is parsed but never displayed. |
+| `broken-link` | warning | A dotted cross-reference that matches no id. |
+| `no-description` | info | A documented entity with no prose. |
+| `param-no-type` | info | A parameter with no `{type}`. |
+| `no-comments` | info | A source file with no Documon blocks at all. |
+
+`--strict` promotes warnings to failures.
+
+## Coverage
+
+	documon --check --coverage -i ./src
+
+Adds an advisory pass that looks for functions, classes and assignments with no matching
+documentation block, and reports a percentage.
+
+This is the one place Documon glances at your source, and it is deliberately shallow and
+strictly advisory — it never influences what gets rendered. Structure still comes from
+comments and nothing else. If a symbol is intentionally internal, ignore the finding.
+
+## Machine-readable output
+
+	documon --check --json -i ./src
+
+Emits a JSON report — `ok`, `counts`, `stats`, `coverage`, and a `findings` array where
+each entry carries `level`, `rule`, `file`, `line`, `message` and `fix`. Useful in CI, and
+useful to any tool that writes comments and needs to know whether it succeeded.
+
+---
+
+# Machine Readable Output
+
+Alongside the HTML, every build writes three files intended for programs rather than
+people. They cost nothing to generate and make your documentation usable as data.
+
+## llms.txt
+
+Follows the [llms.txt convention](https://llmstxt.org): a short markdown index naming
+every page with a one-line summary, so a language model can find the right page without
+crawling the site.
+
+	# My Project v1.0
+
+	> One line about the project.
+
+	## Reference
+
+	- [dirutils](https://example.com/docs/my.dirutils.html): Directory helpers.
+	- [Menu](https://example.com/docs/my.Menu.html): The navigation tree.
+
+Set `--baseUrl` to get absolute links; without it the links are relative.
+
+## llms-full.txt
+
+The whole manual as plain text — every page, every member, every parameter — in one file.
+One fetch instead of dozens, with no HTML to strip.
+
+## model.json
+
+The documentation as structured data:
+
+	{
+	  "generator" : "documon",
+	  "project"   : "My Project",
+	  "version"   : "1.0",
+	  "pages" : [
+	    {
+	      "id"      : "my.dirutils",
+	      "name"    : "dirutils",
+	      "kind"    : "module",
+	      "package" : "my",
+	      "description" : "Directory helpers.",
+	      "members" : [
+	        {
+	          "kind"    : "method",
+	          "name"    : "make",
+	          "access"  : "public",
+	          "params"  : [ { "name" : "dest", "type" : "string", "description" : "..." } ],
+	          "returns" : { "type" : "boolean", "description" : "..." }
+	        }
+	      ]
+	    }
+	  ]
+	}
+
+Anything that wants to build on your docs — a search index, a linter, an editor plugin, a
+coding assistant — should read this rather than scrape the HTML.
+
+## Turning them off
+
+	documon --no-emitLlms --no-emitModel -i ./src -o ./
+
+Or in `documon.json`:
+
+	{ "emitLlms" : false, "emitModel" : false }
+
+---
+
+# Templates
+
+The templating system is wide open, giving you full control over how the HTML is rendered. By default we're using straight javascript with template literals for patching together chunks of HTML.
+
+To create or modify a template, you'll only have to ensure:
+
+- The "Required Files" exist.
+- All "jst" template files return a string.
+
+### Required Files
+
+The following files are called directly by Documon and must exist within the template folder.
+
+|file               | description                                   | arguments                   | used by                         |
+|-------------------|-----------------------------------------------|-----------------------------|---------------------------------|
+| _config.js        | Configures the "assets" folder (see below).				|   | [documon.js](documon.documon)
+| index.jst         | The main "app" page.  | context | [documon.js](documon.documon)
+| indexShortcut.jst | Shortcut to the home page.					| context | [documon.js](documon.documon)
+| page.jst          | Standard wrapper template for all pages.		| context, content | [documon.js](documon.documon)
+| package.jst       | An index page that lists a package's members.	| context | [organizer.js](documon.organizer)
+| class.jst         | This contains class description, Methods, Properties and Events (MPE). |[organizer.js](documon.organizer)
+
+Each template (jst) must return a single function that accepts a "context" argument and returns a string.
+
+Example:
+
+	module.exports = function (ctx){
+		return "<html><body>${ctx.id}</body></html>";
+	};
+
+The argument provided is a simple object structure containing page data.
+
+The "page.jst" file receives a second argument "content", which is the main textual body content for the page that was formerly rendered by either __index, package__ or __class__ JST template.
+
+To review the structured data, run Documon with teh ["dumpData" option](more.options) enabled -- the "tagged" javascript files show the json-like structure, which you can use as a reference.
+
+
+### The _configs.js file
+
+The "_config.js" file is essentially a central configuration "object" that documon reads for template specific options and can also be used by the template developer to store global options/settings.
+
+The _config.js file should export the following:
+
+	module.exports = {
+		assetsFolder : "assets"
+	}
+
+Documon only reads the "assetsFolder" property, all other properties in the "exports" object are not used by Documon, but can be used by templates as needed, so you're free to load up the object as you see fit.
+
+The "assetsFolder" is the name of a folder in the templates folder that contains all the required assets such as javascript, css, images, etc. -- This entire folder will get copied over "as is" (including sub-folders) to the resulting web site that Documon generates.
+
+For example, if the template folder structure looks like:
+
+	/path/to/template
+	/path/to/template/myAssets
+
+... and you need the "myAssets" folder to wind up in the resulting website, you'll set the "assetsFolder" property in "_config.js" as:
+
+	module.exports = {
+		assetsFolder : "myAssets"
+	}
+
+... then the "myAssets" folder will get copied into the final doumentation as:
+
+	/docs/myAssets
+
+---
+
+# Supported Tags
+
+
+The following flags are processed:
+
+@property, @method, @event
+: The three basic kinds of entities normally found in a class or module. Example: `@property {type} name - description`
+
+@package, @namespace
+: Generally only one per page, but can have to. See the "Package / Namespace" section below. To Documon @package and @namespace are the same thing. They can be used interchangablly, since Documon treats them identically. 
+Example: `@package foo.bar`
+
+@class, @module
+: Both entities are treated equally, but appear in the final rendered docs as "class". 
+Example: `@class name`
+
+@private, @protected, @static, @public, @readonly
+: Items with these flags can be shown/hidden/filtered. 
+Example `@private`
+
+@overrides, @impliments, @extends, @inherits
+: These items page HTML will incorporate inherited parent properties, methods and events, which can be toggled.
+
+@requires
+: Incorporates a list of dependancies that a module or class needs to run. Generally shows up in the "meta" section. 
+Example `@requires package.Class`
+
+@constructor
+: Generally used in conjunction with a class/module, and places a colored tag near the definition.
+
+@example
+: Multiple examples can exist per item. A nice to have for templating, so the examples can be moved around and they don't have to be hard-coded into the main description. See the "Examples" section below.
+
+@param
+: Classes, modules and methods can have multiple params. See "Params" section below.
+
+@return, @returns
+: Can incorporate a {type}. 
+Example `@return {object}`
+
+@type
+: See "Type" section below
+
+@order
+: By default, everything is sorted alphabetically. Use this flag if you need things to appear in a specific order. 
+Example: `@order 10.4`
+
+@header
+: Used to push a general informational entry to the top of a list. See the "Header" section below.
+
+@defaultVal, @default (not fully tested, since the inline approach is better)
+: Used for a method's paramter that has a default value.
+
+@see
+: Use this to link to similar or related things. See "See Also" below.
+
+---
+
+# Class
+
+Generally a class should only appear one time per file.
+
+A class tag is used to establish the beginning of a collection of properties, methods, and events (__PME__). 
+
+When a class tag is incorporated into a page, Documon assumes that all the subsequent PME's that follow afterward are all part of the class above.
+
+For example:
+
+	/**
+	@class Foo
+	*/
+	class Foo {
+		// yada
+	}
+	
+	/**
+	@method bob
+	*/
+	function bob () {
+		
+	}
+	
+	/**
+	@class Bar
+	*/
+	class Bar {
+		// yada
+	}
+	
+	/**
+	@method sally
+	*/
+	function sally () {
+		
+	}
+	
+.. __bob__ will be part of the __Foo__ class, and
+__sally__ will be part of the __Bar__ 
+
+Documon essentially splits the source file whenever it runs across a @class tag.
+	
+	
+
+You can use a class tag within the context of a PME, which will allow that entity to be assigned to the specific class, however, defining the class tag at the top of page is the preferred method for incorporating all of the PME
+s into the class. 
+
+Common practice is to use one file per class, and that's why we assume that all the MPE's are part of that class.
+
+When more than one @class tag appears within a page, the page will essentially get 
+if there are more than two class preferences pageI am not sure what happensOkay
+
+---
+
+# @constructor
+
+---
+
+# @default
+
+---
+
+# @event
+
+When establishing an event, include a simple name after the @event tag.
+
+Example:
+	
+	@event foo
+
+Since events often ping a function, the @event block can contain @params, which are identical in nature to [@method](more.tags.method) param tags -- all the same rules apply.
+
+Example:
+	
+	@event foo
+	@param {string) arg1 - the first arg.
+	@param {string) arg2 - the second arg.
+	@example
+	
+		function myHandler($arg1, $arg2){
+			print $arg1 . $arg2
+		}
+		
+		something.on("foo", myHandler);
+
+---
+
+# @example
+
+---
+
+# @extends
+
+---
+
+# Header
+
+A header flag provides a means to place an informational entery at the top of a main section. For example if you want an entry at the top of the Events section that provides a general overview of how the event system operates, create a new comment as follows:
+
+		/**
+		 *
+		 * The event system is really cool, I know you'll love it!
+		 * 
+		 * @event
+		 * @header About Events
+		 */
+
+It's kind of a hacky, but the @event flag tells use that this header is for the events section, and the @header "name" is used as the title for the section in the menu and on the page.
+
+Also note that internally, we use the @order flag to yank this to the top of the list (so it appears first).
+
+---
+
+# @impliments
+
+---
+
+# @inherits
+
+---
+
+# @method
+
+Methods consist of arguments and an optional "return". 
+
+	/**
+	* Method description
+	* 	
+	* @method myMethod
+	* @param {type} arg1 - description
+	* @param {type} arg2 - description
+	* @return {type} - description
+	*/
+	
+	function myMethod(arg1, arg2){
+		return arg1 + arg2;
+	}
+
+The word after the @method tag should be identical to the function name in your source code.
+
+	@method myMethod
+	
+	function myMethod(){
+	
+	}
+
+> This line is essential for registering this comment block as one of the foundational kinds (package, namespace, class, module, property, method, event)
+
+### @param
+
+The param tag is used to explain the arguments that the function can receive. Param tags consist of 4 parts:
+
+	   1     2     3         4
+	@param {type} arg1 - description
+	   
+
+1 - @param tag
+: Each param tag represents an argument, the order in which these tags are listed must match the order that they appear in the function.
+
+2 - {type}
+: The expected type that the argument should be, usually a primative such as "object" or "string". For weak typed languages where multiple types can be sent in separate types with a pipe charater.
+	
+		{number | string | object}
+	It's questionable whether to use Initial caps (Number String, Object), so I've left that to be dealt with in the template CSS. 
+	
+	Documon doesn't enforce anything within the brackets, so you can put anything in ther you want.
+	
+		{WhatEver}
+	And that's what'll get rendered.
+	
+	
+3 - name
+: The argument name should be identical to what you've used in your source code. Again, Doumon doesn't read your source code, so it's up to you to ensure a commonality.
+
+4 - description
+: The remaining text after the first word will get picked up as the description. 
+
+	>Placing a dash in front of the description to provides visual speration between the name and the description. The dash also helps Documon differentiate between the name and the description, which may be required for some fringe cases. When used, Documon will strip out the initial dash. 
+
+### Default Values
+
+See [Default Values](more.writing_comments.default_values)
+
+### Multi-dimensional object parameters.
+
+Often times objects are sent in as arguments, and details about the properties of the object need to be explained.
+
+To handle this use a "object.prop" pattern:
+
+	@param {object} 	foo 		- description
+	@param {string} 	foo.bar 	- description
+	@param {Earthling}	foo.bob 	- description
+	@param {Martian}	foo.sally	- description
+
+The sub-properties carry all the rules of a normal @param.
+
+### @return lines
+The @return tag can be plural or singular, since no one agrees which we should use, both have valid arguments, use whichever you want:
+
+	@return
+	@returns
+
+The @return tag is similar to a param, but shouldn't include a "name", just use a description.
+
+You can also choose to include a {type} in the return line to indicate what kind of thign your returning.
+
+	@return {type} - description
+
+I've included a dash in front of the description simply for consistency sake, it's not required, but helps my weak and foolish brain.
+
+---
+
+# @module
+
+An alias for __[@class](more.tags.class)__. Feel free to mix and match within your code, just remember that Documon treats [@class](more.tags.class) and [@module](more.tags.module) the same.
+
+---
+
+# @namespace
+
+An alias for __[@package](more.tags.package)__. Feel free to mix and match within your code, just remember that Documon treats [@package](more.tags.package) and [@namespace](more.tags.namespace) the same.
+
+---
+
+# @order
+
+---
+
+# @order
+
+---
+
+# @overrides
+
+---
+
+# @package
+
+Documon is based on the package concept, the resulting hierarchy that Documon generates revolves around the package concept.
+
+The @package (or @namespace) tag provides two functionalities:
+
+1. We split source files whenever a solo @package or @namespace appears. Therefore all classes or modules listed below the @package definition will automatically get assigned to the package. By splitting files on solo @package definitions we're causing a source file to be treated as multiple source files. This allows you to define multiple packages within a single file -- without having to incorporate the @package flag into each class, method, property or event definition.
+
+2. We can assigned stuff to a specific @package within a comment block.
+
+
+A simple trick is to use a stand-alone comment at the top of your file:
+
+	/**
+	 * @package foo.bar
+	 */
+
+Then further down the same file, you could include another @package definition...
+
+	/**
+	 * @package bob.sally
+	 */
+
+
+... or incorporate a package into a class (or any other) definition:
+
+	/**
+	 * @class sally
+	 * @package foo.bar
+	 */
+
+... and all the classes / methods / events / properties between these @package entries will be grouped together under each @package "section".
+
+Just be aware that if put @package definitions all over the place, you could get lost real fast. Use @package and @namespace sparingly.
+
+
+FYI: "package" is more common across programming languages. The idea being that a larger framework or application has files lumped together that all support a common theme. Traditionally classes that are related to the theme all reside in the same folder and the folder name describes the "theme". Thus, the folder acts as a "package" for a group of common classes. These "package" folders are further organized heirarchically within the overall framework or applicaiton structure.
+
+	app
+	app.display
+	app.display.bitmap
+	app.display.vector
+	app.db
+	app.db.models
+	app.db.models.sql
+	app.db.models.json
+	app.media
+	app.media.audio
+	app.media.audio.player
+	app.media.audio.codecs
+
+## @package @namepsace
+Documon treats the concepts of "Package" and "Namespace" identically, because they're both generally used to organize code according to similar functionalities or over-arching task. You are free to use whichever term suits you, but in the documentation (and in our code), we use the term "package" or the @package tag exclusively to addresses both concepts.
+
+Can be a stand alone comment or integrated into either the module or class comment:
+
+	/**
+	 * @namespace foo
+	 */
+
+	/**
+	 * My cool class
+	 * @class Cool
+	 * @namespace window
+	 */
+
+	/**
+	 * My cool module
+	 * @class Cool
+	 * @namespace path.to.access
+	 */
+
+The following will be treated exactly the same as above:
+
+	/**
+	 * @package foo
+	 */
+
+	/**
+	 * My cool class
+	 * @module Cool
+	 * @package window
+	 */
+
+	/**
+	 * My cool module
+	 * @module Cool
+	 * @package path.to.access
+	 */
+
+---
+
+# @param
+
+---
+
+# @private
+
+---
+
+# @property
+
+There are 2 ways to define properties, using the traditional JavaDoc style, or using Documon's "quick prop" one-liner. It all depends on how robust you wish to be.
+
+Since Documon relies soley on @tags within comments, each property needs to be registered manually using the @property tag.
+
+### Example
+
+	/** 
+	 * The width of the display object's bounding box.
+	 * @property width
+	 * @type Number
+	 * @default 0
+	 **/
+	p.width = 0;
+
+Above, we used a pretty robust definition, which is great but slow. Here are a few things that make documenting a little easier.
+
+Set the default value by attaching an equal sign + value:
+
+	/** 
+	 * The width of the display object's bounding box.
+	 * @property width=0
+	 * @type Number
+	 **/
+	p.width = 0;
+
+#### Use the Quick Prop One Liner
+
+Or one-liner #1 - name after {type}
+
+	/**
+	 * @property {object} width=0 - The width of the display object's bounding box.
+	 */
+	p.width = 0;
+
+
+Or one-liner #2 - name before {type} (unconventional, but seems more logical to me?)
+
+	/**
+	 * @property width=0 {object} - The width of the display object's bounding box.
+	 */
+	p.width = 0;
+
+
+### Default Values
+
+See [Default Values](more.writing_comments.default_values)
+
+---
+
+# @protected
+
+---
+
+# @public
+
+---
+
+# @readonly
+
+---
+
+# @type
+
+---
+
+# @return
+
+---
+
+# See
+
+Used to link to a part of the docs, aka "see also".
+
+Include mulitple @see tags, as all of the items will appear as a list with the heading of "See Also" (in the default Documon template -- display be vary from template to template).
+
+
+Use markdown link notation:
+
+		@see [describe the link here](http://www.example.com)
+		@see [describe the link here](#package.path.Foo.setWidth)
+		@see [describe the link here](#setWidth)
+
+---
+
+# @static
+
+---
+
+# @type
+
+---
+
+# Writing Comments Overview
+
+Documon reads [JavaDoc](https://en.wikipedia.org/wiki/Javadoc) style blocks, which take the form of:
+
+	/**
+	 * This is the traditional code-comment style
+	 * block, with stars along the left edge.
+	 * And this comment block is positioned
+	 * immeditely above the method or property.
+	 * 
+	 * @method myMethod
+	 * @param {type} arg description
+	 */
+	function myMethod(arg){
+		var foo;
+	}
+
+Where /** is used as a flag to designate the start of a documentation comment. 
+
+> NOTE: You can designate a different "start" and "end" string if your language uses non-C-like commenting. See the ["docBegin/End" options](more.options).
+
+With Documon, you're not required to put stars down the left-hand side, you can do somehting like this:
+
+	/**
+	
+	This is perfectly fine with Documon
+	For long, complicated comments with 
+	HTML and examples may be a liitle 
+	easier to write/read. Or if it's just 
+	your preference
+	
+	@method myMethod
+	@param {type} arg description
+	
+	*/
+	function myMethod(arg){
+		var foo;
+	}
+
+
+### Blocks
+
+A single comment block is defined for each:
+
+- variable
+- function
+- event
+- class
+
+The block contains a general top area where the __long description__ is written. THe long description is not required.
+
+Tags appear after the long description. Tags are used to name, classify, categorize, link and generally describe the entity.
+
+Tags can consume mulitple lines.
+
+
+### Be Robust
+
+Documon doesn't read or interpret your source code, and relies soley on @tags within comments, hence, one of the following tags MUST exist within each code block:
+
+- @package / @namespace
+- @class / @module
+- @method
+- @property
+- @event
+
+The tags listed above are essential for Documon to construct the documentation website.
+
+### Example Property
+
+	/**
+	This is an example
+	@property foo
+	@type string
+	*/
+	var foo
+
+or Documon's quick prop:
+
+	/**
+	@property {string} foo - description
+	*/
+	var foo
+
+### Example method
+
+	/**
+	This function does something
+	@method foo
+	@param {type} bar - description
+	@return {type} description
+	*/
+	function foo(bar){
+		return bar + "hello";
+	}
+
+### Example class
+
+	/**
+	This class does something
+	@class foo
+	*/
+	function foo(bar){
+		return bar + "hello";
+	}
+
+---
+
+# Inheritance
+
+The following tags are used to organize the relationship tree:
+
+- @extends
+- @impliments
+- @inherits
+- @overrides
+
+The @extends tag is the primary tag used to establish inheritence. Documon constructs a relationship tree whenever an @extends tag is discovered and automatically processes parent/child relationships.
+
+When defining @extends, you can use a short-hand for classes in the same package.
+
+For example, lets say we have 2 classes as:
+
+		/some/long/winded/package/Foo.js
+		some/long/winded/package/Bar.js
+
+... and "Bar" extends "Foo"... Rather than writing:
+
+		@class Bar
+		@package long.winded.package
+		@extends long.winded.package.Foo
+
+... we can write:
+
+		@class Bar
+		@package long.winded.package
+		@extends Foo
+
+... because Foo and Bar are in the same package. We only need to use the long-form when referencing things outside of the same package.
+
+### About the @inherits tag
+
+Using the @inherits tag is a little redundant, since Documon automatically figures this out based on the @extends tag. But you're free to incorporate the @inherits tag and Documon **should** honor it (e.g. construct the proper parent/chold menu relationship).
+
+---
+
+# Default Values
+
+Use the @default, @defaultVal or @defaultValue flags:
+
+	@default Something
+	@defaultVal "foo"
+	@defaultValue 42
+	
+In a property
+
+	@property	foo
+	@type		object
+	@default	"bar"
+	
+
+### Incorporate a Default Value Inline
+
+Include the default value by attaching it to the name with an equal sign.
+
+In a method param tag:
+
+	@param {type} arg1=foo - description
+
+In a "quick prop" property:
+
+	@property {object} foo="bar" - description
+	
+The equal sign must butt-up against the name and the value:
+
+good:
+: arg1=foo
+
+bad:
+: arg1 = foo
+
+---
+
+# Optional Values
+
+To define properties or method parameters as optional, wrap the name with quare brackets.
+
+	@prop {object} [foo]
+
+When the property has a default value, keep the value within the square brackets as well
+
+	@prop {object} [foo="bar"]
+
+---
+
+# Types
+
+There are no strict types, so feel free to put anything you want inbetween the brackets. (No type type-checks :)
+
+	@prop {DOM Element} foo - description	// yields type as a string: "Dom Element"
+
+Delimit with a pipe to offer multiple types
+
+	@prop {string | object} foo - description	// yields an array as ["string", "object"]
+
+Types can be placed either before or after the name. (Note that this is subject to change, since name before type is not "industry standard" [even though I think it should be] ).
+
+	@prop {object} foo - description		// yeilds type as a string: "object"
+	@prop foo {object} description			// yeilds type as a string: "object"
+
+---
+
+# Linking
+
+Use markdown notation:
+
+	For more [click here](http://example.com) now.
+
+Or HTML notation:
+
+	For more <a href="http://example.com">click here</a> now.
+
+For cross linking to other parts of docs use the ID:
+
+	[see Foo](package.Class.method)
+
+Use the # + id to link to a method/property on the same page (traditional anchor linking):
+
+	[see setWidth](#setWidth)
+
+### Website and Page Structure
+
+1. Classes and modules are full HTML pages. 
+2. Methods, properties, and events (MPE's) are included within a class HTML file.
+
+Documon generates a unique ID for each entity. The ID represents a "dot.path" to the entity based on it's relationship to the package and class structure.
+
+Example:
+
+	package.class.entity
+
+... where "entity" is a reference to a method, property or event (MPE) within a class or module.
+
+> NOTE: Documon treats modules and classes the same, so for brevity we'll only refer to "class".
+
+The Documon website intercepts links and interprets dot.path ID's.
+
+### Interal Method, Property, Event (MPE) links
+
+Each MPE has a standard HTML anchors within the page, therefore to link to an internal MPE within a class, use a normal anchor URL's (#example):
+
+	[See foo](#foo)
+
+This makes writing an internal link (within a class file) pretty easy.
+
+You can use the full dot.path, or for simplicity, if you're cross linking within the same class, you can just refernce the MPE. Either or will work because the template should incorporate both #entity adn #package.class.entity
+
+	[See foo](#foo)
+	-- or --
+	[See foo](#package.class.foo)
+	
+
+### External classes and MPE's
+
+To link to an external class or a MPE in some other class, use the full ID:
+
+	[Link to My Class](package.MyClass)
+	[Link to the foo property](package.MyClass.foo)
+	
+... in the example above we're targeting the location of the "foo" property in the "MyClass" HTML file. Again, the Documon website intercepts and interprets the ID's for you automatically.
+
+### External URL's
+
+And to link to external websites, just use a full URL:
+
+	[External Website Link](http://www.example.com)
+
+### More Pages
+
+Each ["more" page](more.more_docs) is provided a unique ID that is prefixed with "more". So you can link to these pages using the ID:
+
+	[See the About Page](more.about)
+
+Review the ["More Docs"](more.more_docs) page for details on how the ID's are derived.
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+170906
+
+---
+
+# Header
+
+A header flag provides a means to place an informational entery at the top of a main section. For example if you want an entry at the top of the Events section that provides a general overview of how the event system operates, create a new comment as follows:
+
+		/**
+		 *
+		 * The event system is really cool, I know you'll love it!
+		 * 
+		 * @event
+		 * @header About Events
+		 */
+
+It's kind of a hacky, but the @event flag tells use that this header is for the events section, and the @header "name" is used as the title for the section in the menu and on the page.
+
+Also note that internally, we use the @order flag to yank this to the top of the list (so it appears first).
+
+---
+
+# Comments in comments
+
+To include /* style comments in your comments, HTML-entity-ize the slash:
+
+For example to render this:
+
+    &#47;**
+    Something for B
+    @method something
+    *&#47;
+
+... you would write:
+
+&amp;#47;**
+Something for B
+@method something
+*&amp;#47;
+
+... because we are HTML encoding the "/" as "&amp;#47;"
+
+NOTE: It was super tricky to write this explaination, that's why the above is not in a code-block.
+
+---
+
+# Markdown Cheatsheet
+
+Other nice visual references:
+
+- [https://markdown-it.github.io/](https://markdown-it.github.io/)
+- [https://en.support.wordpress.com/markdown-quick-reference/](https://en.support.wordpress.com/markdown-quick-reference/)
+
+## Headings
+
+	# h1 Heading
+	## h2 Heading
+	### h3 Heading
+	#### h4 Heading
+	##### h5 Heading
+	###### h6 Heading
+
+## Horizontial Rule
+
+(3 or more dash or underscore characters)
+
+	---	 or ___
+	
+
+
+## Italic
+
+	*my words*   or   _my words_
+
+## Bold
+
+	**my words**   or   __my words__
+
+
+## Links
+
+Inline:
+
+	[display text](http://example.com "Shows when hover")
+	
+Referenced:
+	
+	For more [click me][1] and another [or me][2].
+
+	-- then somewhere else (like at the bottom of the page) ---
+	
+	[1]: http://example.com/ "Shows when hover 1"
+	[2]: http://example.org/ "Shows when hover 2"
+
+
+## Images
+ 
+Bare bones:
+	
+	![](assets/example.jpg)
+	
+All the bells and whistles
+
+	!["alt" text here](assets/example.jpg "Hover over image text")
+
+Referenced
+
+	![][1]
+	
+	-- then somewhere else (like at the bottom of the page) ---
+	
+	[1]: url/to/image.jpg "Shows when hover 1"
+	
+
+Linked image (simple)
+
+	Click this image [![](/example.jpg)](http://example.com/)
+
+Linked image (bells and whistles)
+
+	Click this image [![alt text](/example.jpg)](http://example.com/ "Hover text here")
+	
+
+
+## Blockquotes
+
+	> Add a ">" symbol in front of paragraph. 
+	> Connected ">" symbols (vertically) 
+	> get lumped together as one.
+
+__Code within blockquotes__
+Use a tab or spaces like usual, just pretend the &gt; is the edge. __IMPORTANT:__ Multi-line code requires one additional blockquote &gt; after the code all by itself at the bottom.
+
+	 > 	function(){
+	 >		var foo
+	 >		var bar
+	 >	}
+	 > <------------------- need this guy here
+
+## Footnotes
+
+	I have more [^1] to say up here.
+	
+	-- then somewhere else (like at the bottom of the page) ---
+	
+	[^1]: To say down here.
+
+## Lists
+
+Unordered
+
+	* item 1
+	* item 2
+	* item3
+	
+	-- or -- 
+	
+	- item 1
+	- item 2
+		* mixed
+		* is
+		* fine
+		* too
+	- item 3
+
+Ordered
+
+	1. item 1
+	2. item 2
+	3. item3
+	
+	-- or (just as long as number-dot exists)--
+
+	1. item 1
+	1. item 2
+	1. item 3
+
+
+## Preformatted
+
+		Begin line with 2 or more spaces or a tab.
+
+
+## Code 
+
+Inline
+
+	`This is code`
+	
+
+Block
+
+	```
+	This is too
+	```
+
+
+Syntax Highlighted
+
+	```css
+	#button {
+	    border: none;
+	}
+	```
+
+
+## Definition List
+
+	Javascipt
+	:  A relatively easy language to learn
+
+	Markdown
+	:  Text-to-HTML conversion tool
+
+
+
+## Abreviations
+
+	For example HTML stands for (hover over HTML)
+	
+	-- then somewhere else (like at the bottom of the page) ---
+	
+	*[HTML]: HyperText Markup Language
+
+---
+
+# More Docs
+
+Documon includes the ability to incorporate "more" information into the resulting website and menu using a simple directory and markdown file processor.
+
+
+To incorporate "more" info:
+
+1. Create a folder and fill it with markdown files.
+2. (optional) Organize the files into sub folders.
+3. (optional) Use numbering prefix so things appear in the proper order.
+4. Point the ("more" option)[more.options] to the folder containing your markdown docs.
+
+Below is an example directory structure, where we're using numbering to organize, and we've included sub-folders and the "DOCS-GO-HERE" pointer.
+	
+	- 01.About This Thing.md
+	- 02.Install This Thing.md
+	- 03.Using This Thing.md
+	- 04.DOCS-GO-HERE.md
+	+ 04.Some Sub Folder
+		- 1.This is a long page title.md
+		- 2.And this has spaces.md
+	+ 05.Another Sub folder
+	    - 1.Sally.md
+	    - 2.Bob.md
+	- 05.Bar
+	- assets
+		- image.jpg
+
+The resulting menu will reflect the directory structure, and the numbering will be stripped out and not seen in the final menu:
+
+	- About This Thing
+	- Install This Thing
+	- Using This Thing
+	+ packages <-------- the source file documentation
+	+ Some Sub Folder
+		- This is a long page title
+		- And this has spaces
+	+ Another Sub folder
+	    - Sally
+	    - Bob
+	- Bar
+
+
+
+> NOTE: Yes, in our example there are 2 fours and 2 fives... This is fine because numbering is only used to order items, the numbers themselves are not important. You can even mix and match numbering with not numbering, just so long as the files are organized the order you prefer.
+
+### Organize with Numbering
+
+ If you want to keep the numbers, you'll have to double things up:
+
+	01.01 About.md
+	02.02 Install.md
+
+Numbering requires a number followed by a "dot"
+
+	1.Foo.md
+	2.Bar.md
+
+Numbers can be padded with zeros
+
+	01.Foo.md
+	02.Bar.md
+	
+	001.Foo.md
+	002.Bar.md
+
+Numbers must butt-up against the dot, for example:
+
+	01 .Foo.md
+
+... will display in the resulting menu as:
+	
+	01 .Foo
+
+You can change the character that splits the numbering system from the label using the [moreQuirkDelimiter option](more.options). For example if you set moreQuirkDelimiter = "#" you could use:
+
+	01#Foo.md
+	02#Bar.md
+
+But be carefull when choosing a custom delimter because some operating systems choke on "reserved characters".
+
+
+### Meta Info
+
+An optional Meta Info is available which allows you to do some tricky things such as:
+
+- Change the menu icon
+- Link to an external URL from the menu.
+
+The Meta Info is a standard JSON object located at the top of the markdown file:
+	
+	{
+		"url" : "https://www.gieson.com",
+		"icon" : "fa-star"
+	}
+	__meta__
+	
+	# My Page Title
+	yada yada
+
+The line that reads "__meta__" acts as a flag (or boundary) that seperates the "head" from the normal markdown, if the "__meta__" flag exists, Documon extracts everything above from the page and processes the properties.
+
+
+### External Menu Links
+
+To create a menu item that links to some external URL, include a "url" property in the Meta Info json.
+
+When a "url" property exists in the Meta Info, the menu button will load an external url -- something outside the documentaion website generated by Documon.
+
+
+### Changing the Menu Icon
+
+Use the "icon" property in the Meta Info -- set it's value to a CSS class definition.
+
+Documon includes <a href="https://fontawesome.io" target="_blank">Font Awsome</a>, so you can use any of their existing icon classes.
+
+You can incorporate multiple classes:
+	
+	{
+		"icon" : "fa-star another"
+	}
+	__meta__
+	
+	# My Page Title
+	yada yada
+	
+
+
+
+### The DOCS-GO-HERE pointer
+
+To position the doumentation generated from source code at a specific point int your "more" menu, create an empty file named __DOCS-GO-HERE.md__ and place it into your "more" folder.
+
+You can number the file:
+
+	04.DOCS-GO-HERE.md
+
+And you can add additional text:
+
+	04.foo-DOCS-GO-HERE-bar.md
+
+Documon just looks for the string "DOCS-GO-HERE" in the filename as a flag where to do the insertion.
+
+If a DOCS-GO-HERE pointer is not used, the generated source code docs will appear at the bottom of the "more" menu.
+
+
+
+
+
+
+### Page ID's
+
+Each ["more" page](more.more_docs) is also provided with a unique ID, which is based on the path and filename of the markdown page.
+
+The rules are as follows:
+
+- Numbering is stripped out
+- non-alphanumeric characters are converted to underscores
+
+ID's are generated by stripping out numbering, and replacing non-alphanumeric characters with an underscore for both files and sub folders.
+
+Then we use a dot.path convention (when a file is located within a sub folder).
+
+And finally, the characters are all converted to lower case.
+
+Example:
+
+	01.About.md
+	02.Sub folder 1
+		01.Foo.md
+		02.Bar's page.md
+	03.Install.md
+	04.Contact.md
+	
+In te example above the ID's for the files would be:
+
+	more.about
+	more.sub_folder_1.foo
+	more.sub_folder_1.bar_s_page
+	more.install
+	more.contact
+
+
+### Linking to "More" pages
+
+The same rules for cross linking to other classes apply... use the page's ID. 
+
+Example:
+
+	[See the About Page](more.about)
+
+
+
+
+### General Notes
+
+- Only markdown files with the "md" extension are read, so your "more" folder can contain other things as needed.
+
+
+### Including Images and Other Assets
+
+Create a folder named "assets" within yoru "more" folder:
+
+	/path/to/more
+	/path/to/more/assets <--- here
+
+The contents of this "assets" folder will get merged into the resulting website's asset folder.
+
+> NOTE: By default, Documon uses the folder named "assets" to store the websites css, js, images, etc.
+
+> NOTE: The name of the assets folder may differ from template to template, so check your template's "_config.js" "assetsFolder" setting before linking images or assets in your markdown.
+
+---
+
+{
+	"url" : "https://www.gieson.com",
+	"icon" : "fa-star"
+}
+__meta__
+
+# About
+yada tas
+
+__meta__ and so on
+
+---
+
+yo yo yo
+
+---
+
+# API Reference
+
+---
+
+## root (package)
+
+### definitionLists (method) [private]
+
+Find and convert markdown extra definition lists into html.
+
+- param text {type} - description
+- returns {type} - description description
+
+### processDefListItems (method) [private]
+
+Process the contents of a single definition list, splitting it
+into individual term and definition list items.
+
+- param listStr {type} - description
+- returns {type} - description description
+
+---
+
+## documon (package)
+
+---
+
+## check (module)
+
+Validates documentation comments without generating anything.
+
+Because Documon infers nothing from source code, a missing or misspelled tag doesn't
+produce a warning -- it produces *silence*, and the symbol simply never appears in the
+output. That is fine for a human who eyeballs the result, and useless for an automated
+writer that needs to know whether it succeeded.
+
+`--check` is that feedback signal: parse everything, report what won't work, exit
+non-zero. Write comments, check, repair, repeat.
+
+### COMMON_TYPOS (property) -> object
+
+Tags people (and models trained on other doc systems)
+reach for that Documon does not implement, mapped to the right answer.
+
+### EXTENDISH (property) -> array
+
+Tags whose value must resolve to another documented id.
+
+### KIND_TAGS (property) -> array
+
+Tags that declare what an entity *is*. A comment block
+needs one of these to become anything at all.
+
+### KNOWN_TAGS (property) -> array
+
+Every tag Documon actually acts on. Anything else is
+inert -- it will be silently dropped from the output.
+
+### blockId (method) [private]
+
+Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.
+
+Ids are scoped `package.container.member` -- the same shape as the generated filenames
+(`documon.dirutils.html`). A `@method` therefore inherits the `@class` or `@module`
+declared above it in the same file; without that scope every `run()` in the project
+would look like a collision.
+
+- param info {object} - Summarized block.
+- param scope {string} - The enclosing class/module name.
+- returns {string} - Dotted id, or null.
+
+### collect (method) [private]
+
+Collects the source files that would be parsed by a build with this config.
+
+- param conf {object} - Documon config.
+- returns {array} - Absolute file paths.
+
+### finding (method) [private]
+
+Creates a finding.
+
+- param level {string} - "error", "warning" or "info".
+- param rule {string} - Stable machine-readable rule id.
+- param file {string} - Source file.
+- param line {number} - 1-based line number.
+- param message {string} - What is wrong.
+- param fix {string} - How to fix it.
+- returns {object} - The finding.
+
+### print (method)
+
+Prints a report for humans.
+
+- param report {object} - The result of `run()`.
+- param log {function} - The logger.
+
+### run (method)
+
+Runs the validator.
+
+- param conf {object} - Documon config (same shape the builder receives).
+- param opts {object} - Options.
+- returns {object} - `{ ok, counts, findings, stats }`.
+
+### scanSymbols (method) [private]
+
+A deliberately shallow symbol scan used only by the coverage advisory.
+
+This never feeds the render path -- Documon still derives structure exclusively from
+comments. It exists so an automated writer can be told "you documented 4 of 11 exported
+things" instead of silently shipping a near-empty manual.
+
+- param source {string} - File contents.
+- returns {array} - `{ name, line }` records.
+
+### summarize (method) [private]
+
+Reduces a parsed comment block to the facts the rules care about.
+
+- param parsed {object} - Output of `parse()`.
+- returns {object} - Summary.
+
+---
+
+## dirutils (module)
+
+A collection of utilities for manipulating directories syncronously.
+
+### copydir (method)
+
+Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.
+
+- param from {string} - The source folder
+- param to {string} - The destination folder (get's created if not exist)
+
+### emptydir (method)
+
+Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.
+
+- param who {string} - The source folder
+- param dryRun {boolean} - Prevents actual deletion, but still allows the return list to display what "will" be deleted.
+- returns {array} - An array containing a list of paths to files and folders that we're deleted (or will be deleted when dryrun is true)
+
+### exists (method)
+
+Checks to see if a folder exists.
+
+- param who {string} - The path to the folder.
+- returns {boolean} - duh duh
+
+### makedir (method)
+
+Creates a folder at the specified location. The sub-folder heirarchy is
+ constructed as needed.
+
+ For example if a folder exists here:
+
+ 	/path/to/folder
+
+ ... but the following sub-folders don't exists:
+
+	/path/to/folder/sub/one/two/three
+
+  ... Then the "sub/one/two/three" tree will be constructed inside "/path/to/folder")
+
+- param dest {string} - The destination folder to create
+
+### readdir (method)
+
+Read a folder and returns an object containing all of the files and
+ folder in arrays.
+
+- param from {string} - The path to the folder to read.
+- param filter {function} - A custom filter funciton.
+- param recursive {boolean} - Should we retrieve sub-folders too?
+- param store {object} - Used internally to store recursive findings.
+ Note that you may also provide this argument and readdir will populate your
+ existing files/folder list. But is recommended to leave this argument alone.
+- returns {object} - An object containing a list of "files" and "folders"
+ (as properties of the returned list), where each is an array.
+
+### readExt (method)
+
+Collects files from a folder based on the specified extension (or
+ extensions). Can be used to search recursively through all sub-folders, and can
+ search multiple extensions.
+
+ Provided as shortcut for [readdir](#readdir) with your own
+ extension-checking filter.
+
+- param from {string} - The path to search
+- param exts {string | array} - The extension to look for (e.g. "jpg"). To
+ search for multiple extensions, use an array e.g. ["jpg", "png", "gif"]
+- param recursive {boolean} - Find all matching files in all
+ sub-folders.
+- returns {array} - The resulting array contains only files that mathc the
+ specified extension(s).
+
+### removedir (method)
+
+Recursively removes a folder and all of it's sub-folders as well.
+
+- param who {string} - The path to the folder
+- param dryRun {boolean} - Prevents actual deletion, but still allows the return to return the list of items that "will" be deleted.
+- returns {array} - An array of all the items that were deleted (or "will be" deleted if dryrun is true.
+
+---
+
+## documon (module)
+
+The main entry point and processor for Documon, which allows you to run Documon directly from Node.
+
+### dumpData (property) -> boolean
+
+Whether or not to write intermediary files used during processing to the output data folder.
+
+### extensions (property) -> array
+
+The list of extensions to search for source code.
+
+### ignoreList (property) -> array
+
+A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:
+
+		'\/\.'
+		'\.git'
+		'node_modules'
+
+	Configuration will concat this list with the user provied list.
+
+### indexRedirectName (property) -> string
+
+The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.
+
+### mainConf (property) -> Object
+
+NOTE: // sourceRootFolder and dataFolder are injected into the "mainConf" by documon.
+
+Example link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)
+Example link [other class to documon.dirutils.makedir](documon.dirutils.makedir)
+Example link [other class to documon.dirutils](documon.dirutils)
+Example link [local to #run](#run)
+
+### quiet (property) -> boolean
+
+Supress stdout messages.
+
+### filterFileTypes (method) [private]
+
+Determines if the file has the proper extension based on the acceptable extensions defined in this modules static "extensions" array.
+
+- param fpath {string} - The path or full file name.
+- returns {boolean} - Whether or not it's an OK extension.
+
+### init (method) [private]
+
+Initializes Documan based on the configuration settings
+
+- Parses configuration
+- Finds source files
+- Creates output folder
+- Copies template assets to output folder
+- Initializes main templates
+
+- param conf {object} - See (run)[run], as this configuration object is simply passed through.
+- returns {boolean} - False when there's an error or misconfiguration. True when everything seems cool.
+
+### run (method)
+
+The main processing loop that executes and manages the main flow control of parsing, evaluating and  
+construction of the documentation.
+
+After [init](#init) configures things based on the settings, and generates a list of files to process
+this method process and sends each file to the [seeder](#seeder) of evaluation and processing.
+
+- Generates HTML pages
+- Generates _menuData.js
+
+- param conf {object} - The configuration object. See [mainConf](#mainConf)
+
+### seeder (method) [private]
+
+Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).
+
+- Generates data files (if dumpData enabled)
+
+- param file {string} - The path to the file.
+- returns {object} - The file's search data as computed by tag.js
+
+### shouldIgnore (method) [private]
+
+Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).
+
+- Generates data files (if dumpData enabled)
+
+- param item {string} - The path to the file.
+- returns {boolean} - true = ignore this file, false = don't ignore.
+
+### writeData (method) [private]
+
+Simplify file write for text or json.
+
+- param fpath {string} - The path to save to.
+- param data {string} - The string to save
+- param json {boolean} - Whether the data should be serialized to JSON or not.
+
+---
+
+## extract (class)
+
+Extracts comments from a file into an array or mulit-dementional array when the "text" arg contains mulitple __package__ or __namepsace__ definitions.
+
+Each entry in the returned array will be an object containing 3 properties
+ - __start__ : The line number that the comment started on
+ - __end__ : The line number that the comment ended on
+ - __data__ : The contents of the comment
+
+	var myComments = extract(str);
+	yields : [
+				{ 
+					start : 12,
+					end : 32,
+					data : "the descript"
+				},
+				{ 
+					start : 12,
+					end : 32,
+					data : "the descript"
+				}
+		]
+
+## A few things of note:
+- The data will NOT include the beginDoc, nor the endDoc strings.
+- Comment prefixing is stripped 
+		- *  [star space]
+		- tabs
+		- spaces
+- Code blocks maintain indentation.
+- Splitting on __package__ or __namespace__. When a single file contains mulitple references to a "__package__" or "__namespace__" comments will split into multiple arrays -- treating the single source file as being mulitple files. 
+
+Split __Example__:
+
+	&#47;**
+	* Class A
+	* @package foo <-- this designates a new "page"
+	*&#47;
+
+	&#47;**
+	* Something for A
+	* @method something
+	*&#47;
+ 
+	&#47;**
+	* Class B
+	* @package bar <-- this designates a new "page"
+	*&#47;
+ 
+	&#47;**
+	* Something for B
+	* @method something
+	*&#47;
+	
+	var myComments = extract(str);
+	yields : [
+				[ // the first "page"
+					{ 
+						start : 12,
+						end : 32,
+						data : "Class A ... "
+					},
+					{ 
+						start : 12,
+						end : 32,
+						data : "Something for A ..."
+					},
+		
+				],
+				[ // the second "page"
+					{ 
+						start : 64,
+						end : 96,
+						data : "Class B ... "
+					},
+					{ 
+						start : 128,
+						end : 142,
+						data : "Something for B ..."
+					},
+				,
+			]
+
+---
+
+## fileutils (class)
+
+Basic, common and simplified asyncronous file methods.
+
+### copy (method)
+
+Copies a file from one location to another.
+
+- param src {string} - The source file path.
+- param dest {string} - The destination to copy the source to.
+
+### exists (method) [private]
+
+Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.
+
+- param src {type} - The source file path.
+- returns {boolean} - True if exists, false if no file nor folder exists.
+
+### Open (method)
+
+Reads the entire file as a string. NOTE: This is an alias for [read](#read).
+
+- param src {string} - The source file path.
+- returns {string} - description description
+
+### read (method)
+
+Reads the entire file as a string.
+
+- param src {string} - The source file path.
+- returns {string} - description description
+
+### remove (method)
+
+Deletes a file from the system.
+
+- param src {string} - The source file path.
+
+### save (method)
+
+Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for [write](#write).
+
+- param src {string} - The source file path.
+- param data {string} - The text data to save.
+
+### write (method)
+
+Saves text data to a file. Overwrites entire file with provided data.
+
+- param src {string} - The source file path.
+- param data {string} - The text data to save.
+
+---
+
+## ignore (module)
+
+Decides whether a given file or folder should be skipped.
+
+Shared by the builder and by `--check` so both agree on exactly which files are "in"
+the project.
+
+### History
+
+The original implementation lived inside `documon.js` and had two defects that made
+the entire ignore system inert:
+
+1. It `return false`'d from *inside* the loop, so only the first pattern was ever
+   consulted.
+2. That first default pattern (`**&#47;.*`) is not a valid regular expression --
+   `new RegExp("**&#47;.*")` throws "Nothing to repeat" -- and the `catch` also
+   returned false.
+
+Net effect: `shouldIgnore()` always returned false, so `node_modules`, `.git`, the
+template folder, the output folder, and every user supplied ignore entry were all
+silently walked. Running Documon at a project root would happily parse its own
+dependencies.
+
+### DEFAULTS (property) -> array
+
+Patterns always applied, expressed as valid regular
+expressions (the old glob-looking strings never compiled).
+
+### create (method)
+
+Builds a matcher.
+
+User supplied entries are matched as documented: a plain substring ("simple indexOf")
+test first, then -- as a convenience -- as a regular expression when the string happens
+to compile as one. Patterns that compile to nothing useful simply never match instead
+of aborting the whole check.
+
+Internal paths (`extra`) are matched literally, never as expressions. They are real
+filesystem paths, and treating them as patterns is actively dangerous: an output folder
+of `"./"` compiles to the regular expression `./`, which matches any character followed
+by a slash -- that is, every path in the project.
+
+- param userList {array|string} - Caller supplied ignore entries.
+- param extra {array} - Internal paths to exclude (template, output, data folders).
+- returns {object} - An object exposing `test(path)` and the resolved `patterns`.
+
+### globToRegExp (method) [private]
+
+Translates a simple glob into a regular expression. Supports `*` (within a path
+segment), `**` (across segments) and `?`. Anything else is escaped literally.
+
+- param glob {string} - The glob pattern.
+- returns {RegExp} - The compiled expression, or null when it still won't compile.
+
+---
+
+## info (module)
+
+A place to store text-heavy data for copyright and CLI usage information.
+
+---
+
+## llms (module)
+
+Emits machine-readable companions alongside the generated HTML:
+
+- `llms.txt`      -- the [llms.txt convention](https://llmstxt.org): a short, linkable
+                     index of the documentation, meant to be read by a language model
+                     rather than rendered in a browser.
+- `llms-full.txt` -- every page's prose concatenated into one plain-text file, so a
+                     model can ingest the whole manual in a single fetch.
+- `model.json`    -- the structured documentation model (packages, classes, members,
+                     params, types), so other tools can consume Documon output as data
+                     instead of scraping HTML.
+
+All three are written to the output folder. Disable with `emitLlms:false` /
+`emitModel:false`.
+
+### deHtml (method) [private]
+
+Strips HTML tags and collapses whitespace, leaving readable plain text.
+
+- param html {string} - Source HTML.
+- returns {string} - Plain text.
+
+### flattenMenu (method) [private]
+
+Flattens the menu tree into a list of linkable pages.
+
+- param nodes {array} - Menu nodes.
+- param out {array} - Accumulator.
+- returns {array} - Flat page records.
+
+### joinUrl (method) [private]
+
+Joins a base URL and a page filename.
+
+- param base {string} - Base URL, may be empty.
+- param file {string} - Page filename.
+- returns {string} - A URL or bare filename.
+
+### modelPage (method) [private]
+
+Reduces a built page into the flat record used by `model.json`.
+
+- param page {object} - A page produced by `organizer.buildPages()`.
+- returns {object} - A serializable record.
+
+### readMore (method) [private]
+
+Collects the markdown of the "more" folder, in menu order, for `llms-full.txt`.
+
+The prose pages are usually the part a reader most needs -- guides, concepts, tag
+references -- and they are already plain text, so they go in verbatim.
+
+- param folder {string} - The "more" folder.
+- returns {array} - `{ name, body }` records, in filename order.
+
+### write (method)
+
+Writes `llms.txt`, `llms-full.txt` and `model.json`.
+
+- param conf {object} - The resolved `mainConf`.
+- param pages {array} - Pages from `organizer.buildPages()`.
+- param log {object} - The logger.
+- param menu {array} - The final menu, so hand-written "more" pages are indexed too.
+- returns {object} - `{ llms, llmsFull, model }` -- paths written, or nulls.
+
+---
+
+## log (module)
+
+Writes to the console. Will accept an object or array as well as string, boolena and other and prepare them for proper presentation to the console.
+
+---
+
+## menuBuilder (class)
+
+Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for "MenuTree.js".
+
+Constructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output "out/_menuData.js" file, which is formatted for and picked up by the "MenuTree.js" on the index.html page.
+
+### buildSections (method) [private]
+
+Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).
+
+For example, the provided context will take the form of:
+
+		context : {
+			classes 	: [ a, b, c ]
+			properties 	: [ a, b, c ]
+			etc
+		}
+
+If the array exists, we build out that major kind as a section
+
+Builds the context's major sections into the target array (kds)
+
+- param ctx {object} - The parsed documentation object.
+- param target {type} - The array to put any childeren into.
+- returns {type} - description description
+
+### hasAnyPart (method) [private]
+
+Checks to see if a major type exists.
+
+- param item {type} - description
+- returns {Boolean}
+
+### render (method)
+
+The main entry point for processing. Builds each section on the "root" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh "window" scope. So they just dnagle out there on the tree.
+
+- param ctx {array} - description
+- returns {array} - description description
+
+### section (method) [private]
+
+Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.
+
+- param ctx {object} - The context to parse. Each level down the tree has it's own unique and seperate context.
+- param prop {string} - The key for the part of the context we are going to process.
+- returns {type} - A simplified (meta-only) object that represents the provided context.
+
+Example of returned 
+		{
+			"id": "packageName.className-propMethodEventEtcName",
+			"url": "packageName.className.html#propMethodEventEtcName",
+			"label": "propMethodEventEtcName",
+			"kind": "propMethodEvent",
+			"children": [ ] <-- only added when needed
+		}
+
+---
+
+## mimimist (class)
+
+A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.
+https://github.com/substack/minimist
+
+---
+
+## More (class)
+
+Discovers, parses, converts markdown to HTML and injects menu with "more" docs.
+
+Processes the "more" markdown folder by:
+- Building the menu to reflect the "more folder" directory structure.
+- Translates markdown into HTML
+
+### docGoesHereStr (property) -> string [private]
+
+The string used as the flag as to where to insert the parsed source documents into the menu.
+
+### flat (property) -> string [private]
+
+A place to store generated page objects with a direct reference to their ID via flat[id].
+
+### metaRx (property) -> string [private]
+
+The regular expression use to split the doc on the [metaString](#metaString)
+
+### metaString (property) -> string
+
+The delimiting string used to seperate the meta JSON from normal markdown.
+
+### quirkDelimiter (property) -> string [private]
+
+Used to mark where filename numbering terminates and the "title" begins. User configurable via the [moreQuirkDelimiter option](more.options).
+
+### cleanID (method) [private]
+
+Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.
+
+- param id {type} - description
+- param amFolder {type} - description
+- returns {type} - description description
+
+### init (method)
+
+See class description.
+
+### newItem (method) [private]
+
+Opens, catalogs and builds a new page from the provided file path.
+
+- param url {string} - The path to the markdown file.
+- param amFolder {boolean} - Process as a folder?
+- returns {object} - An object containing structured data:
+
+	 	{
+			  id
+			, url // as originally provided 
+			, label // Cleaned up (no numbering) filename
+			, name : // same as label but the page.jst template needs the "name" property.
+			, kind : // The CSS class used on the icon( amFolder ? "more-folder" : "more-file" )
+			, amFolder : // is a folder?
+			, basepath : // The parent folder.
+			, parentID : // The parent's id (e.g.more.foo)
+			, children : // Folders have a children array
+		}
+
+### parseJSON (method) [private]
+
+A safe replacement for standard JSON parsing that mitigates errors.
+
+- param val {string} - val
+- returns {any}
+
+### quirkyName (method) [private]
+
+splits the numbering off of eight filename and returns the filename with out numbering
+
+- param filename {type} - description
+- param amFolder {type} - description
+- returns {type} - description description
+
+---
+
+## npath (module)
+
+A drop-in replacement for path, that provides cross-playform normalization. Easing the development of cross-platform modules.
+
+Essentially what we're doing is pre-processing all methods with a path normalization -- always enforcing forward slashes.
+
+### delimiter (property) -> string
+
+Platform environment PATH delimiter.
+
+Example of how PATH appears on Windows:
+
+		'C:\Windows\system32;C:\Windows;C:\Program Files\node\'
+
+Example of how PATH appears on POSIX systems (Mac Unix):
+
+		'/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin'
+
+Read the PATH with Node:
+
+		console.log(process.env.PATH)
+
+		Windows 	= ;
+  	POSIX	= :
+
+### addTrailingSlash (method)
+
+Adds a trailing slash from path (if doesn't exist).
+
+- param path {string} - path
+- returns {string}
+
+### basename (method)
+
+npath.basename("/foo/bar/bob.txt") --> "bob.txt"
+   npath.basename("/foo/bar/bob.txt", ".txt") --> "bob"
+
+- param path {string} - The full path
+- param ext {string} - Lops off the extension if it matches.
+- returns {string} - The last portion of a path, generally the "filename".
+
+### clean (method)
+
+Normalizes slashes by converting double \\ to single \ and / to \\ or \\ tp / based on the current platform requirements.
+
+- param arg {string | array} - arg
+- returns {string}
+
+### dirname (method)
+
+Returns the path to the parent folder that the item resides within.
+	
+		npath.dirname("/foo/bar/bob.txt") --> "/foo/bar"
+  	npath.dirname("/foo/sally/yoyo/boob") --> "/foo/sally/yoyo"
+
+- param Vpath {string} - The path to parse.
+- returns {string} - The path to the file/folder.
+
+### extname (method)
+
+Yes, this includes the dot.
+
+		npath.extname("/foo/bar/bob.txt") --> ".txt"
+  	npath.extname("/foo/sally/yoyo/boob") --> ""
+
+- param Vpath {string} - The path to parse.
+- returns {string} - The extension (if exists), including the dot.
+
+### format (method)
+
+The opposite of path.parse().
+
+Combines the elements of an object into a string. 
+
+Example:
+		
+	    {
+	        root : "/",
+	        dir : "/home/user/dir",
+	        base : "file.txt",
+	        ext : ".txt",
+	        name : "file"
+	    }
+
+
+Is converted to
+
+	    /home/user/dir/file.txt
+
+- param obj {object} - The object containing some of the required keys to formulate a path.
+- returns {type} - The string representaiton of the object.
+
+### isAbsolute (method)
+
+Determines if path is an absolute path.
+
+- param Vpath {string} - The path to parse.
+- returns {Boolean}
+
+### join (method)
+
+Joins path segments and resolves relativity.
+
+		path.join('/foo', 'bar', 'baz/asdf', 'quux', '..')
+		Returns: '/foo/bar/baz/asdf'
+
+- param paths... {string} - All arguments are evaluated as paths for construction
+- returns {type} - description description
+
+### normalize (method)
+
+Resolves ".." and "." portions of a path.
+Reduces double slashes to single (e.g. // -> /  )
+Forces back-slashes to forward slashes (e.g. \ -> /  )
+
+Retains trailing slash if exists.
+		
+  	npath.normalize("/foo/////bar") --> "/foo/bar"
+  	npath.normalize("/foo/bar/../boob") --> "/foo/boob"
+  	npath.normalize("./foo/") --> "/current/working/dir/foo/"
+
+- param Vpath {string} - The path to parse.
+- returns {string}
+
+### parse (method)
+
+Extracts basic path and file parts.
+
+	path.parse('/home/user/dir/file.txt')
+
+	// Yeilds
+	{
+		root : "/",
+		dir : "/home/user/dir",
+		base : "file.txt",
+		ext : ".txt",
+		name : "file"
+	}
+
+- param Vpath {string} - The path to parse.
+- returns {object} - An object containing the following properties:
+
+	{
+		root : "/",
+		dir : "/home/user/dir",
+		base : "file.txt",
+		ext : ".txt",
+		name : "file"
+	}
+
+### relative (method)
+
+Creates a relative path between `from` adn `to`.
+
+		path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb')
+		// Returns: '../../impl/bbb'
+
+- param from {string} - When null, the cwd is used for this value.
+- param to {string} - When null, the cwd is used for this value.
+- returns {string} - The relative path between `from` and `to`
+
+### removeTrailingSlash (method)
+
+Removes a trailing slash from path (if exists).
+
+- param path {string} - path
+- returns {string}
+
+### resolve (method)
+
+Generates an absolute path based on thenprovided arguments.
+
+Path construction occurs from right < to < left
+
+		resolve("/a", "b", "c"); // yields: "/a/b/c"
+
+If an absolute path is resolved during construction, the items to the left are ignored.
+
+		resolve("a", "/b", "c"); // yields: "/b/c" ("a" is ignored)
+
+If an absolute path is not resolved after constructing all arguments, the CWD is inserted.
+
+		resolve("a", "b", "c"); // yields: "/current/working/dir/a/b/c"
+
+Relative paths are automatically resolved:
+
+		resolve("/a", "../b", "c"); // yields "/a/c"
+
+- param path... {string} - All arguments are evaluated as paths for construction.
+- returns {string}
+
+---
+
+## opn (class)
+
+A cross-platform way to launch files from Node.
+
+Direct copy of:
+npmjs: 	https://www.npmjs.com/package/opn
+github: https://github.com/sindresorhus/opn
+
+
+### USAGE 
+
+
+	const opn = require('opn');
+
+	// Opens the image in the default image viewer
+	opn('unicorn.png').then(() => {
+		// image viewer closed
+	});
+
+	// Opens the url in the default browser
+	opn('http://sindresorhus.com');
+
+	// Specify the app to open in
+	opn('http://sindresorhus.com', {app: 'firefox'});
+
+	// Specify app arguments
+	opn('http://sindresorhus.com', {app: ['google chrome', '--incognito']});
+
+---
+
+## organizer (class)
+
+Organizes the parsed source-code data into a single object that takes the following form:
+
+	organ = {
+
+		// There will always be a root node with an absolute ID of "root"
+		id : "root",
+		name : "root",
+		file : "root.html",
+		docfile : "root.html",
+
+		packages : [
+
+				{ 
+					packages : foo
+
+					// Classes included in this package
+					classes : [
+
+						{	
+							class : "foo"
+							methods : [],
+							properties : [],
+							events : []
+						},
+
+						... etc ... 
+					],
+
+					// Loose stuff found in this package
+					methods : [],
+					properties : [],
+					events : []
+				}
+		
+		],
+
+		// Independent classes that are not part of any package
+		classes : [
+			{	
+				class : "foo"
+				methods : [],
+				properties : [],
+				events : []
+			}
+			... etc ... 
+		],
+
+		// Loose stuff that's not part of any package or class, assumed to be accessible "this" (e.g. in javascript it would be the "window" scope)
+		methods : [],
+		properties : [],
+		events : [],
+
+	};
+ 
+
+All source code hangs off of the "root" node and is organized according it's relationship to a package or class.
+
+This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.
+
+### flatClassList (property) -> Object
+
+We maintain a "flat list" as a means to cross reference items that are stuffed into the main array.
+
+### mainConf (property) -> Object
+
+A reference to the main configuration object. See [documon.mainConf](documon.mainConf).
+
+### organ (property) -> Object
+
+The primary object we store all data into.
+
+### sectionNames (property) -> Array
+
+The complete list of sections a class or package can contain.
+
+### Tclass (property) -> Template
+
+The class template processor (jst file).
+
+### Tpackage (property) -> Template
+
+The package template processor (jst file).
+
+### add (method)
+
+Adds source-code data to the organ. The data needs to be formated from the "tag.js" processor. By reading the data we determine where it is to be added to the main organ.
+
+- param VtaggedPage {type} - Source-code data parse by the tag.js processor.
+
+### addToClassList (method)
+
+Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.
+
+- param list {type} - The class array to add the item to.
+- param taggedPage {type} - The data to add.
+
+### addToPackageList (method)
+
+Adds a new package to the main packages list. Creates a namespace (package) if not exist.
+
+- param list {type} - The main package list to add the package to.
+- param taggedPage {type} - The package data.
+
+### appendPage (method)
+
+Adds a class or package to the class or package object.
+
+- param existingObj {type} - The object ot add the thing to.
+- param newObj {type} - THe thing we're adding.
+
+### buildMenu (method)
+
+Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht [menuBuilder](documon.menuBuilder)
+- returns {type} - description description
+
+### init (method)
+
+Initializes the the "organ", which is an object that we'll be inserting all the tagged data into.
+
+We'll also be grabbing the templates needed based on the location defined in the params.
+
+- param params {type} - The configuration options sent in by the user during [documon.mainConf](documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.
+
+### merge (method)
+
+A classic array merge routine.
+
+- param a {array} - The array that we will add items to if "prop"
+- param b {array} - The array we will merge into A if one of it's item[prop] doesn't exists in A.
+- param prop {string} - The property used to validate if items in B need to be merged into A.
+- returns {array} - A new array containing all unique elements from A and B.
+
+### sortObj (method)
+
+Sorts all main sections of an organ on a given key. By default sorting is conducted on the "id" key.
+
+- param obj {object} - The object to sort
+- param prop {string} - The key to sort on.
+
+---
+
+## parseFlags (class)
+
+Fills the output object with the following properties (if they exist)
+
+		object {
+			source 		// Entire first line inlcuding the @flag (only first line)
+			after		// Everything after the @flag
+			name		// One word following {type}. Or first word after the @flag definition when no {type}.
+			children	// name.kid - Array of children
+			parent		// if am a child, this is my parent.
+			flag		// @flag token with @ stripped
+			defaultVal	// name=val
+			afterType	// first line after
+			text		// 
+		}
+
+Here's an expanded and exmple'd definition list
+
+source
+: The entire comment block
+
+after
+: Everything after the @flag token "as is" (kinda like source)
+
+- __source__ : The entire comment block
+- __after__ : 		Everything after the @flag token "as is" (kinda like source)
+
+	e.g. in this line:
+
+---
+
+## searchPrep (class)
+
+Clean text so it has:
+- only alpha numeric characters
+- strips newlines and tabs.
+- single word results ignored
+
+Used by [tag.js](root.documon.tag) and [more.js](root.documon.more)
+
+---
+
+## tag (class)
+
+Processes the following flags
+
+- property
+- package, namespace
+- 
+- property
+- method
+- event
+- class
+- module
+- 
+- private
+- protected
+- static
+- public
+- readonly
+- 
+- overrides
+- impliments
+- extends
+- inherits
+- 
+- constructor
+- example
+- param
+- return, returns
+- 
+- type
+- order
+- optional
+- header
+- defaultVal, default
+- see
+- requires
+
+
+Fills the flags object
+
+"Source Item", are manufactured from the [parseFlag](parseFlag) class, and generally provided to many of the methods as the "item" argument, and they contain the following fields:
+
+		Source Item {
+			source 		// Entire first line inlcuding the @flag (only first line)
+		 	after		// Everything after the @flag
+			name		// One word following {type}. Or first word after the @flag definition when no {type}.
+			children	// name.kid - Array of children
+			parent		// if am a child, this is my parent.
+			flag		// @flag token with @ stripped
+			defaultVal	// name=val
+			afterType	// first line after
+			text		// 
+		}
+
+### fillFlag (method)
+
+[fillFlag description]
+
+- param item {type} - description
+- param obj {type} - description
+- returns {type} - description description
+
+### processItems (method) [private]
+
+Process flags for an entire list of items
+
+- param Vlist {array} - Vlist
+
+### processOne (method)
+
+processOne
+
+- param item {Source Object} - the source item as parsed from comments
+- returns {object} - An object containing flag data
+
+---
+
+## utils (class)
+
+A collection of useful helper untilities.
+
+### sort_by (method) [private]
+
+Description
+
+- param field - field
+- param rev - rev
+- param num - num
+- returns - FunctionExpression FunctionExpression

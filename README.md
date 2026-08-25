@@ -8,6 +8,11 @@ Since documon doesn't infer anything from the source code (all methods and argum
 
 Run from CLI, or integrate into node project.
 
+Because structure comes only from the comments you write, the output is fully determined
+by the text in your source -- there is no inference engine deciding what your comments
+"really" meant. That makes Documon predictable to write for, by hand or with an assistant.
+See [AGENTS.md](AGENTS.md) and the one-page [TAGS.md](TAGS.md).
+
 ## Full Documentation
 
 See full documentation at:
@@ -28,39 +33,59 @@ Directly: https://www.documon.net  (as "stand alone" )
 
 ### Quick Start
 
+__From the command line__
+
+	npx documon ./src ./          # writes ./docs
+
+	# or install it
+	npm install --save-dev documon
+	documon -i ./src -o ./ -n "My Project" -v 1.0 -p
+
 __In Node (javascript)__
 
-Install via NPM:
+	var documon = require("documon");
 
-	npm install documon
+	var result = documon({
+		src         : "/path/to/src/code",
+		out         : "/path/to/docs/output",
+		more        : "/where/are/more/markdowns",
+		name        : "My Project",
+		version     : "1.0.0",
+		description : "One line about the project.",
+		baseUrl     : "https://example.com/docs",
+		ignore      : ["*.test.js", "vendor/**"],
+		sourceExt   : ["js"],
+		launch      : false,
+		print       : true
+	});
 
-Generate Docs:
+	if( ! result.ok ){
+		process.exit(result.exitCode);
+	}
 
-	var docs = require("documon");
-	doc({
-        src			: "/path/to/src/code",
-        out			: "/path/to/docs/output",
-        more 		: "/where/are/more/markdowns",
-        ignore		: [
-                        '/path/to/src/dont/process/me',
-                        '/path/to/src/node_modules'
-                      ],
-        name		: "My Project",
-        version		: "1.0.0",
-        launch		: false,
-        print		: true,
-        dumpData	: true,
-        sourceExt	: ["js"],
-        gati 		: 'UA-106684927-1'
-    });
+__With a config file__
 
-__From CLI__
+Put a `documon.json` beside your `package.json` and just run `documon`. It is found from
+anywhere in the project tree, and a `documon` key inside `package.json` works too.
 
-Generate docs:
+	{
+		"src"         : "./src",
+		"out"         : "./",
+		"name"        : "My Project",
+		"version"     : "1.0.0",
+		"description" : "One line about the project."
+	}
 
-	node /path/to/documon/index.js "/path/to/source/code" "/path/to/destination"
+__Check before you build__
 
+Documon derives structure only from your comments, so an untagged symbol is invisible and
+a misspelled tag is silently dropped. `--check` tells you before you ship:
 
+	documon --check -i ./src            # exits 2 if anything is wrong
+	documon --check --json -i ./src     # machine-readable findings
+	documon --check --coverage -i ./src # plus undocumented-symbol advisory
+
+Exit codes: `0` success, `1` configuration error, `2` check found problems.
 
 ### Benefits
 
@@ -78,6 +103,9 @@ Comment tags are soley responsible for organizing the resulting heirarchy (inher
 - Direct control over final structure of the resulting website.
 - Great for small and large projects.
 - Auto inheritance cross fill and referencing (links to and fills children classes with inherited methods, props and events).
+- Built-in validator (`--check`) with machine-readable findings.
+- Emits `llms.txt`, `llms-full.txt` and `model.json`, so the docs are consumable as data.
+- Real exit codes, so it behaves in CI and in scripts.
 
 ## Documon does NOT:
 
@@ -88,6 +116,18 @@ Comment tags are soley responsible for organizing the resulting heirarchy (inher
 - Doesn't infer property / method names, arguments, etc, from the source code.
 
 As a result, comment blocks must be robust and include all pertinent details required to generate documentation.
+
+## Machine Readable Output
+
+Every build also writes, next to the HTML:
+
+- `llms.txt` -- an [llms.txt](https://llmstxt.org) index of every page.
+- `llms-full.txt` -- the entire manual as plain text, in one file.
+- `model.json` -- the documentation as structured data (packages, classes, members,
+  params, types, access).
+
+So anything that wants to build on your docs can read them as data instead of scraping
+HTML. Disable with `--no-emitLlms` / `--no-emitModel`.
 
 ## Get Involved
 
@@ -107,6 +147,25 @@ Of course, since templates are JS, you can always roll some other templating sys
 Documon's only dependancy is Node, no additional modules are needed.
 
 ## Change Log
+v2.7.0 - 2026-08-25
+- Added a `bin` entry, so `npx documon` and a global `documon` command work.
+- The output folder is now created when missing, instead of erroring.
+- Real exit codes: 0 success, 1 configuration error, 2 `--check` findings.
+- Added `--check`, a validator for comment tags, with `--strict` and `--coverage`.
+- Added `--json` for machine-readable check and build output.
+- Every build now emits `llms.txt`, `llms-full.txt` and `model.json`.
+- Added config file discovery (`documon.json`, `.documonrc`, a `documon` key in
+  `package.json`) and long-form flags (`--src`, `--out`, ...).
+- Added `description` and `baseUrl` options; generated pages now carry a real meta
+  description, canonical link and Open Graph tags instead of a hard-coded string.
+- Fixed the ignore system, which never worked: the matcher returned after testing one
+  pattern, and that pattern was not a valid regular expression, so `node_modules`, `.git`,
+  the template folder, the output folder and every user-supplied ignore were all walked.
+  Simple globs are now supported.
+- Fixed path validation reporting "not specified" for paths that plainly existed.
+- Added a dependency-free test suite (`npm test`).
+- Trimmed the published package; it no longer ships Documon's own generated docs.
+
 v2.6.1 - 2026-03-17 @ 21:41:02
 - fixed fatal flaw in markdown.js, reference to require "showdown" needed local "./showdown.min.js"
 

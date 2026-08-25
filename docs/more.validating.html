@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		
+    	<title>Validating</title>
+		<meta name="description" content="more.validating">
+		<meta name="generator" content="Documon">
+		
+
+		 <!-- Normalize -->
+	    <link rel="stylesheet" href="assets/vendor/normalize.css">
+
+	    
+	    <!-- prettify -->
+	    <link rel="stylesheet" href="assets/vendor/prettify/codamike.css">
+	    
+		<script src="assets/vendor/prettify/prettify.js"></script>
+
+		<!-- Documon Pages Info. (Used by various classes to identify this page.) -->
+		<script>
+	    var pageCtx = {
+	    	id : "more.validating",
+	    	name: "Validating"
+	    }
+	    </script>
+
+	    <!-- theme 
+	    <link rel="stylesheet" href="assets/fonts/Fira_Sans/FiraSans.css">
+	    <link rel="stylesheet" href="assets/fonts/Inconsolata/inconsolata.css">
+	    -->
+	    <link rel="stylesheet" href="assets/css/pages.css">
+	    <script src="assets/js/documon/Storage.js"></script>
+	    <script src="assets/js/documon/Access.js"></script>
+	    <script src="assets/js/documon/Pages.js"></script>
+
+	    
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-106684927-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+	    
+
+	</head>
+
+
+
+	<body>
+
+		<div class="page">
+			<div class="more"><h1 id="validating">Validating</h1>
+<p>Documon derives structure <strong>only</strong> from your comments. That is its main strength — you<br />
+decide exactly what the output looks like — but it has one consequence worth naming: a<br />
+symbol you forget to tag doesn't produce a warning, it produces nothing at all. A<br />
+misspelled tag is discarded in silence.</p>
+<p><code>--check</code> is the antidote. It parses everything, tells you what won't work, and writes<br />
+nothing.</p>
+<pre><code>documon --check -i ./src
+
+------------------
+Findings
+------------------
+ERROR  src/menu.js:42
+      [unresolved-inheritance] @extends "Base" does not match any documented id.
+      fix: Use the fully qualified id (package.Class), or document the parent.
+WARNING  src/menu.js:88
+      [unknown-tag] @arg is not a Documon tag and will be ignored.
+      fix: Use @param instead.
+------------------
+Summary
+------------------
+  files : 25
+  comments : 117
+  entities : 111
+  errors : 1
+  warnings : 1
+FAIL</code></pre>
+<p>It exits <code>2</code> when it finds problems, so it drops straight into a build script:</p>
+<pre><code>documon --check -i ./src &amp;&amp; documon -i ./src -o ./</code></pre>
+<h2 id="what-it-looks-for">What it looks for</h2>
+<table>
+<thead>
+<tr>
+<th id="rule">rule</th>
+<th id="level">level</th>
+<th id="meaning">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>unknown-tag</code></td>
+<td>warning</td>
+<td>A tag Documon doesn't implement. Anything you wrote under it is dropped. Where there's an obvious equivalent (<code>@arg</code> &rarr; <code>@param</code>) the fix names it.</td>
+</tr>
+<tr>
+<td><code>duplicate-id</code></td>
+<td>error</td>
+<td>Two blocks resolve to the same id, so one page overwrites the other.</td>
+</tr>
+<tr>
+<td><code>unresolved-inheritance</code></td>
+<td>error</td>
+<td>An <code>@extends</code> / <code>@inherits</code> / <code>@impliments</code> target that matches no documented id.</td>
+</tr>
+<tr>
+<td><code>missing-name</code></td>
+<td>error</td>
+<td>A kind tag with no name, e.g. a bare <code>@method</code>.</td>
+</tr>
+<tr>
+<td><code>no-kind</code></td>
+<td>warning</td>
+<td>A block with tags but no <code>@method</code>, <code>@property</code>, <code>@event</code>, <code>@class</code> or <code>@module</code>. It will never appear.</td>
+</tr>
+<tr>
+<td><code>param-no-name</code></td>
+<td>warning</td>
+<td>A <code>@param</code> that can't be rendered.</td>
+</tr>
+<tr>
+<td><code>duplicate-param</code></td>
+<td>warning</td>
+<td>The same parameter documented twice.</td>
+</tr>
+<tr>
+<td><code>param-on-non-method</code></td>
+<td>warning</td>
+<td><code>@param</code> on a <code>@class</code> or <code>@module</code>, where it is parsed but never displayed.</td>
+</tr>
+<tr>
+<td><code>broken-link</code></td>
+<td>warning</td>
+<td>A dotted cross-reference that matches no id.</td>
+</tr>
+<tr>
+<td><code>no-description</code></td>
+<td>info</td>
+<td>A documented entity with no prose.</td>
+</tr>
+<tr>
+<td><code>param-no-type</code></td>
+<td>info</td>
+<td>A parameter with no <code>{type}</code>.</td>
+</tr>
+<tr>
+<td><code>no-comments</code></td>
+<td>info</td>
+<td>A source file with no Documon blocks at all.</td>
+</tr>
+</tbody>
+</table>
+<p><code>--strict</code> promotes warnings to failures.</p>
+<h2 id="coverage">Coverage</h2>
+<pre><code>documon --check --coverage -i ./src</code></pre>
+<p>Adds an advisory pass that looks for functions, classes and assignments with no matching<br />
+documentation block, and reports a percentage.</p>
+<p>This is the one place Documon glances at your source, and it is deliberately shallow and<br />
+strictly advisory — it never influences what gets rendered. Structure still comes from<br />
+comments and nothing else. If a symbol is intentionally internal, ignore the finding.</p>
+<h2 id="machine-readable-output">Machine-readable output</h2>
+<pre><code>documon --check --json -i ./src</code></pre>
+<p>Emits a JSON report — <code>ok</code>, <code>counts</code>, <code>stats</code>, <code>coverage</code>, and a <code>findings</code> array where<br />
+each entry carries <code>level</code>, <code>rule</code>, <code>file</code>, <code>line</code>, <code>message</code> and <code>fix</code>. Useful in CI, and<br />
+useful to any tool that writes comments and needs to know whether it succeeded.</p></div>
+		</div>
+
+		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>
+
+	</body>
+
+
+</html>
