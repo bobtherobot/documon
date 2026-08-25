@@ -750,7 +750,8 @@ It exits `2` when it finds problems, so it drops straight into a build script:
 
 |rule|level|meaning|
 |----|-----|-------|
-| `unknown-tag` | warning | A tag Documon doesn't implement. Anything you wrote under it is dropped. Where there's an obvious equivalent (`@arg` &rarr; `@param`) the fix names it. |
+| `unknown-tag` | warning | A tag Documon doesn't implement, and doesn't alias. Anything you wrote under it is dropped. The `fix` explains why there is no equivalent. |
+| `normalized-tag` | info | A tag accepted under another spelling (`@arg` read as `@param`). Nothing is lost; shown so you can converge on one spelling. |
 | `duplicate-id` | error | Two blocks resolve to the same id, so one page overwrites the other. |
 | `unresolved-inheritance` | error | An `@extends` / `@inherits` / `@impliments` target that matches no documented id. |
 | `missing-name` | error | A kind tag with no name, e.g. a bare `@method`. |
@@ -977,6 +978,22 @@ Example: `@order 10.4`
 
 @see
 : Use this to link to similar or related things. See "See Also" below.
+
+## Tags from other systems
+
+Documon accepts the common JSDoc spellings as exact synonyms — `@function`/`@func` for
+`@method`, `@arg`/`@argument` for `@param`, `@prop`/`@member` for `@property`,
+`@augments` for `@extends`, `@implements` for `@impliments`, `@constructs` for
+`@constructor`, and `@const`/`@constant` for a read-only `@property`. `@access private`
+becomes `@private`.
+
+Description tags (`@desc`, `@description`, `@summary`, `@classdesc`, `@fileoverview`) are
+folded into the block description, and inline `{@link target}` becomes a markdown link.
+
+`@deprecated`, `@throws`, `@since`, `@author`, `@license`, `@copyright` and `@todo` have no
+structural role, but are rendered as metadata rows on the member rather than discarded.
+
+Run `documon --check` to see exactly what was normalized or ignored.
 
 ---
 
@@ -2163,9 +2180,127 @@ yo yo yo
 
 ## root (package)
 
+### flagBody (method) [private]
+
+Recovers the full text a tag carried.
+
+`after` holds everything on the tag's own line; `text` holds the parsed description of
+that line *plus* any continuation lines appended afterwards. Concatenating them
+duplicates the first line, so take `after` for line one and only the continuations from
+`text`.
+
+- param f {object} - A parsed flag.
+- returns {string} - The tag's full text.
+
+### normalize (method) [private]
+
+Post-parse cleanup for tags that don't map one-to-one onto a Documon tag.
+
+- Description tags (`@desc`, `@description`, `@classdesc`, `@fileoverview` ...) have no
+  Documon equivalent because the description is simply the free text above the tags.
+  Their content is folded into that text instead of being thrown away.
+- `@access private` becomes the `@private` flag, and so on.
+- `@const` / `@constant` becomes a read-only `@property`.
+- Metadata tags (`@deprecated`, `@throws`, `@since` ...) are collected onto `meta` so
+  the template can render them, rather than vanishing.
+
+- param output {object} - The parsed comment block, modified in place.
+
 ---
 
 ## documon (package)
+
+---
+
+## aliases (module)
+
+Accepts the tag spellings people (and tools trained on other documentation systems)
+actually write, and maps them onto Documon's vocabulary.
+
+### Why
+
+Documon derives structure exclusively from tags, which means an unrecognised tag isn't
+a cosmetic problem -- it's a missing page. A block written as
+
+		&#64;function area
+		&#64;arg {number} r - Radius.
+
+has no kind tag as far as Documon is concerned, so the whole entity silently disappears.
+Since `&#64;function` and `&#64;arg` are exact JSDoc synonyms for `&#64;method` and
+`&#64;param`, refusing them buys nothing and costs a page.
+
+Aliasing does not weaken the "structure comes only from comments" rule: an alias is
+still an explicit tag, just spelled differently.
+
+### What is deliberately NOT aliased
+
+Tags whose meaning differs, even slightly, are left alone so they surface in `--check`
+rather than producing quietly wrong documentation:
+
+- `&#64;fires` / `&#64;emits` -- documents which events a method *emits*. That is not
+  the same as `&#64;event`, which declares an event entity.
+- `&#64;memberof` -- re-parents an entity; Documon scopes by `&#64;package` instead.
+- `&#64;typedef`, `&#64;callback`, `&#64;enum`, `&#64;inheritdoc` -- no equivalent concept.
+
+### ACCESS_VALUES (property) -> array
+
+Legal values of an `@access` tag, each of which maps
+onto a Documon visibility flag of the same name.
+
+### DESCRIPTION_TAGS (property) -> array
+
+Tags whose content is really just the description.
+Documon takes the description from the free text above the tags, so these are folded
+into it rather than dropped.
+
+### META_TAGS (property) -> object
+
+Tags with genuine meaning and no Documon equivalent.
+Rather than discarding them, they are collected and rendered in the page's meta
+section. The value is the label shown to the reader.
+
+### TAGS (property) -> object
+
+Exact synonyms. The key is what was written, the value is the
+Documon tag it becomes.
+
+### inlineLinks (method)
+
+Rewrites JSDoc's inline link syntax as the markdown Documon already understands.
+
+Handles `{@link target}`, `{@link target|label}`, `{@link target label}`, and the
+`linkcode` / `linkplain` / `tutorial` variants.
+
+- param text {string} - Text possibly containing inline links.
+- returns {string} - Text with markdown links.
+
+### isAlias (method)
+
+Whether a tag is an alias of something else (used to report normalizations).
+
+- param flag {string} - The tag as written.
+- returns {boolean} - True when `resolve()` would change it.
+
+### isDescription (method)
+
+Whether a tag's content should be folded into the description.
+
+- param flag {string} - The tag as written.
+- returns {boolean}
+
+### metaLabel (method)
+
+The display label for a metadata tag, or null when it isn't one.
+
+- param flag {string} - The tag as written.
+- returns {string} - Label, or null.
+
+### resolve (method)
+
+Resolves a written tag name to its Documon equivalent.
+
+- param flag {string} - The tag as written, without the leading "@".
+- returns {string} - The Documon tag name, or the input unchanged.
 
 ---
 
@@ -2199,6 +2334,11 @@ needs one of these to become anything at all.
 
 Every tag Documon actually acts on. Anything else is
 inert -- it will be silently dropped from the output.
+
+### TAG_NOTES (property) -> object
+
+Extra guidance for tags that look like they should work
+but genuinely have no Documon equivalent.
 
 ### blockId (method) [private]
 
@@ -2389,6 +2529,11 @@ Example link [local to #run](#run)
 ### quiet (property) -> boolean
 
 Supress stdout messages.
+
+### tally (property) -> object
+
+Counts of tags that were normalized or ignored during a
+build, reported as a single line when the build finishes.
 
 ### filterFileTypes (method) [private]
 
@@ -2690,6 +2835,13 @@ Joins a base URL and a page filename.
 - param base {string} - Base URL, may be empty.
 - param file {string} - Page filename.
 - returns {string} - A URL or bare filename.
+
+### metaEntry (method) [private]
+
+Normalizes a metadata entry (@deprecated, @throws, @since ...) for the model.
+
+- param entry {object} - A collected metadata tag.
+- returns {object} - `{ tag, label, text }`.
 
 ### modelPage (method) [private]
 

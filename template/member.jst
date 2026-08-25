@@ -2,6 +2,7 @@
 var Texample = require("./example.jst");
 var Tflags = require("./flags.jst");
 var Textendish = require("./extendish.jst");
+var Tmeta = require("./meta.jst");
 var Tproperty = require("./property.jst");
 var TseeAlso = require("./seeAlso.jst");
 var TmethodArgs = require("./methodArgs.jst");
@@ -88,6 +89,7 @@ function makeItem(item, partKind) {
 						   	<div class="member-description">
                                 ${Textendish(item, partKind)}
                                 ${klassFileMeta}
+								${Tmeta(item)}
 								${item.html}
 
 					`;

@@ -25,6 +25,7 @@
 			}
 		],
 		"source": "A place to store text-heavy data for copyright and CLI usage information.\n\n@module  info\n@package  documon",
+		"meta": [],
 		"id": "documon.info"
 	}
 ]

@@ -88,6 +88,7 @@
 				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.menuBuilder<span></div>
 				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/menuBuilder.js<span></div>
 			</div>
+								
 								<p>Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for "MenuTree.js".</p>
 <p>Constructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output "out/_menuData.js" file, which is formatted for and picked up by the "MenuTree.js" on the index.html page.</p>
 
@@ -135,6 +136,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).</p>
 <p>For example, the provided context will take the form of:</p>
 <pre><code>    context : {
@@ -261,6 +263,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Checks to see if a major type exists.</p>
 
 					
@@ -346,6 +349,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>The main entry point for processing. Builds each section on the "root" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh "window" scope. So they just dnagle out there on the tree.</p>
 
 					
@@ -431,6 +435,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.</p>
 
 					

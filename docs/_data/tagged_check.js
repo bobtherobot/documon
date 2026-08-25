@@ -21,7 +21,7 @@
 	"id": "documon.check",
 	"methods": [
 		{
-			"line": 181,
+			"line": 185,
 			"name": "blockId",
 			"shortText": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.",
 			"shortHtml": "<p>Derives the id a comment block will be filed under, mirroring how <code>tag.js</code> builds ids.</p>",
@@ -64,7 +64,7 @@
 			"id": "documon.check.blockId"
 		},
 		{
-			"line": 127,
+			"line": 131,
 			"name": "collect",
 			"shortText": "Collects the source files that would be parsed by a build with this config.",
 			"shortHtml": "<p>Collects the source files that would be parsed by a build with this config.</p>",
@@ -98,7 +98,7 @@
 			"id": "documon.check.collect"
 		},
 		{
-			"line": 108,
+			"line": 112,
 			"name": "finding",
 			"shortText": "Creates a finding.",
 			"shortHtml": "<p>Creates a finding.</p>",
@@ -173,7 +173,7 @@
 			"id": "documon.check.finding"
 		},
 		{
-			"line": 615,
+			"line": 637,
 			"name": "print",
 			"shortText": "Prints a report for humans.",
 			"shortHtml": "<p>Prints a report for humans.</p>",
@@ -207,7 +207,7 @@
 			"id": "documon.check.print"
 		},
 		{
-			"line": 334,
+			"line": 338,
 			"name": "run",
 			"shortText": "Runs the validator.",
 			"shortHtml": "<p>Runs the validator.</p>",
@@ -267,7 +267,7 @@
 			"id": "documon.check.run"
 		},
 		{
-			"line": 294,
+			"line": 298,
 			"name": "scanSymbols",
 			"shortText": "A deliberately shallow symbol scan used only by the coverage advisory.",
 			"shortHtml": "<p>A deliberately shallow symbol scan used only by the coverage advisory.</p>",
@@ -301,7 +301,7 @@
 			"id": "documon.check.scanSymbols"
 		},
 		{
-			"line": 213,
+			"line": 217,
 			"name": "summarize",
 			"shortText": "Reduces a parsed comment block to the facts the rules care about.",
 			"shortHtml": "<p>Reduces a parsed comment block to the facts the rules care about.</p>",
@@ -337,7 +337,7 @@
 	],
 	"properties": [
 		{
-			"line": 59,
+			"line": 60,
 			"name": "COMMON_TYPOS",
 			"shortText": "Tags people (and models trained on other doc systems)",
 			"shortHtml": "<p>Tags people (and models trained on other doc systems)</p>",
@@ -354,7 +354,7 @@
 			"id": "documon.check.COMMON_TYPOS"
 		},
 		{
-			"line": 42,
+			"line": 43,
 			"name": "EXTENDISH",
 			"shortText": "Tags whose value must resolve to another documented id.",
 			"shortHtml": "<p>Tags whose value must resolve to another documented id.</p>",
@@ -371,7 +371,7 @@
 			"id": "documon.check.EXTENDISH"
 		},
 		{
-			"line": 37,
+			"line": 38,
 			"name": "KIND_TAGS",
 			"shortText": "Tags that declare what an entity *is*. A comment block",
 			"shortHtml": "<p>Tags that declare what an entity <em>is</em>. A comment block</p>",
@@ -388,7 +388,7 @@
 			"id": "documon.check.KIND_TAGS"
 		},
 		{
-			"line": 48,
+			"line": 49,
 			"name": "KNOWN_TAGS",
 			"shortText": "Every tag Documon actually acts on. Anything else is",
 			"shortHtml": "<p>Every tag Documon actually acts on. Anything else is</p>",
@@ -403,6 +403,23 @@
 			"package": "documon",
 			"docfile": "documon.check.html",
 			"id": "documon.check.KNOWN_TAGS"
+		},
+		{
+			"line": 89,
+			"name": "TAG_NOTES",
+			"shortText": "Extra guidance for tags that look like they should work",
+			"shortHtml": "<p>Extra guidance for tags that look like they should work</p>",
+			"text": "Extra guidance for tags that look like they should work\nbut genuinely have no Documon equivalent.",
+			"html": "<p>Extra guidance for tags that look like they should work<br />\nbut genuinely have no Documon equivalent.</p>",
+			"type": "object",
+			"entity": "property",
+			"flagSearchText": " Extra guidance for tags that look like they should work\nbut genuinely have no Documon equivalent.",
+			"file": "src/check.js",
+			"filename": "check.js",
+			"klass": "check",
+			"package": "documon",
+			"docfile": "documon.check.html",
+			"id": "documon.check.TAG_NOTES"
 		}
 	],
 	"prettyLangs": [],
@@ -420,6 +437,7 @@
 		"documon.check.KIND_TAGS": "KIND_TAGS : Tags that declare what entity comment block needs these become anythingTags that declare what entity comment block needs these become anything",
 		"documon.check.EXTENDISH": "EXTENDISH : Tags whose value must resolve another documentedTags whose value must resolve another documented",
 		"documon.check.KNOWN_TAGS": "KNOWN_TAGS : Every Documon actually acts Anything else inert will silently dropped from outputEvery Documon actually acts Anything else inert will silently dropped from output",
-		"documon.check.COMMON_TYPOS": "COMMON_TYPOS : Tags people models trained other systems reach that Documon does implement mapped right answerTags people models trained other systems reach that Documon does implement mapped right answer"
+		"documon.check.COMMON_TYPOS": "COMMON_TYPOS : Tags people models trained other systems reach that Documon does implement mapped right answerTags people models trained other systems reach that Documon does implement mapped right answer",
+		"documon.check.TAG_NOTES": "TAG_NOTES : Extra guidance tags that look like they should work genuinely have Documon equivalentExtra guidance tags that look like they should work genuinely have Documon equivalent"
 	}
 }

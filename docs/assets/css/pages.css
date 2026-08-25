@@ -540,3 +540,62 @@ More Pages
 .more h6 {
   font-weight: 600;
 }
+
+/* ------------------------------------------------
+   Metadata rows (@deprecated, @throws, @since ...)
+   Tags carried over from other documentation systems that have no
+   structural place in Documon, but still say something worth showing.
+   ------------------------------------------------ */
+
+.member-meta {
+  margin: 0 0 12px 0;
+}
+
+.meta-row {
+  display: table;
+  width: 100%;
+  padding: 4px 8px;
+  margin-bottom: 2px;
+  background-color: #F4F4F4;
+  border-left: 3px solid #C9C9C9;
+  font-size: 0.92em;
+}
+
+.meta-label {
+  display: table-cell;
+  width: 90px;
+  padding-right: 10px;
+  color: #6B6B6B;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+  vertical-align: top;
+}
+
+.meta-value {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.meta-value p {
+  margin: 0;
+}
+
+.meta-deprecated {
+  background-color: #FFF3F3;
+  border-left-color: #D24B4B;
+}
+
+.meta-deprecated .meta-label {
+  color: #C03535;
+}
+
+.meta-throws {
+  background-color: #FFFBEF;
+  border-left-color: #E0B500;
+}
+
+.meta-throws .meta-label {
+  color: #A98600;
+}

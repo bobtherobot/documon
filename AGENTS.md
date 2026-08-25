@@ -91,13 +91,32 @@ tags. The essentials:
  */
 ```
 
-Rules that trip up models trained on JSDoc:
+### Coming from JSDoc
 
-- `@impliments`, not `@implements`.
-- `@method`, not `@function`. `@property`, not `@prop`.
-- Description goes *before* the tags as plain text; there is no `@description`.
+Most JSDoc spellings are accepted and mapped automatically — `@function`, `@arg`, `@prop`,
+`@augments`, `@implements`, `@returns`, `@const`, `@access`, and the description tags
+(`@desc`, `@description`, `@classdesc`, `@fileoverview`) all work, as does inline
+`{@link target}`. Type expressions pass through untouched, including `{string|number}`,
+`{Array<string>}`, `{*}`, `{?string}` and `{...number}`. `--check` reports what it
+normalized at `info` level.
+
+`@deprecated`, `@throws`, `@since`, `@author`, `@license` and `@todo` are rendered as
+metadata rows rather than discarded.
+
+A few tags are deliberately **not** accepted, because their meaning differs — `--check`
+explains each rather than suggesting a wrong replacement:
+
+- `@fires` / `@emits` — documents which event a method *emits*; `@event` declares the
+  event itself. Declare the event separately.
+- `@memberof` — Documon scopes by `@package` plus the enclosing `@class`/`@module`.
+- `@typedef`, `@callback`, `@enum`, `@inheritdoc` — no equivalent concept.
+
+Still worth knowing:
+
 - Ids are `package.container.member` and double as filenames.
 - `@param` on a `@class` or `@module` parses but never renders.
+- A second `@class` in a file does not inherit that file's `@package` — declare
+  `@package` in each class block, or keep one class per file.
 
 ## Configuration file
 

@@ -88,6 +88,7 @@
 				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.npath<span></div>
 				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/npath.js<span></div>
 			</div>
+								
 								<p>A drop-in replacement for path, that provides cross-playform normalization. Easing the development of cross-platform modules.</p>
 <p>Essentially what we're doing is pre-processing all methods with a path normalization -- always enforcing forward slashes.</p>
 
@@ -191,6 +192,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Adds a trailing slash from path (if doesn't exist).</p>
 
 					
@@ -276,6 +278,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>npath.basename("/foo/bar/bob.txt") --&gt; "bob.txt"<br />
    npath.basename("/foo/bar/bob.txt", ".txt") --&gt; "bob"</p>
 
@@ -395,6 +398,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Normalizes slashes by converting double \ to single \ and / to \ or \ tp / based on the current platform requirements.</p>
 
 					
@@ -480,6 +484,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Returns the path to the parent folder that the item resides within.</p>
 <pre><code>    npath.dirname("/foo/bar/bob.txt") --&gt; "/foo/bar"
   npath.dirname("/foo/sally/yoyo/boob") --&gt; "/foo/sally/yoyo"</code></pre>
@@ -567,6 +572,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Yes, this includes the dot.</p>
 <pre><code>    npath.extname("/foo/bar/bob.txt") --&gt; ".txt"
   npath.extname("/foo/sally/yoyo/boob") --&gt; ""</code></pre>
@@ -654,6 +660,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>The opposite of path.parse().</p>
 <p>Combines the elements of an object into a string. </p>
 <p>Example:</p>
@@ -750,6 +757,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Determines if path is an absolute path.</p>
 
 					
@@ -835,6 +843,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Joins path segments and resolves relativity.</p>
 <pre><code>    path.join('/foo', 'bar', 'baz/asdf', 'quux', '..')
     Returns: '/foo/bar/baz/asdf'</code></pre>
@@ -922,6 +931,7 @@
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Resolves ".." and "." portions of a path.<br />
 Reduces double slashes to single (e.g. // -&gt; /  )<br />
 Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
@@ -1013,6 +1023,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Extracts basic path and file parts.</p>
 <pre><code>path.parse('/home/user/dir/file.txt')
 
@@ -1115,6 +1126,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Creates a relative path between <code>from</code> adn <code>to</code>.</p>
 <pre><code>    path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb')
     // Returns: '../../impl/bbb'</code></pre>
@@ -1235,6 +1247,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Removes a trailing slash from path (if exists).</p>
 
 					
@@ -1320,6 +1333,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						   	<div class="member-description">
                                 
                                 
+								
 								<p>Generates an absolute path based on thenprovided arguments.</p>
 <p>Path construction occurs from right &lt; to &lt; left</p>
 <pre><code>    resolve("/a", "b", "c"); // yields: "/a/b/c"</code></pre>

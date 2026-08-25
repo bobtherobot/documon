@@ -25,6 +25,7 @@
 			}
 		],
 		"source": "Basic, common and simplified asyncronous file methods.\n\n@package documon\n@class  fileutils",
+		"meta": [],
 		"id": "documon.fileutils"
 	},
 	{
@@ -62,6 +63,7 @@
 			}
 		],
 		"source": "Copies a file from one location to another.\n\n@method     copy\n@param      {string}    src     - The source file path.\n@param      {string}    dest    - The destination to copy the source to.",
+		"meta": [],
 		"id": "documon.fileutils.copy"
 	},
 	{
@@ -100,6 +102,7 @@
 			}
 		],
 		"source": "Reads the entire file as a string. NOTE: This is an alias for [read](#read).\n\n@method     Open\n@param      {string}    src    - The source file path.\n@return     {string}           description",
+		"meta": [],
 		"id": "documon.fileutils.Open"
 	},
 	{
@@ -138,6 +141,7 @@
 			}
 		],
 		"source": "Reads the entire file as a string.\n\n@method     read\n@param      {string}    src    - The source file path.\n@return     {string}           description",
+		"meta": [],
 		"id": "documon.fileutils.read"
 	},
 	{
@@ -175,6 +179,7 @@
 			}
 		],
 		"source": "Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for [write](#write).\n\n@method     save\n@param      {string}    src    - The source file path.\n@param      {string}    data    - The text data to save.",
+		"meta": [],
 		"id": "documon.fileutils.save"
 	},
 	{
@@ -212,6 +217,7 @@
 			}
 		],
 		"source": "Saves text data to a file. Overwrites entire file with provided data.\n\n@method     write\n@param      {string}    src    - The source file path.\n@param      {string}    data    - The text data to save.",
+		"meta": [],
 		"id": "documon.fileutils.write"
 	},
 	{
@@ -240,6 +246,7 @@
 			}
 		],
 		"source": "Deletes a file from the system.\n@method     remove\n@param      {string}    src    - The source file path.",
+		"meta": [],
 		"id": "documon.fileutils.remove"
 	},
 	{
@@ -281,6 +288,7 @@
 			}
 		],
 		"source": "Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.\n@method     exists\n@private\n@param      {type}    src    - The source file path.\n@return     {boolean}           - True if exists, false if no file nor folder exists.",
+		"meta": [],
 		"id": "documon.fileutils.exists"
 	}
 ]

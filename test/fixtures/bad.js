@@ -6,10 +6,10 @@
  */
 
 /**
- * Uses a JSDoc tag Documon does not implement.
+ * Uses a tag Documon does not implement and deliberately does not alias.
  *
  * @method  wrong
- * @arg     {string} name - Should be @param.
+ * @typedef {string} NameLike - No type registry to put this in.
  */
 function wrong(name){ }
 

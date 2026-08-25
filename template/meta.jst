@@ -1,0 +1,33 @@
+
+/**
+ * Renders the metadata tags that have no structural place in Documon -- @deprecated,
+ * @throws, @since, @author and friends.
+ *
+ * These come from other documentation systems and used to be discarded, which is
+ * particularly bad for @deprecated: a warning the author wrote, silently not shown.
+ */
+function build(item){
+
+	var meta = item && item.meta;
+
+	if( ! meta || ! meta.length ){
+		return "";
+	}
+
+	var rows = "";
+
+	for(var i=0; i<meta.length; i++){
+		var entry = meta[i];
+		rows += `
+					<div class="meta-row meta-${entry.flag}">
+						<span class="meta-label">${entry.label}</span>
+						<span class="meta-value">${entry.html || entry.text || ""}</span>
+					</div>`;
+	}
+
+	return `
+				<div class="member-meta">${rows}
+				</div>`;
+}
+
+module.exports = build;

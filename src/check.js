@@ -30,6 +30,7 @@ var du      = require('./dirutils');
 var extract = require('./extract');
 var parse   = require('./parse');
 var ignoreModule = require('./ignore');
+var aliases = require('./aliases');
 
 /**
  * @property {array} KIND_TAGS - Tags that declare what an entity *is*. A comment block
@@ -58,39 +59,42 @@ var KNOWN_TAGS = KIND_TAGS.concat(EXTENDISH).concat([
  * reach for that Documon does not implement, mapped to the right answer.
  */
 var COMMON_TYPOS = {
-	"returns"     : null,              // valid, listed for clarity
-	"arg"         : "param",
-	"argument"    : "param",
-	"parameter"   : "param",
-	"prop"        : "property",
-	"member"      : "property",
-	"function"    : "method",
-	"func"        : "method",
-	"fires"       : "event",
-	"emits"       : "event",
-	"augments"    : "extends",
-	"implements"  : "impliments",
-	"desc"        : null,
-	"description" : null,
-	"summary"     : null,
-	"typedef"     : null,
-	"callback"    : null,
-	"async"       : null,
-	"deprecated"  : null,
-	"since"       : null,
-	"author"      : null,
-	"license"     : null,
-	"todo"        : null,
-	"throws"      : null,
-	"exception"   : null,
-	"file"        : null,
-	"fileoverview": null,
-	"ignore"      : null,
-	"access"      : null,
-	"abstract"    : null,
-	"virtual"     : null,
-	"yields"      : null,
-	"template"    : null
+
+	// Tags with a real meaning that Documon deliberately does not alias, because the
+	// meaning is not the same. Suggesting a "fix" here would produce wrong documentation,
+	// so the guidance explains the difference instead.
+	  "fires"       : null
+	, "emits"       : null
+	, "memberof"    : null
+	, "typedef"     : null
+	, "callback"    : null
+	, "enum"        : null
+	, "inheritdoc"  : null
+	, "async"       : null
+	, "abstract"    : null
+	, "virtual"     : null
+	, "generator"   : null
+	, "global"      : null
+	, "inner"       : null
+	, "instance"    : null
+	, "mixes"       : null
+	, "mixin"       : null
+	, "ignore"      : null
+	, "hideconstructor" : null
+};
+
+/**
+ * @property {object} TAG_NOTES - Extra guidance for tags that look like they should work
+ * but genuinely have no Documon equivalent.
+ */
+var TAG_NOTES = {
+	  "fires"      : "@fires documents which event a method emits; @event declares the event itself. Document the event separately with @event and mention it in the description."
+	, "emits"      : "@emits documents which event a method emits; @event declares the event itself. Document the event separately with @event and mention it in the description."
+	, "memberof"   : "Documon scopes by @package plus the enclosing @class/@module, not by @memberof."
+	, "typedef"    : "Documon has no type registry. Describe the shape in the description, or document it as a @class."
+	, "callback"   : "Document the callback as a @method, or describe its signature in the @param description."
+	, "enum"       : "Document each value as a @property, or describe them in the description."
+	, "inheritdoc" : "Use @extends or @inherits; Documon cross-fills inherited members automatically."
 };
 
 /**
@@ -414,8 +418,12 @@ function run(conf, opts){
 				}
 			}
 
-			// Collect markdown links for the cross-reference rule.
-			var linkSource = info.text + "\n" + info.tags.map(function(t){ return t.text || ""; }).join("\n");
+			// Collect markdown links for the cross-reference rule. @example content is
+			// code, not prose -- it routinely contains illustrative ids that were never
+			// meant to resolve -- so it is excluded.
+			var linkSource = info.text + "\n" + info.tags.filter(function(t){
+				return t.flag !== "example";
+			}).map(function(t){ return t.text || ""; }).join("\n");
 			var linkRe = /\[([^\]]*)\]\(([^)\s]+)\)/g;
 			var match;
 			while( (match = linkRe.exec(linkSource)) !== null ){
@@ -431,15 +439,29 @@ function run(conf, opts){
 
 		var blk = blocks[b];
 
-		// --- unknown / misspelled tags
+		// --- unknown tags, and tags we accepted under a different spelling
 		for(var t=0; t<blk.tags.length; t++){
+
 			var tag = blk.tags[t];
+
+			// parseFlag resolves aliases, recording what was actually written. Report it
+			// so the author can converge on one spelling if they want to -- but at info
+			// level, because the documentation built correctly either way.
+			if(tag.writtenFlag && tag.writtenFlag !== tag.flag){
+				findings.push( finding("info", "normalized-tag", blk.file, blk.line,
+					'@' + tag.writtenFlag + ' was read as @' + tag.flag + '.',
+					"Write @" + tag.flag + " to match the rest of Documon.") );
+				continue;
+			}
+
 			if( KNOWN_TAGS.indexOf(tag.flag) === -1 ){
-				var suggestion = COMMON_TYPOS[tag.flag];
+				var note = TAG_NOTES[ String(tag.flag).toLowerCase() ];
+				var suggestion = COMMON_TYPOS[ String(tag.flag).toLowerCase() ];
 				findings.push( finding("warning", "unknown-tag", blk.file, blk.line,
 					'@' + tag.flag + ' is not a Documon tag and will be ignored.',
-					suggestion ? ("Use @" + suggestion + " instead.")
-					           : "Remove it, or fold the information into the description. See TAGS.md.") );
+					note ? note
+					     : (suggestion ? ("Use @" + suggestion + " instead.")
+					                   : "Remove it, or fold the information into the description. See TAGS.md.")) );
 			}
 		}
 

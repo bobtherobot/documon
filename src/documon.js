@@ -44,6 +44,7 @@ var menuBuilder = require('./menuBuilder');
 var more = require('./more');
 var ignoreModule = require('./ignore');
 var llms = require('./llms');
+var checkTags = require('./check');
 //var minimatch = require("minimatch");
 
 // We'll require these dynamically because the user may have defined some other template folder.
@@ -109,6 +110,12 @@ var ignoreList = [];
  * default patterns plus whatever the caller supplied.
  */
 var matcher = null;
+
+/**
+ * @property {object} tally - Counts of tags that were normalized or ignored during a
+ * build, reported as a single line when the build finishes.
+ */
+var tally = { unknown : 0, normalized : 0, unknownNames : {} };
 
 /**
  * @property  {boolean} quiet=false - Supress stdout messages.
@@ -528,6 +535,20 @@ function seeder(file){
 			if(com){
 				com.file = file;
 				parsed.push(com);
+
+				// Count tags that will be silently discarded. A build that drops half the
+				// project used to look identical to one that worked.
+				for(var t=0; t<com.flags.length; t++){
+					var flg = com.flags[t];
+					if(flg.writtenFlag && flg.writtenFlag !== flg.flag){
+						tally.normalized++;
+					} else if( checkTags.KNOWN_TAGS.indexOf(flg.flag) === -1 ){
+						tally.unknown++;
+						if( ! tally.unknownNames[flg.flag] ){
+							tally.unknownNames[flg.flag] = true;
+						}
+					}
+				}
 			}
 		}
 
@@ -607,6 +628,8 @@ function seeder(file){
 function run(conf){
 
 	var result = null;
+
+	tally = { unknown : 0, normalized : 0, unknownNames : {} };
 
 	if(conf){
 
@@ -758,6 +781,16 @@ function run(conf){
 					emitted = llms.write(mainConf, indexed, log, menuObj);
 				}
 
+				// One-line summary of anything that didn't make it into the output.
+				if(tally.unknown){
+					var names = Object.keys(tally.unknownNames).map(function(n){ return "@" + n; });
+					log(" ! " + tally.unknown + " unrecognized tag"
+						+ (tally.unknown === 1 ? "" : "s") + " ignored ("
+						+ names.slice(0, 6).join(", ")
+						+ (names.length > 6 ? ", ..." : "")
+						+ ") -- run with --check for detail", null, quiet);
+				}
+
 				// Done
 				log(mainConf.outputFolder, "DONE mon! Docs ready at:", quiet);
 
@@ -773,7 +806,9 @@ function run(conf){
 					pages        : indexed.length,
 					files        : files.length,
 					index        : homePagePath,
-					emitted      : emitted
+					emitted      : emitted,
+					unknownTags  : tally.unknown,
+					normalizedTags : tally.normalized
 				};
 				
 			}

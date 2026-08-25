@@ -308,6 +308,22 @@ module.exports = (function() {
 				obj.html = doMarkdown( item.text );
 			}
 
+			// Tags that carry real meaning but have no Documon equivalent
+			// (@deprecated, @throws, @since ...) are collected by parse.js so the
+			// template can show them instead of dropping them on the floor.
+			if(item.meta && item.meta.length){
+				obj.meta = [];
+				for(var m=0; m<item.meta.length; m++){
+					var entry = item.meta[m];
+					obj.meta.push({
+						label : entry.label,
+						flag  : entry.flag,
+						text  : entry.text,
+						html  : entry.text ? doMarkdown(entry.text) : ""
+					});
+				}
+			}
+
 			
 		}
 

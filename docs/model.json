@@ -13,7 +13,50 @@
 			"description": "",
 			"file": "root.html",
 			"line": null,
-			"members": []
+			"meta": [],
+			"members": [
+				{
+					"id": "root.flagBody",
+					"kind": "method",
+					"name": "flagBody",
+					"type": null,
+					"access": "private",
+					"line": 100,
+					"inherited": null,
+					"description": "Recovers the full text a tag carried.\n\n`after` holds everything on the tag's own line; `text` holds the parsed description of\nthat line *plus* any continuation lines appended afterwards. Concatenating them\nduplicates the first line, so take `after` for line one and only the continuations from\n`text`.",
+					"meta": [],
+					"params": [
+						{
+							"name": "f",
+							"type": "object",
+							"description": "A parsed flag."
+						}
+					],
+					"returns": {
+						"type": "string",
+						"description": "The tag's full text."
+					}
+				},
+				{
+					"id": "root.normalize",
+					"kind": "method",
+					"name": "normalize",
+					"type": null,
+					"access": "private",
+					"line": 129,
+					"inherited": null,
+					"description": "Post-parse cleanup for tags that don't map one-to-one onto a Documon tag.\n\n- Description tags (`@desc`, `@description`, `@classdesc`, `@fileoverview` ...) have no\n  Documon equivalent because the description is simply the free text above the tags.\n  Their content is folded into that text instead of being thrown away.\n- `@access private` becomes the `@private` flag, and so on.\n- `@const` / `@constant` becomes a read-only `@property`.\n- Metadata tags (`@deprecated`, `@throws`, `@since` ...) are collected onto `meta` so\n  the template can render them, rather than vanishing.",
+					"meta": [],
+					"params": [
+						{
+							"name": "output",
+							"type": "object",
+							"description": "The parsed comment block, modified in place."
+						}
+					],
+					"returns": null
+				}
+			]
 		},
 		{
 			"id": "documon",
@@ -23,7 +66,182 @@
 			"description": "",
 			"file": null,
 			"line": null,
+			"meta": [],
 			"members": []
+		},
+		{
+			"id": "documon.aliases",
+			"name": "aliases",
+			"kind": "module",
+			"package": "documon",
+			"description": "Accepts the tag spellings people (and tools trained on other documentation systems)\nactually write, and maps them onto Documon's vocabulary.\n\n### Why\n\nDocumon derives structure exclusively from tags, which means an unrecognised tag isn't\na cosmetic problem -- it's a missing page. A block written as\n\n\t\t&#64;function area\n\t\t&#64;arg {number} r - Radius.\n\nhas no kind tag as far as Documon is concerned, so the whole entity silently disappears.\nSince `&#64;function` and `&#64;arg` are exact JSDoc synonyms for `&#64;method` and\n`&#64;param`, refusing them buys nothing and costs a page.\n\nAliasing does not weaken the \"structure comes only from comments\" rule: an alias is\nstill an explicit tag, just spelled differently.\n\n### What is deliberately NOT aliased\n\nTags whose meaning differs, even slightly, are left alone so they surface in `--check`\nrather than producing quietly wrong documentation:\n\n- `&#64;fires` / `&#64;emits` -- documents which events a method *emits*. That is not\n  the same as `&#64;event`, which declares an event entity.\n- `&#64;memberof` -- re-parents an entity; Documon scopes by `&#64;package` instead.\n- `&#64;typedef`, `&#64;callback`, `&#64;enum`, `&#64;inheritdoc` -- no equivalent concept.",
+			"file": "src/aliases.js",
+			"line": 38,
+			"meta": [],
+			"members": [
+				{
+					"id": "documon.aliases.ACCESS_VALUES",
+					"kind": "property",
+					"name": "ACCESS_VALUES",
+					"type": "array",
+					"access": "public",
+					"line": 99,
+					"inherited": null,
+					"description": "Legal values of an `@access` tag, each of which maps\nonto a Documon visibility flag of the same name.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
+					"id": "documon.aliases.DESCRIPTION_TAGS",
+					"kind": "property",
+					"name": "DESCRIPTION_TAGS",
+					"type": "array",
+					"access": "public",
+					"line": 77,
+					"inherited": null,
+					"description": "Tags whose content is really just the description.\nDocumon takes the description from the free text above the tags, so these are folded\ninto it rather than dropped.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
+					"id": "documon.aliases.META_TAGS",
+					"kind": "property",
+					"name": "META_TAGS",
+					"type": "object",
+					"access": "public",
+					"line": 84,
+					"inherited": null,
+					"description": "Tags with genuine meaning and no Documon equivalent.\nRather than discarding them, they are collected and rendered in the page's meta\nsection. The value is the label shown to the reader.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
+					"id": "documon.aliases.TAGS",
+					"kind": "property",
+					"name": "TAGS",
+					"type": "object",
+					"access": "public",
+					"line": 43,
+					"inherited": null,
+					"description": "Exact synonyms. The key is what was written, the value is the\nDocumon tag it becomes.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
+					"id": "documon.aliases.inlineLinks",
+					"kind": "method",
+					"name": "inlineLinks",
+					"type": null,
+					"access": "public",
+					"line": 170,
+					"inherited": null,
+					"description": "Rewrites JSDoc's inline link syntax as the markdown Documon already understands.\n\nHandles `{@link target}`, `{@link target|label}`, `{@link target label}`, and the\n`linkcode` / `linkplain` / `tutorial` variants.",
+					"meta": [],
+					"params": [
+						{
+							"name": "text",
+							"type": "string",
+							"description": "Text possibly containing inline links."
+						}
+					],
+					"returns": {
+						"type": "string",
+						"description": "Text with markdown links."
+					}
+				},
+				{
+					"id": "documon.aliases.isAlias",
+					"kind": "method",
+					"name": "isAlias",
+					"type": null,
+					"access": "public",
+					"line": 130,
+					"inherited": null,
+					"description": "Whether a tag is an alias of something else (used to report normalizations).",
+					"meta": [],
+					"params": [
+						{
+							"name": "flag",
+							"type": "string",
+							"description": "The tag as written."
+						}
+					],
+					"returns": {
+						"type": "boolean",
+						"description": "True when `resolve()` would change it."
+					}
+				},
+				{
+					"id": "documon.aliases.isDescription",
+					"kind": "method",
+					"name": "isDescription",
+					"type": null,
+					"access": "public",
+					"line": 141,
+					"inherited": null,
+					"description": "Whether a tag's content should be folded into the description.",
+					"meta": [],
+					"params": [
+						{
+							"name": "flag",
+							"type": "string",
+							"description": "The tag as written."
+						}
+					],
+					"returns": {
+						"type": "boolean",
+						"description": ""
+					}
+				},
+				{
+					"id": "documon.aliases.metaLabel",
+					"kind": "method",
+					"name": "metaLabel",
+					"type": null,
+					"access": "public",
+					"line": 152,
+					"inherited": null,
+					"description": "The display label for a metadata tag, or null when it isn't one.",
+					"meta": [],
+					"params": [
+						{
+							"name": "flag",
+							"type": "string",
+							"description": "The tag as written."
+						}
+					],
+					"returns": {
+						"type": "string",
+						"description": "Label, or null."
+					}
+				},
+				{
+					"id": "documon.aliases.resolve",
+					"kind": "method",
+					"name": "resolve",
+					"type": null,
+					"access": "public",
+					"line": 112,
+					"inherited": null,
+					"description": "Resolves a written tag name to its Documon equivalent.",
+					"meta": [],
+					"params": [
+						{
+							"name": "flag",
+							"type": "string",
+							"description": "The tag as written, without the leading \"@\"."
+						}
+					],
+					"returns": {
+						"type": "string",
+						"description": "The Documon tag name, or the input unchanged."
+					}
+				}
+			]
 		},
 		{
 			"id": "documon.check",
@@ -33,6 +251,7 @@
 			"description": "Validates documentation comments without generating anything.\n\nBecause Documon infers nothing from source code, a missing or misspelled tag doesn't\nproduce a warning -- it produces *silence*, and the symbol simply never appears in the\noutput. That is fine for a human who eyeballs the result, and useless for an automated\nwriter that needs to know whether it succeeded.\n\n`--check` is that feedback signal: parse everything, report what won't work, exit\nnon-zero. Write comments, check, repair, repeat.",
 			"file": "src/check.js",
 			"line": 25,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.check.COMMON_TYPOS",
@@ -40,9 +259,10 @@
 					"name": "COMMON_TYPOS",
 					"type": "object",
 					"access": "public",
-					"line": 59,
+					"line": 60,
 					"inherited": null,
 					"description": "Tags people (and models trained on other doc systems)\nreach for that Documon does not implement, mapped to the right answer.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -52,9 +272,10 @@
 					"name": "EXTENDISH",
 					"type": "array",
 					"access": "public",
-					"line": 42,
+					"line": 43,
 					"inherited": null,
 					"description": "Tags whose value must resolve to another documented id.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -64,9 +285,10 @@
 					"name": "KIND_TAGS",
 					"type": "array",
 					"access": "public",
-					"line": 37,
+					"line": 38,
 					"inherited": null,
 					"description": "Tags that declare what an entity *is*. A comment block\nneeds one of these to become anything at all.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -76,9 +298,23 @@
 					"name": "KNOWN_TAGS",
 					"type": "array",
 					"access": "public",
-					"line": 48,
+					"line": 49,
 					"inherited": null,
 					"description": "Every tag Documon actually acts on. Anything else is\ninert -- it will be silently dropped from the output.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
+					"id": "documon.check.TAG_NOTES",
+					"kind": "property",
+					"name": "TAG_NOTES",
+					"type": "object",
+					"access": "public",
+					"line": 89,
+					"inherited": null,
+					"description": "Extra guidance for tags that look like they should work\nbut genuinely have no Documon equivalent.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -88,9 +324,10 @@
 					"name": "blockId",
 					"type": null,
 					"access": "private",
-					"line": 181,
+					"line": 185,
 					"inherited": null,
 					"description": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.\n\nIds are scoped `package.container.member` -- the same shape as the generated filenames\n(`documon.dirutils.html`). A `@method` therefore inherits the `@class` or `@module`\ndeclared above it in the same file; without that scope every `run()` in the project\nwould look like a collision.",
+					"meta": [],
 					"params": [
 						{
 							"name": "info",
@@ -114,9 +351,10 @@
 					"name": "collect",
 					"type": null,
 					"access": "private",
-					"line": 127,
+					"line": 131,
 					"inherited": null,
 					"description": "Collects the source files that would be parsed by a build with this config.",
+					"meta": [],
 					"params": [
 						{
 							"name": "conf",
@@ -135,9 +373,10 @@
 					"name": "finding",
 					"type": null,
 					"access": "private",
-					"line": 108,
+					"line": 112,
 					"inherited": null,
 					"description": "Creates a finding.",
+					"meta": [],
 					"params": [
 						{
 							"name": "level",
@@ -181,9 +420,10 @@
 					"name": "print",
 					"type": null,
 					"access": "public",
-					"line": 615,
+					"line": 637,
 					"inherited": null,
 					"description": "Prints a report for humans.",
+					"meta": [],
 					"params": [
 						{
 							"name": "report",
@@ -204,9 +444,10 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 334,
+					"line": 338,
 					"inherited": null,
 					"description": "Runs the validator.",
+					"meta": [],
 					"params": [
 						{
 							"name": "conf",
@@ -230,9 +471,10 @@
 					"name": "scanSymbols",
 					"type": null,
 					"access": "private",
-					"line": 294,
+					"line": 298,
 					"inherited": null,
 					"description": "A deliberately shallow symbol scan used only by the coverage advisory.\n\nThis never feeds the render path -- Documon still derives structure exclusively from\ncomments. It exists so an automated writer can be told \"you documented 4 of 11 exported\nthings\" instead of silently shipping a near-empty manual.",
+					"meta": [],
 					"params": [
 						{
 							"name": "source",
@@ -251,9 +493,10 @@
 					"name": "summarize",
 					"type": null,
 					"access": "private",
-					"line": 213,
+					"line": 217,
 					"inherited": null,
 					"description": "Reduces a parsed comment block to the facts the rules care about.",
+					"meta": [],
 					"params": [
 						{
 							"name": "parsed",
@@ -276,6 +519,7 @@
 			"description": "A collection of utilities for manipulating directories syncronously.",
 			"file": "src/dirutils.js",
 			"line": 12,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.dirutils.copydir",
@@ -286,6 +530,7 @@
 					"line": 193,
 					"inherited": null,
 					"description": "Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.",
+					"meta": [],
 					"params": [
 						{
 							"name": "from",
@@ -309,6 +554,7 @@
 					"line": 224,
 					"inherited": null,
 					"description": "Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.",
+					"meta": [],
 					"params": [
 						{
 							"name": "who",
@@ -335,6 +581,7 @@
 					"line": 283,
 					"inherited": null,
 					"description": "Checks to see if a folder exists.",
+					"meta": [],
 					"params": [
 						{
 							"name": "who",
@@ -356,6 +603,7 @@
 					"line": 43,
 					"inherited": null,
 					"description": "Creates a folder at the specified location. The sub-folder heirarchy is\n constructed as needed.\n\n For example if a folder exists here:\n\n \t/path/to/folder\n\n ... but the following sub-folders don't exists:\n\n\t/path/to/folder/sub/one/two/three\n\n  ... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")",
+					"meta": [],
 					"params": [
 						{
 							"name": "dest",
@@ -374,6 +622,7 @@
 					"line": 144,
 					"inherited": null,
 					"description": "Read a folder and returns an object containing all of the files and\n folder in arrays.",
+					"meta": [],
 					"params": [
 						{
 							"name": "from",
@@ -410,6 +659,7 @@
 					"line": 79,
 					"inherited": null,
 					"description": "Collects files from a folder based on the specified extension (or\n extensions). Can be used to search recursively through all sub-folders, and can\n search multiple extensions.\n\n Provided as shortcut for [readdir](#readdir) with your own\n extension-checking filter.",
+					"meta": [],
 					"params": [
 						{
 							"name": "from",
@@ -441,6 +691,7 @@
 					"line": 261,
 					"inherited": null,
 					"description": "Recursively removes a folder and all of it's sub-folders as well.",
+					"meta": [],
 					"params": [
 						{
 							"name": "who",
@@ -468,6 +719,7 @@
 			"description": "The main entry point and processor for Documon, which allows you to run Documon directly from Node.",
 			"file": "src/documon.js",
 			"line": 26,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.documon.dumpData",
@@ -475,9 +727,10 @@
 					"name": "dumpData",
 					"type": "boolean",
 					"access": "public",
-					"line": 120,
+					"line": 127,
 					"inherited": null,
 					"description": "Whether or not to write intermediary files used during processing to the output data folder.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -487,9 +740,10 @@
 					"name": "extensions",
 					"type": "array",
 					"access": "public",
-					"line": 88,
+					"line": 89,
 					"inherited": null,
 					"description": "The list of extensions to search for source code.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -499,9 +753,10 @@
 					"name": "ignoreList",
 					"type": "array",
 					"access": "public",
-					"line": 99,
+					"line": 100,
 					"inherited": null,
 					"description": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -511,9 +766,10 @@
 					"name": "indexRedirectName",
 					"type": "string",
 					"access": "public",
-					"line": 125,
+					"line": 132,
 					"inherited": null,
 					"description": "The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -523,9 +779,10 @@
 					"name": "mainConf",
 					"type": "Object",
 					"access": "public",
-					"line": 83,
+					"line": 84,
 					"inherited": null,
 					"description": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to root.documon.dirutils.makedir](root.documon.dirutils.makedir)\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -535,9 +792,23 @@
 					"name": "quiet",
 					"type": "boolean",
 					"access": "public",
-					"line": 115,
+					"line": 122,
 					"inherited": null,
 					"description": "Supress stdout messages.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
+					"id": "documon.documon.tally",
+					"kind": "property",
+					"name": "tally",
+					"type": "object",
+					"access": "public",
+					"line": 117,
+					"inherited": null,
+					"description": "Counts of tags that were normalized or ignored during a\nbuild, reported as a single line when the build finishes.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -547,9 +818,10 @@
 					"name": "filterFileTypes",
 					"type": null,
 					"access": "private",
-					"line": 152,
+					"line": 159,
 					"inherited": null,
 					"description": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
+					"meta": [],
 					"params": [
 						{
 							"name": "fpath",
@@ -568,9 +840,10 @@
 					"name": "init",
 					"type": null,
 					"access": "private",
-					"line": 188,
+					"line": 195,
 					"inherited": null,
 					"description": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates",
+					"meta": [],
 					"params": [
 						{
 							"name": "conf",
@@ -589,9 +862,10 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 605,
+					"line": 626,
 					"inherited": null,
 					"description": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js",
+					"meta": [],
 					"params": [
 						{
 							"name": "conf",
@@ -607,9 +881,10 @@
 					"name": "seeder",
 					"type": null,
 					"access": "private",
-					"line": 499,
+					"line": 506,
 					"inherited": null,
 					"description": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)",
+					"meta": [],
 					"params": [
 						{
 							"name": "file",
@@ -628,9 +903,10 @@
 					"name": "shouldIgnore",
 					"type": null,
 					"access": "private",
-					"line": 475,
+					"line": 482,
 					"inherited": null,
 					"description": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)",
+					"meta": [],
 					"params": [
 						{
 							"name": "item",
@@ -649,9 +925,10 @@
 					"name": "writeData",
 					"type": null,
 					"access": "private",
-					"line": 141,
+					"line": 148,
 					"inherited": null,
 					"description": "Simplify file write for text or json.",
+					"meta": [],
 					"params": [
 						{
 							"name": "fpath",
@@ -681,6 +958,7 @@
 			"description": "Extracts comments from a file into an array or mulit-dementional array when the \"text\" arg contains mulitple __package__ or __namepsace__ definitions.\n\nEach entry in the returned array will be an object containing 3 properties\n - __start__ : The line number that the comment started on\n - __end__ : The line number that the comment ended on\n - __data__ : The contents of the comment\n\n\tvar myComments = extract(str);\n\tyields : [\n\t\t\t\t{ \n\t\t\t\t\tstart : 12,\n\t\t\t\t\tend : 32,\n\t\t\t\t\tdata : \"the descript\"\n\t\t\t\t},\n\t\t\t\t{ \n\t\t\t\t\tstart : 12,\n\t\t\t\t\tend : 32,\n\t\t\t\t\tdata : \"the descript\"\n\t\t\t\t}\n\t\t]\n\n## A few things of note:\n- The data will NOT include the beginDoc, nor the endDoc strings.\n- Comment prefixing is stripped \n\t\t- *  [star space]\n\t\t- tabs\n\t\t- spaces\n- Code blocks maintain indentation.\n- Splitting on __package__ or __namespace__. When a single file contains mulitple references to a \"__package__\" or \"__namespace__\" comments will split into multiple arrays -- treating the single source file as being mulitple files. \n\nSplit __Example__:\n\n\t&#47;**\n\t* Class A\n\t* @package foo <-- this designates a new \"page\"\n\t*&#47;\n\n\t&#47;**\n\t* Something for A\n\t* @method something\n\t*&#47;\n \n\t&#47;**\n\t* Class B\n\t* @package bar <-- this designates a new \"page\"\n\t*&#47;\n \n\t&#47;**\n\t* Something for B\n\t* @method something\n\t*&#47;\n\t\n\tvar myComments = extract(str);\n\tyields : [\n\t\t\t\t[ // the first \"page\"\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 12,\n\t\t\t\t\t\tend : 32,\n\t\t\t\t\t\tdata : \"Class A ... \"\n\t\t\t\t\t},\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 12,\n\t\t\t\t\t\tend : 32,\n\t\t\t\t\t\tdata : \"Something for A ...\"\n\t\t\t\t\t},\n\t\t\n\t\t\t\t],\n\t\t\t\t[ // the second \"page\"\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 64,\n\t\t\t\t\t\tend : 96,\n\t\t\t\t\t\tdata : \"Class B ... \"\n\t\t\t\t\t},\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 128,\n\t\t\t\t\t\tend : 142,\n\t\t\t\t\t\tdata : \"Something for B ...\"\n\t\t\t\t\t},\n\t\t\t\t,\n\t\t\t]",
 			"file": "src/extract.js",
 			"line": 96,
+			"meta": [],
 			"members": []
 		},
 		{
@@ -691,6 +969,7 @@
 			"description": "Basic, common and simplified asyncronous file methods.",
 			"file": "src/fileutils.js",
 			"line": 13,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.fileutils.copy",
@@ -701,6 +980,7 @@
 					"line": 24,
 					"inherited": null,
 					"description": "Copies a file from one location to another.",
+					"meta": [],
 					"params": [
 						{
 							"name": "src",
@@ -724,6 +1004,7 @@
 					"line": 96,
 					"inherited": null,
 					"description": "Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.",
+					"meta": [],
 					"params": [
 						{
 							"name": "src",
@@ -745,6 +1026,7 @@
 					"line": 45,
 					"inherited": null,
 					"description": "Reads the entire file as a string. NOTE: This is an alias for [read](#read).",
+					"meta": [],
 					"params": [
 						{
 							"name": "src",
@@ -766,6 +1048,7 @@
 					"line": 53,
 					"inherited": null,
 					"description": "Reads the entire file as a string.",
+					"meta": [],
 					"params": [
 						{
 							"name": "src",
@@ -787,6 +1070,7 @@
 					"line": 85,
 					"inherited": null,
 					"description": "Deletes a file from the system.",
+					"meta": [],
 					"params": [
 						{
 							"name": "src",
@@ -805,6 +1089,7 @@
 					"line": 68,
 					"inherited": null,
 					"description": "Saves text data to a file. Overwrites entire file with provided data. NOTE:  This is an alias for [write](#write).",
+					"meta": [],
 					"params": [
 						{
 							"name": "src",
@@ -828,6 +1113,7 @@
 					"line": 76,
 					"inherited": null,
 					"description": "Saves text data to a file. Overwrites entire file with provided data.",
+					"meta": [],
 					"params": [
 						{
 							"name": "src",
@@ -852,6 +1138,7 @@
 			"description": "Decides whether a given file or folder should be skipped.\n\nShared by the builder and by `--check` so both agree on exactly which files are \"in\"\nthe project.\n\n### History\n\nThe original implementation lived inside `documon.js` and had two defects that made\nthe entire ignore system inert:\n\n1. It `return false`'d from *inside* the loop, so only the first pattern was ever\n   consulted.\n2. That first default pattern (`**&#47;.*`) is not a valid regular expression --\n   `new RegExp(\"**&#47;.*\")` throws \"Nothing to repeat\" -- and the `catch` also\n   returned false.\n\nNet effect: `shouldIgnore()` always returned false, so `node_modules`, `.git`, the\ntemplate folder, the output folder, and every user supplied ignore entry were all\nsilently walked. Running Documon at a project root would happily parse its own\ndependencies.",
 			"file": "src/ignore.js",
 			"line": 31,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.ignore.DEFAULTS",
@@ -862,6 +1149,7 @@
 					"line": 38,
 					"inherited": null,
 					"description": "Patterns always applied, expressed as valid regular\nexpressions (the old glob-looking strings never compiled).",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -874,6 +1162,7 @@
 					"line": 107,
 					"inherited": null,
 					"description": "Builds a matcher.\n\nUser supplied entries are matched as documented: a plain substring (\"simple indexOf\")\ntest first, then -- as a convenience -- as a regular expression when the string happens\nto compile as one. Patterns that compile to nothing useful simply never match instead\nof aborting the whole check.\n\nInternal paths (`extra`) are matched literally, never as expressions. They are real\nfilesystem paths, and treating them as patterns is actively dangerous: an output folder\nof `\"./\"` compiles to the regular expression `./`, which matches any character followed\nby a slash -- that is, every path in the project.",
+					"meta": [],
 					"params": [
 						{
 							"name": "userList",
@@ -900,6 +1189,7 @@
 					"line": 54,
 					"inherited": null,
 					"description": "Translates a simple glob into a regular expression. Supports `*` (within a path\nsegment), `**` (across segments) and `?`. Anything else is escaped literally.",
+					"meta": [],
 					"params": [
 						{
 							"name": "glob",
@@ -922,6 +1212,7 @@
 			"description": "A place to store text-heavy data for copyright and CLI usage information.",
 			"file": "src/info.js",
 			"line": 12,
+			"meta": [],
 			"members": []
 		},
 		{
@@ -932,6 +1223,7 @@
 			"description": "Emits machine-readable companions alongside the generated HTML:\n\n- `llms.txt`      -- the [llms.txt convention](https://llmstxt.org): a short, linkable\n                     index of the documentation, meant to be read by a language model\n                     rather than rendered in a browser.\n- `llms-full.txt` -- every page's prose concatenated into one plain-text file, so a\n                     model can ingest the whole manual in a single fetch.\n- `model.json`    -- the structured documentation model (packages, classes, members,\n                     params, types), so other tools can consume Documon output as data\n                     instead of scraping HTML.\n\nAll three are written to the output folder. Disable with `emitLlms:false` /\n`emitModel:false`.",
 			"file": "src/llms.js",
 			"line": 24,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.llms.deHtml",
@@ -942,6 +1234,7 @@
 					"line": 35,
 					"inherited": null,
 					"description": "Strips HTML tags and collapses whitespace, leaving readable plain text.",
+					"meta": [],
 					"params": [
 						{
 							"name": "html",
@@ -960,9 +1253,10 @@
 					"name": "flattenMenu",
 					"type": null,
 					"access": "private",
-					"line": 153,
+					"line": 171,
 					"inherited": null,
 					"description": "Flattens the menu tree into a list of linkable pages.",
+					"meta": [],
 					"params": [
 						{
 							"name": "nodes",
@@ -989,6 +1283,7 @@
 					"line": 67,
 					"inherited": null,
 					"description": "Joins a base URL and a page filename.",
+					"meta": [],
 					"params": [
 						{
 							"name": "base",
@@ -1007,6 +1302,28 @@
 					}
 				},
 				{
+					"id": "documon.llms.metaEntry",
+					"kind": "method",
+					"name": "metaEntry",
+					"type": null,
+					"access": "private",
+					"line": 92,
+					"inherited": null,
+					"description": "Normalizes a metadata entry (@deprecated, @throws, @since ...) for the model.",
+					"meta": [],
+					"params": [
+						{
+							"name": "entry",
+							"type": "object",
+							"description": "A collected metadata tag."
+						}
+					],
+					"returns": {
+						"type": "object",
+						"description": "`{ tag, label, text }`."
+					}
+				},
+				{
 					"id": "documon.llms.modelPage",
 					"kind": "method",
 					"name": "modelPage",
@@ -1015,6 +1332,7 @@
 					"line": 84,
 					"inherited": null,
 					"description": "Reduces a built page into the flat record used by `model.json`.",
+					"meta": [],
 					"params": [
 						{
 							"name": "page",
@@ -1033,9 +1351,10 @@
 					"name": "readMore",
 					"type": null,
 					"access": "private",
-					"line": 190,
+					"line": 208,
 					"inherited": null,
 					"description": "Collects the markdown of the \"more\" folder, in menu order, for `llms-full.txt`.\n\nThe prose pages are usually the part a reader most needs -- guides, concepts, tag\nreferences -- and they are already plain text, so they go in verbatim.",
+					"meta": [],
 					"params": [
 						{
 							"name": "folder",
@@ -1054,9 +1373,10 @@
 					"name": "write",
 					"type": null,
 					"access": "public",
-					"line": 253,
+					"line": 271,
 					"inherited": null,
 					"description": "Writes `llms.txt`, `llms-full.txt` and `model.json`.",
+					"meta": [],
 					"params": [
 						{
 							"name": "conf",
@@ -1094,6 +1414,7 @@
 			"description": "Writes to the console. Will accept an object or array as well as string, boolena and other and prepare them for proper presentation to the console.",
 			"file": "src/log.js",
 			"line": 32,
+			"meta": [],
 			"members": []
 		},
 		{
@@ -1104,6 +1425,7 @@
 			"description": "Converts markdown to HTML, with the \"definition list\" extension from markdown-extra\nwired in.\n\nUsed for comment descriptions and for the markdown files in the \"more\" folder.",
 			"file": "src/markdown.js",
 			"line": 19,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.markdown.definitionLists",
@@ -1111,9 +1433,10 @@
 					"name": "definitionLists",
 					"type": null,
 					"access": "private",
-					"line": 52,
+					"line": 59,
 					"inherited": null,
 					"description": "Find and convert markdown extra definition lists into html.",
+					"meta": [],
 					"params": [
 						{
 							"name": "text",
@@ -1132,9 +1455,10 @@
 					"name": "processDefListItems",
 					"type": null,
 					"access": "private",
-					"line": 120,
+					"line": 127,
 					"inherited": null,
 					"description": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.",
+					"meta": [],
 					"params": [
 						{
 							"name": "listStr",
@@ -1153,9 +1477,10 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 31,
+					"line": 32,
 					"inherited": null,
 					"description": "Converts a markdown string to HTML.",
+					"meta": [],
 					"params": [
 						{
 							"name": "str",
@@ -1178,6 +1503,7 @@
 			"description": "Takes the source context object (which contains the entire resolved documentation data) and extracts meta data adn refactors / organizes it into an object formatted for \"MenuTree.js\".\n\nConstructs a multi-dimensional object/array that represents the menu tree ultimately resulting in the output \"out/_menuData.js\" file, which is formatted for and picked up by the \"MenuTree.js\" on the index.html page.",
 			"file": "src/menuBuilder.js",
 			"line": 17,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.menuBuilder.buildSections",
@@ -1188,6 +1514,7 @@
 					"line": 43,
 					"inherited": null,
 					"description": "Checks the provided context to see if an array of items exists for the associated major kind of sections (packages, classes, property, events, methods).\n\nFor example, the provided context will take the form of:\n\n\t\tcontext : {\n\t\t\tclasses \t: [ a, b, c ]\n\t\t\tproperties \t: [ a, b, c ]\n\t\t\tetc\n\t\t}\n\nIf the array exists, we build out that major kind as a section\n\nBuilds the context's major sections into the target array (kds)",
+					"meta": [],
 					"params": [
 						{
 							"name": "ctx",
@@ -1214,6 +1541,7 @@
 					"line": 108,
 					"inherited": null,
 					"description": "Checks to see if a major type exists.",
+					"meta": [],
 					"params": [
 						{
 							"name": "item",
@@ -1235,6 +1563,7 @@
 					"line": 217,
 					"inherited": null,
 					"description": "The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh \"window\" scope. So they just dnagle out there on the tree.",
+					"meta": [],
 					"params": [
 						{
 							"name": "ctx",
@@ -1256,6 +1585,7 @@
 					"line": 138,
 					"inherited": null,
 					"description": "Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.",
+					"meta": [],
 					"params": [
 						{
 							"name": "ctx",
@@ -1283,6 +1613,7 @@
 			"description": "A localized version of mimimist (minimist has no dependancies), for processing CLI arguments.\nhttps://github.com/substack/minimist",
 			"file": "src/minimist.js",
 			"line": 15,
+			"meta": [],
 			"members": []
 		},
 		{
@@ -1293,6 +1624,7 @@
 			"description": "Discovers, parses, converts markdown to HTML and injects menu with \"more\" docs.\n\nProcesses the \"more\" markdown folder by:\n- Building the menu to reflect the \"more folder\" directory structure.\n- Translates markdown into HTML",
 			"file": "src/more.js",
 			"line": 32,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.More.docGoesHereStr",
@@ -1303,6 +1635,7 @@
 					"line": 67,
 					"inherited": null,
 					"description": "The string used as the flag as to where to insert the parsed source documents into the menu.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1315,6 +1648,7 @@
 					"line": 47,
 					"inherited": null,
 					"description": "A place to store generated page objects with a direct reference to their ID via flat[id].",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1327,6 +1661,7 @@
 					"line": 73,
 					"inherited": null,
 					"description": "The regular expression use to split the doc on the [metaString](#metaString)",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1339,6 +1674,7 @@
 					"line": 61,
 					"inherited": null,
 					"description": "The delimiting string used to seperate the meta JSON from normal markdown.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1351,6 +1687,7 @@
 					"line": 54,
 					"inherited": null,
 					"description": "Used to mark where filename numbering terminates and the \"title\" begins. User configurable via the [moreQuirkDelimiter option](more.options).",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1363,6 +1700,7 @@
 					"line": 192,
 					"inherited": null,
 					"description": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.",
+					"meta": [],
 					"params": [
 						{
 							"name": "id",
@@ -1389,6 +1727,7 @@
 					"line": 256,
 					"inherited": null,
 					"description": "See class description.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1401,6 +1740,7 @@
 					"line": 98,
 					"inherited": null,
 					"description": "Opens, catalogs and builds a new page from the provided file path.",
+					"meta": [],
 					"params": [
 						{
 							"name": "url",
@@ -1427,6 +1767,7 @@
 					"line": 240,
 					"inherited": null,
 					"description": "A safe replacement for standard JSON parsing that mitigates errors.",
+					"meta": [],
 					"params": [
 						{
 							"name": "val",
@@ -1448,6 +1789,7 @@
 					"line": 205,
 					"inherited": null,
 					"description": "splits the numbering off of eight filename and returns the filename with out numbering",
+					"meta": [],
 					"params": [
 						{
 							"name": "filename",
@@ -1475,6 +1817,7 @@
 			"description": "A drop-in replacement for path, that provides cross-playform normalization. Easing the development of cross-platform modules.\n\nEssentially what we're doing is pre-processing all methods with a path normalization -- always enforcing forward slashes.",
 			"file": "src/npath.js",
 			"line": 15,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.npath.delimiter",
@@ -1485,6 +1828,7 @@
 					"line": 45,
 					"inherited": null,
 					"description": "Platform environment PATH delimiter.\n\nExample of how PATH appears on Windows:\n\n\t\t'C:\\Windows\\system32;C:\\Windows;C:\\Program Files\\node\\'\n\nExample of how PATH appears on POSIX systems (Mac Unix):\n\n\t\t'/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin'\n\nRead the PATH with Node:\n\n\t\tconsole.log(process.env.PATH)\n\n\t\tWindows \t= ;\n  \tPOSIX\t= :",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1497,6 +1841,7 @@
 					"line": 321,
 					"inherited": null,
 					"description": "Adds a trailing slash from path (if doesn't exist).",
+					"meta": [],
 					"params": [
 						{
 							"name": "path",
@@ -1518,6 +1863,7 @@
 					"line": 108,
 					"inherited": null,
 					"description": "npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\"\n   npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"",
+					"meta": [],
 					"params": [
 						{
 							"name": "path",
@@ -1544,6 +1890,7 @@
 					"line": 59,
 					"inherited": null,
 					"description": "Normalizes slashes by converting double \\\\ to single \\ and / to \\\\ or \\\\ tp / based on the current platform requirements.",
+					"meta": [],
 					"params": [
 						{
 							"name": "arg",
@@ -1565,6 +1912,7 @@
 					"line": 123,
 					"inherited": null,
 					"description": "Returns the path to the parent folder that the item resides within.\n\t\n\t\tnpath.dirname(\"/foo/bar/bob.txt\") --> \"/foo/bar\"\n  \tnpath.dirname(\"/foo/sally/yoyo/boob\") --> \"/foo/sally/yoyo\"",
+					"meta": [],
 					"params": [
 						{
 							"name": "Vpath",
@@ -1586,6 +1934,7 @@
 					"line": 137,
 					"inherited": null,
 					"description": "Yes, this includes the dot.\n\n\t\tnpath.extname(\"/foo/bar/bob.txt\") --> \".txt\"\n  \tnpath.extname(\"/foo/sally/yoyo/boob\") --> \"\"",
+					"meta": [],
 					"params": [
 						{
 							"name": "Vpath",
@@ -1607,6 +1956,7 @@
 					"line": 247,
 					"inherited": null,
 					"description": "The opposite of path.parse().\n\nCombines the elements of an object into a string. \n\nExample:\n\t\t\n\t    {\n\t        root : \"/\",\n\t        dir : \"/home/user/dir\",\n\t        base : \"file.txt\",\n\t        ext : \".txt\",\n\t        name : \"file\"\n\t    }\n\n\nIs converted to\n\n\t    /home/user/dir/file.txt",
+					"meta": [],
 					"params": [
 						{
 							"name": "obj",
@@ -1628,6 +1978,7 @@
 					"line": 149,
 					"inherited": null,
 					"description": "Determines if path is an absolute path.",
+					"meta": [],
 					"params": [
 						{
 							"name": "Vpath",
@@ -1649,6 +2000,7 @@
 					"line": 263,
 					"inherited": null,
 					"description": "Joins path segments and resolves relativity.\n\n\t\tpath.join('/foo', 'bar', 'baz/asdf', 'quux', '..')\n\t\tReturns: '/foo/bar/baz/asdf'",
+					"meta": [],
 					"params": [
 						{
 							"name": "paths...",
@@ -1670,6 +2022,7 @@
 					"line": 168,
 					"inherited": null,
 					"description": "Resolves \"..\" and \".\" portions of a path.\nReduces double slashes to single (e.g. // -> /  )\nForces back-slashes to forward slashes (e.g. \\ -> /  )\n\nRetains trailing slash if exists.\n\t\t\n  \tnpath.normalize(\"/foo/////bar\") --> \"/foo/bar\"\n  \tnpath.normalize(\"/foo/bar/../boob\") --> \"/foo/boob\"\n  \tnpath.normalize(\"./foo/\") --> \"/current/working/dir/foo/\"",
+					"meta": [],
 					"params": [
 						{
 							"name": "Vpath",
@@ -1691,6 +2044,7 @@
 					"line": 200,
 					"inherited": null,
 					"description": "Extracts basic path and file parts.\n\n\tpath.parse('/home/user/dir/file.txt')\n\n\t// Yeilds\n\t{\n\t\troot : \"/\",\n\t\tdir : \"/home/user/dir\",\n\t\tbase : \"file.txt\",\n\t\text : \".txt\",\n\t\tname : \"file\"\n\t}",
+					"meta": [],
 					"params": [
 						{
 							"name": "Vpath",
@@ -1712,6 +2066,7 @@
 					"line": 218,
 					"inherited": null,
 					"description": "Creates a relative path between `from` adn `to`.\n\n\t\tpath.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb')\n\t\t// Returns: '../../impl/bbb'",
+					"meta": [],
 					"params": [
 						{
 							"name": "from",
@@ -1738,6 +2093,7 @@
 					"line": 306,
 					"inherited": null,
 					"description": "Removes a trailing slash from path (if exists).",
+					"meta": [],
 					"params": [
 						{
 							"name": "path",
@@ -1759,6 +2115,7 @@
 					"line": 294,
 					"inherited": null,
 					"description": "Generates an absolute path based on thenprovided arguments.\n\nPath construction occurs from right < to < left\n\n\t\tresolve(\"/a\", \"b\", \"c\"); // yields: \"/a/b/c\"\n\nIf an absolute path is resolved during construction, the items to the left are ignored.\n\n\t\tresolve(\"a\", \"/b\", \"c\"); // yields: \"/b/c\" (\"a\" is ignored)\n\nIf an absolute path is not resolved after constructing all arguments, the CWD is inserted.\n\n\t\tresolve(\"a\", \"b\", \"c\"); // yields: \"/current/working/dir/a/b/c\"\n\nRelative paths are automatically resolved:\n\n\t\tresolve(\"/a\", \"../b\", \"c\"); // yields \"/a/c\"",
+					"meta": [],
 					"params": [
 						{
 							"name": "path...",
@@ -1781,6 +2138,7 @@
 			"description": "A cross-platform way to launch files from Node.\n\nDirect copy of:\nnpmjs: \thttps://www.npmjs.com/package/opn\ngithub: https://github.com/sindresorhus/opn\n\n\n### USAGE \n\n\n\tconst opn = require('opn');\n\n\t// Opens the image in the default image viewer\n\topn('unicorn.png').then(() => {\n\t\t// image viewer closed\n\t});\n\n\t// Opens the url in the default browser\n\topn('http://sindresorhus.com');\n\n\t// Specify the app to open in\n\topn('http://sindresorhus.com', {app: 'firefox'});\n\n\t// Specify app arguments\n\topn('http://sindresorhus.com', {app: ['google chrome', '--incognito']});",
 			"file": "src/opn.js",
 			"line": 36,
+			"meta": [],
 			"members": []
 		},
 		{
@@ -1791,6 +2149,7 @@
 			"description": "Organizes the parsed source-code data into a single object that takes the following form:\n\n\torgan = {\n\n\t\t// There will always be a root node with an absolute ID of \"root\"\n\t\tid : \"root\",\n\t\tname : \"root\",\n\t\tfile : \"root.html\",\n\t\tdocfile : \"root.html\",\n\n\t\tpackages : [\n\n\t\t\t\t{ \n\t\t\t\t\tpackages : foo\n\n\t\t\t\t\t// Classes included in this package\n\t\t\t\t\tclasses : [\n\n\t\t\t\t\t\t{\t\n\t\t\t\t\t\t\tclass : \"foo\"\n\t\t\t\t\t\t\tmethods : [],\n\t\t\t\t\t\t\tproperties : [],\n\t\t\t\t\t\t\tevents : []\n\t\t\t\t\t\t},\n\n\t\t\t\t\t\t... etc ... \n\t\t\t\t\t],\n\n\t\t\t\t\t// Loose stuff found in this package\n\t\t\t\t\tmethods : [],\n\t\t\t\t\tproperties : [],\n\t\t\t\t\tevents : []\n\t\t\t\t}\n\t\t\n\t\t],\n\n\t\t// Independent classes that are not part of any package\n\t\tclasses : [\n\t\t\t{\t\n\t\t\t\tclass : \"foo\"\n\t\t\t\tmethods : [],\n\t\t\t\tproperties : [],\n\t\t\t\tevents : []\n\t\t\t}\n\t\t\t... etc ... \n\t\t],\n\n\t\t// Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope)\n\t\tmethods : [],\n\t\tproperties : [],\n\t\tevents : [],\n\n\t};\n \n\nAll source code hangs off of the \"root\" node and is organized according it's relationship to a package or class.\n\nThis organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.",
 			"file": "src/organizer.js",
 			"line": 71,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.organizer.flatClassList",
@@ -1801,6 +2160,7 @@
 					"line": 100,
 					"inherited": null,
 					"description": "We maintain a \"flat list\" as a means to cross reference items that are stuffed into the main array.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1813,6 +2173,7 @@
 					"line": 80,
 					"inherited": null,
 					"description": "A reference to the main configuration object. See [documon.mainConf](documon.mainConf).",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1825,6 +2186,7 @@
 					"line": 85,
 					"inherited": null,
 					"description": "The primary object we store all data into.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1837,6 +2199,7 @@
 					"line": 106,
 					"inherited": null,
 					"description": "The complete list of sections a class or package can contain.",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1849,6 +2212,7 @@
 					"line": 95,
 					"inherited": null,
 					"description": "The class template processor (jst file).",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1861,6 +2225,7 @@
 					"line": 90,
 					"inherited": null,
 					"description": "The package template processor (jst file).",
+					"meta": [],
 					"params": [],
 					"returns": null
 				},
@@ -1873,6 +2238,7 @@
 					"line": 550,
 					"inherited": null,
 					"description": "Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.",
+					"meta": [],
 					"params": [
 						{
 							"name": "VtaggedPage",
@@ -1891,6 +2257,7 @@
 					"line": 522,
 					"inherited": null,
 					"description": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.",
+					"meta": [],
 					"params": [
 						{
 							"name": "list",
@@ -1914,6 +2281,7 @@
 					"line": 480,
 					"inherited": null,
 					"description": "Adds a new package to the main packages list. Creates a namespace (package) if not exist.",
+					"meta": [],
 					"params": [
 						{
 							"name": "list",
@@ -1937,6 +2305,7 @@
 					"line": 437,
 					"inherited": null,
 					"description": "Adds a class or package to the class or package object.",
+					"meta": [],
 					"params": [
 						{
 							"name": "existingObj",
@@ -1960,6 +2329,7 @@
 					"line": 632,
 					"inherited": null,
 					"description": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht [menuBuilder](documon.menuBuilder)",
+					"meta": [],
 					"params": [],
 					"returns": {
 						"type": "type",
@@ -1975,6 +2345,7 @@
 					"line": 309,
 					"inherited": null,
 					"description": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.",
+					"meta": [],
 					"params": [
 						{
 							"name": "params",
@@ -1993,6 +2364,7 @@
 					"line": 381,
 					"inherited": null,
 					"description": "A classic array merge routine.",
+					"meta": [],
 					"params": [
 						{
 							"name": "a",
@@ -2024,6 +2396,7 @@
 					"line": 585,
 					"inherited": null,
 					"description": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.",
+					"meta": [],
 					"params": [
 						{
 							"name": "obj",
@@ -2048,6 +2421,7 @@
 			"description": "Fills the output object with the following properties (if they exist)\n\n\t\tobject {\n\t\t\tsource \t\t// Entire first line inlcuding the @flag (only first line)\n\t\t\tafter\t\t// Everything after the @flag\n\t\t\tname\t\t// One word following {type}. Or first word after the @flag definition when no {type}.\n\t\t\tchildren\t// name.kid - Array of children\n\t\t\tparent\t\t// if am a child, this is my parent.\n\t\t\tflag\t\t// @flag token with @ stripped\n\t\t\tdefaultVal\t// name=val\n\t\t\tafterType\t// first line after\n\t\t\ttext\t\t// \n\t\t}\n\nHere's an expanded and exmple'd definition list\n\nsource\n: The entire comment block\n\nafter\n: Everything after the @flag token \"as is\" (kinda like source)\n\n- __source__ : The entire comment block\n- __after__ : \t\tEverything after the @flag token \"as is\" (kinda like source)\n\n\te.g. in this line:",
 			"file": "src/parseFlag.js",
 			"line": 192,
+			"meta": [],
 			"members": []
 		},
 		{
@@ -2058,6 +2432,7 @@
 			"description": "Clean text so it has:\n- only alpha numeric characters\n- strips newlines and tabs.\n- single word results ignored\n\nUsed by [tag.js](root.documon.tag) and [more.js](root.documon.more)",
 			"file": "src/searchPrep.js",
 			"line": 21,
+			"meta": [],
 			"members": []
 		},
 		{
@@ -2068,6 +2443,7 @@
 			"description": "Processes the following flags\n\n- property\n- package, namespace\n- \n- property\n- method\n- event\n- class\n- module\n- \n- private\n- protected\n- static\n- public\n- readonly\n- \n- overrides\n- impliments\n- extends\n- inherits\n- \n- constructor\n- example\n- param\n- return, returns\n- \n- type\n- order\n- optional\n- header\n- defaultVal, default\n- see\n- requires\n\n\nFills the flags object\n\n\"Source Item\", are manufactured from the [parseFlag](parseFlag) class, and generally provided to many of the methods as the \"item\" argument, and they contain the following fields:\n\n\t\tSource Item {\n\t\t\tsource \t\t// Entire first line inlcuding the @flag (only first line)\n\t\t \tafter\t\t// Everything after the @flag\n\t\t\tname\t\t// One word following {type}. Or first word after the @flag definition when no {type}.\n\t\t\tchildren\t// name.kid - Array of children\n\t\t\tparent\t\t// if am a child, this is my parent.\n\t\t\tflag\t\t// @flag token with @ stripped\n\t\t\tdefaultVal\t// name=val\n\t\t\tafterType\t// first line after\n\t\t\ttext\t\t// \n\t\t}",
 			"file": "src/tag.js",
 			"line": 69,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.tag.fillFlag",
@@ -2075,9 +2451,10 @@
 					"name": "fillFlag",
 					"type": null,
 					"access": "public",
-					"line": 438,
+					"line": 454,
 					"inherited": null,
 					"description": "[fillFlag description]",
+					"meta": [],
 					"params": [
 						{
 							"name": "item",
@@ -2101,9 +2478,10 @@
 					"name": "processItems",
 					"type": null,
 					"access": "private",
-					"line": 341,
+					"line": 357,
 					"inherited": null,
 					"description": "Process flags for an entire list of items",
+					"meta": [],
 					"params": [
 						{
 							"name": "Vlist",
@@ -2122,6 +2500,7 @@
 					"line": 281,
 					"inherited": null,
 					"description": "processOne",
+					"meta": [],
 					"params": [
 						{
 							"name": "item",
@@ -2144,6 +2523,7 @@
 			"description": "A collection of useful helper untilities.",
 			"file": "src/utils.js",
 			"line": 13,
+			"meta": [],
 			"members": [
 				{
 					"id": "documon.utils.sort_by",
@@ -2154,6 +2534,7 @@
 					"line": 150,
 					"inherited": null,
 					"description": "Description",
+					"meta": [],
 					"params": [
 						{
 							"name": "field",

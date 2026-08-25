@@ -105,6 +105,193 @@
 		        <a name="properties"></a>
 		        
 		        
+							<a name="methods"></a>
+		            		<div class="part-methods">
+					            <div class="heading-part">Methods</div>
+					            <a name="root.flagBody"></a><a name="flagBody"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		flagBody (<span class="method-arguments">f</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/parse.js</span>
+						    		<span class="member-line-number">100</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Recovers the full text a tag carried.</p>
+<p><code>after</code> holds everything on the tag's own line; <code>text</code> holds the parsed description of<br />
+that line <em>plus</em> any continuation lines appended afterwards. Concatenating them<br />
+duplicates the first line, so take <code>after</code> for line one and only the continuations from<br />
+<code>text</code>.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">f</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>A parsed flag.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">string</span>
+					</div>
+			      	     	<div class="member"><p>The tag's full text.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="root.normalize"></a><a name="normalize"></a>
+
+						<div class="member" data-access="private" >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		normalize (<span class="method-arguments">output</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/parse.js</span>
+						    		<span class="member-line-number">129</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Post-parse cleanup for tags that don't map one-to-one onto a Documon tag.</p>
+<ul>
+<li>Description tags (<code>@desc</code>, <code>@description</code>, <code>@classdesc</code>, <code>@fileoverview</code> …) have no<br />
+Documon equivalent because the description is simply the free text above the tags.<br />
+Their content is folded into that text instead of being thrown away.</li>
+<li><code>@access private</code> becomes the <code>@private</code> flag, and so on.</li>
+<li><code>@const</code> / <code>@constant</code> becomes a read-only <code>@property</code>.</li>
+<li>Metadata tags (<code>@deprecated</code>, <code>@throws</code>, <code>@since</code> …) are collected onto <code>meta</code> so<br />
+the template can render them, rather than vanishing.</li>
+</ul>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">output</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The parsed comment block, modified in place.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				
+				            </div>
+						
+						
 		    </div>
 			
 		

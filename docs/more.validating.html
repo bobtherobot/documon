@@ -99,7 +99,12 @@ FAIL</code></pre>
 <tr>
 <td><code>unknown-tag</code></td>
 <td>warning</td>
-<td>A tag Documon doesn't implement. Anything you wrote under it is dropped. Where there's an obvious equivalent (<code>@arg</code> &rarr; <code>@param</code>) the fix names it.</td>
+<td>A tag Documon doesn't implement, and doesn't alias. Anything you wrote under it is dropped. The <code>fix</code> explains why there is no equivalent.</td>
+</tr>
+<tr>
+<td><code>normalized-tag</code></td>
+<td>info</td>
+<td>A tag accepted under another spelling (<code>@arg</code> read as <code>@param</code>). Nothing is lost; shown so you can converge on one spelling.</td>
 </tr>
 <tr>
 <td><code>duplicate-id</code></td>

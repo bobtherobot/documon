@@ -25,6 +25,7 @@
 			}
 		],
 		"source": "\nA collection of useful helper untilities.\n\n@class  utils\n@package documon",
+		"meta": [],
 		"id": "documon.utils"
 	},
 	{
@@ -88,6 +89,7 @@
 			}
 		],
 		"source": "Description\n@private \n@method sort_by\n@param {} field\n@param {} rev\n@param {} num\n@return FunctionExpression",
+		"meta": [],
 		"id": "documon.utils.sort_by"
 	}
 ]

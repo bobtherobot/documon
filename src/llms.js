@@ -82,6 +82,22 @@ function joinUrl(base, file){
  * @param      {object}  page - A page produced by `organizer.buildPages()`.
  * @return     {object}       - A serializable record.
  */
+/**
+ * Normalizes a metadata entry (@deprecated, @throws, @since ...) for the model.
+ *
+ * @method     metaEntry
+ * @private
+ * @param      {object}  entry - A collected metadata tag.
+ * @return     {object}        - `{ tag, label, text }`.
+ */
+function metaEntry(entry){
+	return {
+		tag   : entry.flag,
+		label : entry.label,
+		text  : (entry.text || "").trim()
+	};
+}
+
 function modelPage(page){
 
 	var ctx = page.ctx || {};
@@ -94,6 +110,7 @@ function modelPage(page){
 		description : (ctx.text || "").trim(),
 		file        : ctx.file || null,
 		line        : typeof ctx.line === "number" ? ctx.line : null,
+		meta        : (ctx.meta || []).map(metaEntry),
 		members     : []
 	};
 
@@ -124,6 +141,7 @@ function modelPage(page){
 				line        : typeof m.line === "number" ? m.line : null,
 				inherited   : m.inheritedFrom || m.inherited || null,
 				description : (m.text || "").trim(),
+				meta        : (m.meta || []).map(metaEntry),
 				params      : (m.params || []).map(function(prm){
 					return {
 						name        : prm.name || null,
@@ -368,6 +386,10 @@ function write(conf, pages, log, menu){
 				full.push("### " + mem.name + " (" + mem.kind + ")"
 					+ (mem.type ? " -> " + mem.type : "")
 					+ (mem.access !== "public" ? " [" + mem.access + "]" : ""));
+				for(var mt=0; mt<mem.meta.length; mt++){
+					full.push("");
+					full.push(mem.meta[mt].label.toUpperCase() + ": " + mem.meta[mt].text);
+				}
 				if(mem.description){
 					full.push("");
 					full.push(mem.description);

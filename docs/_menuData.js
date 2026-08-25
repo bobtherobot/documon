@@ -536,6 +536,104 @@ var MenuData = [
 								"kind": "classes",
 								"children": [
 									{
+										"id": "documon.aliases",
+										"url": "documon.aliases.html#documon.aliases",
+										"label": "aliases",
+										"kind": "classes-item",
+										"access": "public",
+										"inherits": 0,
+										"children": [
+											{
+												"id": "documon.aliases-properties",
+												"url": "documon.aliases.html#properties",
+												"label": "properties",
+												"kind": "properties",
+												"children": [
+													{
+														"id": "documon.aliases.ACCESS_VALUES",
+														"url": "documon.aliases.html#documon.aliases.ACCESS_VALUES",
+														"label": "ACCESS_VALUES",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.aliases.DESCRIPTION_TAGS",
+														"url": "documon.aliases.html#documon.aliases.DESCRIPTION_TAGS",
+														"label": "DESCRIPTION_TAGS",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.aliases.META_TAGS",
+														"url": "documon.aliases.html#documon.aliases.META_TAGS",
+														"label": "META_TAGS",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.aliases.TAGS",
+														"url": "documon.aliases.html#documon.aliases.TAGS",
+														"label": "TAGS",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													}
+												]
+											},
+											{
+												"id": "documon.aliases-methods",
+												"url": "documon.aliases.html#methods",
+												"label": "methods",
+												"kind": "methods",
+												"children": [
+													{
+														"id": "documon.aliases.inlineLinks",
+														"url": "documon.aliases.html#documon.aliases.inlineLinks",
+														"label": "inlineLinks",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.aliases.isAlias",
+														"url": "documon.aliases.html#documon.aliases.isAlias",
+														"label": "isAlias",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.aliases.isDescription",
+														"url": "documon.aliases.html#documon.aliases.isDescription",
+														"label": "isDescription",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.aliases.metaLabel",
+														"url": "documon.aliases.html#documon.aliases.metaLabel",
+														"label": "metaLabel",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.aliases.resolve",
+														"url": "documon.aliases.html#documon.aliases.resolve",
+														"label": "resolve",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													}
+												]
+											}
+										]
+									},
+									{
 										"id": "documon.check",
 										"url": "documon.check.html#documon.check",
 										"label": "check",
@@ -577,6 +675,14 @@ var MenuData = [
 														"id": "documon.check.KNOWN_TAGS",
 														"url": "documon.check.html#documon.check.KNOWN_TAGS",
 														"label": "KNOWN_TAGS",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.check.TAG_NOTES",
+														"url": "documon.check.html#documon.check.TAG_NOTES",
+														"label": "TAG_NOTES",
 														"kind": "properties-item",
 														"access": "public",
 														"inherits": 0
@@ -781,6 +887,14 @@ var MenuData = [
 														"id": "documon.documon.quiet",
 														"url": "documon.documon.html#documon.documon.quiet",
 														"label": "quiet",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.documon.tally",
+														"url": "documon.documon.html#documon.documon.tally",
+														"label": "tally",
 														"kind": "properties-item",
 														"access": "public",
 														"inherits": 0
@@ -1019,6 +1133,14 @@ var MenuData = [
 														"id": "documon.llms.joinUrl",
 														"url": "documon.llms.html#documon.llms.joinUrl",
 														"label": "joinUrl",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.llms.metaEntry",
+														"url": "documon.llms.html#documon.llms.metaEntry",
+														"label": "metaEntry",
 														"kind": "methods-item",
 														"access": "private",
 														"inherits": 0
@@ -1636,6 +1758,30 @@ var MenuData = [
 								]
 							}
 						]
+					}
+				]
+			},
+			{
+				"id": "root-methods",
+				"url": "root.html#methods",
+				"label": "methods",
+				"kind": "methods",
+				"children": [
+					{
+						"id": "root.flagBody",
+						"url": "root.html#root.flagBody",
+						"label": "flagBody",
+						"kind": "methods-item",
+						"access": "private",
+						"inherits": 0
+					},
+					{
+						"id": "root.normalize",
+						"url": "root.html#root.normalize",
+						"label": "normalize",
+						"kind": "methods-item",
+						"access": "private",
+						"inherits": 0
 					}
 				]
 			}

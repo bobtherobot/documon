@@ -21,7 +21,7 @@
 	"id": "documon.markdown",
 	"methods": [
 		{
-			"line": 52,
+			"line": 59,
 			"name": "definitionLists",
 			"shortText": "Find and convert markdown extra definition lists into html.",
 			"shortHtml": "<p>Find and convert markdown extra definition lists into html.</p>",
@@ -55,7 +55,7 @@
 			"id": "documon.markdown.definitionLists"
 		},
 		{
-			"line": 120,
+			"line": 127,
 			"name": "processDefListItems",
 			"shortText": "Process the contents of a single definition list, splitting it",
 			"shortHtml": "<p>Process the contents of a single definition list, splitting it</p>",
@@ -89,7 +89,7 @@
 			"id": "documon.markdown.processDefListItems"
 		},
 		{
-			"line": 31,
+			"line": 32,
 			"name": "run",
 			"shortText": "Converts a markdown string to HTML.",
 			"shortHtml": "<p>Converts a markdown string to HTML.</p>",

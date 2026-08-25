@@ -262,6 +262,8 @@ function processName(name, obj, output) {
 
 
 
+var aliases = require("./aliases");
+
 function parseFlag(line, output) {
     line = line.trim();
     var source = line;
@@ -272,7 +274,16 @@ function parseFlag(line, output) {
     // -------------
     // flag
     var flag = line.match(/^@(.*?)(?:\s|$)/)[1];
-    obj.flag = flag;
+
+    // Accept the spellings other documentation systems use. An unrecognised tag isn't a
+    // cosmetic issue here -- it can cost the entire entity -- and the aliases are exact
+    // synonyms. See src/aliases.js for what is deliberately not aliased.
+    var resolved = aliases.resolve(flag);
+    if(resolved !== flag){
+        obj.writtenFlag = flag;
+    }
+
+    obj.flag = resolved;
 
     // chop @foo
     line = line.replace(/^@.*?(?:\s|$)/, "").trim();

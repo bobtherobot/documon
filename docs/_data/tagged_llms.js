@@ -49,7 +49,7 @@
 			"id": "documon.llms.deHtml"
 		},
 		{
-			"line": 153,
+			"line": 171,
 			"name": "flattenMenu",
 			"shortText": "Flattens the menu tree into a list of linkable pages.",
 			"shortHtml": "<p>Flattens the menu tree into a list of linkable pages.</p>",
@@ -133,6 +133,40 @@
 			"id": "documon.llms.joinUrl"
 		},
 		{
+			"line": 92,
+			"name": "metaEntry",
+			"shortText": "Normalizes a metadata entry (@deprecated, @throws, @since ...) for the model.",
+			"shortHtml": "<p>Normalizes a metadata entry (@deprecated, <a href=\"https://github.com/throws\">@throws</a>, <a href=\"https://github.com/since\">@since</a> …) for the model.</p>",
+			"text": "Normalizes a metadata entry (@deprecated, @throws, @since ...) for the model.\n\n",
+			"html": "<p>Normalizes a metadata entry (@deprecated, <a href=\"https://github.com/throws\">@throws</a>, <a href=\"https://github.com/since\">@since</a> …) for the model.</p>",
+			"entity": "method",
+			"flagSearchText": " metaEntry A collected metadata tag. `{ tag, label, text }`.",
+			"access": "private",
+			"params": [
+				{
+					"name": "entry",
+					"shortText": "A collected metadata tag.",
+					"shortHtml": "<p>A collected metadata tag.</p>",
+					"text": "A collected metadata tag.",
+					"html": "<p>A collected metadata tag.</p>",
+					"type": "object"
+				}
+			],
+			"returns": {
+				"type": "object",
+				"text": "`{ tag, label, text }`.",
+				"html": "<p><code>{ tag, label, text }</code>.</p>",
+				"shortText": "<p><code>{ tag, label, text }</code>.</p>",
+				"shortHtml": "<p><code>{ tag, label, text }</code>.</p>"
+			},
+			"file": "src/llms.js",
+			"filename": "llms.js",
+			"klass": "llms",
+			"package": "documon",
+			"docfile": "documon.llms.html",
+			"id": "documon.llms.metaEntry"
+		},
+		{
 			"line": 84,
 			"name": "modelPage",
 			"shortText": "Reduces a built page into the flat record used by `model.json`.",
@@ -167,7 +201,7 @@
 			"id": "documon.llms.modelPage"
 		},
 		{
-			"line": 190,
+			"line": 208,
 			"name": "readMore",
 			"shortText": "Collects the markdown of the \"more\" folder, in menu order, for `llms-full.txt`.",
 			"shortHtml": "<p>Collects the markdown of the \"more\" folder, in menu order, for <code>llms-full.txt</code>.</p>",
@@ -201,7 +235,7 @@
 			"id": "documon.llms.readMore"
 		},
 		{
-			"line": 253,
+			"line": 271,
 			"name": "write",
 			"shortText": "Writes `llms.txt`, `llms-full.txt` and `model.json`.",
 			"shortHtml": "<p>Writes <code>llms.txt</code>, <code>llms-full.txt</code> and <code>model.json</code>.</p>",
@@ -267,6 +301,7 @@
 		"documon.llms.deHtml": "deHtml : Strips HTML tags collapses whitespace leaving readable plain textdeHtml Source HTML Plain text",
 		"documon.llms.joinUrl": "joinUrl : Joins base page filenamejoinUrl Base empty Page filename bare filename",
 		"documon.llms.modelPage": "modelPage : Reduces built page into flat record used model jsonmodelPage page produced organizer buildPages serializable record",
+		"documon.llms.metaEntry": "metaEntry : Normalizes metadata entry deprecated throws since modelmetaEntry collected metadata label text",
 		"documon.llms.flattenMenu": "flattenMenu : Flattens menu tree into list linkable pagesflattenMenu Menu nodes Accumulator Flat page records",
 		"documon.llms.readMore": "readMore : Collects markdown more folder menu order llms full prose pages usually part reader most needs guides concepts references they already plain text they verbatimreadMore more folder name body records filename order",
 		"documon.llms.write": "write : Writes llms llms full model jsonwrite resolved mainConf Pages from organizer buildPages logger final menu hand written more pages indexed llms llmsFull model paths written nulls"

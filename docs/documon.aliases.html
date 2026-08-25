@@ -6,10 +6,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		
-    	<title>llms - Documon</title>
-		<meta name="description" content="Emits machine-readable companions alongside the generated HTML:">
+    	<title>aliases - Documon</title>
+		<meta name="description" content="Accepts the tag spellings people (and tools trained on other documentation systems)">
 		<meta name="generator" content="Documon">
-		<link rel="canonical" href="https://www.documon.net/documon.llms.html">
+		<link rel="canonical" href="https://www.documon.net/documon.aliases.html">
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
@@ -23,8 +23,8 @@
 		<!-- Documon Pages Info. (Used by various classes to identify this page.) -->
 		<script>
 	    var pageCtx = {
-	    	id : "documon.llms",
-	    	name: "llms"
+	    	id : "documon.aliases",
+	    	name: "aliases"
 	    }
 	    </script>
 
@@ -66,18 +66,18 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.llms"></a><a name="llms"></a>
+					            <a name="documon.aliases"></a><a name="aliases"></a>
 
 						<div class="member"  >
 
 							<div class="member-name clearfix">
 								<span class="member-name-left">
-						    		llms () 
+						    		aliases () 
                                     
 						    	</span>
 								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">24</span>
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">38</span>
 						    	</span>
 						    </div>
 
@@ -85,23 +85,31 @@
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.llms<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/llms.js<span></div>
+				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.aliases<span></div>
+				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/aliases.js<span></div>
 			</div>
 								
-								<p>Emits machine-readable companions alongside the generated HTML:</p>
+								<p>Accepts the tag spellings people (and tools trained on other documentation systems)<br />
+actually write, and maps them onto Documon's vocabulary.</p>
+<h3 id="why">Why</h3>
+<p>Documon derives structure exclusively from tags, which means an unrecognised tag isn't<br />
+a cosmetic problem -- it's a missing page. A block written as</p>
+<pre><code>    &amp;#64;function area
+    &amp;#64;arg {number} r - Radius.</code></pre>
+<p>has no kind tag as far as Documon is concerned, so the whole entity silently disappears.<br />
+Since <code>&amp;#64;function</code> and <code>&amp;#64;arg</code> are exact JSDoc synonyms for <code>&amp;#64;method</code> and<br />
+<code>&amp;#64;param</code>, refusing them buys nothing and costs a page.</p>
+<p>Aliasing does not weaken the "structure comes only from comments" rule: an alias is<br />
+still an explicit tag, just spelled differently.</p>
+<h3 id="what-is-deliberately-not-aliased">What is deliberately NOT aliased</h3>
+<p>Tags whose meaning differs, even slightly, are left alone so they surface in <code>--check</code><br />
+rather than producing quietly wrong documentation:</p>
 <ul>
-<li><code>llms.txt</code>      -- the <a href="https://llmstxt.org">llms.txt convention</a>: a short, linkable<br />
-                 index of the documentation, meant to be read by a language model<br />
-                 rather than rendered in a browser.</li>
-<li><code>llms-full.txt</code> -- every page's prose concatenated into one plain-text file, so a<br />
-                 model can ingest the whole manual in a single fetch.</li>
-<li><code>model.json</code>    -- the structured documentation model (packages, classes, members,<br />
-                 params, types), so other tools can consume Documon output as data<br />
-                 instead of scraping HTML.</li>
+<li><code>&amp;#64;fires</code> / <code>&amp;#64;emits</code> -- documents which events a method <em>emits</em>. That is not<br />
+the same as <code>&amp;#64;event</code>, which declares an event entity.</li>
+<li><code>&amp;#64;memberof</code> -- re-parents an entity; Documon scopes by <code>&amp;#64;package</code> instead.</li>
+<li><code>&amp;#64;typedef</code>, <code>&amp;#64;callback</code>, <code>&amp;#64;enum</code>, <code>&amp;#64;inheritdoc</code> -- no equivalent concept.</li>
 </ul>
-<p>All three are written to the output folder. Disable with <code>emitLlms:false</code> /<br />
-<code>emitModel:false</code>.</p>
 
 					
 								
@@ -122,608 +130,176 @@
 			</div>
 
 		    <div class="parts">
-		        
+		        <a name="properties"></a>
+			    	<div class="part-properties">
+				    	
+				    	<div class="heading-part">Properties</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.aliases.ACCESS_VALUES"></a><a name="ACCESS_VALUES"></a>
+                                    <span class="member-name">ACCESS_VALUES</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">99</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Legal values of an <code>@access</code> tag, each of which maps<br />
+onto a Documon visibility flag of the same name.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.aliases.DESCRIPTION_TAGS"></a><a name="DESCRIPTION_TAGS"></a>
+                                    <span class="member-name">DESCRIPTION_TAGS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">77</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Tags whose content is really just the description.<br />
+Documon takes the description from the free text above the tags, so these are folded<br />
+into it rather than dropped.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.aliases.META_TAGS"></a><a name="META_TAGS"></a>
+                                    <span class="member-name">META_TAGS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">84</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Tags with genuine meaning and no Documon equivalent.<br />
+Rather than discarding them, they are collected and rendered in the page's meta<br />
+section. The value is the label shown to the reader.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    <a name="documon.aliases.TAGS"></a><a name="TAGS"></a>
+                                    <span class="member-name">TAGS</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/aliases.js</span><span class="member-line-number" title="src/aliases.js">43</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Exact synonyms. The key is what was written, the value is the<br />
+Documon tag it becomes.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
 		        
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            <div class="heading-part">Methods</div>
-					            <a name="documon.llms.deHtml"></a><a name="deHtml"></a>
-
-						<div class="member" data-access="private" >
-
-							<div class="member-name clearfix">
-								<span class="member-name-left">
-						    		deHtml (<span class="method-arguments">html</span>) 
-                                    <span class="flag private">private</span>  <!-- public private protected -->
-						    	</span>
-								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">35</span>
-						    	</span>
-						    </div>
-
-
-						   	<div class="member-description">
-                                
-                                
-								
-								<p>Strips HTML tags and collapses whitespace, leaving readable plain text.</p>
-
-					
-								
-			    	<div class="part-parameters">
-				    	
-				    	<div class="heading-part">Parameters</div>
-				    	
-				    	<div class="member">
-                            <div class="member-block-group">
-
-							    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">html</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">string</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>Source HTML.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-
-							</div>
-						</div>
-				
-					</div>
-			
-
-							    
-			       		 	<div class="heading-returns">Returns		
-						<span class="type">string</span>
-					</div>
-			      	     	<div class="member"><p>Plain text.</p></div>
-				
-
-					
-								
-
-							    
-
-							</div>
-						</div>
-				<a name="documon.llms.flattenMenu"></a><a name="flattenMenu"></a>
-
-						<div class="member" data-access="private" >
-
-							<div class="member-name clearfix">
-								<span class="member-name-left">
-						    		flattenMenu (<span class="method-arguments">nodes</span>, <span class="method-arguments">out</span>) 
-                                    <span class="flag private">private</span>  <!-- public private protected -->
-						    	</span>
-								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">171</span>
-						    	</span>
-						    </div>
-
-
-						   	<div class="member-description">
-                                
-                                
-								
-								<p>Flattens the menu tree into a list of linkable pages.</p>
-
-					
-								
-			    	<div class="part-parameters">
-				    	
-				    	<div class="heading-part">Parameters</div>
-				    	
-				    	<div class="member">
-                            <div class="member-block-group">
-
-							    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">nodes</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">array</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>Menu nodes.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">out</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">array</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>Accumulator.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-
-							</div>
-						</div>
-				
-					</div>
-			
-
-							    
-			       		 	<div class="heading-returns">Returns		
-						<span class="type">array</span>
-					</div>
-			      	     	<div class="member"><p>Flat page records.</p></div>
-				
-
-					
-								
-
-							    
-
-							</div>
-						</div>
-				<a name="documon.llms.joinUrl"></a><a name="joinUrl"></a>
-
-						<div class="member" data-access="private" >
-
-							<div class="member-name clearfix">
-								<span class="member-name-left">
-						    		joinUrl (<span class="method-arguments">base</span>, <span class="method-arguments">file</span>) 
-                                    <span class="flag private">private</span>  <!-- public private protected -->
-						    	</span>
-								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">67</span>
-						    	</span>
-						    </div>
-
-
-						   	<div class="member-description">
-                                
-                                
-								
-								<p>Joins a base URL and a page filename.</p>
-
-					
-								
-			    	<div class="part-parameters">
-				    	
-				    	<div class="heading-part">Parameters</div>
-				    	
-				    	<div class="member">
-                            <div class="member-block-group">
-
-							    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">base</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">string</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>Base URL, may be empty.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">file</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">string</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>Page filename.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-
-							</div>
-						</div>
-				
-					</div>
-			
-
-							    
-			       		 	<div class="heading-returns">Returns		
-						<span class="type">string</span>
-					</div>
-			      	     	<div class="member"><p>A URL or bare filename.</p></div>
-				
-
-					
-								
-
-							    
-
-							</div>
-						</div>
-				<a name="documon.llms.metaEntry"></a><a name="metaEntry"></a>
-
-						<div class="member" data-access="private" >
-
-							<div class="member-name clearfix">
-								<span class="member-name-left">
-						    		metaEntry (<span class="method-arguments">entry</span>) 
-                                    <span class="flag private">private</span>  <!-- public private protected -->
-						    	</span>
-								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">92</span>
-						    	</span>
-						    </div>
-
-
-						   	<div class="member-description">
-                                
-                                
-								
-								<p>Normalizes a metadata entry (@deprecated, <a href="https://github.com/throws">@throws</a>, <a href="https://github.com/since">@since</a> …) for the model.</p>
-
-					
-								
-			    	<div class="part-parameters">
-				    	
-				    	<div class="heading-part">Parameters</div>
-				    	
-				    	<div class="member">
-                            <div class="member-block-group">
-
-							    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">entry</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">object</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>A collected metadata tag.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-
-							</div>
-						</div>
-				
-					</div>
-			
-
-							    
-			       		 	<div class="heading-returns">Returns		
-						<span class="type">object</span>
-					</div>
-			      	     	<div class="member"><p><code>{ tag, label, text }</code>.</p></div>
-				
-
-					
-								
-
-							    
-
-							</div>
-						</div>
-				<a name="documon.llms.modelPage"></a><a name="modelPage"></a>
-
-						<div class="member" data-access="private" >
-
-							<div class="member-name clearfix">
-								<span class="member-name-left">
-						    		modelPage (<span class="method-arguments">page</span>) 
-                                    <span class="flag private">private</span>  <!-- public private protected -->
-						    	</span>
-								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">84</span>
-						    	</span>
-						    </div>
-
-
-						   	<div class="member-description">
-                                
-                                
-								
-								<p>Reduces a built page into the flat record used by <code>model.json</code>.</p>
-
-					
-								
-			    	<div class="part-parameters">
-				    	
-				    	<div class="heading-part">Parameters</div>
-				    	
-				    	<div class="member">
-                            <div class="member-block-group">
-
-							    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">page</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">object</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>A page produced by <code>organizer.buildPages()</code>.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-
-							</div>
-						</div>
-				
-					</div>
-			
-
-							    
-			       		 	<div class="heading-returns">Returns		
-						<span class="type">object</span>
-					</div>
-			      	     	<div class="member"><p>A serializable record.</p></div>
-				
-
-					
-								
-
-							    
-
-							</div>
-						</div>
-				<a name="documon.llms.readMore"></a><a name="readMore"></a>
-
-						<div class="member" data-access="private" >
-
-							<div class="member-name clearfix">
-								<span class="member-name-left">
-						    		readMore (<span class="method-arguments">folder</span>) 
-                                    <span class="flag private">private</span>  <!-- public private protected -->
-						    	</span>
-								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">208</span>
-						    	</span>
-						    </div>
-
-
-						   	<div class="member-description">
-                                
-                                
-								
-								<p>Collects the markdown of the "more" folder, in menu order, for <code>llms-full.txt</code>.</p>
-<p>The prose pages are usually the part a reader most needs -- guides, concepts, tag<br />
-references -- and they are already plain text, so they go in verbatim.</p>
-
-					
-								
-			    	<div class="part-parameters">
-				    	
-				    	<div class="heading-part">Parameters</div>
-				    	
-				    	<div class="member">
-                            <div class="member-block-group">
-
-							    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">folder</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">string</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>The "more" folder.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-
-							</div>
-						</div>
-				
-					</div>
-			
-
-							    
-			       		 	<div class="heading-returns">Returns		
-						<span class="type">array</span>
-					</div>
-			      	     	<div class="member"><p><code>{ name, body }</code> records, in filename order.</p></div>
-				
-
-					
-								
-
-							    
-
-							</div>
-						</div>
-				<a name="documon.llms.write"></a><a name="write"></a>
+					            <a name="documon.aliases.inlineLinks"></a><a name="inlineLinks"></a>
 
 						<div class="member"  >
 
 							<div class="member-name clearfix">
 								<span class="member-name-left">
-						    		write (<span class="method-arguments">conf</span>, <span class="method-arguments">pages</span>, <span class="method-arguments">log</span>, <span class="method-arguments method-arg-optional">menu</span>) 
+						    		inlineLinks (<span class="method-arguments">text</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
-						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">271</span>
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">170</span>
 						    	</span>
 						    </div>
 
@@ -732,7 +308,9 @@ references -- and they are already plain text, so they go in verbatim.</p>
                                 
                                 
 								
-								<p>Writes <code>llms.txt</code>, <code>llms-full.txt</code> and <code>model.json</code>.</p>
+								<p>Rewrites JSDoc's inline link syntax as the markdown Documon already understands.</p>
+<p>Handles <code>[target](target)</code>, <code>[label](target)</code>, <code>[label](target)</code>, and the<br />
+<code>linkcode</code> / <code>linkplain</code> / <code>tutorial</code> variants.</p>
 
 					
 								
@@ -748,7 +326,7 @@ references -- and they are already plain text, so they go in verbatim.</p>
                             
                                 <div class="member-block-left">
                                     
-                                    <span class="member-name">conf</span>
+                                    <span class="member-name">text</span>
                                     
                                 </div>
 
@@ -758,113 +336,14 @@ references -- and they are already plain text, so they go in verbatim.</p>
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">object</span>
+							<span class="type">string</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The resolved <code>mainConf</code>.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">pages</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">array</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>Pages from <code>organizer.buildPages()</code>.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">log</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">object</span>
-				
-                                        
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>The logger.</p>
-       						 </div>
-       			
-						        	
-						        	
-					
-                                    </div>
-                                </div>
-
-
-                            </div>
-				    
-                            <div class="member-block"  >
-                            
-                                <div class="member-block-left">
-                                    
-                                    <span class="member-name">menu</span>
-                                    
-                                </div>
-
-                                <div class="member-block-center">
-                                <span class="member-name-right">
-                                
-                                </span>
-                                    <div class="param-description">
-                                        
-							<span class="type">array</span>
-				
-                                        <span class="flag optional">optional</span>
-                                        
-                                        
-									
-							<div class="member-description">
-      				 		 	<p>The final menu, so hand-written "more" pages are indexed too.</p>
+      				 		 	<p>Text possibly containing inline links.</p>
        						 </div>
        			
 						        	
@@ -885,13 +364,369 @@ references -- and they are already plain text, so they go in verbatim.</p>
 
 							    
 			       		 	<div class="heading-returns">Returns		
-						<span class="type">object</span>
+						<span class="type">string</span>
 					</div>
-			      	     	<div class="member"><p><code>{ llms, llmsFull, model }</code> -- paths written, or nulls.</p></div>
+			      	     	<div class="member"><p>Text with markdown links.</p></div>
+				
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    aliases.inlineLinks("See [geo.Circle](geo.Circle).");
+    // "See [geo.Circle](geo.Circle)."</code></pre>
+	        </div>
+	    </div>
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.aliases.isAlias"></a><a name="isAlias"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		isAlias (<span class="method-arguments">flag</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">130</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Whether a tag is an alias of something else (used to report normalizations).</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">flag</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The tag as written.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">boolean</span>
+					</div>
+			      	     	<div class="member"><p>True when <code>resolve()</code> would change it.</p></div>
 				
 
 					
 								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.aliases.isDescription"></a><a name="isDescription"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		isDescription (<span class="method-arguments">flag</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">141</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Whether a tag's content should be folded into the description.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">flag</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The tag as written.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">boolean</span>
+					</div>
+			      	     	<div class="member"></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.aliases.metaLabel"></a><a name="metaLabel"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		metaLabel (<span class="method-arguments">flag</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">152</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>The display label for a metadata tag, or null when it isn't one.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">flag</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The tag as written.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">string</span>
+					</div>
+			      	     	<div class="member"><p>Label, or null.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a name="documon.aliases.resolve"></a><a name="resolve"></a>
+
+						<div class="member"  >
+
+							<div class="member-name clearfix">
+								<span class="member-name-left">
+						    		resolve (<span class="method-arguments">flag</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">112</span>
+						    	</span>
+						    </div>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Resolves a written tag name to its Documon equivalent.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<div class="heading-part">Parameters</div>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">flag</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The tag as written, without the leading "@".</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">string</span>
+					</div>
+			      	     	<div class="member"><p>The Documon tag name, or the input unchanged.</p></div>
+				
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    aliases.resolve("function");  // "method"
+    aliases.resolve("method");    // "method"</code></pre>
+	        </div>
+	    </div>
 
 							    
 

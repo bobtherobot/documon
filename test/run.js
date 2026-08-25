@@ -96,13 +96,106 @@ function hasRule(report, rule){
 
 ok(dirty.status === 2, "exits 2 when problems are found", "got " + dirty.status);
 ok(dirtyReport.ok === false, "reports ok:false");
-ok(hasRule(dirtyReport, "unknown-tag"), "flags @arg as an unknown tag");
+ok(hasRule(dirtyReport, "unknown-tag"), "flags @typedef as an unknown tag");
 ok(hasRule(dirtyReport, "unresolved-inheritance"), "flags the unresolved @extends target");
 ok(hasRule(dirtyReport, "no-kind"), "flags the block with no kind tag");
 
-var argFinding = dirtyReport.findings.filter(function(f){ return f.rule === "unknown-tag"; })[0];
-ok(argFinding && /@param/.test(argFinding.fix || ""), "suggests @param as the fix for @arg",
-	argFinding && argFinding.fix);
+var typedefFinding = dirtyReport.findings.filter(function(f){ return f.rule === "unknown-tag"; })[0];
+ok(typedefFinding && /type registry/.test(typedefFinding.fix || ""),
+	"explains why @typedef has no equivalent", typedefFinding && typedefFinding.fix);
+
+// ------------------------------------------------------------------
+console.log("\njsdoc: alias handling");
+// ------------------------------------------------------------------
+var jsd = cli(["--check", "--json", "-i", path.join(FIXTURES, "jsdoc.js")], FIXTURES);
+var jsdReport = JSON.parse(jsd.stdout);
+
+ok(jsdReport.stats.entities >= 5, "JSDoc-style tags still produce entities",
+	"entities=" + jsdReport.stats.entities);
+ok(hasRule(jsdReport, "normalized-tag"), "reports what it normalized");
+
+var normalized = jsdReport.findings
+	.filter(function(f){ return f.rule === "normalized-tag"; })
+	.map(function(f){ return f.message; }).join(" ");
+
+ok(/@function was read as @method/.test(normalized), "@function -> @method", normalized);
+ok(/@arg was read as @param/.test(normalized), "@arg -> @param", normalized);
+ok(/@prop was read as @property/.test(normalized), "@prop -> @property", normalized);
+ok(jsdReport.findings.every(function(f){ return f.level !== "error"; }),
+	"aliased source has no errors",
+	JSON.stringify(jsdReport.findings.filter(function(f){ return f.level === "error"; })));
+
+var fires = jsdReport.findings.filter(function(f){
+	return f.rule === "unknown-tag" && /@fires/.test(f.message);
+})[0];
+ok(!!fires, "@fires is still reported, not aliased");
+ok(fires && !/Use @event instead/.test(fires.fix || ""),
+	"@fires advice does not suggest @event", fires && fires.fix);
+ok(fires && /emits/.test(fires.fix || ""), "@fires advice explains the difference");
+
+// aliases module, directly
+var aliases = require(path.join(ROOT, "src", "aliases.js"));
+ok(aliases.resolve("function") === "method", "resolve maps @function");
+ok(aliases.resolve("implements") === "impliments", "resolve maps @implements");
+ok(aliases.resolve("method") === "method", "resolve leaves canonical tags alone");
+ok(aliases.resolve("fires") === "fires", "resolve does not touch @fires");
+ok(aliases.inlineLinks("See {@link geo.Circle}.") === "See [geo.Circle](geo.Circle).",
+	"inline {@link} becomes markdown");
+ok(aliases.inlineLinks("See {@link geo.Box|a box}.") === "See [a box](geo.Box).",
+	"inline {@link} with a label");
+
+// ------------------------------------------------------------------
+console.log("\njsdoc: build output");
+// ------------------------------------------------------------------
+var jsOut = path.join(tmp(), "jsdoc");
+cli(["-i", path.join(FIXTURES, "jsdoc.js"), "-o", jsOut, "-n", "Geo"], FIXTURES);
+
+var jsModel = JSON.parse( fs.readFileSync(path.join(jsOut, "docs", "model.json"), "utf8") );
+var allMembers = jsModel.pages.reduce(function(acc, p){ return acc.concat(p.members); }, []);
+
+var areaMember = allMembers.filter(function(m){ return m.name === "area"; })[0];
+ok(!!areaMember, "@function produced a method",
+	"members: " + allMembers.map(function(m){ return m.name; }).join(", "));
+ok(areaMember && areaMember.params.length === 1, "@arg produced a parameter");
+ok(areaMember && areaMember.returns && areaMember.returns.type === "number",
+	"@returns produced a return type");
+ok(areaMember && /Computes the area/.test(areaMember.description),
+	"@description folded into the description", areaMember && areaMember.description);
+
+var areaMeta = (areaMember && areaMember.meta || []).map(function(m){ return m.tag; });
+ok(areaMeta.indexOf("deprecated") > -1, "@deprecated kept as metadata", areaMeta.join(","));
+ok(areaMeta.indexOf("throws") > -1, "@throws kept as metadata");
+ok(areaMeta.indexOf("since") > -1, "@since kept as metadata");
+
+var visibleMember = allMembers.filter(function(m){ return m.name === "visible"; })[0];
+ok(!!visibleMember, "@prop produced a property");
+ok(visibleMember && visibleMember.access === "private", "@access private applied",
+	visibleMember && visibleMember.access);
+
+var renderMember = allMembers.filter(function(m){ return m.name === "render"; })[0];
+var types = (renderMember && renderMember.params || []).map(function(p){ return p.type; });
+ok(types.indexOf("string|number") > -1, "union types survive", types.join(" "));
+ok(types.indexOf("Array<string>") > -1, "generic types survive");
+ok(types.indexOf("*") > -1, "wildcard types survive");
+ok(types.indexOf("...number") > -1, "rest types survive");
+
+// metadata reaches the rendered page
+var pageFiles = fs.readdirSync(path.join(jsOut, "docs")).filter(function(f){
+	return /^geo\..*\.html$/.test(f);
+});
+var anyMeta = pageFiles.some(function(f){
+	return /meta-deprecated/.test( fs.readFileSync(path.join(jsOut, "docs", f), "utf8") );
+});
+ok(anyMeta, "@deprecated renders on the page", "looked in: " + pageFiles.join(", "));
+
+// ------------------------------------------------------------------
+console.log("\nbuild: warns about ignored tags");
+// ------------------------------------------------------------------
+var warned = cli(["-i", path.join(FIXTURES, "jsdoc.js"), "-o", path.join(tmp(), "w"),
+	"-n", "Geo", "-p"], FIXTURES);
+ok(/unrecognized tag/.test(warned.stdout), "build reports ignored tags in its summary",
+	warned.stdout.slice(-300));
+ok(/--check/.test(warned.stdout), "and points at --check");
 
 // ------------------------------------------------------------------
 console.log("\ncheck: strict mode");

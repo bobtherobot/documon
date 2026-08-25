@@ -10,13 +10,13 @@
 		"data": "\t\t\n@method  processOne\n@param  {Source Object} \t\titem \t- the source item as parsed from comments\n@return {object} \t\t\t- An object containing flag data"
 	},
 	{
-		"start": 334,
-		"end": 340,
+		"start": 350,
+		"end": 356,
 		"data": "Process flags for an entire list of items\n\n@private\n@method processItems\n@param  {array} Vlist"
 	},
 	{
-		"start": 428,
-		"end": 437,
+		"start": 444,
+		"end": 453,
 		"data": "[fillFlag description]\n\n@method  fillFlag\n\n@param   {type}    item  description\n@param   {type}    obj   description\n\n@return  {type}          description"
 	}
 ]

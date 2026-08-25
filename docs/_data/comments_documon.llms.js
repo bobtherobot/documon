@@ -20,18 +20,23 @@
 		"data": "Reduces a built page into the flat record used by `model.json`.\n\n@method     modelPage\n@private\n@param      {object}  page - A page produced by `organizer.buildPages()`.\n@return     {object}       - A serializable record."
 	},
 	{
-		"start": 144,
-		"end": 152,
+		"start": 84,
+		"end": 91,
+		"data": "Normalizes a metadata entry (@deprecated, @throws, @since ...) for the model.\n\n@method     metaEntry\n@private\n@param      {object}  entry - A collected metadata tag.\n@return     {object}        - `{ tag, label, text }`."
+	},
+	{
+		"start": 162,
+		"end": 170,
 		"data": "Flattens the menu tree into a list of linkable pages.\n\n@method     flattenMenu\n@private\n@param      {array}  nodes - Menu nodes.\n@param      {array}  out   - Accumulator.\n@return     {array}        - Flat page records."
 	},
 	{
-		"start": 179,
-		"end": 189,
+		"start": 197,
+		"end": 207,
 		"data": "Collects the markdown of the \"more\" folder, in menu order, for `llms-full.txt`.\n\nThe prose pages are usually the part a reader most needs -- guides, concepts, tag\nreferences -- and they are already plain text, so they go in verbatim.\n\n@method     readMore\n@private\n@param      {string}  folder - The \"more\" folder.\n@return     {array}          - `{ name, body }` records, in filename order."
 	},
 	{
-		"start": 243,
-		"end": 252,
+		"start": 261,
+		"end": 270,
 		"data": "Writes `llms.txt`, `llms-full.txt` and `model.json`.\n\n@method  write\n@param   {object}  conf   - The resolved `mainConf`.\n@param   {array}   pages  - Pages from `organizer.buildPages()`.\n@param   {object}  log    - The logger.\n@param   {array}   [menu] - The final menu, so hand-written \"more\" pages are indexed too.\n@return  {object}         - `{ llms, llmsFull, model }` -- paths written, or nulls."
 	}
 ]

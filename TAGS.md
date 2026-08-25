@@ -123,22 +123,52 @@ Markdown link syntax, with a dotted id as the target:
 
 ---
 
-## Tags that do NOT exist in Documon
+## Tags borrowed from other systems
 
-Common in JSDoc, inert here. `--check` names the replacement where there is one.
+Documon accepts the common JSDoc spellings and maps them onto its own vocabulary, so a
+comment written the JSDoc way still produces a page. These are exact synonyms — nothing is
+guessed.
 
-| You might write | Use instead |
+| You write | Documon reads it as |
 |---|---|
-| `@arg`, `@argument`, `@parameter` | `@param` |
 | `@function`, `@func` | `@method` |
-| `@prop`, `@member` | `@property` |
-| `@fires`, `@emits` | `@event` |
+| `@arg`, `@argument`, `@parameter` | `@param` |
+| `@prop`, `@member`, `@var` | `@property` |
 | `@augments` | `@extends` |
 | `@implements` | `@impliments` |
-| `@desc`, `@description`, `@summary` | plain text before the tags |
-| `@throws`, `@deprecated`, `@since`, `@author`, `@typedef`, `@async` | fold into the description |
+| `@returns`, `@yields` | `@return` |
+| `@constructs` | `@constructor` |
+| `@const`, `@constant` | `@property` + `@readonly` |
+| `@access private` | `@private` (same for `protected`, `public`) |
+| `@desc`, `@description`, `@summary`, `@classdesc`, `@fileoverview` | folded into the description |
 
----
+`{@link target}`, `{@link target|label}` and `{@link target label}` are rewritten as
+markdown links, so inline cross-references work too.
+
+`--check` reports each of these at `info` level so you can converge on one spelling if you
+care. The documentation builds correctly either way.
+
+## Tags that are kept, but shown as metadata
+
+These have real meaning and no structural place in Documon, so rather than dropping them
+they render as labelled rows on the member:
+
+`@deprecated` · `@throws` / `@exception` · `@since` · `@author` · `@license` ·
+`@copyright` · `@todo`
+
+## Tags that genuinely do NOT work
+
+These are **not** aliased, because their meaning differs from anything Documon has.
+`--check` explains each one rather than suggesting a bogus replacement.
+
+| Tag | Why not |
+|---|---|
+| `@fires`, `@emits` | Documents which event a method *emits*. `@event` declares the event itself — not the same thing. Declare the event with `@event` and mention it in the description. |
+| `@memberof` | Documon scopes by `@package` plus the enclosing `@class`/`@module`. |
+| `@typedef`, `@callback` | No type registry. Describe the shape, or document it as a `@class`. |
+| `@enum` | Document each value as a `@property`. |
+| `@inheritdoc` | Use `@extends`; Documon cross-fills inherited members automatically. |
+| `@async`, `@abstract`, `@global`, `@inner`, `@mixin` | No equivalent. Fold into the description. |
 
 ## Worked example
 
@@ -176,3 +206,6 @@ optional with a default, plus a return type and a runnable example.
 3. Every `@param` has `{type}` and a name.
 4. Every `@extends` target is a real, documented id.
 5. `documon --check` exits 0.
+
+Type expressions pass through untouched, including `{string|number}`, `{Array<string>}`,
+`{*}`, `{?string}` and `{...number}`.

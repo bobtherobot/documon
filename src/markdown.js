@@ -19,6 +19,7 @@ www.documon.net
  */
 
 var showdown = require("./showdown.min.js");
+var aliases = require("./aliases");
 
 
 
@@ -30,6 +31,12 @@ var showdown = require("./showdown.min.js");
  * @return  {string}      - The rendered HTML.
  */
 function run(str){
+
+    // Other documentation systems use {@link target} for cross references. Translate it
+    // to the markdown link Documon already understands, so a reference written that way
+    // resolves instead of rendering as literal braces.
+    str = aliases.inlineLinks(str);
+
     var converter = new showdown.Converter({
         tables : true,
         omitExtraWLInCodeBlocks : true,

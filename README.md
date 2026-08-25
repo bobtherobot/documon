@@ -151,6 +151,12 @@ Documon's only dependancy is Node, no additional modules are needed.
 
 ## Change Log
 v2.7.0 - 2026-08-25
+- Accept the common JSDoc tag spellings as exact synonyms (`@function`, `@arg`, `@prop`,
+  `@augments`, `@implements`, `@const`, `@access`, and the description tags), plus inline
+  `{@link}`. Previously these were dropped, which silently cost the whole entity.
+- Keep `@deprecated`, `@throws`, `@since`, `@author`, `@license` and `@todo` as rendered
+  metadata instead of discarding them.
+- Builds now print a one-line summary of any tags they ignored.
 - Added a `bin` entry, so `npx documon` and a global `documon` command work.
 - The output folder is now created when missing, instead of erroring.
 - Real exit codes: 0 success, 1 configuration error, 2 `--check` findings.

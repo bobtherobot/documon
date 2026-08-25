@@ -31,12 +31,13 @@
 			}
 		],
 		"source": "Converts markdown to HTML, with the \"definition list\" extension from markdown-extra\nwired in.\n\nUsed for comment descriptions and for the markdown files in the \"more\" folder.\n\n@module  markdown\n@package documon\n@example\n\n\t\tvar markdown = require(\"./markdown\");\n\t\tvar html = markdown(\"Some **bold** text.\");",
+		"meta": [],
 		"id": "documon.markdown"
 	},
 	{
 		"text": "Converts a markdown string to HTML.\n\n",
-		"start": 24,
-		"end": 30,
+		"start": 25,
+		"end": 31,
 		"file": "/Volumes/Drives/projects/documon/documon/src/markdown.js",
 		"flags": [
 			{
@@ -67,12 +68,13 @@
 			}
 		],
 		"source": "Converts a markdown string to HTML.\n\n@method  run\n@param   {string}  str - The markdown source.\n@return  {string}      - The rendered HTML.",
+		"meta": [],
 		"id": "documon.markdown.run"
 	},
 	{
 		"text": "Find and convert markdown extra definition lists into html.\n\n",
-		"start": 43,
-		"end": 51,
+		"start": 50,
+		"end": 58,
 		"file": "/Volumes/Drives/projects/documon/documon/src/markdown.js",
 		"flags": [
 			{
@@ -110,12 +112,13 @@
 			}
 		],
 		"source": "Find and convert markdown extra definition lists into html.\n\n@method  definitionLists\n@private\n@param   {type}           text  description\n\n@return  {type}                 description",
+		"meta": [],
 		"id": "documon.markdown.definitionLists"
 	},
 	{
 		"text": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.\n\n",
-		"start": 110,
-		"end": 119,
+		"start": 117,
+		"end": 126,
 		"file": "/Volumes/Drives/projects/documon/documon/src/markdown.js",
 		"flags": [
 			{
@@ -153,6 +156,7 @@
 			}
 		],
 		"source": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.\n\n@method  processDefListItems\n@private\n@param   {type}               listStr  description\n\n@return  {type}                        description",
+		"meta": [],
 		"id": "documon.markdown.processDefListItems"
 	}
 ]
