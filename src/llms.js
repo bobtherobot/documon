@@ -24,6 +24,7 @@ www.documon.net
  */
 
 var fs = require('fs');
+var utils = require('./utils');
 
 /**
  * Strips HTML tags and collapses whitespace, leaving readable plain text.
@@ -45,12 +46,20 @@ function deHtml(html){
 		.replace(/<\/(p|div|li|h[1-6]|tr|pre)>/gi, "\n")
 		.replace(/<br\s*\/?>/gi, "\n")
 		.replace(/<[^>]+>/g, "")
+		// The comment-escape entities are real characters in the page, not markup. Flag
+		// default values never pass through markdown, so this is the only place they get
+		// decoded on the way to llms.txt -- without it, docBegin="&#47;**" shipped as "**".
+		.replace(/&#0*47;/g, "/")
+		.replace(/&#0*64;/g, "@")
+		// Any remaining numeric entity is dropped here, before "&amp;" is decoded below.
+		// The other order swallowed a deliberately literal "&amp;#47;", because decoding
+		// it first produced a "&#47;" that this rule then deleted.
+		.replace(/&#x?[0-9a-f]+;/gi, "")
 		.replace(/&nbsp;/g, " ")
 		.replace(/&amp;/g, "&")
 		.replace(/&lt;/g, "<")
 		.replace(/&gt;/g, ">")
 		.replace(/&quot;/g, '"')
-		.replace(/&#x?[0-9a-f]+;/gi, "")
 		.replace(/[ \t]+/g, " ")
 		.replace(/\n{3,}/g, "\n\n")
 		.trim();
@@ -90,11 +99,18 @@ function joinUrl(base, file){
  * @param      {object}  entry - A collected metadata tag.
  * @return     {object}        - `{ tag, label, text }`.
  */
+// Comment text reaches the model raw -- it never passes through markdown, which is where
+// the encoded "*/" and "@tag" escapes are normally decoded. Without this, a default value
+// written as "&#47;**" shipped to llms.txt, model.json and the pages' JSON-LD verbatim.
+function modelText(str){
+	return utils.decodeCommentEscapes(String(str || "")).trim();
+}
+
 function metaEntry(entry){
 	return {
 		tag   : entry.flag,
 		label : entry.label,
-		text  : (entry.text || "").trim()
+		text  : modelText(entry.text)
 	};
 }
 
@@ -107,7 +123,7 @@ function modelPage(page){
 		name        : ctx.klass || ctx.name || page.id,
 		kind        : ctx.entity || "package",
 		package     : ctx.package || null,
-		description : (ctx.text || "").trim(),
+		description : modelText(ctx.text),
 		file        : ctx.file || null,
 		line        : typeof ctx.line === "number" ? ctx.line : null,
 		meta        : (ctx.meta || []).map(metaEntry),
@@ -144,18 +160,18 @@ function modelPage(page){
 				// look for "inheritedFrom"/"inherited", neither of which is ever set, so
 				// model.json reported inherited:null for every member.
 				inherited   : m.inherits || null,
-				description : (m.text || "").trim(),
+				description : modelText(m.text),
 				meta        : (m.meta || []).map(metaEntry),
 				params      : (m.params || []).map(function(prm){
 					return {
 						name        : prm.name || null,
 						type        : prm.type || null,
-						description : (prm.text || "").trim()
+						description : modelText(prm.text)
 					};
 				}),
 				returns     : m.returns ? {
 					type        : m.returns.type || null,
-					description : (m.returns.text || "").trim()
+					description : modelText(m.returns.text)
 				} : null
 			});
 		}
@@ -364,7 +380,9 @@ function write(conf, pages, log, menu){
 			full.push("");
 			full.push("---");
 			full.push("");
-			full.push(prose[pr].body.trim());
+			// The "more" markdown is read straight off disk rather than rendered, so the
+			// escapes still have to be decoded here the way markdown.js does for pages.
+			full.push(modelText(prose[pr].body));
 		}
 
 		if(prose.length){

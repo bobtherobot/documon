@@ -229,6 +229,17 @@ Fixed:
   table and a returns block -- the rule was sending authors to delete documentation that
   works. It still fires for kinds that genuinely drop parameters (`@property`,
   `@namespace`, `@package`).
+- The `&#47;` and `&#64;` escapes now render as `/` and `@`. A comment cannot contain a
+  literal `*/` or `@tag` without ending the comment or declaring a tag, so those are
+  written HTML-encoded -- but nothing ever decoded them. It happened to work in prose,
+  where the browser decodes the entity, and failed everywhere it mattered: showdown
+  escapes `&` inside code spans and code blocks, so every escape written inside a code
+  example rendered as a literal `&#47;`. Decoding now happens after extraction and
+  parsing, where a `/` or `@` is just a character. The machine-readable outputs are fixed
+  too -- `model.json`, `llms.txt`, `llms-full.txt` and the embedded JSON-LD are built from
+  the raw comment text, which never passes through markdown, so a default value written
+  as `&#47;**` shipped to them verbatim (and `deHtml` deleted it outright on the way to
+  `llms.txt`, turning `docBegin="/**"` into `docBegin="**"`).
 
 v2.7.0 - 2026-08-25
 - Added a `bin` entry, so `npx documon` and a global `documon` command work.

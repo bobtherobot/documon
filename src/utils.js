@@ -24,6 +24,19 @@ function capitalize(str){
 }
 
 
+// A comment cannot contain a literal "*/" or a literal "@tag" without ending the comment
+// or declaring a tag, so those are written HTML-encoded in the source. Decoding is only
+// safe once extract.js has found the delimiters and parse.js has split the tags -- by
+// then a "/" or an "@" is just a character. A deliberately literal "&amp;#47;" does not
+// match, so it still comes through as text.
+function decodeCommentEscapes(str) {
+    if (str) {
+        return str.replace(/&#0*47;/g, "/").replace(/&#0*64;/g, "@");
+    }
+    return str;
+}
+
+
 function removeTrailingSlash(str) {
     if (str && str.slice(-1) == "/") {
         str = str.slice(0, -1);
@@ -246,5 +259,6 @@ module.exports = {
     normalizeConfTrailingSlash: normalizeConfTrailingSlash,
     clone: clone,
     trace: trace,
-    capitalize : capitalize
+    capitalize : capitalize,
+    decodeCommentEscapes : decodeCommentEscapes
 }

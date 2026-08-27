@@ -20,6 +20,7 @@ www.documon.net
 
 var showdown = require("./showdown.min.js");
 var aliases = require("./aliases");
+var utils = require("./utils");
 
 
 
@@ -36,6 +37,11 @@ function run(str){
     // to the markdown link Documon already understands, so a reference written that way
     // resolves instead of rendering as literal braces.
     str = aliases.inlineLinks(str);
+
+    // Decode before showdown runs. Showdown escapes "&" inside code spans and code
+    // blocks, which turned an encoded "&#47;" into a visible "&#47;" rather than a "/"
+    // -- so every escape written inside a code example rendered as the raw entity.
+    str = utils.decodeCommentEscapes(str);
 
     var converter = new showdown.Converter({
         tables : true,
