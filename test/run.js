@@ -7,588 +7,169 @@ www.documon.net
 /**
  * A dependency-free test runner for Documon.
  *
- * Run with `npm test` or `node test/run.js`. Exits non-zero on the first failing
- * assertion, so CI and automated callers can rely on it.
+ * Run everything with `npm test` or `node test/run.js`. Run one area by naming it:
+ *
+ * 		node test/run.js parse
+ * 		node test/run.js parse tag organizer
+ *
+ * Areas are the files in `test/suites/`. Each exports `{ name, run }`; `run` is handed
+ * the harness from `test/helpers.js` and does nothing but assert. Exits non-zero when
+ * any assertion fails, so CI and automated callers can rely on it.
  *
  * @module  test
  * @package documon
  */
 
 var fs   = require('fs');
-var os   = require('os');
 var path = require('path');
-var cp   = require('child_process');
 
-var ROOT     = path.resolve(__dirname, "..");
-var FIXTURES = path.join(__dirname, "fixtures");
-var CLI      = path.join(ROOT, "index.js");
+var helpers = require('./helpers.js');
 
-var passed = 0;
-var failed = 0;
+var SUITES = path.join(__dirname, "suites");
 
 /**
- * @method  ok
- * @private
- * @param   {boolean} cond    - The assertion.
- * @param   {string}  label   - What was being asserted.
- * @param   {string}  [extra] - Detail printed on failure.
+ * @property {array} ORDER - The order suites run in. Cheap, self-contained areas come
+ * first so a break in the parser is reported before minutes of build tests. Anything not
+ * listed here still runs, alphabetically, at the end.
  */
-function ok(cond, label, extra){
-	if(cond){
-		passed++;
-		console.log("  ok   " + label);
-	} else {
-		failed++;
-		console.log("  FAIL " + label + (extra ? "\n       " + extra : ""));
+var ORDER = [
+	"utils",
+	"npath",
+	"fileops",
+	"searchPrep",
+	"markdown",
+	"aliases",
+	"extract",
+	"parseFlag",
+	"parse",
+	"splitParsed",
+	"tag",
+	"organizer",
+	"menuBuilder",
+	"llms",
+	"ignore",
+	"more",
+	"check",
+	"config",
+	"build",
+	"jsdoc",
+	"cli",
+	"readme",
+	"invariants"
+];
+
+/**
+ * Lists the available suite names, in run order.
+ *
+ * @method  discover
+ * @private
+ * @return  {array} - Suite names, without the extension.
+ */
+function discover(){
+
+	var names = fs.readdirSync(SUITES)
+		.filter(function(f){ return /\.js$/.test(f); })
+		.map(function(f){ return f.replace(/\.js$/, ""); });
+
+	names.sort(function(a, b){
+		var ai = ORDER.indexOf(a);
+		var bi = ORDER.indexOf(b);
+		if(ai === -1){ ai = ORDER.length; }
+		if(bi === -1){ bi = ORDER.length; }
+		if(ai !== bi){ return ai - bi; }
+		return a < b ? -1 : (a > b ? 1 : 0);
+	});
+
+	return names;
+}
+
+/**
+ * Matches a requested area against the available suites, case-insensitively.
+ *
+ * @method  resolve
+ * @private
+ * @param   {string} want      - What the caller typed.
+ * @param   {array}  available - Every suite name.
+ * @return  {string}           - The matching name, or null.
+ */
+function resolve(want, available){
+
+	var lower = String(want).toLowerCase().replace(/\.js$/, "");
+
+	for(var i=0; i<available.length; i++){
+		if( available[i].toLowerCase() === lower ){
+			return available[i];
+		}
+	}
+
+	return null;
+}
+
+var available = discover();
+var requested = process.argv.slice(2);
+var selected  = available;
+
+if(requested.length){
+
+	selected = [];
+
+	for(var a=0; a<requested.length; a++){
+
+		var match = resolve(requested[a], available);
+
+		if( ! match ){
+			console.error("\nUnknown test area: " + requested[a]);
+			console.error("Available areas:\n  " + available.join("\n  ") + "\n");
+			process.exit(1);
+		}
+
+		if( selected.indexOf(match) === -1 ){
+			selected.push(match);
+		}
+	}
+
+	// Keep the canonical order even when the caller lists areas out of order.
+	selected.sort(function(x, y){ return available.indexOf(x) - available.indexOf(y); });
+}
+
+var t = helpers.create();
+
+console.log("\nDocumon test suite");
+console.log(selected.length === available.length
+	? "running all " + available.length + " areas"
+	: "running: " + selected.join(", "));
+
+var started = Date.now();
+
+for(var s=0; s<selected.length; s++){
+
+	var name  = selected[s];
+	var suite = require( path.join(SUITES, name + ".js") );
+
+	console.log("\n================================================");
+	console.log("  " + (suite.name || name));
+	console.log("================================================");
+
+	try {
+		suite.run(t);
+	} catch(e) {
+		t.ok(false, "[" + name + "] suite threw and could not finish",
+			e && e.stack ? e.stack : String(e));
 	}
 }
 
-/**
- * Runs the CLI and captures stdout plus the exit status.
- *
- * @method  cli
- * @private
- * @param   {array}  args - CLI arguments.
- * @return  {object}      - `{ status, stdout }`.
- */
-function cli(args, cwd){
-	var res = cp.spawnSync(process.execPath, [CLI].concat(args), {
-		encoding : "utf8",
-		cwd      : cwd || ROOT
-	});
-	return { status : res.status, stdout : res.stdout || "", stderr : res.stderr || "" };
+var elapsed = ((Date.now() - started) / 1000).toFixed(1);
+
+console.log("\n================================================");
+
+if(t.state.failed){
+	console.log("\nFailures:");
+	for(var f=0; f<t.state.failures.length; f++){
+		console.log("  - " + t.state.failures[f]);
+	}
 }
 
-/**
- * Creates a scratch folder for a test.
- *
- * @method  tmp
- * @private
- * @return  {string} - Path to a fresh folder.
- */
-function tmp(){
-	return fs.mkdtempSync( path.join(os.tmpdir(), "documon-test-") );
-}
+console.log("\n" + t.state.passed + " passed, " + t.state.failed + " failed"
+	+ "  (" + selected.length + " areas, " + elapsed + "s)\n");
 
-console.log("\nDocumon test suite\n");
-
-// ------------------------------------------------------------------
-console.log("check: clean source");
-// ------------------------------------------------------------------
-var clean = cli(["--check", "--json", "-i", path.join(FIXTURES, "good.js")]);
-var cleanReport = JSON.parse(clean.stdout);
-
-ok(clean.status === 0, "exits 0 when there is nothing wrong", "got " + clean.status);
-ok(cleanReport.ok === true, "reports ok:true");
-ok(cleanReport.counts.error === 0, "no errors", JSON.stringify(cleanReport.counts));
-ok(cleanReport.stats.entities >= 3, "found the module, method and property",
-	"entities=" + cleanReport.stats.entities);
-
-// ------------------------------------------------------------------
-console.log("\ncheck: problem source");
-// ------------------------------------------------------------------
-var dirty = cli(["--check", "--json", "-i", path.join(FIXTURES, "bad.js")]);
-var dirtyReport = JSON.parse(dirty.stdout);
-
-function hasRule(report, rule){
-	return report.findings.some(function(f){ return f.rule === rule; });
-}
-
-ok(dirty.status === 2, "exits 2 when problems are found", "got " + dirty.status);
-ok(dirtyReport.ok === false, "reports ok:false");
-ok(hasRule(dirtyReport, "unknown-tag"), "flags @typedef as an unknown tag");
-ok(hasRule(dirtyReport, "unresolved-inheritance"), "flags the unresolved @extends target");
-ok(hasRule(dirtyReport, "no-kind"), "flags the block with no kind tag");
-
-var typedefFinding = dirtyReport.findings.filter(function(f){ return f.rule === "unknown-tag"; })[0];
-ok(typedefFinding && /type registry/.test(typedefFinding.fix || ""),
-	"explains why @typedef has no equivalent", typedefFinding && typedefFinding.fix);
-
-// ------------------------------------------------------------------
-console.log("\njsdoc: alias handling");
-// ------------------------------------------------------------------
-var jsd = cli(["--check", "--json", "-i", path.join(FIXTURES, "jsdoc.js")], FIXTURES);
-var jsdReport = JSON.parse(jsd.stdout);
-
-ok(jsdReport.stats.entities >= 5, "JSDoc-style tags still produce entities",
-	"entities=" + jsdReport.stats.entities);
-ok(hasRule(jsdReport, "normalized-tag"), "reports what it normalized");
-
-var normalized = jsdReport.findings
-	.filter(function(f){ return f.rule === "normalized-tag"; })
-	.map(function(f){ return f.message; }).join(" ");
-
-ok(/@function was read as @method/.test(normalized), "@function -> @method", normalized);
-ok(/@arg was read as @param/.test(normalized), "@arg -> @param", normalized);
-ok(/@prop was read as @property/.test(normalized), "@prop -> @property", normalized);
-ok(jsdReport.findings.every(function(f){ return f.level !== "error"; }),
-	"aliased source has no errors",
-	JSON.stringify(jsdReport.findings.filter(function(f){ return f.level === "error"; })));
-
-var fires = jsdReport.findings.filter(function(f){
-	return f.rule === "unknown-tag" && /@fires/.test(f.message);
-})[0];
-ok(!!fires, "@fires is still reported, not aliased");
-ok(fires && !/Use @event instead/.test(fires.fix || ""),
-	"@fires advice does not suggest @event", fires && fires.fix);
-ok(fires && /emits/.test(fires.fix || ""), "@fires advice explains the difference");
-
-// aliases module, directly
-var aliases = require(path.join(ROOT, "src", "aliases.js"));
-ok(aliases.resolve("function") === "method", "resolve maps @function");
-ok(aliases.resolve("implements") === "implements", "@implements is the canonical spelling");
-ok(aliases.resolve("impliments") === "impliments", "@impliments is not aliased back");
-ok(aliases.deprecatedFor("impliments") === "implements", "@impliments is flagged as retired");
-ok(aliases.deprecatedFor("implements") === null, "@implements is not flagged as retired");
-ok(aliases.resolve("method") === "method", "resolve leaves canonical tags alone");
-ok(aliases.resolve("fires") === "fires", "resolve does not touch @fires");
-ok(aliases.inlineLinks("See {@link geo.Circle}.") === "See [geo.Circle](geo.Circle).",
-	"inline {@link} becomes markdown");
-ok(aliases.inlineLinks("See {@link geo.Box|a box}.") === "See [a box](geo.Box).",
-	"inline {@link} with a label");
-
-// ------------------------------------------------------------------
-console.log("\njsdoc: build output");
-// ------------------------------------------------------------------
-var jsOut = path.join(tmp(), "jsdoc");
-cli(["-i", path.join(FIXTURES, "jsdoc.js"), "-o", jsOut, "-n", "Geo"], FIXTURES);
-
-var jsModel = JSON.parse( fs.readFileSync(path.join(jsOut, "docs", "model.json"), "utf8") );
-var allMembers = jsModel.pages.reduce(function(acc, p){ return acc.concat(p.members); }, []);
-
-var areaMember = allMembers.filter(function(m){ return m.name === "area"; })[0];
-ok(!!areaMember, "@function produced a method",
-	"members: " + allMembers.map(function(m){ return m.name; }).join(", "));
-ok(areaMember && areaMember.params.length === 1, "@arg produced a parameter");
-ok(areaMember && areaMember.returns && areaMember.returns.type === "number",
-	"@returns produced a return type");
-ok(areaMember && /Computes the area/.test(areaMember.description),
-	"@description folded into the description", areaMember && areaMember.description);
-
-var areaMeta = (areaMember && areaMember.meta || []).map(function(m){ return m.tag; });
-ok(areaMeta.indexOf("deprecated") > -1, "@deprecated kept as metadata", areaMeta.join(","));
-ok(areaMeta.indexOf("throws") > -1, "@throws kept as metadata");
-ok(areaMeta.indexOf("since") > -1, "@since kept as metadata");
-
-var visibleMember = allMembers.filter(function(m){ return m.name === "visible"; })[0];
-ok(!!visibleMember, "@prop produced a property");
-ok(visibleMember && visibleMember.access === "private", "@access private applied",
-	visibleMember && visibleMember.access);
-
-var renderMember = allMembers.filter(function(m){ return m.name === "render"; })[0];
-var types = (renderMember && renderMember.params || []).map(function(p){ return p.type; });
-ok(types.indexOf("string|number") > -1, "union types survive", types.join(" "));
-ok(types.indexOf("Array<string>") > -1, "generic types survive");
-ok(types.indexOf("*") > -1, "wildcard types survive");
-ok(types.indexOf("...number") > -1, "rest types survive");
-
-// metadata reaches the rendered page
-var pageFiles = fs.readdirSync(path.join(jsOut, "docs")).filter(function(f){
-	return /^geo\..*\.html$/.test(f);
-});
-var anyMeta = pageFiles.some(function(f){
-	return /meta-deprecated/.test( fs.readFileSync(path.join(jsOut, "docs", f), "utf8") );
-});
-ok(anyMeta, "@deprecated renders on the page", "looked in: " + pageFiles.join(", "));
-
-// ------------------------------------------------------------------
-console.log("\nbuild: warns about ignored tags");
-// ------------------------------------------------------------------
-var warned = cli(["-i", path.join(FIXTURES, "jsdoc.js"), "-o", path.join(tmp(), "w"),
-	"-n", "Geo", "-p"], FIXTURES);
-ok(/unrecognized tag/.test(warned.stdout), "build reports ignored tags in its summary",
-	warned.stdout.slice(-300));
-ok(/--check/.test(warned.stdout), "and points at --check");
-
-// ------------------------------------------------------------------
-console.log("\ncheck: strict mode");
-// ------------------------------------------------------------------
-var strict = cli(["--check", "--strict", "--json", "-i", path.join(FIXTURES, "bad.js")]);
-ok(strict.status === 2, "strict still fails on warnings", "got " + strict.status);
-
-// ------------------------------------------------------------------
-console.log("\ncheck: coverage advisory");
-// ------------------------------------------------------------------
-var cov = cli(["--check", "--coverage", "--json", "-i", path.join(FIXTURES, "good.js")]);
-var covReport = JSON.parse(cov.stdout);
-ok(covReport.coverage !== null, "coverage block present when requested");
-ok(typeof covReport.coverage.percent === "number", "coverage reports a percentage");
-
-var noCov = JSON.parse( cli(["--check", "--json", "-i", path.join(FIXTURES, "good.js")]).stdout );
-ok(noCov.coverage === null, "coverage absent unless asked for");
-
-// ------------------------------------------------------------------
-console.log("\nbuild: output folder is created");
-// ------------------------------------------------------------------
-var out = path.join(tmp(), "nested", "docs-here");
-var built = cli(["-i", FIXTURES, "-o", out, "-n", "Fixture", "-v", "9.9"]);
-
-ok(built.status === 0, "exits 0 on a successful build", "got " + built.status
-	+ "\n" + built.stdout.slice(-400));
-ok(fs.existsSync(out), "created the missing output folder");
-ok(fs.existsSync(path.join(out, "docs", "index.html")), "wrote index.html");
-
-// ------------------------------------------------------------------
-console.log("\nbuild: machine-readable companions");
-// ------------------------------------------------------------------
-var docsDir = path.join(out, "docs");
-ok(fs.existsSync(path.join(docsDir, "llms.txt")), "wrote llms.txt");
-ok(fs.existsSync(path.join(docsDir, "llms-full.txt")), "wrote llms-full.txt");
-ok(fs.existsSync(path.join(docsDir, "model.json")), "wrote model.json");
-
-var model = JSON.parse( fs.readFileSync(path.join(docsDir, "model.json"), "utf8") );
-ok(model.generator === "documon", "model.json identifies its generator");
-ok(model.pages.length > 0, "model.json lists pages");
-
-var goodPage = model.pages.filter(function(p){ return p.id === "fixture.good"; })[0];
-ok(!!goodPage, "model.json contains the fixture module",
-	"ids: " + model.pages.map(function(p){ return p.id; }).join(", "));
-
-if(goodPage){
-	ok(goodPage.kind === "module", "records the entity kind", "got " + goodPage.kind);
-	var addMethod = goodPage.members.filter(function(m){ return m.name === "add"; })[0];
-	ok(!!addMethod, "records the method");
-	ok(addMethod && addMethod.params.length === 2, "records both parameters");
-	ok(addMethod && addMethod.returns && addMethod.returns.type === "number",
-		"records the return type");
-}
-
-// ------------------------------------------------------------------
-console.log("\nbuild: opting out");
-// ------------------------------------------------------------------
-var out2 = path.join(tmp(), "plain");
-cli(["-i", FIXTURES, "-o", out2, "--no-emitLlms", "--no-emitModel"]);
-ok(!fs.existsSync(path.join(out2, "docs", "llms.txt")), "--no-emitLlms suppresses llms.txt");
-ok(!fs.existsSync(path.join(out2, "docs", "model.json")), "--no-emitModel suppresses model.json");
-
-// ------------------------------------------------------------------
-console.log("\nconfig: failure modes");
-// ------------------------------------------------------------------
-var missing = cli(["--json", "-i", path.join(FIXTURES, "nope-does-not-exist")]);
-ok(missing.status === 1, "exits 1 when the source path is missing", "got " + missing.status);
-
-var missingReport = JSON.parse(missing.stdout);
-ok(missingReport.ok === false, "reports failure as JSON");
-ok(missingReport.errors.length === 1, "reports exactly one error, with no phantom entries",
-	JSON.stringify(missingReport.errors));
-ok(/doesn't exist/.test(missingReport.errors[0]), "the error names the real problem",
-	missingReport.errors[0]);
-
-// ------------------------------------------------------------------
-console.log("\nconfig: documon.json discovery");
-// ------------------------------------------------------------------
-var projDir = tmp();
-var projSrc = path.join(projDir, "src");
-fs.mkdirSync(projSrc);
-fs.copyFileSync(path.join(FIXTURES, "good.js"), path.join(projSrc, "good.js"));
-fs.writeFileSync(path.join(projDir, "documon.json"), JSON.stringify({
-	src : projSrc,
-	out : projDir,
-	name : "FromConfig",
-	version : "3.2.1"
-}), "utf8");
-
-var configured = cp.spawnSync(process.execPath, [CLI], { cwd : projDir, encoding : "utf8" });
-ok(configured.status === 0, "runs with no flags when documon.json is present",
-	"got " + configured.status);
-ok(fs.existsSync(path.join(projDir, "docs", "index.html")), "built using the config file");
-
-var configModel = JSON.parse( fs.readFileSync(path.join(projDir, "docs", "model.json"), "utf8") );
-ok(configModel.project === "FromConfig", "picked up name from the config file",
-	"got " + configModel.project);
-ok(configModel.version === "3.2.1", "picked up version from the config file");
-
-// ------------------------------------------------------------------
-console.log("\nconfig: package.json supplies project identity");
-// ------------------------------------------------------------------
-var pkgDir = tmp();
-var pkgSrc = path.join(pkgDir, "src");
-fs.mkdirSync(pkgSrc);
-fs.copyFileSync(path.join(FIXTURES, "good.js"), path.join(pkgSrc, "good.js"));
-fs.writeFileSync(path.join(pkgDir, "package.json"), JSON.stringify({
-	name : "borrowed-name",
-	version : "4.5.6",
-	description : "Borrowed from package.json."
-}), "utf8");
-
-// Run from inside the temp project, so the repo's own documon.json
-// (which sets a name) doesn't supply one first.
-cli(["-i", pkgSrc, "-o", pkgDir], pkgDir);
-var borrowed = JSON.parse( fs.readFileSync(path.join(pkgDir, "docs", "model.json"), "utf8") );
-
-ok(borrowed.project === "borrowed-name", "adopts name from the nearest package.json",
-	"got " + borrowed.project);
-ok(borrowed.version === "4.5.6", "adopts version from the nearest package.json",
-	"got " + borrowed.version);
-ok(borrowed.description === "Borrowed from package.json.", "adopts the description");
-
-cli(["-i", pkgSrc, "-o", pkgDir, "-n", "Explicit", "-v", "0.0.1"], pkgDir);
-var explicit = JSON.parse( fs.readFileSync(path.join(pkgDir, "docs", "model.json"), "utf8") );
-ok(explicit.project === "Explicit", "explicit flags beat package.json", "got " + explicit.project);
-ok(explicit.version === "0.0.1", "explicit version wins");
-
-ok(JSON.parse(cli(["--check", "--json", "-i", pkgSrc], pkgDir).stdout).ok === true,
-	"check runs clean inside a bare project");
-
-// ------------------------------------------------------------------
-console.log("\nspelling: @implements is canonical, @impliments is retired");
-// ------------------------------------------------------------------
-var spellDir = tmp();
-var spellSrc = path.join(spellDir, "src");
-fs.mkdirSync(spellSrc);
-fs.writeFileSync(path.join(spellSrc, "s.js"), [
-	"/**", " * A module.", " * @module thing", " * @package app", " */", "",
-	"/**", " * Correct spelling.", " * @class Good", " * @implements app.Iface", " */",
-	"function Good(){}", "",
-	"/**", " * The interface.", " * @class Iface", " */",
-	"function Iface(){}"
-].join("\n"), "utf8");
-
-var spellReport = JSON.parse( cli(["--check", "--json", "-i", spellSrc], spellDir).stdout );
-ok(spellReport.counts.error === 0, "@implements resolves inheritance",
-	JSON.stringify(spellReport.findings.filter(function(f){ return f.level === "error"; })));
-
-fs.writeFileSync(path.join(spellSrc, "old.js"), [
-	"/**", " * Retired spelling.", " * @class Legacy", " * @package app",
-	" * @impliments app.Iface", " */", "function Legacy(){}"
-].join("\n"), "utf8");
-
-var retired = cli(["--check", "--json", "-i", spellSrc], spellDir);
-var retiredReport = JSON.parse(retired.stdout);
-
-ok(retired.status === 2, "@impliments fails the check", "got " + retired.status);
-ok(hasRule(retiredReport, "retired-tag"), "reports it as retired, not merely unknown");
-
-var retiredFinding = retiredReport.findings.filter(function(f){ return f.rule === "retired-tag"; })[0];
-ok(retiredFinding && /Rename it to @implements/.test(retiredFinding.fix || ""),
-	"names the replacement spelling", retiredFinding && retiredFinding.fix);
-
-var retiredBuild = cli(["-i", spellSrc, "-o", path.join(tmp(), "r"), "-p"], spellDir);
-ok(/was retired/.test(retiredBuild.stdout), "the build says so too, rather than staying quiet",
-	retiredBuild.stdout.slice(-300));
-
-// ------------------------------------------------------------------
-console.log("\nscope: a file's @package carries to later classes");
-// ------------------------------------------------------------------
-var scopeDir = tmp();
-var scopeSrc = path.join(scopeDir, "src");
-fs.mkdirSync(scopeSrc);
-fs.writeFileSync(path.join(scopeSrc, "multi.js"), [
-	"/**", " * First.", " * @module first", " * @package app", " */", "",
-	"/**", " * Second class in the same file.", " * @class Second", " */",
-	"function Second(){}", "",
-	"/**", " * Third, explicitly in another package.", " * @class Third", " * @package other", " */",
-	"function Third(){}", "",
-	"/**", " * Fourth, back to the inherited package.", " * @class Fourth", " */",
-	"function Fourth(){}"
-].join("\n"), "utf8");
-
-var scopeOut = path.join(scopeDir, "out");
-cli(["-i", scopeSrc, "-o", scopeOut, "-n", "Scope"], scopeDir);
-var scopeModel = JSON.parse( fs.readFileSync(path.join(scopeOut, "docs", "model.json"), "utf8") );
-var scopeIds = scopeModel.pages.map(function(p){ return p.id; });
-
-ok(scopeIds.indexOf("app.Second") > -1, "a later class inherits the file's @package",
-	scopeIds.join(", "));
-ok(scopeIds.indexOf("root.Second") === -1, "and no longer falls back to root");
-ok(scopeIds.indexOf("other.Third") > -1, "an explicit @package still wins", scopeIds.join(", "));
-ok(scopeIds.indexOf("other.Fourth") > -1, "and becomes the package for what follows",
-	scopeIds.join(", "));
-
-// ------------------------------------------------------------------
-console.log("\nqualified ids: dotted references are not re-parented");
-// ------------------------------------------------------------------
-var qDir = tmp();
-var qSrc = path.join(qDir, "src");
-fs.mkdirSync(qSrc);
-
-// The killer case: the SAME block declares @package app and @extends app.Base.
-// The dotted-name logic used to nest the @extends under the @package tag, so the
-// inheritance vanished entirely.
-fs.writeFileSync(path.join(qSrc, "q.js"), [
-	"/**", " * The parent.", " * @class Base", " * @package app", " */",
-	"function Base(){}", "",
-	"/**", " * The child.", " * @class Child", " * @package app", " * @extends app.Base", " */",
-	"function Child(){}", "",
-	"/**", " * Nested params still nest.", " * @method configure",
-	" * @param {object} opts - Options.",
-	" * @param {number} opts.timeout - How long.", " */",
-	"function configure(opts){}"
-].join("\n"), "utf8");
-
-var qReport = JSON.parse( cli(["--check", "--json", "-i", qSrc], qDir).stdout );
-ok(qReport.counts.error === 0, "@extends app.Base resolves when the block also sets @package",
-	JSON.stringify(qReport.findings.filter(function(f){ return f.level === "error"; })));
-
-var qOut = path.join(qDir, "out");
-cli(["-i", qSrc, "-o", qOut, "-n", "Q"], qDir);
-var qModel = JSON.parse( fs.readFileSync(path.join(qOut, "docs", "model.json"), "utf8") );
-
-var childPage = qModel.pages.filter(function(p){ return p.id === "app.Child"; })[0];
-ok(!!childPage, "the child class is in the right package",
-	qModel.pages.map(function(p){ return p.id; }).join(", "));
-
-// Nested params must still nest -- that is what the dot means on @param.
-var confMethod = qModel.pages.reduce(function(acc, p){ return acc.concat(p.members); }, [])
-	.filter(function(m){ return m.name === "configure"; })[0];
-ok(confMethod && confMethod.params.length === 1,
-	"@param opts.timeout still nests under opts rather than becoming a sibling",
-	confMethod && JSON.stringify(confMethod.params.map(function(p){ return p.name; })));
-
-// ------------------------------------------------------------------
-console.log("\nignore: patterns actually apply");
-// ------------------------------------------------------------------
-var ignore = require(path.join(ROOT, "src", "ignore.js"));
-var matcher = ignore.create(["*.test.js", "scratch"], ["/out/dir"]);
-
-ok(matcher.test("/p/node_modules/x/y.js"), "ignores node_modules by default");
-ok(matcher.test("/p/.git/config"), "ignores dot folders by default");
-ok(matcher.test("/p/a.test.js"), "honours a simple glob");
-ok(matcher.test("/p/scratch/f.js"), "honours a substring");
-ok(matcher.test("/out/dir/f.js"), "ignores the output folder");
-ok(!matcher.test("/p/src/real.js"), "keeps ordinary source files");
-
-// ------------------------------------------------------------------
-console.log("\ncheck: where parameters actually render");
-// ------------------------------------------------------------------
-// class.jst routes the @class/@module that heads a page through member.jst as a
-// "methods" part, so those pages DO show a signature and a parameter table. The
-// rule used to warn about them, which sent authors to delete working docs.
-var paramDir = tmp();
-fs.writeFileSync(path.join(paramDir, "p.js"), [
-	"/**", " * A callable module.", " * @class   Runner", " * @package app",
-	" * @param   {string} text - Input.", " * @returns {string} - Output.", " */",
-	"",
-	"/**", " * A module.", " * @module  Helper", " * @package app",
-	" * @param   {string} text - Input.", " */",
-	"",
-	"/**", " * A property.", " * @property {object} conf",
-	" * @param   {string} nope - Never rendered.", " */"
-].join("\n"));
-
-var paramRun = cli(["--check", "--json", "-i", paramDir]);
-var paramFindings = JSON.parse(paramRun.stdout).findings
-	.filter(function(f){ return f.rule === "param-on-non-method"; });
-
-ok(paramFindings.length === 1, "@param on @class and @module is not flagged",
-	JSON.stringify(paramFindings));
-ok(paramFindings.length === 1 && /@property/.test(paramFindings[0].message),
-	"@param on a kind that drops it is still flagged",
-	paramFindings.length ? paramFindings[0].message : "nothing reported");
-
-// ------------------------------------------------------------------
-console.log("\ncheck: links into the more folder");
-// ------------------------------------------------------------------
-var moreDir = tmp();
-var moreSrc = path.join(moreDir, "src");
-var morePro = path.join(moreDir, "more");
-fs.mkdirSync(moreSrc);
-fs.mkdirSync(morePro);
-fs.mkdirSync(path.join(morePro, "185.Tags"));
-fs.writeFileSync(path.join(morePro, "104.Options.md"), "# Options\n");
-fs.writeFileSync(path.join(morePro, "185.Tags", "@implements.md"), "# implements\n");
-fs.writeFileSync(path.join(moreSrc, "thing.js"), [
-	"/**",
-	" * A thing.",
-	" *",
-	" * See [options](more.options), [the tags folder](more.tags),",
-	" * [a tag page](more.tags._implements_md) and [a typo](more.nosuchpage).",
-	" * @module  thing",
-	" * @package app",
-	" */"
-].join("\n"));
-
-var moreRun = cli(["--check", "--json", "-i", moreSrc, "-m", morePro]);
-var moreReport = JSON.parse(moreRun.stdout);
-var moreBroken = moreReport.findings.filter(function(f){ return f.rule === "broken-link"; });
-
-ok(moreBroken.length === 1, "prose pages resolve as link targets",
-	JSON.stringify(moreBroken));
-ok(moreBroken.length === 1 && moreBroken[0].message.indexOf("more.nosuchpage") > -1,
-	"a mistyped prose link is still reported",
-	moreBroken.length ? moreBroken[0].message : "nothing reported");
-
-// ------------------------------------------------------------------
-console.log("\nextract: openers that are not openers");
-// ------------------------------------------------------------------
-var extract = require(path.join(ROOT, "src", "extract.js"));
-
-// Built from pieces so this file does not contain the very thing it tests.
-var OPEN  = "/*" + "*";
-var CLOSE = "*" + "/";
-
-function blocks(lines){
-	return extract(lines.join("\n"));
-}
-
-// A doc opener inside a string literal used to start a real block, which then
-// swallowed every comment after it -- losing those entities entirely.
-var inString = blocks([
-	'var sample = "' + OPEN + ' looks like a comment";',
-	OPEN,
-	' * @method survivor',
-	' ' + CLOSE
-]);
-ok(inString.length === 1, "an opener inside a string literal is not a comment",
-	JSON.stringify(inString));
-ok(/@method survivor/.test(inString[0] ? inString[0].data : ""),
-	"the comment after a string-literal opener still parses");
-
-var inLineComment = blocks([
-	'// see "src/' + '**' + '/tmp" for the glob form',
-	OPEN,
-	' * @method survivor',
-	' ' + CLOSE
-]);
-ok(inLineComment.length === 1, "an opener inside a // line comment is not a comment",
-	JSON.stringify(inLineComment));
-ok(/@method survivor/.test(inLineComment[0] ? inLineComment[0].data : ""),
-	"the comment after a commented-out opener still parses");
-
-// A "//" inside a string is not a line comment, so a real opener after it counts.
-var urlLine = blocks([
-	'var url = "http://example.com"; ' + OPEN + ' @method trailing ' + CLOSE
-]);
-ok(urlLine.length === 1 && urlLine[0].data === "@method trailing",
-	"a // inside a string does not hide a later opener", JSON.stringify(urlLine));
-
-// Opened and closed on the same line: the block used to stay open and eat code.
-var oneLine = blocks([
-	OPEN + ' @method oneLiner ' + CLOSE,
-	'function oneLiner(){}',
-	OPEN,
-	' * @method second',
-	' ' + CLOSE
-]);
-ok(oneLine.length === 2, "a single-line block closes on its own line",
-	JSON.stringify(oneLine));
-ok(oneLine[0] && oneLine[0].data === "@method oneLiner",
-	"a single-line block keeps only its own contents",
-	oneLine[0] ? oneLine[0].data : "");
-ok(/@method second/.test(oneLine[1] ? oneLine[1].data : ""),
-	"the block after a single-line block still parses");
-
-// ------------------------------------------------------------------
-console.log("\ncli: basics");
-// ------------------------------------------------------------------
-var help = cli(["-h"]);
-ok(help.status === 0, "-h exits 0");
-ok(/EXIT CODES/.test(help.stdout), "help documents exit codes");
-ok(/--check/.test(help.stdout), "help documents --check");
-
-var ver = cli(["--version"]);
-ok(ver.status === 0, "--version exits 0");
-ok(ver.stdout.trim() === require(path.join(ROOT, "package.json")).version,
-	"--version prints the package version", ver.stdout.trim());
-
-// ------------------------------------------------------------------
-console.log("\ndogfood: documon checks itself");
-// ------------------------------------------------------------------
-var self = cli(["--check", "--json", "-i", path.join(ROOT, "src")]);
-var selfReport = JSON.parse(self.stdout);
-ok(selfReport.counts.error === 0, "documon's own source has no check errors",
-	JSON.stringify(selfReport.findings.filter(function(f){ return f.level === "error"; })));
-
-// ------------------------------------------------------------------
-console.log("\n" + passed + " passed, " + failed + " failed\n");
-process.exit(failed ? 1 : 0);
+process.exit(t.state.failed ? 1 : 0);

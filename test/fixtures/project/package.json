@@ -1,0 +1,5 @@
+{
+	"name" : "acme-fixture",
+	"version" : "2.3.4",
+	"description" : "A fixture library for the Documon test suite."
+}
