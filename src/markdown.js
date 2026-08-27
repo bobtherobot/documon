@@ -43,9 +43,14 @@ function run(str){
     // -- so every escape written inside a code example rendered as the raw entity.
     str = utils.decodeCommentEscapes(str);
 
+    // Documon's whole vocabulary is "@tag", and showdown's github flavor turns any bare
+    // "@word" into a link to a GitHub profile. That rendered @package, @method, @extends
+    // and friends as ~90 links to nonexistent users. Real mentions have to be written as
+    // explicit markdown links.
     var converter = new showdown.Converter({
         tables : true,
         omitExtraWLInCodeBlocks : true,
+        ghMentions : false,
         extensions: ['def_list']
     });
     return converter.makeHtml(str)

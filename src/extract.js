@@ -12,19 +12,21 @@ www.documon.net
  *  - __end__ : The line number that the comment ended on
  *  - __data__ : The contents of the comment
  * 
-	var myComments = extract(str);
-	yields : [
-				{ 
-					start : 12,
-					end : 32,
-					data : "the descript"
-				},
-				{ 
-					start : 12,
-					end : 32,
-					data : "the descript"
-				}
-		]
+```
+var myComments = extract(str);
+yields : [
+			{ 
+				start : 12,
+				end : 32,
+				data : "the descript"
+			},
+			{ 
+				start : 12,
+				end : 32,
+				data : "the descript"
+			}
+	]
+```
  *
  * ## A few things of note:
  * - The data will NOT include the beginDoc, nor the endDoc strings.

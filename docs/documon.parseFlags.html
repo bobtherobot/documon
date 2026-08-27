@@ -28,7 +28,7 @@
 	"name": "parseFlags",
 	"headline": "parseFlags",
 	"identifier": "documon.parseFlags",
-	"description": "Fills the output object with the following properties (if they exist) object { source // Entire first line inlcuding the @flag (only first line) after // Everything after the @flag name // One word following {type}. Or first word after the @flag definition when no {type}. children // name.kid - Array of children parent // if am a child, this is my parent. flag // @flag token with @ stripped defaultVal // name=val afterType // first line after text // } Here's an expanded and exmple'd definition list source : The entire comment block after : Everything after the @flag token \"as is\" (kinda like source) - source : The entire comment block - after : Everything after the @flag token \"as is\" (kinda like source) e.g. in this line: \\@foo {type} name descr after yields: {type} name descr - name : The first word following the {type} definition. Or the first word after the @flag definition - children : If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy. - parent : The parent flag of a child. This property only exists on children flags. - defaultVal : When name=foo then default value will be foo. Note that quotes are stripped. e.g. foo=\"bar\" sets default property to \"bar\" (without the quotes) and name property to \"foo\". - flag : The flag kind - the @ is stripped - afterType : Everything after the {type} definition e.g. @flag {type} name - descr ... yields: name - descr - text : The description for the paramter. Note that additional description text can be provided below the @flag. e.g. @flag {type} name - description more description below the flag here \\@flag {kind} name.child=defaultVal - description \\n stuff on next line \\n and other next lines... |flag| |defaultVal| |child| |parent| |name| |text ------------------------------------------------------| |afterType ---------------------------| |after -------------------------------------| |source ------------------------------------------|",
+	"description": "Fills the output object with the following properties (if they exist) object { source // Entire first line inlcuding the @flag (only first line) after // Everything after the @flag name // One word following {type}. Or first word after the @flag definition when no {type}. children // name.kid - Array of children parent // if am a child, this is my parent. flag // @flag token with @ stripped defaultVal // name=val afterType // first line after text // } Here's an expanded and exmple'd definition list source : The entire comment block after : Everything after the @flag token \"as is\" (kinda like source) - source : The entire comment block - after : Everything after the @flag token \"as is\" (kinda like source) e.g. in this line: \\@foo {type} name descr after yields: {type} name descr - name : The first word following the {type} definition. Or the first word after the @flag definition - children : If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy. - parent : The parent flag of a child. This property only exists on children flags. - defaultVal : When name=foo then default value will be foo. Note that quotes are stripped. e.g. foo=\"bar\" sets default property to \"bar\" (without the quotes) and name property to \"foo\". - flag : The flag kind - the @ is stripped - afterType : Everything after the {type} definition e.g. @flag {type} name - descr ... yields: name - descr - text : The description for the paramter. Note that additional description text can be provided below the @flag. e.g. @flag {type} name - description more description below the flag here",
 	"url": "https://www.documon.net/documon.parseFlags.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -113,7 +113,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/parseFlag.js</span>
-						    		<span class="member-line-number">192</span>
+						    		<span class="member-line-number">191</span>
 						    	</span>
 						    </h1>
 
@@ -143,29 +143,30 @@
 <dd><p>The entire comment block</p></dd>
 
 <dt>after</dt>
-<dd><p>Everything after the <a href="https://github.com/flag">@flag</a> token "as is" (kinda like source)</p></dd>
+<dd><p>Everything after the @flag token "as is" (kinda like source)</p></dd>
 </dl>
 <ul>
-<li><p><strong>source</strong> : The entire comment block</p></li>
-<li><p><strong>after</strong> :         Everything after the <a href="https://github.com/flag">@flag</a> token "as is" (kinda like source)</p>
-<p>e.g. in this line:<br />
-        @foo {type} name descr<br />
+<li><strong>source</strong> : The entire comment block</li>
+<li><strong>after</strong> :         Everything after the @flag token "as is" (kinda like source)<br />
+e.g. in this line:<br />
+        \@foo {type} name descr<br />
      after yields:<br />
-        {type} name descr</p></li>
-<li><p><strong>name</strong> :         The first word following the {type} definition. Or the first word after the <a href="https://github.com/flag">@flag</a> definition</p></li>
-<li><p><strong>children</strong> :     If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy.</p></li>
-<li><p><strong>parent</strong> :         The parent flag of a child. This property only exists on children flags.</p></li>
-<li><p><strong>defaultVal</strong> :     When name=foo then default value will be foo. Note that quotes are stripped.<br />
-            e.g. foo="bar" sets default property to "bar" (without the quotes) and name property to "foo".</p></li>
-<li><p><strong>flag</strong> :         The flag kind - the @ is stripped</p></li>
-<li><p><strong>afterType</strong> :     Everything after the {type} definition<br />
-            e.g. <a href="https://github.com/flag">@flag</a> {type} name - descr<br />
+        {type} name descr</li>
+<li><strong>name</strong> :         The first word following the {type} definition. Or the first word after the @flag definition</li>
+<li><strong>children</strong> :     If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy.</li>
+<li><strong>parent</strong> :         The parent flag of a child. This property only exists on children flags.</li>
+<li><strong>defaultVal</strong> :     When name=foo then default value will be foo. Note that quotes are stripped.<br />
+            e.g. foo="bar" sets default property to "bar" (without the quotes) and name property to "foo".</li>
+<li><strong>flag</strong> :         The flag kind - the @ is stripped</li>
+<li><strong>afterType</strong> :     Everything after the {type} definition<br />
+            e.g. @flag {type} name - descr<br />
                 … yields:<br />
-                name - descr</p></li>
-<li><p><strong>text</strong> :         The description for the paramter. Note that additional description text can be provided below the <a href="https://github.com/flag">@flag</a>.<br />
-                e.g. <a href="https://github.com/flag">@flag</a> {type} name - description<br />
+                name - descr</li>
+<li><strong>text</strong> :         The description for the paramter. Note that additional description text can be provided below the @flag.<br />
+                e.g. @flag {type} name - description<br />
                 more description<br />
-                below the flag here</p>
+                below the flag here</li>
+</ul>
 <pre><code>\@flag {kind} name.child=defaultVal - description \n stuff on next line \n and other next lines...
 |flag|
                        |defaultVal|
@@ -175,8 +176,7 @@
                                      |text ------------------------------------------------------|
             |afterType ---------------------------|
       |after -------------------------------------|
-|source ------------------------------------------|</code></pre></li>
-</ul>
+|source ------------------------------------------|</code></pre>
 
 					
 								
@@ -216,7 +216,7 @@
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/parseFlag.js</span><span class="member-line-number" title="src/parseFlag.js">205</span>
+                                <span class="member-file">src/parseFlag.js</span><span class="member-line-number" title="src/parseFlag.js">204</span>
                                 </span>
                                     <div class="param-description">
                                         

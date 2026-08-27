@@ -45,6 +45,20 @@ exports.run = function(t){
 	t.ok(/<blockquote>/.test(markdown("> quoted")), "blockquotes", markdown("> quoted"));
 
 	// ------------------------------------------------------------------
+	t.section("markdown: bare @words are not GitHub mentions");
+	// ------------------------------------------------------------------
+	// Documon's entire vocabulary is "@tag", and showdown's github flavor links any bare
+	// "@word" to a GitHub profile -- which turned @package, @method and friends into ~90
+	// links to users who do not exist. A real mention has to be an explicit link.
+	var mention = markdown("The " + AT + "package tag.");
+	t.ok(mention.indexOf("github.com") === -1, "a tag name is not turned into a link",
+		mention);
+	t.ok(/@package/.test(mention), "and survives as plain text", mention);
+
+	t.ok(/<a href="https:\/\/github.com\/x">y<\/a>/.test(markdown("[y](https://github.com/x)")),
+		"an explicit github link still works");
+
+	// ------------------------------------------------------------------
 	t.section("markdown: tables");
 	// ------------------------------------------------------------------
 	// The options folder page and the tag reference are both markdown tables, so the

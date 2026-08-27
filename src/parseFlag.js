@@ -150,14 +150,11 @@ after
 
 - __source__ : The entire comment block
 - __after__ : 		Everything after the @flag token "as is" (kinda like source)
-
 	e.g. in this line:
 			\@foo {type} name descr
 		 after yields:
 		 	{type} name descr
-
 - __name__ : 		The first word following the {type} definition. Or the first word after the @flag definition
-
 - __children__ : 	If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy.
 - __parent__ : 		The parent flag of a child. This property only exists on children flags.
 - __defaultVal__ : 	When name=foo then default value will be foo. Note that quotes are stripped.
@@ -174,16 +171,18 @@ after
 
 
 
-		\@flag {kind} name.child=defaultVal - description \n stuff on next line \n and other next lines...
-		|flag|
-		                       |defaultVal|
-		                 |child|
-		            |parent|
-		            |name|
-		                                     |text ------------------------------------------------------|
-		            |afterType ---------------------------|
-		      |after -------------------------------------|
-		|source ------------------------------------------|
+```
+\@flag {kind} name.child=defaultVal - description \n stuff on next line \n and other next lines...
+|flag|
+                       |defaultVal|
+                 |child|
+            |parent|
+            |name|
+                                     |text ------------------------------------------------------|
+            |afterType ---------------------------|
+      |after -------------------------------------|
+|source ------------------------------------------|
+```
 
 
 

@@ -5,7 +5,6 @@ Documon is based on the package concept, the resulting hierarchy that Documon ge
 The @package (or @namespace) tag provides two functionalities:
 
 1. We split source files whenever a solo @package or @namespace appears. Therefore all classes or modules listed below the @package definition will automatically get assigned to the package. By splitting files on solo @package definitions we're causing a source file to be treated as multiple source files. This allows you to define multiple packages within a single file -- without having to incorporate the @package flag into each class, method, property or event definition.
-
 2. We can assigned stuff to a specific @package within a comment block.
 
 
