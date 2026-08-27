@@ -7,7 +7,7 @@
 
 		
     	<title>Meta Header - Documon</title>
-		<meta name="description" content="{ &quot;url&quot; : &quot; https://www.gieson.com &quot;, &quot;icon&quot; : &quot;fa-star&quot; } meta About yada tas meta and so on">
+		<meta name="description" content="Meta Header This page is a live demonstration. Its source begins with a JSON block terminated by a __meta__ line: { &quot;icon&quot; : &quot;fa-star&quot; } __meta__ # Meta Header ... … which is why it carries a star in the menu instead of the usual page icon. Everything above the __meta__ line i...">
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/more.more_docs.meta_header.html">
 
@@ -17,7 +17,7 @@
 		<!-- Open Graph / social -->
 		<meta property="og:type" content="article">
 		<meta property="og:title" content="Meta Header - Documon">
-		<meta property="og:description" content="{ &quot;url&quot; : &quot; https://www.gieson.com &quot;, &quot;icon&quot; : &quot;fa-star&quot; } meta About yada tas meta and so on">
+		<meta property="og:description" content="Meta Header This page is a live demonstration. Its source begins with a JSON block terminated by a __meta__ line: { &quot;icon&quot; : &quot;fa-star&quot; } __meta__ # Meta Header ... … which is why it carries a star in the menu instead of the usual page icon. Everything above the __meta__ line i...">
 		<meta property="og:site_name" content="Documon">
 		<meta property="og:url" content="https://www.documon.net/more.more_docs.meta_header.html">
 		<meta name="twitter:card" content="summary">
@@ -28,7 +28,7 @@
 	"name": "Meta Header",
 	"headline": "Meta Header",
 	"identifier": "more.more_docs.meta_header",
-	"description": "{ \"url\" : \" https://www.gieson.com \", \"icon\" : \"fa-star\" } meta About yada tas meta and so on",
+	"description": "Meta Header This page is a live demonstration. Its source begins with a JSON block terminated by a meta line: { \"icon\" : \"fa-star\" } meta # Meta Header ... … which is why it carries a star in the menu instead of the usual page icon. Everything above the meta line is lifted out and read as settings; everything below it is ordinary markdown. If the JSON doesn't parse, Documon leaves the page alone rather than mangling it, so a typo costs you the icon and nothing else. The properties icon A CSS class for the menu entry. Documon ships Font Awesome , so any of their class names work. Space-delimit to apply more than one. url Turns the entry into a link to somewhere outside the generated site. When url is set no page is written for the file at all -- the menu entry simply points elsewhere, and whatever you wrote below the meta line is never published. That is the intent, but it does mean an accidental url makes a page silently vanish. Only the first boundary counts The split happens at the first meta , so you can mention the word further down the page -- as this sentence does -- without confusing the parser. See More Docs for the folder, numbering and id rules.",
 	"url": "https://www.documon.net/more.more_docs.meta_header.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -83,14 +83,36 @@
 	<body>
 
 		<div class="page">
-			<div class="more"><p>{<br />
-    "url" : "<a href="https://www.gieson.com">https://www.gieson.com</a>",<br />
-    "icon" : "fa-star"<br />
-}<br />
-<strong>meta</strong></p>
-<h1 id="about">About</h1>
-<p>yada tas</p>
-<p><strong>meta</strong> and so on</p></div>
+			<div class="more"><h1 id="meta-header">Meta Header</h1>
+<p>This page is a live demonstration. Its source begins with a JSON block terminated by a<br />
+<code>__meta__</code> line:</p>
+<pre><code>{
+    "icon" : "fa-star"
+}
+__meta__
+
+# Meta Header
+...</code></pre>
+<p>… which is why it carries a star in the menu instead of the usual page icon.</p>
+<p>Everything above the <code>__meta__</code> line is lifted out and read as settings; everything below<br />
+it is ordinary markdown. If the JSON doesn't parse, Documon leaves the page alone rather<br />
+than mangling it, so a typo costs you the icon and nothing else.</p>
+<h2 id="the-properties">The properties</h2>
+<dl>
+<dt>`icon`</dt>
+<dd><p>A CSS class for the menu entry. Documon ships <a href="https://fontawesome.io">Font Awesome</a>,<br />
+so any of their class names work. Space-delimit to apply more than one.</p></dd>
+
+<dt>`url`</dt>
+<dd><p>Turns the entry into a link to somewhere outside the generated site. When <code>url</code> is set<br />
+<strong>no page is written for the file at all</strong> -- the menu entry simply points elsewhere, and<br />
+whatever you wrote below the <code>__meta__</code> line is never published. That is the intent, but<br />
+it does mean an accidental <code>url</code> makes a page silently vanish.</p></dd>
+</dl>
+<h2 id="only-the-first-boundary-counts">Only the first boundary counts</h2>
+<p>The split happens at the first <code>__meta__</code>, so you can mention the word further down the<br />
+page -- as this sentence does -- without confusing the parser.</p>
+<p>See <a href="more.more_docs.more_docs">More Docs</a> for the folder, numbering and id rules.</p></div>
 		</div>
 
 		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>

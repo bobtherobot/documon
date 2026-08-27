@@ -129,7 +129,7 @@ testResults(output.flags)
 Fills the output object with the following properties (if they exist)
 
 		object {
-			source 		// Entire first line inlcuding the @flag (only first line)
+			source 		// Entire first line including the @flag (only first line)
 			after		// Everything after the @flag
 			name		// One word following {type}. Or first word after the @flag definition when no {type}.
 			children	// name.kid - Array of children
@@ -155,7 +155,7 @@ after
 		 after yields:
 		 	{type} name descr
 - __name__ : 		The first word following the {type} definition. Or the first word after the @flag definition
-- __children__ : 	If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy.
+- __children__ : 	If a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a hierarchy.
 - __parent__ : 		The parent flag of a child. This property only exists on children flags.
 - __defaultVal__ : 	When name=foo then default value will be foo. Note that quotes are stripped.
 				e.g. foo="bar" sets default property to "bar" (without the quotes) and name property to "foo".
@@ -164,7 +164,7 @@ after
 				e.g. @flag {type} name - descr
 					... yields:
 					name - descr
-- __text__ : 		The description for the paramter. Note that additional description text can be provided below the @flag.
+- __text__ : 		The description for the parameter. Note that additional description text can be provided below the @flag.
 					e.g. @flag {type} name - description
 					more description
 					below the flag here

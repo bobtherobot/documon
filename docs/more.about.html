@@ -28,7 +28,7 @@
 	"name": "About",
 	"headline": "About",
 	"identifier": "more.about",
-	"description": "Documon A documentation system for mortals. Use with any language. Generates a static, searchable JSDoc style documentation from source code. Uses a customizable template system, and will process a markdown folder (aka \"more\" folder) where auxiliary documentation (outside of source code) can reside. Since documon doesn't infer anything from the source code (all methods and arguments must be tagged manually), you maintain full control over the final output structure. Run from CLI, or integrate into node project. Full Documentation See full documentation at: https://www.documon.net Get It NPM: https://www.npmjs.com/package/documon Github: https://github.com/bobtherobot/documon Directly: https://www.documon.net (as \"stand alone\" ) Quick Start In Node (javascript) Install via NPM: npm install documon Generate Docs: var docs = require(\"documon\"); doc({ src : \"/path/to/src/code\", out : \"/path/to/docs/output\", more : \"/where/are/more/markdowns\", ignore : [ '/path/to/src/dont/process/me', '/path/to/src/node_modules' ], name : \"My Project\", version : \"1.0.0\", launch : false, print : true, dumpData : true, sourceExt : [\"js\"], gati : 'UA-106684927-1' }); From CLI Generate docs: node /path/to/documon/index.js \"/path/to/source/code\" \"/path/to/destination\" Benefits Comment tags are soley responsible for organizing the resulting heirarchy (inheritence and membership). Built for mortals, runs on Node. Generates static website (no server-side stuff). Search enabled (low overhead, no database) Use within any Node build system. Zero dependancies. Use with any programming language. Plain-text + markdown based. JavaDoc syntax. Structure is derived soley from the comments. Direct control over final structure of the resulting website. Great for small and large projects. Auto inheritance cross fill and referencing (links to and fills children classes with inherited methods, props and events). Documon does NOT: Actual source code not required. Doesn't interpret / execute source code. No over-arching code organization required. Doesn't infer inheritence / membership from the directory structure. Doesn't infer property / method names, arguments, etc, from the source code. As a result, comment blocks must be robust and include all pertinent details required to generate documentation. Get Involved Documon on Github Documon on NPM Platforms Documon is written in Javascript and runs on the Node platform, which runs on Linux, Mac, and Windows systems. Documon can be installed using NPM , or &#x02186; downloaded directly . Templates Templating is handled through vanilla javascript modules, leveraging ES6's Template Literals . This provides the highest level of flexability with zero-dependancies, unlimited logic constraints, and nothing new to learn. Of course, since templates are JS, you can always roll some other templating system, such as Twig, or Handlebars, into your custom template. Dependancies Documon's only dependancy is Node, no additional modules are needed. Author &amp; Copyright Copyright &copy; Mike Gieson . Released under the MIT license. .",
+	"description": "Documon A documentation system for mortals. Use with any language. Generates a static, searchable JSDoc style documentation from source code. Uses a customizable template system, and will process a markdown folder (aka \"more\" folder) where auxiliary documentation (outside of source code) can reside. Since documon doesn't infer anything from the source code (all methods and arguments must be tagged manually), you maintain full control over the final output structure. Run from CLI, or integrate into node project. Full Documentation See full documentation at: https://www.documon.net Get It NPM: https://www.npmjs.com/package/documon Github: https://github.com/bobtherobot/documon Directly: https://www.documon.net (as \"stand alone\" ) Quick Start In Node (javascript) Install via NPM: npm install documon Generate Docs: var docs = require(\"documon\"); docs({ src : \"/path/to/src/code\", out : \"/path/to/docs/output\", more : \"/where/are/more/markdowns\", ignore : [ '/path/to/src/dont/process/me', '/path/to/src/node_modules' ], name : \"My Project\", version : \"1.0.0\", launch : false, print : true, dumpData : true, sourceExt : [\"js\"], gati : 'UA-106684927-1' }); From CLI Generate docs: node /path/to/documon/index.js \"/path/to/source/code\" \"/path/to/destination\" Validate your comments without writing anything: documon --check -i /path/to/source/code --check exits 2 when it finds problems, so it drops straight into a build script. See Validating . Benefits Comment tags are solely responsible for organizing the resulting hierarchy (inheritance and membership). Built for mortals, runs on Node. Generates static website (no server-side stuff). Search enabled (low overhead, no database) Use within any Node build system. Zero dependencies. Use with any programming language. Plain-text + markdown based. JavaDoc syntax. Structure is derived solely from the comments. Direct control over final structure of the resulting website. Great for small and large projects. Auto inheritance cross fill and referencing (links to and fills children classes with inherited methods, props and events). Validates your comments ( --check ), with machine-readable findings and real exit codes. Emits llms.txt , llms-full.txt and model.json alongside the HTML, so your documentation is usable as data. See Machine Readable Output . Settings live in a documon.json (or your package.json ), found by walking up from wherever you run it. Project name, version and description come from the nearest package.json unless you override them. Documon does NOT: Require the actual source code. Interpret or execute your source code. Impose any over-arching code organization. Infer inheritance or membership from the directory structure. Infer property / method names, arguments, etc, from the source code. As a result, comment blocks must be robust and include all pertinent details required to generate documentation. Get Involved Documon on Github Documon on NPM Platforms Documon is written in Javascript and runs on the Node platform, which runs on Linux, Mac, and Windows systems. Documon can be installed using NPM , or &#x02186; downloaded directly . Templates Templating is handled through vanilla javascript modules, leveraging ES6's Template Literals . This provides the highest level of flexibility with zero-dependencies, unlimited logic constraints, and nothing new to learn. Of course, since templates are JS, you can always roll some other templating system, such as Twig, or Handlebars, into your custom template. Dependencies Documon's only dependency is Node, no additional modules are needed. Author &amp; Copyright Copyright &copy; Mike Gieson . Released under the MIT license. .",
 	"url": "https://www.documon.net/more.about.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -102,7 +102,7 @@
 <pre><code>npm install documon</code></pre>
 <p>Generate Docs:</p>
 <pre><code>var docs = require("documon");
-doc({
+docs({
     src            : "/path/to/src/code",
     out            : "/path/to/docs/output",
     more         : "/where/are/more/markdowns",
@@ -121,29 +121,39 @@ doc({
 <p><strong>From CLI</strong></p>
 <p>Generate docs:</p>
 <pre><code>node /path/to/documon/index.js "/path/to/source/code" "/path/to/destination"</code></pre>
+<p>Validate your comments without writing anything:</p>
+<pre><code>documon --check -i /path/to/source/code</code></pre>
+<p><code>--check</code> exits <code>2</code> when it finds problems, so it drops straight into a build script. See<br />
+<a href="more.validating">Validating</a>.</p>
 <h3 id="benefits">Benefits</h3>
-<p>Comment tags are soley responsible for organizing the resulting heirarchy (inheritence and membership).</p>
+<p>Comment tags are solely responsible for organizing the resulting hierarchy (inheritance and membership).</p>
 <ul>
 <li>Built for mortals, runs on Node.</li>
 <li>Generates static website (no server-side stuff).</li>
 <li>Search enabled (low overhead, no database)</li>
 <li>Use within any Node build system.</li>
-<li>Zero dependancies.</li>
+<li>Zero dependencies.</li>
 <li>Use with any programming language.</li>
 <li>Plain-text + markdown based.</li>
 <li>JavaDoc syntax.</li>
-<li>Structure is derived soley from the comments.</li>
+<li>Structure is derived solely from the comments.</li>
 <li>Direct control over final structure of the resulting website.</li>
 <li>Great for small and large projects.</li>
 <li>Auto inheritance cross fill and referencing (links to and fills children classes with inherited methods, props and events).</li>
+<li>Validates your comments (<code>--check</code>), with machine-readable findings and real exit codes.</li>
+<li>Emits <code>llms.txt</code>, <code>llms-full.txt</code> and <code>model.json</code> alongside the HTML, so your<br />
+documentation is usable as data. See <a href="more.machine_readable_output">Machine Readable Output</a>.</li>
+<li>Settings live in a <code>documon.json</code> (or your <code>package.json</code>), found by walking up from<br />
+wherever you run it. Project name, version and description come from the nearest<br />
+<code>package.json</code> unless you override them.</li>
 </ul>
 <h2 id="documon-does-not">Documon does NOT:</h2>
 <ul>
-<li>Actual source code not required.</li>
-<li>Doesn't interpret / execute source code.</li>
-<li>No over-arching code organization required.</li>
-<li>Doesn't infer inheritence / membership from the directory structure.</li>
-<li>Doesn't infer property / method names, arguments, etc, from the source code.</li>
+<li>Require the actual source code.</li>
+<li>Interpret or execute your source code.</li>
+<li>Impose any over-arching code organization.</li>
+<li>Infer inheritance or membership from the directory structure.</li>
+<li>Infer property / method names, arguments, etc, from the source code.</li>
 </ul>
 <p>As a result, comment blocks must be robust and include all pertinent details required to generate documentation.</p>
 <h2 id="get-involved">Get Involved</h2>
@@ -152,12 +162,12 @@ doc({
 <li><a href="https://www.npmjs.com/package/documon">Documon on NPM</a></li>
 </ul>
 <h2 id="platforms">Platforms</h2>
-<p>Documon is written in Javascript and runs on the <a href="https://www.nodejs.com">Node</a> platform, which runs on Linux, Mac, and Windows systems. Documon can be installed using <a href="https://www.npmjs.com/documon">NPM</a>, or <a href="https://www.documon.net/downloads/documon.zip">&#x02186; downloaded directly</a>.</p>
+<p>Documon is written in Javascript and runs on the <a href="https://nodejs.org">Node</a> platform, which runs on Linux, Mac, and Windows systems. Documon can be installed using <a href="https://www.npmjs.com/package/documon">NPM</a>, or <a href="https://www.documon.net/downloads/documon.zip">&#x02186; downloaded directly</a>.</p>
 <h2 id="templates">Templates</h2>
-<p>Templating is handled through vanilla javascript modules, leveraging ES6's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">Template Literals</a>. This provides the highest level of flexability with zero-dependancies, unlimited logic constraints, and nothing new to learn.</p>
+<p>Templating is handled through vanilla javascript modules, leveraging ES6's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">Template Literals</a>. This provides the highest level of flexibility with zero-dependencies, unlimited logic constraints, and nothing new to learn.</p>
 <p>Of course, since templates are JS, you can always roll some other templating system, such as Twig, or Handlebars, into your custom template.</p>
-<h2 id="dependancies">Dependancies</h2>
-<p>Documon's only dependancy is Node, no additional modules are needed.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>Documon's only dependency is Node, no additional modules are needed.</p>
 <h2 id="author--copyright">Author &amp; Copyright</h2>
 <p>Copyright &copy; <a href="https://www.gieson.com">Mike Gieson</a>. <br />
 Released under the MIT license.</p>

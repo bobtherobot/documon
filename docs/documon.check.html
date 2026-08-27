@@ -118,6 +118,14 @@
 		},
 		{
 			"@type": "TechArticle",
+			"name": "resolveExtends",
+			"identifier": "documon.check.resolveExtends",
+			"articleSection": "method",
+			"description": "Resolves an inheritance target the way the builder does. organizer.js:applyInheritance() accepts a bare class name for a parent in the same package -- @extends Base inside @package demo means demo.Base -- and the manual teaches that short form. The validator used to compare the written target against the fully qualified ids only, so the documented short form was reported as an unresolved-inheritance error on input that built perfectly. That broke the documon --check && documon recipe for anyone who followed the docs. The rule mirrors the builder exactly: a target with no dot at all is qualified with the block's package. A dotted target is already an id and is looked up as written.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.resolveExtends"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "run",
 			"identifier": "documon.check.run",
 			"articleSection": "method",
@@ -1004,7 +1012,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">708</span>
+						    		<span class="member-line-number">749</span>
 						    	</span>
 						    </h3>
 
@@ -1107,6 +1115,166 @@ exist. Without this, every link into the manual reads as broken.</p>
 
 							</div>
 						</div>
+				<a id="documon.check.resolveExtends" name="documon.check.resolveExtends"></a><a name="resolveExtends"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		resolveExtends (<span class="method-arguments">target</span>, <span class="method-arguments method-arg-optional">pkg</span>, <span class="method-arguments">ids</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">401</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Resolves an inheritance target the way the builder does.</p>
+<p><code>organizer.js:applyInheritance()</code> accepts a bare class name for a parent in the same<br />
+package -- <code>@extends Base</code> inside <code>@package demo</code> means <code>demo.Base</code> -- and the manual<br />
+teaches that short form. The validator used to compare the written target against the<br />
+fully qualified ids only, so the documented short form was reported as an<br />
+<code>unresolved-inheritance</code> <strong>error</strong> on input that built perfectly. That broke the<br />
+<code>documon --check &amp;&amp; documon</code> recipe for anyone who followed the docs.</p>
+<p>The rule mirrors the builder exactly: a target with no dot at all is qualified with the<br />
+block's package. A dotted target is already an id and is looked up as written.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">target</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The <code>@extends</code> / <code>@inherits</code> / <code>@implements</code> value as written.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">pkg</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The package the declaring block belongs to.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">ids</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The map of documented ids.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">string</span>
+					</div>
+			      	     	<div class="member"><p>The id it resolves to, or null.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
 				<a id="documon.check.run" name="documon.check.run"></a><a name="run"></a>
 
 						<div class="member"  >
@@ -1118,7 +1286,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">394</span>
+						    		<span class="member-line-number">435</span>
 						    	</span>
 						    </h3>
 
@@ -1267,7 +1435,8 @@ exist. Without this, every link into the manual reads as broken.</p>
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">object</span>
 					</div>
-			      	     	<div class="member"><p><code>{ ok, counts, findings, stats }</code>.</p></div>
+			      	     	<div class="member"><p><code>{ ok, generator, counts, stats, coverage, findings }</code>.<br />
+<code>coverage</code> is null unless <code>opts.coverage</code> was set.</p></div>
 				
 
 					

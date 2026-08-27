@@ -150,6 +150,69 @@ Of course, since templates are JS, you can always roll some other templating sys
 Documon's only dependancy is Node, no additional modules are needed.
 
 ## Change Log
+v3.0.1 - 2026-08-27
+
+A documentation-accuracy release. Reading `more/` line by line against the source turned
+up five places where the code did not do what the manual said. In every case the manual
+was describing the intent and the code was quietly falling short, so the code moved.
+
+Fixed:
+- The `__meta__` header on a "more" page was only read on every *other* page. `metaRx` is
+  module-level and carried the `g` flag, and `test()` on a global regular expression is
+  stateful -- it matched, left `lastIndex` past the boundary, missed on the next page,
+  reset, and matched again. A page whose header went unread lost its menu icon and its
+  external url and rendered the raw JSON as visible body text. Documon's own site shipped
+  that way; the page documenting the feature was one of the casualties.
+- `--check` rejected the same-package short form the manual teaches. `@extends Base`
+  inside `@package demo` builds correctly -- `applyInheritance()` qualifies a bare name
+  with the block's own package -- but the validator compared the written target against
+  fully qualified ids only and reported `unresolved-inheritance`. Source that built
+  perfectly failed `--check`, which broke the `documon --check && documon` recipe the docs
+  recommend. The two now resolve identically. A bare name that matches nothing, or that
+  matches only in some other package, is still an error.
+- A parameter's sub-properties never reached `model.json`. `@param {string} opts.timeout`
+  was parsed and rendered into the HTML, then dropped from `model.json`, `llms-full.txt`
+  and each page's embedded JSON-LD. Parameters now carry `children`, at any depth, plus
+  `optional` and `default` -- which also makes the `(optional)` branch in `llms-full.txt`
+  reachable for the first time.
+- The `@deprecated` badge in `flags.jst` could never fire: `parse.js` moves the tag onto
+  `meta` and drops the flag. `meta.jst` renders it; the dead branch is gone.
+- Three `console.log` calls removed from `Linker.js`, one of them firing on every page load.
+
+Documentation:
+- **Only `@extends` cross-fills inherited members.** `more/`, `TAGS.md` and `AGENTS.md`
+  all claimed `@implements`, `@inherits` and `@overrides` did too. They do not -- they are
+  recorded and rendered as a meta link, and nothing is pulled in. `@overrides` is normally
+  set for you when a child redefines an inherited member, not written by hand.
+- `AGENTS.md` corrected on two more counts: `@param` on a `@class`/`@module` does render a
+  parameter table (that is how constructor arguments are documented), and a second
+  `@class` in a file does inherit that file's `@package` -- both changed in 3.0.0 without
+  the agent notes following.
+- `104.Options.md` no longer shows a `quiet` option; there isn't one, it is derived from
+  `print`. `--config`/`-c` and `-V` documented.
+- `106.Validating.md` gains the four rules it was missing (`retired-tag`, `no-files`,
+  `unreadable-file`, `undocumented-symbol`); `param-on-non-method` only ever fires for
+  `@property`, not for `@package`/`@namespace` as claimed.
+- `107.Machine Readable Output.md` samples brought up to date -- the `Guides` and
+  `Optional` sections of `llms.txt`, and every field a real `model.json` record carries.
+- `180.Supported Tags.md` documents the aliases that were implemented but unlisted
+  (`@parameter`, `@var`, `@yields`/`@yield`, `@defaultvalue`, `@exception`, `@file`,
+  `@overview`), and now explains the tags Documon deliberately refuses to alias.
+- `150.Templates.md`: the template example used double quotes around `${ctx.id}`, which
+  does not interpolate. Backticks. Also documents `defaultExampleCode`.
+- Nine broken cross-references repaired, two tag pages that carried the wrong title
+  (`@optional` read "@order", `@requires` read "@type"), an unfinished paragraph published
+  mid-sentence on `@class`, a malformed link on the More Docs page, and roughly seventy
+  spelling corrections.
+- The `.md`-in-the-label quirk is now documented rather than hidden: a prose file with no
+  numeric prefix keeps its extension in both its menu label and its id. Number your files.
+- Source JSDoc: `documon.js`'s module example passed `files:` where `run()` reads `src`,
+  and would have produced "No files to parse."; `shouldIgnore()` carried `seeder()`'s
+  description; half of `extract.js`'s block described multi-dimensional splitting that
+  moved to `splitParsed.js` long ago. `organizer.js`'s inheritance engine -- including the
+  public `processInheritance()` -- is documented for the first time, and the literal
+  `{type}` / `description` placeholders that were rendering on the live site are gone.
+
 v3.0.0 - 2026-08-25
 
 Breaking:

@@ -1,6 +1,6 @@
 # Header
 
-A header flag provides a means to place an informational entery at the top of a main section. For example if you want an entry at the top of the Events section that provides a general overview of how the event system operates, create a new comment as follows:
+A header flag provides a means to place an informational entry at the top of a main section. For example if you want an entry at the top of the Events section that provides a general overview of how the event system operates, create a new comment as follows:
 
 		/**
 		 *

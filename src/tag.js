@@ -42,17 +42,17 @@ var searchPrep = require("./searchPrep");
 - order
 - optional
 - header
-- defaultVal, default
+- default, defaultVal, defaultValue
 - see
 - requires
 
  * 
  * Fills the flags object
  *
- * "Source Item", are manufactured from the [parseFlag](parseFlag) class, and generally provided to many of the methods as the "item" argument, and they contain the following fields:
+ * "Source Items" are manufactured by [parseFlag](documon.parseFlags), and are handed to most of the methods here as the "item" argument. They contain the following fields:
  *
  *		Source Item {
- *			source 		// Entire first line inlcuding the @flag (only first line)
+ *			source 		// Entire first line including the @flag (only first line)
  *		 	after		// Everything after the @flag
  *			name		// One word following {type}. Or first word after the @flag definition when no {type}.
  *			children	// name.kid - Array of children
@@ -72,8 +72,8 @@ module.exports = (function() {
 
 	// This is a cheap way to circumvent a constructor (having to do "new Tag(foo)" )
 	// Since the model is created for each tag() call, and since all of the functions 
-	// in this module are self-contained (they don't reference any varibles in
-	// this scope -- asside from this "model" var), we can get away with this 
+	// in this module are self-contained (they don't reference any variables in
+	// this scope -- aside from this "model" var), we can get away with this 
 	// cheesy hackish approach.
 	var model;
 
@@ -429,7 +429,7 @@ module.exports = (function() {
 	fillFlag receives a "Source Item"
 
 	Source Item {
-		source 		// Entire first line inlcuding the @flag (only first line)
+		source 		// Entire first line including the @flag (only first line)
 		after		// Everything after the @flag
 		name		// One word following {type}. Or first word after the @flag definition when no {type}.
 		children	// name.kid - Array of children
@@ -443,14 +443,22 @@ module.exports = (function() {
      */
 
      /**
-      * [fillFlag description]
+      * Reads one parsed flag and writes its meaning onto the entity being built.
+      *
+      * This is where tag semantics live. A "basic kind" tag (property, method, event,
+      * class, module) names the entity; package/namespace scopes it; the visibility
+      * tags, example, param, return, see and the rest each land in their own shape.
+      * Anything not handled explicitly is stored under its own flag name, so a template
+      * can still reach it.
+      *
+      * Tag names are written bare above, without their leading "@": a line that starts
+      * with one is read as a tag declaration, which is the very thing this function does.
       *
       * @method  fillFlag
+      * @private
       *
-      * @param   {type}    item  description
-      * @param   {type}    obj   description
-      *
-      * @return  {type}          description
+      * @param   {object}  item  - A parsed flag ("Source Item"), see the class description.
+      * @param   {object}  obj   - The entity being filled, modified in place.
       */
     function fillFlag(item, obj){
 

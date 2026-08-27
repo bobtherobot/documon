@@ -57,7 +57,7 @@
 			"name": "metaRx",
 			"identifier": "documon.More.metaRx",
 			"articleSection": "property",
-			"description": "The regular expression use to split the doc on the metaString",
+			"description": "Detects a metaString boundary in a page. Deliberately *not* global. This regular expression is module-level and reused for every page in the folder, and a \"g\" regular expression carries lastIndex between calls: the first test() matched and left lastIndex past the boundary, the second started from there, found nothing, reset to 0, and returned false. Meta headers therefore worked on every *other* page -- the ones that failed kept their raw JSON as visible body text and lost their icon and external url. Documon's own site shipped that way; the page that documents the feature was one of the casualties.",
 			"url": "https://www.documon.net/documon.More.html#documon.More.metaRx"
 		},
 		{
@@ -65,7 +65,7 @@
 			"name": "metaString",
 			"identifier": "documon.More.metaString",
 			"articleSection": "property",
-			"description": "The delimiting string used to seperate the meta JSON from normal markdown.",
+			"description": "The delimiting string used to separate the meta JSON from normal markdown.",
 			"url": "https://www.documon.net/documon.More.html#documon.More.metaString"
 		},
 		{
@@ -81,7 +81,7 @@
 			"name": "cleanID",
 			"identifier": "documon.More.cleanID",
 			"articleSection": "method",
-			"description": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.",
+			"description": "Turns a filename into an id-safe token: numbering stripped, anything that is not a letter, digit or underscore replaced with an underscore, lower-cased.",
 			"url": "https://www.documon.net/documon.More.html#documon.More.cleanID"
 		},
 		{
@@ -121,7 +121,7 @@
 			"name": "quirkyName",
 			"identifier": "documon.More.quirkyName",
 			"articleSection": "method",
-			"description": "splits the numbering off of eight filename and returns the filename with out numbering",
+			"description": "Splits the sorting prefix off a filename and returns the display name. \"050.Quick Reference.md\" becomes \"Quick Reference\". The prefix is only honoured when the character immediately before the delimiter is a digit, so an ordinary dotted name is left alone. Note the asymmetry on the no-prefix path: it returns the filename with its extension, so \"About.md\" displays and ids as \"About.md\" / \"about_md\". Number your prose files. This is long-standing behaviour that page ids depend on -- changing it would rename every unnumbered page's URL -- so it is documented rather than fixed.",
 			"url": "https://www.documon.net/documon.More.html#documon.More.quirkyName"
 		}
 	]
@@ -317,18 +317,25 @@
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/more.js</span><span class="member-line-number" title="src/more.js">64</span>
+                                <span class="member-file">src/more.js</span><span class="member-line-number" title="src/more.js">73</span>
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">string</span>
+							<span class="type">RegExp</span>
 				
                                         <span class="flag private">private</span>  <!-- public private protected -->
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The regular expression use to split the doc on the <a href="#metaString">metaString</a></p>
+      				 		 	<p>Detects a <a href="#metaString">metaString</a> boundary in a page.</p>
+<p>Deliberately <em>not</em> global. This regular expression is module-level and reused for every<br />
+page in the folder, and a "g" regular expression carries <code>lastIndex</code> between calls: the<br />
+first <code>test()</code> matched and left <code>lastIndex</code> past the boundary, the second started from<br />
+there, found nothing, reset to 0, and returned false. Meta headers therefore worked on<br />
+every <em>other</em> page -- the ones that failed kept their raw JSON as visible body text and<br />
+lost their icon and external url. Documon's own site shipped that way; the page that<br />
+documents the feature was one of the casualties.</p>
        						 </div>
        			
 						        	
@@ -361,7 +368,7 @@
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The delimiting string used to seperate the meta JSON from normal markdown.</p>
+      				 		 	<p>The delimiting string used to separate the meta JSON from normal markdown.</p>
        						 </div>
        			
 						        	
@@ -428,7 +435,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">183</span>
+						    		<span class="member-line-number">194</span>
 						    	</span>
 						    </h3>
 
@@ -437,7 +444,8 @@
                                 
                                 
 								
-								<p>Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.</p>
+								<p>Turns a filename into an id-safe token: numbering stripped, anything that is not a<br />
+letter, digit or underscore replaced with an underscore, lower-cased.</p>
 
 					
 								
@@ -463,14 +471,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">string</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>The filename or folder name.</p>
        						 </div>
        			
 						        	
@@ -496,14 +504,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">boolean</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>True for a folder, which has no extension to strip.</p>
        						 </div>
        			
 						        	
@@ -524,9 +532,9 @@
 
 							    
 			       		 	<div class="heading-returns">Returns		
-						<span class="type">type</span>
+						<span class="type">string</span>
 					</div>
-			      	     	<div class="member"><p>description description</p></div>
+			      	     	<div class="member"><p>The id segment, e.g. "quick_reference".</p></div>
 				
 
 					
@@ -547,7 +555,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">260</span>
+						    		<span class="member-line-number">281</span>
 						    	</span>
 						    </h3>
 
@@ -760,7 +768,7 @@ for what the module does as a whole.</p>
                                         
 									
 							<div class="member-description">
-      				 		 	<p>THe destination folder.</p>
+      				 		 	<p>The destination folder.</p>
        						 </div>
        			
 						        	
@@ -928,7 +936,7 @@ for what the module does as a whole.</p>
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">menu | undefined</span>
 					</div>
-			      	     	<div class="member"><p>Serves 2 purposes, when returning <strong>undefined</strong> notifies callee that there aren't any "more" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the "more" menu, or incorporated into the "more" menu at the "DOCS-GO-HERE" injection point.</p></div>
+			      	     	<div class="member"><p>Serves 2 purposes, when returning <strong>undefined</strong> notifies the caller that there aren't any "more" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the "more" menu, or incorporated into the "more" menu at the "DOCS-GO-HERE" injection point.</p></div>
 				
 
 					
@@ -949,7 +957,7 @@ for what the module does as a whole.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">89</span>
+						    		<span class="member-line-number">98</span>
 						    	</span>
 						    </h3>
 
@@ -1079,7 +1087,7 @@ for what the module does as a whole.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">469</span>
+						    		<span class="member-line-number">490</span>
 						    	</span>
 						    </h3>
 
@@ -1201,7 +1209,7 @@ drift and start reporting working links as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">231</span>
+						    		<span class="member-line-number">252</span>
 						    	</span>
 						    </h3>
 
@@ -1287,7 +1295,7 @@ drift and start reporting working links as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">196</span>
+						    		<span class="member-line-number">217</span>
 						    	</span>
 						    </h3>
 
@@ -1296,7 +1304,14 @@ drift and start reporting working links as broken.</p>
                                 
                                 
 								
-								<p>splits the numbering off of eight filename and returns the filename with out numbering</p>
+								<p>Splits the sorting prefix off a filename and returns the display name.</p>
+<p>"050.Quick Reference.md" becomes "Quick Reference". The prefix is only honoured when<br />
+the character immediately before the delimiter is a digit, so an ordinary dotted name<br />
+is left alone.</p>
+<p>Note the asymmetry on the no-prefix path: it returns the filename <strong>with</strong> its<br />
+extension, so "About.md" displays and ids as "About.md" / "about_md". Number your prose<br />
+files. This is long-standing behaviour that page ids depend on -- changing it would<br />
+rename every unnumbered page's URL -- so it is documented rather than fixed.</p>
 
 					
 								
@@ -1322,14 +1337,14 @@ drift and start reporting working links as broken.</p>
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">string</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>The filename or folder name.</p>
        						 </div>
        			
 						        	
@@ -1355,14 +1370,14 @@ drift and start reporting working links as broken.</p>
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">boolean</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>True for a folder.</p>
        						 </div>
        			
 						        	
@@ -1383,9 +1398,9 @@ drift and start reporting working links as broken.</p>
 
 							    
 			       		 	<div class="heading-returns">Returns		
-						<span class="type">type</span>
+						<span class="type">string</span>
 					</div>
-			      	     	<div class="member"><p>description description</p></div>
+			      	     	<div class="member"><p>The display name.</p></div>
 				
 
 					

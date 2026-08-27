@@ -41,7 +41,7 @@ function copy(src, dest){
  * 
  * @method     Open
  * @param      {string}    src    - The source file path.
- * @return     {string}           description
+ * @return     {string}           - The file's contents, or false when it does not exist.
  */
 
 /**
@@ -49,7 +49,7 @@ function copy(src, dest){
  * 
  * @method     read
  * @param      {string}    src    - The source file path.
- * @return     {string}           description
+ * @return     {string}           - The file's contents, or false when it does not exist.
  */
 function read(src){
 	if (!fs.existsSync(src)) {
@@ -88,11 +88,11 @@ function remove(src){
 }
 
 /**
- * Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.
+ * Checks to see if a file exists. Note this also checks if a folder of the same name exists too.
  * @method     exists
  * @private
- * @param      {type}    src    - The source file path.
- * @return     {boolean}           - True if exists, false if no file nor folder exists.
+ * @param      {string}  src    - The source file path.
+ * @return     {boolean}         - True if exists, false if no file nor folder exists.
  */
 function exists(src){
 	return fs.existsSync(src) || du.exists(src)

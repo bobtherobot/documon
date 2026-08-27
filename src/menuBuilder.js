@@ -37,9 +37,9 @@ var sectionProps = ["packages", "classes", "properties", "events", "methods"];
  * @method  buildSections
  * @private
  * @param   {object}	ctx   	- The parsed documentation object.
- * @param   {type}		target  - The array to put any childeren into.
+ * @param   {array}		target  - The array to push any children into.
  *
- * @return  {type}               description
+ * @return  {array}              - The same target array, for chaining.
  */
 function buildSections(ctx, target){
 	
@@ -103,8 +103,8 @@ function mapPackages(ctx){
  *
  * @method  hasAnyPart
  * @private
- * @param   {type}      item  description
- * @return  {Boolean} 
+ * @param   {object}    item  - A package or class entity.
+ * @return  {Boolean}         - True when it has at least one method, property or event.
  */
 function hasAnyPart(item){
 	for(var i=0; i<sectionProps.length; i++){
@@ -119,13 +119,13 @@ function hasAnyPart(item){
 
 
 /**
- * Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.
+ * Builds an individual item containing the pertinent meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.
  *
  * @method  section
  * @private
- * @param   {object}   ctx   - The context to parse. Each level down the tree has it's own unique and seperate context.
+ * @param   {object}   ctx   - The context to parse. Each level down the tree has its own unique and separate context.
  * @param   {string}   prop  - The key for the part of the context we are going to process.
- * @return  {type} - A simplified (meta-only) object that represents the provided context.
+ * @return  {object} - A simplified (meta-only) object that represents the provided context.
  *
  * Example of returned 
  * 		{
@@ -207,13 +207,13 @@ function prune(obj){
 
 
 /**
- * The main entry point for processing. Builds each section on the "root" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh "window" scope. So they just dnagle out there on the tree.
+ * The main entry point for processing. Builds each section on the "root" node if methods and properties are not associated with classes. Meaning that anything available on the root resides in the "window" scope, so it dangles off the tree at the top level.
  *
  * @method  render
  *
- * @param   {array}  ctx  description
+ * @param   {array}  ctx  - The sorted organ from [organizer.buildMenu](documon.organizer.buildMenu).
  *
- * @return  {array}       description
+ * @return  {array}       - The menu tree, ready to serialize into `_menuData.js`.
  */
 function render(ctx){
 

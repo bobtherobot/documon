@@ -57,7 +57,7 @@
 			"name": "render",
 			"identifier": "documon.menuBuilder.render",
 			"articleSection": "method",
-			"description": "The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh \"window\" scope. So they just dnagle out there on the tree.",
+			"description": "The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything available on the root resides in the \"window\" scope, so it dangles off the tree at the top level.",
 			"url": "https://www.documon.net/documon.menuBuilder.html#documon.menuBuilder.render"
 		},
 		{
@@ -65,7 +65,7 @@
 			"name": "section",
 			"identifier": "documon.menuBuilder.section",
 			"articleSection": "method",
-			"description": "Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.",
+			"description": "Builds an individual item containing the pertinent meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.",
 			"url": "https://www.documon.net/documon.menuBuilder.html#documon.menuBuilder.section"
 		}
 	]
@@ -264,14 +264,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">array</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The array to put any childeren into.</p>
+      				 		 	<p>The array to push any children into.</p>
        						 </div>
        			
 						        	
@@ -292,9 +292,9 @@
 
 							    
 			       		 	<div class="heading-returns">Returns		
-						<span class="type">type</span>
+						<span class="type">array</span>
 					</div>
-			      	     	<div class="member"><p>description description</p></div>
+			      	     	<div class="member"><p>The same target array, for chaining.</p></div>
 				
 
 					
@@ -350,14 +350,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>A package or class entity.</p>
        						 </div>
        			
 						        	
@@ -380,7 +380,7 @@
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">Boolean</span>
 					</div>
-			      	     	<div class="member"></div>
+			      	     	<div class="member"><p>True when it has at least one method, property or event.</p></div>
 				
 
 					
@@ -410,7 +410,7 @@
                                 
                                 
 								
-								<p>The main entry point for processing. Builds each section on the "root" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh "window" scope. So they just dnagle out there on the tree.</p>
+								<p>The main entry point for processing. Builds each section on the "root" node if methods and properties are not associated with classes. Meaning that anything available on the root resides in the "window" scope, so it dangles off the tree at the top level.</p>
 
 					
 								
@@ -443,7 +443,7 @@
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>The sorted organ from <a href="documon.organizer.buildMenu">organizer.buildMenu</a>.</p>
        						 </div>
        			
 						        	
@@ -466,7 +466,7 @@
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">array</span>
 					</div>
-			      	     	<div class="member"><p>description description</p></div>
+			      	     	<div class="member"><p>The menu tree, ready to serialize into <code>_menuData.js</code>.</p></div>
 				
 
 					
@@ -496,7 +496,7 @@
                                 
                                 
 								
-								<p>Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.</p>
+								<p>Builds an individual item containing the pertinent meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.</p>
 
 					
 								
@@ -529,7 +529,7 @@
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The context to parse. Each level down the tree has it's own unique and seperate context.</p>
+      				 		 	<p>The context to parse. Each level down the tree has its own unique and separate context.</p>
        						 </div>
        			
 						        	
@@ -583,7 +583,7 @@
 
 							    
 			       		 	<div class="heading-returns">Returns		
-						<span class="type">type</span>
+						<span class="type">object</span>
 					</div>
 			      	     	<div class="member"><p>A simplified (meta-only) object that represents the provided context.</p>
 <p>Example of returned <br />

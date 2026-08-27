@@ -91,12 +91,20 @@ Flags, no value. The generated site can filter on these.
 | Tag | Meaning |
 |---|---|
 | `@extends` | Parent whose members are cross-filled into this page. |
-| `@inherits` | Synonym for `@extends`. |
-| `@overrides` | This member replaces the parent's. |
-| `@implements` | Interface conformance. |
+| `@inherits` | Names a parent, but does **not** cross-fill. Annotation only. |
+| `@overrides` | This member replaces the parent's. Usually set for you. |
+| `@implements` | Interface conformance. Annotation only, no cross-fill. |
 
-The value must be a documented id: `@extends documon.Base`. `--check` reports targets
-that don't resolve.
+**Only `@extends` cross-fills.** It walks the chain, copies the parent's properties,
+methods and events onto the child's page, flags each copy "inherited" and links it back.
+The other three are recorded and rendered as a link in the page's meta section and
+nothing more -- a class declaring only `@implements` shows the link and an otherwise
+empty member list. `@overrides` is normally applied automatically when a child redefines
+an inherited member; you rarely write it.
+
+The value must be a documented id: `@extends documon.Base`. A bare name is resolved
+against the block's own `@package` first, so `@extends Base` works for a parent in the
+same package. `--check` reports targets that don't resolve.
 
 ## Supporting tags
 

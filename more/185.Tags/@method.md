@@ -37,7 +37,7 @@ The param tag is used to explain the arguments that the function can receive. Pa
 : Each param tag represents an argument, the order in which these tags are listed must match the order that they appear in the function.
 
 2 - {type}
-: The expected type that the argument should be, usually a primative such as "object" or "string". For weak typed languages where multiple types can be sent in separate types with a pipe charater.
+: The expected type that the argument should be, usually a primitive such as "object" or "string". For weak typed languages where multiple types can be sent in separate types with a pipe character.
 	
 		{number | string | object}
 	It's questionable whether to use Initial caps (Number String, Object), so I've left that to be dealt with in the template CSS. 
@@ -49,16 +49,16 @@ The param tag is used to explain the arguments that the function can receive. Pa
 	
 	
 3 - name
-: The argument name should be identical to what you've used in your source code. Again, Doumon doesn't read your source code, so it's up to you to ensure a commonality.
+: The argument name should be identical to what you've used in your source code. Again, Documon doesn't read your source code, so it's up to you to ensure a commonality.
 
 4 - description
 : The remaining text after the first word will get picked up as the description. 
 
-	>Placing a dash in front of the description to provides visual speration between the name and the description. The dash also helps Documon differentiate between the name and the description, which may be required for some fringe cases. When used, Documon will strip out the initial dash. 
+	>Placing a dash in front of the description to provides visual separation between the name and the description. The dash also helps Documon differentiate between the name and the description, which may be required for some fringe cases. When used, Documon will strip out the initial dash. 
 
 ### Default Values
 
-See [Default Values](more.writing_comments.default_values)
+See [Default Values](more.comment_authoring_guide.default_values)
 
 ### Multi-dimensional object parameters.
 
@@ -81,7 +81,7 @@ The @return tag can be plural or singular, since no one agrees which we should u
 
 The @return tag is similar to a param, but shouldn't include a "name", just use a description.
 
-You can also choose to include a {type} in the return line to indicate what kind of thign your returning.
+You can also choose to include a {type} in the return line to indicate what kind of thing your returning.
 
 	@return {type} - description
 

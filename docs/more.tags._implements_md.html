@@ -7,7 +7,7 @@
 
 		
     	<title>@implements.md - Documon</title>
-		<meta name="description" content="@implements Declares that a class conforms to an interface. /** * @class Circle * @package geo * @implements geo.Drawable */ The value must be a fully qualified id — package.Class — matching a documented entity. documon --check reports targets that don't resolve. Like @extends , the parent's memb...">
+		<meta name="description" content="@implements Declares that a class conforms to an interface. /** * @class Circle * @package geo * @implements geo.Drawable */ The value must be a fully qualified id — package.Class — matching a documented entity. documon --check reports targets that don't resolve. Unlike @extends , @implements doe...">
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/more.tags._implements_md.html">
 
@@ -17,7 +17,7 @@
 		<!-- Open Graph / social -->
 		<meta property="og:type" content="article">
 		<meta property="og:title" content="@implements.md - Documon">
-		<meta property="og:description" content="@implements Declares that a class conforms to an interface. /** * @class Circle * @package geo * @implements geo.Drawable */ The value must be a fully qualified id — package.Class — matching a documented entity. documon --check reports targets that don't resolve. Like @extends , the parent's memb...">
+		<meta property="og:description" content="@implements Declares that a class conforms to an interface. /** * @class Circle * @package geo * @implements geo.Drawable */ The value must be a fully qualified id — package.Class — matching a documented entity. documon --check reports targets that don't resolve. Unlike @extends , @implements doe...">
 		<meta property="og:site_name" content="Documon">
 		<meta property="og:url" content="https://www.documon.net/more.tags._implements_md.html">
 		<meta name="twitter:card" content="summary">
@@ -28,7 +28,7 @@
 	"name": "@implements.md",
 	"headline": "@implements.md",
 	"identifier": "more.tags._implements_md",
-	"description": "@implements Declares that a class conforms to an interface. /** * @class Circle * @package geo * @implements geo.Drawable */ The value must be a fully qualified id — package.Class — matching a documented entity. documon --check reports targets that don't resolve. Like @extends , the parent's members are cross-filled into this page so readers see the full surface in one place. Renamed in v3.0.0. Documon previously spelled this tag @impliments . That was a typo in Documon itself, and it has been retired rather than kept as an alias — leaving it in place would have propagated the misspelling into new projects indefinitely. documon --check reports the old spelling by name and tells you to rename it.",
+	"description": "@implements Declares that a class conforms to an interface. /** * @class Circle * @package geo * @implements geo.Drawable */ The value must be a fully qualified id — package.Class — matching a documented entity. documon --check reports targets that don't resolve. Unlike @extends , @implements does not cross-fill the interface's members into this page. It is recorded and rendered as a link in the page's meta section, so a reader can follow it to the interface. Cross-filling is what @extends is for; if you want Circle to display Drawable 's members, extend it. Renamed in v3.0.0. Documon previously spelled this tag @impliments . That was a typo in Documon itself, and it has been retired rather than kept as an alias — leaving it in place would have propagated the misspelling into new projects indefinitely. documon --check reports the old spelling by name and tells you to rename it.",
 	"url": "https://www.documon.net/more.tags._implements_md.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -92,8 +92,10 @@
  */</code></pre>
 <p>The value must be a fully qualified id — <code>package.Class</code> — matching a documented entity.<br />
 <code>documon --check</code> reports targets that don't resolve.</p>
-<p>Like <a href="more.tags._extends_md">@extends</a>, the parent's members are cross-filled into this<br />
-page so readers see the full surface in one place.</p>
+<p>Unlike <a href="more.tags._extends_md">@extends</a>, <code>@implements</code> does <strong>not</strong> cross-fill the<br />
+interface's members into this page. It is recorded and rendered as a link in the page's<br />
+meta section, so a reader can follow it to the interface. Cross-filling is what<br />
+<code>@extends</code> is for; if you want <code>Circle</code> to display <code>Drawable</code>'s members, extend it.</p>
 <blockquote>
   <p><strong>Renamed in v3.0.0.</strong> Documon previously spelled this tag <code>@impliments</code>. That was a<br />
   typo in Documon itself, and it has been retired rather than kept as an alias — leaving<br />

@@ -20,8 +20,17 @@ node ./main.js
  * 
  * 		var myDocumon = require("path/to/documon/src/documon.js");
  * 		myDocumon.run({
- *   		files : "path/to/src"
+ *   		src : "path/to/src",
+ *   		out : "path/to/docs"
  * 		});
+ *
+ * Note that run() takes the same keys as the public entry point -- `src`, `out`, `name`
+ * and the rest. ("files" is the internal name init() rewrites `src` into; passing it
+ * here yields "No files to parse.") Most callers should require the package itself
+ * rather than this module:
+ *
+ * 		var documon = require("documon");
+ * 		documon({ src : "path/to/src", out : "path/to/docs" });
  * 		
  */
 
@@ -79,7 +88,16 @@ var TindexShortcut;
  * @property  {String} [mainConf.dataFolder]			- (derived by documon) The path used to place data files.
  * @property  {String} [mainConf.more]					- The path to a folder containing addition markdown (.md) files to include.
  * @property  {String} [mainConf.indexShortcutName=__LAUNCH.html]	- The name of the index shortcut file to push it to the top of the folder so you don't have to scroll and hunt andpeck for hte "index.html" file to launch the docs.
- * @property  {String} [mainConf.moreQuirkDelimiter="."]	- More quirk delimiter. The character(s) use to seperate the "more" page numbering system from page titles.
+ * @property  {String} [mainConf.moreQuirkDelimiter="."]	- More quirk delimiter. The character(s) used to separate the "more" page numbering system from page titles.
+ * @property  {String} [mainConf.projectDescription]	- One-line description, used in the page meta tags and in llms.txt.
+ * @property  {String} [mainConf.baseUrl]				- Public base URL of the published docs. Produces canonical links and absolute URLs in llms.txt.
+ * @property  {String} [mainConf.gati]					- Google Analytics Tracking ID. When set, pages include the tracking snippet.
+ * @property  {boolean} [mainConf.emitLlms=true]		- Write llms.txt and llms-full.txt.
+ * @property  {boolean} [mainConf.emitModel=true]		- Write model.json, and embed the same record in each page as JSON-LD.
+ * @property  {boolean} [mainConf.quiet=false]			- Suppress stdout. Derived from `print` (and forced on by `--json`), not set directly.
+ * @property  {String} [mainConf.templateAssetsFolder]	- (derived by documon) The template's assets folder.
+ * @property  {String} [mainConf.outputAssetsFolder]	- (derived by documon) Where those assets are copied to.
+ * @property  {array} [mainConf.ignorePatterns]		- (derived by documon) The resolved ignore patterns, defaults included.
 
  */
 var mainConf = {};
@@ -179,7 +197,7 @@ function filterFileTypes(fpath){
 
 
 /**
- * Initializes Documan based on the configuration settings
+ * Initializes Documon based on the configuration settings
  * 
  * - Parses configuration
  * - Finds source files
@@ -471,13 +489,15 @@ function init(conf){
 }
 
 /**
- * Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).
+ * Decides whether a file or folder is excluded from this build.
  *
- * - Generates data files (if dumpData enabled)
- * 
+ * Delegates to the matcher built during [init](#init) from `src/ignore.js`, which is the
+ * same matcher `--check` uses -- so the builder and the validator always agree on which
+ * files are part of the project.
+ *
  * @method shouldIgnore
  * @private
- * @param  {string} item - The path to the file.
+ * @param  {string} item - The path to test.
  * @returns {boolean} - true = ignore this file, false = don't ignore.
  */
 
@@ -625,6 +645,19 @@ function seeder(file){
  * @method run
  *
  * @param  {object} conf 					- The configuration object. See [mainConf](#mainConf)
+ * @return {object} - A summary of what was built, or **null** when nothing could be
+ * built (most commonly "no files to parse"). `index.js` branches on that null to set a
+ * non-zero exit code, so callers should not ignore it:
+ *
+ * 		{
+ * 			outputFolder   : "/path/to/docs/",
+ * 			index          : "/path/to/docs/index.html",
+ * 			pages          : 24,   // pages written
+ * 			files          : 22,   // source files parsed
+ * 			emitted        : { llms : "...", llmsFull : "...", model : "..." },
+ * 			unknownTags    : 0,    // tags dropped as unrecognised
+ * 			normalizedTags : 3     // tags accepted under another spelling
+ * 		}
  */
 
 function run(conf){

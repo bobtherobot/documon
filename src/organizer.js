@@ -61,9 +61,9 @@ Organizes the parsed source-code data into a single object that takes the follow
 	};
  
 
-All source code hangs off of the "root" node and is organized according it's relationship to a package or class.
+All source code hangs off of the "root" node and is organized according to its relationship to a package or class.
 
-This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.
+This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up and cross references inheritance.
 
 @class organizer
 @package documon
@@ -107,10 +107,19 @@ var flatClassList = {};
 var sectionNames = ["methods", "properties", "events"];
 
 
-// methods, properties, events
-
-
-// "overrides", "implements", "extends", "inherits"
+/**
+ * Cross-fills every documented class with the members it inherits.
+ *
+ * Run once, after every file has been added, because a child can be parsed before its
+ * parent and the whole tree has to exist before it can be walked.
+ *
+ * **Only `@extends` is acted on.** `@implements`, `@inherits` and `@overrides` are
+ * carried onto the entity and rendered as a meta link by `extendish.jst`, but they pull
+ * nothing in -- a class declaring only `@implements` shows the link and an otherwise
+ * empty member list. The manual claimed all four cross-filled for years; they do not.
+ *
+ * @method  processInheritance
+ */
 function processInheritance(){
 	for(var prop in flatClassList){
 		var item = flatClassList[prop];
@@ -119,6 +128,19 @@ function processInheritance(){
 	}
 }
 
+/**
+ * Rewrites a cloned member's id strings from the parent's id to the child's, in place.
+ *
+ * A cross-filled member is a deep copy of the parent's, so every id inside it -- the
+ * member id, anchors, links the template already built -- still names the parent. Walks
+ * the object recursively and swaps them.
+ *
+ * @method     swapIds
+ * @private
+ * @param      {object}  fromObj - The cloned member, modified in place.
+ * @param      {string}  fromId  - The parent's id.
+ * @param      {string}  toId    - The child's id.
+ */
 function swapIds(fromObj, fromId, toId){
 	for(var prop in fromObj){
 		var val = fromObj[prop];
@@ -142,6 +164,20 @@ function swapIds(fromObj, fromId, toId){
 	
 }
 
+/**
+ * Copies one of the parent's members onto the child.
+ *
+ * The copy is re-idded under the child and marked with `inherits`, which is the flag
+ * `menuBuilder`, `flags.jst` and `model.json` all read to show it as inherited and link
+ * back to where it came from.
+ *
+ * @method     cloneInherited
+ * @private
+ * @param      {object}  parent      - The parent entity.
+ * @param      {object}  parentItem  - The member being inherited.
+ * @param      {object}  target      - The child entity receiving it.
+ * @return     {object}              - The re-idded copy.
+ */
 function cloneInherited(parent, parentItem, target){
 
 	var IparentClone = utils.clone( parentItem );
@@ -153,8 +189,31 @@ function cloneInherited(parent, parentItem, target){
 
 }
 
+/**
+ * @property {array} didApplyInheritance - Ids already processed. Module-level, and **not**
+ * reset by [init](#init) -- a second run in the same process sees the first run's ids.
+ * `t.fresh("organizer")` exists in the test harness for exactly this reason.
+ * @private
+ */
 var didApplyInheritance = [];
 var inheritanceProps = ["methods", "properties", "events"];
+
+/**
+ * Cross-fills one entity from its `@extends` parent, recursing up the chain first.
+ *
+ * A bare parent name is qualified with the entity's own package, so `@extends Base`
+ * inside `@package demo` resolves to `demo.Base` -- the short form the manual teaches.
+ * (`check.js:resolveExtends()` mirrors this; when the two disagreed, source that built
+ * perfectly failed `--check`.)
+ *
+ * A member the child already declares is not replaced. It gets `overrides` set to the
+ * parent's id instead, which is where that flag comes from -- authors rarely write
+ * `@overrides` themselves.
+ *
+ * @method     applyInheritance
+ * @private
+ * @param      {object}  item - The entity to fill, modified in place.
+ */
 function applyInheritance(item){
 	var ext = item.extends;
 	didApplyInheritance.push(item.id);
@@ -240,6 +299,17 @@ function applyInheritance(item){
 	}
 }
 
+/**
+ * Wraps an entity in the render context a page template receives.
+ *
+ * The whole of `mainConf` is copied on first, so a template can reach project name,
+ * version, baseUrl and the rest; the entity itself lands on `ctx`.
+ *
+ * @method     prepPage
+ * @private
+ * @param      {object}  item - A package or class entity.
+ * @return     {object}       - `{ ...mainConf, id, name, file, docfile, line, ctx }`.
+ */
 function prepPage(item){
 	var obj = {};
 	for(var prop in mainConf){
@@ -258,6 +328,14 @@ function prepPage(item){
 	return obj;
 }
 
+/**
+ * Renders a package's own page, then a page for each class it contains.
+ *
+ * @method     buildPackage
+ * @private
+ * @param      {object}  item   - The package entity.
+ * @param      {array}   output - Accumulator of page records.
+ */
 function buildPackage (item, output){
 
 	var obj = prepPage(item);
@@ -283,6 +361,15 @@ function buildPackage (item, output){
 	}
 }
 
+/**
+ * Renders every page: the root, then each package and its classes.
+ *
+ * Call after [processInheritance](#processInheritance), or the pages will be written
+ * without their inherited members.
+ *
+ * @method  buildPages
+ * @return  {array} - Page records, each `{ id, html, ctx, ... }`, ready to write.
+ */
 function buildPages(){
 
 	var result = [];
@@ -304,8 +391,8 @@ function buildPages(){
  * We'll also be grabbing the templates needed based on the location defined in the params.
  *
  * @method  init
- * @param   {type}  params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.
-* @param   {type}  params.templateFolder -  The base path to the template folder.
+ * @param   {object}  params  - The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a reference here so we know where to put things. Note that documon derives some additional properties onto the object.
+ * @param   {string}  params.templateFolder -  The base path to the template folder.
  */
 function init(params){
 
@@ -327,7 +414,7 @@ function init(params){
 				/* --------- EXAMPLE ----------
 				{ 
 					packages : foo
-					// Independant classes
+					// Independent classes
 					classes : [
 						{	
 							class : "foo"
@@ -346,7 +433,7 @@ function init(params){
 		
 		],
 
-		// Independant classes
+		// Independent classes
 		classes : [
 			/* --------- EXAMPLE ----------
 			{	
@@ -432,8 +519,8 @@ function merge(a, b, prop){
  *
  * @method  appendPage
  *
- * @param   {type}      existingObj  - The object ot add the thing to.
- * @param   {type}      newObj       - THe thing we're adding.
+ * @param   {object}    existingObj  - The package or class to add to.
+ * @param   {object}    newObj       - The tagged page being added.
  */
 function appendPage(existingObj, newObj){
 
@@ -483,8 +570,8 @@ function appendPage(existingObj, newObj){
  *
  * @method  addToPackageList
  *
- * @param   {type}            list        - The main package list to add the package to.
- * @param   {type}            taggedPage  - The package data.
+ * @param   {array}           list        - The main package list to add the package to.
+ * @param   {object}          taggedPage  - The package data.
  */
 function addToPackageList(list, taggedPage){
 	var nsFound = false;
@@ -521,12 +608,12 @@ function addToPackageList(list, taggedPage){
 }
 
 /**
- * Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.
+ * Adds tagged data to a class array. Ensures this item is only added once, and also places a reference to the item in the flat list for future processing.
  *
  * @method  addToClassList
  *
- * @param   {type}          list        - The class array to add the item to.
- * @param   {type}          taggedPage  - The data to add.
+ * @param   {array}         list        - The class array to add the item to.
+ * @param   {object}        taggedPage  - The data to add.
  */
 function addToClassList(list, taggedPage){
 
@@ -554,7 +641,7 @@ function addToClassList(list, taggedPage){
  * Adds source-code data to the organ. The data needs to be formated from the "tag.js" processor. By reading the data we determine where it is to be added to the main organ.
  *
  * @method  add
- * @param   {type}  VtaggedPage  - Source-code data parse by the tag.js processor.
+ * @param   {object}  VtaggedPage  - Source-code data parsed by the tag.js processor.
  */
 function add(VtaggedPage){
 
@@ -584,15 +671,17 @@ function add(VtaggedPage){
 }
 
 /**
- * Sorts all main sections of an organ on a given key. By default sorting is conducted on the "id" key.
+ * Sorts an entity's classes, methods, properties and events.
+ *
+ * Each section is sorted by "id" and then by "order", so the alphabetical default holds
+ * unless an entry carries an explicit `@order`. (A `@header` block sets order to -1,
+ * which is how it reaches the top of its section.)
  *
  * @method  sortObj
  *
- * @param   {object}   obj   - The object to sort
- * @param   {string}   [prop="id"]  - The key to sort on.
+ * @param   {object}   obj   - The entity, or an array of entities, to sort.
  */
-function sortObj(obj, prop){
-	prop = prop || "id";
+function sortObj(obj){
 
 	if(obj){
 
@@ -636,7 +725,8 @@ function sortObj(obj, prop){
  *
  * @method  buildMenu
  *
- * @return  {type}     description
+ * @return  {object}   - A sorted deep copy of the organ, safe for the menu builder to
+ * reshape without disturbing the tree the pages are rendered from.
  */
 function buildMenu(){
 	sortObj(organ);

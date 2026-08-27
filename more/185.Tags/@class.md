@@ -43,10 +43,12 @@ Documon essentially splits the source file whenever it runs across a @class tag.
 	
 	
 
-You can use a class tag within the context of a PME, which will allow that entity to be assigned to the specific class, however, defining the class tag at the top of page is the preferred method for incorporating all of the PME
-s into the class. 
+You can use a class tag within the context of a PME, which will allow that entity to be
+assigned to that specific class. Declaring the class at the top of the file is still the
+preferred approach, because everything below it is collected automatically.
 
-Common practice is to use one file per class, and that's why we assume that all the MPE's are part of that class.
+Common practice is one file per class, which is why we assume all the PME's belong to it.
 
-When more than one @class tag appears within a page, the page will essentially get 
-if there are more than two class preferences pageI am not sure what happensOkay
+There is no limit on how many `@class` tags a file may contain. Each one starts a new
+page, and every PME between it and the next `@class` belongs to it -- the two-class
+example above generalises to any number.

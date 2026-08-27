@@ -64,9 +64,11 @@ function run(str){
  *
  * @method  definitionLists
  * @private
- * @param   {type}           text  description
+ * @param   {string}    text       - The markdown source.
+ * @param   {object}    converter  - The showdown converter, for rendering item bodies.
+ * @param   {object}    options    - Showdown's options object.
  *
- * @return  {type}                 description
+ * @return  {string}               - The text with definition lists replaced by HTML.
  */
 function definitionLists (text, converter, options) {
     var wholeList = new RegExp(
@@ -132,9 +134,10 @@ function rtrim(str) {
  *
  * @method  processDefListItems
  * @private
- * @param   {type}               listStr  description
+ * @param   {string}   listStr    - One definition list, as matched by [definitionLists](#definitionLists).
+ * @param   {object}   converter  - The showdown converter, for rendering item bodies.
  *
- * @return  {type}                        description
+ * @return  {string}              - The `<dt>` / `<dd>` markup for the list.
  */
 function processDefListItems (listStr, converter) {
 

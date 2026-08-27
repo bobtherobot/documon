@@ -3,7 +3,7 @@
 
 Used to link to a part of the docs, aka "see also".
 
-Include mulitple @see tags, as all of the items will appear as a list with the heading of "See Also" (in the default Documon template -- display be vary from template to template).
+Include multiple @see tags, as all of the items will appear as a list with the heading of "See Also" (in the default Documon template -- display be vary from template to template).
 
 
 Use markdown link notation:

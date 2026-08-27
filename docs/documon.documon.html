@@ -113,7 +113,7 @@
 			"name": "init",
 			"identifier": "documon.documon.init",
 			"articleSection": "method",
-			"description": "Initializes Documan based on the configuration settings - Parses configuration - Finds source files - Creates output folder - Copies template assets to output folder - Initializes main templates",
+			"description": "Initializes Documon based on the configuration settings - Parses configuration - Finds source files - Creates output folder - Copies template assets to output folder - Initializes main templates",
 			"url": "https://www.documon.net/documon.documon.html#documon.documon.init"
 		},
 		{
@@ -137,7 +137,7 @@
 			"name": "shouldIgnore",
 			"identifier": "documon.documon.shouldIgnore",
 			"articleSection": "method",
-			"description": "Extracts, parses and tags comments from one source file and stuffs the result into organizer. - Generates data files (if dumpData enabled)",
+			"description": "Decides whether a file or folder is excluded from this build. Delegates to the matcher built during init from src/ignore.js, which is the same matcher --check uses -- so the builder and the validator always agree on which files are part of the project.",
 			"url": "https://www.documon.net/documon.documon.html#documon.documon.shouldIgnore"
 		},
 		{
@@ -217,7 +217,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/documon.js</span>
-						    		<span class="member-line-number">26</span>
+						    		<span class="member-line-number">35</span>
 						    	</span>
 						    </h1>
 
@@ -242,8 +242,15 @@
 			<div class="example-block">
 	    		<pre><code>    var myDocumon = require("path/to/documon/src/documon.js");
     myDocumon.run({
-      files : "path/to/src"
+      src : "path/to/src",
+      out : "path/to/docs"
     });</code></pre>
+<p>Note that run() takes the same keys as the public entry point -- <code>src</code>, <code>out</code>, <code>name</code><br />
+and the rest. ("files" is the internal name init() rewrites <code>src</code> into; passing it<br />
+here yields "No files to parse.") Most callers should require the package itself<br />
+rather than this module:</p>
+<pre><code>    var documon = require("documon");
+    documon({ src : "path/to/src", out : "path/to/docs" });</code></pre>
 	        </div>
 	    </div>
 
@@ -277,7 +284,7 @@
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">127</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">145</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -314,7 +321,7 @@
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">89</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">107</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -347,7 +354,7 @@
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">100</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">118</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -385,7 +392,7 @@ Configuration will concat this list with the user provied list.</code></pre>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">132</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">150</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -418,7 +425,7 @@ Configuration will concat this list with the user provied list.</code></pre>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">84</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">102</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -1026,7 +1033,316 @@ Example link <a href="#run">local to #run</a></p>
                                         
 									
 							<div class="member-description">
-      				 		 	<p>More quirk delimiter. The character(s) use to seperate the "more" page numbering system from page titles.</p>
+      				 		 	<p>More quirk delimiter. The character(s) used to separate the "more" page numbering system from page titles.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">projectDescription</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">String</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>One-line description, used in the page meta tags and in llms.txt.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">baseUrl</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">String</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Public base URL of the published docs. Produces canonical links and absolute URLs in llms.txt.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">gati</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">String</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Google Analytics Tracking ID. When set, pages include the tracking snippet.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">emitLlms</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">boolean</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	true
+       						 </span>
+       			
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Write llms.txt and llms-full.txt.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">emitModel</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">boolean</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	true
+       						 </span>
+       			
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Write model.json, and embed the same record in each page as JSON-LD.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">quiet</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">boolean</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+							<span class="default-value">
+      				 		 	false
+       						 </span>
+       			
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Suppress stdout. Derived from <code>print</code> (and forced on by <code>--json</code>), not set directly.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">templateAssetsFolder</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">String</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>(derived by documon) The template's assets folder.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">outputAssetsFolder</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">String</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>(derived by documon) Where those assets are copied to.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">ignorePatterns</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        <span class="flag optional">optional</span>
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>(derived by documon) The resolved ignore patterns, defaults included.</p>
        						 </div>
        			
 						        	
@@ -1061,7 +1377,7 @@ Example link <a href="#run">local to #run</a></p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">111</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">129</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -1095,7 +1411,7 @@ default patterns plus whatever the caller supplied.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">122</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">140</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -1132,7 +1448,7 @@ default patterns plus whatever the caller supplied.</p>
 
                                 <div class="member-block-center">
                                 <span class="member-name-right">
-                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">117</span>
+                                <span class="member-file">src/documon.js</span><span class="member-line-number" title="src/documon.js">135</span>
                                 </span>
                                     <div class="param-description">
                                         
@@ -1178,7 +1494,7 @@ build, reported as a single line when the build finishes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/documon.js</span>
-						    		<span class="member-line-number">159</span>
+						    		<span class="member-line-number">177</span>
 						    	</span>
 						    </h3>
 
@@ -1264,7 +1580,7 @@ build, reported as a single line when the build finishes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/documon.js</span>
-						    		<span class="member-line-number">195</span>
+						    		<span class="member-line-number">213</span>
 						    	</span>
 						    </h3>
 
@@ -1273,7 +1589,7 @@ build, reported as a single line when the build finishes.</p>
                                 
                                 
 								
-								<p>Initializes Documan based on the configuration settings</p>
+								<p>Initializes Documon based on the configuration settings</p>
 <ul>
 <li>Parses configuration</li>
 <li>Finds source files</li>
@@ -1357,7 +1673,7 @@ build, reported as a single line when the build finishes.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/documon.js</span>
-						    		<span class="member-line-number">628</span>
+						    		<span class="member-line-number">661</span>
 						    	</span>
 						    </h3>
 
@@ -1426,6 +1742,22 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 			
 
 							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>A summary of what was built, or <strong>null</strong> when nothing could be<br />
+built (most commonly "no files to parse"). <code>index.js</code> branches on that null to set a<br />
+non-zero exit code, so callers should not ignore it:</p>
+<pre><code>    {
+        outputFolder   : "/path/to/docs/",
+        index          : "/path/to/docs/index.html",
+        pages          : 24,   // pages written
+        files          : 22,   // source files parsed
+        emitted        : { llms : "...", llmsFull : "...", model : "..." },
+        unknownTags    : 0,    // tags dropped as unrecognised
+        normalizedTags : 3     // tags accepted under another spelling
+    }</code></pre></div>
+				
 
 					
 								
@@ -1445,7 +1777,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/documon.js</span>
-						    		<span class="member-line-number">506</span>
+						    		<span class="member-line-number">526</span>
 						    	</span>
 						    </h3>
 
@@ -1534,7 +1866,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/documon.js</span>
-						    		<span class="member-line-number">482</span>
+						    		<span class="member-line-number">502</span>
 						    	</span>
 						    </h3>
 
@@ -1543,10 +1875,10 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
                                 
                                 
 								
-								<p>Extracts, parses and tags comments from one source file and stuffs the result into <a href="#organizer">organizer</a>.</p>
-<ul>
-<li>Generates data files (if dumpData enabled)</li>
-</ul>
+								<p>Decides whether a file or folder is excluded from this build.</p>
+<p>Delegates to the matcher built during <a href="#init">init</a> from <code>src/ignore.js</code>, which is the<br />
+same matcher <code>--check</code> uses -- so the builder and the validator always agree on which<br />
+files are part of the project.</p>
 
 					
 								
@@ -1579,7 +1911,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The path to the file.</p>
+      				 		 	<p>The path to test.</p>
        						 </div>
        			
 						        	
@@ -1623,7 +1955,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/documon.js</span>
-						    		<span class="member-line-number">148</span>
+						    		<span class="member-line-number">166</span>
 						    	</span>
 						    </h3>
 

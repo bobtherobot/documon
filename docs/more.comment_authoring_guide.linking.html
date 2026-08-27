@@ -28,7 +28,7 @@
 	"name": "Linking",
 	"headline": "Linking",
 	"identifier": "more.comment_authoring_guide.linking",
-	"description": "Linking Use markdown notation: For more click here now. Or HTML notation: For more &lt;a href=\"http://example.com\"&gt;click here&lt;/a&gt; now. For cross linking to other parts of docs use the ID: see Foo Use the # + id to link to a method/property on the same page (traditional anchor linking): see setWidth Website and Page Structure Classes and modules are full HTML pages. Methods, properties, and events (MPE's) are included within a class HTML file. Documon generates a unique ID for each entity. The ID represents a \"dot.path\" to the entity based on it's relationship to the package and class structure. Example: package.class.entity … where \"entity\" is a reference to a method, property or event (MPE) within a class or module. NOTE: Documon treats modules and classes the same, so for brevity we'll only refer to \"class\". The Documon website intercepts links and interprets dot.path ID's. Interal Method, Property, Event (MPE) links Each MPE has a standard HTML anchors within the page, therefore to link to an internal MPE within a class, use a normal anchor URL's (#example): See foo This makes writing an internal link (within a class file) pretty easy. You can use the full dot.path, or for simplicity, if you're cross linking within the same class, you can just refernce the MPE. Either or will work because the template should incorporate both #entity adn #package.class.entity See foo -- or -- See foo External classes and MPE's To link to an external class or a MPE in some other class, use the full ID: Link to My Class Link to the foo property … in the example above we're targeting the location of the \"foo\" property in the \"MyClass\" HTML file. Again, the Documon website intercepts and interprets the ID's for you automatically. External URL's And to link to external websites, just use a full URL: External Website Link More Pages Each \"more\" page is provided a unique ID that is prefixed with \"more\". So you can link to these pages using the ID: See the About Page Review the \"More Docs\" page for details on how the ID's are derived. &nbsp; &nbsp; &nbsp; 170906",
+	"description": "Linking Use markdown notation: For more click here now. Or HTML notation: For more &lt;a href=\"http://example.com\"&gt;click here&lt;/a&gt; now. For cross linking to other parts of docs use the ID: see Foo Use the # + id to link to a method/property on the same page (traditional anchor linking): see setWidth Website and Page Structure Classes and modules are full HTML pages. Methods, properties, and events (MPE's) are included within a class HTML file. Documon generates a unique ID for each entity. The ID represents a \"dot.path\" to the entity based on its relationship to the package and class structure. Example: package.class.entity … where \"entity\" is a reference to a method, property or event (MPE) within a class or module. NOTE: Documon treats modules and classes the same, so for brevity we'll only refer to \"class\". The Documon website intercepts links and interprets dot.path ID's. Internal Method, Property, Event (MPE) links Each MPE has a standard HTML anchors within the page, therefore to link to an internal MPE within a class, use a normal anchor URL's (#example): See foo This makes writing an internal link (within a class file) pretty easy. You can use the full dot.path, or for simplicity, if you're cross linking within the same class, you can just reference the MPE. Either will work, because the template emits both #entity and #package.class.entity anchors. See foo -- or -- See foo External classes and MPE's To link to an external class or a MPE in some other class, use the full ID: Link to My Class Link to the foo property … in the example above we're targeting the location of the \"foo\" property in the \"MyClass\" HTML file. Again, the Documon website intercepts and interprets the ID's for you automatically. External URL's And to link to external websites, just use a full URL: External Website Link More Pages Each \"more\" page is provided a unique ID that is prefixed with \"more\". So you can link to these pages using the ID: See the About Page Review the \"More Docs\" page for details on how the ID's are derived.",
 	"url": "https://www.documon.net/more.comment_authoring_guide.linking.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -97,7 +97,7 @@
 <li>Classes and modules are full HTML pages. </li>
 <li>Methods, properties, and events (MPE's) are included within a class HTML file.</li>
 </ol>
-<p>Documon generates a unique ID for each entity. The ID represents a "dot.path" to the entity based on it's relationship to the package and class structure.</p>
+<p>Documon generates a unique ID for each entity. The ID represents a "dot.path" to the entity based on its relationship to the package and class structure.</p>
 <p>Example:</p>
 <pre><code>package.class.entity</code></pre>
 <p>… where "entity" is a reference to a method, property or event (MPE) within a class or module.</p>
@@ -105,11 +105,11 @@
   <p>NOTE: Documon treats modules and classes the same, so for brevity we'll only refer to "class".</p>
 </blockquote>
 <p>The Documon website intercepts links and interprets dot.path ID's.</p>
-<h3 id="interal-method-property-event-mpe-links">Interal Method, Property, Event (MPE) links</h3>
+<h3 id="internal-method-property-event-mpe-links">Internal Method, Property, Event (MPE) links</h3>
 <p>Each MPE has a standard HTML anchors within the page, therefore to link to an internal MPE within a class, use a normal anchor URL's (#example):</p>
 <pre><code>[See foo](#foo)</code></pre>
 <p>This makes writing an internal link (within a class file) pretty easy.</p>
-<p>You can use the full dot.path, or for simplicity, if you're cross linking within the same class, you can just refernce the MPE. Either or will work because the template should incorporate both #entity adn #package.class.entity</p>
+<p>You can use the full dot.path, or for simplicity, if you're cross linking within the same class, you can just reference the MPE. Either will work, because the template emits both <code>#entity</code> and <code>#package.class.entity</code> anchors.</p>
 <pre><code>[See foo](#foo)
 -- or --
 [See foo](#package.class.foo)</code></pre>
@@ -122,13 +122,9 @@
 <p>And to link to external websites, just use a full URL:</p>
 <pre><code>[External Website Link](http://www.example.com)</code></pre>
 <h3 id="more-pages">More Pages</h3>
-<p>Each <a href="more.more_docs">"more" page</a> is provided a unique ID that is prefixed with "more". So you can link to these pages using the ID:</p>
+<p>Each <a href="more.more_docs.more_docs">"more" page</a> is provided a unique ID that is prefixed with "more". So you can link to these pages using the ID:</p>
 <pre><code>[See the About Page](more.about)</code></pre>
-<p>Review the <a href="more.more_docs">"More Docs"</a> page for details on how the ID's are derived.</p>
-<p>&nbsp;<br />
-&nbsp;<br />
-&nbsp;<br />
-170906</p></div>
+<p>Review the <a href="more.more_docs.more_docs">"More Docs"</a> page for details on how the ID's are derived.</p></div>
 		</div>
 
 		<div class="footer">Generated by <a href="http://www.documon.net" target="_blank">Documon</a></div>

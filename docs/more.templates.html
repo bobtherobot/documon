@@ -28,7 +28,7 @@
 	"name": "Templates",
 	"headline": "Templates",
 	"identifier": "more.templates",
-	"description": "Templates The templating system is wide open, giving you full control over how the HTML is rendered. By default we're using straight javascript with template literals for patching together chunks of HTML. To create or modify a template, you'll only have to ensure: The \"Required Files\" exist. All \"jst\" template files return a string. Required Files The following files are called directly by Documon and must exist within the template folder. file description arguments used by _config.js Configures the \"assets\" folder (see below). documon.js index.jst The main \"app\" page. context documon.js indexShortcut.jst Shortcut to the home page. context documon.js page.jst Standard wrapper template for all pages. context, content documon.js package.jst An index page that lists a package's members. context organizer.js class.jst This contains class description, Methods, Properties and Events (MPE). organizer.js Each template (jst) must return a single function that accepts a \"context\" argument and returns a string. Example: module.exports = function (ctx){ return \"&lt;html&gt;&lt;body&gt;${ctx.id}&lt;/body&gt;&lt;/html&gt;\"; }; The argument provided is a simple object structure containing page data. The \"page.jst\" file receives a second argument \"content\", which is the main textual body content for the page that was formerly rendered by either index, package or class JST template. To review the structured data, run Documon with teh \"dumpData\" option enabled -- the \"tagged\" javascript files show the json-like structure, which you can use as a reference. The _configs.js file The \"_config.js\" file is essentially a central configuration \"object\" that documon reads for template specific options and can also be used by the template developer to store global options/settings. The _config.js file should export the following: module.exports = { assetsFolder : \"assets\" } Documon only reads the \"assetsFolder\" property, all other properties in the \"exports\" object are not used by Documon, but can be used by templates as needed, so you're free to load up the object as you see fit. The \"assetsFolder\" is the name of a folder in the templates folder that contains all the required assets such as javascript, css, images, etc. -- This entire folder will get copied over \"as is\" (including sub-folders) to the resulting web site that Documon generates. For example, if the template folder structure looks like: /path/to/template /path/to/template/myAssets … and you need the \"myAssets\" folder to wind up in the resulting website, you'll set the \"assetsFolder\" property in \"_config.js\" as: module.exports = { assetsFolder : \"myAssets\" } … then the \"myAssets\" folder will get copied into the final doumentation as: /docs/myAssets",
+	"description": "Templates The templating system is wide open, giving you full control over how the HTML is rendered. By default we're using straight javascript with template literals for patching together chunks of HTML. To create or modify a template, you'll only have to ensure: The \"Required Files\" exist. All \"jst\" template files return a string. Required Files The following files are called directly by Documon and must exist within the template folder. file description arguments used by _config.js Configures the \"assets\" folder (see below). -- documon.js index.jst The main \"app\" page. context documon.js indexShortcut.jst Shortcut to the home page. context documon.js page.jst Standard wrapper template for all pages. context, content documon.js package.jst An index page that lists a package's members. context organizer.js class.jst Class description, Methods, Properties and Events (MPE). context organizer.js Each template (jst) must return a single function that accepts a \"context\" argument and returns a string. Example -- note the backticks. ${...} only interpolates inside a template literal; in a normal quoted string it stays on the page as the literal text ${ctx.id} . module.exports = function (ctx){ return &lt;html&gt;&lt;body&gt;${ctx.id}&lt;/body&gt;&lt;/html&gt;; }; The argument provided is a simple object structure containing page data. The \"page.jst\" file receives a second argument \"content\", which is the main textual body content for the page that was formerly rendered by either index, package or class JST template. To review the structured data, run Documon with the \"dumpData\" option enabled -- the \"tagged\" javascript files show the json-like structure, which you can use as a reference. The _config.js file The \"_config.js\" file is essentially a central configuration \"object\" that documon reads for template specific options and can also be used by the template developer to store global options/settings. The _config.js file should export the following: module.exports = { assetsFolder : \"assets\" } Documon itself only reads the \"assetsFolder\" property. Everything else in the exports object is for the template's own use, so you're free to load it up as you see fit -- the bundled template, for instance, adds \"defaultExampleCode\": module.exports = { assetsFolder : \"assets\", defaultExampleCode : \"js\" } … which is the syntax-highlighting language example.jst falls back to when an @example doesn't name one with a {type} . The \"assetsFolder\" is the name of a folder in the templates folder that contains all the required assets such as javascript, css, images, etc. -- This entire folder will get copied over \"as is\" (including sub-folders) to the resulting web site that Documon generates. For example, if the template folder structure looks like: /path/to/template /path/to/template/myAssets … and you need the \"myAssets\" folder to wind up in the resulting website, you'll set the \"assetsFolder\" property in \"_config.js\" as: module.exports = { assetsFolder : \"myAssets\" } … then the \"myAssets\" folder will get copied into the final documentation as: /docs/myAssets",
 	"url": "https://www.documon.net/more.templates.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -105,7 +105,7 @@
 <tr>
 <td>_config.js</td>
 <td>Configures the "assets" folder (see below).</td>
-<td></td>
+<td>--</td>
 <td><a href="documon.documon">documon.js</a></td>
 </tr>
 <tr>
@@ -134,27 +134,36 @@
 </tr>
 <tr>
 <td>class.jst</td>
-<td>This contains class description, Methods, Properties and Events (MPE).</td>
+<td>Class description, Methods, Properties and Events (MPE).</td>
+<td>context</td>
 <td><a href="documon.organizer">organizer.js</a></td>
-<td></td>
 </tr>
 </tbody>
 </table>
 <p>Each template (jst) must return a single function that accepts a "context" argument and returns a string.</p>
-<p>Example:</p>
+<p>Example -- note the backticks. <code>${...}</code> only interpolates inside a template literal; in a<br />
+normal quoted string it stays on the page as the literal text <code>${ctx.id}</code>.</p>
 <pre><code>module.exports = function (ctx){
-    return "&lt;html&gt;&lt;body&gt;${ctx.id}&lt;/body&gt;&lt;/html&gt;";
+    return `&lt;html&gt;&lt;body&gt;${ctx.id}&lt;/body&gt;&lt;/html&gt;`;
 };</code></pre>
 <p>The argument provided is a simple object structure containing page data.</p>
 <p>The "page.jst" file receives a second argument "content", which is the main textual body content for the page that was formerly rendered by either <strong>index, package</strong> or <strong>class</strong> JST template.</p>
-<p>To review the structured data, run Documon with teh <a href="more.options">"dumpData" option</a> enabled -- the "tagged" javascript files show the json-like structure, which you can use as a reference.</p>
-<h3 id="the-_configsjs-file">The _configs.js file</h3>
+<p>To review the structured data, run Documon with the <a href="more.options">"dumpData" option</a> enabled -- the "tagged" javascript files show the json-like structure, which you can use as a reference.</p>
+<h3 id="the-_configjs-file">The _config.js file</h3>
 <p>The "_config.js" file is essentially a central configuration "object" that documon reads for template specific options and can also be used by the template developer to store global options/settings.</p>
 <p>The _config.js file should export the following:</p>
 <pre><code>module.exports = {
     assetsFolder : "assets"
 }</code></pre>
-<p>Documon only reads the "assetsFolder" property, all other properties in the "exports" object are not used by Documon, but can be used by templates as needed, so you're free to load up the object as you see fit.</p>
+<p>Documon itself only reads the "assetsFolder" property. Everything else in the exports<br />
+object is for the template's own use, so you're free to load it up as you see fit -- the<br />
+bundled template, for instance, adds "defaultExampleCode":</p>
+<pre><code>module.exports = {
+    assetsFolder       : "assets",
+    defaultExampleCode : "js"
+}</code></pre>
+<p>… which is the syntax-highlighting language <code>example.jst</code> falls back to when an<br />
+<code>@example</code> doesn't name one with a <code>{type}</code>.</p>
 <p>The "assetsFolder" is the name of a folder in the templates folder that contains all the required assets such as javascript, css, images, etc. -- This entire folder will get copied over "as is" (including sub-folders) to the resulting web site that Documon generates.</p>
 <p>For example, if the template folder structure looks like:</p>
 <pre><code>/path/to/template
@@ -163,7 +172,7 @@
 <pre><code>module.exports = {
     assetsFolder : "myAssets"
 }</code></pre>
-<p>… then the "myAssets" folder will get copied into the final doumentation as:</p>
+<p>… then the "myAssets" folder will get copied into the final documentation as:</p>
 <pre><code>/docs/myAssets</code></pre></div>
 		</div>
 

@@ -6,15 +6,13 @@ www.documon.net
 
 this.documon = this.documon || {};
 
-		console.log("interceptClick");
 this.documon.Linker = (function(){
 
 	function interceptClick(e) {
 	    var target = e.target;
 	    if (target.tagName === 'A') {
-			
+
 	        var href = target.getAttribute('href');
-	        console.log("href", href);
 
 	        if(	href.match(/^(https?|ftp|file):\/\//) ){
 
@@ -24,10 +22,11 @@ this.documon.Linker = (function(){
 	        } else {
 		        if(href.charAt(0) != "#"){
 		        	e.preventDefault();
+		        	// Prose ids are lower-cased by more.js:cleanID(), so a link written
+		        	// as "more.Options" still finds "more.options".
 		        	if(href.slice(0, 4) == 'more'){
 		        		href = href.toLowerCase();
 		        	}
-		        	console.log("href", href, href.slice(0, 4));
 		        	gieson.MenuTree.openById(href, true, true);
 		        }
 

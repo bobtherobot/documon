@@ -56,7 +56,7 @@ problems.
       "rule": "unresolved-inheritance",
       "file": "src/menu.js",
       "line": 42,
-      "message": "@extends \"Base\" does not match any documented id.",
+      "message": "@extends \"Bass\" does not match any documented id.",
       "fix": "Use the fully qualified id (package.Class), or document the parent."
     }
   ]
@@ -114,9 +114,14 @@ explains each rather than suggesting a wrong replacement:
 Still worth knowing:
 
 - Ids are `package.container.member` and double as filenames.
-- `@param` on a `@class` or `@module` parses but never renders.
-- A second `@class` in a file does not inherit that file's `@package` — declare
-  `@package` in each class block, or keep one class per file.
+- `@param` on a `@class` or `@module` renders a parameter table on that page, which is
+  how you document constructor arguments. On a `@property` it is parsed and dropped, and
+  `--check` reports `param-on-non-method`.
+- A second `@class` in a file inherits that file's `@package`. An explicit `@package`
+  still wins and becomes the package for everything after it.
+- Only `@extends` cross-fills inherited members. `@implements` and `@inherits` are
+  recorded as links and pull nothing in. A bare parent name resolves against the block's
+  own `@package`, so `@extends Base` works within a package.
 
 ## Configuration file
 

@@ -12,7 +12,7 @@ www.documon.net
  *
  * @param  {any}  		data 	- A string, array or object to output
  * @param  {string}  	title 	- A title for the message
- * @param  {type}  		quiet 	- Disables logging (prevents console output.
+ * @param  {boolean}  	quiet 	- Disables logging (suppresses console output).
  *
  * @example
  *

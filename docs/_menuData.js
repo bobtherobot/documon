@@ -9,7 +9,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -22,7 +22,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -35,7 +35,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -48,7 +48,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -61,7 +61,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -74,7 +74,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -87,7 +87,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -100,7 +100,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -113,7 +113,7 @@ var MenuData = [
 		"parentID": "more",
 		"gati": "UA-106684927-1",
 		"projectName": "Documon",
-		"projectVersion": "3.0.0",
+		"projectVersion": "3.0.1",
 		"baseUrl": "https://www.documon.net"
 	},
 	{
@@ -136,7 +136,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -149,7 +149,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -162,7 +162,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -175,7 +175,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -188,7 +188,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -201,7 +201,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -214,7 +214,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -227,7 +227,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -240,7 +240,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -253,7 +253,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -266,7 +266,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -279,7 +279,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -292,7 +292,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -305,7 +305,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -318,7 +318,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -331,7 +331,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -344,7 +344,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -357,7 +357,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -370,7 +370,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -383,7 +383,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -396,7 +396,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -409,7 +409,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -422,7 +422,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -435,7 +435,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -448,7 +448,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -461,7 +461,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -474,7 +474,7 @@ var MenuData = [
 				"parentID": "more.tags",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			}
 		]
@@ -499,7 +499,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -512,7 +512,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -525,7 +525,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -538,7 +538,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -551,7 +551,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -564,7 +564,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -577,7 +577,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -590,7 +590,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -603,7 +603,7 @@ var MenuData = [
 				"parentID": "more.comment_authoring_guide",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			}
 		]
@@ -628,7 +628,7 @@ var MenuData = [
 				"parentID": "more.more_docs",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			},
 			{
@@ -636,12 +636,12 @@ var MenuData = [
 				"url": "more.more_docs.meta_header.html",
 				"label": "Meta Header",
 				"name": "Meta Header",
-				"kind": "more-file",
+				"kind": "fa-star",
 				"basepath": "more/300.More Docs/14.Meta Header",
 				"parentID": "more.more_docs",
 				"gati": "UA-106684927-1",
 				"projectName": "Documon",
-				"projectVersion": "3.0.0",
+				"projectVersion": "3.0.1",
 				"baseUrl": "https://www.documon.net"
 			}
 		]
@@ -898,6 +898,14 @@ var MenuData = [
 														"label": "print",
 														"kind": "methods-item",
 														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.check.resolveExtends",
+														"url": "documon.check.html#documon.check.resolveExtends",
+														"label": "resolveExtends",
+														"kind": "methods-item",
+														"access": "private",
 														"inherits": 0
 													},
 													{
@@ -1343,6 +1351,22 @@ var MenuData = [
 														"inherits": 0
 													},
 													{
+														"id": "documon.llms.modelParam",
+														"url": "documon.llms.html#documon.llms.modelParam",
+														"label": "modelParam",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.llms.pushParams",
+														"url": "documon.llms.html#documon.llms.pushParams",
+														"label": "pushParams",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
 														"id": "documon.llms.readMore",
 														"url": "documon.llms.html#documon.llms.readMore",
 														"label": "readMore",
@@ -1745,6 +1769,14 @@ var MenuData = [
 												"kind": "properties",
 												"children": [
 													{
+														"id": "documon.organizer.didApplyInheritance",
+														"url": "documon.organizer.html#documon.organizer.didApplyInheritance",
+														"label": "didApplyInheritance",
+														"kind": "properties-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
 														"id": "documon.organizer.flatClassList",
 														"url": "documon.organizer.html#documon.organizer.flatClassList",
 														"label": "flatClassList",
@@ -1833,11 +1865,43 @@ var MenuData = [
 														"inherits": 0
 													},
 													{
+														"id": "documon.organizer.applyInheritance",
+														"url": "documon.organizer.html#documon.organizer.applyInheritance",
+														"label": "applyInheritance",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
 														"id": "documon.organizer.buildMenu",
 														"url": "documon.organizer.html#documon.organizer.buildMenu",
 														"label": "buildMenu",
 														"kind": "methods-item",
 														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.organizer.buildPackage",
+														"url": "documon.organizer.html#documon.organizer.buildPackage",
+														"label": "buildPackage",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.organizer.buildPages",
+														"url": "documon.organizer.html#documon.organizer.buildPages",
+														"label": "buildPages",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.organizer.cloneInherited",
+														"url": "documon.organizer.html#documon.organizer.cloneInherited",
+														"label": "cloneInherited",
+														"kind": "methods-item",
+														"access": "private",
 														"inherits": 0
 													},
 													{
@@ -1857,11 +1921,35 @@ var MenuData = [
 														"inherits": 0
 													},
 													{
+														"id": "documon.organizer.prepPage",
+														"url": "documon.organizer.html#documon.organizer.prepPage",
+														"label": "prepPage",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.organizer.processInheritance",
+														"url": "documon.organizer.html#documon.organizer.processInheritance",
+														"label": "processInheritance",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
 														"id": "documon.organizer.sortObj",
 														"url": "documon.organizer.html#documon.organizer.sortObj",
 														"label": "sortObj",
 														"kind": "methods-item",
 														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.organizer.swapIds",
+														"url": "documon.organizer.html#documon.organizer.swapIds",
+														"label": "swapIds",
+														"kind": "methods-item",
+														"access": "private",
 														"inherits": 0
 													}
 												]
@@ -1987,7 +2075,7 @@ var MenuData = [
 														"url": "documon.tag.html#documon.tag.fillFlag",
 														"label": "fillFlag",
 														"kind": "methods-item",
-														"access": "public",
+														"access": "private",
 														"inherits": 0
 													},
 													{

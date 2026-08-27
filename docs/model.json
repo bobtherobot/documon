@@ -1,7 +1,7 @@
 {
 	"generator": "documon",
 	"project": "Documon",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.",
 	"baseUrl": "https://www.documon.net",
 	"pages": [
@@ -29,7 +29,10 @@
 						{
 							"name": "f",
 							"type": "object",
-							"description": "A parsed flag."
+							"description": "A parsed flag.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -51,7 +54,10 @@
 						{
 							"name": "output",
 							"type": "object",
-							"description": "The parsed comment block, modified in place."
+							"description": "The parsed comment block, modified in place.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -158,7 +164,10 @@
 						{
 							"name": "flag",
 							"type": "string",
-							"description": "The tag as written."
+							"description": "The tag as written.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -180,7 +189,10 @@
 						{
 							"name": "text",
 							"type": "string",
-							"description": "Text possibly containing inline links."
+							"description": "Text possibly containing inline links.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -202,7 +214,10 @@
 						{
 							"name": "flag",
 							"type": "string",
-							"description": "The tag as written."
+							"description": "The tag as written.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -224,7 +239,10 @@
 						{
 							"name": "flag",
 							"type": "string",
-							"description": "The tag as written."
+							"description": "The tag as written.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -246,12 +264,18 @@
 						{
 							"name": "table",
 							"type": "object",
-							"description": "One of TAGS, DEPRECATED or META_TAGS."
+							"description": "One of TAGS, DEPRECATED or META_TAGS.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "flag",
 							"type": "string",
-							"description": "The tag as written."
+							"description": "The tag as written.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -273,7 +297,10 @@
 						{
 							"name": "flag",
 							"type": "string",
-							"description": "The tag as written."
+							"description": "The tag as written.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -295,7 +322,10 @@
 						{
 							"name": "flag",
 							"type": "string",
-							"description": "The tag as written, without the leading \"@\"."
+							"description": "The tag as written, without the leading \"@\".",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -394,12 +424,18 @@
 						{
 							"name": "info",
 							"type": "object",
-							"description": "Summarized block."
+							"description": "Summarized block.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "scope",
 							"type": "string",
-							"description": "The enclosing class/module name."
+							"description": "The enclosing class/module name.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -421,7 +457,10 @@
 						{
 							"name": "conf",
 							"type": "object",
-							"description": "Documon config."
+							"description": "Documon config.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -443,32 +482,50 @@
 						{
 							"name": "level",
 							"type": "string",
-							"description": "\"error\", \"warning\" or \"info\"."
+							"description": "\"error\", \"warning\" or \"info\".",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "rule",
 							"type": "string",
-							"description": "Stable machine-readable rule id."
+							"description": "Stable machine-readable rule id.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "file",
 							"type": "string",
-							"description": "Source file."
+							"description": "Source file.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "line",
 							"type": "number",
-							"description": "1-based line number."
+							"description": "1-based line number.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "message",
 							"type": "string",
-							"description": "What is wrong."
+							"description": "What is wrong.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "fix",
 							"type": "string",
-							"description": "How to fix it."
+							"description": "How to fix it.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -490,7 +547,10 @@
 						{
 							"name": "conf",
 							"type": "object",
-							"description": "The resolved configuration."
+							"description": "The resolved configuration.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -504,7 +564,7 @@
 					"name": "print",
 					"type": null,
 					"access": "public",
-					"line": 708,
+					"line": 749,
 					"inherited": null,
 					"description": "Prints a report for humans.",
 					"meta": [],
@@ -512,15 +572,62 @@
 						{
 							"name": "report",
 							"type": "object",
-							"description": "The result of `run()`."
+							"description": "The result of `run()`.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "log",
 							"type": "function",
-							"description": "The logger."
+							"description": "The logger.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
+				},
+				{
+					"id": "documon.check.resolveExtends",
+					"kind": "method",
+					"name": "resolveExtends",
+					"type": null,
+					"access": "private",
+					"line": 401,
+					"inherited": null,
+					"description": "Resolves an inheritance target the way the builder does.\n\n`organizer.js:applyInheritance()` accepts a bare class name for a parent in the same\npackage -- `@extends Base` inside `@package demo` means `demo.Base` -- and the manual\nteaches that short form. The validator used to compare the written target against the\nfully qualified ids only, so the documented short form was reported as an\n`unresolved-inheritance` **error** on input that built perfectly. That broke the\n`documon --check && documon` recipe for anyone who followed the docs.\n\nThe rule mirrors the builder exactly: a target with no dot at all is qualified with the\nblock's package. A dotted target is already an id and is looked up as written.",
+					"meta": [],
+					"params": [
+						{
+							"name": "target",
+							"type": "string",
+							"description": "The `@extends` / `@inherits` / `@implements` value as written.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "pkg",
+							"type": "string",
+							"description": "The package the declaring block belongs to.",
+							"optional": true,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "ids",
+							"type": "object",
+							"description": "The map of documented ids.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "string",
+						"description": "The id it resolves to, or null."
+					}
 				},
 				{
 					"id": "documon.check.run",
@@ -528,7 +635,7 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 394,
+					"line": 435,
 					"inherited": null,
 					"description": "Runs the validator.",
 					"meta": [],
@@ -536,17 +643,32 @@
 						{
 							"name": "conf",
 							"type": "object",
-							"description": "Documon config (same shape the builder receives)."
+							"description": "Documon config (same shape the builder receives).",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "opts",
 							"type": "object",
-							"description": "Options."
+							"description": "Options.",
+							"optional": true,
+							"default": null,
+							"children": [
+								{
+									"name": "coverage",
+									"type": "boolean",
+									"description": "Include the undocumented-symbol advisory.",
+									"optional": true,
+									"default": "false",
+									"children": []
+								}
+							]
 						}
 					],
 					"returns": {
 						"type": "object",
-						"description": "`{ ok, counts, findings, stats }`."
+						"description": "`{ ok, generator, counts, stats, coverage, findings }`.\n`coverage` is null unless `opts.coverage` was set."
 					}
 				},
 				{
@@ -563,7 +685,10 @@
 						{
 							"name": "source",
 							"type": "string",
-							"description": "File contents."
+							"description": "File contents.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -585,7 +710,10 @@
 						{
 							"name": "parsed",
 							"type": "object",
-							"description": "Output of `parse()`."
+							"description": "Output of `parse()`.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -619,12 +747,18 @@
 						{
 							"name": "from",
 							"type": "string",
-							"description": "The source folder"
+							"description": "The source folder",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "to",
 							"type": "string",
-							"description": "The destination folder (get's created if not exist)"
+							"description": "The destination folder (get's created if not exist)",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -643,12 +777,18 @@
 						{
 							"name": "who",
 							"type": "string",
-							"description": "The source folder"
+							"description": "The source folder",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "dryRun",
 							"type": "boolean",
-							"description": "Prevents actual deletion, but still allows the return list to display what \"will\" be deleted."
+							"description": "Prevents actual deletion, but still allows the return list to display what \"will\" be deleted.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -670,7 +810,10 @@
 						{
 							"name": "who",
 							"type": "string",
-							"description": "The path to the folder."
+							"description": "The path to the folder.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -692,7 +835,10 @@
 						{
 							"name": "dest",
 							"type": "string",
-							"description": "The destination folder to create"
+							"description": "The destination folder to create",
+							"optional": false,
+							"default": "path/to/make",
+							"children": []
 						}
 					],
 					"returns": null
@@ -711,22 +857,34 @@
 						{
 							"name": "from",
 							"type": "string",
-							"description": "The path to the folder to read."
+							"description": "The path to the folder to read.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "filter",
 							"type": "function",
-							"description": "A custom filter funciton."
+							"description": "A custom filter funciton.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "recursive",
 							"type": "boolean",
-							"description": "Should we retrieve sub-folders too?"
+							"description": "Should we retrieve sub-folders too?",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "store",
 							"type": "object",
-							"description": "Used internally to store recursive findings.\n Note that you may also provide this argument and readdir will populate your\n existing files/folder list. But is recommended to leave this argument alone."
+							"description": "Used internally to store recursive findings.\n Note that you may also provide this argument and readdir will populate your\n existing files/folder list. But is recommended to leave this argument alone.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -748,17 +906,26 @@
 						{
 							"name": "from",
 							"type": "string",
-							"description": "The path to search"
+							"description": "The path to search",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "exts",
 							"type": "string | array",
-							"description": "The extension to look for (e.g. \"jpg\"). To\n search for multiple extensions, use an array e.g. [\"jpg\", \"png\", \"gif\"]"
+							"description": "The extension to look for (e.g. \"jpg\"). To\n search for multiple extensions, use an array e.g. [\"jpg\", \"png\", \"gif\"]",
+							"optional": true,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "recursive",
 							"type": "boolean",
-							"description": "Find all matching files in all\n sub-folders."
+							"description": "Find all matching files in all\n sub-folders.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -780,12 +947,18 @@
 						{
 							"name": "who",
 							"type": "string",
-							"description": "The path to the folder"
+							"description": "The path to the folder",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "dryRun",
 							"type": "boolean",
-							"description": "Prevents actual deletion, but still allows the return to return the list of items that \"will\" be deleted."
+							"description": "Prevents actual deletion, but still allows the return to return the list of items that \"will\" be deleted.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -802,7 +975,7 @@
 			"package": "documon",
 			"description": "The main entry point and processor for Documon, which allows you to run Documon directly from Node.",
 			"file": "src/documon.js",
-			"line": 26,
+			"line": 35,
 			"meta": [],
 			"members": [
 				{
@@ -811,7 +984,7 @@
 					"name": "dumpData",
 					"type": "boolean",
 					"access": "public",
-					"line": 127,
+					"line": 145,
 					"inherited": null,
 					"description": "Whether or not to write intermediary files used during processing to the output data folder.",
 					"meta": [],
@@ -824,7 +997,7 @@
 					"name": "extensions",
 					"type": "array",
 					"access": "public",
-					"line": 89,
+					"line": 107,
 					"inherited": null,
 					"description": "The list of extensions to search for source code.",
 					"meta": [],
@@ -837,7 +1010,7 @@
 					"name": "ignoreList",
 					"type": "array",
 					"access": "public",
-					"line": 100,
+					"line": 118,
 					"inherited": null,
 					"description": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included:\n\n\t\t'\\/\\.'\n\t\t'\\.git'\n\t\t'node_modules'\n\n\tConfiguration will concat this list with the user provied list.",
 					"meta": [],
@@ -850,7 +1023,7 @@
 					"name": "indexRedirectName",
 					"type": "string",
 					"access": "public",
-					"line": 132,
+					"line": 150,
 					"inherited": null,
 					"description": "The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
 					"meta": [],
@@ -863,7 +1036,7 @@
 					"name": "mainConf",
 					"type": "Object",
 					"access": "public",
-					"line": 84,
+					"line": 102,
 					"inherited": null,
 					"description": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon.\n\nExample link [other class to documon.dirutils.makedir](documon.dirutils.makedir)\nExample link [other class to documon.dirutils](documon.dirutils)\nExample link [local to #run](#run)",
 					"meta": [],
@@ -876,7 +1049,7 @@
 					"name": "matcher",
 					"type": "object",
 					"access": "public",
-					"line": 111,
+					"line": 129,
 					"inherited": null,
 					"description": "The compiled ignore matcher, built during init from the\ndefault patterns plus whatever the caller supplied.",
 					"meta": [],
@@ -889,7 +1062,7 @@
 					"name": "quiet",
 					"type": "boolean",
 					"access": "public",
-					"line": 122,
+					"line": 140,
 					"inherited": null,
 					"description": "Supress stdout messages.",
 					"meta": [],
@@ -902,7 +1075,7 @@
 					"name": "tally",
 					"type": "object",
 					"access": "public",
-					"line": 117,
+					"line": 135,
 					"inherited": null,
 					"description": "Counts of tags that were normalized or ignored during a\nbuild, reported as a single line when the build finishes.",
 					"meta": [],
@@ -915,7 +1088,7 @@
 					"name": "filterFileTypes",
 					"type": null,
 					"access": "private",
-					"line": 159,
+					"line": 177,
 					"inherited": null,
 					"description": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
 					"meta": [],
@@ -923,7 +1096,10 @@
 						{
 							"name": "fpath",
 							"type": "string",
-							"description": "The path or full file name."
+							"description": "The path or full file name.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -937,15 +1113,18 @@
 					"name": "init",
 					"type": null,
 					"access": "private",
-					"line": 195,
+					"line": 213,
 					"inherited": null,
-					"description": "Initializes Documan based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates",
+					"description": "Initializes Documon based on the configuration settings\n\n- Parses configuration\n- Finds source files\n- Creates output folder\n- Copies template assets to output folder\n- Initializes main templates",
 					"meta": [],
 					"params": [
 						{
 							"name": "conf",
 							"type": "object",
-							"description": "See (run)[run], as this configuration object is simply passed through."
+							"description": "See (run)[run], as this configuration object is simply passed through.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -959,7 +1138,7 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 628,
+					"line": 661,
 					"inherited": null,
 					"description": "The main processing loop that executes and manages the main flow control of parsing, evaluating and  \nconstruction of the documentation.\n\nAfter [init](#init) configures things based on the settings, and generates a list of files to process\nthis method process and sends each file to the [seeder](#seeder) of evaluation and processing.\n\n- Generates HTML pages\n- Generates _menuData.js",
 					"meta": [],
@@ -967,10 +1146,16 @@
 						{
 							"name": "conf",
 							"type": "object",
-							"description": "The configuration object. See [mainConf](#mainConf)"
+							"description": "The configuration object. See [mainConf](#mainConf)",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
-					"returns": null
+					"returns": {
+						"type": "object",
+						"description": "A summary of what was built, or **null** when nothing could be\nbuilt (most commonly \"no files to parse\"). `index.js` branches on that null to set a\nnon-zero exit code, so callers should not ignore it:\n\n\t\t{\n\t\t\toutputFolder   : \"/path/to/docs/\",\n\t\t\tindex          : \"/path/to/docs/index.html\",\n\t\t\tpages          : 24,   // pages written\n\t\t\tfiles          : 22,   // source files parsed\n\t\t\temitted        : { llms : \"...\", llmsFull : \"...\", model : \"...\" },\n\t\t\tunknownTags    : 0,    // tags dropped as unrecognised\n\t\t\tnormalizedTags : 3     // tags accepted under another spelling\n\t\t}"
+					}
 				},
 				{
 					"id": "documon.documon.seeder",
@@ -978,7 +1163,7 @@
 					"name": "seeder",
 					"type": null,
 					"access": "private",
-					"line": 506,
+					"line": 526,
 					"inherited": null,
 					"description": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)",
 					"meta": [],
@@ -986,7 +1171,10 @@
 						{
 							"name": "file",
 							"type": "string",
-							"description": "The path to the file."
+							"description": "The path to the file.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1000,15 +1188,18 @@
 					"name": "shouldIgnore",
 					"type": null,
 					"access": "private",
-					"line": 482,
+					"line": 502,
 					"inherited": null,
-					"description": "Extracts, parses and tags comments from one source file and stuffs the result into [organizer](#organizer).\n\n- Generates data files (if dumpData enabled)",
+					"description": "Decides whether a file or folder is excluded from this build.\n\nDelegates to the matcher built during [init](#init) from `src/ignore.js`, which is the\nsame matcher `--check` uses -- so the builder and the validator always agree on which\nfiles are part of the project.",
 					"meta": [],
 					"params": [
 						{
 							"name": "item",
 							"type": "string",
-							"description": "The path to the file."
+							"description": "The path to test.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1022,7 +1213,7 @@
 					"name": "writeData",
 					"type": null,
 					"access": "private",
-					"line": 148,
+					"line": 166,
 					"inherited": null,
 					"description": "Simplify file write for text or json.",
 					"meta": [],
@@ -1030,17 +1221,26 @@
 						{
 							"name": "fpath",
 							"type": "string",
-							"description": "The path to save to."
+							"description": "The path to save to.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "data",
 							"type": "string",
-							"description": "The string to save"
+							"description": "The string to save",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "json",
 							"type": "boolean",
-							"description": "Whether the data should be serialized to JSON or not."
+							"description": "Whether the data should be serialized to JSON or not.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -1052,9 +1252,9 @@
 			"name": "extract",
 			"kind": "class",
 			"package": "documon",
-			"description": "Extracts comments from a file into an array or mulit-dementional array when the \"text\" arg contains mulitple __package__ or __namepsace__ definitions.\n\nEach entry in the returned array will be an object containing 3 properties\n - __start__ : The line number that the comment started on\n - __end__ : The line number that the comment ended on\n - __data__ : The contents of the comment\n\n```\nvar myComments = extract(str);\nyields : [\n\t\t\t{ \n\t\t\t\tstart : 12,\n\t\t\t\tend : 32,\n\t\t\t\tdata : \"the descript\"\n\t\t\t},\n\t\t\t{ \n\t\t\t\tstart : 12,\n\t\t\t\tend : 32,\n\t\t\t\tdata : \"the descript\"\n\t\t\t}\n\t]\n```\n\n## A few things of note:\n- The data will NOT include the beginDoc, nor the endDoc strings.\n- Comment prefixing is stripped \n\t\t- *  [star space]\n\t\t- tabs\n\t\t- spaces\n- Code blocks maintain indentation.\n- Splitting on __package__ or __namespace__. When a single file contains mulitple references to a \"__package__\" or \"__namespace__\" comments will split into multiple arrays -- treating the single source file as being mulitple files. \n\nSplit __Example__:\n\n\t/**\n\t* Class A\n\t* @package foo <-- this designates a new \"page\"\n\t*/\n\n\t/**\n\t* Something for A\n\t* @method something\n\t*/\n \n\t/**\n\t* Class B\n\t* @package bar <-- this designates a new \"page\"\n\t*/\n \n\t/**\n\t* Something for B\n\t* @method something\n\t*/\n\t\n\tvar myComments = extract(str);\n\tyields : [\n\t\t\t\t[ // the first \"page\"\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 12,\n\t\t\t\t\t\tend : 32,\n\t\t\t\t\t\tdata : \"Class A ... \"\n\t\t\t\t\t},\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 12,\n\t\t\t\t\t\tend : 32,\n\t\t\t\t\t\tdata : \"Something for A ...\"\n\t\t\t\t\t},\n\t\t\n\t\t\t\t],\n\t\t\t\t[ // the second \"page\"\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 64,\n\t\t\t\t\t\tend : 96,\n\t\t\t\t\t\tdata : \"Class B ... \"\n\t\t\t\t\t},\n\t\t\t\t\t{ \n\t\t\t\t\t\tstart : 128,\n\t\t\t\t\t\tend : 142,\n\t\t\t\t\t\tdata : \"Something for B ...\"\n\t\t\t\t\t},\n\t\t\t\t,\n\t\t\t]",
+			"description": "Extracts every documentation comment from a file into a flat, in-order array.\n\nEach entry in the returned array will be an object containing 3 properties\n - __start__ : The line number that the comment started on\n - __end__ : The line number that the comment ended on\n - __data__ : The contents of the comment\n\n```\nvar myComments = extract(str);\nyields : [\n\t\t\t{ \n\t\t\t\tstart : 12,\n\t\t\t\tend : 32,\n\t\t\t\tdata : \"the descript\"\n\t\t\t},\n\t\t\t{ \n\t\t\t\tstart : 12,\n\t\t\t\tend : 32,\n\t\t\t\tdata : \"the descript\"\n\t\t\t}\n\t]\n```\n\n## A few things of note:\n- The data will NOT include the beginDoc, nor the endDoc strings.\n- Comment prefixing is stripped \n\t\t- *  [star space]\n\t\t- tabs\n\t\t- spaces\n- Code blocks maintain indentation.\n- A beginDoc sequence inside a quoted string, or after a \"//\" line comment, is code --\n  not the start of a doc block. Treating it as one swallowed every comment that\n  followed, so those entities went missing rather than merely rendering wrong.\n\n## What this does NOT do\n\nIt does not split a file into pages. A file carrying several __package__ or\n__namespace__ declarations is still returned as one flat array here; splitting it into\none group per package happens later, in [splitParsed](documon.splitParsed), which\n[documon.js::seeder](documon.documon.seeder) calls on the *parsed* comments. This block\ndescribed the splitting for years after it moved, and promised a multi-dimensional\nreturn value that never arrives.",
 			"file": "src/extract.js",
-			"line": 98,
+			"line": 58,
 			"meta": [],
 			"members": []
 		},
@@ -1082,12 +1282,18 @@
 						{
 							"name": "src",
 							"type": "string",
-							"description": "The source file path."
+							"description": "The source file path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "dest",
 							"type": "string",
-							"description": "The destination to copy the source to."
+							"description": "The destination to copy the source to.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -1100,13 +1306,16 @@
 					"access": "private",
 					"line": 96,
 					"inherited": null,
-					"description": "Cehcsk to see if a file exists. Note this also checks if a folder of the same name exists too.",
+					"description": "Checks to see if a file exists. Note this also checks if a folder of the same name exists too.",
 					"meta": [],
 					"params": [
 						{
 							"name": "src",
-							"type": "type",
-							"description": "The source file path."
+							"type": "string",
+							"description": "The source file path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1128,12 +1337,15 @@
 						{
 							"name": "src",
 							"type": "string",
-							"description": "The source file path."
+							"description": "The source file path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
 						"type": "string",
-						"description": "description description"
+						"description": "The file's contents, or false when it does not exist."
 					}
 				},
 				{
@@ -1150,12 +1362,15 @@
 						{
 							"name": "src",
 							"type": "string",
-							"description": "The source file path."
+							"description": "The source file path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
 						"type": "string",
-						"description": "description description"
+						"description": "The file's contents, or false when it does not exist."
 					}
 				},
 				{
@@ -1172,7 +1387,10 @@
 						{
 							"name": "src",
 							"type": "string",
-							"description": "The source file path."
+							"description": "The source file path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -1191,12 +1409,18 @@
 						{
 							"name": "src",
 							"type": "string",
-							"description": "The source file path."
+							"description": "The source file path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "data",
 							"type": "string",
-							"description": "The text data to save."
+							"description": "The text data to save.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -1215,12 +1439,18 @@
 						{
 							"name": "src",
 							"type": "string",
-							"description": "The source file path."
+							"description": "The source file path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "data",
 							"type": "string",
-							"description": "The text data to save."
+							"description": "The text data to save.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -1264,12 +1494,18 @@
 						{
 							"name": "userList",
 							"type": "array|string",
-							"description": "Caller supplied ignore entries."
+							"description": "Caller supplied ignore entries.",
+							"optional": true,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "extra",
 							"type": "array",
-							"description": "Internal paths to exclude (template, output, data folders)."
+							"description": "Internal paths to exclude (template, output, data folders).",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1291,7 +1527,10 @@
 						{
 							"name": "glob",
 							"type": "string",
-							"description": "The glob pattern."
+							"description": "The glob pattern.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1313,7 +1552,10 @@
 						{
 							"name": "item",
 							"type": "string",
-							"description": "The path to test."
+							"description": "The path to test.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1358,7 +1600,10 @@
 						{
 							"name": "html",
 							"type": "string",
-							"description": "Source HTML."
+							"description": "Source HTML.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1372,7 +1617,7 @@
 					"name": "flattenMenu",
 					"type": null,
 					"access": "private",
-					"line": 191,
+					"line": 214,
 					"inherited": null,
 					"description": "Flattens the menu tree into a list of linkable pages.",
 					"meta": [],
@@ -1380,12 +1625,18 @@
 						{
 							"name": "nodes",
 							"type": "array",
-							"description": "Menu nodes."
+							"description": "Menu nodes.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "out",
 							"type": "array",
-							"description": "Accumulator."
+							"description": "Accumulator.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1407,12 +1658,18 @@
 						{
 							"name": "base",
 							"type": "string",
-							"description": "Base URL, may be empty."
+							"description": "Base URL, may be empty.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "file",
 							"type": "string",
-							"description": "Page filename."
+							"description": "Page filename.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1434,7 +1691,10 @@
 						{
 							"name": "entry",
 							"type": "object",
-							"description": "A collected metadata tag."
+							"description": "A collected metadata tag.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1456,7 +1716,10 @@
 						{
 							"name": "page",
 							"type": "object",
-							"description": "A page produced by `organizer.buildPages()`."
+							"description": "A page produced by `organizer.buildPages()`.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1465,12 +1728,75 @@
 					}
 				},
 				{
+					"id": "documon.llms.modelParam",
+					"kind": "method",
+					"name": "modelParam",
+					"type": null,
+					"access": "private",
+					"line": 134,
+					"inherited": null,
+					"description": "Reduces one parameter -- and its sub-properties -- to the record used by `model.json`.\n\nDocumon documents the shape of an object argument with a dotted name, and\n`parseFlag.js` files those under the parent as `children`. This used to flatten a\nparameter to name/type/description only, so `@param {string} opts.timeout` was parsed,\nrendered into the HTML by `methodArgs.jst`, and then dropped on the way to\n`model.json`, `llms-full.txt` and the pages' JSON-LD -- exactly the readers that cannot\ngo and look at the HTML instead.\n\n`optional` and `defaultVal` were missing for the same reason. `write()` already had a\nbranch that printed \"(optional)\" and could never fire.",
+					"meta": [],
+					"params": [
+						{
+							"name": "prm",
+							"type": "object",
+							"description": "A tagged parameter.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "object",
+						"description": "`{ name, type, description, optional, default, children }`."
+					}
+				},
+				{
+					"id": "documon.llms.pushParams",
+					"kind": "method",
+					"name": "pushParams",
+					"type": null,
+					"access": "private",
+					"line": 313,
+					"inherited": null,
+					"description": "Appends a parameter list to `llms-full.txt`, indenting sub-properties under their parent.",
+					"meta": [],
+					"params": [
+						{
+							"name": "out",
+							"type": "array",
+							"description": "The accumulating lines.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "params",
+							"type": "array",
+							"description": "Parameter records from `modelParam()`.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "indent",
+							"type": "string",
+							"description": "Leading whitespace for this level.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": null
+				},
+				{
 					"id": "documon.llms.readMore",
 					"kind": "method",
 					"name": "readMore",
 					"type": null,
 					"access": "private",
-					"line": 228,
+					"line": 251,
 					"inherited": null,
 					"description": "Collects the markdown of the \"more\" folder, in menu order, for `llms-full.txt`.\n\nThe prose pages are usually the part a reader most needs -- guides, concepts, tag\nreferences -- and they are already plain text, so they go in verbatim.",
 					"meta": [],
@@ -1478,7 +1804,10 @@
 						{
 							"name": "folder",
 							"type": "string",
-							"description": "The \"more\" folder."
+							"description": "The \"more\" folder.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1492,7 +1821,7 @@
 					"name": "write",
 					"type": null,
 					"access": "public",
-					"line": 291,
+					"line": 341,
 					"inherited": null,
 					"description": "Writes `llms.txt`, `llms-full.txt` and `model.json`.",
 					"meta": [],
@@ -1500,22 +1829,34 @@
 						{
 							"name": "conf",
 							"type": "object",
-							"description": "The resolved `mainConf`."
+							"description": "The resolved `mainConf`.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "pages",
 							"type": "array",
-							"description": "Pages from `organizer.buildPages()`."
+							"description": "Pages from `organizer.buildPages()`.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "log",
 							"type": "object",
-							"description": "The logger."
+							"description": "The logger.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "menu",
 							"type": "array",
-							"description": "The final menu, so hand-written \"more\" pages are indexed too."
+							"description": "The final menu, so hand-written \"more\" pages are indexed too.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1552,20 +1893,39 @@
 					"name": "definitionLists",
 					"type": null,
 					"access": "private",
-					"line": 70,
+					"line": 72,
 					"inherited": null,
 					"description": "Find and convert markdown extra definition lists into html.",
 					"meta": [],
 					"params": [
 						{
 							"name": "text",
-							"type": "type",
-							"description": "description"
+							"type": "string",
+							"description": "The markdown source.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "converter",
+							"type": "object",
+							"description": "The showdown converter, for rendering item bodies.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "options",
+							"type": "object",
+							"description": "Showdown's options object.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
-						"type": "type",
-						"description": "description description"
+						"type": "string",
+						"description": "The text with definition lists replaced by HTML."
 					}
 				},
 				{
@@ -1574,20 +1934,31 @@
 					"name": "processDefListItems",
 					"type": null,
 					"access": "private",
-					"line": 138,
+					"line": 141,
 					"inherited": null,
 					"description": "Process the contents of a single definition list, splitting it\ninto individual term and definition list items.",
 					"meta": [],
 					"params": [
 						{
 							"name": "listStr",
-							"type": "type",
-							"description": "description"
+							"type": "string",
+							"description": "One definition list, as matched by [definitionLists](#definitionLists).",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "converter",
+							"type": "object",
+							"description": "The showdown converter, for rendering item bodies.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
-						"type": "type",
-						"description": "description description"
+						"type": "string",
+						"description": "The `<dt>` / `<dd>` markup for the list."
 					}
 				},
 				{
@@ -1604,7 +1975,10 @@
 						{
 							"name": "str",
 							"type": "string",
-							"description": "The markdown source."
+							"description": "The markdown source.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1638,17 +2012,23 @@
 						{
 							"name": "ctx",
 							"type": "object",
-							"description": "The parsed documentation object."
+							"description": "The parsed documentation object.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "target",
-							"type": "type",
-							"description": "The array to put any childeren into."
+							"type": "array",
+							"description": "The array to push any children into.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
-						"type": "type",
-						"description": "description description"
+						"type": "array",
+						"description": "The same target array, for chaining."
 					}
 				},
 				{
@@ -1664,13 +2044,16 @@
 					"params": [
 						{
 							"name": "item",
-							"type": "type",
-							"description": "description"
+							"type": "object",
+							"description": "A package or class entity.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
 						"type": "Boolean",
-						"description": ""
+						"description": "True when it has at least one method, property or event."
 					}
 				},
 				{
@@ -1681,18 +2064,21 @@
 					"access": "public",
 					"line": 217,
 					"inherited": null,
-					"description": "The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything avaialble on the root will reside int eh \"window\" scope. So they just dnagle out there on the tree.",
+					"description": "The main entry point for processing. Builds each section on the \"root\" node if methods and properties are not associated with classes. Meaning that anything available on the root resides in the \"window\" scope, so it dangles off the tree at the top level.",
 					"meta": [],
 					"params": [
 						{
 							"name": "ctx",
 							"type": "array",
-							"description": "description"
+							"description": "The sorted organ from [organizer.buildMenu](documon.organizer.buildMenu).",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
 						"type": "array",
-						"description": "description description"
+						"description": "The menu tree, ready to serialize into `_menuData.js`."
 					}
 				},
 				{
@@ -1703,22 +2089,28 @@
 					"access": "private",
 					"line": 138,
 					"inherited": null,
-					"description": "Builds an indiviual items containing pertenint meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.",
+					"description": "Builds an individual item containing the pertinent meta data required by MenuBuilder to display the item in the tree and click-to-open the associated file.",
 					"meta": [],
 					"params": [
 						{
 							"name": "ctx",
 							"type": "object",
-							"description": "The context to parse. Each level down the tree has it's own unique and seperate context."
+							"description": "The context to parse. Each level down the tree has its own unique and separate context.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "prop",
 							"type": "string",
-							"description": "The key for the part of the context we are going to process."
+							"description": "The key for the part of the context we are going to process.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
-						"type": "type",
+						"type": "object",
 						"description": "A simplified (meta-only) object that represents the provided context.\n\nExample of returned \n\t\t{\n\t\t\t\"id\": \"packageName.className-propMethodEventEtcName\",\n\t\t\t\"url\": \"packageName.className.html#propMethodEventEtcName\",\n\t\t\t\"label\": \"propMethodEventEtcName\",\n\t\t\t\"kind\": \"propMethodEvent\",\n\t\t\t\"children\": [ ] <-- only added when needed\n\t\t}"
 					}
 				}
@@ -1775,11 +2167,11 @@
 					"id": "documon.More.metaRx",
 					"kind": "property",
 					"name": "metaRx",
-					"type": "string",
+					"type": "RegExp",
 					"access": "private",
-					"line": 64,
+					"line": 73,
 					"inherited": null,
-					"description": "The regular expression use to split the doc on the [metaString](#metaString)",
+					"description": "Detects a [metaString](#metaString) boundary in a page.\n\nDeliberately *not* global. This regular expression is module-level and reused for every\npage in the folder, and a \"g\" regular expression carries `lastIndex` between calls: the\nfirst `test()` matched and left `lastIndex` past the boundary, the second started from\nthere, found nothing, reset to 0, and returned false. Meta headers therefore worked on\nevery *other* page -- the ones that failed kept their raw JSON as visible body text and\nlost their icon and external url. Documon's own site shipped that way; the page that\ndocuments the feature was one of the casualties.",
 					"meta": [],
 					"params": [],
 					"returns": null
@@ -1792,7 +2184,7 @@
 					"access": "public",
 					"line": 52,
 					"inherited": null,
-					"description": "The delimiting string used to seperate the meta JSON from normal markdown.",
+					"description": "The delimiting string used to separate the meta JSON from normal markdown.",
 					"meta": [],
 					"params": [],
 					"returns": null
@@ -1816,25 +2208,31 @@
 					"name": "cleanID",
 					"type": null,
 					"access": "private",
-					"line": 183,
+					"line": 194,
 					"inherited": null,
-					"description": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.",
+					"description": "Turns a filename into an id-safe token: numbering stripped, anything that is not a\nletter, digit or underscore replaced with an underscore, lower-cased.",
 					"meta": [],
 					"params": [
 						{
 							"name": "id",
-							"type": "type",
-							"description": "description"
+							"type": "string",
+							"description": "The filename or folder name.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "amFolder",
-							"type": "type",
-							"description": "description"
+							"type": "boolean",
+							"description": "True for a folder, which has no extension to strip.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
-						"type": "type",
-						"description": "description description"
+						"type": "string",
+						"description": "The id segment, e.g. \"quick_reference\"."
 					}
 				},
 				{
@@ -1843,7 +2241,7 @@
 					"name": "init",
 					"type": null,
 					"access": "public",
-					"line": 260,
+					"line": 281,
 					"inherited": null,
 					"description": "Builds the \"more\" pages and merges them into the menu. See the class description\nfor what the module does as a whole.",
 					"meta": [],
@@ -1851,27 +2249,88 @@
 						{
 							"name": "params",
 							"type": "object",
-							"description": "The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:"
+							"description": "The primary documon configuration [documon.js::mainConf](documon.documon.mainConf), which should contain:",
+							"optional": false,
+							"default": null,
+							"children": [
+								{
+									"name": "moreQuirkDelimiter",
+									"type": "object",
+									"description": "Set's the [quirkDelimiter](#quirkDelimiter).",
+									"optional": true,
+									"default": ".",
+									"children": []
+								},
+								{
+									"name": "outputAssetsFolder",
+									"type": "object",
+									"description": "The asset folder to copy into the final documentation. The More pages may refer to assets outside of the template, such as css, images, etc.",
+									"optional": false,
+									"default": null,
+									"children": []
+								},
+								{
+									"name": "moreFolder",
+									"type": "object",
+									"description": "The folder to process.",
+									"optional": false,
+									"default": null,
+									"children": []
+								},
+								{
+									"name": "templateFolder",
+									"type": "object",
+									"description": "The path to the template folder.",
+									"optional": false,
+									"default": null,
+									"children": []
+								},
+								{
+									"name": "outputFolder",
+									"type": "object",
+									"description": "The destination folder.",
+									"optional": false,
+									"default": null,
+									"children": []
+								},
+								{
+									"name": "gati",
+									"type": "object",
+									"description": "Your Google Analytics Tracking ID",
+									"optional": false,
+									"default": null,
+									"children": []
+								}
+							]
 						},
 						{
 							"name": "sourceDocsMenu",
 							"type": "object",
-							"description": "The menu for the parsed source code documentation. We'll merge it into the \"more\" menu."
+							"description": "The menu for the parsed source code documentation. We'll merge it into the \"more\" menu.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "searchDB",
 							"type": "object",
-							"description": "The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching."
+							"description": "The searchData (local to documon's [run](documon.documon.run) function, as generated by [seeder](documon.documon.seeder) ), we'll include our \"more\" docs for searching.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "shouldIgnore",
 							"type": "function",
-							"description": "The ignore matcher, so the more folder honours the same ignore list as the source tree."
+							"description": "The ignore matcher, so the more folder honours the same ignore list as the source tree.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
 						"type": "menu | undefined",
-						"description": "Serves 2 purposes, when returning __undefined__ notifies callee that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point."
+						"description": "Serves 2 purposes, when returning __undefined__ notifies the caller that there aren't any \"more\" docs. Otherwise the modified menu is return with the original sourceDocsMenu either tacked onto the end of the \"more\" menu, or incorporated into the \"more\" menu at the \"DOCS-GO-HERE\" injection point."
 					}
 				},
 				{
@@ -1880,7 +2339,7 @@
 					"name": "newItem",
 					"type": null,
 					"access": "private",
-					"line": 89,
+					"line": 98,
 					"inherited": null,
 					"description": "Opens, catalogs and builds a new page from the provided file path.",
 					"meta": [],
@@ -1888,12 +2347,18 @@
 						{
 							"name": "url",
 							"type": "string",
-							"description": "The path to the markdown file."
+							"description": "The path to the markdown file.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "amFolder",
 							"type": "boolean",
-							"description": "Process as a folder?"
+							"description": "Process as a folder?",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1907,7 +2372,7 @@
 					"name": "pageId",
 					"type": null,
 					"access": "public",
-					"line": 469,
+					"line": 490,
 					"inherited": null,
 					"description": "Derives the id a \"more\" file will be filed under, without building anything.\n\n`check.js` uses this so a cross-link to a prose page resolves the same way the\nsite resolves it. The derivation must live in one place -- a second copy would\ndrift and start reporting working links as broken.",
 					"meta": [],
@@ -1915,12 +2380,18 @@
 						{
 							"name": "relative",
 							"type": "string",
-							"description": "Path relative to the more folder, e.g. \"104.Options.md\"."
+							"description": "Path relative to the more folder, e.g. \"104.Options.md\".",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "delimiter",
 							"type": "string",
-							"description": "The moreQuirkDelimiter; defaults to the module's."
+							"description": "The moreQuirkDelimiter; defaults to the module's.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1934,7 +2405,7 @@
 					"name": "parseJSON",
 					"type": null,
 					"access": "private",
-					"line": 231,
+					"line": 252,
 					"inherited": null,
 					"description": "A safe replacement for standard JSON parsing that mitigates errors.",
 					"meta": [],
@@ -1942,7 +2413,10 @@
 						{
 							"name": "val",
 							"type": "string",
-							"description": "val"
+							"description": "val",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -1956,25 +2430,31 @@
 					"name": "quirkyName",
 					"type": null,
 					"access": "private",
-					"line": 196,
+					"line": 217,
 					"inherited": null,
-					"description": "splits the numbering off of eight filename and returns the filename with out numbering",
+					"description": "Splits the sorting prefix off a filename and returns the display name.\n\n\"050.Quick Reference.md\" becomes \"Quick Reference\". The prefix is only honoured when\nthe character immediately before the delimiter is a digit, so an ordinary dotted name\nis left alone.\n\nNote the asymmetry on the no-prefix path: it returns the filename **with** its\nextension, so \"About.md\" displays and ids as \"About.md\" / \"about_md\". Number your prose\nfiles. This is long-standing behaviour that page ids depend on -- changing it would\nrename every unnumbered page's URL -- so it is documented rather than fixed.",
 					"meta": [],
 					"params": [
 						{
 							"name": "filename",
-							"type": "type",
-							"description": "description"
+							"type": "string",
+							"description": "The filename or folder name.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "amFolder",
-							"type": "type",
-							"description": "description"
+							"type": "boolean",
+							"description": "True for a folder.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
-						"type": "type",
-						"description": "description description"
+						"type": "string",
+						"description": "The display name."
 					}
 				}
 			]
@@ -2016,7 +2496,10 @@
 						{
 							"name": "path",
 							"type": "string",
-							"description": "path"
+							"description": "path",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2038,12 +2521,18 @@
 						{
 							"name": "path",
 							"type": "string",
-							"description": "The full path"
+							"description": "The full path",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "ext",
 							"type": "string",
-							"description": "Lops off the extension if it matches."
+							"description": "Lops off the extension if it matches.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2065,7 +2554,10 @@
 						{
 							"name": "arg",
 							"type": "string | array",
-							"description": "arg"
+							"description": "arg",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2087,7 +2579,10 @@
 						{
 							"name": "Vpath",
 							"type": "string",
-							"description": "The path to parse."
+							"description": "The path to parse.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2109,7 +2604,10 @@
 						{
 							"name": "Vpath",
 							"type": "string",
-							"description": "The path to parse."
+							"description": "The path to parse.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2131,7 +2629,10 @@
 						{
 							"name": "obj",
 							"type": "object",
-							"description": "The object containing some of the required keys to formulate a path."
+							"description": "The object containing some of the required keys to formulate a path.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2153,7 +2654,10 @@
 						{
 							"name": "Vpath",
 							"type": "string",
-							"description": "The path to parse."
+							"description": "The path to parse.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2175,7 +2679,10 @@
 						{
 							"name": "paths...",
 							"type": "string",
-							"description": "All arguments are evaluated as paths for construction"
+							"description": "All arguments are evaluated as paths for construction",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2197,7 +2704,10 @@
 						{
 							"name": "Vpath",
 							"type": "string",
-							"description": "The path to parse."
+							"description": "The path to parse.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2219,7 +2729,10 @@
 						{
 							"name": "Vpath",
 							"type": "string",
-							"description": "The path to parse."
+							"description": "The path to parse.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2241,12 +2754,18 @@
 						{
 							"name": "from",
 							"type": "string",
-							"description": "When null, the cwd is used for this value."
+							"description": "When null, the cwd is used for this value.",
+							"optional": true,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "to",
 							"type": "string",
-							"description": "When null, the cwd is used for this value."
+							"description": "When null, the cwd is used for this value.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2268,7 +2787,10 @@
 						{
 							"name": "path",
 							"type": "string",
-							"description": "path"
+							"description": "path",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2290,7 +2812,10 @@
 						{
 							"name": "path...",
 							"type": "string",
-							"description": "All arguments are evaluated as paths for construction."
+							"description": "All arguments are evaluated as paths for construction.",
+							"optional": true,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2316,11 +2841,24 @@
 			"name": "organizer",
 			"kind": "class",
 			"package": "documon",
-			"description": "Organizes the parsed source-code data into a single object that takes the following form:\n\n\torgan = {\n\n\t\t// There will always be a root node with an absolute ID of \"root\"\n\t\tid : \"root\",\n\t\tname : \"root\",\n\t\tfile : \"root.html\",\n\t\tdocfile : \"root.html\",\n\n\t\tpackages : [\n\n\t\t\t\t{ \n\t\t\t\t\tpackages : foo\n\n\t\t\t\t\t// Classes included in this package\n\t\t\t\t\tclasses : [\n\n\t\t\t\t\t\t{\t\n\t\t\t\t\t\t\tclass : \"foo\"\n\t\t\t\t\t\t\tmethods : [],\n\t\t\t\t\t\t\tproperties : [],\n\t\t\t\t\t\t\tevents : []\n\t\t\t\t\t\t},\n\n\t\t\t\t\t\t... etc ... \n\t\t\t\t\t],\n\n\t\t\t\t\t// Loose stuff found in this package\n\t\t\t\t\tmethods : [],\n\t\t\t\t\tproperties : [],\n\t\t\t\t\tevents : []\n\t\t\t\t}\n\t\t\n\t\t],\n\n\t\t// Independent classes that are not part of any package\n\t\tclasses : [\n\t\t\t{\t\n\t\t\t\tclass : \"foo\"\n\t\t\t\tmethods : [],\n\t\t\t\tproperties : [],\n\t\t\t\tevents : []\n\t\t\t}\n\t\t\t... etc ... \n\t\t],\n\n\t\t// Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope)\n\t\tmethods : [],\n\t\tproperties : [],\n\t\tevents : [],\n\n\t};\n \n\nAll source code hangs off of the \"root\" node and is organized according it's relationship to a package or class.\n\nThis organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.",
+			"description": "Organizes the parsed source-code data into a single object that takes the following form:\n\n\torgan = {\n\n\t\t// There will always be a root node with an absolute ID of \"root\"\n\t\tid : \"root\",\n\t\tname : \"root\",\n\t\tfile : \"root.html\",\n\t\tdocfile : \"root.html\",\n\n\t\tpackages : [\n\n\t\t\t\t{ \n\t\t\t\t\tpackages : foo\n\n\t\t\t\t\t// Classes included in this package\n\t\t\t\t\tclasses : [\n\n\t\t\t\t\t\t{\t\n\t\t\t\t\t\t\tclass : \"foo\"\n\t\t\t\t\t\t\tmethods : [],\n\t\t\t\t\t\t\tproperties : [],\n\t\t\t\t\t\t\tevents : []\n\t\t\t\t\t\t},\n\n\t\t\t\t\t\t... etc ... \n\t\t\t\t\t],\n\n\t\t\t\t\t// Loose stuff found in this package\n\t\t\t\t\tmethods : [],\n\t\t\t\t\tproperties : [],\n\t\t\t\t\tevents : []\n\t\t\t\t}\n\t\t\n\t\t],\n\n\t\t// Independent classes that are not part of any package\n\t\tclasses : [\n\t\t\t{\t\n\t\t\t\tclass : \"foo\"\n\t\t\t\tmethods : [],\n\t\t\t\tproperties : [],\n\t\t\t\tevents : []\n\t\t\t}\n\t\t\t... etc ... \n\t\t],\n\n\t\t// Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope)\n\t\tmethods : [],\n\t\tproperties : [],\n\t\tevents : [],\n\n\t};\n \n\nAll source code hangs off of the \"root\" node and is organized according to its relationship to a package or class.\n\nThis organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up and cross references inheritance.",
 			"file": "src/organizer.js",
 			"line": 71,
 			"meta": [],
 			"members": [
+				{
+					"id": "documon.organizer.didApplyInheritance",
+					"kind": "property",
+					"name": "didApplyInheritance",
+					"type": "array",
+					"access": "private",
+					"line": 197,
+					"inherited": null,
+					"description": "Ids already processed. Module-level, and **not**\nreset by [init](#init) -- a second run in the same process sees the first run's ids.\n`t.fresh(\"organizer\")` exists in the test harness for exactly this reason.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
 				{
 					"id": "documon.organizer.flatClassList",
 					"kind": "property",
@@ -2405,15 +2943,18 @@
 					"name": "add",
 					"type": null,
 					"access": "public",
-					"line": 558,
+					"line": 645,
 					"inherited": null,
 					"description": "Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.",
 					"meta": [],
 					"params": [
 						{
 							"name": "VtaggedPage",
-							"type": "type",
-							"description": "Source-code data parse by the tag.js processor."
+							"type": "object",
+							"description": "Source-code data parsed by the tag.js processor.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -2424,20 +2965,26 @@
 					"name": "addToClassList",
 					"type": null,
 					"access": "public",
-					"line": 530,
+					"line": 617,
 					"inherited": null,
-					"description": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.",
+					"description": "Adds tagged data to a class array. Ensures this item is only added once, and also places a reference to the item in the flat list for future processing.",
 					"meta": [],
 					"params": [
 						{
 							"name": "list",
-							"type": "type",
-							"description": "The class array to add the item to."
+							"type": "array",
+							"description": "The class array to add the item to.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "taggedPage",
-							"type": "type",
-							"description": "The data to add."
+							"type": "object",
+							"description": "The data to add.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -2448,20 +2995,26 @@
 					"name": "addToPackageList",
 					"type": null,
 					"access": "public",
-					"line": 488,
+					"line": 575,
 					"inherited": null,
 					"description": "Adds a new package to the main packages list. Creates a namespace (package) if not exist.",
 					"meta": [],
 					"params": [
 						{
 							"name": "list",
-							"type": "type",
-							"description": "The main package list to add the package to."
+							"type": "array",
+							"description": "The main package list to add the package to.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "taggedPage",
-							"type": "type",
-							"description": "The package data."
+							"type": "object",
+							"description": "The package data.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -2472,20 +3025,48 @@
 					"name": "appendPage",
 					"type": null,
 					"access": "public",
-					"line": 437,
+					"line": 524,
 					"inherited": null,
 					"description": "Adds a class or package to the class or package object.",
 					"meta": [],
 					"params": [
 						{
 							"name": "existingObj",
-							"type": "type",
-							"description": "The object ot add the thing to."
+							"type": "object",
+							"description": "The package or class to add to.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "newObj",
-							"type": "type",
-							"description": "THe thing we're adding."
+							"type": "object",
+							"description": "The tagged page being added.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": null
+				},
+				{
+					"id": "documon.organizer.applyInheritance",
+					"kind": "method",
+					"name": "applyInheritance",
+					"type": null,
+					"access": "private",
+					"line": 216,
+					"inherited": null,
+					"description": "Cross-fills one entity from its `@extends` parent, recursing up the chain first.\n\nA bare parent name is qualified with the entity's own package, so `@extends Base`\ninside `@package demo` resolves to `demo.Base` -- the short form the manual teaches.\n(`check.js:resolveExtends()` mirrors this; when the two disagreed, source that built\nperfectly failed `--check`.)\n\nA member the child already declares is not replaced. It gets `overrides` set to the\nparent's id instead, which is where that flag comes from -- authors rarely write\n`@overrides` themselves.",
+					"meta": [],
+					"params": [
+						{
+							"name": "item",
+							"type": "object",
+							"description": "The entity to fill, modified in place.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -2496,14 +3077,101 @@
 					"name": "buildMenu",
 					"type": null,
 					"access": "public",
-					"line": 640,
+					"line": 730,
 					"inherited": null,
 					"description": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht [menuBuilder](documon.menuBuilder)",
 					"meta": [],
 					"params": [],
 					"returns": {
-						"type": "type",
-						"description": "description description"
+						"type": "object",
+						"description": "A sorted deep copy of the organ, safe for the menu builder to\nreshape without disturbing the tree the pages are rendered from."
+					}
+				},
+				{
+					"id": "documon.organizer.buildPackage",
+					"kind": "method",
+					"name": "buildPackage",
+					"type": null,
+					"access": "private",
+					"line": 338,
+					"inherited": null,
+					"description": "Renders a package's own page, then a page for each class it contains.",
+					"meta": [],
+					"params": [
+						{
+							"name": "item",
+							"type": "object",
+							"description": "The package entity.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "output",
+							"type": "array",
+							"description": "Accumulator of page records.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": null
+				},
+				{
+					"id": "documon.organizer.buildPages",
+					"kind": "method",
+					"name": "buildPages",
+					"type": null,
+					"access": "public",
+					"line": 372,
+					"inherited": null,
+					"description": "Renders every page: the root, then each package and its classes.\n\nCall after [processInheritance](#processInheritance), or the pages will be written\nwithout their inherited members.",
+					"meta": [],
+					"params": [],
+					"returns": {
+						"type": "array",
+						"description": "Page records, each `{ id, html, ctx, ... }`, ready to write."
+					}
+				},
+				{
+					"id": "documon.organizer.cloneInherited",
+					"kind": "method",
+					"name": "cloneInherited",
+					"type": null,
+					"access": "private",
+					"line": 180,
+					"inherited": null,
+					"description": "Copies one of the parent's members onto the child.\n\nThe copy is re-idded under the child and marked with `inherits`, which is the flag\n`menuBuilder`, `flags.jst` and `model.json` all read to show it as inherited and link\nback to where it came from.",
+					"meta": [],
+					"params": [
+						{
+							"name": "parent",
+							"type": "object",
+							"description": "The parent entity.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "parentItem",
+							"type": "object",
+							"description": "The member being inherited.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "target",
+							"type": "object",
+							"description": "The child entity receiving it.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "object",
+						"description": "The re-idded copy."
 					}
 				},
 				{
@@ -2512,15 +3180,27 @@
 					"name": "init",
 					"type": null,
 					"access": "public",
-					"line": 309,
+					"line": 396,
 					"inherited": null,
 					"description": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into.\n\nWe'll also be grabbing the templates needed based on the location defined in the params.",
 					"meta": [],
 					"params": [
 						{
 							"name": "params",
-							"type": "type",
-							"description": "The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object."
+							"type": "object",
+							"description": "The configuration options sent in by the user during [documon.documon.mainConf](documon.documon.mainConf). We keep a reference here so we know where to put things. Note that documon derives some additional properties onto the object.",
+							"optional": false,
+							"default": null,
+							"children": [
+								{
+									"name": "templateFolder",
+									"type": "string",
+									"description": "The base path to the template folder.",
+									"optional": false,
+									"default": null,
+									"children": []
+								}
+							]
 						}
 					],
 					"returns": null
@@ -2531,7 +3211,7 @@
 					"name": "merge",
 					"type": null,
 					"access": "public",
-					"line": 381,
+					"line": 468,
 					"inherited": null,
 					"description": "A classic array merge routine.",
 					"meta": [],
@@ -2539,17 +3219,26 @@
 						{
 							"name": "a",
 							"type": "array",
-							"description": "The array that we will add items to if \"prop\""
+							"description": "The array that we will add items to if \"prop\"",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "b",
 							"type": "array",
-							"description": "The array we will merge into A if one of it's item[prop] doesn't exists in A."
+							"description": "The array we will merge into A if one of it's item[prop] doesn't exists in A.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "prop",
 							"type": "string",
-							"description": "The property used to validate if items in B need to be merged into A."
+							"description": "The property used to validate if items in B need to be merged into A.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2558,25 +3247,99 @@
 					}
 				},
 				{
+					"id": "documon.organizer.prepPage",
+					"kind": "method",
+					"name": "prepPage",
+					"type": null,
+					"access": "private",
+					"line": 312,
+					"inherited": null,
+					"description": "Wraps an entity in the render context a page template receives.\n\nThe whole of `mainConf` is copied on first, so a template can reach project name,\nversion, baseUrl and the rest; the entity itself lands on `ctx`.",
+					"meta": [],
+					"params": [
+						{
+							"name": "item",
+							"type": "object",
+							"description": "A package or class entity.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "object",
+						"description": "`{ ...mainConf, id, name, file, docfile, line, ctx }`."
+					}
+				},
+				{
+					"id": "documon.organizer.processInheritance",
+					"kind": "method",
+					"name": "processInheritance",
+					"type": null,
+					"access": "public",
+					"line": 122,
+					"inherited": null,
+					"description": "Cross-fills every documented class with the members it inherits.\n\nRun once, after every file has been added, because a child can be parsed before its\nparent and the whole tree has to exist before it can be walked.\n\n**Only `@extends` is acted on.** `@implements`, `@inherits` and `@overrides` are\ncarried onto the entity and rendered as a meta link by `extendish.jst`, but they pull\nnothing in -- a class declaring only `@implements` shows the link and an otherwise\nempty member list. The manual claimed all four cross-filled for years; they do not.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
 					"id": "documon.organizer.sortObj",
 					"kind": "method",
 					"name": "sortObj",
 					"type": null,
 					"access": "public",
-					"line": 593,
+					"line": 683,
 					"inherited": null,
-					"description": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.",
+					"description": "Sorts an entity's classes, methods, properties and events.\n\nEach section is sorted by \"id\" and then by \"order\", so the alphabetical default holds\nunless an entry carries an explicit `@order`. (A `@header` block sets order to -1,\nwhich is how it reaches the top of its section.)",
 					"meta": [],
 					"params": [
 						{
 							"name": "obj",
 							"type": "object",
-							"description": "The object to sort"
+							"description": "The entity, or an array of entities, to sort.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": null
+				},
+				{
+					"id": "documon.organizer.swapIds",
+					"kind": "method",
+					"name": "swapIds",
+					"type": null,
+					"access": "private",
+					"line": 143,
+					"inherited": null,
+					"description": "Rewrites a cloned member's id strings from the parent's id to the child's, in place.\n\nA cross-filled member is a deep copy of the parent's, so every id inside it -- the\nmember id, anchors, links the template already built -- still names the parent. Walks\nthe object recursively and swaps them.",
+					"meta": [],
+					"params": [
+						{
+							"name": "fromObj",
+							"type": "object",
+							"description": "The cloned member, modified in place.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
-							"name": "prop",
+							"name": "fromId",
 							"type": "string",
-							"description": "The key to sort on."
+							"description": "The parent's id.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "toId",
+							"type": "string",
+							"description": "The child's id.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -2588,7 +3351,7 @@
 			"name": "parseFlags",
 			"kind": "class",
 			"package": "documon",
-			"description": "Fills the output object with the following properties (if they exist)\n\n\t\tobject {\n\t\t\tsource \t\t// Entire first line inlcuding the @flag (only first line)\n\t\t\tafter\t\t// Everything after the @flag\n\t\t\tname\t\t// One word following {type}. Or first word after the @flag definition when no {type}.\n\t\t\tchildren\t// name.kid - Array of children\n\t\t\tparent\t\t// if am a child, this is my parent.\n\t\t\tflag\t\t// @flag token with @ stripped\n\t\t\tdefaultVal\t// name=val\n\t\t\tafterType\t// first line after\n\t\t\ttext\t\t// \n\t\t}\n\nHere's an expanded and exmple'd definition list\n\nsource\n: The entire comment block\n\nafter\n: Everything after the @flag token \"as is\" (kinda like source)\n\n- __source__ : The entire comment block\n- __after__ : \t\tEverything after the @flag token \"as is\" (kinda like source)\n\te.g. in this line:\n\t\t\t\\@foo {type} name descr\n\t\t after yields:\n\t\t \t{type} name descr\n- __name__ : \t\tThe first word following the {type} definition. Or the first word after the @flag definition\n- __children__ : \tIf a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a heirarchy.\n- __parent__ : \t\tThe parent flag of a child. This property only exists on children flags.\n- __defaultVal__ : \tWhen name=foo then default value will be foo. Note that quotes are stripped.\n\t\t\t\te.g. foo=\"bar\" sets default property to \"bar\" (without the quotes) and name property to \"foo\".\n- __flag__ : \t\tThe flag kind - the @ is stripped\n- __afterType__ : \tEverything after the {type} definition\n\t\t\t\te.g. @flag {type} name - descr\n\t\t\t\t\t... yields:\n\t\t\t\t\tname - descr\n- __text__ : \t\tThe description for the paramter. Note that additional description text can be provided below the @flag.\n\t\t\t\t\te.g. @flag {type} name - description\n\t\t\t\t\tmore description\n\t\t\t\t\tbelow the flag here\n\n\n\n```\n\\@flag {kind} name.child=defaultVal - description \\n stuff on next line \\n and other next lines...\n|flag|\n                       |defaultVal|\n                 |child|\n            |parent|\n            |name|\n                                     |text ------------------------------------------------------|\n            |afterType ---------------------------|\n      |after -------------------------------------|\n|source ------------------------------------------|\n```",
+			"description": "Fills the output object with the following properties (if they exist)\n\n\t\tobject {\n\t\t\tsource \t\t// Entire first line including the @flag (only first line)\n\t\t\tafter\t\t// Everything after the @flag\n\t\t\tname\t\t// One word following {type}. Or first word after the @flag definition when no {type}.\n\t\t\tchildren\t// name.kid - Array of children\n\t\t\tparent\t\t// if am a child, this is my parent.\n\t\t\tflag\t\t// @flag token with @ stripped\n\t\t\tdefaultVal\t// name=val\n\t\t\tafterType\t// first line after\n\t\t\ttext\t\t// \n\t\t}\n\nHere's an expanded and exmple'd definition list\n\nsource\n: The entire comment block\n\nafter\n: Everything after the @flag token \"as is\" (kinda like source)\n\n- __source__ : The entire comment block\n- __after__ : \t\tEverything after the @flag token \"as is\" (kinda like source)\n\te.g. in this line:\n\t\t\t\\@foo {type} name descr\n\t\t after yields:\n\t\t \t{type} name descr\n- __name__ : \t\tThe first word following the {type} definition. Or the first word after the @flag definition\n- __children__ : \tIf a name is written as foo.bar then foo is the parent and bar is a child. Future processing fills the array forming a hierarchy.\n- __parent__ : \t\tThe parent flag of a child. This property only exists on children flags.\n- __defaultVal__ : \tWhen name=foo then default value will be foo. Note that quotes are stripped.\n\t\t\t\te.g. foo=\"bar\" sets default property to \"bar\" (without the quotes) and name property to \"foo\".\n- __flag__ : \t\tThe flag kind - the @ is stripped\n- __afterType__ : \tEverything after the {type} definition\n\t\t\t\te.g. @flag {type} name - descr\n\t\t\t\t\t... yields:\n\t\t\t\t\tname - descr\n- __text__ : \t\tThe description for the parameter. Note that additional description text can be provided below the @flag.\n\t\t\t\t\te.g. @flag {type} name - description\n\t\t\t\t\tmore description\n\t\t\t\t\tbelow the flag here\n\n\n\n```\n\\@flag {kind} name.child=defaultVal - description \\n stuff on next line \\n and other next lines...\n|flag|\n                       |defaultVal|\n                 |child|\n            |parent|\n            |name|\n                                     |text ------------------------------------------------------|\n            |afterType ---------------------------|\n      |after -------------------------------------|\n|source ------------------------------------------|\n```",
 			"file": "src/parseFlag.js",
 			"line": 191,
 			"meta": [],
@@ -2669,7 +3432,10 @@
 						{
 							"name": "chunk",
 							"type": "array",
-							"description": "A group of parsed comment blocks."
+							"description": "A group of parsed comment blocks.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2691,7 +3457,10 @@
 						{
 							"name": "chunks",
 							"type": "array",
-							"description": "Groups, in source order."
+							"description": "Groups, in source order.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2713,7 +3482,10 @@
 						{
 							"name": "parsed",
 							"type": "array",
-							"description": "Parsed comment blocks, in source order."
+							"description": "Parsed comment blocks, in source order.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2728,7 +3500,7 @@
 			"name": "tag",
 			"kind": "class",
 			"package": "documon",
-			"description": "Processes the following flags\n\n- property\n- package, namespace\n- \n- property\n- method\n- event\n- class\n- module\n- \n- private\n- protected\n- static\n- public\n- readonly\n- \n- overrides\n- implements\n- extends\n- inherits\n- \n- constructor\n- example\n- param\n- return, returns\n- \n- type\n- order\n- optional\n- header\n- defaultVal, default\n- see\n- requires\n\n\nFills the flags object\n\n\"Source Item\", are manufactured from the [parseFlag](parseFlag) class, and generally provided to many of the methods as the \"item\" argument, and they contain the following fields:\n\n\t\tSource Item {\n\t\t\tsource \t\t// Entire first line inlcuding the @flag (only first line)\n\t\t \tafter\t\t// Everything after the @flag\n\t\t\tname\t\t// One word following {type}. Or first word after the @flag definition when no {type}.\n\t\t\tchildren\t// name.kid - Array of children\n\t\t\tparent\t\t// if am a child, this is my parent.\n\t\t\tflag\t\t// @flag token with @ stripped\n\t\t\tdefaultVal\t// name=val\n\t\t\tafterType\t// first line after\n\t\t\ttext\t\t// \n\t\t}",
+			"description": "Processes the following flags\n\n- property\n- package, namespace\n- \n- property\n- method\n- event\n- class\n- module\n- \n- private\n- protected\n- static\n- public\n- readonly\n- \n- overrides\n- implements\n- extends\n- inherits\n- \n- constructor\n- example\n- param\n- return, returns\n- \n- type\n- order\n- optional\n- header\n- default, defaultVal, defaultValue\n- see\n- requires\n\n\nFills the flags object\n\n\"Source Items\" are manufactured by [parseFlag](documon.parseFlags), and are handed to most of the methods here as the \"item\" argument. They contain the following fields:\n\n\t\tSource Item {\n\t\t\tsource \t\t// Entire first line including the @flag (only first line)\n\t\t \tafter\t\t// Everything after the @flag\n\t\t\tname\t\t// One word following {type}. Or first word after the @flag definition when no {type}.\n\t\t\tchildren\t// name.kid - Array of children\n\t\t\tparent\t\t// if am a child, this is my parent.\n\t\t\tflag\t\t// @flag token with @ stripped\n\t\t\tdefaultVal\t// name=val\n\t\t\tafterType\t// first line after\n\t\t\ttext\t\t// \n\t\t}",
 			"file": "src/tag.js",
 			"line": 69,
 			"meta": [],
@@ -2738,27 +3510,30 @@
 					"kind": "method",
 					"name": "fillFlag",
 					"type": null,
-					"access": "public",
-					"line": 454,
+					"access": "private",
+					"line": 462,
 					"inherited": null,
-					"description": "[fillFlag description]",
+					"description": "Reads one parsed flag and writes its meaning onto the entity being built.\n\nThis is where tag semantics live. A \"basic kind\" tag (property, method, event,\nclass, module) names the entity; package/namespace scopes it; the visibility\ntags, example, param, return, see and the rest each land in their own shape.\nAnything not handled explicitly is stored under its own flag name, so a template\ncan still reach it.\n\nTag names are written bare above, without their leading \"@\": a line that starts\nwith one is read as a tag declaration, which is the very thing this function does.",
 					"meta": [],
 					"params": [
 						{
 							"name": "item",
-							"type": "type",
-							"description": "description"
+							"type": "object",
+							"description": "A parsed flag (\"Source Item\"), see the class description.",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "obj",
-							"type": "type",
-							"description": "description"
+							"type": "object",
+							"description": "The entity being filled, modified in place.",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
-					"returns": {
-						"type": "type",
-						"description": "description description"
-					}
+					"returns": null
 				},
 				{
 					"id": "documon.tag.processItems",
@@ -2774,7 +3549,10 @@
 						{
 							"name": "Vlist",
 							"type": "array",
-							"description": "Vlist"
+							"description": "Vlist",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": null
@@ -2793,7 +3571,10 @@
 						{
 							"name": "item",
 							"type": "Source Object",
-							"description": "the source item as parsed from comments"
+							"description": "the source item as parsed from comments",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {
@@ -2827,17 +3608,26 @@
 						{
 							"name": "field",
 							"type": null,
-							"description": "field"
+							"description": "field",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "rev",
 							"type": null,
-							"description": "rev"
+							"description": "rev",
+							"optional": false,
+							"default": null,
+							"children": []
 						},
 						{
 							"name": "num",
 							"type": null,
-							"description": "num"
+							"description": "num",
+							"optional": false,
+							"default": null,
+							"children": []
 						}
 					],
 					"returns": {

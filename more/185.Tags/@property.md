@@ -3,7 +3,7 @@
 
 There are 2 ways to define properties, using the traditional JavaDoc style, or using Documon's "quick prop" one-liner. It all depends on how robust you wish to be.
 
-Since Documon relies soley on @tags within comments, each property needs to be registered manually using the @property tag.
+Since Documon relies solely on @tags within comments, each property needs to be registered manually using the @property tag.
 
 ### Example
 
@@ -46,4 +46,4 @@ Or one-liner #2 - name before {type} (unconventional, but seems more logical to 
 
 ### Default Values
 
-See [Default Values](more.writing_comments.default_values)
+See [Default Values](more.comment_authoring_guide.default_values)

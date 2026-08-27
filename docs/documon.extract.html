@@ -7,7 +7,7 @@
 
 		
     	<title>extract - Documon</title>
-		<meta name="description" content="Extracts comments from a file into an array or mulit-dementional array when the &quot;text&quot; arg contains mulitple __package__ or __namepsace__ definitions.">
+		<meta name="description" content="Extracts every documentation comment from a file into a flat, in-order array.">
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.extract.html">
 
@@ -17,7 +17,7 @@
 		<!-- Open Graph / social -->
 		<meta property="og:type" content="article">
 		<meta property="og:title" content="extract - Documon">
-		<meta property="og:description" content="Extracts comments from a file into an array or mulit-dementional array when the &quot;text&quot; arg contains mulitple __package__ or __namepsace__ definitions.">
+		<meta property="og:description" content="Extracts every documentation comment from a file into a flat, in-order array.">
 		<meta property="og:site_name" content="Documon">
 		<meta property="og:url" content="https://www.documon.net/documon.extract.html">
 		<meta name="twitter:card" content="summary">
@@ -28,7 +28,7 @@
 	"name": "extract",
 	"headline": "extract",
 	"identifier": "documon.extract",
-	"description": "Extracts comments from a file into an array or mulit-dementional array when the \"text\" arg contains mulitple package or namepsace definitions. Each entry in the returned array will be an object containing 3 properties - start : The line number that the comment started on - end : The line number that the comment ended on - data : The contents of the comment ## A few things of note: - The data will NOT include the beginDoc, nor the endDoc strings. - Comment prefixing is stripped - * [star space] - tabs - spaces - Code blocks maintain indentation. - Splitting on package or namespace. When a single file contains mulitple references to a \"package\" or \"namespace\" comments will split into multiple arrays -- treating the single source file as being mulitple files. Split Example: /** * Class A * @package foo <-- this designates a new \"page\" */ /** * Something for A * @method something */ /** * Class B * @package bar <-- this designates a new \"page\" */ /** * Something for B * @method something */ var myComments = extract(str); yields : [ [ // the first \"page\" { start : 12, end : 32, data : \"Class A ... \" }, { start : 12, end : 32, data : \"Something for A ...\" }, ], [ // the second \"page\" { start : 64, end : 96, data : \"Class B ... \" }, { start : 128, end : 142, data : \"Something for B ...\" }, , ]",
+	"description": "Extracts every documentation comment from a file into a flat, in-order array. Each entry in the returned array will be an object containing 3 properties - start : The line number that the comment started on - end : The line number that the comment ended on - data : The contents of the comment ## A few things of note: - The data will NOT include the beginDoc, nor the endDoc strings. - Comment prefixing is stripped - * [star space] - tabs - spaces - Code blocks maintain indentation. - A beginDoc sequence inside a quoted string, or after a \"//\" line comment, is code -- not the start of a doc block. Treating it as one swallowed every comment that followed, so those entities went missing rather than merely rendering wrong. ## What this does NOT do It does not split a file into pages. A file carrying several package or namespace declarations is still returned as one flat array here; splitting it into one group per package happens later, in splitParsed, which documon.js::seeder calls on the *parsed* comments. This block described the splitting for years after it moved, and promised a multi-dimensional return value that never arrives.",
 	"url": "https://www.documon.net/documon.extract.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -103,7 +103,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/extract.js</span>
-						    		<span class="member-line-number">98</span>
+						    		<span class="member-line-number">58</span>
 						    	</span>
 						    </h1>
 
@@ -115,7 +115,7 @@
 				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/extract.js</span></div>
 			</div>
 								
-								<p>Extracts comments from a file into an array or mulit-dementional array when the "text" arg contains mulitple <strong>package</strong> or <strong>namepsace</strong> definitions.</p>
+								<p>Extracts every documentation comment from a file into a flat, in-order array.</p>
 <p>Each entry in the returned array will be an object containing 3 properties</p>
 <ul>
 <li><strong>start</strong> : The line number that the comment started on</li>
@@ -143,57 +143,17 @@ yields : [
     - tabs<br />
     - spaces</li>
 <li>Code blocks maintain indentation.</li>
-<li>Splitting on <strong>package</strong> or <strong>namespace</strong>. When a single file contains mulitple references to a "<strong>package</strong>" or "<strong>namespace</strong>" comments will split into multiple arrays -- treating the single source file as being mulitple files. </li>
+<li>A beginDoc sequence inside a quoted string, or after a "//" line comment, is code --<br />
+not the start of a doc block. Treating it as one swallowed every comment that<br />
+followed, so those entities went missing rather than merely rendering wrong.</li>
 </ul>
-<p>Split <strong>Example</strong>:</p>
-<pre><code>/**
-* Class A
-* @package foo &lt;-- this designates a new "page"
-*/
-
-/**
-* Something for A
-* @method something
-*/
-
-/**
-* Class B
-* @package bar &lt;-- this designates a new "page"
-*/
-
-/**
-* Something for B
-* @method something
-*/
-
-var myComments = extract(str);
-yields : [
-            [ // the first "page"
-                { 
-                    start : 12,
-                    end : 32,
-                    data : "Class A ... "
-                },
-                { 
-                    start : 12,
-                    end : 32,
-                    data : "Something for A ..."
-                },
-
-            ],
-            [ // the second "page"
-                { 
-                    start : 64,
-                    end : 96,
-                    data : "Class B ... "
-                },
-                { 
-                    start : 128,
-                    end : 142,
-                    data : "Something for B ..."
-                },
-            ,
-        ]</code></pre>
+<h2 id="what-this-does-not-do">What this does NOT do</h2>
+<p>It does not split a file into pages. A file carrying several <strong>package</strong> or<br />
+<strong>namespace</strong> declarations is still returned as one flat array here; splitting it into<br />
+one group per package happens later, in <a href="documon.splitParsed">splitParsed</a>, which<br />
+<a href="documon.documon.seeder">documon.js::seeder</a> calls on the <em>parsed</em> comments. This block<br />
+described the splitting for years after it moved, and promised a multi-dimensional<br />
+return value that never arrives.</p>
 
 					
 								
@@ -323,7 +283,7 @@ yields : [
 			       		 	<div class="heading-returns">Returns		
 						<span class="type">array</span>
 					</div>
-			      	     	<div class="member"><p>An array of comments, or multi-dimentional array oaf page comments.</p></div>
+			      	     	<div class="member"><p>A flat array of <code>{ start, end, data }</code> objects, in file order.</p></div>
 				
 
 					

@@ -78,6 +78,22 @@
 		},
 		{
 			"@type": "TechArticle",
+			"name": "modelParam",
+			"identifier": "documon.llms.modelParam",
+			"articleSection": "method",
+			"description": "Reduces one parameter -- and its sub-properties -- to the record used by model.json. Documon documents the shape of an object argument with a dotted name, and parseFlag.js files those under the parent as children. This used to flatten a parameter to name/type/description only, so @param {string} opts.timeout was parsed, rendered into the HTML by methodArgs.jst, and then dropped on the way to model.json, llms-full.txt and the pages' JSON-LD -- exactly the readers that cannot go and look at the HTML instead. optional and defaultVal were missing for the same reason. write() already had a branch that printed \"(optional)\" and could never fire.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.modelParam"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "pushParams",
+			"identifier": "documon.llms.pushParams",
+			"articleSection": "method",
+			"description": "Appends a parameter list to llms-full.txt, indenting sub-properties under their parent.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.pushParams"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "readMore",
 			"identifier": "documon.llms.readMore",
 			"articleSection": "method",
@@ -309,7 +325,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">191</span>
+						    		<span class="member-line-number">214</span>
 						    	</span>
 						    </h3>
 
@@ -708,6 +724,247 @@
 
 							</div>
 						</div>
+				<a id="documon.llms.modelParam" name="documon.llms.modelParam"></a><a name="modelParam"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		modelParam (<span class="method-arguments">prm</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/llms.js</span>
+						    		<span class="member-line-number">134</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Reduces one parameter -- and its sub-properties -- to the record used by <code>model.json</code>.</p>
+<p>Documon documents the shape of an object argument with a dotted name, and<br />
+<code>parseFlag.js</code> files those under the parent as <code>children</code>. This used to flatten a<br />
+parameter to name/type/description only, so <code>@param {string} opts.timeout</code> was parsed,<br />
+rendered into the HTML by <code>methodArgs.jst</code>, and then dropped on the way to<br />
+<code>model.json</code>, <code>llms-full.txt</code> and the pages' JSON-LD -- exactly the readers that cannot<br />
+go and look at the HTML instead.</p>
+<p><code>optional</code> and <code>defaultVal</code> were missing for the same reason. <code>write()</code> already had a<br />
+branch that printed "(optional)" and could never fire.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">prm</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>A tagged parameter.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p><code>{ name, type, description, optional, default, children }</code>.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.llms.pushParams" name="documon.llms.pushParams"></a><a name="pushParams"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		pushParams (<span class="method-arguments">out</span>, <span class="method-arguments">params</span>, <span class="method-arguments">indent</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/llms.js</span>
+						    		<span class="member-line-number">313</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Appends a parameter list to <code>llms-full.txt</code>, indenting sub-properties under their parent.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">out</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The accumulating lines.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">params</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Parameter records from <code>modelParam()</code>.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">indent</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Leading whitespace for this level.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
 				<a id="documon.llms.readMore" name="documon.llms.readMore"></a><a name="readMore"></a>
 
 						<div class="member" data-access="private" >
@@ -719,7 +976,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">228</span>
+						    		<span class="member-line-number">251</span>
 						    	</span>
 						    </h3>
 
@@ -807,7 +1064,7 @@ references -- and they are already plain text, so they go in verbatim.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">291</span>
+						    		<span class="member-line-number">341</span>
 						    	</span>
 						    </h3>
 

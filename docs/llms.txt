@@ -1,4 +1,4 @@
-# Documon v3.0.0
+# Documon v3.0.1
 
 > A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.
 
@@ -86,6 +86,7 @@ derived entirely from source-code comment tags.
 - [finding](https://www.documon.net/documon.check.html#documon.check.finding)
 - [moreIds](https://www.documon.net/documon.check.html#documon.check.moreIds)
 - [print](https://www.documon.net/documon.check.html#documon.check.print)
+- [resolveExtends](https://www.documon.net/documon.check.html#documon.check.resolveExtends)
 - [run](https://www.documon.net/documon.check.html#documon.check.run)
 - [scanSymbols](https://www.documon.net/documon.check.html#documon.check.scanSymbols)
 - [summarize](https://www.documon.net/documon.check.html#documon.check.summarize)
@@ -133,6 +134,8 @@ derived entirely from source-code comment tags.
 - [joinUrl](https://www.documon.net/documon.llms.html#documon.llms.joinUrl)
 - [metaEntry](https://www.documon.net/documon.llms.html#documon.llms.metaEntry)
 - [modelPage](https://www.documon.net/documon.llms.html#documon.llms.modelPage)
+- [modelParam](https://www.documon.net/documon.llms.html#documon.llms.modelParam)
+- [pushParams](https://www.documon.net/documon.llms.html#documon.llms.pushParams)
 - [readMore](https://www.documon.net/documon.llms.html#documon.llms.readMore)
 - [write](https://www.documon.net/documon.llms.html#documon.llms.write)
 - [methods](https://www.documon.net/documon.markdown.html#methods)
@@ -174,6 +177,7 @@ derived entirely from source-code comment tags.
 - [removeTrailingSlash](https://www.documon.net/documon.npath.html#documon.npath.removeTrailingSlash)
 - [resolve](https://www.documon.net/documon.npath.html#documon.npath.resolve)
 - [properties](https://www.documon.net/documon.organizer.html#properties)
+- [didApplyInheritance](https://www.documon.net/documon.organizer.html#documon.organizer.didApplyInheritance)
 - [flatClassList](https://www.documon.net/documon.organizer.html#documon.organizer.flatClassList)
 - [mainConf](https://www.documon.net/documon.organizer.html#documon.organizer.mainConf)
 - [organ](https://www.documon.net/documon.organizer.html#documon.organizer.organ)
@@ -185,10 +189,17 @@ derived entirely from source-code comment tags.
 - [addToClassList](https://www.documon.net/documon.organizer.html#documon.organizer.addToClassList)
 - [addToPackageList](https://www.documon.net/documon.organizer.html#documon.organizer.addToPackageList)
 - [appendPage](https://www.documon.net/documon.organizer.html#documon.organizer.appendPage)
+- [applyInheritance](https://www.documon.net/documon.organizer.html#documon.organizer.applyInheritance)
 - [buildMenu](https://www.documon.net/documon.organizer.html#documon.organizer.buildMenu)
+- [buildPackage](https://www.documon.net/documon.organizer.html#documon.organizer.buildPackage)
+- [buildPages](https://www.documon.net/documon.organizer.html#documon.organizer.buildPages)
+- [cloneInherited](https://www.documon.net/documon.organizer.html#documon.organizer.cloneInherited)
 - [init](https://www.documon.net/documon.organizer.html#documon.organizer.init)
 - [merge](https://www.documon.net/documon.organizer.html#documon.organizer.merge)
+- [prepPage](https://www.documon.net/documon.organizer.html#documon.organizer.prepPage)
+- [processInheritance](https://www.documon.net/documon.organizer.html#documon.organizer.processInheritance)
 - [sortObj](https://www.documon.net/documon.organizer.html#documon.organizer.sortObj)
+- [swapIds](https://www.documon.net/documon.organizer.html#documon.organizer.swapIds)
 - [properties](https://www.documon.net/documon.parseFlags.html#properties)
 - [DOTTED_CHILD_TAGS](https://www.documon.net/documon.parseFlags.html#documon.parseFlags.DOTTED_CHILD_TAGS)
 - [properties](https://www.documon.net/documon.splitParsed.html#properties)
@@ -216,7 +227,7 @@ derived entirely from source-code comment tags.
 - [check](https://www.documon.net/documon.check.html): Validates documentation comments without generating anything.
 - [dirutils](https://www.documon.net/documon.dirutils.html): A collection of utilities for manipulating directories syncronously.
 - [documon](https://www.documon.net/documon.documon.html): The main entry point and processor for Documon, which allows you to run Documon directly from Node.
-- [extract](https://www.documon.net/documon.extract.html): Extracts comments from a file into an array or mulit-dementional array when the "text" arg contains mulitple __package__ or __namepsace__ definitions.
+- [extract](https://www.documon.net/documon.extract.html): Extracts every documentation comment from a file into a flat, in-order array.
 - [fileutils](https://www.documon.net/documon.fileutils.html): Basic, common and simplified asyncronous file methods.
 - [ignore](https://www.documon.net/documon.ignore.html): Decides whether a given file or folder should be skipped.
 - [info](https://www.documon.net/documon.info.html): A place to store text-heavy data for copyright and CLI usage information.

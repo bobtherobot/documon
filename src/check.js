@@ -426,7 +426,8 @@ function resolveExtends(target, pkg, ids){
  * @param   {object}  conf         - Documon config (same shape the builder receives).
  * @param   {object}  [opts]       - Options.
  * @param   {boolean} [opts.coverage=false] - Include the undocumented-symbol advisory.
- * @return  {object}               - `{ ok, counts, findings, stats }`.
+ * @return  {object}               - `{ ok, generator, counts, stats, coverage, findings }`.
+ * `coverage` is null unless `opts.coverage` was set.
  * @example
  *
  * 		var report = require("documon").check.run({ src : "./src" }, { coverage : true });

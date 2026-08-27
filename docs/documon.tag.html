@@ -28,7 +28,7 @@
 	"name": "tag",
 	"headline": "tag",
 	"identifier": "documon.tag",
-	"description": "Processes the following flags - property - package, namespace - - property - method - event - class - module - - private - protected - static - public - readonly - - overrides - implements - extends - inherits - - constructor - example - param - return, returns - - type - order - optional - header - defaultVal, default - see - requires Fills the flags object \"Source Item\", are manufactured from the parseFlag class, and generally provided to many of the methods as the \"item\" argument, and they contain the following fields: Source Item { source // Entire first line inlcuding the @flag (only first line) after // Everything after the @flag name // One word following {type}. Or first word after the @flag definition when no {type}. children // name.kid - Array of children parent // if am a child, this is my parent. flag // @flag token with @ stripped defaultVal // name=val afterType // first line after text // }",
+	"description": "Processes the following flags - property - package, namespace - - property - method - event - class - module - - private - protected - static - public - readonly - - overrides - implements - extends - inherits - - constructor - example - param - return, returns - - type - order - optional - header - default, defaultVal, defaultValue - see - requires Fills the flags object \"Source Items\" are manufactured by parseFlag, and are handed to most of the methods here as the \"item\" argument. They contain the following fields: Source Item { source // Entire first line including the @flag (only first line) after // Everything after the @flag name // One word following {type}. Or first word after the @flag definition when no {type}. children // name.kid - Array of children parent // if am a child, this is my parent. flag // @flag token with @ stripped defaultVal // name=val afterType // first line after text // }",
 	"url": "https://www.documon.net/documon.tag.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -41,7 +41,7 @@
 			"name": "fillFlag",
 			"identifier": "documon.tag.fillFlag",
 			"articleSection": "method",
-			"description": "[fillFlag description]",
+			"description": "Reads one parsed flag and writes its meaning onto the entity being built. This is where tag semantics live. A \"basic kind\" tag (property, method, event, class, module) names the entity; package/namespace scopes it; the visibility tags, example, param, return, see and the rest each land in their own shape. Anything not handled explicitly is stored under its own flag name, so a template can still reach it. Tag names are written bare above, without their leading \"@\": a line that starts with one is read as a tag declaration, which is the very thing this function does.",
 			"url": "https://www.documon.net/documon.tag.html#documon.tag.fillFlag"
 		},
 		{
@@ -177,14 +177,14 @@
 <li>order</li>
 <li>optional</li>
 <li>header</li>
-<li>defaultVal, default</li>
+<li>default, defaultVal, defaultValue</li>
 <li>see</li>
 <li>requires</li>
 </ul>
 <p>Fills the flags object</p>
-<p>"Source Item", are manufactured from the <a href="parseFlag">parseFlag</a> class, and generally provided to many of the methods as the "item" argument, and they contain the following fields:</p>
+<p>"Source Items" are manufactured by <a href="documon.parseFlags">parseFlag</a>, and are handed to most of the methods here as the "item" argument. They contain the following fields:</p>
 <pre><code>    Source Item {
-        source      // Entire first line inlcuding the @flag (only first line)
+        source      // Entire first line including the @flag (only first line)
         after       // Everything after the @flag
         name        // One word following {type}. Or first word after the @flag definition when no {type}.
         children    // name.kid - Array of children
@@ -222,16 +222,16 @@
 					            <h2 class="heading-part">Methods</h2>
 					            <a id="documon.tag.fillFlag" name="documon.tag.fillFlag"></a><a name="fillFlag"></a>
 
-						<div class="member"  >
+						<div class="member" data-access="private" >
 
 							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		fillFlag (<span class="method-arguments">item</span>, <span class="method-arguments">obj</span>) 
-                                    
+                                    <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/tag.js</span>
-						    		<span class="member-line-number">454</span>
+						    		<span class="member-line-number">462</span>
 						    	</span>
 						    </h3>
 
@@ -240,7 +240,14 @@
                                 
                                 
 								
-								<p>[fillFlag description]</p>
+								<p>Reads one parsed flag and writes its meaning onto the entity being built.</p>
+<p>This is where tag semantics live. A "basic kind" tag (property, method, event,<br />
+class, module) names the entity; package/namespace scopes it; the visibility<br />
+tags, example, param, return, see and the rest each land in their own shape.<br />
+Anything not handled explicitly is stored under its own flag name, so a template<br />
+can still reach it.</p>
+<p>Tag names are written bare above, without their leading "@": a line that starts<br />
+with one is read as a tag declaration, which is the very thing this function does.</p>
 
 					
 								
@@ -266,14 +273,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>A parsed flag ("Source Item"), see the class description.</p>
        						 </div>
        			
 						        	
@@ -299,14 +306,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>description</p>
+      				 		 	<p>The entity being filled, modified in place.</p>
        						 </div>
        			
 						        	
@@ -326,11 +333,6 @@
 			
 
 							    
-			       		 	<div class="heading-returns">Returns		
-						<span class="type">type</span>
-					</div>
-			      	     	<div class="member"><p>description description</p></div>
-				
 
 					
 								

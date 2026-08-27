@@ -28,7 +28,7 @@
 	"name": "organizer",
 	"headline": "organizer",
 	"identifier": "documon.organizer",
-	"description": "Organizes the parsed source-code data into a single object that takes the following form: organ = { // There will always be a root node with an absolute ID of \"root\" id : \"root\", name : \"root\", file : \"root.html\", docfile : \"root.html\", packages : [ { packages : foo // Classes included in this package classes : [ { class : \"foo\" methods : [], properties : [], events : [] }, ... etc ... ], // Loose stuff found in this package methods : [], properties : [], events : [] } ], // Independent classes that are not part of any package classes : [ { class : \"foo\" methods : [], properties : [], events : [] } ... etc ... ], // Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope) methods : [], properties : [], events : [], }; All source code hangs off of the \"root\" node and is organized according it's relationship to a package or class. This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.",
+	"description": "Organizes the parsed source-code data into a single object that takes the following form: organ = { // There will always be a root node with an absolute ID of \"root\" id : \"root\", name : \"root\", file : \"root.html\", docfile : \"root.html\", packages : [ { packages : foo // Classes included in this package classes : [ { class : \"foo\" methods : [], properties : [], events : [] }, ... etc ... ], // Loose stuff found in this package methods : [], properties : [], events : [] } ], // Independent classes that are not part of any package classes : [ { class : \"foo\" methods : [], properties : [], events : [] } ... etc ... ], // Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope) methods : [], properties : [], events : [], }; All source code hangs off of the \"root\" node and is organized according to its relationship to a package or class. This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up and cross references inheritance.",
 	"url": "https://www.documon.net/documon.organizer.html",
 	"isPartOf": {
 		"@type": "WebSite",
@@ -36,6 +36,14 @@
 		"url": "https://www.documon.net"
 	},
 	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "didApplyInheritance",
+			"identifier": "documon.organizer.didApplyInheritance",
+			"articleSection": "property",
+			"description": "Ids already processed. Module-level, and not reset by init -- a second run in the same process sees the first run's ids. t.fresh(\"organizer\") exists in the test harness for exactly this reason.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.didApplyInheritance"
+		},
 		{
 			"@type": "TechArticle",
 			"name": "flatClassList",
@@ -97,7 +105,7 @@
 			"name": "addToClassList",
 			"identifier": "documon.organizer.addToClassList",
 			"articleSection": "method",
-			"description": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.",
+			"description": "Adds tagged data to a class array. Ensures this item is only added once, and also places a reference to the item in the flat list for future processing.",
 			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.addToClassList"
 		},
 		{
@@ -118,11 +126,43 @@
 		},
 		{
 			"@type": "TechArticle",
+			"name": "applyInheritance",
+			"identifier": "documon.organizer.applyInheritance",
+			"articleSection": "method",
+			"description": "Cross-fills one entity from its @extends parent, recursing up the chain first. A bare parent name is qualified with the entity's own package, so @extends Base inside @package demo resolves to demo.Base -- the short form the manual teaches. (check.js:resolveExtends() mirrors this; when the two disagreed, source that built perfectly failed --check.) A member the child already declares is not replaced. It gets overrides set to the parent's id instead, which is where that flag comes from -- authors rarely write @overrides themselves.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.applyInheritance"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "buildMenu",
 			"identifier": "documon.organizer.buildMenu",
 			"articleSection": "method",
 			"description": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht menuBuilder",
 			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.buildMenu"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "buildPackage",
+			"identifier": "documon.organizer.buildPackage",
+			"articleSection": "method",
+			"description": "Renders a package's own page, then a page for each class it contains.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.buildPackage"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "buildPages",
+			"identifier": "documon.organizer.buildPages",
+			"articleSection": "method",
+			"description": "Renders every page: the root, then each package and its classes. Call after processInheritance, or the pages will be written without their inherited members.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.buildPages"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "cloneInherited",
+			"identifier": "documon.organizer.cloneInherited",
+			"articleSection": "method",
+			"description": "Copies one of the parent's members onto the child. The copy is re-idded under the child and marked with inherits, which is the flag menuBuilder, flags.jst and model.json all read to show it as inherited and link back to where it came from.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.cloneInherited"
 		},
 		{
 			"@type": "TechArticle",
@@ -142,11 +182,35 @@
 		},
 		{
 			"@type": "TechArticle",
+			"name": "prepPage",
+			"identifier": "documon.organizer.prepPage",
+			"articleSection": "method",
+			"description": "Wraps an entity in the render context a page template receives. The whole of mainConf is copied on first, so a template can reach project name, version, baseUrl and the rest; the entity itself lands on ctx.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.prepPage"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "processInheritance",
+			"identifier": "documon.organizer.processInheritance",
+			"articleSection": "method",
+			"description": "Cross-fills every documented class with the members it inherits. Run once, after every file has been added, because a child can be parsed before its parent and the whole tree has to exist before it can be walked. Only @extends is acted on. @implements, @inherits and @overrides are carried onto the entity and rendered as a meta link by extendish.jst, but they pull nothing in -- a class declaring only @implements shows the link and an otherwise empty member list. The manual claimed all four cross-filled for years; they do not.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.processInheritance"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "sortObj",
 			"identifier": "documon.organizer.sortObj",
 			"articleSection": "method",
-			"description": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.",
+			"description": "Sorts an entity's classes, methods, properties and events. Each section is sorted by \"id\" and then by \"order\", so the alphabetical default holds unless an entry carries an explicit @order. (A @header block sets order to -1, which is how it reaches the top of its section.)",
 			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.sortObj"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "swapIds",
+			"identifier": "documon.organizer.swapIds",
+			"articleSection": "method",
+			"description": "Rewrites a cloned member's id strings from the parent's id to the child's, in place. A cross-filled member is a deep copy of the parent's, so every id inside it -- the member id, anchors, links the template already built -- still names the parent. Walks the object recursively and swaps them.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.swapIds"
 		}
 	]
 }</script>
@@ -281,8 +345,8 @@
     events : [],
 
 };</code></pre>
-<p>All source code hangs off of the "root" node and is organized according it's relationship to a package or class.</p>
-<p>This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.</p>
+<p>All source code hangs off of the "root" node and is organized according to its relationship to a package or class.</p>
+<p>This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up and cross references inheritance.</p>
 
 					
 								
@@ -312,6 +376,41 @@
                             <div class="member-block-group">
 
 							    
+                            <div class="member-block" data-access="private" >
+                            
+                                <div class="member-block-left">
+                                    <a id="documon.organizer.didApplyInheritance" name="documon.organizer.didApplyInheritance"></a><a name="didApplyInheritance"></a>
+                                    <span class="member-name">didApplyInheritance</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/organizer.js</span><span class="member-line-number" title="src/organizer.js">197</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        <span class="flag private">private</span>  <!-- public private protected -->
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Ids already processed. Module-level, and <strong>not</strong><br />
+reset by <a href="#init">init</a> -- a second run in the same process sees the first run's ids.<br />
+<code>t.fresh("organizer")</code> exists in the test harness for exactly this reason.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
@@ -532,7 +631,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">558</span>
+						    		<span class="member-line-number">645</span>
 						    	</span>
 						    </h3>
 
@@ -567,14 +666,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>Source-code data parse by the tag.js processor.</p>
+      				 		 	<p>Source-code data parsed by the tag.js processor.</p>
        						 </div>
        			
 						        	
@@ -613,7 +712,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">530</span>
+						    		<span class="member-line-number">617</span>
 						    	</span>
 						    </h3>
 
@@ -622,7 +721,7 @@
                                 
                                 
 								
-								<p>Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.</p>
+								<p>Adds tagged data to a class array. Ensures this item is only added once, and also places a reference to the item in the flat list for future processing.</p>
 
 					
 								
@@ -648,7 +747,7 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">array</span>
 				
                                         
                                         
@@ -681,7 +780,7 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
@@ -727,7 +826,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">488</span>
+						    		<span class="member-line-number">575</span>
 						    	</span>
 						    </h3>
 
@@ -762,7 +861,7 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">array</span>
 				
                                         
                                         
@@ -795,7 +894,7 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
@@ -841,7 +940,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">437</span>
+						    		<span class="member-line-number">524</span>
 						    	</span>
 						    </h3>
 
@@ -876,14 +975,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The object ot add the thing to.</p>
+      				 		 	<p>The package or class to add to.</p>
        						 </div>
        			
 						        	
@@ -909,14 +1008,102 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>THe thing we're adding.</p>
+      				 		 	<p>The tagged page being added.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.organizer.applyInheritance" name="documon.organizer.applyInheritance"></a><a name="applyInheritance"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		applyInheritance (<span class="method-arguments">item</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/organizer.js</span>
+						    		<span class="member-line-number">216</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Cross-fills one entity from its <code>@extends</code> parent, recursing up the chain first.</p>
+<p>A bare parent name is qualified with the entity's own package, so <code>@extends Base</code><br />
+inside <code>@package demo</code> resolves to <code>demo.Base</code> -- the short form the manual teaches.<br />
+(<code>check.js:resolveExtends()</code> mirrors this; when the two disagreed, source that built<br />
+perfectly failed <code>--check</code>.)</p>
+<p>A member the child already declares is not replaced. It gets <code>overrides</code> set to the<br />
+parent's id instead, which is where that flag comes from -- authors rarely write<br />
+<code>@overrides</code> themselves.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">item</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The entity to fill, modified in place.</p>
        						 </div>
        			
 						        	
@@ -955,7 +1142,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">640</span>
+						    		<span class="member-line-number">730</span>
 						    	</span>
 						    </h3>
 
@@ -971,9 +1158,320 @@
 
 							    
 			       		 	<div class="heading-returns">Returns		
-						<span class="type">type</span>
+						<span class="type">object</span>
 					</div>
-			      	     	<div class="member"><p>description description</p></div>
+			      	     	<div class="member"><p>A sorted deep copy of the organ, safe for the menu builder to<br />
+reshape without disturbing the tree the pages are rendered from.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.organizer.buildPackage" name="documon.organizer.buildPackage"></a><a name="buildPackage"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		buildPackage (<span class="method-arguments">item</span>, <span class="method-arguments">output</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/organizer.js</span>
+						    		<span class="member-line-number">338</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Renders a package's own page, then a page for each class it contains.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">item</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The package entity.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">output</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Accumulator of page records.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.organizer.buildPages" name="documon.organizer.buildPages"></a><a name="buildPages"></a>
+
+						<div class="member"  >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		buildPages () 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/organizer.js</span>
+						    		<span class="member-line-number">372</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Renders every page: the root, then each package and its classes.</p>
+<p>Call after <a href="#processInheritance">processInheritance</a>, or the pages will be written<br />
+without their inherited members.</p>
+
+					
+								
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">array</span>
+					</div>
+			      	     	<div class="member"><p>Page records, each <code>{ id, html, ctx, ... }</code>, ready to write.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.organizer.cloneInherited" name="documon.organizer.cloneInherited"></a><a name="cloneInherited"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		cloneInherited (<span class="method-arguments">parent</span>, <span class="method-arguments">parentItem</span>, <span class="method-arguments">target</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/organizer.js</span>
+						    		<span class="member-line-number">180</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Copies one of the parent's members onto the child.</p>
+<p>The copy is re-idded under the child and marked with <code>inherits</code>, which is the flag<br />
+<code>menuBuilder</code>, <code>flags.jst</code> and <code>model.json</code> all read to show it as inherited and link<br />
+back to where it came from.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">parent</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The parent entity.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">parentItem</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The member being inherited.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">target</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The child entity receiving it.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>The re-idded copy.</p></div>
 				
 
 					
@@ -994,7 +1492,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">309</span>
+						    		<span class="member-line-number">396</span>
 						    	</span>
 						    </h3>
 
@@ -1030,14 +1528,14 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">object</span>
 				
                                         
                                         
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The configuration options sent in by the user during <a href="documon.documon.mainConf">documon.documon.mainConf</a>. We keep a refence here so we know where to put things. Note that documon derives some additional properties onto the object.</p>
+      				 		 	<p>The configuration options sent in by the user during <a href="documon.documon.mainConf">documon.documon.mainConf</a>. We keep a reference here so we know where to put things. Note that documon derives some additional properties onto the object.</p>
        						 </div>
        			
 						        	
@@ -1064,7 +1562,7 @@
                                 </span>
                                     <div class="param-description">
                                         
-							<span class="type">type</span>
+							<span class="type">string</span>
 				
                                         
                                         
@@ -1123,7 +1621,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">381</span>
+						    		<span class="member-line-number">468</span>
 						    	</span>
 						    </h3>
 
@@ -1264,18 +1762,18 @@
 
 							</div>
 						</div>
-				<a id="documon.organizer.sortObj" name="documon.organizer.sortObj"></a><a name="sortObj"></a>
+				<a id="documon.organizer.prepPage" name="documon.organizer.prepPage"></a><a name="prepPage"></a>
 
-						<div class="member"  >
+						<div class="member" data-access="private" >
 
 							<h3 class="member-name clearfix">
 								<span class="member-name-left">
-						    		sortObj (<span class="method-arguments">obj</span>, <span class="method-arguments method-arg-optional">prop</span>) 
-                                    
+						    		prepPage (<span class="method-arguments">item</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">593</span>
+						    		<span class="member-line-number">312</span>
 						    	</span>
 						    </h3>
 
@@ -1284,7 +1782,138 @@
                                 
                                 
 								
-								<p>Sorts all main sections of an organ on a given key. By default sorting is conducted on the "id" key.</p>
+								<p>Wraps an entity in the render context a page template receives.</p>
+<p>The whole of <code>mainConf</code> is copied on first, so a template can reach project name,<br />
+version, baseUrl and the rest; the entity itself lands on <code>ctx</code>.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">item</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>A package or class entity.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p><code>{ ...mainConf, id, name, file, docfile, line, ctx }</code>.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.organizer.processInheritance" name="documon.organizer.processInheritance"></a><a name="processInheritance"></a>
+
+						<div class="member"  >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		processInheritance () 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/organizer.js</span>
+						    		<span class="member-line-number">122</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Cross-fills every documented class with the members it inherits.</p>
+<p>Run once, after every file has been added, because a child can be parsed before its<br />
+parent and the whole tree has to exist before it can be walked.</p>
+<p><strong>Only <code>@extends</code> is acted on.</strong> <code>@implements</code>, <code>@inherits</code> and <code>@overrides</code> are<br />
+carried onto the entity and rendered as a meta link by <code>extendish.jst</code>, but they pull<br />
+nothing in -- a class declaring only <code>@implements</code> shows the link and an otherwise<br />
+empty member list. The manual claimed all four cross-filled for years; they do not.</p>
+
+					
+								
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.organizer.sortObj" name="documon.organizer.sortObj"></a><a name="sortObj"></a>
+
+						<div class="member"  >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		sortObj (<span class="method-arguments">obj</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/organizer.js</span>
+						    		<span class="member-line-number">683</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Sorts an entity's classes, methods, properties and events.</p>
+<p>Each section is sorted by "id" and then by "order", so the alphabetical default holds<br />
+unless an entry carries an explicit <code>@order</code>. (A <code>@header</code> block sets order to -1,<br />
+which is how it reaches the top of its section.)</p>
 
 					
 								
@@ -1317,7 +1946,91 @@
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The object to sort</p>
+      				 		 	<p>The entity, or an array of entities, to sort.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.organizer.swapIds" name="documon.organizer.swapIds"></a><a name="swapIds"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		swapIds (<span class="method-arguments">fromObj</span>, <span class="method-arguments">fromId</span>, <span class="method-arguments">toId</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/organizer.js</span>
+						    		<span class="member-line-number">143</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Rewrites a cloned member's id strings from the parent's id to the child's, in place.</p>
+<p>A cross-filled member is a deep copy of the parent's, so every id inside it -- the<br />
+member id, anchors, links the template already built -- still names the parent. Walks<br />
+the object recursively and swaps them.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">fromObj</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The cloned member, modified in place.</p>
        						 </div>
        			
 						        	
@@ -1333,7 +2046,7 @@
                             
                                 <div class="member-block-left">
                                     
-                                    <span class="member-name">prop</span>
+                                    <span class="member-name">fromId</span>
                                     
                                 </div>
 
@@ -1345,16 +2058,45 @@
                                         
 							<span class="type">string</span>
 				
-                                        <span class="flag optional">optional</span>
                                         
-							<span class="default-value">
-      				 		 	id
-       						 </span>
-       			
+                                        
                                         
 									
 							<div class="member-description">
-      				 		 	<p>The key to sort on.</p>
+      				 		 	<p>The parent's id.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">toId</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The child's id.</p>
        						 </div>
        			
 						        	
