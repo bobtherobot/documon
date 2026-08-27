@@ -100,6 +100,33 @@ var TAG_NOTES = {
 };
 
 /**
+ * Whether a piece of documentation text is an unfilled placeholder.
+ *
+ * Catches the two shapes an editor or a generator leaves behind: a bare "description"
+ * where prose belongs, and the bracketed "[functionName description]" stub.
+ *
+ * @method     isPlaceholderText
+ * @private
+ * @param      {string}   str - The text to test.
+ * @return     {boolean}      - True when it is a stub rather than real prose.
+ */
+function isPlaceholderText(str){
+
+	var text = String(str == null ? "" : str)
+		.trim()
+		.replace(/^[-\s]+/, "")
+		.toLowerCase();
+
+	if( ! text ){
+		return false;
+	}
+
+	return text === "description"
+		|| /^\[[a-z0-9_$]+\s+description\]$/.test(text);
+}
+
+/**
+ * Creates a finding./**
  * Creates a finding.
  *
  * @method     finding
@@ -172,6 +199,84 @@ function collect(conf){
 }
 
 /**
+ * @property {RegExp} LINK_RX - A markdown inline link. Group 2 is the target.
+ */
+var LINK_RX = /\[([^\]]*)\]\(([^)\s]+)\)/g;
+
+/**
+ * Whether a link target is a Documon cross-reference at all.
+ *
+ * Ids are dotted and nothing else -- `package.Class.member`. A target carrying a slash is
+ * a path or a URL (`assets/example.jpg`), never an id, which is why the slash test is not
+ * anchored: `assets/x.jpg` starts with neither "." nor "/" but is still plainly a file.
+ *
+ * @method     isCrossRef
+ * @private
+ * @param      {string}   target - The link target as written.
+ * @return     {boolean}         - True when it should be resolved as an id.
+ */
+function isCrossRef(target){
+
+	if( ! target ){
+		return false;
+	}
+
+	if( /^(https?:|mailto:|#|\.|\/)/.test(target) ){
+		return false;
+	}
+
+	if( target.indexOf("/") > -1 || target.indexOf(".html") > -1 ){
+		return false;
+	}
+
+	return target.indexOf(".") > -1;
+}
+
+/**
+ * Marks the lines of a markdown document that are code rather than prose.
+ *
+ * The manual is full of deliberately illustrative ids: a link written to the target
+ * "package.Class.method" is teaching the *shape* of a cross-reference and was never meant
+ * to resolve. Those live in code blocks, so code is skipped -- the same reason the comment
+ * pass skips `@example`.
+ *
+ * Both block forms count: fenced with ``` and indented with a tab or four spaces. Leading
+ * blockquote markers are stripped first, because the manual indents examples inside `>`
+ * quotes as well.
+ *
+ * Erring toward "this is code" is deliberate. A missed broken link costs one stale
+ * reference; a false positive on every teaching example makes the rule worthless.
+ *
+ * @method     codeLines
+ * @private
+ * @param      {array}  lines - The document, split on newlines.
+ * @return     {object}       - A map of 0-based line index -> true.
+ */
+function codeLines(lines){
+
+	var out    = {};
+	var fenced = false;
+
+	for(var i=0; i<lines.length; i++){
+
+		var bare = lines[i].replace(/^[\s>]*>/, "");
+
+		if( /^\s*(```|~~~)/.test(bare) ){
+			fenced = ! fenced;
+			out[i] = true;
+			continue;
+		}
+
+		if(fenced || /^(\t|    )/.test(bare)){
+			out[i] = true;
+		}
+	}
+
+	return out;
+}
+
+/**
+ * Lists the ids of the prose pages the "more" folder will produce./**
  * Lists the ids of the prose pages the "more" folder will produce.
  *
  * Those pages are real link targets (`[the options](more.options)`), but they come
@@ -380,6 +485,80 @@ function scanSymbols(source){
 }
 
 /**
+ * Validates the cross-references written in the "more" folder's markdown.
+ *
+ * Prose pages are where most cross-linking actually happens, and a broken one is invisible
+ * until a reader clicks it -- the site intercepts the id, finds nothing, and does nothing.
+ *
+ * Only dotted targets outside code blocks are resolved, against both the API ids and the
+ * prose ids. Folder ids count: a folder is a real menu node, even though no page file is
+ * written for it.
+ *
+ * @method     checkProseLinks
+ * @private
+ * @param      {object}  conf     - The resolved configuration.
+ * @param      {object}  ids      - Documented ids from the comment pass.
+ * @param      {object}  prose    - Prose page ids, from [moreIds](#moreIds).
+ * @param      {array}   findings - Collector, appended to in place.
+ */
+function checkProseLinks(conf, ids, prose, findings){
+
+	if( ! conf.more ){
+		return;
+	}
+
+	var folder = path.normalize( path.resolve(conf.more) );
+
+	if( ! du.exists(folder) ){
+		return;
+	}
+
+	var files = du.readExt(folder, ["md"], true);
+
+	for(var i=0; i<files.length; i++){
+
+		var body;
+
+		try {
+			body = fs.readFileSync(files[i], 'utf8');
+		} catch(e) {
+			findings.push( finding("error", "unreadable-file", files[i], 1,
+				"Could not read prose page: " + e.message) );
+			continue;
+		}
+
+		var lines = body.split("\n");
+		var code  = codeLines(lines);
+
+		for(var n=0; n<lines.length; n++){
+
+			if( code[n] ){
+				continue;
+			}
+
+			var match;
+			LINK_RX.lastIndex = 0;
+
+			while( (match = LINK_RX.exec(lines[n])) !== null ){
+
+				var target = match[2];
+
+				if( ! isCrossRef(target) ){
+					continue;
+				}
+
+				if( ! ids[target] && ! prose[target] ){
+					findings.push( finding("warning", "broken-link", files[i], n + 1,
+						'Cross-reference "' + target + '" does not match any documented id.',
+						"Check the id, or use a full URL. Prose ids are derived from the "
+							+ "filename -- run a build and read _menuData.js if you are unsure.") );
+				}
+			}
+		}
+	}
+}
+
+/**
  * Resolves an inheritance target the way the builder does.
  *
  * `organizer.js:applyInheritance()` accepts a bare class name for a parent in the same
@@ -571,6 +750,45 @@ function run(conf, opts){
 			}
 		}
 
+		// --- unfilled placeholder documentation
+		//
+		// A literal "{type}", a description that is just the word "description", or a
+		// "[name description]" stub is worse than nothing: it renders as-is and *looks*
+		// documented, so nothing else flags it. no-description only fires on an empty
+		// block and param-no-type only on a missing type, which is how these sat on
+		// Documon's own published pages across seven modules.
+		var placeholders = {};
+
+		for(var ph=0; ph<blk.tags.length; ph++){
+
+			var tg   = blk.tags[ph];
+			var what = null;
+
+			if( String(tg.type || "").trim().toLowerCase() === "type" ){
+				what = "{type}";
+			} else if( isPlaceholderText(tg.text) ){
+				what = "a bare \"description\"";
+			} else if( (tg.flag === "return" || tg.flag === "returns")
+				&& ! tg.text && isPlaceholderText(tg.name) ){
+				// parseFlag reads the first word after the type as a name, and a return
+				// has no name -- so "@return {type} description" arrives as name only.
+				what = "a bare \"description\"";
+			}
+
+			if(what && ! placeholders["@" + tg.flag + what]){
+				placeholders["@" + tg.flag + what] = true;
+				findings.push( finding("warning", "placeholder-doc", blk.file, blk.line,
+					"@" + tg.flag + " still has " + what + " where real documentation belongs.",
+					"Fill it in, or remove the tag. It renders on the page exactly as written.") );
+			}
+		}
+
+		if( isPlaceholderText(blk.text) ){
+			findings.push( finding("warning", "placeholder-doc", blk.file, blk.line,
+				"The description is still a placeholder: " + JSON.stringify(blk.text.trim()) + ".",
+				"Write what this does, or delete the line.") );
+		}
+
 		// --- a block that declares nothing produces nothing
 		// Note: `package` is inherited from earlier blocks in the same file, so test the
 		// package the block declared itself -- otherwise a stray block in a packaged file
@@ -655,18 +873,23 @@ function run(conf, opts){
 		var ref = linkRefs[l];
 		var target = ref.target;
 
-		// Skip real URLs, anchors, and file paths.
-		if( /^(https?:|mailto:|#|\.|\/)/.test(target) || target.indexOf(".html") > -1 ){
+		if( ! isCrossRef(target) ){
 			continue;
 		}
 
-		// Documon cross-links look like dotted ids.
-		if( target.indexOf(".") > -1 && ! ids[target] && ! prose[target] ){
+		if( ! ids[target] && ! prose[target] ){
 			findings.push( finding("warning", "broken-link", ref.file, ref.line,
 				'Cross-reference "' + target + '" does not match any documented id.',
 				"Check the id, or use a full URL.") );
 		}
 	}
+
+	// The prose folder links into itself and into the API reference constantly, and until
+	// now nothing checked it: the `broken-link` rule only ever read source comments. Every
+	// stale id in Documon's own manual -- a tag page pointing at `more.tags.class` when the
+	// page is filed as `more.tags._class_md`, a guide pointing at a folder that moved --
+	// survived precisely because this pass did not exist.
+	checkProseLinks(conf, ids, prose, findings);
 
 	// ------------------------------------------------
 	// Pass 4: coverage advisory (opt-in, never affects output).

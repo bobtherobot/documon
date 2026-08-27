@@ -243,7 +243,7 @@ function relative(Vfrom, Vto){
  *
  * @method  format
  * @param   {object}  obj  - The object containing some of the required keys to formulate a path.
- * @return  {type} - The string representaiton of the object.
+ * @return  {string} - The string representation of the object.
  */
 function format(obj){
 	return clean( path.format( clean( obj ) ) );
@@ -259,7 +259,7 @@ function format(obj){
  *
  * @method  join
  * @param	{string} paths... - All arguments are evaluated as paths for construction
- * @return  {type}  description
+ * @return  {string}  - The joined path, normalized to forward slashes.
  */
 function join(){
 	var args = Array.prototype.slice.call(arguments);

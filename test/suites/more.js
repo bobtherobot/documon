@@ -226,6 +226,84 @@ exports.run = function(t){
 		broken.length ? broken[0].message : "nothing reported");
 
 	// ------------------------------------------------------------------
+	t.section("more: cross-links in the prose itself are validated");
+	// ------------------------------------------------------------------
+	// The broken-link rule used to read source comments only, which is exactly why every
+	// stale id in Documon's own manual survived -- tag pages pointing at "more.tags.class"
+	// when the page is filed as "more.tags._class_md", guides pointing at pages that moved.
+	var proseLinks = t.project({
+		src : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) },
+		more : {
+			"01.Good.md" : [
+				"# Good",
+				"",
+				"Links to [the other page](more.bad), [a folder](more.tags),",
+				"[a tag page](more.tags._implements_md) and [the API](app.thing).",
+				""
+			].join("\n"),
+			"02.Bad.md" : [
+				"# Bad",
+				"",
+				"This one points at [nothing at all](more.nosuchpage).",
+				""
+			].join("\n"),
+			"185.Tags/@implements.md" : "# implements\n"
+		}
+	});
+
+	var proseReport = t.check(["-i", proseLinks.src, "-m", proseLinks.more], proseLinks.dir).report;
+	var proseBroken = t.findings(proseReport, "broken-link");
+
+	t.ok(proseBroken.length === 1, "exactly the one bad prose link is reported",
+		JSON.stringify(proseBroken.map(function(f){ return f.message; })));
+	t.ok(proseBroken.length === 1 && proseBroken[0].message.indexOf("more.nosuchpage") > -1,
+		"naming the target that does not resolve",
+		proseBroken.length ? proseBroken[0].message : "nothing reported");
+	t.ok(proseBroken.length === 1 && /02\.Bad\.md$/.test(proseBroken[0].file),
+		"and pointing at the markdown file it was written in",
+		proseBroken.length ? proseBroken[0].file : "");
+	t.ok(proseBroken.length === 1 && proseBroken[0].line === 3,
+		"on the right line", proseBroken.length ? String(proseBroken[0].line) : "");
+
+	// ------------------------------------------------------------------
+	t.section("more: illustrative links in code blocks are not cross-references");
+	// ------------------------------------------------------------------
+	// The manual teaches the *shape* of an id with links that were never meant to resolve.
+	// Flagging those would make the rule worthless, so code is skipped -- fenced, indented,
+	// and indented inside a blockquote, which is how this manual writes examples.
+	var teaching = t.project({
+		src : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) },
+		more : {
+			"01.Teaching.md" : [
+				"# Teaching",
+				"",
+				"To link to a class, use the full path:",
+				"",
+				"\t[see Foo](package.Class.method)",
+				"",
+				"Or fenced:",
+				"",
+				"```",
+				"[see Bar](some.other.Thing)",
+				"```",
+				"",
+				"> Even inside a quote:",
+				">",
+				">\t\t[see Baz](yet.another.Thing)",
+				"",
+				"An image is not a cross-reference either: ![](assets/example.jpg)",
+				""
+			].join("\n")
+		}
+	});
+
+	var teachReport = t.check(["-i", teaching.src, "-m", teaching.more], teaching.dir).report;
+	t.ok(t.findings(teachReport, "broken-link").length === 0,
+		"illustrative ids in code blocks and asset paths are left alone",
+		JSON.stringify(t.findings(teachReport, "broken-link").map(function(f){
+			return f.file + ":" + f.line + " " + f.message; })));
+
+	// ------------------------------------------------------------------
 	t.section("more: a missing or empty folder");
 	// ------------------------------------------------------------------
 	var noMore = t.project({ src : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) } });

@@ -70,6 +70,14 @@
 		},
 		{
 			"@type": "TechArticle",
+			"name": "LINK_RX",
+			"identifier": "documon.check.LINK_RX",
+			"articleSection": "property",
+			"description": "A markdown inline link. Group 2 is the target.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.LINK_RX"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "TAG_NOTES",
 			"identifier": "documon.check.TAG_NOTES",
 			"articleSection": "property",
@@ -86,6 +94,22 @@
 		},
 		{
 			"@type": "TechArticle",
+			"name": "checkProseLinks",
+			"identifier": "documon.check.checkProseLinks",
+			"articleSection": "method",
+			"description": "Validates the cross-references written in the \"more\" folder's markdown. Prose pages are where most cross-linking actually happens, and a broken one is invisible until a reader clicks it -- the site intercepts the id, finds nothing, and does nothing. Only dotted targets outside code blocks are resolved, against both the API ids and the prose ids. Folder ids count: a folder is a real menu node, even though no page file is written for it.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.checkProseLinks"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "codeLines",
+			"identifier": "documon.check.codeLines",
+			"articleSection": "method",
+			"description": "Marks the lines of a markdown document that are code rather than prose. The manual is full of deliberately illustrative ids: a link written to the target \"package.Class.method\" is teaching the *shape* of a cross-reference and was never meant to resolve. Those live in code blocks, so code is skipped -- the same reason the comment pass skips @example. Both block forms count: fenced with and indented with a tab or four spaces. Leading blockquote markers are stripped first, because the manual indents examples inside >` quotes as well. Erring toward \"this is code\" is deliberate. A missed broken link costs one stale reference; a false positive on every teaching example makes the rule worthless.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.codeLines"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "collect",
 			"identifier": "documon.check.collect",
 			"articleSection": "method",
@@ -97,15 +121,31 @@
 			"name": "finding",
 			"identifier": "documon.check.finding",
 			"articleSection": "method",
-			"description": "Creates a finding.",
+			"description": "Creates a finding./** Creates a finding.",
 			"url": "https://www.documon.net/documon.check.html#documon.check.finding"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "isCrossRef",
+			"identifier": "documon.check.isCrossRef",
+			"articleSection": "method",
+			"description": "Whether a link target is a Documon cross-reference at all. Ids are dotted and nothing else -- package.Class.member. A target carrying a slash is a path or a URL (assets/example.jpg), never an id, which is why the slash test is not anchored: assets/x.jpg starts with neither \".\" nor \"/\" but is still plainly a file.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.isCrossRef"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "isPlaceholderText",
+			"identifier": "documon.check.isPlaceholderText",
+			"articleSection": "method",
+			"description": "Whether a piece of documentation text is an unfilled placeholder. Catches the two shapes an editor or a generator leaves behind: a bare \"description\" where prose belongs, and the bracketed \"[functionName description]\" stub.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.isPlaceholderText"
 		},
 		{
 			"@type": "TechArticle",
 			"name": "moreIds",
 			"identifier": "documon.check.moreIds",
 			"articleSection": "method",
-			"description": "Lists the ids of the prose pages the \"more\" folder will produce. Those pages are real link targets (the options), but they come from markdown, not comments, so the cross-reference pass has no way to know they exist. Without this, every link into the manual reads as broken.",
+			"description": "Lists the ids of the prose pages the \"more\" folder will produce./** Lists the ids of the prose pages the \"more\" folder will produce. Those pages are real link targets (the options), but they come from markdown, not comments, so the cross-reference pass has no way to know they exist. Without this, every link into the manual reads as broken.",
 			"url": "https://www.documon.net/documon.check.html#documon.check.moreIds"
 		},
 		{
@@ -410,6 +450,39 @@ inert -- it will be silently dropped from the output.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
+                                    <a id="documon.check.LINK_RX" name="documon.check.LINK_RX"></a><a name="LINK_RX"></a>
+                                    <span class="member-name">LINK_RX</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                <span class="member-file">src/check.js</span><span class="member-line-number" title="src/check.js">203</span>
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">RegExp</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>A markdown inline link. Group 2 is the target.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
                                     <a id="documon.check.TAG_NOTES" name="documon.check.TAG_NOTES"></a><a name="TAG_NOTES"></a>
                                     <span class="member-name">TAG_NOTES</span>
                                     
@@ -463,7 +536,7 @@ but genuinely have no Documon equivalent.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">238</span>
+						    		<span class="member-line-number">343</span>
 						    	</span>
 						    </h3>
 
@@ -575,6 +648,286 @@ would look like a collision.</p>
 
 							</div>
 						</div>
+				<a id="documon.check.checkProseLinks" name="documon.check.checkProseLinks"></a><a name="checkProseLinks"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		checkProseLinks (<span class="method-arguments">conf</span>, <span class="method-arguments">ids</span>, <span class="method-arguments">prose</span>, <span class="method-arguments">findings</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">503</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Validates the cross-references written in the "more" folder's markdown.</p>
+<p>Prose pages are where most cross-linking actually happens, and a broken one is invisible<br />
+until a reader clicks it -- the site intercepts the id, finds nothing, and does nothing.</p>
+<p>Only dotted targets outside code blocks are resolved, against both the API ids and the<br />
+prose ids. Folder ids count: a folder is a real menu node, even though no page file is<br />
+written for it.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">conf</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The resolved configuration.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">ids</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Documented ids from the comment pass.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">prose</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Prose page ids, from <a href="#moreIds">moreIds</a>.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">findings</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Collector, appended to in place.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.check.codeLines" name="documon.check.codeLines"></a><a name="codeLines"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		codeLines (<span class="method-arguments">lines</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">254</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Marks the lines of a markdown document that are code rather than prose.</p>
+<p>The manual is full of deliberately illustrative ids: a link written to the target<br />
+"package.Class.method" is teaching the <em>shape</em> of a cross-reference and was never meant<br />
+to resolve. Those live in code blocks, so code is skipped -- the same reason the comment<br />
+pass skips <code>@example</code>.</p>
+<p>Both block forms count: fenced with <code>`` and indented with a tab or four spaces. Leading
+blockquote markers are stripped first, because the manual indents examples inside</code>&gt;`<br />
+quotes as well.</p>
+<p>Erring toward "this is code" is deliberate. A missed broken link costs one stale<br />
+reference; a false positive on every teaching example makes the rule worthless.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">lines</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">array</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The document, split on newlines.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>A map of 0-based line index -&gt; true.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
 				<a id="documon.check.collect" name="documon.check.collect"></a><a name="collect"></a>
 
 						<div class="member" data-access="private" >
@@ -586,7 +939,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">133</span>
+						    		<span class="member-line-number">160</span>
 						    	</span>
 						    </h3>
 
@@ -672,7 +1025,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">114</span>
+						    		<span class="member-line-number">141</span>
 						    	</span>
 						    </h3>
 
@@ -681,7 +1034,8 @@ would look like a collision.</p>
                                 
                                 
 								
-								<p>Creates a finding.</p>
+								<p>Creates a finding./**<br />
+Creates a finding.</p>
 
 					
 								
@@ -912,6 +1266,183 @@ would look like a collision.</p>
 
 							</div>
 						</div>
+				<a id="documon.check.isCrossRef" name="documon.check.isCrossRef"></a><a name="isCrossRef"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		isCrossRef (<span class="method-arguments">target</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">217</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Whether a link target is a Documon cross-reference at all.</p>
+<p>Ids are dotted and nothing else -- <code>package.Class.member</code>. A target carrying a slash is<br />
+a path or a URL (<code>assets/example.jpg</code>), never an id, which is why the slash test is not<br />
+anchored: <code>assets/x.jpg</code> starts with neither "." nor "/" but is still plainly a file.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">target</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The link target as written.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">boolean</span>
+					</div>
+			      	     	<div class="member"><p>True when it should be resolved as an id.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.check.isPlaceholderText" name="documon.check.isPlaceholderText"></a><a name="isPlaceholderText"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		isPlaceholderText (<span class="method-arguments">str</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">112</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Whether a piece of documentation text is an unfilled placeholder.</p>
+<p>Catches the two shapes an editor or a generator leaves behind: a bare "description"<br />
+where prose belongs, and the bracketed "[functionName description]" stub.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">str</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The text to test.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">boolean</span>
+					</div>
+			      	     	<div class="member"><p>True when it is a stub rather than real prose.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
 				<a id="documon.check.moreIds" name="documon.check.moreIds"></a><a name="moreIds"></a>
 
 						<div class="member" data-access="private" >
@@ -923,7 +1454,7 @@ would look like a collision.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">185</span>
+						    		<span class="member-line-number">290</span>
 						    	</span>
 						    </h3>
 
@@ -932,7 +1463,8 @@ would look like a collision.</p>
                                 
                                 
 								
-								<p>Lists the ids of the prose pages the "more" folder will produce.</p>
+								<p>Lists the ids of the prose pages the "more" folder will produce./**<br />
+Lists the ids of the prose pages the "more" folder will produce.</p>
 <p>Those pages are real link targets (<code>[the options](more.options)</code>), but they come<br />
 from markdown, not comments, so the cross-reference pass has no way to know they<br />
 exist. Without this, every link into the manual reads as broken.</p>
@@ -1012,7 +1544,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">749</span>
+						    		<span class="member-line-number">972</span>
 						    	</span>
 						    </h3>
 
@@ -1126,7 +1658,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">401</span>
+						    		<span class="member-line-number">580</span>
 						    	</span>
 						    </h3>
 
@@ -1286,7 +1818,7 @@ block's package. A dotted target is already an id and is looked up as written.</
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">435</span>
+						    		<span class="member-line-number">614</span>
 						    	</span>
 						    </h3>
 
@@ -1463,7 +1995,7 @@ block's package. A dotted target is already an id and is looked up as written.</
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">354</span>
+						    		<span class="member-line-number">459</span>
 						    	</span>
 						    </h3>
 
@@ -1552,7 +2084,7 @@ things" instead of silently shipping a near-empty manual.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">270</span>
+						    		<span class="member-line-number">375</span>
 						    	</span>
 						    </h3>
 

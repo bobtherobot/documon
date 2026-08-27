@@ -802,13 +802,53 @@ It exits `2` when it finds problems, so it drops straight into a build script:
 | `param-no-name` | warning | A `@param` that can't be rendered. |
 | `duplicate-param` | warning | The same parameter documented twice. |
 | `param-on-non-method` | warning | `@param` on `@property`, which never displays it. Methods, events, and the `@class` / `@module` that heads a page all render a parameter table. |
-| `broken-link` | warning | A dotted cross-reference that matches no id. Ids from the `more` folder (`more.options`) count as valid targets. |
+| `broken-link` | warning | A dotted cross-reference that matches no id. Ids from the `more` folder (`more.options`) count as valid targets, and the `more` markdown is checked too -- see below. |
+| `placeholder-doc` | warning | Documentation left as an unfilled stub: a literal `{type}`, a description that is just the word "description", or a `[name description]` block. |
 | `no-description` | info | A documented entity with no prose. |
 | `param-no-type` | info | A parameter with no `{type}`. |
 | `no-comments` | info | A source file with no Documon blocks at all. |
 | `undocumented-symbol` | info | Emitted by `--coverage` for each symbol with no matching block. |
 
 `--strict` promotes warnings to failures.
+
+## Prose links are checked too
+
+Point `--check` at your `more` folder and it validates the cross-references written in the
+markdown, not just the ones inside source comments:
+
+	documon --check -i ./src -m ./more
+
+A prose page linking to `more.nosuchpage`, or to an API id that has since been renamed, is
+reported against the markdown file and line it was written on. This is where most
+cross-linking actually happens, and a broken one is invisible until a reader clicks it --
+the site intercepts the id, finds nothing, and does nothing.
+
+Links inside code blocks are skipped, fenced and indented alike, for the same reason
+`@example` content is skipped: a manual teaches the *shape* of an id with links that were
+never meant to resolve.
+
+	This resolves, and is checked:  [the options](more.options)
+
+		This is a teaching example, and is not:
+		[see Foo](package.Class.method)
+
+If your config file already sets `more`, you don't need the `-m` flag -- `--check` reads
+the same configuration a build does.
+
+## Placeholders
+
+An unfilled stub is worse than no documentation, because it renders on the page exactly as
+written and therefore *looks* finished:
+
+	/**
+	 * [doThing description]
+	 * @method doThing
+	 * @param  {type} item  description
+	 */
+
+Nothing else catches that -- `no-description` only fires on an empty block, and
+`param-no-type` only on a missing type. `placeholder-doc` reports each distinct stub once
+per block, so a heavily stubbed file produces a readable report rather than a wall.
 
 ## Coverage
 
@@ -2618,6 +2658,10 @@ needs one of these to become anything at all.
 Every tag Documon actually acts on. Anything else is
 inert -- it will be silently dropped from the output.
 
+### LINK_RX (property) -> RegExp
+
+A markdown inline link. Group 2 is the target.
+
 ### TAG_NOTES (property) -> object
 
 Extra guidance for tags that look like they should work
@@ -2636,6 +2680,41 @@ would look like a collision.
 - param scope {string} (optional) - The enclosing class/module name.
 - returns {string} - Dotted id, or null.
 
+### checkProseLinks (method) [private]
+
+Validates the cross-references written in the "more" folder's markdown.
+
+Prose pages are where most cross-linking actually happens, and a broken one is invisible
+until a reader clicks it -- the site intercepts the id, finds nothing, and does nothing.
+
+Only dotted targets outside code blocks are resolved, against both the API ids and the
+prose ids. Folder ids count: a folder is a real menu node, even though no page file is
+written for it.
+
+- param conf {object} - The resolved configuration.
+- param ids {object} - Documented ids from the comment pass.
+- param prose {object} - Prose page ids, from [moreIds](#moreIds).
+- param findings {array} - Collector, appended to in place.
+
+### codeLines (method) [private]
+
+Marks the lines of a markdown document that are code rather than prose.
+
+The manual is full of deliberately illustrative ids: a link written to the target
+"package.Class.method" is teaching the *shape* of a cross-reference and was never meant
+to resolve. Those live in code blocks, so code is skipped -- the same reason the comment
+pass skips `@example`.
+
+Both block forms count: fenced with ``` and indented with a tab or four spaces. Leading
+blockquote markers are stripped first, because the manual indents examples inside `>`
+quotes as well.
+
+Erring toward "this is code" is deliberate. A missed broken link costs one stale
+reference; a false positive on every teaching example makes the rule worthless.
+
+- param lines {array} - The document, split on newlines.
+- returns {object} - A map of 0-based line index -> true.
+
 ### collect (method) [private]
 
 Collects the source files that would be parsed by a build with this config.
@@ -2645,6 +2724,7 @@ Collects the source files that would be parsed by a build with this config.
 
 ### finding (method) [private]
 
+Creates a finding./**
 Creates a finding.
 
 - param level {string} - "error", "warning" or "info".
@@ -2655,8 +2735,30 @@ Creates a finding.
 - param fix {string} (optional) - How to fix it.
 - returns {object} - The finding.
 
+### isCrossRef (method) [private]
+
+Whether a link target is a Documon cross-reference at all.
+
+Ids are dotted and nothing else -- `package.Class.member`. A target carrying a slash is
+a path or a URL (`assets/example.jpg`), never an id, which is why the slash test is not
+anchored: `assets/x.jpg` starts with neither "." nor "/" but is still plainly a file.
+
+- param target {string} - The link target as written.
+- returns {boolean} - True when it should be resolved as an id.
+
+### isPlaceholderText (method) [private]
+
+Whether a piece of documentation text is an unfilled placeholder.
+
+Catches the two shapes an editor or a generator leaves behind: a bare "description"
+where prose belongs, and the bracketed "[functionName description]" stub.
+
+- param str {string} - The text to test.
+- returns {boolean} - True when it is a stub rather than real prose.
+
 ### moreIds (method) [private]
 
+Lists the ids of the prose pages the "more" folder will produce./**
 Lists the ids of the prose pages the "more" folder will produce.
 
 Those pages are real link targets (`[the options](more.options)`), but they come
@@ -3519,7 +3621,7 @@ Is converted to
 	    /home/user/dir/file.txt
 
 - param obj {object} - The object containing some of the required keys to formulate a path.
-- returns {type} - The string representaiton of the object.
+- returns {string} - The string representation of the object.
 
 ### isAbsolute (method)
 
@@ -3536,7 +3638,7 @@ Joins path segments and resolves relativity.
 		Returns: '/foo/bar/baz/asdf'
 
 - param paths... {string} - All arguments are evaluated as paths for construction
-- returns {type} - description description
+- returns {string} - The joined path, normalized to forward slashes.
 
 ### normalize (method)
 
@@ -4104,9 +4206,9 @@ A collection of useful helper untilities.
 
 ### sort_by (method) [private]
 
-Description
+Builds the comparator [sortOn](#sortOn) hands to Array.prototype.sort.
 
-- param field - field
-- param rev - rev
-- param num - num
-- returns - FunctionExpression FunctionExpression
+- param field {string} - The key to compare on.
+- param rev {boolean} - Reverse the result.
+- param num {boolean} - Compare as numbers rather than lower-cased strings.
+- returns {function} - An (a, b) comparator.

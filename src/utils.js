@@ -153,13 +153,14 @@ function sortOn(arr, prop, reverse, numeric) {
 
     // Set up sort function
     /**
-     * Description
-     * @private 
+     * Builds the comparator [sortOn](#sortOn) hands to Array.prototype.sort.
+     *
+     * @private
      * @method sort_by
-     * @param {} field
-     * @param {} rev
-     * @param {} num
-     * @return FunctionExpression
+     * @param  {string}   field - The key to compare on.
+     * @param  {boolean}  rev   - Reverse the result.
+     * @param  {boolean}  num   - Compare as numbers rather than lower-cased strings.
+     * @return {function}       - An (a, b) comparator.
      */
     var sort_by = function(field, rev, num) {
 

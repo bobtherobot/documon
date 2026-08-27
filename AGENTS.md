@@ -68,7 +68,15 @@ you wrote is being silently discarded. Info is advisory.
 
 Rules you'll hit most: `unknown-tag` (a JSDoc tag Documon doesn't implement — the `fix`
 field names the right one), `duplicate-id`, `unresolved-inheritance`, `no-kind`,
-`missing-name`, `broken-link`.
+`missing-name`, `broken-link`, `placeholder-doc`.
+
+`placeholder-doc` is the one to watch when generating documentation: a literal `{type}`, a
+description that is just the word "description", or a `[name description]` stub renders on
+the page verbatim and looks finished. Fill it in or drop the tag.
+
+Pass `-m ./more` (or set `more` in the config) and `broken-link` also validates the
+cross-references in your prose markdown, reported against the `.md` file and line. Links
+inside code blocks are skipped, so teaching examples don't trip it.
 
 ### Coverage
 

@@ -398,6 +398,19 @@
 					"returns": null
 				},
 				{
+					"id": "documon.check.LINK_RX",
+					"kind": "property",
+					"name": "LINK_RX",
+					"type": "RegExp",
+					"access": "public",
+					"line": 203,
+					"inherited": null,
+					"description": "A markdown inline link. Group 2 is the target.",
+					"meta": [],
+					"params": [],
+					"returns": null
+				},
+				{
 					"id": "documon.check.TAG_NOTES",
 					"kind": "property",
 					"name": "TAG_NOTES",
@@ -416,7 +429,7 @@
 					"name": "blockId",
 					"type": null,
 					"access": "private",
-					"line": 238,
+					"line": 343,
 					"inherited": null,
 					"description": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.\n\nIds are scoped `package.container.member` -- the same shape as the generated filenames\n(`documon.dirutils.html`). A `@method` therefore inherits the `@class` or `@module`\ndeclared above it in the same file; without that scope every `run()` in the project\nwould look like a collision.",
 					"meta": [],
@@ -444,12 +457,83 @@
 					}
 				},
 				{
+					"id": "documon.check.checkProseLinks",
+					"kind": "method",
+					"name": "checkProseLinks",
+					"type": null,
+					"access": "private",
+					"line": 503,
+					"inherited": null,
+					"description": "Validates the cross-references written in the \"more\" folder's markdown.\n\nProse pages are where most cross-linking actually happens, and a broken one is invisible\nuntil a reader clicks it -- the site intercepts the id, finds nothing, and does nothing.\n\nOnly dotted targets outside code blocks are resolved, against both the API ids and the\nprose ids. Folder ids count: a folder is a real menu node, even though no page file is\nwritten for it.",
+					"meta": [],
+					"params": [
+						{
+							"name": "conf",
+							"type": "object",
+							"description": "The resolved configuration.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "ids",
+							"type": "object",
+							"description": "Documented ids from the comment pass.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "prose",
+							"type": "object",
+							"description": "Prose page ids, from [moreIds](#moreIds).",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "findings",
+							"type": "array",
+							"description": "Collector, appended to in place.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": null
+				},
+				{
+					"id": "documon.check.codeLines",
+					"kind": "method",
+					"name": "codeLines",
+					"type": null,
+					"access": "private",
+					"line": 254,
+					"inherited": null,
+					"description": "Marks the lines of a markdown document that are code rather than prose.\n\nThe manual is full of deliberately illustrative ids: a link written to the target\n\"package.Class.method\" is teaching the *shape* of a cross-reference and was never meant\nto resolve. Those live in code blocks, so code is skipped -- the same reason the comment\npass skips `@example`.\n\nBoth block forms count: fenced with ``` and indented with a tab or four spaces. Leading\nblockquote markers are stripped first, because the manual indents examples inside `>`\nquotes as well.\n\nErring toward \"this is code\" is deliberate. A missed broken link costs one stale\nreference; a false positive on every teaching example makes the rule worthless.",
+					"meta": [],
+					"params": [
+						{
+							"name": "lines",
+							"type": "array",
+							"description": "The document, split on newlines.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "object",
+						"description": "A map of 0-based line index -> true."
+					}
+				},
+				{
 					"id": "documon.check.collect",
 					"kind": "method",
 					"name": "collect",
 					"type": null,
 					"access": "private",
-					"line": 133,
+					"line": 160,
 					"inherited": null,
 					"description": "Collects the source files that would be parsed by a build with this config.",
 					"meta": [],
@@ -474,9 +558,9 @@
 					"name": "finding",
 					"type": null,
 					"access": "private",
-					"line": 114,
+					"line": 141,
 					"inherited": null,
-					"description": "Creates a finding.",
+					"description": "Creates a finding./**\nCreates a finding.",
 					"meta": [],
 					"params": [
 						{
@@ -534,14 +618,64 @@
 					}
 				},
 				{
+					"id": "documon.check.isCrossRef",
+					"kind": "method",
+					"name": "isCrossRef",
+					"type": null,
+					"access": "private",
+					"line": 217,
+					"inherited": null,
+					"description": "Whether a link target is a Documon cross-reference at all.\n\nIds are dotted and nothing else -- `package.Class.member`. A target carrying a slash is\na path or a URL (`assets/example.jpg`), never an id, which is why the slash test is not\nanchored: `assets/x.jpg` starts with neither \".\" nor \"/\" but is still plainly a file.",
+					"meta": [],
+					"params": [
+						{
+							"name": "target",
+							"type": "string",
+							"description": "The link target as written.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "boolean",
+						"description": "True when it should be resolved as an id."
+					}
+				},
+				{
+					"id": "documon.check.isPlaceholderText",
+					"kind": "method",
+					"name": "isPlaceholderText",
+					"type": null,
+					"access": "private",
+					"line": 112,
+					"inherited": null,
+					"description": "Whether a piece of documentation text is an unfilled placeholder.\n\nCatches the two shapes an editor or a generator leaves behind: a bare \"description\"\nwhere prose belongs, and the bracketed \"[functionName description]\" stub.",
+					"meta": [],
+					"params": [
+						{
+							"name": "str",
+							"type": "string",
+							"description": "The text to test.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "boolean",
+						"description": "True when it is a stub rather than real prose."
+					}
+				},
+				{
 					"id": "documon.check.moreIds",
 					"kind": "method",
 					"name": "moreIds",
 					"type": null,
 					"access": "private",
-					"line": 185,
+					"line": 290,
 					"inherited": null,
-					"description": "Lists the ids of the prose pages the \"more\" folder will produce.\n\nThose pages are real link targets (`[the options](more.options)`), but they come\nfrom markdown, not comments, so the cross-reference pass has no way to know they\nexist. Without this, every link into the manual reads as broken.",
+					"description": "Lists the ids of the prose pages the \"more\" folder will produce./**\nLists the ids of the prose pages the \"more\" folder will produce.\n\nThose pages are real link targets (`[the options](more.options)`), but they come\nfrom markdown, not comments, so the cross-reference pass has no way to know they\nexist. Without this, every link into the manual reads as broken.",
 					"meta": [],
 					"params": [
 						{
@@ -564,7 +698,7 @@
 					"name": "print",
 					"type": null,
 					"access": "public",
-					"line": 749,
+					"line": 972,
 					"inherited": null,
 					"description": "Prints a report for humans.",
 					"meta": [],
@@ -594,7 +728,7 @@
 					"name": "resolveExtends",
 					"type": null,
 					"access": "private",
-					"line": 401,
+					"line": 580,
 					"inherited": null,
 					"description": "Resolves an inheritance target the way the builder does.\n\n`organizer.js:applyInheritance()` accepts a bare class name for a parent in the same\npackage -- `@extends Base` inside `@package demo` means `demo.Base` -- and the manual\nteaches that short form. The validator used to compare the written target against the\nfully qualified ids only, so the documented short form was reported as an\n`unresolved-inheritance` **error** on input that built perfectly. That broke the\n`documon --check && documon` recipe for anyone who followed the docs.\n\nThe rule mirrors the builder exactly: a target with no dot at all is qualified with the\nblock's package. A dotted target is already an id and is looked up as written.",
 					"meta": [],
@@ -635,7 +769,7 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 435,
+					"line": 614,
 					"inherited": null,
 					"description": "Runs the validator.",
 					"meta": [],
@@ -677,7 +811,7 @@
 					"name": "scanSymbols",
 					"type": null,
 					"access": "private",
-					"line": 354,
+					"line": 459,
 					"inherited": null,
 					"description": "A deliberately shallow symbol scan used only by the coverage advisory.\n\nThis never feeds the render path -- Documon still derives structure exclusively from\ncomments. It exists so an automated writer can be told \"you documented 4 of 11 exported\nthings\" instead of silently shipping a near-empty manual.",
 					"meta": [],
@@ -702,7 +836,7 @@
 					"name": "summarize",
 					"type": null,
 					"access": "private",
-					"line": 270,
+					"line": 375,
 					"inherited": null,
 					"description": "Reduces a parsed comment block to the facts the rules care about.",
 					"meta": [],
@@ -2636,8 +2770,8 @@
 						}
 					],
 					"returns": {
-						"type": "type",
-						"description": "The string representaiton of the object."
+						"type": "string",
+						"description": "The string representation of the object."
 					}
 				},
 				{
@@ -2686,8 +2820,8 @@
 						}
 					],
 					"returns": {
-						"type": "type",
-						"description": "description description"
+						"type": "string",
+						"description": "The joined path, normalized to forward slashes."
 					}
 				},
 				{
@@ -3600,39 +3734,39 @@
 					"name": "sort_by",
 					"type": null,
 					"access": "private",
-					"line": 163,
+					"line": 164,
 					"inherited": null,
-					"description": "Description",
+					"description": "Builds the comparator [sortOn](#sortOn) hands to Array.prototype.sort.",
 					"meta": [],
 					"params": [
 						{
 							"name": "field",
-							"type": null,
-							"description": "field",
+							"type": "string",
+							"description": "The key to compare on.",
 							"optional": false,
 							"default": null,
 							"children": []
 						},
 						{
 							"name": "rev",
-							"type": null,
-							"description": "rev",
+							"type": "boolean",
+							"description": "Reverse the result.",
 							"optional": false,
 							"default": null,
 							"children": []
 						},
 						{
 							"name": "num",
-							"type": null,
-							"description": "num",
+							"type": "boolean",
+							"description": "Compare as numbers rather than lower-cased strings.",
 							"optional": false,
 							"default": null,
 							"children": []
 						}
 					],
 					"returns": {
-						"type": null,
-						"description": "FunctionExpression FunctionExpression"
+						"type": "function",
+						"description": "An (a, b) comparator."
 					}
 				}
 			]

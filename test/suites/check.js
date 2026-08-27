@@ -81,6 +81,73 @@ exports.run = function(t){
 		JSON.stringify(vague));
 
 	// ------------------------------------------------------------------
+	t.section("check: unfilled placeholder documentation");
+	// ------------------------------------------------------------------
+	// A literal "{type}" or a bare "description" renders on the page exactly as written,
+	// so it *looks* documented and nothing else catches it -- no-description only fires on
+	// an empty block, param-no-type only on a missing type. Documon published these across
+	// seven of its own modules.
+	var placeholderType = checkSource([
+		t.OPEN, " * Does a thing.", " * @method thing",
+		" * @param {type} item - What it operates on.", " " + t.CLOSE
+	]);
+	t.ok(t.hasRule(placeholderType.report, "placeholder-doc"),
+		"a literal {type} is reported",
+		JSON.stringify(placeholderType.report.findings.map(function(f){ return f.rule; })));
+
+	var placeholderText = checkSource([
+		t.OPEN, " * Does a thing.", " * @method thing",
+		" * @param {string} item  description", " " + t.CLOSE
+	]);
+	t.ok(t.hasRule(placeholderText.report, "placeholder-doc"),
+		"a bare \"description\" is reported",
+		JSON.stringify(placeholderText.report.findings.map(function(f){ return f.rule; })));
+
+	// "@return {type} description" reaches parseFlag with no text at all -- the first word
+	// after the type is read as a name, and a return has no name.
+	var placeholderReturn = checkSource([
+		t.OPEN, " * Does a thing.", " * @method thing",
+		" * @return {type}  description", " " + t.CLOSE
+	]);
+	t.ok(t.hasRule(placeholderReturn.report, "placeholder-doc"),
+		"and so is a placeholder @return",
+		JSON.stringify(placeholderReturn.report.findings.map(function(f){ return f.rule; })));
+
+	// The "[name description]" stub an editor leaves behind.
+	var placeholderBlock = checkSource([
+		t.OPEN, " * [doThing description]", " * @method doThing", " " + t.CLOSE
+	]);
+	t.ok(t.hasRule(placeholderBlock.report, "placeholder-doc"),
+		"a bracketed stub description is reported",
+		JSON.stringify(placeholderBlock.report.findings.map(function(f){ return f.rule; })));
+
+	var placeholderFinding = t.findings(placeholderBlock.report, "placeholder-doc")[0];
+	t.ok(placeholderFinding && placeholderFinding.level === "warning",
+		"placeholders are warnings, not advisory info",
+		placeholderFinding && placeholderFinding.level);
+
+	// Real documentation must not trip it, including prose that merely uses the word.
+	var realDocs = checkSource([
+		t.OPEN, " * Does a thing.", " * @method thing",
+		" * @param {string} item - The description shown to the reader.",
+		" * @return {boolean} - Whether the description was applied.", " " + t.CLOSE
+	]);
+	t.ok( ! t.hasRule(realDocs.report, "placeholder-doc"),
+		"prose containing the word \"description\" is left alone",
+		JSON.stringify(t.findings(realDocs.report, "placeholder-doc")));
+
+	// One finding per tag+kind, not one per occurrence, or a stubbed file drowns the report.
+	var manyPlaceholders = checkSource([
+		t.OPEN, " * Does a thing.", " * @method thing",
+		" * @param {type} a - One.",
+		" * @param {type} b - Two.",
+		" * @param {type} c - Three.", " " + t.CLOSE
+	]);
+	t.ok(t.findings(manyPlaceholders.report, "placeholder-doc").length === 1,
+		"repeats of the same placeholder collapse to one finding",
+		JSON.stringify(t.findings(manyPlaceholders.report, "placeholder-doc").length));
+
+	// ------------------------------------------------------------------
 	t.section("check: inheritance resolves the way the builder resolves it");
 	// ------------------------------------------------------------------
 	// organizer.js:applyInheritance() qualifies a bare parent name with the block's own

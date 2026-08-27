@@ -845,6 +845,14 @@ var MenuData = [
 														"inherits": 0
 													},
 													{
+														"id": "documon.check.LINK_RX",
+														"url": "documon.check.html#documon.check.LINK_RX",
+														"label": "LINK_RX",
+														"kind": "properties-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
 														"id": "documon.check.TAG_NOTES",
 														"url": "documon.check.html#documon.check.TAG_NOTES",
 														"label": "TAG_NOTES",
@@ -869,6 +877,22 @@ var MenuData = [
 														"inherits": 0
 													},
 													{
+														"id": "documon.check.checkProseLinks",
+														"url": "documon.check.html#documon.check.checkProseLinks",
+														"label": "checkProseLinks",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.check.codeLines",
+														"url": "documon.check.html#documon.check.codeLines",
+														"label": "codeLines",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
 														"id": "documon.check.collect",
 														"url": "documon.check.html#documon.check.collect",
 														"label": "collect",
@@ -880,6 +904,22 @@ var MenuData = [
 														"id": "documon.check.finding",
 														"url": "documon.check.html#documon.check.finding",
 														"label": "finding",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.check.isCrossRef",
+														"url": "documon.check.html#documon.check.isCrossRef",
+														"label": "isCrossRef",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
+														"id": "documon.check.isPlaceholderText",
+														"url": "documon.check.html#documon.check.isPlaceholderText",
+														"label": "isPlaceholderText",
 														"kind": "methods-item",
 														"access": "private",
 														"inherits": 0

@@ -156,6 +156,19 @@ A documentation-accuracy release. Reading `more/` line by line against the sourc
 up five places where the code did not do what the manual said. In every case the manual
 was describing the intent and the code was quietly falling short, so the code moved.
 
+Added:
+- `--check` validates the cross-references in your `more` markdown, not just the ones in
+  source comments, reported against the `.md` file and line. Links inside code blocks --
+  fenced, indented, or indented inside a blockquote -- are skipped, for the same reason
+  `@example` content is skipped: a manual teaches the shape of an id with links that were
+  never meant to resolve. Every stale id in Documon's own manual survived because this
+  pass did not exist.
+- New `placeholder-doc` rule: a literal `{type}`, a description that is just the word
+  "description", or a `[name description]` stub. Nothing caught these before --
+  `no-description` only fires on an empty block and `param-no-type` only on a missing
+  type -- which is how they reached the published pages of seven modules. Reported once
+  per distinct stub per block, so a stubbed file gives a readable report.
+
 Fixed:
 - The `__meta__` header on a "more" page was only read on every *other* page. `metaRx` is
   module-level and carried the `g` flag, and `test()` on a global regular expression is
