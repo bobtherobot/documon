@@ -28,6 +28,10 @@ exports.run = function(t){
 
 	var llms = t.src("llms");
 
+	// Built from pieces so this file does not contain the very thing it tests.
+	var SLASH = "&#" + "47;";
+	var AT    = "&#" + "64;";
+
 	// ------------------------------------------------------------------
 	t.section("llms: deHtml");
 	// ------------------------------------------------------------------
@@ -64,6 +68,17 @@ exports.run = function(t){
 	t.ok(llms.deHtml("<p>a</p><p></p><p></p><p></p><p>b</p>").indexOf("\n\n\n") === -1,
 		"runs of blank lines collapse",
 		JSON.stringify(llms.deHtml("<p>a</p><p></p><p></p><p></p><p>b</p>")));
+
+	// The comment escapes are real characters, not markup. deHtml used to decode "&amp;"
+	// before stripping numeric entities, so both the escapes and a deliberately literal
+	// "&amp;#47;" were swallowed -- a default value written as an encoded "/**" reached
+	// llms.txt as "**".
+	t.ok(llms.deHtml("<p>" + SLASH + "** and " + AT + "method</p>") === "/** and @method",
+		"the comment escapes are decoded rather than dropped",
+		JSON.stringify(llms.deHtml("<p>" + SLASH + "** and " + AT + "method</p>")));
+	t.ok(llms.deHtml("<p>&amp;#47;</p>") === "&#47;",
+		"and an encoded ampersand survives as the entity itself",
+		JSON.stringify(llms.deHtml("<p>&amp;#47;</p>")));
 
 	t.ok(llms.deHtml("") === "", "an empty string yields an empty string");
 	t.ok(llms.deHtml(null) === "", "null yields an empty string");
@@ -110,6 +125,37 @@ exports.run = function(t){
 	t.ok(record.meta[0].label === "Deprecated", "its label");
 	t.ok(record.meta[0].text === "Use Gadget.", "and its trimmed text",
 		JSON.stringify(record.meta[0].text));
+
+	// A record is built from the raw comment text, which never passes through markdown --
+	// so this is the only place the escapes get decoded on the way to model.json,
+	// llms-full.txt and the JSON-LD each page embeds.
+	var escaped = llms.modelPage({
+		ctx : {
+			id   : "app.Esc",
+			text : "Opens with " + SLASH + "** and closes with *" + SLASH + ".",
+			meta : [ { flag : "since", label : "Since", text : "Use " + AT + "method." } ],
+			methods : [ {
+				name    : "go",
+				text    : "Takes " + AT + "param.",
+				params  : [ { name : "p", text : "Written as " + SLASH + "**." } ],
+				returns : { type : "string", text : "A " + SLASH + " character." }
+			} ]
+		}
+	});
+
+	t.ok(escaped.description === "Opens with /** and closes with */.",
+		"the description is decoded", JSON.stringify(escaped.description));
+	t.ok(escaped.meta[0].text === "Use @method.", "and so is metadata text",
+		JSON.stringify(escaped.meta[0].text));
+	t.ok(escaped.members[0].description === "Takes @param.", "and a member description",
+		JSON.stringify(escaped.members[0].description));
+	t.ok(escaped.members[0].params[0].description === "Written as /**.",
+		"and a parameter description",
+		JSON.stringify(escaped.members[0].params[0].description));
+	t.ok(escaped.members[0].returns.text === undefined
+			&& escaped.members[0].returns.description === "A / character.",
+		"and a returns description",
+		JSON.stringify(escaped.members[0].returns.description));
 
 	t.ok(record.members.length === 3, "every bucket contributes members",
 		JSON.stringify(record.members.map(function(m){ return m.name; })));

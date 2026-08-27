@@ -25,6 +25,10 @@ exports.run = function(t){
 
 	var utils = t.src("utils");
 
+	// Built from pieces so this file does not contain the very thing it tests.
+	var SLASH = "&#" + "47;";
+	var AT    = "&#" + "64;";
+
 	// ------------------------------------------------------------------
 	t.section("utils: capitalize");
 	// ------------------------------------------------------------------
@@ -34,6 +38,38 @@ exports.run = function(t){
 	t.ok(utils.capitalize("") === "", "passes an empty string through");
 	t.ok(utils.capitalize(null) === null, "passes null through rather than throwing");
 	t.ok(utils.capitalize("123abc") === "123abc", "leaves a leading digit unchanged");
+
+	// ------------------------------------------------------------------
+	t.section("utils: decodeCommentEscapes");
+	// ------------------------------------------------------------------
+	// A comment cannot hold a literal comment-closer or a literal tag character without
+	// ending the comment or declaring a tag, so both are written HTML-encoded in the
+	// source. This is what turns them back, and it is the only thing that ever does.
+	t.ok(utils.decodeCommentEscapes(SLASH) === "/", "an encoded slash decodes",
+		utils.decodeCommentEscapes(SLASH));
+	t.ok(utils.decodeCommentEscapes(AT) === "@", "an encoded tag character decodes",
+		utils.decodeCommentEscapes(AT));
+	t.ok(utils.decodeCommentEscapes("a" + SLASH + "b" + SLASH + "c") === "a/b/c",
+		"every occurrence is replaced, not just the first");
+	t.ok(utils.decodeCommentEscapes("&#047;&#0064;") === "/@",
+		"zero padding is legal in a numeric entity and is accepted",
+		utils.decodeCommentEscapes("&#047;&#0064;"));
+
+	// The authoring guide writes the ampersand itself encoded, so the reader sees the
+	// entity rather than its result. Decoding that would destroy the one page that
+	// explains the convention.
+	t.ok(utils.decodeCommentEscapes("&amp;#47;") === "&amp;#47;",
+		"an encoded ampersand is left alone",
+		utils.decodeCommentEscapes("&amp;#47;"));
+
+	// Anything else is none of this function's business.
+	t.ok(utils.decodeCommentEscapes("&#8212;") === "&#8212;",
+		"an unrelated numeric entity is untouched");
+	t.ok(utils.decodeCommentEscapes("plain") === "plain", "ordinary text is untouched");
+	t.ok(utils.decodeCommentEscapes("") === "", "an empty string passes through");
+	t.ok(utils.decodeCommentEscapes(null) === null,
+		"null passes through rather than throwing");
+	t.ok(utils.decodeCommentEscapes(undefined) === undefined, "and so does undefined");
 
 	// ------------------------------------------------------------------
 	t.section("utils: trailing slashes");

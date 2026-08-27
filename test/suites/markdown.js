@@ -27,6 +27,10 @@ exports.run = function(t){
 
 	var markdown = t.src("markdown");
 
+	// Built from pieces so this file does not contain the very thing it tests.
+	var SLASH = "&#" + "47;";
+	var AT    = "&#" + "64;";
+
 	// ------------------------------------------------------------------
 	t.section("markdown: the basics");
 	// ------------------------------------------------------------------
@@ -80,6 +84,38 @@ exports.run = function(t){
 	t.ok(markdown("Not a term. Just a sentence: with a colon.").indexOf("<dl>") === -1,
 		"an ordinary colon does not create a definition list",
 		markdown("Not a term. Just a sentence: with a colon."));
+
+	// ------------------------------------------------------------------
+	t.section("markdown: comment escapes");
+	// ------------------------------------------------------------------
+	// A comment cannot hold a literal comment-closer or a literal tag character, so both
+	// are written HTML-encoded in the source and decoded here. Nothing decoded them at
+	// all until v3.0.1: it worked by accident in prose, where the browser decodes the
+	// entity, and failed in code, where showdown escapes the "&" first. Code examples are
+	// where nearly every escape is written, so that is the case that has to stay covered.
+	var prose = markdown("Use " + SLASH + "** to open a comment.");
+	t.ok(prose.indexOf("/**") !== -1, "an encoded slash decodes in prose", prose);
+	t.ok(prose.indexOf("&#47;") === -1 && prose.indexOf("&amp;#") === -1,
+		"leaving no entity behind", prose);
+
+	var span = markdown("The `" + AT + "method` tag.");
+	t.ok(/<code>@method<\/code>/.test(span), "and inside a code span", span);
+	t.ok(span.indexOf("&amp;#") === -1,
+		"where showdown would otherwise double-escape it", span);
+
+	var block = markdown("    " + SLASH + "**\n     * " + AT + "method foo\n     *" + SLASH);
+	t.ok(/<pre><code>/.test(block), "a code block is still a code block", block);
+	t.ok(block.indexOf("/**") !== -1, "the opener decodes inside it", block);
+	t.ok(block.indexOf("@method foo") !== -1, "and so does the tag", block);
+	t.ok(block.indexOf("&amp;#47;") === -1,
+		"this is the case that regressed: no visible entity in a code block", block);
+
+	// The authoring guide writes the ampersand encoded on purpose, to show the reader
+	// what to type. Decoding that would make the page contradict itself, which is exactly
+	// what it did before -- both halves of the example rendered identically.
+	var literal = markdown("Write &amp;#47; to get a slash.");
+	t.ok(literal.indexOf("&amp;#47;") !== -1,
+		"an encoded ampersand survives, so the guide can still teach the trick", literal);
 
 	// ------------------------------------------------------------------
 	t.section("markdown: inline links from other doc systems");

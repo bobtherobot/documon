@@ -27,6 +27,10 @@ exports.run = function(t){
 	var OPEN  = t.OPEN;
 	var CLOSE = t.CLOSE;
 
+	// Built from pieces so this file does not contain the very thing it tests.
+	var SLASH = "&#" + "47;";
+	var AT    = "&#" + "64;";
+
 	/**
 	 * Builds a comment block from tag lines.
 	 *
@@ -288,6 +292,38 @@ exports.run = function(t){
 	t.ok(md.shortText.indexOf("A class with") === 0,
 		"the short form is the first line with content", JSON.stringify(md.shortText));
 	t.ok(/<strong>/.test(md.shortHtml), "and is rendered too");
+
+	// The escapes have to survive extract.js and parse.js and be decoded only after, so a
+	// comment can show a comment. This runs the whole path rather than calling markdown
+	// directly, because the ordering is the entire point: decoding a line earlier would
+	// end the block at the inner closer, and decoding the tag character earlier would
+	// make "inner" a real method.
+	var esc = page([
+		b([
+			"Comments inside a comment:",
+			"",
+			"    " + SLASH + "**",
+			"     * " + AT + "method inner",
+			"     *" + SLASH,
+			"",
+			"@class E",
+			"@package app"
+		])
+	]);
+
+	t.ok(esc.id === "app.E", "the block survives an encoded closer intact", esc.id);
+	t.ok(member(esc.methods, "inner") === undefined,
+		"an encoded tag character does not declare a member",
+		JSON.stringify((esc.methods || []).map(function(m){ return m.name; })));
+	t.ok(esc.html.indexOf("/**") !== -1, "and decodes to a real slash in the html", esc.html);
+	t.ok(esc.html.indexOf("@method inner") !== -1, "along with the tag character", esc.html);
+	t.ok(esc.html.indexOf("&amp;#47;") === -1, "with no entity left visible", esc.html);
+
+	// The raw text keeps the encoded form -- llms.js decodes it separately on the way to
+	// model.json, because that path never passes through markdown.
+	t.ok(esc.text.indexOf(SLASH) !== -1,
+		"the raw text still holds the encoded form for llms.js to decode",
+		JSON.stringify(esc.text));
 
 	// ------------------------------------------------------------------
 	t.section("tag: metadata reaches the page");
