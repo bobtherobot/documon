@@ -205,7 +205,11 @@ Fixed:
   outright, reporting `0/1 (0%)` for a file holding three functions -- undocumented code
   reading as fine. `utils.dict()` and `utils.own()` are the two ways of not doing this,
   and an end-to-end invariant now documents a whole project out of `Object.prototype` and
-  asserts it comes through clean.
+  asserts it comes through clean. Prose is covered too: the example project's `more` folder
+  holds pages and folders called `constructor`, `toString`, `__proto__`, `undefined`,
+  `hasOwnProperty`, `default` and `class` -- crossed over, so a dangerous folder holds a
+  dangerous file -- and a file named `__proto__.md` sitting beside a folder named
+  `__proto__` stays a separate page.
 
 Documentation:
 - **Only `@extends` cross-fills inherited members.** `more/`, `TAGS.md` and `AGENTS.md`

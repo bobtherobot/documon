@@ -475,6 +475,72 @@ exports.run = function(t){
 		"and a page inside a prose folder keeps the folder in its id",
 		JSON.stringify(fs.readdirSync(apiDocs).filter(function(f){ return /^more/.test(f); })));
 
+	// ------------------------------------------------------------------
+	// Prose named out of Object.prototype and the JS keyword list.
+	// ------------------------------------------------------------------
+	// The fixture's more folder deliberately holds pages and folders called constructor,
+	// toString, __proto__, undefined, hasOwnProperty, default and class -- crossed over, so
+	// a dangerous folder holds a dangerous file. more.js keys its page table on these, and
+	// every prose id is namespaced under "more", which is the only reason a plain object
+	// survives them. That safety is incidental rather than designed, so it is pinned here
+	// against a real build rather than asserted about the map.
+	var HOSTILE_PAGES = [
+		"more.constructor.tostring_md",      // folder + file, both prototype members
+		"more.tostring.constructor_md",      // the same two, swapped
+		"more.__proto__.undefined_md",       // the one that reassigns a prototype
+		"more.undefined.valueof_md",
+		"more.hasownproperty.prototype_md",
+		"more.default.class_md",             // reserved words as path segments
+		"more.valueof_md",                   // top level
+		"more.keywords.function",            // numbered path -> clean id
+		"more.keywords.return"
+	];
+
+	var hostileMissing = HOSTILE_PAGES.filter(function(id){
+		return ! fs.existsSync(path.join(apiDocs, id + ".html"));
+	});
+	t.ok(hostileMissing.length === 0,
+		"a prose page may be named after an Object.prototype member or a reserved word",
+		"missing: " + JSON.stringify(hostileMissing));
+
+	// A file and a folder sharing a name must stay separate pages. "__proto__.md" ids as
+	// more.__proto___md (the extension is folded in) and the folder as more.__proto__, so
+	// neither can overwrite the other.
+	t.ok(fs.existsSync(path.join(apiDocs, "more.__proto___md.html")),
+		"a file named __proto__.md is its own page",
+		JSON.stringify(fs.readdirSync(apiDocs).filter(function(f){ return /proto/.test(f); })));
+	t.ok(fs.existsSync(path.join(apiDocs, "more.__proto__.undefined_md.html")),
+		"distinct from the __proto__ folder beside it");
+
+	// The content is really there -- an empty page would satisfy existsSync.
+	t.ok(/reassigns the prototype/.test(t.read(path.join(apiDocs, "more.__proto__.undefined_md.html"))),
+		"and carries its rendered markdown");
+
+	// The menu is where a collision would actually show: a page silently replacing another
+	// leaves the tree short rather than erroring.
+	var hostileMenu = t.read(path.join(apiDocs, "_menuData.js"));
+	var menuMissing = HOSTILE_PAGES.filter(function(id){
+		return hostileMenu.indexOf('"' + id + '"') === -1;
+	});
+	t.ok(menuMissing.length === 0, "every one of them reaches the menu",
+		"missing: " + JSON.stringify(menuMissing));
+
+	// The numbering quirk, stated as a test so it cannot drift silently: a numeric prefix
+	// is stripped and yields a clean id, no prefix keeps the extension in both id and label.
+	t.ok(hostileMenu.indexOf('"label": "function"') > -1,
+		"a numbered prose file displays without its number or extension",
+		(hostileMenu.match(/"label":[^,]*/g) || []).join(" "));
+	t.ok(hostileMenu.indexOf('"label": "toString.md"') > -1,
+		"an unnumbered one keeps its extension -- number your prose files",
+		(hostileMenu.match(/"label":[^,]*/g) || []).join(" "));
+
+	// llms.txt trims the extension back off, so the machine-readable index reads cleanly
+	// even where the menu label does not.
+	var hostileLlms = t.read(path.join(apiDocs, "llms.txt"));
+	t.ok(/\[toString\]/.test(hostileLlms),
+		"llms.txt lists it without the .md the menu label carries",
+		hostileLlms.split("\n").filter(function(l){ return /toString/.test(l); }).join(" "));
+
 	// Cross-links between prose and code resolve, in both directions.
 	var linkReport = t.check(["-i", SRC, "-m", MORE, "-g", "*.test.js"], FIXTURE).report;
 	t.ok(t.findings(linkReport, "broken-link").length === 0,
