@@ -11,6 +11,146 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.npath.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="npath - Documon">
+		<meta property="og:description" content="A drop-in replacement for path, that provides cross-playform normalization. Easing the development of cross-platform modules.">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.npath.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "npath",
+	"headline": "npath",
+	"identifier": "documon.npath",
+	"description": "A drop-in replacement for path, that provides cross-playform normalization. Easing the development of cross-platform modules. Essentially what we're doing is pre-processing all methods with a path normalization -- always enforcing forward slashes.",
+	"url": "https://www.documon.net/documon.npath.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "delimiter",
+			"identifier": "documon.npath.delimiter",
+			"articleSection": "property",
+			"description": "Platform environment PATH delimiter. Example of how PATH appears on Windows: 'C:\\Windows\\system32;C:\\Windows;C:\\Program Files\\node\\' Example of how PATH appears on POSIX systems (Mac Unix): '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin' Read the PATH with Node: console.log(process.env.PATH) Windows = ; POSIX = :",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.delimiter"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "addTrailingSlash",
+			"identifier": "documon.npath.addTrailingSlash",
+			"articleSection": "method",
+			"description": "Adds a trailing slash from path (if doesn't exist).",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.addTrailingSlash"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "basename",
+			"identifier": "documon.npath.basename",
+			"articleSection": "method",
+			"description": "npath.basename(\"/foo/bar/bob.txt\") --> \"bob.txt\" npath.basename(\"/foo/bar/bob.txt\", \".txt\") --> \"bob\"",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.basename"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "clean",
+			"identifier": "documon.npath.clean",
+			"articleSection": "method",
+			"description": "Normalizes slashes by converting double \\\\ to single \\ and / to \\\\ or \\\\ tp / based on the current platform requirements.",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.clean"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "dirname",
+			"identifier": "documon.npath.dirname",
+			"articleSection": "method",
+			"description": "Returns the path to the parent folder that the item resides within. npath.dirname(\"/foo/bar/bob.txt\") --> \"/foo/bar\" npath.dirname(\"/foo/sally/yoyo/boob\") --> \"/foo/sally/yoyo\"",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.dirname"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "extname",
+			"identifier": "documon.npath.extname",
+			"articleSection": "method",
+			"description": "Yes, this includes the dot. npath.extname(\"/foo/bar/bob.txt\") --> \".txt\" npath.extname(\"/foo/sally/yoyo/boob\") --> \"\"",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.extname"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "format",
+			"identifier": "documon.npath.format",
+			"articleSection": "method",
+			"description": "The opposite of path.parse(). Combines the elements of an object into a string. Example: { root : \"/\", dir : \"/home/user/dir\", base : \"file.txt\", ext : \".txt\", name : \"file\" } Is converted to /home/user/dir/file.txt",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.format"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "isAbsolute",
+			"identifier": "documon.npath.isAbsolute",
+			"articleSection": "method",
+			"description": "Determines if path is an absolute path.",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.isAbsolute"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "join",
+			"identifier": "documon.npath.join",
+			"articleSection": "method",
+			"description": "Joins path segments and resolves relativity. path.join('/foo', 'bar', 'baz/asdf', 'quux', '..') Returns: '/foo/bar/baz/asdf'",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.join"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "normalize",
+			"identifier": "documon.npath.normalize",
+			"articleSection": "method",
+			"description": "Resolves \"..\" and \".\" portions of a path. Reduces double slashes to single (e.g. // -> / ) Forces back-slashes to forward slashes (e.g. \\ -> / ) Retains trailing slash if exists. npath.normalize(\"/foo/////bar\") --> \"/foo/bar\" npath.normalize(\"/foo/bar/../boob\") --> \"/foo/boob\" npath.normalize(\"./foo/\") --> \"/current/working/dir/foo/\"",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.normalize"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "parse",
+			"identifier": "documon.npath.parse",
+			"articleSection": "method",
+			"description": "Extracts basic path and file parts. path.parse('/home/user/dir/file.txt') // Yeilds { root : \"/\", dir : \"/home/user/dir\", base : \"file.txt\", ext : \".txt\", name : \"file\" }",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.parse"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "relative",
+			"identifier": "documon.npath.relative",
+			"articleSection": "method",
+			"description": "Creates a relative path between from adn to. path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb') // Returns: '../../impl/bbb'",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.relative"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "removeTrailingSlash",
+			"identifier": "documon.npath.removeTrailingSlash",
+			"articleSection": "method",
+			"description": "Removes a trailing slash from path (if exists).",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.removeTrailingSlash"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "resolve",
+			"identifier": "documon.npath.resolve",
+			"articleSection": "method",
+			"description": "Generates an absolute path based on thenprovided arguments. Path construction occurs from right < to < left resolve(\"/a\", \"b\", \"c\"); // yields: \"/a/b/c\" If an absolute path is resolved during construction, the items to the left are ignored. resolve(\"a\", \"/b\", \"c\"); // yields: \"/b/c\" (\"a\" is ignored) If an absolute path is not resolved after constructing all arguments, the CWD is inserted. resolve(\"a\", \"b\", \"c\"); // yields: \"/current/working/dir/a/b/c\" Relative paths are automatically resolved: resolve(\"/a\", \"../b\", \"c\"); // yields \"/a/c\"",
+			"url": "https://www.documon.net/documon.npath.html#documon.npath.resolve"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +206,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.npath"></a><a name="npath"></a>
+					            <a id="documon.npath" name="documon.npath"></a><a name="npath"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		npath () 
                                     
@@ -79,14 +219,14 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">15</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.npath<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/npath.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.npath</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/npath.js</span></div>
 			</div>
 								
 								<p>A drop-in replacement for path, that provides cross-playform normalization. Easing the development of cross-platform modules.</p>
@@ -114,7 +254,7 @@
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -123,7 +263,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.npath.delimiter"></a><a name="delimiter"></a>
+                                    <a id="documon.npath.delimiter" name="documon.npath.delimiter"></a><a name="delimiter"></a>
                                     <span class="member-name">delimiter</span>
                                     
                                 </div>
@@ -172,12 +312,12 @@
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.npath.addTrailingSlash"></a><a name="addTrailingSlash"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.npath.addTrailingSlash" name="documon.npath.addTrailingSlash"></a><a name="addTrailingSlash"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		addTrailingSlash (<span class="method-arguments">path</span>) 
                                     
@@ -186,7 +326,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">321</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -199,7 +339,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -259,11 +399,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.basename"></a><a name="basename"></a>
+				<a id="documon.npath.basename" name="documon.npath.basename"></a><a name="basename"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		basename (<span class="method-arguments">path</span>, <span class="method-arguments">ext</span>) 
                                     
@@ -272,7 +412,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">108</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -286,7 +426,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -379,11 +519,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.clean"></a><a name="clean"></a>
+				<a id="documon.npath.clean" name="documon.npath.clean"></a><a name="clean"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		clean (<span class="method-arguments">arg</span>) 
                                     
@@ -392,7 +532,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">59</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -405,7 +545,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -465,11 +605,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.dirname"></a><a name="dirname"></a>
+				<a id="documon.npath.dirname" name="documon.npath.dirname"></a><a name="dirname"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		dirname (<span class="method-arguments">Vpath</span>) 
                                     
@@ -478,7 +618,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">123</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -493,7 +633,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -553,11 +693,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.extname"></a><a name="extname"></a>
+				<a id="documon.npath.extname" name="documon.npath.extname"></a><a name="extname"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		extname (<span class="method-arguments">Vpath</span>) 
                                     
@@ -566,7 +706,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">137</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -581,7 +721,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -641,11 +781,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.format"></a><a name="format"></a>
+				<a id="documon.npath.format" name="documon.npath.format"></a><a name="format"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		format (<span class="method-arguments">obj</span>) 
                                     
@@ -654,7 +794,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">247</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -678,7 +818,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -738,11 +878,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.isAbsolute"></a><a name="isAbsolute"></a>
+				<a id="documon.npath.isAbsolute" name="documon.npath.isAbsolute"></a><a name="isAbsolute"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		isAbsolute (<span class="method-arguments">Vpath</span>) 
                                     
@@ -751,7 +891,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">149</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -764,7 +904,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -824,11 +964,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.join"></a><a name="join"></a>
+				<a id="documon.npath.join" name="documon.npath.join"></a><a name="join"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		join (<span class="method-arguments">paths...</span>) 
                                     
@@ -837,7 +977,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">263</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -852,7 +992,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -912,11 +1052,11 @@
 
 							</div>
 						</div>
-				<a name="documon.npath.normalize"></a><a name="normalize"></a>
+				<a id="documon.npath.normalize" name="documon.npath.normalize"></a><a name="normalize"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		normalize (<span class="method-arguments">Vpath</span>) 
                                     
@@ -925,7 +1065,7 @@
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">168</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -944,7 +1084,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1004,11 +1144,11 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 
 							</div>
 						</div>
-				<a name="documon.npath.parse"></a><a name="parse"></a>
+				<a id="documon.npath.parse" name="documon.npath.parse"></a><a name="parse"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		parse (<span class="method-arguments">Vpath</span>) 
                                     
@@ -1017,7 +1157,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">200</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1040,7 +1180,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1107,11 +1247,11 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 
 							</div>
 						</div>
-				<a name="documon.npath.relative"></a><a name="relative"></a>
+				<a id="documon.npath.relative" name="documon.npath.relative"></a><a name="relative"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		relative (<span class="method-arguments method-arg-optional">from</span>, <span class="method-arguments method-arg-optional">to</span>) 
                                     
@@ -1120,7 +1260,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">218</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1135,7 +1275,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1228,11 +1368,11 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 
 							</div>
 						</div>
-				<a name="documon.npath.removeTrailingSlash"></a><a name="removeTrailingSlash"></a>
+				<a id="documon.npath.removeTrailingSlash" name="documon.npath.removeTrailingSlash"></a><a name="removeTrailingSlash"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		removeTrailingSlash (<span class="method-arguments">path</span>) 
                                     
@@ -1241,7 +1381,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">306</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1254,7 +1394,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1314,11 +1454,11 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 
 							</div>
 						</div>
-				<a name="documon.npath.resolve"></a><a name="resolve"></a>
+				<a id="documon.npath.resolve" name="documon.npath.resolve"></a><a name="resolve"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		resolve (<span class="method-arguments method-arg-optional">path...</span>) 
                                     
@@ -1327,7 +1467,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 						    		<span class="member-file">src/npath.js</span>
 						    		<span class="member-line-number">294</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1348,7 +1488,7 @@ Forces back-slashes to forward slashes (e.g. \ -&gt; /  )</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

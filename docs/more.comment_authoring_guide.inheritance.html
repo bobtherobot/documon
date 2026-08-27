@@ -6,10 +6,36 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		
-    	<title>Inheritance</title>
-		<meta name="description" content="more.comment_authoring_guide.inheritance">
+    	<title>Inheritance - Documon</title>
+		<meta name="description" content="Inheritance The following tags are used to organize the relationship tree: @extends @implements @inherits @overrides The @extends tag is the primary tag used to establish inheritence. Documon constructs a relationship tree whenever an @extends tag is discovered and automatically processes parent/...">
 		<meta name="generator" content="Documon">
-		
+		<link rel="canonical" href="https://www.documon.net/more.comment_authoring_guide.inheritance.html">
+
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="Inheritance - Documon">
+		<meta property="og:description" content="Inheritance The following tags are used to organize the relationship tree: @extends @implements @inherits @overrides The @extends tag is the primary tag used to establish inheritence. Documon constructs a relationship tree whenever an @extends tag is discovered and automatically processes parent/...">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/more.comment_authoring_guide.inheritance.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "TechArticle",
+	"name": "Inheritance",
+	"headline": "Inheritance",
+	"identifier": "more.comment_authoring_guide.inheritance",
+	"description": "Inheritance The following tags are used to organize the relationship tree: @extends @implements @inherits @overrides The @extends tag is the primary tag used to establish inheritence. Documon constructs a relationship tree whenever an @extends tag is discovered and automatically processes parent/child relationships. When defining @extends , you can use a short-hand for classes in the same package. For example, lets say we have 2 classes as: /some/long/winded/package/Foo.js some/long/winded/package/Bar.js … and \"Bar\" extends \"Foo\"… Rather than writing: @class Bar @package long.winded.package @extends long.winded.package.Foo … we can write: @class Bar @package long.winded.package @extends Foo … because Foo and Bar are in the same package. We only need to use the long-form when referencing things outside of the same package. About the @inherits tag Using the @inherits tag is a little redundant, since Documon automatically figures this out based on the @extends tag. But you're free to incorporate the @inherits tag and Documon should honor it (e.g. construct the proper parent/chold menu relationship).",
+	"url": "https://www.documon.net/more.comment_authoring_guide.inheritance.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	}
+}</script>
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">

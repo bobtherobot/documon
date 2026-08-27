@@ -6,10 +6,36 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		
-    	<title>Machine Readable Output</title>
-		<meta name="description" content="more.machine_readable_output">
+    	<title>Machine Readable Output - Documon</title>
+		<meta name="description" content="Machine Readable Output Alongside the HTML, every build writes three files intended for programs rather than people. They cost nothing to generate and make your documentation usable as data. llms.txt Follows the llms.txt convention : a short markdown index naming every page with a one-line summar...">
 		<meta name="generator" content="Documon">
-		
+		<link rel="canonical" href="https://www.documon.net/more.machine_readable_output.html">
+
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="Machine Readable Output - Documon">
+		<meta property="og:description" content="Machine Readable Output Alongside the HTML, every build writes three files intended for programs rather than people. They cost nothing to generate and make your documentation usable as data. llms.txt Follows the llms.txt convention : a short markdown index naming every page with a one-line summar...">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/more.machine_readable_output.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "TechArticle",
+	"name": "Machine Readable Output",
+	"headline": "Machine Readable Output",
+	"identifier": "more.machine_readable_output",
+	"description": "Machine Readable Output Alongside the HTML, every build writes three files intended for programs rather than people. They cost nothing to generate and make your documentation usable as data. llms.txt Follows the llms.txt convention : a short markdown index naming every page with a one-line summary, so a language model can find the right page without crawling the site. # My Project v1.0 &gt; One line about the project. ## Reference - dirutils: Directory helpers. - Menu: The navigation tree. Set --baseUrl to get absolute links; without it the links are relative. llms-full.txt The whole manual as plain text — every page, every member, every parameter — in one file. One fetch instead of dozens, with no HTML to strip. model.json The documentation as structured data: { \"generator\" : \"documon\", \"project\" : \"My Project\", \"version\" : \"1.0\", \"pages\" : [ { \"id\" : \"my.dirutils\", \"name\" : \"dirutils\", \"kind\" : \"module\", \"package\" : \"my\", \"description\" : \"Directory helpers.\", \"members\" : [ { \"kind\" : \"method\", \"name\" : \"make\", \"access\" : \"public\", \"params\" : [ { \"name\" : \"dest\", \"type\" : \"string\", \"description\" : \"...\" } ], \"returns\" : { \"type\" : \"boolean\", \"description\" : \"...\" } } ] } ] } Anything that wants to build on your docs — a search index, a linter, an editor plugin, a coding assistant — should read this rather than scrape the HTML. Turning them off documon --no-emitLlms --no-emitModel -i ./src -o ./ Or in documon.json : { \"emitLlms\" : false, \"emitModel\" : false }",
+	"url": "https://www.documon.net/more.machine_readable_output.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	}
+}</script>
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">

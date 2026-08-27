@@ -11,6 +11,74 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.splitParsed.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="splitParsed - Documon">
+		<meta property="og:description" content="Splits one file's parsed comments into independent groups, so a file containing several">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.splitParsed.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "splitParsed",
+	"headline": "splitParsed",
+	"identifier": "documon.splitParsed",
+	"description": "Splits one file's parsed comments into independent groups, so a file containing several classes behaves like several one-class files. tag.js assumes everything handed to it belongs to a single page, so the split has to happen first.",
+	"url": "https://www.documon.net/documon.splitParsed.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "packageTags",
+			"identifier": "documon.splitParsed.packageTags",
+			"articleSection": "property",
+			"description": "Tags that declare the enclosing package.",
+			"url": "https://www.documon.net/documon.splitParsed.html#documon.splitParsed.packageTags"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "spliton",
+			"identifier": "documon.splitParsed.spliton",
+			"articleSection": "property",
+			"description": "Tags that begin a new group.",
+			"url": "https://www.documon.net/documon.splitParsed.html#documon.splitParsed.spliton"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "declaredPackage",
+			"identifier": "documon.splitParsed.declaredPackage",
+			"articleSection": "method",
+			"description": "Finds the package a group declares for itself, if any.",
+			"url": "https://www.documon.net/documon.splitParsed.html#documon.splitParsed.declaredPackage"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "propagatePackage",
+			"identifier": "documon.splitParsed.propagatePackage",
+			"articleSection": "method",
+			"description": "Carries a file's @package forward into later groups. Splitting on @class means a second class in a file starts a group of its own, and that group contains no @package tag -- the file declared it once, at the top. Without this, tag.js finds nothing and falls back to the root package, so a file like /** @module thing @package app */ /** @class Good */ produced app.thing and root.Good rather than app.thing and app.Good -- and any @extends app.Good elsewhere then failed to resolve. A group that declares its own @package is left alone, so an explicit declaration always wins and a file can still switch packages part way down.",
+			"url": "https://www.documon.net/documon.splitParsed.html#documon.splitParsed.propagatePackage"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "split",
+			"identifier": "documon.splitParsed.split",
+			"articleSection": "method",
+			"description": "Splits a file's parsed comments into groups.",
+			"url": "https://www.documon.net/documon.splitParsed.html#documon.splitParsed.split"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +134,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.splitParsed"></a><a name="splitParsed"></a>
+					            <a id="documon.splitParsed" name="documon.splitParsed"></a><a name="splitParsed"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		splitParsed () 
                                     
@@ -79,14 +147,14 @@
 						    		<span class="member-file">src/splitParsed.js</span>
 						    		<span class="member-line-number">16</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.splitParsed<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/splitParsed.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.splitParsed</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/splitParsed.js</span></div>
 			</div>
 								
 								<p>Splits one file's parsed comments into independent groups, so a file containing several<br />
@@ -116,7 +184,7 @@ happen first.</p>
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -125,7 +193,7 @@ happen first.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.splitParsed.packageTags"></a><a name="packageTags"></a>
+                                    <a id="documon.splitParsed.packageTags" name="documon.splitParsed.packageTags"></a><a name="packageTags"></a>
                                     <span class="member-name">packageTags</span>
                                     
                                 </div>
@@ -158,7 +226,7 @@ happen first.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.splitParsed.spliton"></a><a name="spliton"></a>
+                                    <a id="documon.splitParsed.spliton" name="documon.splitParsed.spliton"></a><a name="spliton"></a>
                                     <span class="member-name">spliton</span>
                                     
                                 </div>
@@ -198,12 +266,12 @@ happen first.</p>
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.splitParsed.declaredPackage"></a><a name="declaredPackage"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.splitParsed.declaredPackage" name="documon.splitParsed.declaredPackage"></a><a name="declaredPackage"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		declaredPackage (<span class="method-arguments">chunk</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -212,7 +280,7 @@ happen first.</p>
 						    		<span class="member-file">src/splitParsed.js</span>
 						    		<span class="member-line-number">35</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -225,7 +293,7 @@ happen first.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -285,11 +353,11 @@ happen first.</p>
 
 							</div>
 						</div>
-				<a name="documon.splitParsed.propagatePackage"></a><a name="propagatePackage"></a>
+				<a id="documon.splitParsed.propagatePackage" name="documon.splitParsed.propagatePackage"></a><a name="propagatePackage"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		propagatePackage (<span class="method-arguments">chunks</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -298,7 +366,7 @@ happen first.</p>
 						    		<span class="member-file">src/splitParsed.js</span>
 						    		<span class="member-line-number">73</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -309,10 +377,10 @@ happen first.</p>
 <p>Splitting on <code>@class</code> means a second class in a file starts a group of its own, and<br />
 that group contains no <code>@package</code> tag -- the file declared it once, at the top. Without<br />
 this, <code>tag.js</code> finds nothing and falls back to the <code>root</code> package, so a file like</p>
-<pre><code>    &amp;#47;** &amp;#64;module thing &amp;#64;package app *&amp;#47;
-    &amp;#47;** &amp;#64;class Good *&amp;#47;</code></pre>
+<pre><code>    /** @module thing @package app */
+    /** @class Good */</code></pre>
 <p>produced <code>app.thing</code> and <code>root.Good</code> rather than <code>app.thing</code> and <code>app.Good</code> -- and any<br />
-<code>&amp;#64;extends app.Good</code> elsewhere then failed to resolve.</p>
+<code>@extends app.Good</code> elsewhere then failed to resolve.</p>
 <p>A group that declares its own <code>@package</code> is left alone, so an explicit declaration<br />
 always wins and a file can still switch packages part way down.</p>
 
@@ -320,7 +388,7 @@ always wins and a file can still switch packages part way down.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -380,11 +448,11 @@ always wins and a file can still switch packages part way down.</p>
 
 							</div>
 						</div>
-				<a name="documon.splitParsed.split"></a><a name="split"></a>
+				<a id="documon.splitParsed.split" name="documon.splitParsed.split"></a><a name="split"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		split (<span class="method-arguments">parsed</span>) 
                                     
@@ -393,7 +461,7 @@ always wins and a file can still switch packages part way down.</p>
 						    		<span class="member-file">src/splitParsed.js</span>
 						    		<span class="member-line-number">119</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -406,7 +474,7 @@ always wins and a file can still switch packages part way down.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

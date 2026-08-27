@@ -11,6 +11,66 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.ignore.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="ignore - Documon">
+		<meta property="og:description" content="Decides whether a given file or folder should be skipped.">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.ignore.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "ignore",
+	"headline": "ignore",
+	"identifier": "documon.ignore",
+	"description": "Decides whether a given file or folder should be skipped. Shared by the builder and by --check so both agree on exactly which files are \"in\" the project. ### History The original implementation lived inside documon.js and had two defects that made the entire ignore system inert: 1. It return false'd from *inside* the loop, so only the first pattern was ever consulted. 2. That first default pattern (**/.*) is not a valid regular expression -- new RegExp(\"**/.*\") throws \"Nothing to repeat\" -- and the catch also returned false. Net effect: shouldIgnore() always returned false, so node_modules, .git, the template folder, the output folder, and every user supplied ignore entry were all silently walked. Running Documon at a project root would happily parse its own dependencies.",
+	"url": "https://www.documon.net/documon.ignore.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "DEFAULTS",
+			"identifier": "documon.ignore.DEFAULTS",
+			"articleSection": "property",
+			"description": "Patterns always applied, expressed as valid regular expressions (the old glob-looking strings never compiled).",
+			"url": "https://www.documon.net/documon.ignore.html#documon.ignore.DEFAULTS"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "create",
+			"identifier": "documon.ignore.create",
+			"articleSection": "method",
+			"description": "Builds a matcher. User supplied entries are matched as documented: a plain substring (\"simple indexOf\") test first, then -- as a convenience -- as a regular expression when the string happens to compile as one. Patterns that compile to nothing useful simply never match instead of aborting the whole check. Internal paths (extra) are matched literally, never as expressions. They are real filesystem paths, and treating them as patterns is actively dangerous: an output folder of \"./\" compiles to the regular expression ./, which matches any character followed by a slash -- that is, every path in the project.",
+			"url": "https://www.documon.net/documon.ignore.html#documon.ignore.create"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "globToRegExp",
+			"identifier": "documon.ignore.globToRegExp",
+			"articleSection": "method",
+			"description": "Translates a simple glob into a regular expression. Supports * (within a path segment), ** (across segments) and ?. Anything else is escaped literally.",
+			"url": "https://www.documon.net/documon.ignore.html#documon.ignore.globToRegExp"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "test",
+			"identifier": "documon.ignore.test",
+			"articleSection": "method",
+			"description": "test",
+			"url": "https://www.documon.net/documon.ignore.html#documon.ignore.test"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +126,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.ignore"></a><a name="ignore"></a>
+					            <a id="documon.ignore" name="documon.ignore"></a><a name="ignore"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		ignore () 
                                     
@@ -79,14 +139,14 @@
 						    		<span class="member-file">src/ignore.js</span>
 						    		<span class="member-line-number">31</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.ignore<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/ignore.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.ignore</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/ignore.js</span></div>
 			</div>
 								
 								<p>Decides whether a given file or folder should be skipped.</p>
@@ -98,8 +158,8 @@ the entire ignore system inert:</p>
 <ol>
 <li>It <code>return false</code>'d from <em>inside</em> the loop, so only the first pattern was ever<br />
 consulted.</li>
-<li>That first default pattern (<code>**&amp;#47;.*</code>) is not a valid regular expression --<br />
-<code>new RegExp("**&amp;#47;.*")</code> throws "Nothing to repeat" -- and the <code>catch</code> also<br />
+<li>That first default pattern (<code>**/.*</code>) is not a valid regular expression --<br />
+<code>new RegExp("**/.*")</code> throws "Nothing to repeat" -- and the <code>catch</code> also<br />
 returned false.</li>
 </ol>
 <p>Net effect: <code>shouldIgnore()</code> always returned false, so <code>node_modules</code>, <code>.git</code>, the<br />
@@ -129,7 +189,7 @@ dependencies.</p>
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -138,7 +198,7 @@ dependencies.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.ignore.DEFAULTS"></a><a name="DEFAULTS"></a>
+                                    <a id="documon.ignore.DEFAULTS" name="documon.ignore.DEFAULTS"></a><a name="DEFAULTS"></a>
                                     <span class="member-name">DEFAULTS</span>
                                     
                                 </div>
@@ -179,12 +239,12 @@ expressions (the old glob-looking strings never compiled).</p>
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.ignore.create"></a><a name="create"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.ignore.create" name="documon.ignore.create"></a><a name="create"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		create (<span class="method-arguments method-arg-optional">userList</span>, <span class="method-arguments method-arg-optional">extra</span>) 
                                     
@@ -193,7 +253,7 @@ expressions (the old glob-looking strings never compiled).</p>
 						    		<span class="member-file">src/ignore.js</span>
 						    		<span class="member-line-number">107</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -214,7 +274,7 @@ by a slash -- that is, every path in the project.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -313,11 +373,11 @@ by a slash -- that is, every path in the project.</p>
 
 							</div>
 						</div>
-				<a name="documon.ignore.globToRegExp"></a><a name="globToRegExp"></a>
+				<a id="documon.ignore.globToRegExp" name="documon.ignore.globToRegExp"></a><a name="globToRegExp"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		globToRegExp (<span class="method-arguments">glob</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -326,7 +386,7 @@ by a slash -- that is, every path in the project.</p>
 						    		<span class="member-file">src/ignore.js</span>
 						    		<span class="member-line-number">54</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -340,7 +400,7 @@ segment), <code>**</code> (across segments) and <code>?</code>. Anything else is
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -400,11 +460,11 @@ segment), <code>**</code> (across segments) and <code>?</code>. Anything else is
 
 							</div>
 						</div>
-				<a name="documon.ignore.test"></a><a name="test"></a>
+				<a id="documon.ignore.test" name="documon.ignore.test"></a><a name="test"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		test (<span class="method-arguments">item</span>) 
                                     
@@ -413,7 +473,7 @@ segment), <code>**</code> (across segments) and <code>?</code>. Anything else is
 						    		<span class="member-file">src/ignore.js</span>
 						    		<span class="member-line-number">160</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -426,7 +486,7 @@ segment), <code>**</code> (across segments) and <code>?</code>. Anything else is
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

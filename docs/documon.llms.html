@@ -11,6 +11,90 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.llms.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="llms - Documon">
+		<meta property="og:description" content="Emits machine-readable companions alongside the generated HTML:">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.llms.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "llms",
+	"headline": "llms",
+	"identifier": "documon.llms",
+	"description": "Emits machine-readable companions alongside the generated HTML: - llms.txt -- the llms.txt convention: a short, linkable index of the documentation, meant to be read by a language model rather than rendered in a browser. - llms-full.txt -- every page's prose concatenated into one plain-text file, so a model can ingest the whole manual in a single fetch. - model.json -- the structured documentation model (packages, classes, members, params, types), so other tools can consume Documon output as data instead of scraping HTML. All three are written to the output folder. Disable with emitLlms:false / emitModel:false.",
+	"url": "https://www.documon.net/documon.llms.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "deHtml",
+			"identifier": "documon.llms.deHtml",
+			"articleSection": "method",
+			"description": "Strips HTML tags and collapses whitespace, leaving readable plain text.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.deHtml"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "flattenMenu",
+			"identifier": "documon.llms.flattenMenu",
+			"articleSection": "method",
+			"description": "Flattens the menu tree into a list of linkable pages.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.flattenMenu"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "joinUrl",
+			"identifier": "documon.llms.joinUrl",
+			"articleSection": "method",
+			"description": "Joins a base URL and a page filename.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.joinUrl"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "metaEntry",
+			"identifier": "documon.llms.metaEntry",
+			"articleSection": "method",
+			"description": "Normalizes a metadata entry (@deprecated, @throws, @since ...) for the model.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.metaEntry"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "modelPage",
+			"identifier": "documon.llms.modelPage",
+			"articleSection": "method",
+			"description": "Reduces a built page into the flat record used by model.json.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.modelPage"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "readMore",
+			"identifier": "documon.llms.readMore",
+			"articleSection": "method",
+			"description": "Collects the markdown of the \"more\" folder, in menu order, for llms-full.txt. The prose pages are usually the part a reader most needs -- guides, concepts, tag references -- and they are already plain text, so they go in verbatim.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.readMore"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "write",
+			"identifier": "documon.llms.write",
+			"articleSection": "method",
+			"description": "Writes llms.txt, llms-full.txt and model.json.",
+			"url": "https://www.documon.net/documon.llms.html#documon.llms.write"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +150,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.llms"></a><a name="llms"></a>
+					            <a id="documon.llms" name="documon.llms"></a><a name="llms"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		llms () 
                                     
@@ -79,14 +163,14 @@
 						    		<span class="member-file">src/llms.js</span>
 						    		<span class="member-line-number">24</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.llms<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/llms.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.llms</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/llms.js</span></div>
 			</div>
 								
 								<p>Emits machine-readable companions alongside the generated HTML:</p>
@@ -127,21 +211,21 @@
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.llms.deHtml"></a><a name="deHtml"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.llms.deHtml" name="documon.llms.deHtml"></a><a name="deHtml"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		deHtml (<span class="method-arguments">html</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">35</span>
+						    		<span class="member-line-number">36</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -154,7 +238,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -214,20 +298,20 @@
 
 							</div>
 						</div>
-				<a name="documon.llms.flattenMenu"></a><a name="flattenMenu"></a>
+				<a id="documon.llms.flattenMenu" name="documon.llms.flattenMenu"></a><a name="flattenMenu"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		flattenMenu (<span class="method-arguments">nodes</span>, <span class="method-arguments">out</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">171</span>
+						    		<span class="member-line-number">191</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -240,7 +324,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -333,20 +417,20 @@
 
 							</div>
 						</div>
-				<a name="documon.llms.joinUrl"></a><a name="joinUrl"></a>
+				<a id="documon.llms.joinUrl" name="documon.llms.joinUrl"></a><a name="joinUrl"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		joinUrl (<span class="method-arguments">base</span>, <span class="method-arguments">file</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">67</span>
+						    		<span class="member-line-number">76</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -359,7 +443,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -452,20 +536,20 @@
 
 							</div>
 						</div>
-				<a name="documon.llms.metaEntry"></a><a name="metaEntry"></a>
+				<a id="documon.llms.metaEntry" name="documon.llms.metaEntry"></a><a name="metaEntry"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		metaEntry (<span class="method-arguments">entry</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">92</span>
+						    		<span class="member-line-number">101</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -478,7 +562,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -538,20 +622,20 @@
 
 							</div>
 						</div>
-				<a name="documon.llms.modelPage"></a><a name="modelPage"></a>
+				<a id="documon.llms.modelPage" name="documon.llms.modelPage"></a><a name="modelPage"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		modelPage (<span class="method-arguments">page</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">84</span>
+						    		<span class="member-line-number">93</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -564,7 +648,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -624,20 +708,20 @@
 
 							</div>
 						</div>
-				<a name="documon.llms.readMore"></a><a name="readMore"></a>
+				<a id="documon.llms.readMore" name="documon.llms.readMore"></a><a name="readMore"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		readMore (<span class="method-arguments">folder</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">208</span>
+						    		<span class="member-line-number">228</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -652,7 +736,7 @@ references -- and they are already plain text, so they go in verbatim.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -712,20 +796,20 @@ references -- and they are already plain text, so they go in verbatim.</p>
 
 							</div>
 						</div>
-				<a name="documon.llms.write"></a><a name="write"></a>
+				<a id="documon.llms.write" name="documon.llms.write"></a><a name="write"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		write (<span class="method-arguments">conf</span>, <span class="method-arguments">pages</span>, <span class="method-arguments">log</span>, <span class="method-arguments method-arg-optional">menu</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/llms.js</span>
-						    		<span class="member-line-number">271</span>
+						    		<span class="member-line-number">291</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -738,7 +822,7 @@ references -- and they are already plain text, so they go in verbatim.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

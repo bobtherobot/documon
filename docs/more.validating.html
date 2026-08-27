@@ -6,10 +6,36 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		
-    	<title>Validating</title>
-		<meta name="description" content="more.validating">
+    	<title>Validating - Documon</title>
+		<meta name="description" content="Validating Documon derives structure only from your comments. That is its main strength — you decide exactly what the output looks like — but it has one consequence worth naming: a symbol you forget to tag doesn't produce a warning, it produces nothing at all. A misspelled tag is discarded in sil...">
 		<meta name="generator" content="Documon">
-		
+		<link rel="canonical" href="https://www.documon.net/more.validating.html">
+
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="Validating - Documon">
+		<meta property="og:description" content="Validating Documon derives structure only from your comments. That is its main strength — you decide exactly what the output looks like — but it has one consequence worth naming: a symbol you forget to tag doesn't produce a warning, it produces nothing at all. A misspelled tag is discarded in sil...">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/more.validating.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "TechArticle",
+	"name": "Validating",
+	"headline": "Validating",
+	"identifier": "more.validating",
+	"description": "Validating Documon derives structure only from your comments. That is its main strength — you decide exactly what the output looks like — but it has one consequence worth naming: a symbol you forget to tag doesn't produce a warning, it produces nothing at all. A misspelled tag is discarded in silence. --check is the antidote. It parses everything, tells you what won't work, and writes nothing. documon --check -i ./src ------------------ Findings ------------------ ERROR src/menu.js:42 [unresolved-inheritance] @extends \"Base\" does not match any documented id. fix: Use the fully qualified id (package.Class), or document the parent. WARNING src/menu.js:88 [unknown-tag] @arg is not a Documon tag and will be ignored. fix: Use @param instead. ------------------ Summary ------------------ files : 25 comments : 117 entities : 111 errors : 1 warnings : 1 FAIL It exits 2 when it finds problems, so it drops straight into a build script: documon --check -i ./src &amp;&amp; documon -i ./src -o ./ What it looks for rule level meaning unknown-tag warning A tag Documon doesn't implement, and doesn't alias. Anything you wrote under it is dropped. The fix explains why there is no equivalent. normalized-tag info A tag accepted under another spelling ( @arg read as @param ). Nothing is lost; shown so you can converge on one spelling. duplicate-id error Two blocks resolve to the same id, so one page overwrites the other. unresolved-inheritance error An @extends / @inherits / @implements target that matches no documented id. missing-name error A kind tag with no name, e.g. a bare @method . no-kind warning A block with tags but no @method , @property , @event , @class or @module . It will never appear. param-no-name warning A @param that can't be rendered. duplicate-param warning The same parameter documented twice. param-on-non-method warning @param on a kind that never displays it ( @property , @namespace , @package ). Methods, events, and the @class / @module that heads a page all render a parameter table. broken-link warning A dotted cross-reference that matches no id. Ids from the more folder ( more.options ) count as valid targets. no-description info A documented entity with no prose. param-no-type info A parameter with no {type} . no-comments info A source file with no Documon blocks at all. --strict promotes warnings to failures. Coverage documon --check --coverage -i ./src Adds an advisory pass that looks for functions, classes and assignments with no matching documentation block, and reports a percentage. This is the one place Documon glances at your source, and it is deliberately shallow and strictly advisory — it never influences what gets rendered. Structure still comes from comments and nothing else. If a symbol is intentionally internal, ignore the finding. Machine-readable output documon --check --json -i ./src Emits a JSON report — ok , counts , stats , coverage , and a findings array where each entry carries level , rule , file , line , message and fix . Useful in CI, and useful to any tool that writes comments and needs to know whether it succeeded.",
+	"url": "https://www.documon.net/more.validating.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	}
+}</script>
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">

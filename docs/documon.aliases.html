@@ -11,6 +11,130 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.aliases.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="aliases - Documon">
+		<meta property="og:description" content="Accepts the tag spellings people (and tools trained on other documentation systems)">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.aliases.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "aliases",
+	"headline": "aliases",
+	"identifier": "documon.aliases",
+	"description": "Accepts the tag spellings people (and tools trained on other documentation systems) actually write, and maps them onto Documon's vocabulary. ### Why Documon derives structure exclusively from tags, which means an unrecognised tag isn't a cosmetic problem -- it's a missing page. A block written as @function area @arg {number} r - Radius. has no kind tag as far as Documon is concerned, so the whole entity silently disappears. Since @function and @arg are exact JSDoc synonyms for @method and @param, refusing them buys nothing and costs a page. Aliasing does not weaken the \"structure comes only from comments\" rule: an alias is still an explicit tag, just spelled differently. ### What is deliberately NOT aliased Tags whose meaning differs, even slightly, are left alone so they surface in --check rather than producing quietly wrong documentation: - @fires / @emits -- documents which events a method *emits*. That is not the same as @event, which declares an event entity. - @memberof -- re-parents an entity; Documon scopes by @package instead. - @typedef, @callback, @enum, @inheritdoc -- no equivalent concept.",
+	"url": "https://www.documon.net/documon.aliases.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "ACCESS_VALUES",
+			"identifier": "documon.aliases.ACCESS_VALUES",
+			"articleSection": "property",
+			"description": "Legal values of an @access tag, each of which maps onto a Documon visibility flag of the same name.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.ACCESS_VALUES"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "DEPRECATED",
+			"identifier": "documon.aliases.DEPRECATED",
+			"articleSection": "property",
+			"description": "Spellings that Documon used to accept and no longer does. These are not aliased -- they are listed so --check and the build summary can name the replacement instead of reporting a generic \"unknown tag\". @impliments was Documon's own misspelling of @implements and was corrected in v3.0.0. Since structure comes only from tags, leaving it as a silent alias would have meant the typo propagating into new projects forever.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.DEPRECATED"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "DESCRIPTION_TAGS",
+			"identifier": "documon.aliases.DESCRIPTION_TAGS",
+			"articleSection": "property",
+			"description": "Tags whose content is really just the description. Documon takes the description from the free text above the tags, so these are folded into it rather than dropped.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.DESCRIPTION_TAGS"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "META_TAGS",
+			"identifier": "documon.aliases.META_TAGS",
+			"articleSection": "property",
+			"description": "Tags with genuine meaning and no Documon equivalent. Rather than discarding them, they are collected and rendered in the page's meta section. The value is the label shown to the reader.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.META_TAGS"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "TAGS",
+			"identifier": "documon.aliases.TAGS",
+			"articleSection": "property",
+			"description": "Exact synonyms. The key is what was written, the value is the Documon tag it becomes.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.TAGS"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "deprecatedFor",
+			"identifier": "documon.aliases.deprecatedFor",
+			"articleSection": "method",
+			"description": "The current spelling of a retired tag, or null when the tag was never retired.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.deprecatedFor"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "inlineLinks",
+			"identifier": "documon.aliases.inlineLinks",
+			"articleSection": "method",
+			"description": "Rewrites JSDoc's inline link syntax as the markdown Documon already understands. Handles {@link target}, {@link target|label}, {@link target label}, and the linkcode / linkplain / tutorial variants.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.inlineLinks"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "isAlias",
+			"identifier": "documon.aliases.isAlias",
+			"articleSection": "method",
+			"description": "Whether a tag is an alias of something else (used to report normalizations).",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.isAlias"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "isDescription",
+			"identifier": "documon.aliases.isDescription",
+			"articleSection": "method",
+			"description": "Whether a tag's content should be folded into the description.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.isDescription"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "lookup",
+			"identifier": "documon.aliases.lookup",
+			"articleSection": "method",
+			"description": "Reads a key from one of the tables above. The tables are object literals, so a plain TABLE[key] lookup falls through to Object.prototype -- and @constructor is a real Documon tag whose name collides with Object.prototype.constructor. That made resolve(\"constructor\") hand back the Object function instead of the string, metaLabel(\"constructor\") report it as metadata, and the build die in llms.js calling .toUpperCase() on a function. The same hole is there for toString, valueOf, proto and the rest.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.lookup"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "metaLabel",
+			"identifier": "documon.aliases.metaLabel",
+			"articleSection": "method",
+			"description": "The display label for a metadata tag, or null when it isn't one.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.metaLabel"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "resolve",
+			"identifier": "documon.aliases.resolve",
+			"articleSection": "method",
+			"description": "Resolves a written tag name to its Documon equivalent.",
+			"url": "https://www.documon.net/documon.aliases.html#documon.aliases.resolve"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +190,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.aliases"></a><a name="aliases"></a>
+					            <a id="documon.aliases" name="documon.aliases"></a><a name="aliases"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		aliases () 
                                     
@@ -79,14 +203,14 @@
 						    		<span class="member-file">src/aliases.js</span>
 						    		<span class="member-line-number">38</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.aliases<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/aliases.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.aliases</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/aliases.js</span></div>
 			</div>
 								
 								<p>Accepts the tag spellings people (and tools trained on other documentation systems)<br />
@@ -94,21 +218,21 @@ actually write, and maps them onto Documon's vocabulary.</p>
 <h3 id="why">Why</h3>
 <p>Documon derives structure exclusively from tags, which means an unrecognised tag isn't<br />
 a cosmetic problem -- it's a missing page. A block written as</p>
-<pre><code>    &amp;#64;function area
-    &amp;#64;arg {number} r - Radius.</code></pre>
+<pre><code>    @function area
+    @arg {number} r - Radius.</code></pre>
 <p>has no kind tag as far as Documon is concerned, so the whole entity silently disappears.<br />
-Since <code>&amp;#64;function</code> and <code>&amp;#64;arg</code> are exact JSDoc synonyms for <code>&amp;#64;method</code> and<br />
-<code>&amp;#64;param</code>, refusing them buys nothing and costs a page.</p>
+Since <code>@function</code> and <code>@arg</code> are exact JSDoc synonyms for <code>@method</code> and<br />
+<code>@param</code>, refusing them buys nothing and costs a page.</p>
 <p>Aliasing does not weaken the "structure comes only from comments" rule: an alias is<br />
 still an explicit tag, just spelled differently.</p>
 <h3 id="what-is-deliberately-not-aliased">What is deliberately NOT aliased</h3>
 <p>Tags whose meaning differs, even slightly, are left alone so they surface in <code>--check</code><br />
 rather than producing quietly wrong documentation:</p>
 <ul>
-<li><code>&amp;#64;fires</code> / <code>&amp;#64;emits</code> -- documents which events a method <em>emits</em>. That is not<br />
-the same as <code>&amp;#64;event</code>, which declares an event entity.</li>
-<li><code>&amp;#64;memberof</code> -- re-parents an entity; Documon scopes by <code>&amp;#64;package</code> instead.</li>
-<li><code>&amp;#64;typedef</code>, <code>&amp;#64;callback</code>, <code>&amp;#64;enum</code>, <code>&amp;#64;inheritdoc</code> -- no equivalent concept.</li>
+<li><code>@fires</code> / <code>@emits</code> -- documents which events a method <em>emits</em>. That is not<br />
+the same as <code>@event</code>, which declares an event entity.</li>
+<li><code>@memberof</code> -- re-parents an entity; Documon scopes by <code>@package</code> instead.</li>
+<li><code>@typedef</code>, <code>@callback</code>, <code>@enum</code>, <code>@inheritdoc</code> -- no equivalent concept.</li>
 </ul>
 
 					
@@ -133,7 +257,7 @@ the same as <code>&amp;#64;event</code>, which declares an event entity.</li>
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -142,7 +266,7 @@ the same as <code>&amp;#64;event</code>, which declares an event entity.</li>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.aliases.ACCESS_VALUES"></a><a name="ACCESS_VALUES"></a>
+                                    <a id="documon.aliases.ACCESS_VALUES" name="documon.aliases.ACCESS_VALUES"></a><a name="ACCESS_VALUES"></a>
                                     <span class="member-name">ACCESS_VALUES</span>
                                     
                                 </div>
@@ -176,7 +300,7 @@ onto a Documon visibility flag of the same name.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.aliases.DEPRECATED"></a><a name="DEPRECATED"></a>
+                                    <a id="documon.aliases.DEPRECATED" name="documon.aliases.DEPRECATED"></a><a name="DEPRECATED"></a>
                                     <span class="member-name">DEPRECATED</span>
                                     
                                 </div>
@@ -214,7 +338,7 @@ meant the typo propagating into new projects forever.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.aliases.DESCRIPTION_TAGS"></a><a name="DESCRIPTION_TAGS"></a>
+                                    <a id="documon.aliases.DESCRIPTION_TAGS" name="documon.aliases.DESCRIPTION_TAGS"></a><a name="DESCRIPTION_TAGS"></a>
                                     <span class="member-name">DESCRIPTION_TAGS</span>
                                     
                                 </div>
@@ -249,7 +373,7 @@ into it rather than dropped.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.aliases.META_TAGS"></a><a name="META_TAGS"></a>
+                                    <a id="documon.aliases.META_TAGS" name="documon.aliases.META_TAGS"></a><a name="META_TAGS"></a>
                                     <span class="member-name">META_TAGS</span>
                                     
                                 </div>
@@ -284,7 +408,7 @@ section. The value is the label shown to the reader.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.aliases.TAGS"></a><a name="TAGS"></a>
+                                    <a id="documon.aliases.TAGS" name="documon.aliases.TAGS"></a><a name="TAGS"></a>
                                     <span class="member-name">TAGS</span>
                                     
                                 </div>
@@ -325,21 +449,21 @@ Documon tag it becomes.</p>
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.aliases.deprecatedFor"></a><a name="deprecatedFor"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.aliases.deprecatedFor" name="documon.aliases.deprecatedFor"></a><a name="deprecatedFor"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		deprecatedFor (<span class="method-arguments">flag</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">145</span>
+						    		<span class="member-line-number">170</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -352,7 +476,7 @@ Documon tag it becomes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -417,20 +541,20 @@ Documon tag it becomes.</p>
 
 							</div>
 						</div>
-				<a name="documon.aliases.inlineLinks"></a><a name="inlineLinks"></a>
+				<a id="documon.aliases.inlineLinks" name="documon.aliases.inlineLinks"></a><a name="inlineLinks"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		inlineLinks (<span class="method-arguments">text</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">196</span>
+						    		<span class="member-line-number">221</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -445,7 +569,7 @@ Documon tag it becomes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -511,20 +635,20 @@ Documon tag it becomes.</p>
 
 							</div>
 						</div>
-				<a name="documon.aliases.isAlias"></a><a name="isAlias"></a>
+				<a id="documon.aliases.isAlias" name="documon.aliases.isAlias"></a><a name="isAlias"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		isAlias (<span class="method-arguments">flag</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">156</span>
+						    		<span class="member-line-number">181</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -537,7 +661,7 @@ Documon tag it becomes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -597,20 +721,20 @@ Documon tag it becomes.</p>
 
 							</div>
 						</div>
-				<a name="documon.aliases.isDescription"></a><a name="isDescription"></a>
+				<a id="documon.aliases.isDescription" name="documon.aliases.isDescription"></a><a name="isDescription"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		isDescription (<span class="method-arguments">flag</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">167</span>
+						    		<span class="member-line-number">192</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -623,7 +747,7 @@ Documon tag it becomes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -683,20 +807,145 @@ Documon tag it becomes.</p>
 
 							</div>
 						</div>
-				<a name="documon.aliases.metaLabel"></a><a name="metaLabel"></a>
+				<a id="documon.aliases.lookup" name="documon.aliases.lookup"></a><a name="lookup"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		lookup (<span class="method-arguments">table</span>, <span class="method-arguments">flag</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/aliases.js</span>
+						    		<span class="member-line-number">129</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Reads a key from one of the tables above.</p>
+<p>The tables are object literals, so a plain <code>TABLE[key]</code> lookup falls through to<br />
+<code>Object.prototype</code> -- and <code>@constructor</code> is a real Documon tag whose name collides with<br />
+<code>Object.prototype.constructor</code>. That made <code>resolve("constructor")</code> hand back the Object<br />
+function instead of the string, <code>metaLabel("constructor")</code> report it as metadata, and<br />
+the build die in <code>llms.js</code> calling <code>.toUpperCase()</code> on a function. The same hole is<br />
+there for <code>toString</code>, <code>valueOf</code>, <code>__proto__</code> and the rest.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">table</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>One of TAGS, DEPRECATED or META_TAGS.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">flag</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The tag as written.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">string</span>
+					</div>
+			      	     	<div class="member"><p>The table's value, or null.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.aliases.metaLabel" name="documon.aliases.metaLabel"></a><a name="metaLabel"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		metaLabel (<span class="method-arguments">flag</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">178</span>
+						    		<span class="member-line-number">203</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -709,7 +958,7 @@ Documon tag it becomes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -769,20 +1018,20 @@ Documon tag it becomes.</p>
 
 							</div>
 						</div>
-				<a name="documon.aliases.resolve"></a><a name="resolve"></a>
+				<a id="documon.aliases.resolve" name="documon.aliases.resolve"></a><a name="resolve"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		resolve (<span class="method-arguments">flag</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/aliases.js</span>
-						    		<span class="member-line-number">124</span>
+						    		<span class="member-line-number">151</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -795,7 +1044,7 @@ Documon tag it becomes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

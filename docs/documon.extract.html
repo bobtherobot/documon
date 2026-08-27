@@ -11,6 +11,32 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.extract.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="extract - Documon">
+		<meta property="og:description" content="Extracts comments from a file into an array or mulit-dementional array when the &quot;text&quot; arg contains mulitple __package__ or __namepsace__ definitions.">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.extract.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "extract",
+	"headline": "extract",
+	"identifier": "documon.extract",
+	"description": "Extracts comments from a file into an array or mulit-dementional array when the \"text\" arg contains mulitple package or namepsace definitions. Each entry in the returned array will be an object containing 3 properties - start : The line number that the comment started on - end : The line number that the comment ended on - data : The contents of the comment var myComments = extract(str); yields : [ { start : 12, end : 32, data : \"the descript\" }, { start : 12, end : 32, data : \"the descript\" } ] ## A few things of note: - The data will NOT include the beginDoc, nor the endDoc strings. - Comment prefixing is stripped - * [star space] - tabs - spaces - Code blocks maintain indentation. - Splitting on package or namespace. When a single file contains mulitple references to a \"package\" or \"namespace\" comments will split into multiple arrays -- treating the single source file as being mulitple files. Split Example: /** * Class A * @package foo <-- this designates a new \"page\" */ /** * Something for A * @method something */ /** * Class B * @package bar <-- this designates a new \"page\" */ /** * Something for B * @method something */ var myComments = extract(str); yields : [ [ // the first \"page\" { start : 12, end : 32, data : \"Class A ... \" }, { start : 12, end : 32, data : \"Something for A ...\" }, ], [ // the second \"page\" { start : 64, end : 96, data : \"Class B ... \" }, { start : 128, end : 142, data : \"Something for B ...\" }, , ]",
+	"url": "https://www.documon.net/documon.extract.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	}
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +92,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.extract"></a><a name="extract"></a>
+					            <a id="documon.extract" name="documon.extract"></a><a name="extract"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		extract (<span class="method-arguments">text</span>, <span class="method-arguments method-arg-optional">beginDoc</span>, <span class="method-arguments method-arg-optional">endDoc</span>) 
                                     
@@ -79,14 +105,14 @@
 						    		<span class="member-file">src/extract.js</span>
 						    		<span class="member-line-number">96</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.extract<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/extract.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.extract</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/extract.js</span></div>
 			</div>
 								
 								<p>Extracts comments from a file into an array or mulit-dementional array when the "text" arg contains mulitple <strong>package</strong> or <strong>namepsace</strong> definitions.</p>
@@ -120,25 +146,25 @@ yields : [<br />
 <li>Splitting on <strong>package</strong> or <strong>namespace</strong>. When a single file contains mulitple references to a "<strong>package</strong>" or "<strong>namespace</strong>" comments will split into multiple arrays -- treating the single source file as being mulitple files. </li>
 </ul>
 <p>Split <strong>Example</strong>:</p>
-<pre><code>&amp;#47;**
+<pre><code>/**
 * Class A
 * @package foo &lt;-- this designates a new "page"
-*&amp;#47;
+*/
 
-&amp;#47;**
+/**
 * Something for A
 * @method something
-*&amp;#47;
+*/
 
-&amp;#47;**
+/**
 * Class B
 * @package bar &lt;-- this designates a new "page"
-*&amp;#47;
+*/
 
-&amp;#47;**
+/**
 * Something for B
 * @method something
-*&amp;#47;
+*/
 
 var myComments = extract(str);
 yields : [
@@ -173,7 +199,7 @@ yields : [
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

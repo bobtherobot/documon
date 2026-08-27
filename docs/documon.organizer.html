@@ -11,6 +11,146 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.organizer.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="organizer - Documon">
+		<meta property="og:description" content="Organizes the parsed source-code data into a single object that takes the following form:">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.organizer.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "organizer",
+	"headline": "organizer",
+	"identifier": "documon.organizer",
+	"description": "Organizes the parsed source-code data into a single object that takes the following form: organ = { // There will always be a root node with an absolute ID of \"root\" id : \"root\", name : \"root\", file : \"root.html\", docfile : \"root.html\", packages : [ { packages : foo // Classes included in this package classes : [ { class : \"foo\" methods : [], properties : [], events : [] }, ... etc ... ], // Loose stuff found in this package methods : [], properties : [], events : [] } ], // Independent classes that are not part of any package classes : [ { class : \"foo\" methods : [], properties : [], events : [] } ... etc ... ], // Loose stuff that's not part of any package or class, assumed to be accessible \"this\" (e.g. in javascript it would be the \"window\" scope) methods : [], properties : [], events : [], }; All source code hangs off of the \"root\" node and is organized according it's relationship to a package or class. This organizer is initialized prior to parsing source code, and as each file is parsed, it is added to the organizer. After all the source-code is finished parsing, the organizer wires up adn cross references inheritance.",
+	"url": "https://www.documon.net/documon.organizer.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "flatClassList",
+			"identifier": "documon.organizer.flatClassList",
+			"articleSection": "property",
+			"description": "We maintain a \"flat list\" as a means to cross reference items that are stuffed into the main array.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.flatClassList"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "mainConf",
+			"identifier": "documon.organizer.mainConf",
+			"articleSection": "property",
+			"description": "A reference to the main configuration object. See documon.documon.mainConf.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.mainConf"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "organ",
+			"identifier": "documon.organizer.organ",
+			"articleSection": "property",
+			"description": "The primary object we store all data into.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.organ"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "sectionNames",
+			"identifier": "documon.organizer.sectionNames",
+			"articleSection": "property",
+			"description": "The complete list of sections a class or package can contain.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.sectionNames"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "Tclass",
+			"identifier": "documon.organizer.Tclass",
+			"articleSection": "property",
+			"description": "The class template processor (jst file).",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.Tclass"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "Tpackage",
+			"identifier": "documon.organizer.Tpackage",
+			"articleSection": "property",
+			"description": "The package template processor (jst file).",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.Tpackage"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "add",
+			"identifier": "documon.organizer.add",
+			"articleSection": "method",
+			"description": "Adds source-code data to the organ. The data needs to be formated from the \"tag.js\" processor. By reading the data we determine where it is to be added to the main organ.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.add"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "addToClassList",
+			"identifier": "documon.organizer.addToClassList",
+			"articleSection": "method",
+			"description": "Adds tagged data to a class array. Ensures this item is only addded once, and also place a refernce to the item in the flat list for future processing.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.addToClassList"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "addToPackageList",
+			"identifier": "documon.organizer.addToPackageList",
+			"articleSection": "method",
+			"description": "Adds a new package to the main packages list. Creates a namespace (package) if not exist.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.addToPackageList"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "appendPage",
+			"identifier": "documon.organizer.appendPage",
+			"articleSection": "method",
+			"description": "Adds a class or package to the class or package object.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.appendPage"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "buildMenu",
+			"identifier": "documon.organizer.buildMenu",
+			"articleSection": "method",
+			"description": "Generates a copy of the main organ that is sorted alphabetically, suitable for use wiht menuBuilder",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.buildMenu"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "init",
+			"identifier": "documon.organizer.init",
+			"articleSection": "method",
+			"description": "Initializes the the \"organ\", which is an object that we'll be inserting all the tagged data into. We'll also be grabbing the templates needed based on the location defined in the params.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.init"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "merge",
+			"identifier": "documon.organizer.merge",
+			"articleSection": "method",
+			"description": "A classic array merge routine.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.merge"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "sortObj",
+			"identifier": "documon.organizer.sortObj",
+			"articleSection": "method",
+			"description": "Sorts all main sections of an organ on a given key. By default sorting is conducted on the \"id\" key.",
+			"url": "https://www.documon.net/documon.organizer.html#documon.organizer.sortObj"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +206,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.organizer"></a><a name="organizer"></a>
+					            <a id="documon.organizer" name="documon.organizer"></a><a name="organizer"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		organizer () 
                                     
@@ -79,14 +219,14 @@
 						    		<span class="member-file">src/organizer.js</span>
 						    		<span class="member-line-number">71</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.organizer<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/organizer.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.organizer</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/organizer.js</span></div>
 			</div>
 								
 								<p>Organizes the parsed source-code data into a single object that takes the following form:</p>
@@ -166,7 +306,7 @@
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -175,7 +315,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.organizer.flatClassList"></a><a name="flatClassList"></a>
+                                    <a id="documon.organizer.flatClassList" name="documon.organizer.flatClassList"></a><a name="flatClassList"></a>
                                     <span class="member-name">flatClassList</span>
                                     
                                 </div>
@@ -208,7 +348,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.organizer.mainConf"></a><a name="mainConf"></a>
+                                    <a id="documon.organizer.mainConf" name="documon.organizer.mainConf"></a><a name="mainConf"></a>
                                     <span class="member-name">mainConf</span>
                                     
                                 </div>
@@ -241,7 +381,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.organizer.organ"></a><a name="organ"></a>
+                                    <a id="documon.organizer.organ" name="documon.organizer.organ"></a><a name="organ"></a>
                                     <span class="member-name">organ</span>
                                     
                                 </div>
@@ -274,7 +414,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.organizer.sectionNames"></a><a name="sectionNames"></a>
+                                    <a id="documon.organizer.sectionNames" name="documon.organizer.sectionNames"></a><a name="sectionNames"></a>
                                     <span class="member-name">sectionNames</span>
                                     
                                 </div>
@@ -307,7 +447,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.organizer.Tclass"></a><a name="Tclass"></a>
+                                    <a id="documon.organizer.Tclass" name="documon.organizer.Tclass"></a><a name="Tclass"></a>
                                     <span class="member-name">Tclass</span>
                                     
                                 </div>
@@ -340,7 +480,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.organizer.Tpackage"></a><a name="Tpackage"></a>
+                                    <a id="documon.organizer.Tpackage" name="documon.organizer.Tpackage"></a><a name="Tpackage"></a>
                                     <span class="member-name">Tpackage</span>
                                     
                                 </div>
@@ -380,21 +520,21 @@
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.organizer.add"></a><a name="add"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.organizer.add" name="documon.organizer.add"></a><a name="add"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		add (<span class="method-arguments">VtaggedPage</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">550</span>
+						    		<span class="member-line-number">558</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -407,7 +547,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -462,20 +602,20 @@
 
 							</div>
 						</div>
-				<a name="documon.organizer.addToClassList"></a><a name="addToClassList"></a>
+				<a id="documon.organizer.addToClassList" name="documon.organizer.addToClassList"></a><a name="addToClassList"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		addToClassList (<span class="method-arguments">list</span>, <span class="method-arguments">taggedPage</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">522</span>
+						    		<span class="member-line-number">530</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -488,7 +628,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -576,20 +716,20 @@
 
 							</div>
 						</div>
-				<a name="documon.organizer.addToPackageList"></a><a name="addToPackageList"></a>
+				<a id="documon.organizer.addToPackageList" name="documon.organizer.addToPackageList"></a><a name="addToPackageList"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		addToPackageList (<span class="method-arguments">list</span>, <span class="method-arguments">taggedPage</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">480</span>
+						    		<span class="member-line-number">488</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -602,7 +742,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -690,11 +830,11 @@
 
 							</div>
 						</div>
-				<a name="documon.organizer.appendPage"></a><a name="appendPage"></a>
+				<a id="documon.organizer.appendPage" name="documon.organizer.appendPage"></a><a name="appendPage"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		appendPage (<span class="method-arguments">existingObj</span>, <span class="method-arguments">newObj</span>) 
                                     
@@ -703,7 +843,7 @@
 						    		<span class="member-file">src/organizer.js</span>
 						    		<span class="member-line-number">437</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -716,7 +856,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -804,20 +944,20 @@
 
 							</div>
 						</div>
-				<a name="documon.organizer.buildMenu"></a><a name="buildMenu"></a>
+				<a id="documon.organizer.buildMenu" name="documon.organizer.buildMenu"></a><a name="buildMenu"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		buildMenu () 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">632</span>
+						    		<span class="member-line-number">640</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -843,11 +983,11 @@
 
 							</div>
 						</div>
-				<a name="documon.organizer.init"></a><a name="init"></a>
+				<a id="documon.organizer.init" name="documon.organizer.init"></a><a name="init"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		init (<span class="method-arguments">params</span>) 
                                     
@@ -856,7 +996,7 @@
 						    		<span class="member-file">src/organizer.js</span>
 						    		<span class="member-line-number">309</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -870,7 +1010,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -904,7 +1044,7 @@
 						        	
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">params properties</div>
+				    	<h2 class="heading-part">params properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -972,11 +1112,11 @@
 
 							</div>
 						</div>
-				<a name="documon.organizer.merge"></a><a name="merge"></a>
+				<a id="documon.organizer.merge" name="documon.organizer.merge"></a><a name="merge"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		merge (<span class="method-arguments">a</span>, <span class="method-arguments">b</span>, <span class="method-arguments">prop</span>) 
                                     
@@ -985,7 +1125,7 @@
 						    		<span class="member-file">src/organizer.js</span>
 						    		<span class="member-line-number">381</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -998,7 +1138,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1124,20 +1264,20 @@
 
 							</div>
 						</div>
-				<a name="documon.organizer.sortObj"></a><a name="sortObj"></a>
+				<a id="documon.organizer.sortObj" name="documon.organizer.sortObj"></a><a name="sortObj"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		sortObj (<span class="method-arguments">obj</span>, <span class="method-arguments method-arg-optional">prop</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/organizer.js</span>
-						    		<span class="member-line-number">585</span>
+						    		<span class="member-line-number">593</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1150,7 +1290,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

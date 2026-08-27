@@ -71,6 +71,7 @@ derived entirely from source-code comment tags.
 - [inlineLinks](https://www.documon.net/documon.aliases.html#documon.aliases.inlineLinks)
 - [isAlias](https://www.documon.net/documon.aliases.html#documon.aliases.isAlias)
 - [isDescription](https://www.documon.net/documon.aliases.html#documon.aliases.isDescription)
+- [lookup](https://www.documon.net/documon.aliases.html#documon.aliases.lookup)
 - [metaLabel](https://www.documon.net/documon.aliases.html#documon.aliases.metaLabel)
 - [resolve](https://www.documon.net/documon.aliases.html#documon.aliases.resolve)
 - [properties](https://www.documon.net/documon.check.html#properties)

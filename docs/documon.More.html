@@ -11,6 +11,122 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.More.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="More - Documon">
+		<meta property="og:description" content="Discovers, parses, converts markdown to HTML and injects menu with &quot;more&quot; docs.">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.More.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "More",
+	"headline": "More",
+	"identifier": "documon.More",
+	"description": "Discovers, parses, converts markdown to HTML and injects menu with \"more\" docs. Processes the \"more\" markdown folder by: - Building the menu to reflect the \"more folder\" directory structure. - Translates markdown into HTML The work is done by init, which is what this module exports.",
+	"url": "https://www.documon.net/documon.More.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "docGoesHereStr",
+			"identifier": "documon.More.docGoesHereStr",
+			"articleSection": "property",
+			"description": "The string used as the flag as to where to insert the parsed source documents into the menu.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.docGoesHereStr"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "flat",
+			"identifier": "documon.More.flat",
+			"articleSection": "property",
+			"description": "A place to store generated page objects with a direct reference to their ID via flat[id].",
+			"url": "https://www.documon.net/documon.More.html#documon.More.flat"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "metaRx",
+			"identifier": "documon.More.metaRx",
+			"articleSection": "property",
+			"description": "The regular expression use to split the doc on the metaString",
+			"url": "https://www.documon.net/documon.More.html#documon.More.metaRx"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "metaString",
+			"identifier": "documon.More.metaString",
+			"articleSection": "property",
+			"description": "The delimiting string used to seperate the meta JSON from normal markdown.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.metaString"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "quirkDelimiter",
+			"identifier": "documon.More.quirkDelimiter",
+			"articleSection": "property",
+			"description": "Used to mark where filename numbering terminates and the \"title\" begins. User configurable via the moreQuirkDelimiter option.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.quirkDelimiter"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "cleanID",
+			"identifier": "documon.More.cleanID",
+			"articleSection": "method",
+			"description": "Cleans the ID so the ID only contains lapha-numeric characters. Non-alphanumeric characters are translated into an underscore character.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.cleanID"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "init",
+			"identifier": "documon.More.init",
+			"articleSection": "method",
+			"description": "Builds the \"more\" pages and merges them into the menu. See the class description for what the module does as a whole.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.init"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "newItem",
+			"identifier": "documon.More.newItem",
+			"articleSection": "method",
+			"description": "Opens, catalogs and builds a new page from the provided file path.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.newItem"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "pageId",
+			"identifier": "documon.More.pageId",
+			"articleSection": "method",
+			"description": "Derives the id a \"more\" file will be filed under, without building anything. check.js uses this so a cross-link to a prose page resolves the same way the site resolves it. The derivation must live in one place -- a second copy would drift and start reporting working links as broken.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.pageId"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "parseJSON",
+			"identifier": "documon.More.parseJSON",
+			"articleSection": "method",
+			"description": "A safe replacement for standard JSON parsing that mitigates errors.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.parseJSON"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "quirkyName",
+			"identifier": "documon.More.quirkyName",
+			"articleSection": "method",
+			"description": "splits the numbering off of eight filename and returns the filename with out numbering",
+			"url": "https://www.documon.net/documon.More.html#documon.More.quirkyName"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +182,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.More"></a><a name="More"></a>
+					            <a id="documon.More" name="documon.More"></a><a name="More"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		More () 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -79,14 +195,14 @@
 						    		<span class="member-file">src/more.js</span>
 						    		<span class="member-line-number">23</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.More<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/more.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.More</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/more.js</span></div>
 			</div>
 								
 								<p>Discovers, parses, converts markdown to HTML and injects menu with "more" docs.</p>
@@ -119,7 +235,7 @@
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -128,7 +244,7 @@
                             <div class="member-block" data-access="private" >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.More.docGoesHereStr"></a><a name="docGoesHereStr"></a>
+                                    <a id="documon.More.docGoesHereStr" name="documon.More.docGoesHereStr"></a><a name="docGoesHereStr"></a>
                                     <span class="member-name">docGoesHereStr</span>
                                     
                                 </div>
@@ -161,7 +277,7 @@
                             <div class="member-block" data-access="private" >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.More.flat"></a><a name="flat"></a>
+                                    <a id="documon.More.flat" name="documon.More.flat"></a><a name="flat"></a>
                                     <span class="member-name">flat</span>
                                     
                                 </div>
@@ -194,7 +310,7 @@
                             <div class="member-block" data-access="private" >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.More.metaRx"></a><a name="metaRx"></a>
+                                    <a id="documon.More.metaRx" name="documon.More.metaRx"></a><a name="metaRx"></a>
                                     <span class="member-name">metaRx</span>
                                     
                                 </div>
@@ -227,7 +343,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.More.metaString"></a><a name="metaString"></a>
+                                    <a id="documon.More.metaString" name="documon.More.metaString"></a><a name="metaString"></a>
                                     <span class="member-name">metaString</span>
                                     
                                 </div>
@@ -260,7 +376,7 @@
                             <div class="member-block" data-access="private" >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.More.quirkDelimiter"></a><a name="quirkDelimiter"></a>
+                                    <a id="documon.More.quirkDelimiter" name="documon.More.quirkDelimiter"></a><a name="quirkDelimiter"></a>
                                     <span class="member-name">quirkDelimiter</span>
                                     
                                 </div>
@@ -300,12 +416,12 @@
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.More.cleanID"></a><a name="cleanID"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.More.cleanID" name="documon.More.cleanID"></a><a name="cleanID"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		cleanID (<span class="method-arguments">id</span>, <span class="method-arguments">amFolder</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -314,7 +430,7 @@
 						    		<span class="member-file">src/more.js</span>
 						    		<span class="member-line-number">183</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -327,7 +443,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -420,11 +536,11 @@
 
 							</div>
 						</div>
-				<a name="documon.More.init"></a><a name="init"></a>
+				<a id="documon.More.init" name="documon.More.init"></a><a name="init"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		init (<span class="method-arguments">params</span>, <span class="method-arguments">sourceDocsMenu</span>, <span class="method-arguments">searchDB</span>, <span class="method-arguments method-arg-optional">shouldIgnore</span>) 
                                     
@@ -433,7 +549,7 @@
 						    		<span class="member-file">src/more.js</span>
 						    		<span class="member-line-number">260</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -447,7 +563,7 @@ for what the module does as a whole.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -481,7 +597,7 @@ for what the module does as a whole.</p>
 						        	
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">params properties</div>
+				    	<h2 class="heading-part">params properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -822,11 +938,11 @@ for what the module does as a whole.</p>
 
 							</div>
 						</div>
-				<a name="documon.More.newItem"></a><a name="newItem"></a>
+				<a id="documon.More.newItem" name="documon.More.newItem"></a><a name="newItem"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		newItem (<span class="method-arguments">url</span>, <span class="method-arguments">amFolder</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -835,7 +951,7 @@ for what the module does as a whole.</p>
 						    		<span class="member-file">src/more.js</span>
 						    		<span class="member-line-number">89</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -848,7 +964,7 @@ for what the module does as a whole.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -952,20 +1068,20 @@ for what the module does as a whole.</p>
 
 							</div>
 						</div>
-				<a name="documon.More.pageId"></a><a name="pageId"></a>
+				<a id="documon.More.pageId" name="documon.More.pageId"></a><a name="pageId"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		pageId (<span class="method-arguments">relative</span>, <span class="method-arguments method-arg-optional">delimiter</span>) 
                                     
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">461</span>
+						    		<span class="member-line-number">469</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -981,7 +1097,7 @@ drift and start reporting working links as broken.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1074,11 +1190,11 @@ drift and start reporting working links as broken.</p>
 
 							</div>
 						</div>
-				<a name="documon.More.parseJSON"></a><a name="parseJSON"></a>
+				<a id="documon.More.parseJSON" name="documon.More.parseJSON"></a><a name="parseJSON"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		parseJSON (<span class="method-arguments">val</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1087,7 +1203,7 @@ drift and start reporting working links as broken.</p>
 						    		<span class="member-file">src/more.js</span>
 						    		<span class="member-line-number">231</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1100,7 +1216,7 @@ drift and start reporting working links as broken.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1160,11 +1276,11 @@ drift and start reporting working links as broken.</p>
 
 							</div>
 						</div>
-				<a name="documon.More.quirkyName"></a><a name="quirkyName"></a>
+				<a id="documon.More.quirkyName" name="documon.More.quirkyName"></a><a name="quirkyName"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		quirkyName (<span class="method-arguments">filename</span>, <span class="method-arguments">amFolder</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1173,7 +1289,7 @@ drift and start reporting working links as broken.</p>
 						    		<span class="member-file">src/more.js</span>
 						    		<span class="member-line-number">196</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1186,7 +1302,7 @@ drift and start reporting working links as broken.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

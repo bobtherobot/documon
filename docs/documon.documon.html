@@ -11,6 +11,146 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.documon.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="documon - Documon">
+		<meta property="og:description" content="The main entry point and processor for Documon, which allows you to run Documon directly from Node.">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.documon.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "documon",
+	"headline": "documon",
+	"identifier": "documon.documon",
+	"description": "The main entry point and processor for Documon, which allows you to run Documon directly from Node.",
+	"url": "https://www.documon.net/documon.documon.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "dumpData",
+			"identifier": "documon.documon.dumpData",
+			"articleSection": "property",
+			"description": "Whether or not to write intermediary files used during processing to the output data folder.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.dumpData"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "extensions",
+			"identifier": "documon.documon.extensions",
+			"articleSection": "property",
+			"description": "The list of extensions to search for source code.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.extensions"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "ignoreList",
+			"identifier": "documon.documon.ignoreList",
+			"articleSection": "property",
+			"description": "A list of strings representing regex patterns for files/folders to ignore. By default the following patterns are already included: '\\/\\.' '\\.git' 'node_modules' Configuration will concat this list with the user provied list.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.ignoreList"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "indexRedirectName",
+			"identifier": "documon.documon.indexRedirectName",
+			"articleSection": "property",
+			"description": "The filename for the shortcut to the index.html file. Use a name that will push the name to the top of the folder for quicker access to the index.hrml file.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.indexRedirectName"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "mainConf",
+			"identifier": "documon.documon.mainConf",
+			"articleSection": "property",
+			"description": "NOTE: // sourceRootFolder and dataFolder are injected into the \"mainConf\" by documon. Example link other class to documon.dirutils.makedir Example link other class to documon.dirutils Example link local to #run",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.mainConf"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "matcher",
+			"identifier": "documon.documon.matcher",
+			"articleSection": "property",
+			"description": "The compiled ignore matcher, built during init from the default patterns plus whatever the caller supplied.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.matcher"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "quiet",
+			"identifier": "documon.documon.quiet",
+			"articleSection": "property",
+			"description": "Supress stdout messages.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.quiet"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "tally",
+			"identifier": "documon.documon.tally",
+			"articleSection": "property",
+			"description": "Counts of tags that were normalized or ignored during a build, reported as a single line when the build finishes.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.tally"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "filterFileTypes",
+			"identifier": "documon.documon.filterFileTypes",
+			"articleSection": "method",
+			"description": "Determines if the file has the proper extension based on the acceptable extensions defined in this modules static \"extensions\" array.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.filterFileTypes"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "init",
+			"identifier": "documon.documon.init",
+			"articleSection": "method",
+			"description": "Initializes Documan based on the configuration settings - Parses configuration - Finds source files - Creates output folder - Copies template assets to output folder - Initializes main templates",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.init"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "run",
+			"identifier": "documon.documon.run",
+			"articleSection": "method",
+			"description": "The main processing loop that executes and manages the main flow control of parsing, evaluating and construction of the documentation. After init configures things based on the settings, and generates a list of files to process this method process and sends each file to the seeder of evaluation and processing. - Generates HTML pages - Generates _menuData.js",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.run"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "seeder",
+			"identifier": "documon.documon.seeder",
+			"articleSection": "method",
+			"description": "Extracts, parses and tags comments from one source file and stuffs the result into organizer. - Generates data files (if dumpData enabled)",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.seeder"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "shouldIgnore",
+			"identifier": "documon.documon.shouldIgnore",
+			"articleSection": "method",
+			"description": "Extracts, parses and tags comments from one source file and stuffs the result into organizer. - Generates data files (if dumpData enabled)",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.shouldIgnore"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "writeData",
+			"identifier": "documon.documon.writeData",
+			"articleSection": "method",
+			"description": "Simplify file write for text or json.",
+			"url": "https://www.documon.net/documon.documon.html#documon.documon.writeData"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +206,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.documon"></a><a name="documon"></a>
+					            <a id="documon.documon" name="documon.documon"></a><a name="documon"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		documon () 
                                     
@@ -79,14 +219,14 @@
 						    		<span class="member-file">src/documon.js</span>
 						    		<span class="member-line-number">26</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.documon<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/documon.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.documon</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/documon.js</span></div>
 			</div>
 								
 								<p>The main entry point and processor for Documon, which allows you to run Documon directly from Node.</p>
@@ -121,7 +261,7 @@
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -130,7 +270,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.dumpData"></a><a name="dumpData"></a>
+                                    <a id="documon.documon.dumpData" name="documon.documon.dumpData"></a><a name="dumpData"></a>
                                     <span class="member-name">dumpData</span>
                                     
                                 </div>
@@ -167,7 +307,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.extensions"></a><a name="extensions"></a>
+                                    <a id="documon.documon.extensions" name="documon.documon.extensions"></a><a name="extensions"></a>
                                     <span class="member-name">extensions</span>
                                     
                                 </div>
@@ -200,7 +340,7 @@
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.ignoreList"></a><a name="ignoreList"></a>
+                                    <a id="documon.documon.ignoreList" name="documon.documon.ignoreList"></a><a name="ignoreList"></a>
                                     <span class="member-name">ignoreList</span>
                                     
                                 </div>
@@ -238,7 +378,7 @@ Configuration will concat this list with the user provied list.</code></pre>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.indexRedirectName"></a><a name="indexRedirectName"></a>
+                                    <a id="documon.documon.indexRedirectName" name="documon.documon.indexRedirectName"></a><a name="indexRedirectName"></a>
                                     <span class="member-name">indexRedirectName</span>
                                     
                                 </div>
@@ -271,7 +411,7 @@ Configuration will concat this list with the user provied list.</code></pre>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.mainConf"></a><a name="mainConf"></a>
+                                    <a id="documon.documon.mainConf" name="documon.documon.mainConf"></a><a name="mainConf"></a>
                                     <span class="member-name">mainConf</span>
                                     
                                 </div>
@@ -299,7 +439,7 @@ Example link <a href="#run">local to #run</a></p>
 						        	
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">mainConf properties</div>
+				    	<h2 class="heading-part">mainConf properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -914,7 +1054,7 @@ Example link <a href="#run">local to #run</a></p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.matcher"></a><a name="matcher"></a>
+                                    <a id="documon.documon.matcher" name="documon.documon.matcher"></a><a name="matcher"></a>
                                     <span class="member-name">matcher</span>
                                     
                                 </div>
@@ -948,7 +1088,7 @@ default patterns plus whatever the caller supplied.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.quiet"></a><a name="quiet"></a>
+                                    <a id="documon.documon.quiet" name="documon.documon.quiet"></a><a name="quiet"></a>
                                     <span class="member-name">quiet</span>
                                     
                                 </div>
@@ -985,7 +1125,7 @@ default patterns plus whatever the caller supplied.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.documon.tally"></a><a name="tally"></a>
+                                    <a id="documon.documon.tally" name="documon.documon.tally"></a><a name="tally"></a>
                                     <span class="member-name">tally</span>
                                     
                                 </div>
@@ -1026,12 +1166,12 @@ build, reported as a single line when the build finishes.</p>
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.documon.filterFileTypes"></a><a name="filterFileTypes"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.documon.filterFileTypes" name="documon.documon.filterFileTypes"></a><a name="filterFileTypes"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		filterFileTypes (<span class="method-arguments">fpath</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1040,7 +1180,7 @@ build, reported as a single line when the build finishes.</p>
 						    		<span class="member-file">src/documon.js</span>
 						    		<span class="member-line-number">159</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1053,7 +1193,7 @@ build, reported as a single line when the build finishes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1113,11 +1253,11 @@ build, reported as a single line when the build finishes.</p>
 
 							</div>
 						</div>
-				<a name="documon.documon.init"></a><a name="init"></a>
+				<a id="documon.documon.init" name="documon.documon.init"></a><a name="init"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		init (<span class="method-arguments">conf</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1126,7 +1266,7 @@ build, reported as a single line when the build finishes.</p>
 						    		<span class="member-file">src/documon.js</span>
 						    		<span class="member-line-number">195</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1146,7 +1286,7 @@ build, reported as a single line when the build finishes.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1206,11 +1346,11 @@ build, reported as a single line when the build finishes.</p>
 
 							</div>
 						</div>
-				<a name="documon.documon.run"></a><a name="run"></a>
+				<a id="documon.documon.run" name="documon.documon.run"></a><a name="run"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		run (<span class="method-arguments">conf</span>) 
                                     
@@ -1219,7 +1359,7 @@ build, reported as a single line when the build finishes.</p>
 						    		<span class="member-file">src/documon.js</span>
 						    		<span class="member-line-number">628</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1239,7 +1379,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1294,11 +1434,11 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 
 							</div>
 						</div>
-				<a name="documon.documon.seeder"></a><a name="seeder"></a>
+				<a id="documon.documon.seeder" name="documon.documon.seeder"></a><a name="seeder"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		seeder (<span class="method-arguments">file</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1307,7 +1447,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 						    		<span class="member-file">src/documon.js</span>
 						    		<span class="member-line-number">506</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1323,7 +1463,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1383,11 +1523,11 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 
 							</div>
 						</div>
-				<a name="documon.documon.shouldIgnore"></a><a name="shouldIgnore"></a>
+				<a id="documon.documon.shouldIgnore" name="documon.documon.shouldIgnore"></a><a name="shouldIgnore"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		shouldIgnore (<span class="method-arguments">item</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1396,7 +1536,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 						    		<span class="member-file">src/documon.js</span>
 						    		<span class="member-line-number">482</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1412,7 +1552,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1472,11 +1612,11 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 
 							</div>
 						</div>
-				<a name="documon.documon.writeData"></a><a name="writeData"></a>
+				<a id="documon.documon.writeData" name="documon.documon.writeData"></a><a name="writeData"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		writeData (<span class="method-arguments">fpath</span>, <span class="method-arguments">data</span>, <span class="method-arguments">json</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1485,7 +1625,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 						    		<span class="member-file">src/documon.js</span>
 						    		<span class="member-line-number">148</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1498,7 +1638,7 @@ this method process and sends each file to the <a href="#seeder">seeder</a> of e
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

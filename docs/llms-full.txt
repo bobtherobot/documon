@@ -4,7 +4,7 @@ A documentation system for mortals. Use with any language. Zero dependencies, AI
 
 ---
 
-# Quick Refernce
+# Quick Reference
 
 ## Defining Properties
 
@@ -351,10 +351,10 @@ For example, lets say we have 2 classes as:
 ## Comments in comments
 If you need to include /* style comments in your comments, HTML-entity-ize the slash:
 
-	 * 	&#47;**
+	 * 	/**
 	 *  * Something for B
 	 * 	* @method something
-	 * 	*&#47;
+	 * 	*/
 
 ---
 
@@ -609,6 +609,7 @@ The following options are available for both Command Line (CLI) and native JS pr
 | -g, --ignore     | ignore      |  | Files/folders to ignore. See "Ignoring Files" below.
 | -a, --docBegin   | docBegin    |  /** | Comment begin string
 | -z, --docEnd     | docEnd      | */   | Comment end string
+| --docsDirName    | docsDirName | "docs" | Name of the folder the site is written into, inside `out`. Set it to publish at a web root rather than under `docs/`.
 | -x, --indexShortcutName  | indexShortcutName  | __LAUNCH.html  | Index shortcut name (so the file appears at the top of the folder list and you don't have to hunt for "index.html").
 | -q, --moreQuirkDelimiter | moreQuirkDelimiter | .  | The character(s) used to separate the "more" page numbering system from page titles.
 | -y, --gati       | gati        | 	| Google Analytics Tracking ID. If present pages will include tracking code.
@@ -1770,10 +1771,10 @@ To include /* style comments in your comments, HTML-entity-ize the slash:
 
 For example to render this:
 
-    &#47;**
+    /**
     Something for B
     @method something
-    *&#47;
+    */
 
 ... you would write:
 
@@ -2247,12 +2248,12 @@ actually write, and maps them onto Documon's vocabulary.
 Documon derives structure exclusively from tags, which means an unrecognised tag isn't
 a cosmetic problem -- it's a missing page. A block written as
 
-		&#64;function area
-		&#64;arg {number} r - Radius.
+		@function area
+		@arg {number} r - Radius.
 
 has no kind tag as far as Documon is concerned, so the whole entity silently disappears.
-Since `&#64;function` and `&#64;arg` are exact JSDoc synonyms for `&#64;method` and
-`&#64;param`, refusing them buys nothing and costs a page.
+Since `@function` and `@arg` are exact JSDoc synonyms for `@method` and
+`@param`, refusing them buys nothing and costs a page.
 
 Aliasing does not weaken the "structure comes only from comments" rule: an alias is
 still an explicit tag, just spelled differently.
@@ -2262,10 +2263,10 @@ still an explicit tag, just spelled differently.
 Tags whose meaning differs, even slightly, are left alone so they surface in `--check`
 rather than producing quietly wrong documentation:
 
-- `&#64;fires` / `&#64;emits` -- documents which events a method *emits*. That is not
-  the same as `&#64;event`, which declares an event entity.
-- `&#64;memberof` -- re-parents an entity; Documon scopes by `&#64;package` instead.
-- `&#64;typedef`, `&#64;callback`, `&#64;enum`, `&#64;inheritdoc` -- no equivalent concept.
+- `@fires` / `@emits` -- documents which events a method *emits*. That is not
+  the same as `@event`, which declares an event entity.
+- `@memberof` -- re-parents an entity; Documon scopes by `@package` instead.
+- `@typedef`, `@callback`, `@enum`, `@inheritdoc` -- no equivalent concept.
 
 ### ACCESS_VALUES (property) -> array
 
@@ -2329,6 +2330,21 @@ Whether a tag's content should be folded into the description.
 
 - param flag {string} - The tag as written.
 - returns {boolean}
+
+### lookup (method) [private]
+
+Reads a key from one of the tables above.
+
+The tables are object literals, so a plain `TABLE[key]` lookup falls through to
+`Object.prototype` -- and `@constructor` is a real Documon tag whose name collides with
+`Object.prototype.constructor`. That made `resolve("constructor")` hand back the Object
+function instead of the string, `metaLabel("constructor")` report it as metadata, and
+the build die in `llms.js` calling `.toUpperCase()` on a function. The same hole is
+there for `toString`, `valueOf`, `__proto__` and the rest.
+
+- param table {object} - One of TAGS, DEPRECATED or META_TAGS.
+- param flag {string} - The tag as written.
+- returns {string} - The table's value, or null.
 
 ### metaLabel (method)
 
@@ -2687,25 +2703,25 @@ Each entry in the returned array will be an object containing 3 properties
 
 Split __Example__:
 
-	&#47;**
+	/**
 	* Class A
 	* @package foo <-- this designates a new "page"
-	*&#47;
+	*/
 
-	&#47;**
+	/**
 	* Something for A
 	* @method something
-	*&#47;
+	*/
  
-	&#47;**
+	/**
 	* Class B
 	* @package bar <-- this designates a new "page"
-	*&#47;
+	*/
  
-	&#47;**
+	/**
 	* Something for B
 	* @method something
-	*&#47;
+	*/
 	
 	var myComments = extract(str);
 	yields : [
@@ -2806,8 +2822,8 @@ the entire ignore system inert:
 
 1. It `return false`'d from *inside* the loop, so only the first pattern was ever
    consulted.
-2. That first default pattern (`**&#47;.*`) is not a valid regular expression --
-   `new RegExp("**&#47;.*")` throws "Nothing to repeat" -- and the `catch` also
+2. That first default pattern (`**/.*`) is not a valid regular expression --
+   `new RegExp("**/.*")` throws "Nothing to repeat" -- and the `catch` also
    returned false.
 
 Net effect: `shouldIgnore()` always returned false, so `node_modules`, `.git`, the
@@ -3614,11 +3630,11 @@ Splitting on `@class` means a second class in a file starts a group of its own, 
 that group contains no `@package` tag -- the file declared it once, at the top. Without
 this, `tag.js` finds nothing and falls back to the `root` package, so a file like
 
-		&#47;** &#64;module thing &#64;package app *&#47;
-		&#47;** &#64;class Good *&#47;
+		/** @module thing @package app */
+		/** @class Good */
 
 produced `app.thing` and `root.Good` rather than `app.thing` and `app.Good` -- and any
-`&#64;extends app.Good` elsewhere then failed to resolve.
+`@extends app.Good` elsewhere then failed to resolve.
 
 A group that declares its own `@package` is left alone, so an explicit declaration
 always wins and a file can still switch packages part way down.

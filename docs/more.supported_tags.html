@@ -6,10 +6,36 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		
-    	<title>Supported Tags</title>
-		<meta name="description" content="more.supported_tags">
+    	<title>Supported Tags - Documon</title>
+		<meta name="description" content="Supported Tags The following flags are processed: @property, @method, @event The three basic kinds of entities normally found in a class or module. Example: @property {type} name - description @package, @namespace Generally only one per page, but can have to. See the &quot;Package / Namespace&quo...">
 		<meta name="generator" content="Documon">
-		
+		<link rel="canonical" href="https://www.documon.net/more.supported_tags.html">
+
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="Supported Tags - Documon">
+		<meta property="og:description" content="Supported Tags The following flags are processed: @property, @method, @event The three basic kinds of entities normally found in a class or module. Example: @property {type} name - description @package, @namespace Generally only one per page, but can have to. See the &quot;Package / Namespace&quo...">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/more.supported_tags.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "TechArticle",
+	"name": "Supported Tags",
+	"headline": "Supported Tags",
+	"identifier": "more.supported_tags",
+	"description": "Supported Tags The following flags are processed: @property, @method, @event The three basic kinds of entities normally found in a class or module. Example: @property {type} name - description @package, @namespace Generally only one per page, but can have to. See the \"Package / Namespace\" section below. To Documon @package and @namespace are the same thing. They can be used interchangablly, since Documon treats them identically. Example: @package foo.bar @class, @module Both entities are treated equally, but appear in the final rendered docs as \"class\". Example: @class name @private, @protected, @static, @public, @readonly Items with these flags can be shown/hidden/filtered. Example @private @overrides, @implements, @extends, @inherits These items page HTML will incorporate inherited parent properties, methods and events, which can be toggled. @requires Incorporates a list of dependancies that a module or class needs to run. Generally shows up in the \"meta\" section. Example @requires package.Class @constructor Generally used in conjunction with a class/module, and places a colored tag near the definition. @example Multiple examples can exist per item. A nice to have for templating, so the examples can be moved around and they don't have to be hard-coded into the main description. See the \"Examples\" section below. @param Classes, modules and methods can have multiple params. See \"Params\" section below. @return, @returns Can incorporate a {type}. Example @return {object} @type See \"Type\" section below @order By default, everything is sorted alphabetically. Use this flag if you need things to appear in a specific order. Example: @order 10.4 @header Used to push a general informational entry to the top of a list. See the \"Header\" section below. @defaultVal, @default (not fully tested, since the inline approach is better) Used for a method's paramter that has a default value. @see Use this to link to similar or related things. See \"See Also\" below. Tags from other systems Documon accepts the common JSDoc spellings as exact synonyms — @function / @func for @method , @arg / @argument for @param , @prop / @member for @property , @augments for @extends , @constructs for @constructor , and @const / @constant for a read-only @property . @access private becomes @private . Description tags ( @desc , @description , @summary , @classdesc , @fileoverview ) are folded into the block description, and inline target becomes a markdown link. @deprecated , @throws , @since , @author , @license , @copyright and @todo have no structural role, but are rendered as metadata rows on the member rather than discarded. Run documon --check to see exactly what was normalized or ignored. Retired spellings @impliments was Documon's own misspelling of @implements . It was retired in v3.0.0 rather than kept as a silent alias, so the typo doesn't propagate into new projects. documon --check reports it by name and tells you what to rename it to.",
+	"url": "https://www.documon.net/more.supported_tags.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	}
+}</script>
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">

@@ -6,10 +6,36 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		
-    	<title>Options</title>
-		<meta name="description" content="more.options">
+    	<title>Options - Documon</title>
+		<meta name="description" content="Options The following options are available for both Command Line (CLI) and native JS processing: cli flag js prop / config key default description -i, --src src Path to source file or folder. -o, --out out parallel to source folder Path to build docs into. Created for you if it doesn't exist. -n...">
 		<meta name="generator" content="Documon">
-		
+		<link rel="canonical" href="https://www.documon.net/more.options.html">
+
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="Options - Documon">
+		<meta property="og:description" content="Options The following options are available for both Command Line (CLI) and native JS processing: cli flag js prop / config key default description -i, --src src Path to source file or folder. -o, --out out parallel to source folder Path to build docs into. Created for you if it doesn't exist. -n...">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/more.options.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "TechArticle",
+	"name": "Options",
+	"headline": "Options",
+	"identifier": "more.options",
+	"description": "Options The following options are available for both Command Line (CLI) and native JS processing: cli flag js prop / config key default description -i, --src src Path to source file or folder. -o, --out out parallel to source folder Path to build docs into. Created for you if it doesn't exist. -n, --name name Name of your project / docs (displayed on the home page) -v, --version version Version of your project / docs (displayed on the home page) --description description One-line project description. Used in the page &lt;meta&gt; tags and in llms.txt . --baseUrl baseUrl Public base URL of the published docs. Produces canonical links and absolute URLs in llms.txt . -t, --template template Path to template folder -l, --launch launch false Launch docs in browser when done -p, --print print false Print activity to the console (verbose). -e, --sourceExt sourceExt \"js\" Extension(s) to parse. Space delimit multiple extensions -d, --dumpData dumpData false Dumps intermediary data into the \"docs/_data\" folder. -m, --more more \"More docs\" folder containing additional documentation. -g, --ignore ignore Files/folders to ignore. See \"Ignoring Files\" below. -a, --docBegin docBegin /** Comment begin string -z, --docEnd docEnd */ Comment end string --docsDirName docsDirName \"docs\" Name of the folder the site is written into, inside out . Set it to publish at a web root rather than under docs/ . -x, --indexShortcutName indexShortcutName __LAUNCH.html Index shortcut name (so the file appears at the top of the folder list and you don't have to hunt for \"index.html\"). -q, --moreQuirkDelimiter moreQuirkDelimiter . The character(s) used to separate the \"more\" page numbering system from page titles. -y, --gati gati Google Analytics Tracking ID. If present pages will include tracking code. --no-emitLlms emitLlms true Write llms.txt and llms-full.txt alongside the HTML. --no-emitModel emitModel true Write model.json , the documentation as structured data. Validation flags These never write anything. cli flag description --check Parse and validate the comments, report problems, and exit. --coverage With --check , also list symbols that have no documentation block (advisory only). --strict With --check , treat warnings as failures. --json Emit machine-readable JSON. Works with --check and with a normal build. -h, --help Usage. --version Print the Documon version. Exit codes code meaning 0 Success. 1 Configuration error -- nothing was built. 2 --check found problems. Config file Instead of passing flags every time, put a documon.json next to your package.json . Documon walks up from the current folder to find it, so you can run documon from anywhere in the project. A documon key inside package.json works too, as do documon.config.json and .documonrc . { \"src\" : \"./src\", \"out\" : \"./\", \"name\" : \"My Project\", \"version\" : \"1.0.0\", \"description\" : \"One line about the project.\", \"baseUrl\" : \"https://example.com/docs\", \"sourceExt\" : [\"js\"], \"ignore\" : [\"*.test.js\", \"vendor/\"] } Point at a specific file with --config path/to/file.json . Project identity comes from package.json If you don't set name , version or description , Documon reads them from the nearest package.json , searching up from your source folder. So this is usually enough: documon -i ./src -o ./ and the project name and version on the home page stay correct through every release without you touching a build script. Anything you set explicitly wins. Using the \"js prop\" in your project var docs = require(\"documon\"); docs({ name : \"My Cool Project\", version : \"1.0\", src : \"path/to/src\", out : \"put/docs/here\", more : \"path/to/more/folder\", template : \"path/to/template/folder\", launch : true, quiet : false, sourceExt : [\"js\", \"jsx\", \"php\"], dumpData : true, ignore : [\"/*.md\", \"/path/to/example/**\"], gati : \"UA-106684927-1\" }); Using the CLI flags cd /path/to/documon node ./index.js -l -p -d -i \"path/to/src\" -o \"put/docs/here\" -n \"My Cool Project\" -v \"1.0\" -t \"path/to/template/folder\" -e \"js jsx php\" -m \"path/to/more/folder\" Ignoring Files Each entry is matched as a plain substring first, and then as a pattern. Simple globs ( * , ** , ? ) are translated for you: \"ignore\" : [ \"*.test.js\", // any test file \"src/**/scratch\", // a folder at any depth \"/abs/path/to/thing\" ] These are always ignored, without asking: dot-files and dot-folders, node_modules , bower_components , vendor , your template folder, and the output folder. To pass more than one from the CLI, use a semicolon delimited list: documon -g \"*.test.js; scratch\"",
+	"url": "https://www.documon.net/more.options.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	}
+}</script>
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
@@ -158,6 +184,12 @@
 <td>docEnd</td>
 <td>*/</td>
 <td>Comment end string</td>
+</tr>
+<tr>
+<td>--docsDirName</td>
+<td>docsDirName</td>
+<td>"docs"</td>
+<td>Name of the folder the site is written into, inside <code>out</code>. Set it to publish at a web root rather than under <code>docs/</code>.</td>
 </tr>
 <tr>
 <td>-x, --indexShortcutName</td>

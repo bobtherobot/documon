@@ -11,6 +11,90 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.dirutils.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="dirutils - Documon">
+		<meta property="og:description" content="A collection of utilities for manipulating directories syncronously.">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.dirutils.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "dirutils",
+	"headline": "dirutils",
+	"identifier": "documon.dirutils",
+	"description": "A collection of utilities for manipulating directories syncronously.",
+	"url": "https://www.documon.net/documon.dirutils.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "copydir",
+			"identifier": "documon.dirutils.copydir",
+			"articleSection": "method",
+			"description": "Copies the entire folder's heirarchy folder from one location to another. If the other location doesn't exists, it will be constructed.",
+			"url": "https://www.documon.net/documon.dirutils.html#documon.dirutils.copydir"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "emptydir",
+			"identifier": "documon.dirutils.emptydir",
+			"articleSection": "method",
+			"description": "Recursively empties a folder of all it's contents (and all the sub-folder's contents), but leaves the source folder.",
+			"url": "https://www.documon.net/documon.dirutils.html#documon.dirutils.emptydir"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "exists",
+			"identifier": "documon.dirutils.exists",
+			"articleSection": "method",
+			"description": "Checks to see if a folder exists.",
+			"url": "https://www.documon.net/documon.dirutils.html#documon.dirutils.exists"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "makedir",
+			"identifier": "documon.dirutils.makedir",
+			"articleSection": "method",
+			"description": "Creates a folder at the specified location. The sub-folder heirarchy is constructed as needed. For example if a folder exists here: /path/to/folder ... but the following sub-folders don't exists: /path/to/folder/sub/one/two/three ... Then the \"sub/one/two/three\" tree will be constructed inside \"/path/to/folder\")",
+			"url": "https://www.documon.net/documon.dirutils.html#documon.dirutils.makedir"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "readdir",
+			"identifier": "documon.dirutils.readdir",
+			"articleSection": "method",
+			"description": "Read a folder and returns an object containing all of the files and folder in arrays.",
+			"url": "https://www.documon.net/documon.dirutils.html#documon.dirutils.readdir"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "readExt",
+			"identifier": "documon.dirutils.readExt",
+			"articleSection": "method",
+			"description": "Collects files from a folder based on the specified extension (or extensions). Can be used to search recursively through all sub-folders, and can search multiple extensions. Provided as shortcut for readdir with your own extension-checking filter.",
+			"url": "https://www.documon.net/documon.dirutils.html#documon.dirutils.readExt"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "removedir",
+			"identifier": "documon.dirutils.removedir",
+			"articleSection": "method",
+			"description": "Recursively removes a folder and all of it's sub-folders as well.",
+			"url": "https://www.documon.net/documon.dirutils.html#documon.dirutils.removedir"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +150,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.dirutils"></a><a name="dirutils"></a>
+					            <a id="documon.dirutils" name="documon.dirutils"></a><a name="dirutils"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		dirutils () 
                                     
@@ -79,14 +163,14 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">12</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.dirutils<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/dirutils.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.dirutils</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/dirutils.js</span></div>
 			</div>
 								
 								<p>A collection of utilities for manipulating directories syncronously.</p>
@@ -115,12 +199,12 @@
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.dirutils.copydir"></a><a name="copydir"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.dirutils.copydir" name="documon.dirutils.copydir"></a><a name="copydir"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		copydir (<span class="method-arguments">from</span>, <span class="method-arguments">to</span>) 
                                     
@@ -129,7 +213,7 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">193</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -142,7 +226,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -230,11 +314,11 @@
 
 							</div>
 						</div>
-				<a name="documon.dirutils.emptydir"></a><a name="emptydir"></a>
+				<a id="documon.dirutils.emptydir" name="documon.dirutils.emptydir"></a><a name="emptydir"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		emptydir (<span class="method-arguments">who</span>, <span class="method-arguments">dryRun</span>) 
                                     
@@ -243,7 +327,7 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">224</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -256,7 +340,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -349,11 +433,11 @@
 
 							</div>
 						</div>
-				<a name="documon.dirutils.exists"></a><a name="exists"></a>
+				<a id="documon.dirutils.exists" name="documon.dirutils.exists"></a><a name="exists"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		exists (<span class="method-arguments">who</span>) 
                                     
@@ -362,7 +446,7 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">283</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -375,7 +459,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -435,11 +519,11 @@
 
 							</div>
 						</div>
-				<a name="documon.dirutils.makedir"></a><a name="makedir"></a>
+				<a id="documon.dirutils.makedir" name="documon.dirutils.makedir"></a><a name="makedir"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		makedir (<span class="method-arguments">dest</span>) 
                                     
@@ -448,7 +532,7 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">43</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -467,7 +551,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -526,11 +610,11 @@
 
 							</div>
 						</div>
-				<a name="documon.dirutils.readdir"></a><a name="readdir"></a>
+				<a id="documon.dirutils.readdir" name="documon.dirutils.readdir"></a><a name="readdir"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		readdir (<span class="method-arguments">from</span>, <span class="method-arguments">filter</span>, <span class="method-arguments">recursive</span>, <span class="method-arguments">store</span>) 
                                     
@@ -539,7 +623,7 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">144</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -553,7 +637,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -736,11 +820,11 @@
 
 							</div>
 						</div>
-				<a name="documon.dirutils.readExt"></a><a name="readExt"></a>
+				<a id="documon.dirutils.readExt" name="documon.dirutils.readExt"></a><a name="readExt"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		readExt (<span class="method-arguments">from</span>, <span class="method-arguments method-arg-optional">exts</span>, <span class="method-arguments method-arg-optional">recursive</span>) 
                                     
@@ -749,7 +833,7 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">79</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -766,7 +850,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -895,11 +979,11 @@
 
 							</div>
 						</div>
-				<a name="documon.dirutils.removedir"></a><a name="removedir"></a>
+				<a id="documon.dirutils.removedir" name="documon.dirutils.removedir"></a><a name="removedir"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		removedir (<span class="method-arguments">who</span>, <span class="method-arguments">dryRun</span>) 
                                     
@@ -908,7 +992,7 @@
 						    		<span class="member-file">src/dirutils.js</span>
 						    		<span class="member-line-number">261</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -921,7 +1005,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

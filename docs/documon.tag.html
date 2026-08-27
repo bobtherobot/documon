@@ -11,6 +11,58 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.tag.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="tag - Documon">
+		<meta property="og:description" content="Processes the following flags">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.tag.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "tag",
+	"headline": "tag",
+	"identifier": "documon.tag",
+	"description": "Processes the following flags - property - package, namespace - - property - method - event - class - module - - private - protected - static - public - readonly - - overrides - implements - extends - inherits - - constructor - example - param - return, returns - - type - order - optional - header - defaultVal, default - see - requires Fills the flags object \"Source Item\", are manufactured from the parseFlag class, and generally provided to many of the methods as the \"item\" argument, and they contain the following fields: Source Item { source // Entire first line inlcuding the @flag (only first line) after // Everything after the @flag name // One word following {type}. Or first word after the @flag definition when no {type}. children // name.kid - Array of children parent // if am a child, this is my parent. flag // @flag token with @ stripped defaultVal // name=val afterType // first line after text // }",
+	"url": "https://www.documon.net/documon.tag.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "fillFlag",
+			"identifier": "documon.tag.fillFlag",
+			"articleSection": "method",
+			"description": "[fillFlag description]",
+			"url": "https://www.documon.net/documon.tag.html#documon.tag.fillFlag"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "processItems",
+			"identifier": "documon.tag.processItems",
+			"articleSection": "method",
+			"description": "Process flags for an entire list of items",
+			"url": "https://www.documon.net/documon.tag.html#documon.tag.processItems"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "processOne",
+			"identifier": "documon.tag.processOne",
+			"articleSection": "method",
+			"description": "processOne",
+			"url": "https://www.documon.net/documon.tag.html#documon.tag.processOne"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +118,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.tag"></a><a name="tag"></a>
+					            <a id="documon.tag" name="documon.tag"></a><a name="tag"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		tag () 
                                     
@@ -79,14 +131,14 @@
 						    		<span class="member-file">src/tag.js</span>
 						    		<span class="member-line-number">69</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.tag<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/tag.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.tag</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/tag.js</span></div>
 			</div>
 								
 								<p>Processes the following flags</p>
@@ -167,12 +219,12 @@
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.tag.fillFlag"></a><a name="fillFlag"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.tag.fillFlag" name="documon.tag.fillFlag"></a><a name="fillFlag"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		fillFlag (<span class="method-arguments">item</span>, <span class="method-arguments">obj</span>) 
                                     
@@ -181,7 +233,7 @@
 						    		<span class="member-file">src/tag.js</span>
 						    		<span class="member-line-number">454</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -194,7 +246,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -287,11 +339,11 @@
 
 							</div>
 						</div>
-				<a name="documon.tag.processItems"></a><a name="processItems"></a>
+				<a id="documon.tag.processItems" name="documon.tag.processItems"></a><a name="processItems"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		processItems (<span class="method-arguments">Vlist</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -300,7 +352,7 @@
 						    		<span class="member-file">src/tag.js</span>
 						    		<span class="member-line-number">357</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -313,7 +365,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -368,11 +420,11 @@
 
 							</div>
 						</div>
-				<a name="documon.tag.processOne"></a><a name="processOne"></a>
+				<a id="documon.tag.processOne" name="documon.tag.processOne"></a><a name="processOne"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		processOne (<span class="method-arguments">item</span>) 
                                     
@@ -381,7 +433,7 @@
 						    		<span class="member-file">src/tag.js</span>
 						    		<span class="member-line-number">281</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -394,7 +446,7 @@
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">

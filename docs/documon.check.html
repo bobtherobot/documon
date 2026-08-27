@@ -11,6 +11,138 @@
 		<meta name="generator" content="Documon">
 		<link rel="canonical" href="https://www.documon.net/documon.check.html">
 
+		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
+
+		<!-- Open Graph / social -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="check - Documon">
+		<meta property="og:description" content="Validates documentation comments without generating anything.">
+		<meta property="og:site_name" content="Documon">
+		<meta property="og:url" content="https://www.documon.net/documon.check.html">
+		<meta name="twitter:card" content="summary">
+
+		<script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "APIReference",
+	"name": "check",
+	"headline": "check",
+	"identifier": "documon.check",
+	"description": "Validates documentation comments without generating anything. Because Documon infers nothing from source code, a missing or misspelled tag doesn't produce a warning -- it produces *silence*, and the symbol simply never appears in the output. That is fine for a human who eyeballs the result, and useless for an automated writer that needs to know whether it succeeded. --check is that feedback signal: parse everything, report what won't work, exit non-zero. Write comments, check, repair, repeat.",
+	"url": "https://www.documon.net/documon.check.html",
+	"isPartOf": {
+		"@type": "WebSite",
+		"name": "Documon",
+		"url": "https://www.documon.net"
+	},
+	"hasPart": [
+		{
+			"@type": "TechArticle",
+			"name": "COMMON_TYPOS",
+			"identifier": "documon.check.COMMON_TYPOS",
+			"articleSection": "property",
+			"description": "Tags people (and models trained on other doc systems) reach for that Documon does not implement, mapped to the right answer.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.COMMON_TYPOS"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "EXTENDISH",
+			"identifier": "documon.check.EXTENDISH",
+			"articleSection": "property",
+			"description": "Tags whose value must resolve to another documented id.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.EXTENDISH"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "KIND_TAGS",
+			"identifier": "documon.check.KIND_TAGS",
+			"articleSection": "property",
+			"description": "Tags that declare what an entity *is*. A comment block needs one of these to become anything at all.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.KIND_TAGS"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "KNOWN_TAGS",
+			"identifier": "documon.check.KNOWN_TAGS",
+			"articleSection": "property",
+			"description": "Every tag Documon actually acts on. Anything else is inert -- it will be silently dropped from the output.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.KNOWN_TAGS"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "TAG_NOTES",
+			"identifier": "documon.check.TAG_NOTES",
+			"articleSection": "property",
+			"description": "Extra guidance for tags that look like they should work but genuinely have no Documon equivalent.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.TAG_NOTES"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "blockId",
+			"identifier": "documon.check.blockId",
+			"articleSection": "method",
+			"description": "Derives the id a comment block will be filed under, mirroring how tag.js builds ids. Ids are scoped package.container.member -- the same shape as the generated filenames (documon.dirutils.html). A @method therefore inherits the @class or @module declared above it in the same file; without that scope every run() in the project would look like a collision.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.blockId"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "collect",
+			"identifier": "documon.check.collect",
+			"articleSection": "method",
+			"description": "Collects the source files that would be parsed by a build with this config.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.collect"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "finding",
+			"identifier": "documon.check.finding",
+			"articleSection": "method",
+			"description": "Creates a finding.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.finding"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "moreIds",
+			"identifier": "documon.check.moreIds",
+			"articleSection": "method",
+			"description": "Lists the ids of the prose pages the \"more\" folder will produce. Those pages are real link targets (the options), but they come from markdown, not comments, so the cross-reference pass has no way to know they exist. Without this, every link into the manual reads as broken.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.moreIds"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "print",
+			"identifier": "documon.check.print",
+			"articleSection": "method",
+			"description": "Prints a report for humans.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.print"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "run",
+			"identifier": "documon.check.run",
+			"articleSection": "method",
+			"description": "Runs the validator.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.run"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "scanSymbols",
+			"identifier": "documon.check.scanSymbols",
+			"articleSection": "method",
+			"description": "A deliberately shallow symbol scan used only by the coverage advisory. This never feeds the render path -- Documon still derives structure exclusively from comments. It exists so an automated writer can be told \"you documented 4 of 11 exported things\" instead of silently shipping a near-empty manual.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.scanSymbols"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "summarize",
+			"identifier": "documon.check.summarize",
+			"articleSection": "method",
+			"description": "Reduces a parsed comment block to the facts the rules care about.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.summarize"
+		}
+	]
+}</script>
+
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="assets/vendor/normalize.css">
 
@@ -66,11 +198,11 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            
-					            <a name="documon.check"></a><a name="check"></a>
+					            <a id="documon.check" name="documon.check"></a><a name="check"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h1 class="member-name clearfix">
 								<span class="member-name-left">
 						    		check () 
                                     
@@ -79,14 +211,14 @@
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">25</span>
 						    	</span>
-						    </div>
+						    </h1>
 
 
 						   	<div class="member-description">
                                 
                                 <div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">documon.check<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">src/check.js<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">documon.check</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">src/check.js</span></div>
 			</div>
 								
 								<p>Validates documentation comments without generating anything.</p>
@@ -126,7 +258,7 @@ non-zero. Write comments, check, repair, repeat.</p>
 		        <a name="properties"></a>
 			    	<div class="part-properties">
 				    	
-				    	<div class="heading-part">Properties</div>
+				    	<h2 class="heading-part">Properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -135,7 +267,7 @@ non-zero. Write comments, check, repair, repeat.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.check.COMMON_TYPOS"></a><a name="COMMON_TYPOS"></a>
+                                    <a id="documon.check.COMMON_TYPOS" name="documon.check.COMMON_TYPOS"></a><a name="COMMON_TYPOS"></a>
                                     <span class="member-name">COMMON_TYPOS</span>
                                     
                                 </div>
@@ -169,7 +301,7 @@ reach for that Documon does not implement, mapped to the right answer.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.check.EXTENDISH"></a><a name="EXTENDISH"></a>
+                                    <a id="documon.check.EXTENDISH" name="documon.check.EXTENDISH"></a><a name="EXTENDISH"></a>
                                     <span class="member-name">EXTENDISH</span>
                                     
                                 </div>
@@ -202,7 +334,7 @@ reach for that Documon does not implement, mapped to the right answer.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.check.KIND_TAGS"></a><a name="KIND_TAGS"></a>
+                                    <a id="documon.check.KIND_TAGS" name="documon.check.KIND_TAGS"></a><a name="KIND_TAGS"></a>
                                     <span class="member-name">KIND_TAGS</span>
                                     
                                 </div>
@@ -236,7 +368,7 @@ needs one of these to become anything at all.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.check.KNOWN_TAGS"></a><a name="KNOWN_TAGS"></a>
+                                    <a id="documon.check.KNOWN_TAGS" name="documon.check.KNOWN_TAGS"></a><a name="KNOWN_TAGS"></a>
                                     <span class="member-name">KNOWN_TAGS</span>
                                     
                                 </div>
@@ -270,7 +402,7 @@ inert -- it will be silently dropped from the output.</p>
                             <div class="member-block"  >
                             
                                 <div class="member-block-left">
-                                    <a name="documon.check.TAG_NOTES"></a><a name="TAG_NOTES"></a>
+                                    <a id="documon.check.TAG_NOTES" name="documon.check.TAG_NOTES"></a><a name="TAG_NOTES"></a>
                                     <span class="member-name">TAG_NOTES</span>
                                     
                                 </div>
@@ -311,12 +443,12 @@ but genuinely have no Documon equivalent.</p>
 		        
 							<a name="methods"></a>
 		            		<div class="part-methods">
-					            <div class="heading-part">Methods</div>
-					            <a name="documon.check.blockId"></a><a name="blockId"></a>
+					            <h2 class="heading-part">Methods</h2>
+					            <a id="documon.check.blockId" name="documon.check.blockId"></a><a name="blockId"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		blockId (<span class="method-arguments">info</span>, <span class="method-arguments method-arg-optional">scope</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -325,7 +457,7 @@ but genuinely have no Documon equivalent.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">238</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -342,7 +474,7 @@ would look like a collision.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -435,11 +567,11 @@ would look like a collision.</p>
 
 							</div>
 						</div>
-				<a name="documon.check.collect"></a><a name="collect"></a>
+				<a id="documon.check.collect" name="documon.check.collect"></a><a name="collect"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		collect (<span class="method-arguments">conf</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -448,7 +580,7 @@ would look like a collision.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">133</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -461,7 +593,7 @@ would look like a collision.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -521,11 +653,11 @@ would look like a collision.</p>
 
 							</div>
 						</div>
-				<a name="documon.check.finding"></a><a name="finding"></a>
+				<a id="documon.check.finding" name="documon.check.finding"></a><a name="finding"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		finding (<span class="method-arguments">level</span>, <span class="method-arguments">rule</span>, <span class="method-arguments">file</span>, <span class="method-arguments">line</span>, <span class="method-arguments">message</span>, <span class="method-arguments method-arg-optional">fix</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -534,7 +666,7 @@ would look like a collision.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">114</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -547,7 +679,7 @@ would look like a collision.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -772,11 +904,11 @@ would look like a collision.</p>
 
 							</div>
 						</div>
-				<a name="documon.check.moreIds"></a><a name="moreIds"></a>
+				<a id="documon.check.moreIds" name="documon.check.moreIds"></a><a name="moreIds"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		moreIds (<span class="method-arguments">conf</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -785,7 +917,7 @@ would look like a collision.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">185</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -801,7 +933,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -861,11 +993,11 @@ exist. Without this, every link into the manual reads as broken.</p>
 
 							</div>
 						</div>
-				<a name="documon.check.print"></a><a name="print"></a>
+				<a id="documon.check.print" name="documon.check.print"></a><a name="print"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		print (<span class="method-arguments">report</span>, <span class="method-arguments">log</span>) 
                                     
@@ -874,7 +1006,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">708</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -887,7 +1019,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -975,11 +1107,11 @@ exist. Without this, every link into the manual reads as broken.</p>
 
 							</div>
 						</div>
-				<a name="documon.check.run"></a><a name="run"></a>
+				<a id="documon.check.run" name="documon.check.run"></a><a name="run"></a>
 
 						<div class="member"  >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		run (<span class="method-arguments">conf</span>, <span class="method-arguments method-arg-optional">opts</span>) 
                                     
@@ -988,7 +1120,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">394</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1001,7 +1133,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1068,7 +1200,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						        	
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">opts properties</div>
+				    	<h2 class="heading-part">opts properties</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1151,11 +1283,11 @@ exist. Without this, every link into the manual reads as broken.</p>
 
 							</div>
 						</div>
-				<a name="documon.check.scanSymbols"></a><a name="scanSymbols"></a>
+				<a id="documon.check.scanSymbols" name="documon.check.scanSymbols"></a><a name="scanSymbols"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		scanSymbols (<span class="method-arguments">source</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1164,7 +1296,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">354</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1180,7 +1312,7 @@ things" instead of silently shipping a near-empty manual.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
@@ -1240,11 +1372,11 @@ things" instead of silently shipping a near-empty manual.</p>
 
 							</div>
 						</div>
-				<a name="documon.check.summarize"></a><a name="summarize"></a>
+				<a id="documon.check.summarize" name="documon.check.summarize"></a><a name="summarize"></a>
 
 						<div class="member" data-access="private" >
 
-							<div class="member-name clearfix">
+							<h3 class="member-name clearfix">
 								<span class="member-name-left">
 						    		summarize (<span class="method-arguments">parsed</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
@@ -1253,7 +1385,7 @@ things" instead of silently shipping a near-empty manual.</p>
 						    		<span class="member-file">src/check.js</span>
 						    		<span class="member-line-number">270</span>
 						    	</span>
-						    </div>
+						    </h3>
 
 
 						   	<div class="member-description">
@@ -1266,7 +1398,7 @@ things" instead of silently shipping a near-empty manual.</p>
 								
 			    	<div class="part-parameters">
 				    	
-				    	<div class="heading-part">Parameters</div>
+				    	<h2 class="heading-part">Parameters</h2>
 				    	
 				    	<div class="member">
                             <div class="member-block-group">
