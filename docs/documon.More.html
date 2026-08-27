@@ -123,6 +123,14 @@
 			"articleSection": "method",
 			"description": "Splits the sorting prefix off a filename and returns the display name. \"050.Quick Reference.md\" becomes \"Quick Reference\". The prefix is only honoured when the character immediately before the delimiter is a digit, so an ordinary dotted name like \"notanumber.Thing.md\" keeps both of its segments. The extension is dropped either way. It used to survive on the no-prefix path -- the early return handed back the raw filename rather than the basename computed three lines above it -- so an unnumbered \"About.md\" displayed in the menu as \"About.md\" and ids as more.about_md. Every page in a folder of unnumbered files carried a visible \".md\", and llms.js grew a .replace(/\\.md$/i, \"\") to hide it again in the link index.",
 			"url": "https://www.documon.net/documon.More.html#documon.More.quirkyName"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "unparent",
+			"identifier": "documon.More.unparent",
+			"articleSection": "method",
+			"description": "Detaches a page from its parent's children, undoing what newItem did.",
+			"url": "https://www.documon.net/documon.More.html#documon.More.unparent"
 		}
 	]
 }</script>
@@ -555,7 +563,7 @@ letter, digit or underscore replaced with an underscore, lower-cased.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">284</span>
+						    		<span class="member-line-number">306</span>
 						    	</span>
 						    </h3>
 
@@ -1087,7 +1095,7 @@ for what the module does as a whole.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">493</span>
+						    		<span class="member-line-number">525</span>
 						    	</span>
 						    </h3>
 
@@ -1209,7 +1217,7 @@ drift and start reporting working links as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/more.js</span>
-						    		<span class="member-line-number">255</span>
+						    		<span class="member-line-number">277</span>
 						    	</span>
 						    </h3>
 
@@ -1403,6 +1411,87 @@ ids as <code>more.about_md</code>. Every page in a folder of unnumbered files ca
 					</div>
 			      	     	<div class="member"><p>The display name.</p></div>
 				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.More.unparent" name="documon.More.unparent"></a><a name="unparent"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		unparent (<span class="method-arguments">ctx</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/more.js</span>
+						    		<span class="member-line-number">255</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Detaches a page from its parent's children, undoing what <a href="#newItem">newItem</a> did.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">ctx</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The page object to remove.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
 
 					
 								

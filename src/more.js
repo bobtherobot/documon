@@ -247,6 +247,28 @@ function quirkyName(filename, amFolder){
 }
 
 /**
+ * Detaches a page from its parent's children, undoing what [newItem](#newItem) did.
+ *
+ * @method     unparent
+ * @private
+ * @param      {object}  ctx - The page object to remove.
+ */
+function unparent(ctx){
+
+	var parent = ctx && flat[ ctx.parentID ];
+
+	if( ! parent || ! parent.children ){
+		return;
+	}
+
+	var at = parent.children.indexOf(ctx);
+
+	if(at > -1){
+		parent.children.splice(at, 1);
+	}
+}
+
+/**
  * A safe replacement for standard JSON parsing that mitigates errors.
  * @method     parseJSON
  * @private
@@ -337,8 +359,18 @@ function init(params, sourceDocsMenu, searchDB, shouldIgnore){
 			if( ! docTargetId ){
 				docTargetId = ctx.id;
 				docTargetParentId = ctx.parentID;
+
+			} else {
+
+				// Every marker after the first is a leftover, and it cannot simply be
+				// ignored: newItem() has already pushed this node into its parent's
+				// children, and only the *first* marker is spliced back out (below, where
+				// the source docs take its place). Without this the extra one stayed in
+				// the menu as a clickable entry whose page is never written -- skip means
+				// no html is emitted for it -- so the reader got a 404 from the nav.
+				unparent(ctx);
 			}
-			
+
 			skip = true;
 		}
 

@@ -166,6 +166,7 @@ derived entirely from source-code comment tags.
 - [pageId](https://www.documon.net/documon.More.html#documon.More.pageId)
 - [parseJSON](https://www.documon.net/documon.More.html#documon.More.parseJSON)
 - [quirkyName](https://www.documon.net/documon.More.html#documon.More.quirkyName)
+- [unparent](https://www.documon.net/documon.More.html#documon.More.unparent)
 - [properties](https://www.documon.net/documon.npath.html#properties)
 - [delimiter](https://www.documon.net/documon.npath.html#documon.npath.delimiter)
 - [methods](https://www.documon.net/documon.npath.html#methods)

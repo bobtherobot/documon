@@ -2416,7 +2416,7 @@
 					"name": "init",
 					"type": null,
 					"access": "public",
-					"line": 284,
+					"line": 306,
 					"inherited": null,
 					"description": "Builds the \"more\" pages and merges them into the menu. See the class description\nfor what the module does as a whole.",
 					"meta": [],
@@ -2547,7 +2547,7 @@
 					"name": "pageId",
 					"type": null,
 					"access": "public",
-					"line": 493,
+					"line": 525,
 					"inherited": null,
 					"description": "Derives the id a \"more\" file will be filed under, without building anything.\n\n`check.js` uses this so a cross-link to a prose page resolves the same way the\nsite resolves it. The derivation must live in one place -- a second copy would\ndrift and start reporting working links as broken.",
 					"meta": [],
@@ -2580,7 +2580,7 @@
 					"name": "parseJSON",
 					"type": null,
 					"access": "private",
-					"line": 255,
+					"line": 277,
 					"inherited": null,
 					"description": "A safe replacement for standard JSON parsing that mitigates errors.",
 					"meta": [],
@@ -2631,6 +2631,28 @@
 						"type": "string",
 						"description": "The display name."
 					}
+				},
+				{
+					"id": "documon.More.unparent",
+					"kind": "method",
+					"name": "unparent",
+					"type": null,
+					"access": "private",
+					"line": 255,
+					"inherited": null,
+					"description": "Detaches a page from its parent's children, undoing what [newItem](#newItem) did.",
+					"meta": [],
+					"params": [
+						{
+							"name": "ctx",
+							"type": "object",
+							"description": "The page object to remove.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": null
 				}
 			]
 		},

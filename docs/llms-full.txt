@@ -2357,10 +2357,19 @@ And you can add additional text:
 
 	04.foo-DOCS-GO-HERE-bar.md
 
-Documon just looks for the string "DOCS-GO-HERE" in the filename as a flag where to do the insertion.
+Documon just looks for the string "DOCS-GO-HERE" in the path as a flag where to do the
+insertion. Matching is **case sensitive**: `docs-go-here.md` is not a pointer, it is an
+ordinary page called "docs-go-here".
 
-Only the first one found is used, so a stray placeholder left elsewhere in the folder is
-harmless.
+The pointer file's contents are never rendered, and no page is written for it -- it is a
+position, not a page.
+
+Put the pointer inside a sub folder and the generated docs nest there, in that folder's
+list, rather than at the top level.
+
+Only the first pointer found decides the position. Any others are dropped from the menu
+entirely, so a leftover placeholder costs you nothing. (Before v3.0.1 it stayed in the
+menu as a clickable entry whose page had never been written -- a link straight to a 404.)
 
 If a DOCS-GO-HERE pointer is not used, the generated source code docs will appear at the bottom of the "more" menu.
 
@@ -3586,6 +3595,12 @@ ids as `more.about_md`. Every page in a folder of unnumbered files carried a vis
 - param filename {string} - The filename or folder name.
 - param amFolder {boolean} - True for a folder, which has no extension to strip.
 - returns {string} - The display name.
+
+### unparent (method) [private]
+
+Detaches a page from its parent's children, undoing what [newItem](#newItem) did.
+
+- param ctx {object} - The page object to remove.
 
 ---
 

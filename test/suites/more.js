@@ -357,6 +357,155 @@ exports.run = function(t){
 			return f.file + ":" + f.line + " " + f.message; })));
 
 	// ------------------------------------------------------------------
+	t.section("more: DOCS-GO-HERE places the generated docs");
+	// ------------------------------------------------------------------
+	// The generated source documentation is one subtree, and by default it is tacked onto
+	// the end of the prose menu. A file whose name contains "DOCS-GO-HERE" says "put it
+	// here instead": the placeholder is removed and the whole subtree takes its slot.
+
+	/**
+	 * Builds a project and returns its menu as a flat list of "id" strings, depth-first,
+	 * which is the order the menu renders in.
+	 *
+	 * @method  menuIds
+	 * @private
+	 * @param   {object} spec - A t.project() spec.
+	 * @return  {object}      - `{ ids, menu, docs }`.
+	 */
+	function menuIds(spec){
+
+		var proj  = t.project(spec);
+		var built = t.cli(["-i", proj.src, "-o", proj.out, "-m", proj.more, "-n", "P"], proj.dir);
+		var docs  = path.join(proj.out, "docs");
+		var raw   = t.read(path.join(docs, "_menuData.js"));
+		var data  = eval(raw.replace(/^var MenuData =/, "(") + ")");
+		var ids   = [];
+
+		(function walk(nodes){
+			(nodes || []).forEach(function(n){
+				ids.push(n.id);
+				walk(n.children);
+			});
+		})(data);
+
+		return { ids : ids, menu : raw, docs : docs, status : built.status, stdout : built.stdout };
+	}
+
+	var SRC = { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) };
+
+	// --- default: appended at the end
+	var appended = menuIds({
+		src : SRC,
+		more : { "01.Alpha.md" : "# Alpha\n", "02.Beta.md" : "# Beta\n" }
+	});
+	t.ok(appended.ids.indexOf("root-packages") > appended.ids.indexOf("more.beta"),
+		"without a placeholder the generated docs go last",
+		JSON.stringify(appended.ids));
+
+	// --- placed: the subtree takes the placeholder's slot
+	var placed = menuIds({
+		src : SRC,
+		more : {
+			"01.Alpha.md"          : "# Alpha\n",
+			"02.DOCS-GO-HERE.md"   : "",
+			"03.Beta.md"           : "# Beta\n"
+		}
+	});
+	t.ok(placed.ids.indexOf("more.alpha") < placed.ids.indexOf("root-packages")
+		&& placed.ids.indexOf("root-packages") < placed.ids.indexOf("more.beta"),
+		"the generated docs land exactly where the placeholder sat",
+		JSON.stringify(placed.ids));
+	t.ok(placed.menu.indexOf("DOCS-GO-HERE") === -1,
+		"and the placeholder itself is gone from the menu",
+		JSON.stringify(placed.ids));
+	t.ok( ! fs.existsSync(path.join(placed.docs, "more.docs_go_here.html")),
+		"no page is written for it",
+		JSON.stringify(fs.readdirSync(placed.docs).filter(function(f){ return /^more\./.test(f); })));
+
+	// --- the name only has to contain the string, and the file need not be empty
+	var loose = menuIds({
+		src : SRC,
+		more : {
+			"01.Alpha.md"                  : "# Alpha\n",
+			"02.foo-DOCS-GO-HERE-bar.md"   : "this content is ignored\n",
+			"03.Beta.md"                   : "# Beta\n"
+		}
+	});
+	t.ok(loose.ids.indexOf("more.alpha") < loose.ids.indexOf("root-packages")
+		&& loose.ids.indexOf("root-packages") < loose.ids.indexOf("more.beta"),
+		"surrounding text in the filename is allowed", JSON.stringify(loose.ids));
+	t.ok(loose.menu.indexOf("this content is ignored") === -1,
+		"and its content is never rendered");
+
+	// --- matching is case sensitive, so a lower-case file is an ordinary page
+	var cased = menuIds({
+		src : SRC,
+		more : { "01.Alpha.md" : "# Alpha\n", "02.docs-go-here.md" : "# Not a marker\n" }
+	});
+	t.ok(cased.ids.indexOf("more.docs_go_here") > -1
+		&& cased.ids.indexOf("root-packages") > cased.ids.indexOf("more.docs_go_here"),
+		"a lower-case name is not a placeholder -- it is just a page",
+		JSON.stringify(cased.ids));
+
+	// --- inside a folder, the docs nest there
+	var nested = menuIds({
+		src : SRC,
+		more : {
+			"01.Alpha.md"                : "# Alpha\n",
+			"02.Guide/01.Intro.md"       : "# Intro\n",
+			"02.Guide/02.DOCS-GO-HERE.md": "",
+			"02.Guide/03.Outro.md"       : "# Outro\n"
+		}
+	});
+	t.ok(nested.ids.indexOf("more.guide.intro") < nested.ids.indexOf("root-packages")
+		&& nested.ids.indexOf("root-packages") < nested.ids.indexOf("more.guide.outro"),
+		"a placeholder inside a folder nests the generated docs in that folder",
+		JSON.stringify(nested.ids));
+
+	// --- a leftover second placeholder must not survive as a dead menu entry
+	//
+	// newItem() pushes every page into its parent's children before the placeholder check
+	// runs, and only the *first* placeholder is spliced back out when the docs take its
+	// slot. A second one therefore stayed in the menu as a clickable entry -- while "skip"
+	// meant no html was ever written for it, so the nav led to a 404.
+	var stray = menuIds({
+		src : SRC,
+		more : {
+			"01.Alpha.md"                      : "# Alpha\n",
+			"02.DOCS-GO-HERE.md"               : "",
+			"03.Beta.md"                       : "# Beta\n",
+			"04.old-DOCS-GO-HERE-scratch.md"   : "leftover\n"
+		}
+	});
+	t.ok(stray.menu.indexOf("DOCS-GO-HERE") === -1,
+		"a leftover second placeholder leaves nothing in the menu",
+		JSON.stringify(stray.ids));
+	t.ok(stray.ids.indexOf("more.old_docs_go_here_scratch") === -1,
+		"not even under its cleaned id", JSON.stringify(stray.ids));
+	t.ok(stray.ids.indexOf("more.alpha") < stray.ids.indexOf("root-packages")
+		&& stray.ids.indexOf("root-packages") < stray.ids.indexOf("more.beta"),
+		"and the first one still decides the position", JSON.stringify(stray.ids));
+
+	// Every id the menu offers must correspond to a page that exists. This is the
+	// assertion that actually caught the leftover: it was in the menu, with a url.
+	var strayMissing = stray.ids.filter(function(id){
+		return /^more\./.test(id) && ! fs.existsSync(path.join(stray.docs, id + ".html"));
+	});
+	t.ok(strayMissing.length === 0,
+		"and no prose entry in the menu points at a page that was never written",
+		JSON.stringify(strayMissing));
+
+	// --- a placeholder on its own is still a valid way to say "docs first"
+	var only = menuIds({
+		src  : SRC,
+		more : { "01.DOCS-GO-HERE.md" : "" }
+	});
+	t.ok(only.status === 0, "a more folder holding only a placeholder builds",
+		"exit " + only.status + "\n" + only.stdout.slice(-300));
+	t.ok(only.ids.indexOf("root-packages") === 0,
+		"and puts the generated docs at the top", JSON.stringify(only.ids));
+
+	// ------------------------------------------------------------------
 	t.section("more: a missing or empty folder");
 	// ------------------------------------------------------------------
 	var noMore = t.project({ src : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) } });

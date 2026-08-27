@@ -1651,6 +1651,14 @@ var MenuData = [
 														"kind": "methods-item",
 														"access": "private",
 														"inherits": 0
+													},
+													{
+														"id": "documon.More.unparent",
+														"url": "documon.More.html#documon.More.unparent",
+														"label": "unparent",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
 													}
 												]
 											}

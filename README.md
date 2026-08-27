@@ -212,6 +212,14 @@ Fixed:
 - The `@deprecated` badge in `flags.jst` could never fire: `parse.js` moves the tag onto
   `meta` and drops the flag. `meta.jst` renders it; the dead branch is gone.
 - Three `console.log` calls removed from `Linker.js`, one of them firing on every page load.
+- A second `DOCS-GO-HERE` placeholder left in the `more` folder stayed in the menu as a
+  clickable entry, while being skipped when pages were written -- so the navigation linked
+  to a 404. Only the first placeholder ever decided the position, but `newItem()` had
+  already pushed every page into its parent's children by then, and only that first one was
+  spliced back out. The extras are now detached. The feature has test coverage for the
+  first time: default placement, explicit placement, placement inside a sub folder,
+  case sensitivity, surrounding text in the filename, contents being ignored, and a menu
+  that never offers a page which was not written.
 - Documenting a symbol named after an `Object.prototype` member no longer breaks
   `--check`. Documon keys maps on names you write -- ids, parameter names, symbol names --
   and a plain `{}` inherits `constructor`, `toString`, `valueOf`, `hasOwnProperty` and
