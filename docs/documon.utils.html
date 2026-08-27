@@ -38,6 +38,22 @@
 	"hasPart": [
 		{
 			"@type": "TechArticle",
+			"name": "dict",
+			"identifier": "documon.utils.dict",
+			"articleSection": "method",
+			"description": "Creates a lookup table that cannot collide with Object.prototype. Documon keys maps on things the user wrote -- ids, parameter names, symbol names, tag names -- and a plain {} inherits constructor, toString, valueOf, hasOwnProperty and proto. Every one of those is a name somebody will legitimately document, and a plain-object map reads them back as truthy inherited values from an *empty* table. That is not theoretical: --check reported duplicate-id \"toString\" -- already declared at undefined:undefined and a duplicate-param for a parameter declared once, and its coverage pass silently skipped every symbol so named. @constructor broke aliases.js the same way, which is why lookup exists there. proto is the worst of them: assigning it on a plain object reassigns the prototype rather than storing a key. On a null-prototype object it is an ordinary string. Use this for any map keyed by user input. Use own to read a table you cannot build this way, such as an object literal with fixed contents.",
+			"url": "https://www.documon.net/documon.utils.html#documon.utils.dict"
+		},
+		{
+			"@type": "TechArticle",
+			"name": "own",
+			"identifier": "documon.utils.own",
+			"articleSection": "method",
+			"description": "Reads a key from a table without falling through to Object.prototype. The companion to dict, for tables that are written as object literals and so carry a prototype -- Documon's tag tables, for instance. Returns undefined rather than an inherited function when the key is a prototype member.",
+			"url": "https://www.documon.net/documon.utils.html#documon.utils.own"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "sort_by",
 			"identifier": "documon.utils.sort_by",
 			"articleSection": "method",
@@ -152,7 +168,195 @@
 							<a name="methods"></a>
 		            		<div class="part-methods">
 					            <h2 class="heading-part">Methods</h2>
-					            <a id="documon.utils.sort_by" name="documon.utils.sort_by"></a><a name="sort_by"></a>
+					            <a id="documon.utils.dict" name="documon.utils.dict"></a><a name="dict"></a>
+
+						<div class="member"  >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		dict () 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/utils.js</span>
+						    		<span class="member-line-number">68</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Creates a lookup table that cannot collide with <code>Object.prototype</code>.</p>
+<p>Documon keys maps on things the user wrote -- ids, parameter names, symbol names, tag<br />
+names -- and a plain <code>{}</code> inherits <code>constructor</code>, <code>toString</code>, <code>valueOf</code>,<br />
+<code>hasOwnProperty</code> and <code>__proto__</code>. Every one of those is a name somebody will<br />
+legitimately document, and a plain-object map reads them back as truthy inherited<br />
+values from an <em>empty</em> table.</p>
+<p>That is not theoretical: <code>--check</code> reported <code>duplicate-id "toString" -- already declared
+at undefined:undefined</code> and a <code>duplicate-param</code> for a parameter declared once, and its<br />
+coverage pass silently skipped every symbol so named. <code>@constructor</code> broke<br />
+<code>aliases.js</code> the same way, which is why <a href="documon.aliases.lookup">lookup</a> exists there.</p>
+<p><code>__proto__</code> is the worst of them: assigning it on a plain object reassigns the<br />
+prototype rather than storing a key. On a null-prototype object it is an ordinary<br />
+string.</p>
+<p>Use this for any map keyed by user input. Use <a href="#own">own</a> to read a table you cannot<br />
+build this way, such as an object literal with fixed contents.</p>
+
+					
+								
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">object</span>
+					</div>
+			      	     	<div class="member"><p>An empty object with no prototype.</p></div>
+				
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    var ids = utils.dict();
+    ids["toString"] = { file : "a.js" };
+    ids["valueOf"];   // undefined, not Object.prototype.valueOf</code></pre>
+	        </div>
+	    </div>
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.utils.own" name="documon.utils.own"></a><a name="own"></a>
+
+						<div class="member"  >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		own (<span class="method-arguments">table</span>, <span class="method-arguments">key</span>) 
+                                    
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/utils.js</span>
+						    		<span class="member-line-number">88</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Reads a key from a table without falling through to <code>Object.prototype</code>.</p>
+<p>The companion to <a href="#dict">dict</a>, for tables that are written as object literals and so<br />
+carry a prototype -- Documon's tag tables, for instance. Returns undefined rather than<br />
+an inherited function when the key is a prototype member.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">table</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The lookup table.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">key</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The key to read.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">any</span>
+					</div>
+			      	     	<div class="member"><p>The table's own value, or undefined.</p></div>
+				
+
+					
+								<div class="member">
+			<div class="heading-example">Example</div>
+			<div class="example-block">
+	    		<pre><code>    utils.own({}, "toString");   // undefined
+    ({}).toString;               // the inherited function</code></pre>
+	        </div>
+	    </div>
+
+							    
+
+							</div>
+						</div>
+				<a id="documon.utils.sort_by" name="documon.utils.sort_by"></a><a name="sort_by"></a>
 
 						<div class="member" data-access="private" >
 
@@ -163,7 +367,7 @@
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/utils.js</span>
-						    		<span class="member-line-number">164</span>
+						    		<span class="member-line-number">224</span>
 						    	</span>
 						    </h3>
 

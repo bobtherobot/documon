@@ -133,7 +133,7 @@ var matcher = null;
  * @property {object} tally - Counts of tags that were normalized or ignored during a
  * build, reported as a single line when the build finishes.
  */
-var tally = { unknown : 0, normalized : 0, unknownNames : {}, retired : {} };
+var tally = { unknown : 0, normalized : 0, unknownNames : utils.dict(), retired : utils.dict() };
 
 /**
  * @property  {boolean} quiet=false - Supress stdout messages.
@@ -664,7 +664,9 @@ function run(conf){
 
 	var result = null;
 
-	tally = { unknown : 0, normalized : 0, unknownNames : {}, retired : {} };
+	// dict() rather than {}: keyed on tag names the user wrote, so a stray @toString
+	// would otherwise read as already-recorded and vanish from the ignored-tags summary.
+	tally = { unknown : 0, normalized : 0, unknownNames : utils.dict(), retired : utils.dict() };
 
 	if(conf){
 

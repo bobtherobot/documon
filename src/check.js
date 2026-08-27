@@ -32,6 +32,7 @@ var parse   = require('./parse');
 var ignoreModule = require('./ignore');
 var aliases = require('./aliases');
 var more    = require('./more');
+var utils   = require('./utils');
 
 /**
  * @property {array} KIND_TAGS - Tags that declare what an entity *is*. A comment block
@@ -290,7 +291,7 @@ function codeLines(lines){
  */
 function moreIds(conf){
 
-	var found = {};
+	var found = utils.dict();
 
 	if( ! conf.more ){
 		return found;
@@ -460,7 +461,10 @@ function summarize(parsed){
 function scanSymbols(source){
 
 	var found  = [];
-	var seen   = {};
+	// Keyed on symbol names scanned out of the source. Inherited truthiness made
+	// scanSymbols skip every toString/valueOf outright, so they were neither counted nor
+	// reported -- coverage read "0/1 (0%)" for a file holding three functions.
+	var seen   = utils.dict();
 	var lines  = source.split("\n");
 
 	var patterns = [
@@ -619,7 +623,12 @@ function run(conf, opts){
 	var findings = [];
 	var files    = collect(conf);
 
-	var ids       = {};   // id -> first location
+	// Keyed on ids the user wrote. A plain {} inherits "constructor", "toString",
+	// "valueOf", "hasOwnProperty" and "__proto__" -- all of them names people document --
+	// and reads them back as truthy from an empty table. This reported
+	// `duplicate-id "toString" -- already declared at undefined:undefined`, and never
+	// stored the real id, so stats.entities came back 0.
+	var ids       = utils.dict();   // id -> first location
 	var blocks    = [];
 	var linkRefs  = [];
 	var totalComments = 0;
@@ -740,8 +749,10 @@ function run(conf, opts){
 			}
 
 			if( KNOWN_TAGS.indexOf(tag.flag) === -1 ){
-				var note = TAG_NOTES[ String(tag.flag).toLowerCase() ];
-				var suggestion = COMMON_TYPOS[ String(tag.flag).toLowerCase() ];
+				// Read through own(): these are object literals, so TAG_NOTES["__proto__"]
+				// hands back Object.prototype and the "fix" line renders "[object Object]".
+				var note = utils.own(TAG_NOTES, String(tag.flag).toLowerCase());
+				var suggestion = utils.own(COMMON_TYPOS, String(tag.flag).toLowerCase());
 				findings.push( finding("warning", "unknown-tag", blk.file, blk.line,
 					'@' + tag.flag + ' is not a Documon tag and will be ignored.',
 					note ? note
@@ -757,7 +768,7 @@ function run(conf, opts){
 		// documented, so nothing else flags it. no-description only fires on an empty
 		// block and param-no-type only on a missing type, which is how these sat on
 		// Documon's own published pages across seven modules.
-		var placeholders = {};
+		var placeholders = utils.dict();
 
 		for(var ph=0; ph<blk.tags.length; ph++){
 
@@ -814,7 +825,9 @@ function run(conf, opts){
 		}
 
 		// --- params
-		var paramSeen = {};
+		// Keyed on parameter names: "@param {object} constructor" was reported as a
+		// duplicate on its first and only appearance.
+		var paramSeen = utils.dict();
 		for(var pi=0; pi<blk.params.length; pi++){
 
 			var prm = blk.params[pi];
@@ -896,7 +909,9 @@ function run(conf, opts){
 	// ------------------------------------------------
 	if(opts.coverage){
 
-		var documented = {};
+		// Keyed on entity names. Inherited truthiness here is a false *negative*: an
+		// undocumented toString() counted as documented.
+		var documented = utils.dict();
 		for(var d=0; d<blocks.length; d++){
 			if(blocks[d].name){
 				documented[ blocks[d].name ] = true;

@@ -37,6 +37,8 @@ www.documon.net
  * @package documon
  */
 
+var utils = require('./utils');
+
 /**
  * @property {object} TAGS - Exact synonyms. The key is what was written, the value is the
  * Documon tag it becomes.
@@ -129,13 +131,9 @@ var ACCESS_VALUES = ["private", "protected", "public"];
  */
 function lookup(table, flag){
 
-	var key = String(flag == null ? "" : flag).toLowerCase();
+	var value = utils.own(table, String(flag == null ? "" : flag).toLowerCase());
 
-	if( ! Object.prototype.hasOwnProperty.call(table, key) ){
-		return null;
-	}
-
-	return table[key];
+	return typeof value === "undefined" ? null : value;
 }
 
 /**

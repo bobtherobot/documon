@@ -37,6 +37,66 @@ function decodeCommentEscapes(str) {
 }
 
 
+/**
+ * Creates a lookup table that cannot collide with `Object.prototype`.
+ *
+ * Documon keys maps on things the user wrote -- ids, parameter names, symbol names, tag
+ * names -- and a plain `{}` inherits `constructor`, `toString`, `valueOf`,
+ * `hasOwnProperty` and `__proto__`. Every one of those is a name somebody will
+ * legitimately document, and a plain-object map reads them back as truthy inherited
+ * values from an *empty* table.
+ *
+ * That is not theoretical: `--check` reported `duplicate-id "toString" -- already declared
+ * at undefined:undefined` and a `duplicate-param` for a parameter declared once, and its
+ * coverage pass silently skipped every symbol so named. `&#64;constructor` broke
+ * `aliases.js` the same way, which is why [lookup](documon.aliases.lookup) exists there.
+ *
+ * `__proto__` is the worst of them: assigning it on a plain object reassigns the
+ * prototype rather than storing a key. On a null-prototype object it is an ordinary
+ * string.
+ *
+ * Use this for any map keyed by user input. Use [own](#own) to read a table you cannot
+ * build this way, such as an object literal with fixed contents.
+ *
+ * @method  dict
+ * @return  {object} - An empty object with no prototype.
+ * @example
+ *
+ * 		var ids = utils.dict();
+ * 		ids["toString"] = { file : "a.js" };
+ * 		ids["valueOf"];   // undefined, not Object.prototype.valueOf
+ */
+function dict(){
+    return Object.create(null);
+}
+
+/**
+ * Reads a key from a table without falling through to `Object.prototype`.
+ *
+ * The companion to [dict](#dict), for tables that are written as object literals and so
+ * carry a prototype -- Documon's tag tables, for instance. Returns undefined rather than
+ * an inherited function when the key is a prototype member.
+ *
+ * @method  own
+ * @param   {object}  table - The lookup table.
+ * @param   {string}  key   - The key to read.
+ * @return  {any}           - The table's own value, or undefined.
+ * @example
+ *
+ * 		utils.own({}, "toString");   // undefined
+ * 		({}).toString;               // the inherited function
+ */
+function own(table, key){
+
+    if( ! table ){
+        return undefined;
+    }
+
+    var name = String(key == null ? "" : key);
+
+    return Object.prototype.hasOwnProperty.call(table, name) ? table[name] : undefined;
+}
+
 function removeTrailingSlash(str) {
     if (str && str.slice(-1) == "/") {
         str = str.slice(0, -1);
@@ -261,5 +321,7 @@ module.exports = {
     clone: clone,
     trace: trace,
     capitalize : capitalize,
-    decodeCommentEscapes : decodeCommentEscapes
+    decodeCommentEscapes : decodeCommentEscapes,
+    dict : dict,
+    own : own
 }

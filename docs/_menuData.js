@@ -2153,6 +2153,22 @@ var MenuData = [
 												"kind": "methods",
 												"children": [
 													{
+														"id": "documon.utils.dict",
+														"url": "documon.utils.html#documon.utils.dict",
+														"label": "dict",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
+														"id": "documon.utils.own",
+														"url": "documon.utils.html#documon.utils.own",
+														"label": "own",
+														"kind": "methods-item",
+														"access": "public",
+														"inherits": 0
+													},
+													{
 														"id": "documon.utils.sort_by",
 														"url": "documon.utils.html#documon.utils.sort_by",
 														"label": "sort_by",

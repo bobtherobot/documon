@@ -306,6 +306,167 @@ exports.run = function(t){
 		JSON.stringify(unimplemented));
 
 	// ------------------------------------------------------------------
+	t.section("invariants: user names never collide with Object.prototype");
+	// ------------------------------------------------------------------
+	// Documon keys maps on things the user wrote -- ids, parameter names, symbol names,
+	// tag names, prose filenames. A plain {} inherits "constructor", "toString",
+	// "valueOf", "hasOwnProperty" and "__proto__", every one of which is a name somebody
+	// legitimately documents, and reads them back as truthy from an *empty* table.
+	//
+	// This is not hypothetical. --check reported
+	//   duplicate-id "toString" -- already declared at undefined:undefined
+	// for a symbol declared once, a duplicate-param for a parameter declared once, and
+	// stats.entities came back 0 because the real id was never stored. The coverage pass
+	// skipped every such symbol outright: "0/1 (0%)" for a file holding three functions.
+	// @constructor broke aliases.js the same way before that.
+	//
+	// This is asserted end to end rather than by inspecting the maps, so it keeps holding
+	// if someone later reorganizes them -- and catches the ones nobody has thought of.
+	var DANGEROUS = ["constructor", "toString", "valueOf", "hasOwnProperty", "__proto__",
+		"isPrototypeOf", "propertyIsEnumerable", "toLocaleString"];
+
+	// --- the helpers themselves
+	var utils = t.src("utils");
+	var box = utils.dict();
+	box["toString"] = { file : "a.js" };
+	t.ok(box["toString"] && box["toString"].file === "a.js",
+		"dict() stores a prototype-named key", JSON.stringify(box["toString"]));
+	t.ok(typeof box["valueOf"] === "undefined",
+		"and reads an unset one back as undefined", String(box["valueOf"]));
+
+	// __proto__ is the worst of them: on a plain object, assigning it *reassigns the
+	// prototype* rather than storing a key -- and reading it straight back still looks
+	// right, which is why the tell is that the object inherits the value's members.
+	box["__proto__"] = { file : "b.js" };
+	t.ok(Object.keys(box).indexOf("__proto__") > -1,
+		"__proto__ is stored as an ordinary key on a dict()", JSON.stringify(Object.keys(box)));
+	t.ok(typeof box.file === "undefined",
+		"rather than being installed as the prototype", String(box.file));
+
+	t.ok(typeof utils.own({}, "toString") === "undefined",
+		"own() does not fall through to the prototype", String(utils.own({}, "toString")));
+	t.ok(utils.own({ toString : "mine" }, "toString") === "mine",
+		"but does return a real own value");
+
+	// The original instance of this bug: @constructor is a real Documon tag.
+	var aliases = t.src("aliases");
+	t.ok(typeof aliases.resolve("constructor") === "string",
+		"aliases.resolve returns a string for @constructor, not Object.prototype.constructor",
+		typeof aliases.resolve("constructor"));
+	t.ok(aliases.metaLabel("toString") === null,
+		"and metaLabel does not report an inherited member as metadata",
+		String(aliases.metaLabel("toString")));
+
+	// --- a whole project named entirely out of Object.prototype
+	var lines = [t.OPEN, " * A class named awkwardly on purpose.",
+		" * @class   constructor", " * @package app", " " + t.CLOSE];
+
+	for(var dg=0; dg<DANGEROUS.length; dg++){
+		lines.push("");
+		lines.push(t.OPEN);
+		lines.push(" * Member " + DANGEROUS[dg] + ".");
+		lines.push(" * @method " + DANGEROUS[dg]);
+		// Parameters are a separate map (paramSeen) with the same hole.
+		lines.push(" * @param  {object} " + DANGEROUS[dg] + " - Named to collide.");
+		lines.push(" * @return {string} - Text.");
+		lines.push(" " + t.CLOSE);
+	}
+
+	// The ids map is only reachable when an entity is *unscoped* -- with a @package and a
+	// @class every id is dotted and can never be a bare "toString". This second file is
+	// the shape that actually produced
+	//   duplicate-id "toString" -- already declared at undefined:undefined
+	// and it carries real function bodies so --coverage's symbol scanner is exercised on
+	// the same names; that scanner has its own map and its own copy of the hole.
+	var loose = [];
+	for(var lo=0; lo<DANGEROUS.length; lo++){
+		loose.push(t.OPEN);
+		loose.push(" * A free function, no package and no class.");
+		loose.push(" * @method " + DANGEROUS[lo]);
+		loose.push(" * @return {string} - Text.");
+		loose.push(" " + t.CLOSE);
+		loose.push("function " + DANGEROUS[lo] + "(){ return \"x\"; }");
+		loose.push("");
+	}
+
+	var proseFiles = {};
+	for(var pf=0; pf<DANGEROUS.length; pf++){
+		proseFiles["0" + pf + "." + DANGEROUS[pf] + ".md"] =
+			"# " + DANGEROUS[pf] + "\n\nLinks to [the class](app.constructor).\n";
+	}
+
+	var hostile = t.project({
+		src  : {
+			"hostile.js" : lines.join("\n"),
+			"loose.js"   : loose.join("\n")
+		},
+		more : proseFiles
+	});
+
+	var hostileCheck = t.check(["-i", hostile.src, "-m", hostile.more], hostile.dir);
+
+	t.ok(hostileCheck.report.counts.error === 0,
+		"a project named entirely out of Object.prototype has no check errors",
+		JSON.stringify(hostileCheck.report.findings.filter(function(f){
+			return f.level === "error"; })));
+	t.ok(hostileCheck.report.counts.warning === 0,
+		"and no warnings",
+		JSON.stringify(hostileCheck.report.findings.filter(function(f){
+			return f.level === "warning"; })));
+
+	// The count is the real tell: ids that silently failed to store still produced a
+	// PASS, they just vanished from the tally.
+	// The count is what catches a silently dropped id: the write never happened, but the
+	// report still said PASS.
+	var expectedEntities = (DANGEROUS.length * 2) + 1;   // packaged + unscoped + the class
+	t.ok(hostileCheck.report.stats.entities === expectedEntities,
+		"and every entity is counted, not silently dropped",
+		hostileCheck.report.stats.entities + " of " + expectedEntities);
+
+	// --- coverage sees them too
+	var covered = t.check(["-i", hostile.src, "-m", hostile.more, "--coverage"], hostile.dir);
+	t.ok(covered.report.coverage && covered.report.coverage.symbols === DANGEROUS.length,
+		"the coverage scanner counts every prototype-named symbol",
+		JSON.stringify(covered.report.coverage));
+	t.ok(covered.report.coverage && covered.report.coverage.undocumented === 0,
+		"and recognises that each one is documented",
+		JSON.stringify(covered.report.coverage));
+
+	// --- and the build carries them all the way to model.json
+	var hostileBuild = t.cli(["-i", hostile.src, "-o", hostile.out, "-m", hostile.more,
+		"-n", "Hostile"], hostile.dir);
+	t.ok(hostileBuild.status === 0, "the build succeeds",
+		"exit " + hostileBuild.status + "\n" + hostileBuild.stdout.slice(-400));
+
+	var hostileModel = JSON.parse(t.read(path.join(hostile.out, "docs", "model.json")));
+	var klass = hostileModel.pages.filter(function(pg){ return pg.id === "app.constructor"; })[0];
+
+	t.ok(klass, "the class page is in the model",
+		JSON.stringify(hostileModel.pages.map(function(pg){ return pg.id; })));
+
+	var memberNames = klass ? klass.members.map(function(m){ return m.name; }) : [];
+	var missing = DANGEROUS.filter(function(name){ return memberNames.indexOf(name) === -1; });
+	t.ok(missing.length === 0, "carrying every prototype-named member",
+		"missing: " + JSON.stringify(missing) + " got: " + JSON.stringify(memberNames));
+
+	// Parameters survive too -- a different map from the ids.
+	var paramsKept = klass && klass.members.every(function(m){
+		return ! m.params.length || m.params[0].name === m.name;
+	});
+	t.ok(paramsKept, "and every prototype-named parameter",
+		JSON.stringify(klass && klass.members.map(function(m){
+			return m.name + "(" + m.params.map(function(pm){ return pm.name; }).join(",") + ")"; })));
+
+	// Prose pages are namespaced under "more", so they were never exposed -- pin that.
+	var hostileMenu = t.read(path.join(hostile.out, "docs", "_menuData.js"));
+	var proseMissing = DANGEROUS.filter(function(name){
+		return hostileMenu.indexOf('"more.' + name.toLowerCase() + '"') === -1;
+	});
+	t.ok(proseMissing.length === 0,
+		"and a prose page may be named after one too",
+		"missing: " + JSON.stringify(proseMissing));
+
+	// ------------------------------------------------------------------
 	t.section("invariants: generated folders are not hand-edited");
 	// ------------------------------------------------------------------
 	// docs/ is emptied on every build, so anything hand-written there is lost. The

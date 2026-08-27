@@ -219,6 +219,8 @@ derived entirely from source-code comment tags.
 - [processItems](https://www.documon.net/documon.tag.html#documon.tag.processItems)
 - [processOne](https://www.documon.net/documon.tag.html#documon.tag.processOne)
 - [methods](https://www.documon.net/documon.utils.html#methods)
+- [dict](https://www.documon.net/documon.utils.html#documon.utils.dict)
+- [own](https://www.documon.net/documon.utils.html#documon.utils.own)
 - [sort_by](https://www.documon.net/documon.utils.html#documon.utils.sort_by)
 - [methods](https://www.documon.net/root.html#methods)
 - [flagBody](https://www.documon.net/root.html#root.flagBody)

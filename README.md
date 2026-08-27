@@ -191,6 +191,17 @@ Fixed:
 - The `@deprecated` badge in `flags.jst` could never fire: `parse.js` moves the tag onto
   `meta` and drops the flag. `meta.jst` renders it; the dead branch is gone.
 - Three `console.log` calls removed from `Linker.js`, one of them firing on every page load.
+- Documenting a symbol named after an `Object.prototype` member no longer breaks
+  `--check`. Documon keys maps on names you write -- ids, parameter names, symbol names --
+  and a plain `{}` inherits `constructor`, `toString`, `valueOf`, `hasOwnProperty` and
+  `__proto__`, reading them back as truthy from an empty table. A free-standing
+  `@method toString` produced `duplicate-id "toString" -- already declared at
+  undefined:undefined` and exited 2 on valid input; a `@param {object} constructor`
+  declared once was reported as a duplicate; and the coverage pass skipped such symbols
+  outright, reporting `0/1 (0%)` for a file holding three functions -- undocumented code
+  reading as fine. `utils.dict()` and `utils.own()` are the two ways of not doing this,
+  and an end-to-end invariant now documents a whole project out of `Object.prototype` and
+  asserts it comes through clean.
 
 Documentation:
 - **Only `@extends` cross-fills inherited members.** `more/`, `TAGS.md` and `AGENTS.md`
