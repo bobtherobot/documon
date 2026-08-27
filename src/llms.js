@@ -139,7 +139,11 @@ function modelPage(page){
 				type        : m.type || null,
 				access      : m.access || "public",
 				line        : typeof m.line === "number" ? m.line : null,
-				inherited   : m.inheritedFrom || m.inherited || null,
+				// organizer.cloneInherited() marks a cross-filled member with "inherits",
+				// and that is the name menuBuilder and every template read. This used to
+				// look for "inheritedFrom"/"inherited", neither of which is ever set, so
+				// model.json reported inherited:null for every member.
+				inherited   : m.inherits || null,
 				description : (m.text || "").trim(),
 				meta        : (m.meta || []).map(metaEntry),
 				params      : (m.params || []).map(function(prm){

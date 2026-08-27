@@ -10,7 +10,7 @@ function makeList(list, title, partKind, useShortText){
 	}
 	var writeTitle = "";
 	if(title){
-		writeTitle = `<div class="heading-part">${title}</div>`;
+		writeTitle = `<h2 class="heading-part">${title}</h2>`;
 	}
 
 	var str = "";
@@ -110,7 +110,11 @@ function makeItem(item, partKind, useShortText){
 	var anchor = "";
 	// Anchor both full xpath for external linking, and name for easier internal page linking.
 	if(item.id){
-		anchor = `<a name="${item.id}"></a><a name="${item.name}"></a>`;
+		// id as well as name, matching member.jst: the legacy `name` anchor is what makes
+		// the link work in a browser, `id` is what everything else keys off. Only the
+		// fully qualified anchor carries the id, so the short one cannot collide with a
+		// section anchor of the same name.
+		anchor = `<a id="${item.id}" name="${item.id}"></a><a name="${item.name}"></a>`;
 	}
 
 	var access = "";

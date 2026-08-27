@@ -198,6 +198,32 @@ Fixed:
 - Cross-references to `more` pages (`[the options](more.options)`) resolve in `--check`.
   Those pages come from markdown rather than comments, so every link into the manual was
   reported as broken.
+- Generated pages now carry a document outline. The entity a page documents is its `<h1>`,
+  each section (Properties, Events, Methods) is an `<h2>` and each member an `<h3>` --
+  previously a page was `<div>`s from top to bottom with no heading elements at all, so
+  nothing reading it could tell where one member ended and the next began. Appearance is
+  unchanged; the styling comes from the same classes as before. Members also carry an `id`
+  alongside the existing `name` anchor, so existing links keep working.
+- Every page now embeds its own record as JSON-LD (`schema.org` `APIReference`, with each
+  member as a part linking to its anchor; prose pages as `TechArticle`, the index as
+  `WebSite`). `llms.txt` and `model.json` only help a reader that knows to look for them;
+  a page that carries its own structure helps whoever arrives at that one URL. The
+  embedded record is the same one `model.json` holds, so `--no-emitModel` turns both off
+  together.
+- `llms.txt` and `model.json` are now advertised with `rel="alternate"` from every page,
+  not only from the index.
+- Fixed two `<span>` elements in the class/module meta block that were opened and never
+  closed, so everything after them nested one level deeper than intended.
+- Open Graph tags now appear on every generated page, not only on `index.html`. The
+  2.7.0 note claiming "generated pages" carry them was only ever true of the index --
+  which is the one page nobody links to directly. Class, module, package and prose pages
+  now each carry `og:type`, `og:title`, `og:description`, `og:site_name` and, when
+  `baseUrl` is set, an absolute `og:url`. Names are escaped, so a quote or an ampersand
+  in a `@class` name no longer ends the attribute early and mangles the head.
+- Pages from the `more` folder now carry the project's identity, like every other page.
+  Their tab title, canonical link and `og:site_name` were blank, and their description
+  was the page id (`more.overview`) rather than anything from the markdown body -- so a
+  prose page previewed as nothing when shared and read as nothing in search results.
 - `--check` no longer warns about `@param` on a `@class` or `@module`. Those pages are
   rendered through the same template path as methods and *do* show a signature, a parameter
   table and a returns block -- the rule was sending authors to delete documentation that

@@ -738,6 +738,19 @@ function run(conf){
 					page.ctx.baseUrl = mainConf.baseUrl;
 					page.ctx.projectDescription = mainConf.projectDescription;
 
+					// The same record that goes into model.json, handed to the template so
+					// it can embed it as JSON-LD. model.json only helps a reader who knows
+					// to go looking for it; a page carrying its own structure helps whoever
+					// lands on that one URL. Built here rather than in the template so the
+					// derivation stays in one place, and so a custom template folder does
+					// not have to reach into src/.
+					//
+					// Gated on emitModel, because embedding the model in every page while
+					// being told not to emit it would be a surprising reading of the flag.
+					if(mainConf.emitModel !== false){
+						page.ctx.model = llms.modelPage(page);
+					}
+
 					var str = Tpage(page.ctx, page.html);
 					var htmlFile = outFolder + page.id + ".html";
 					fs.writeFileSync(htmlFile, str, 'utf8');

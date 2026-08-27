@@ -52,7 +52,7 @@ function makeReturns(item, partKind){
 	return str;
 }
 
-function makeItem(item, partKind) {
+function makeItem(item, partKind, isMain) {
 
 	var out = "";
 
@@ -62,19 +62,30 @@ function makeItem(item, partKind) {
 
 		// Build the class file/path meta
 		var klassFileMeta = item.entity == "class" || item.entity == "module" ? `<div class="meta-block meta-block-klass">
-				<div class="meta-line"><span class="meta-label" >xpath</span> <span class="meta-target">${item.id}<span></div>
-				<div class="meta-line"><span class="meta-label" >file</span> <span class="meta-target">${item.file}<span></div>
+				<div class="meta-line"><span class="meta-label">xpath</span> <span class="meta-target">${item.id}</span></div>
+				<div class="meta-line"><span class="meta-label">file</span> <span class="meta-target">${item.file}</span></div>
 			</div>` : "";
 
 		var EVENT = partKind == "events";
 
 		// Anchor both full xpath for external linking, and name for easier internal page linking.
 
-		out += `<a name="${item.id}"></a><a name="${item.name}"></a>
+		// The entity heading the page is its <h1>; the members under it are <h3>, sitting
+		// under the <h2> their section heading provides. The page had no heading elements
+		// at all before, so it had no document outline -- which is what any reader,
+		// assistive or automated, uses to tell where one member ends and the next begins.
+		// Appearance is unchanged: it still comes entirely from the class.
+		var nameTag = isMain ? "h1" : "h3";
+
+		// id as well as name: the legacy `name` anchor is what makes the link work in a
+		// browser, and `id` is what everything else keys off. Only the fully qualified
+		// anchor carries the id, so a member called "methods" cannot collide with the
+		// section anchor of the same name.
+		out += `<a id="${item.id}" name="${item.id}"></a><a name="${item.name}"></a>
 
 						<div class="member" ${access} ${inherits}>
 
-							<div class="member-name clearfix">
+							<${nameTag} class="member-name clearfix">
 								<span class="member-name-left">
 						    		${item.name}${ EVENT ? "" : TmethodArgs(item)}
                                     ${Tflags(item, partKind)}
@@ -83,7 +94,7 @@ function makeItem(item, partKind) {
 						    		<span class="member-file">${ item.file }</span>
 						    		<span class="member-line-number">${ item.line }</span>
 						    	</span>
-						    </div>
+						    </${nameTag}>
 
 
 						   	<div class="member-description">
@@ -160,7 +171,7 @@ ctx contains:
 }
 
  */
-function render(ctx, title, partKind, useShortText){
+function render(ctx, title, partKind, useShortText, isMain){
 
 	var str = "";
 	if(ctx){
@@ -183,13 +194,13 @@ function render(ctx, title, partKind, useShortText){
 
 				var heading = "";
 				if(title){
-					heading = `<div class="heading-part">${title}</div>`;
+					heading = `<h2 class="heading-part">${title}</h2>`;
 				}
 
 				var list = "";
 
 				for(var i=0; i<ctx.length; i++){
-					list += makeItem(ctx[i], partKind);
+					list += makeItem(ctx[i], partKind, isMain);
 				}
 // TODO: Incorporate a line for the file (e.g. jbeeb/display/Box.js)
 				str += `

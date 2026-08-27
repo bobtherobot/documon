@@ -458,9 +458,17 @@ function appendPage(existingObj, newObj){
 				existingObj[sect] = [];
 			}
 
-			// Now add / merge if we must
+			// Now add / merge if we must.
+			//
+			// merge() takes the key to compare on. Calling it without one meant every
+			// comparison was `aitem[undefined] == bitem[undefined]`, which is
+			// `undefined == undefined` -- true for every pair. Every already-collected
+			// member was therefore treated as a duplicate of the incoming batch and
+			// dropped, so when two files both contributed members to the same package
+			// only the last file's survived, with no error and no warning. Class members
+			// were unaffected; this only ever hit members hanging directly off a package.
 			if(newSect){
-				existingObj[sect] =  ! exSect ? newSect : merge(exSect, newSect);
+				existingObj[sect] =  ! exSect ? newSect : merge(exSect, newSect, "id");
 				//existingObj[sect] = newSect.concat(exSect ? exSect : []);
 			}
 		}

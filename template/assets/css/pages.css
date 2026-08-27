@@ -1,4 +1,18 @@
 /*
+The section and member headings are real heading elements, so a page has a document
+outline. How they look comes entirely from the class rules further down -- this only
+clears the browser's own heading defaults. Scoped to these two classes on purpose:
+markdown headings inside a "more" page must still look like headings.
+*/
+.heading-part,
+.member-name {
+	font-size   : inherit;
+	font-weight : inherit;
+	line-height : inherit;
+	margin      : 0;
+}
+
+/*
 Part of Documon.
 Copyright (c) Michael Gieson.
 www.documon.net

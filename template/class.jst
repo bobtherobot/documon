@@ -40,7 +40,7 @@ function render(ctx){
 			
 
 			<div class="main-method">
-				${ Tmember([ctx], null, "methods", true) /* convert ctx to array */ }
+				${ Tmember([ctx], null, "methods", true, true) /* convert ctx to array; last arg marks it the page subject */ }
 			</div>
 
 		    <div class="parts">

@@ -107,6 +107,55 @@ function readConfigFile(fpath, errors){
 }
 
 /**
+ * @property {array} PATH_KEYS - Config keys whose value is a filesystem path.
+ */
+var PATH_KEYS = ["src", "out", "more", "template"];
+
+/**
+ * Rewrites a config file's relative paths so they are read relative to the config file
+ * rather than to the working directory.
+ *
+ * `findConfig()` deliberately walks up the tree so the tool can be run from anywhere
+ * inside a project. Without this, that only ever worked from the project root: a root
+ * `documon.json` saying `"src": "./src"` run from `project/src/deeper` looked for
+ * `project/src/deeper/src` and failed with "Input folder doesn't exist".
+ *
+ * Absolute paths are left alone, as is anything that is not a path key.
+ *
+ * @method     rebasePaths
+ * @private
+ * @param      {object}  conf - The parsed config, modified in place.
+ * @param      {string}  dir  - The folder the config file lives in.
+ */
+function rebasePaths(conf, dir){
+
+	for(var i=0; i<PATH_KEYS.length; i++){
+
+		var key = PATH_KEYS[i];
+		var val = conf[key];
+
+		if( ! val ){
+			continue;
+		}
+
+		if( Array.isArray(val) ){
+			var list = [];
+			for(var v=0; v<val.length; v++){
+				list.push( typeof val[v] === "string" && ! path.isAbsolute(val[v])
+					? path.resolve(dir, val[v])
+					: val[v] );
+			}
+			conf[key] = list;
+			continue;
+		}
+
+		if( typeof val === "string" && ! path.isAbsolute(val) ){
+			conf[key] = path.resolve(dir, val);
+		}
+	}
+}
+
+/**
  * Walks up from a starting folder looking for a Documon config file. Lets an agent run
  * `documon` from anywhere inside a project and still pick up the project's settings.
  *
@@ -204,12 +253,14 @@ function optsFromArgv(argv, errors){
 		configPath = findConfig(process.cwd());
 	}
 	if(configPath){
-		var fromFile = readConfigFile(path.resolve(configPath), errors);
+		var resolvedConfig = path.resolve(configPath);
+		var fromFile = readConfigFile(resolvedConfig, errors);
 		if(fromFile){
+			rebasePaths(fromFile, path.dirname(resolvedConfig));
 			for(var prop in fromFile){
 				opts[prop] = fromFile[prop];
 			}
-			opts.configFile = path.resolve(configPath);
+			opts.configFile = resolvedConfig;
 		}
 	}
 
@@ -480,6 +531,16 @@ function run(opts) {
 	// -------------
 	// Build.
 	var built = documon.run(conf);
+
+	// run() returns null when it could not build -- most commonly "no files to parse",
+	// which happens when the source folder is empty or holds nothing matching sourceExt.
+	// That return value used to be ignored, so a run that wrote no site still reported
+	// ok:true and exit 0, and with output quiet by default it said nothing at all.
+	if( ! built ){
+		return fail([
+			"No files to parse. Check the source folder and the sourceExt setting."
+		], opts.json);
+	}
 
 	var result = {
 		ok       : true,

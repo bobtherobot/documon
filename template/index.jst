@@ -20,6 +20,28 @@ function build(ctx, menu, content){
 		? '<link rel="canonical" href="' + ctx.baseUrl.replace(/\/+$/, "") + '/index.html">'
 		: "";
 
+	// The docs root, described. Content pages carry an APIReference node each; this is
+	// the site they belong to, so a crawler that starts here knows what it has found.
+	// No timestamp: two builds of unchanged sources must produce identical output.
+	var siteNode = {
+		  "@context"    : "https://schema.org"
+		, "@type"       : "WebSite"
+		, "name"        : ctx.projectName + (ctx.projectVersion ? " v" + ctx.projectVersion : "")
+		, "description" : indexDescription
+	};
+
+	if(ctx.baseUrl){
+		siteNode.url = ctx.baseUrl.replace(/\/+$/, "") + "/index.html";
+	}
+
+	if(ctx.projectVersion){
+		siteNode.version = String(ctx.projectVersion);
+	}
+
+	var siteLd = '<script type="application/ld+json">'
+		+ JSON.stringify(siteNode, null, "\t").replace(/<\//g, "<\\/")
+		+ '</script>';
+
 	return `
 <!DOCTYPE html>
 <html>
@@ -33,12 +55,15 @@ function build(ctx, menu, content){
 		<meta name="generator" content="Documon">
 		${canonical}
 		<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+		<link rel="alternate" type="application/json" href="model.json" title="model.json">
 
 		<!-- Open Graph / social -->
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="${ctx.projectName}${ctx.projectVersion ? " v" + ctx.projectVersion : ""} Documentation">
 		<meta property="og:description" content="${indexDescription}">
 		<meta name="twitter:card" content="summary">
+
+		${siteLd}
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="${assetsFolder}/vendor/normalize.css">

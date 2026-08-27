@@ -26,8 +26,22 @@ var prettyBuiltIn = ["bsh", " c", " cc", " cpp", " cs", " csh", " cyc", " cv", "
 
 function build(ctx, content){
 
+	// A prose page from the "more" folder has no shortText -- its text is the markdown
+	// body, which arrives as rendered HTML in `content`. Falling straight through to the
+	// id described those pages to search engines and social cards as "more.overview",
+	// which is worse than useless. Code pages are unaffected: they have a shortText.
+	// A page is prose when it carries none of the things a code entity carries. That is
+	// what tells a "more" page apart from a class or package page.
+	var isProse = ! ctx.entity && ! ctx.methods && ! ctx.properties && ! ctx.events;
+
+	var describeFrom = ctx.shortText;
+
+	if( ! describeFrom && content && isProse ){
+		describeFrom = content;
+	}
+
 	// Strip markup and escape, rather than dropping only the first quote character.
-	var metaDescription = String(ctx.shortText || ctx.id || ctx.name || "")
+	var metaDescription = String(describeFrom || ctx.id || ctx.name || "")
 		.replace(/<[^>]+>/g, " ")
 		.replace(/\s+/g, " ")
 		.replace(/&/g, "&amp;")
@@ -63,9 +77,213 @@ function build(ctx, content){
 		pageTitle += " - " + ctx.projectName;
 	}
 
-	var pageCanonical = ctx.baseUrl
-		? '<link rel="canonical" href="' + ctx.baseUrl.replace(/\/+$/, "") + "/" + (ctx.id || "index") + '.html">'
+	var pageUrl = ctx.baseUrl
+		? ctx.baseUrl.replace(/\/+$/, "") + "/" + (ctx.id || "index") + ".html"
 		: "";
+
+	var pageCanonical = pageUrl
+		? '<link rel="canonical" href="' + pageUrl + '">'
+		: "";
+
+	/**
+	 * Escapes a value for use inside a double-quoted HTML attribute.
+	 *
+	 * A class or module name is whatever the author typed in the tag, so it can contain
+	 * a quote or an ampersand. Interpolating that straight into a meta tag ends the
+	 * attribute early and mangles the rest of the head.
+	 *
+	 * @method  attr
+	 * @private
+	 * @param   {string} val - The raw value.
+	 * @return  {string}     - The escaped value.
+	 */
+	function attr(val){
+		return String(val == null ? "" : val)
+			.replace(/&/g, "&amp;")
+			.replace(/"/g, "&quot;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;");
+	}
+
+	// Open Graph, so a link to a single page previews as that page rather than as
+	// nothing. index.jst has carried these since 2.7.0; content pages are what actually
+	// get linked to and cited, so they need them more.
+	//
+	// "article" rather than "website": each of these is one document within the docs,
+	// which is also what makes og:site_name meaningful.
+	var pageOg = [
+		  '<meta property="og:type" content="article">'
+		, '<meta property="og:title" content="' + attr(pageTitle) + '">'
+		, '<meta property="og:description" content="' + metaDescription + '">'
+	];
+
+	if(ctx.projectName){
+		pageOg.push('<meta property="og:site_name" content="' + attr(ctx.projectName) + '">');
+	}
+
+	// Only when there is a real base url to build an absolute one from.
+	if(pageUrl){
+		pageOg.push('<meta property="og:url" content="' + attr(pageUrl) + '">');
+	}
+
+	pageOg.push('<meta name="twitter:card" content="summary">');
+
+	var pageOgStr = pageOg.join("\n\t\t");
+
+	// --- Structured data -------------------------------------------------------------
+	//
+	// The page's own record from model.json, embedded. JSON-LD is the one structured
+	// format that is actually read at scale today, and putting it in the page means a
+	// reader that fetches a single URL gets that page's structure without having to know
+	// model.json exists.
+	//
+	// Deliberately no timestamp: two builds of unchanged sources must produce identical
+	// output.
+	/**
+	 * Flattens a description for a structured field.
+	 *
+	 * Descriptions are stored as the markdown the author wrote, which is right for
+	 * model.json -- a consumer can render it. Inside JSON-LD it is read as prose, so
+	 * "Widgets own a **label**" should not arrive with the asterisks still attached.
+	 *
+	 * @method  plain
+	 * @private
+	 * @param   {string} text - Markdown text.
+	 * @return  {string}      - Flattened plain text.
+	 */
+	function plain(text){
+		return String(text == null ? "" : text)
+			.replace(/```[\s\S]*?```/g, " ")
+			.replace(/`([^`]*)`/g, "$1")
+			.replace(/\*\*([^*]*)\*\*/g, "$1")
+			.replace(/__([^_]*)__/g, "$1")
+			.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+			.replace(/<[^>]+>/g, " ")
+			.replace(/\s+/g, " ")
+			.trim();
+	}
+
+	/**
+	 * Serializes a node into a JSON-LD script block.
+	 *
+	 * The only sequence that can break out of a script element is "</", so that is the
+	 * one thing JSON.stringify does not already handle.
+	 *
+	 * @method  ldScript
+	 * @private
+	 * @param   {object} node - The JSON-LD node.
+	 * @return  {string}      - The script element.
+	 */
+	function ldScript(node){
+		return '<script type="application/ld+json">'
+			+ JSON.stringify(node, null, "\t").replace(/<\//g, "<\\/")
+			+ '</script>';
+	}
+
+	var jsonLd = "";
+	var model  = ctx.model;
+
+	if(model){
+
+		var node = {
+			  "@context"   : "https://schema.org"
+			, "@type"      : "APIReference"
+			, "name"       : model.name || model.id
+			, "headline"   : model.name || model.id
+			, "identifier" : model.id
+		};
+
+		if(model.description){
+			node.description = plain(model.description);
+		}
+
+		if(pageUrl){
+			node.url = pageUrl;
+		}
+
+		if(ctx.projectName){
+			node.isPartOf = {
+				  "@type" : "WebSite"
+				, "name"  : ctx.projectName
+			};
+			if(ctx.baseUrl){
+				node.isPartOf.url = ctx.baseUrl.replace(/\/+$/, "");
+			}
+		}
+
+		// Members become parts, so the structure of the page survives even when the prose
+		// around it is chunked or summarised.
+		var members = model.members || [];
+
+		if(members.length){
+
+			node.hasPart = [];
+
+			for(var mi=0; mi<members.length; mi++){
+
+				var mem  = members[mi];
+				var part = {
+					  "@type"      : "TechArticle"
+					, "name"       : mem.name
+					, "identifier" : mem.id || mem.name
+					, "articleSection" : mem.kind
+				};
+
+				if(mem.description){
+					part.description = plain(mem.description);
+				}
+
+				if(pageUrl && mem.id){
+					part.url = pageUrl + "#" + mem.id;
+				}
+
+				node.hasPart.push(part);
+			}
+		}
+
+		// JSON inside a <script> block: the one sequence that can break out is "</",
+		// so escape it. Everything else JSON.stringify already handles.
+		jsonLd = ldScript(node);
+
+	} else if(isProse && pageTitle) {
+
+		// A "more" page carries no model record -- it is prose, not an API entity -- but
+		// it is still a document worth describing. Guarded on isProse so a code page
+		// whose model was suppressed by --no-emitModel does not fall through to here and
+		// get structured data anyway.
+		var proseNode = {
+			  "@context"   : "https://schema.org"
+			, "@type"      : "TechArticle"
+			, "name"       : ctx.name || ctx.id
+			, "headline"   : ctx.name || ctx.id
+			, "identifier" : ctx.id || ""
+		};
+
+		var proseText = plain(describeFrom);
+		if(proseText){
+			proseNode.description = proseText;
+		}
+
+		if(pageUrl){
+			proseNode.url = pageUrl;
+		}
+
+		if(ctx.projectName){
+			proseNode.isPartOf = { "@type" : "WebSite", "name" : ctx.projectName };
+			if(ctx.baseUrl){
+				proseNode.isPartOf.url = ctx.baseUrl.replace(/\/+$/, "");
+			}
+		}
+
+		jsonLd = ldScript(proseNode);
+	}
+
+	// Point at the machine-readable companions from every page, not just the index. A
+	// reader that arrives at a class page can then find them without guessing.
+	var altLinks = [
+		  '<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">'
+		, '<link rel="alternate" type="application/json" href="model.json" title="model.json">'
+	].join("\n\t\t");
 
 	return `
 <!DOCTYPE html>
@@ -79,6 +297,13 @@ function build(ctx, content){
 		<meta name="description" content="${metaDescription}">
 		<meta name="generator" content="Documon">
 		${pageCanonical}
+
+		${altLinks}
+
+		<!-- Open Graph / social -->
+		${pageOgStr}
+
+		${jsonLd}
 
 		 <!-- Normalize -->
 	    <link rel="stylesheet" href="${assetsFolder}/vendor/normalize.css">

@@ -57,6 +57,8 @@ OUTPUT
  -l, --launch              Launch docs in the browser when done. (default: false)
  -p, --print               Print activity to the console. (default: false)
  -d, --dumpData            Dump intermediary data into the "docs/_data" folder.
+     --docsDirName         Folder name for the site, inside the output folder.
+                           (default: docs)
  -x, --indexShortcutName   Index shortcut name. (default: __LAUNCH.html)
  -q, --moreQuirkDelimiter  Separator between "more" page numbering and the title.
  -y, --gati                Google Analytics Tracking ID.

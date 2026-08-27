@@ -818,10 +818,15 @@ module.exports = (function() {
 		
 	
 
+		// The language is passed back on the returned object; example.jst turns it into
+		// the code class. There used to be two assignments to an "opts" object here,
+		// but no such variable exists in this scope -- the only "opts" in the file is a
+		// local inside doMarkdown() -- so any typed example ("@example {js}") threw
+		// "opts is not defined" and killed the whole build. Nothing ever read those two
+		// properties, so they are simply gone; registering the language for the
+		// syntax highlighter is the part that still matters.
 		var codeType = item.type;
 		if(codeType){
-			opts.codeWrapInnerFront = '<code class="language-' + codeType + '">';
-			opts.codeWrapInnerBack = '</code>';
 			if(prettyprintExtTypes.indexOf(codeType) > -1){
 				model.prettyLangs.push( item.type );
 			}

@@ -112,6 +112,33 @@ var META_TAGS = {
 var ACCESS_VALUES = ["private", "protected", "public"];
 
 /**
+ * Reads a key from one of the tables above.
+ *
+ * The tables are object literals, so a plain `TABLE[key]` lookup falls through to
+ * `Object.prototype` -- and `@constructor` is a real Documon tag whose name collides with
+ * `Object.prototype.constructor`. That made `resolve("constructor")` hand back the Object
+ * function instead of the string, `metaLabel("constructor")` report it as metadata, and
+ * the build die in `llms.js` calling `.toUpperCase()` on a function. The same hole is
+ * there for `toString`, `valueOf`, `__proto__` and the rest.
+ *
+ * @method     lookup
+ * @private
+ * @param      {object}  table - One of TAGS, DEPRECATED or META_TAGS.
+ * @param      {string}  flag  - The tag as written.
+ * @return     {string}        - The table's value, or null.
+ */
+function lookup(table, flag){
+
+	var key = String(flag == null ? "" : flag).toLowerCase();
+
+	if( ! Object.prototype.hasOwnProperty.call(table, key) ){
+		return null;
+	}
+
+	return table[key];
+}
+
+/**
  * Resolves a written tag name to its Documon equivalent.
  *
  * @method  resolve
@@ -128,9 +155,7 @@ function resolve(flag){
 		return flag;
 	}
 
-	var key = String(flag).toLowerCase();
-
-	return TAGS[key] || flag;
+	return lookup(TAGS, flag) || flag;
 }
 
 /**
@@ -144,7 +169,7 @@ function resolve(flag){
  * 		aliases.deprecatedFor("impliments");  // "implements"
  */
 function deprecatedFor(flag){
-	return DEPRECATED[ String(flag || "").toLowerCase() ] || null;
+	return lookup(DEPRECATED, flag) || null;
 }
 
 /**
@@ -155,7 +180,7 @@ function deprecatedFor(flag){
  * @return  {boolean}       - True when `resolve()` would change it.
  */
 function isAlias(flag){
-	return !!(flag && TAGS[ String(flag).toLowerCase() ]);
+	return !!(flag && lookup(TAGS, flag));
 }
 
 /**
@@ -177,7 +202,7 @@ function isDescription(flag){
  * @return  {string}       - Label, or null.
  */
 function metaLabel(flag){
-	return META_TAGS[ String(flag || "").toLowerCase() ] || null;
+	return lookup(META_TAGS, flag) || null;
 }
 
 /**

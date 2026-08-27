@@ -365,7 +365,15 @@ function init(params, sourceDocsMenu, searchDB, shouldIgnore){
 			if( ! isExternal ){
 
 				var html = '<div class="more">' + markdown(src) + '</div>';
-		
+
+				// Prose pages render through the same page template as code pages, so
+				// give them the same project identity. Without it their tab title, their
+				// og:site_name and their canonical link all came out blank -- a prose
+				// page shared to a chat or a social card previewed as nothing.
+				ctx.projectName    = params.projectName;
+				ctx.projectVersion = params.projectVersion;
+				ctx.baseUrl        = params.baseUrl;
+
 				var str = Tpage(ctx, html);
 				fu.write( outputFolder + ctx.url, str );
 
