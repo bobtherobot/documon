@@ -125,6 +125,64 @@ exports.run = function(t){
 	t.ok(/Tags/.test(menuData), "a prose folder contributes a menu entry");
 
 	// ------------------------------------------------------------------
+	t.section("more: the meta header is read on every page");
+	// ------------------------------------------------------------------
+	// metaRx is module-level and reused for every page. It used to carry the "g" flag,
+	// which makes test() stateful: it matched, left lastIndex past the boundary, missed on
+	// the next page, reset, and matched again. Meta headers therefore applied to every
+	// *other* page -- and the ones that missed rendered their raw JSON as body text.
+	// Three pages is the minimum that catches it; two would pass by luck.
+	function metaPage(title){
+		return '{\n"icon" : "fa-star"\n}\n__meta__\n\n# ' + title + '\n\nBody of ' + title + '.\n';
+	}
+
+	var metaProj = t.project({
+		src  : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) },
+		more : {
+			"01.One.md"   : metaPage("One"),
+			"02.Two.md"   : metaPage("Two"),
+			"03.Three.md" : metaPage("Three")
+		}
+	});
+
+	var metaBuilt = t.cli(["-i", metaProj.src, "-o", metaProj.out, "-m", metaProj.more, "-n", "P"],
+		metaProj.dir);
+	t.ok(metaBuilt.status === 0, "a build with meta headers succeeds",
+		"exit " + metaBuilt.status + "\n" + metaBuilt.stdout.slice(-300));
+
+	var metaDocs = path.join(metaProj.out, "docs");
+	var metaMenu = t.read(path.join(metaDocs, "_menuData.js"));
+	var icons = (metaMenu.match(/"kind"\s*:\s*"fa-star"/g) || []).length;
+
+	t.ok(icons === 3, "every page's icon is applied, not every other one",
+		icons + " of 3\n" + (metaMenu.match(/"kind"[^,]*/g) || []).join(" "));
+
+	// The other half of the same bug: a page whose meta went unread kept the JSON.
+	["one", "two", "three"].forEach(function(name){
+		var page = t.read(path.join(metaDocs, "more." + name + ".html"));
+		t.ok(page.indexOf("fa-star") === -1,
+			"more." + name + " does not leak its raw meta into the body",
+			page.slice(0, 400));
+		t.ok(/Body of/.test(page), "and still renders its markdown", page.slice(0, 200));
+	});
+
+	// A url in the meta turns the entry into an external link instead of a page.
+	var extProj = t.project({
+		src  : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) },
+		more : {
+			"01.Local.md" : "# Local\n",
+			"02.Away.md"  : '{\n"url" : "https://example.com/away"\n}\n__meta__\n\n# Away\n'
+		}
+	});
+	t.cli(["-i", extProj.src, "-o", extProj.out, "-m", extProj.more, "-n", "P"], extProj.dir);
+	var extMenu = t.read(path.join(extProj.out, "docs", "_menuData.js"));
+	t.ok(/"url"\s*:\s*"https:\/\/example.com\/away"/.test(extMenu),
+		"a meta url becomes the menu target",
+		(extMenu.match(/"url"[^,]*/g) || []).join(" "));
+	t.ok( ! fs.existsSync(path.join(extProj.out, "docs", "more.away.html")),
+		"and no page is written for it");
+
+	// ------------------------------------------------------------------
 	t.section("more: ordering comes from the numbers");
 	// ------------------------------------------------------------------
 	// "050" sorts before "104" even though "Quick Reference" sorts after "Options"

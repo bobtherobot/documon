@@ -32,7 +32,7 @@ function render(item, partKind){
 		}
 	}
 
-	// optional
+	// inherited
 	if(item.inherits){
 		str += `<span class="flag inherited">inherited</span>`;
 	}
@@ -52,11 +52,10 @@ function render(item, partKind){
 		str += `<span class="flag readonly">readonly</span>`;
 	}
 
-	// readonly
-	if(item.deprecated){
-		var message = item.deprecated.text;
-		str += `<span class="flag deprecated" title="${message}">deprecated</span>`;
-	}
+	// No @deprecated branch here. parse.js:normalize() moves @deprecated -- along with
+	// @throws, @since and the rest of the metadata tags -- onto item.meta and drops the
+	// flag, so "item.deprecated" is never set and the badge that used to live here could
+	// not fire. meta.jst renders those tags, and is where a deprecation notice belongs.
 
 	return str;
 

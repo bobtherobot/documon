@@ -195,6 +195,50 @@ exports.run = function(t){
 	t.ok(noCtx.id === "bare", "a page with no entity at all still yields a record", noCtx.id);
 
 	// ------------------------------------------------------------------
+	t.section("llms: a parameter keeps its sub-properties");
+	// ------------------------------------------------------------------
+	// Documon documents an object argument's shape with a dotted name, which parseFlag
+	// files under the parent as "children". modelPage used to flatten a parameter to
+	// name/type/description, so "@param {string} opts.timeout" reached the HTML and was
+	// then dropped from model.json, llms-full.txt and the embedded JSON-LD -- the readers
+	// that cannot fall back to looking at the page.
+	var nested = llms.modelPage({
+		ctx : {
+			id : "app.Widget", klass : "Widget", entity : "class", package : "app",
+			methods : [ {
+				id : "app.Widget.open", name : "open", entity : "method",
+				params : [ {
+					name : "opts", type : "object", text : "Options.",
+					children : [
+						{ name : "timeout", type : "number", text : "Milliseconds.", defaultVal : "500" },
+						{ name : "quiet", type : "boolean", text : "Say nothing.", optional : true }
+					]
+				} ]
+			} ]
+		}
+	});
+
+	var openParams = nested.members[0].params;
+
+	t.ok(openParams.length === 1, "the parent parameter is emitted once",
+		JSON.stringify(openParams.map(function(p2){ return p2.name; })));
+	t.ok(openParams[0].children.length === 2, "carrying its sub-properties",
+		JSON.stringify(openParams[0].children));
+	t.ok(openParams[0].children[0].name === "timeout"
+		&& openParams[0].children[0].type === "number",
+		"each with its own name and type", JSON.stringify(openParams[0].children[0]));
+	t.ok(openParams[0].children[0]["default"] === "500",
+		"a documented default reaches the model",
+		JSON.stringify(openParams[0].children[0]["default"]));
+	t.ok(openParams[0].children[1].optional === true,
+		"and so does optionality", JSON.stringify(openParams[0].children[1].optional));
+	t.ok(openParams[0].optional === false && openParams[0]["default"] === null,
+		"a plain parameter reports both explicitly rather than omitting them",
+		JSON.stringify(openParams[0]));
+	t.ok(Array.isArray(openParams[0].children[0].children),
+		"children is always an array, at every depth");
+
+	// ------------------------------------------------------------------
 	t.section("llms: the files a build writes");
 	// ------------------------------------------------------------------
 	var proj = t.project({

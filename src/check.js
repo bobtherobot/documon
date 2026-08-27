@@ -380,6 +380,46 @@ function scanSymbols(source){
 }
 
 /**
+ * Resolves an inheritance target the way the builder does.
+ *
+ * `organizer.js:applyInheritance()` accepts a bare class name for a parent in the same
+ * package -- `@extends Base` inside `@package demo` means `demo.Base` -- and the manual
+ * teaches that short form. The validator used to compare the written target against the
+ * fully qualified ids only, so the documented short form was reported as an
+ * `unresolved-inheritance` **error** on input that built perfectly. That broke the
+ * `documon --check && documon` recipe for anyone who followed the docs.
+ *
+ * The rule mirrors the builder exactly: a target with no dot at all is qualified with the
+ * block's package. A dotted target is already an id and is looked up as written.
+ *
+ * @method     resolveExtends
+ * @private
+ * @param      {string}  target  - The `@extends` / `@inherits` / `@implements` value as written.
+ * @param      {string}  [pkg]   - The package the declaring block belongs to.
+ * @param      {object}  ids     - The map of documented ids.
+ * @return     {string}          - The id it resolves to, or null.
+ */
+function resolveExtends(target, pkg, ids){
+
+	if( ! target ){
+		return null;
+	}
+
+	if( ids[target] ){
+		return target;
+	}
+
+	if( target.indexOf(".") < 0 && pkg ){
+		var qualified = pkg + "." + target;
+		if( ids[qualified] ){
+			return qualified;
+		}
+	}
+
+	return null;
+}
+
+/**
  * Runs the validator.
  *
  * @method  run
@@ -598,7 +638,7 @@ function run(conf, opts){
 		var eb = blocks[e];
 		for(var x=0; x<eb.extends.length; x++){
 			var ext = eb.extends[x];
-			if( ! ids[ext.target] ){
+			if( ! resolveExtends(ext.target, eb.package, ids) ){
 				findings.push( finding("error", "unresolved-inheritance", eb.file, ext.line,
 					'@' + ext.flag + ' "' + ext.target + '" does not match any documented id.',
 					"Use the fully qualified id (package.Class), or document the parent.") );

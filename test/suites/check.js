@@ -81,6 +81,61 @@ exports.run = function(t){
 		JSON.stringify(vague));
 
 	// ------------------------------------------------------------------
+	t.section("check: inheritance resolves the way the builder resolves it");
+	// ------------------------------------------------------------------
+	// organizer.js:applyInheritance() qualifies a bare parent name with the block's own
+	// package, and the manual teaches that short form. The validator compared the written
+	// target against fully qualified ids only, so "@extends Base" inside "@package demo"
+	// was reported as an ERROR on source that built perfectly -- which broke the
+	// "documon --check && documon" recipe the docs recommend.
+	var shortForm = checkSource([
+		t.OPEN, " * Base thing.", " * @class   Base", " * @package demo", " " + t.CLOSE,
+		"",
+		t.OPEN, " * A child, same package, short form.",
+		" * @class   Child", " * @package demo", " * @extends Base", " " + t.CLOSE
+	]);
+
+	t.ok(shortForm.status === 0,
+		"a same-package short-form @extends is accepted",
+		"exit " + shortForm.status + " :: " + JSON.stringify(
+			t.findings(shortForm.report, "unresolved-inheritance").map(function(f){ return f.message; })));
+
+	t.ok( ! t.hasRule(shortForm.report, "unresolved-inheritance"),
+		"and produces no unresolved-inheritance finding");
+
+	// The long form has always worked and must keep working.
+	var longForm = checkSource([
+		t.OPEN, " * Base thing.", " * @class   Base", " * @package demo", " " + t.CLOSE,
+		"",
+		t.OPEN, " * A child, fully qualified.",
+		" * @class   Child", " * @package demo", " * @extends demo.Base", " " + t.CLOSE
+	]);
+	t.ok( ! t.hasRule(longForm.report, "unresolved-inheritance"),
+		"a fully qualified @extends still resolves");
+
+	// Widening the rule must not swallow a real mistake.
+	var typoed = checkSource([
+		t.OPEN, " * Base thing.", " * @class   Base", " * @package demo", " " + t.CLOSE,
+		"",
+		t.OPEN, " * A child naming a parent that does not exist.",
+		" * @class   Child", " * @package demo", " * @extends Bass", " " + t.CLOSE
+	]);
+	t.ok(t.hasRule(typoed.report, "unresolved-inheritance"),
+		"a bare name with no matching class in the package is still an error",
+		JSON.stringify(typoed.report.findings.map(function(f){ return f.rule; })));
+
+	// A bare name only qualifies against its *own* package, not any package.
+	var otherPackage = checkSource([
+		t.OPEN, " * Base thing.", " * @class   Base", " * @package other", " " + t.CLOSE,
+		"",
+		t.OPEN, " * A child in a different package using the short form.",
+		" * @class   Child", " * @package demo", " * @extends Base", " " + t.CLOSE
+	]);
+	t.ok(t.hasRule(otherPackage.report, "unresolved-inheritance"),
+		"the short form does not reach across packages",
+		JSON.stringify(otherPackage.report.findings.map(function(f){ return f.rule; })));
+
+	// ------------------------------------------------------------------
 	t.section("check: individual rules");
 	// ------------------------------------------------------------------
 	var noKind = checkSource([t.OPEN, " * Has tags but never says what it is.",

@@ -114,6 +114,35 @@ function metaEntry(entry){
 	};
 }
 
+/**
+ * Reduces one parameter -- and its sub-properties -- to the record used by `model.json`.
+ *
+ * Documon documents the shape of an object argument with a dotted name, and
+ * `parseFlag.js` files those under the parent as `children`. This used to flatten a
+ * parameter to name/type/description only, so `@param {string} opts.timeout` was parsed,
+ * rendered into the HTML by `methodArgs.jst`, and then dropped on the way to
+ * `model.json`, `llms-full.txt` and the pages' JSON-LD -- exactly the readers that cannot
+ * go and look at the HTML instead.
+ *
+ * `optional` and `defaultVal` were missing for the same reason. `write()` already had a
+ * branch that printed "(optional)" and could never fire.
+ *
+ * @method     modelParam
+ * @private
+ * @param      {object}  prm - A tagged parameter.
+ * @return     {object}      - `{ name, type, description, optional, default, children }`.
+ */
+function modelParam(prm){
+	return {
+		name        : prm.name || null,
+		type        : prm.type || null,
+		description : modelText(prm.text),
+		optional    : prm.optional ? true : false,
+		"default"   : typeof prm.defaultVal === "undefined" ? null : prm.defaultVal,
+		children    : (prm.children || []).map(modelParam)
+	};
+}
+
 function modelPage(page){
 
 	var ctx = page.ctx || {};
@@ -162,13 +191,7 @@ function modelPage(page){
 				inherited   : m.inherits || null,
 				description : modelText(m.text),
 				meta        : (m.meta || []).map(metaEntry),
-				params      : (m.params || []).map(function(prm){
-					return {
-						name        : prm.name || null,
-						type        : prm.type || null,
-						description : modelText(prm.text)
-					};
-				}),
+				params      : (m.params || []).map(modelParam),
 				returns     : m.returns ? {
 					type        : m.returns.type || null,
 					description : modelText(m.returns.text)
@@ -277,6 +300,33 @@ function readMore(folder){
 	walk(folder.replace(/\/+$/, ""));
 
 	return out;
+}
+
+/**
+ * Appends a parameter list to `llms-full.txt`, indenting sub-properties under their parent.
+ *
+ * @method     pushParams
+ * @private
+ * @param      {array}   out    - The accumulating lines.
+ * @param      {array}   params - Parameter records from `modelParam()`.
+ * @param      {string}  indent - Leading whitespace for this level.
+ */
+function pushParams(out, params, indent){
+
+	for(var i=0; i<params.length; i++){
+
+		var prm = params[i];
+
+		out.push(indent + "- param " + prm.name
+			+ (prm.type ? " {" + prm.type + "}" : "")
+			+ (prm.optional ? " (optional)" : "")
+			+ (prm["default"] ? " (default: " + prm["default"] + ")" : "")
+			+ (prm.description ? " - " + prm.description : ""));
+
+		if(prm.children && prm.children.length){
+			pushParams(out, prm.children, indent + "  ");
+		}
+	}
 }
 
 /**
@@ -418,13 +468,7 @@ function write(conf, pages, log, menu){
 				}
 				if(mem.params.length){
 					full.push("");
-					for(var pp=0; pp<mem.params.length; pp++){
-						var prm = mem.params[pp];
-						full.push("- param " + prm.name
-							+ (prm.type ? " {" + prm.type + "}" : "")
-							+ (prm.optional ? " (optional)" : "")
-							+ (prm.description ? " - " + prm.description : ""));
-					}
+					pushParams(full, mem.params, "");
 				}
 				if(mem.returns){
 					full.push("- returns"

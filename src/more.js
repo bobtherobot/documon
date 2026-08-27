@@ -48,7 +48,7 @@ var quirkDelimiter = ".";
 // TODO: Make metaString and docGoesHereStr configurable.
 
 /**
- * @property {string} metaString - The delimiting string used to seperate the meta JSON from normal markdown.
+ * @property {string} metaString - The delimiting string used to separate the meta JSON from normal markdown.
  */
 var metaString = "__meta__";
 
@@ -59,10 +59,19 @@ var metaString = "__meta__";
 var docGoesHereStr = "DOCS-GO-HERE";
 
 /**
- * @property {string} metaRx - The regular expression use to split the doc on the [metaString](#metaString)
+ * @property {RegExp} metaRx - Detects a [metaString](#metaString) boundary in a page.
+ *
+ * Deliberately *not* global. This regular expression is module-level and reused for every
+ * page in the folder, and a "g" regular expression carries `lastIndex` between calls: the
+ * first `test()` matched and left `lastIndex` past the boundary, the second started from
+ * there, found nothing, reset to 0, and returned false. Meta headers therefore worked on
+ * every *other* page -- the ones that failed kept their raw JSON as visible body text and
+ * lost their icon and external url. Documon's own site shipped that way; the page that
+ * documents the feature was one of the casualties.
+ *
  * @private
  */
-var metaRx = new RegExp(metaString, "gi");
+var metaRx = new RegExp(metaString, "i");
 
 
 
