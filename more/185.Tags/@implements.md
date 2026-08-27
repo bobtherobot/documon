@@ -11,7 +11,7 @@ Declares that a class conforms to an interface.
 The value must be a fully qualified id — `package.Class` — matching a documented entity.
 `documon --check` reports targets that don't resolve.
 
-Unlike [@extends](more.tags._extends_md), `@implements` does **not** cross-fill the
+Unlike [@extends](more.tags._extends), `@implements` does **not** cross-fill the
 interface's members into this page. It is recorded and rendered as a link in the page's
 meta section, so a reader can follow it to the interface. Cross-filling is what
 `@extends` is for; if you want `Circle` to display `Drawable`'s members, extend it.

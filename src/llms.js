@@ -223,9 +223,7 @@ function flattenMenu(nodes, out){
 		if(node && node.id){
 			out.push({
 				id    : node.id,
-				// Menu labels keep the source filename for some "more" pages, which reads
-				// as noise in a link list.
-				title : String(node.label || node.name || node.id).replace(/\.md$/i, ""),
+				title : String(node.label || node.name || node.id),
 				url   : node.url || (node.id + ".html"),
 				kind  : node.kind || "page"
 			});

@@ -173,6 +173,23 @@ Added:
   type -- which is how they reached the published pages of seven modules. Reported once
   per distinct stub per block, so a stubbed file gives a readable report.
 
+Changed:
+- **Prose page ids no longer carry the file extension.** An unnumbered `About.md` displayed
+  in the menu as "About.md" and ided as `more.about_md`; it is now "About" and `more.about`,
+  matching what a numbered `01.About.md` has always produced. `quirkyName()`'s early return
+  handed back the raw filename rather than the basename computed three lines above it, and
+  `llms.js` had grown a `.replace(/\.md$/i, "")` to hide the result in the link index.
+  That workaround is gone too.
+
+  This renames every unnumbered prose page's URL. On documon.net that is the 27 pages of
+  the tag reference (`more.tags._class_md` -> `more.tags._class`), and `build-site.js`
+  redirects each one. If you publish Documon output, add redirects for any unnumbered prose
+  pages of your own, or leave the numbering on and nothing moves.
+
+  One consequence worth knowing: a file and a folder with the same name now resolve to the
+  same id, which makes the file that section's index page -- a menu entry with a page of
+  its own that also expands to the folder's contents. See "More Docs" in the manual.
+
 Fixed:
 - The `__meta__` header on a "more" page was only read on every *other* page. `metaRx` is
   module-level and carried the `g` flag, and `test()` on a global regular expression is

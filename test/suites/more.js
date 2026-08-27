@@ -47,19 +47,28 @@ exports.run = function(t){
 	t.ok(more.pageId("300.More Docs/010.Sub.md") === "more.more_docs.sub",
 		"a numbered folder contributes a segment", more.pageId("300.More Docs/010.Sub.md"));
 
-	t.ok(more.pageId("185.Tags/@implements.md") === "more.tags._implements_md",
+	t.ok(more.pageId("185.Tags/@implements.md") === "more.tags._implements",
 		"characters that are not id-safe become underscores",
 		more.pageId("185.Tags/@implements.md"));
 
-	// The prefix is only stripped when the character immediately before the delimiter is
-	// a digit, so an ordinary dotted name is left intact.
-	t.ok(more.pageId("About.md") === "more.about_md",
-		"an unnumbered file keeps its extension in the id -- number your prose files",
+	// The extension comes off whether or not there is a sorting prefix. It used to survive
+	// the no-prefix path -- the early return handed back the raw filename rather than the
+	// basename computed just above it -- so an unnumbered "About.md" ided as
+	// "more.about_md" and displayed in the menu with a visible ".md".
+	t.ok(more.pageId("About.md") === "more.about",
+		"an unnumbered file still loses its extension",
 		more.pageId("About.md"));
 
-	t.ok(more.pageId("notanumber.Thing.md") === "more.notanumber_thing_md",
+	// The prefix is only stripped when the character immediately before the delimiter is
+	// a digit, so an ordinary dotted name keeps both of its segments.
+	t.ok(more.pageId("notanumber.Thing.md") === "more.notanumber_thing",
 		"a non-numeric prefix is not treated as sorting",
 		more.pageId("notanumber.Thing.md"));
+
+	// Only the last extension goes: "Guide.md.md" is a file called "Guide.md".
+	t.ok(more.pageId("Guide.md.md") === "more.guide_md",
+		"and only one extension is removed",
+		more.pageId("Guide.md.md"));
 
 	t.ok(more.pageId("104.Options.md").indexOf("more.") === 0,
 		"every prose id is namespaced under 'more'");
@@ -205,7 +214,7 @@ exports.run = function(t){
 				" * A thing.",
 				" *",
 				" * See [options](more.options), [the tags folder](more.tags),",
-				" * [a tag page](more.tags._implements_md) and [a typo](more.nosuchpage).",
+				" * [a tag page](more.tags._implements) and [a typo](more.nosuchpage).",
 				" * @module  thing",
 				" * @package app",
 				" " + t.CLOSE
@@ -230,7 +239,7 @@ exports.run = function(t){
 	// ------------------------------------------------------------------
 	// The broken-link rule used to read source comments only, which is exactly why every
 	// stale id in Documon's own manual survived -- tag pages pointing at "more.tags.class"
-	// when the page is filed as "more.tags._class_md", guides pointing at pages that moved.
+	// when the page is filed as "more.tags._class", guides pointing at pages that moved.
 	var proseLinks = t.project({
 		src : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) },
 		more : {
@@ -238,7 +247,7 @@ exports.run = function(t){
 				"# Good",
 				"",
 				"Links to [the other page](more.bad), [a folder](more.tags),",
-				"[a tag page](more.tags._implements_md) and [the API](app.thing).",
+				"[a tag page](more.tags._implements) and [the API](app.thing).",
 				""
 			].join("\n"),
 			"02.Bad.md" : [

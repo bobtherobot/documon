@@ -485,14 +485,14 @@ exports.run = function(t){
 	// survives them. That safety is incidental rather than designed, so it is pinned here
 	// against a real build rather than asserted about the map.
 	var HOSTILE_PAGES = [
-		"more.constructor.tostring_md",      // folder + file, both prototype members
-		"more.tostring.constructor_md",      // the same two, swapped
-		"more.__proto__.undefined_md",       // the one that reassigns a prototype
-		"more.undefined.valueof_md",
-		"more.hasownproperty.prototype_md",
-		"more.default.class_md",             // reserved words as path segments
-		"more.valueof_md",                   // top level
-		"more.keywords.function",            // numbered path -> clean id
+		"more.constructor.tostring",      // folder + file, both prototype members
+		"more.tostring.constructor",      // the same two, swapped
+		"more.__proto__.undefined",       // the one that reassigns a prototype
+		"more.undefined.valueof",
+		"more.hasownproperty.prototype",
+		"more.default.class",             // reserved words as path segments
+		"more.valueof",                   // top level
+		"more.keywords.function",         // numbered path, for comparison
 		"more.keywords.return"
 	];
 
@@ -503,18 +503,24 @@ exports.run = function(t){
 		"a prose page may be named after an Object.prototype member or a reserved word",
 		"missing: " + JSON.stringify(hostileMissing));
 
-	// A file and a folder sharing a name must stay separate pages. "__proto__.md" ids as
-	// more.__proto___md (the extension is folded in) and the folder as more.__proto__, so
-	// neither can overwrite the other.
-	t.ok(fs.existsSync(path.join(apiDocs, "more.__proto___md.html")),
+	// A file and a folder sharing a name must stay separate pages. Both now clean to
+	// "__proto__", so the file lands at more.__proto__ and the folder's child at
+	// more.__proto__.undefined -- one is a prefix of the other, and neither may overwrite
+	// it. This is the case the extension used to paper over, when the file ided as
+	// more.__proto___md and could not have collided even in principle.
+	t.ok(fs.existsSync(path.join(apiDocs, "more.__proto__.html")),
 		"a file named __proto__.md is its own page",
 		JSON.stringify(fs.readdirSync(apiDocs).filter(function(f){ return /proto/.test(f); })));
-	t.ok(fs.existsSync(path.join(apiDocs, "more.__proto__.undefined_md.html")),
+	t.ok(fs.existsSync(path.join(apiDocs, "more.__proto__.undefined.html")),
 		"distinct from the __proto__ folder beside it");
 
-	// The content is really there -- an empty page would satisfy existsSync.
-	t.ok(/reassigns the prototype/.test(t.read(path.join(apiDocs, "more.__proto__.undefined_md.html"))),
+	// The content is really there -- an empty page would satisfy existsSync, and a
+	// collision would leave one of the two holding the other's markdown.
+	t.ok(/reassigns the prototype/.test(t.read(path.join(apiDocs, "more.__proto__.undefined.html"))),
 		"and carries its rendered markdown");
+	t.ok(/beside a folder named/.test(t.read(path.join(apiDocs, "more.__proto__.html"))),
+		"and so does the file, not the folder's content");
+
 
 	// The menu is where a collision would actually show: a page silently replacing another
 	// leaves the tree short rather than erroring.
@@ -524,21 +530,38 @@ exports.run = function(t){
 	});
 	t.ok(menuMissing.length === 0, "every one of them reaches the menu",
 		"missing: " + JSON.stringify(menuMissing));
+	// Because both now clean to the same id, the file becomes the section's *index page*:
+	// a menu entry that has a url of its own and also has children. This is deterministic
+	// rather than lucky -- more.js sorts the file list, and "." sorts before "/", so
+	// "more/X.md" is always seen before "more/X/anything". The file node therefore exists
+	// by the time a child looks for its parent, and the children attach to it instead of
+	// a bare folder node being created.
+	// The node carries a children array, so read a window after the id rather than trying
+	// to match a brace-balanced object.
+	var protoAt   = hostileMenu.indexOf('"id": "more.__proto__",');
+	var protoNode = protoAt > -1 ? hostileMenu.substr(protoAt, 300) : "";
+	t.ok(/"url": "more\.__proto__\.html"/.test(protoNode),
+		"a file beside a same-named folder becomes that section's index page", protoNode);
+	t.ok(/"children"/.test(protoNode),
+		"carrying children of its own", protoNode);
+	t.ok(hostileMenu.indexOf('"id": "more.__proto__.undefined"') >
+		 hostileMenu.indexOf('"id": "more.__proto__"'),
+		"with the folder's pages nested underneath it");
 
-	// The numbering quirk, stated as a test so it cannot drift silently: a numeric prefix
-	// is stripped and yields a clean id, no prefix keeps the extension in both id and label.
+	// The extension comes off whichever path a file takes, numbered or not. It used to
+	// survive the unnumbered one, so a folder of unnumbered pages displayed as
+	// "toString.md", "constructor.md" and so on.
 	t.ok(hostileMenu.indexOf('"label": "function"') > -1,
 		"a numbered prose file displays without its number or extension",
 		(hostileMenu.match(/"label":[^,]*/g) || []).join(" "));
-	t.ok(hostileMenu.indexOf('"label": "toString.md"') > -1,
-		"an unnumbered one keeps its extension -- number your prose files",
+	t.ok(hostileMenu.indexOf('"label": "toString"') > -1
+		&& hostileMenu.indexOf('"label": "toString.md"') === -1,
+		"and an unnumbered one displays without its extension too",
 		(hostileMenu.match(/"label":[^,]*/g) || []).join(" "));
 
-	// llms.txt trims the extension back off, so the machine-readable index reads cleanly
-	// even where the menu label does not.
 	var hostileLlms = t.read(path.join(apiDocs, "llms.txt"));
-	t.ok(/\[toString\]/.test(hostileLlms),
-		"llms.txt lists it without the .md the menu label carries",
+	t.ok(/\[toString\]/.test(hostileLlms) && hostileLlms.indexOf("toString.md") === -1,
+		"and llms.txt agrees, without needing to strip anything",
 		hostileLlms.split("\n").filter(function(l){ return /toString/.test(l); }).join(" "));
 
 	// Cross-links between prose and code resolve, in both directions.

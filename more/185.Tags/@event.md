@@ -7,7 +7,7 @@ Example:
 	
 	@event foo
 
-Since events often ping a function, the @event block can contain @params, which are identical in nature to [@method](more.tags._method_md) param tags -- all the same rules apply.
+Since events often ping a function, the @event block can contain @params, which are identical in nature to [@method](more.tags._method) param tags -- all the same rules apply.
 
 Example:
 	

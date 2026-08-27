@@ -200,19 +200,20 @@ function cleanID(id, amFolder){
 /**
  * Splits the sorting prefix off a filename and returns the display name.
  *
- * "050.Quick Reference.md" becomes "Quick Reference". The prefix is only honoured when
- * the character immediately before the delimiter is a digit, so an ordinary dotted name
- * is left alone.
+ * "050.Quick Reference.md" becomes "Quick Reference". The prefix is only honoured when the
+ * character immediately before the delimiter is a digit, so an ordinary dotted name like
+ * "notanumber.Thing.md" keeps both of its segments.
  *
- * Note the asymmetry on the no-prefix path: it returns the filename **with** its
- * extension, so "About.md" displays and ids as "About.md" / "about_md". Number your prose
- * files. This is long-standing behaviour that page ids depend on -- changing it would
- * rename every unnumbered page's URL -- so it is documented rather than fixed.
+ * The extension is dropped either way. It used to survive on the no-prefix path -- the
+ * early return handed back the raw `filename` rather than the `basename` computed three
+ * lines above it -- so an unnumbered "About.md" displayed in the menu as "About.md" and
+ * ids as `more.about_md`. Every page in a folder of unnumbered files carried a visible
+ * ".md", and `llms.js` grew a `.replace(/\.md$/i, "")` to hide it again in the link index.
  *
  * @method     quirkyName
  * @private
  * @param      {string}   filename  - The filename or folder name.
- * @param      {boolean}  amFolder  - True for a folder.
+ * @param      {boolean}  amFolder  - True for a folder, which has no extension to strip.
  * @return     {string}             - The display name.
  */
 function quirkyName(filename, amFolder){
@@ -239,7 +240,9 @@ function quirkyName(filename, amFolder){
 		}
 	}
 
-	return filename;
+	// basename, not filename: the extension has already been removed above, and returning
+	// the raw filename here put it back.
+	return basename;
 
 }
 

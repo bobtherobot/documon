@@ -127,10 +127,10 @@ var MenuData = [
 		"parentID": "more",
 		"children": [
 			{
-				"id": "more.tags._class_md",
-				"url": "more.tags._class_md.html",
-				"label": "@class.md",
-				"name": "@class.md",
+				"id": "more.tags._class",
+				"url": "more.tags._class.html",
+				"label": "@class",
+				"name": "@class",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@class",
 				"parentID": "more.tags",
@@ -140,10 +140,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._constructor_md",
-				"url": "more.tags._constructor_md.html",
-				"label": "@constructor.md",
-				"name": "@constructor.md",
+				"id": "more.tags._constructor",
+				"url": "more.tags._constructor.html",
+				"label": "@constructor",
+				"name": "@constructor",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@constructor",
 				"parentID": "more.tags",
@@ -153,10 +153,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._default_md",
-				"url": "more.tags._default_md.html",
-				"label": "@default.md",
-				"name": "@default.md",
+				"id": "more.tags._default",
+				"url": "more.tags._default.html",
+				"label": "@default",
+				"name": "@default",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@default",
 				"parentID": "more.tags",
@@ -166,10 +166,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._event_md",
-				"url": "more.tags._event_md.html",
-				"label": "@event.md",
-				"name": "@event.md",
+				"id": "more.tags._event",
+				"url": "more.tags._event.html",
+				"label": "@event",
+				"name": "@event",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@event",
 				"parentID": "more.tags",
@@ -179,10 +179,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._example_md",
-				"url": "more.tags._example_md.html",
-				"label": "@example.md",
-				"name": "@example.md",
+				"id": "more.tags._example",
+				"url": "more.tags._example.html",
+				"label": "@example",
+				"name": "@example",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@example",
 				"parentID": "more.tags",
@@ -192,10 +192,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._extends_md",
-				"url": "more.tags._extends_md.html",
-				"label": "@extends.md",
-				"name": "@extends.md",
+				"id": "more.tags._extends",
+				"url": "more.tags._extends.html",
+				"label": "@extends",
+				"name": "@extends",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@extends",
 				"parentID": "more.tags",
@@ -205,10 +205,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._header_md",
-				"url": "more.tags._header_md.html",
-				"label": "@header.md",
-				"name": "@header.md",
+				"id": "more.tags._header",
+				"url": "more.tags._header.html",
+				"label": "@header",
+				"name": "@header",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@header",
 				"parentID": "more.tags",
@@ -218,10 +218,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._implements_md",
-				"url": "more.tags._implements_md.html",
-				"label": "@implements.md",
-				"name": "@implements.md",
+				"id": "more.tags._implements",
+				"url": "more.tags._implements.html",
+				"label": "@implements",
+				"name": "@implements",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@implements",
 				"parentID": "more.tags",
@@ -231,10 +231,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._inherits_md",
-				"url": "more.tags._inherits_md.html",
-				"label": "@inherits.md",
-				"name": "@inherits.md",
+				"id": "more.tags._inherits",
+				"url": "more.tags._inherits.html",
+				"label": "@inherits",
+				"name": "@inherits",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@inherits",
 				"parentID": "more.tags",
@@ -244,10 +244,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._method_md",
-				"url": "more.tags._method_md.html",
-				"label": "@method.md",
-				"name": "@method.md",
+				"id": "more.tags._method",
+				"url": "more.tags._method.html",
+				"label": "@method",
+				"name": "@method",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@method",
 				"parentID": "more.tags",
@@ -257,10 +257,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._module_md",
-				"url": "more.tags._module_md.html",
-				"label": "@module.md",
-				"name": "@module.md",
+				"id": "more.tags._module",
+				"url": "more.tags._module.html",
+				"label": "@module",
+				"name": "@module",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@module",
 				"parentID": "more.tags",
@@ -270,10 +270,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._namespace_md",
-				"url": "more.tags._namespace_md.html",
-				"label": "@namespace.md",
-				"name": "@namespace.md",
+				"id": "more.tags._namespace",
+				"url": "more.tags._namespace.html",
+				"label": "@namespace",
+				"name": "@namespace",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@namespace",
 				"parentID": "more.tags",
@@ -283,10 +283,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._optional_md",
-				"url": "more.tags._optional_md.html",
-				"label": "@optional.md",
-				"name": "@optional.md",
+				"id": "more.tags._optional",
+				"url": "more.tags._optional.html",
+				"label": "@optional",
+				"name": "@optional",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@optional",
 				"parentID": "more.tags",
@@ -296,10 +296,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._order_md",
-				"url": "more.tags._order_md.html",
-				"label": "@order.md",
-				"name": "@order.md",
+				"id": "more.tags._order",
+				"url": "more.tags._order.html",
+				"label": "@order",
+				"name": "@order",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@order",
 				"parentID": "more.tags",
@@ -309,10 +309,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._overrides_md",
-				"url": "more.tags._overrides_md.html",
-				"label": "@overrides.md",
-				"name": "@overrides.md",
+				"id": "more.tags._overrides",
+				"url": "more.tags._overrides.html",
+				"label": "@overrides",
+				"name": "@overrides",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@overrides",
 				"parentID": "more.tags",
@@ -322,10 +322,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._package_md",
-				"url": "more.tags._package_md.html",
-				"label": "@package.md",
-				"name": "@package.md",
+				"id": "more.tags._package",
+				"url": "more.tags._package.html",
+				"label": "@package",
+				"name": "@package",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@package",
 				"parentID": "more.tags",
@@ -335,10 +335,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._param_md",
-				"url": "more.tags._param_md.html",
-				"label": "@param.md",
-				"name": "@param.md",
+				"id": "more.tags._param",
+				"url": "more.tags._param.html",
+				"label": "@param",
+				"name": "@param",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@param",
 				"parentID": "more.tags",
@@ -348,10 +348,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._private_md",
-				"url": "more.tags._private_md.html",
-				"label": "@private.md",
-				"name": "@private.md",
+				"id": "more.tags._private",
+				"url": "more.tags._private.html",
+				"label": "@private",
+				"name": "@private",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@private",
 				"parentID": "more.tags",
@@ -361,10 +361,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._property_md",
-				"url": "more.tags._property_md.html",
-				"label": "@property.md",
-				"name": "@property.md",
+				"id": "more.tags._property",
+				"url": "more.tags._property.html",
+				"label": "@property",
+				"name": "@property",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@property",
 				"parentID": "more.tags",
@@ -374,10 +374,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._protected_md",
-				"url": "more.tags._protected_md.html",
-				"label": "@protected.md",
-				"name": "@protected.md",
+				"id": "more.tags._protected",
+				"url": "more.tags._protected.html",
+				"label": "@protected",
+				"name": "@protected",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@protected",
 				"parentID": "more.tags",
@@ -387,10 +387,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._public_md",
-				"url": "more.tags._public_md.html",
-				"label": "@public.md",
-				"name": "@public.md",
+				"id": "more.tags._public",
+				"url": "more.tags._public.html",
+				"label": "@public",
+				"name": "@public",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@public",
 				"parentID": "more.tags",
@@ -400,10 +400,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._readonly_md",
-				"url": "more.tags._readonly_md.html",
-				"label": "@readonly.md",
-				"name": "@readonly.md",
+				"id": "more.tags._readonly",
+				"url": "more.tags._readonly.html",
+				"label": "@readonly",
+				"name": "@readonly",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@readonly",
 				"parentID": "more.tags",
@@ -413,10 +413,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._requires_md",
-				"url": "more.tags._requires_md.html",
-				"label": "@requires.md",
-				"name": "@requires.md",
+				"id": "more.tags._requires",
+				"url": "more.tags._requires.html",
+				"label": "@requires",
+				"name": "@requires",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@requires",
 				"parentID": "more.tags",
@@ -426,10 +426,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._return_md",
-				"url": "more.tags._return_md.html",
-				"label": "@return.md",
-				"name": "@return.md",
+				"id": "more.tags._return",
+				"url": "more.tags._return.html",
+				"label": "@return",
+				"name": "@return",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@return",
 				"parentID": "more.tags",
@@ -439,10 +439,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._see_md",
-				"url": "more.tags._see_md.html",
-				"label": "@see.md",
-				"name": "@see.md",
+				"id": "more.tags._see",
+				"url": "more.tags._see.html",
+				"label": "@see",
+				"name": "@see",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@see",
 				"parentID": "more.tags",
@@ -452,10 +452,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._static_md",
-				"url": "more.tags._static_md.html",
-				"label": "@static.md",
-				"name": "@static.md",
+				"id": "more.tags._static",
+				"url": "more.tags._static.html",
+				"label": "@static",
+				"name": "@static",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@static",
 				"parentID": "more.tags",
@@ -465,10 +465,10 @@ var MenuData = [
 				"baseUrl": "https://www.documon.net"
 			},
 			{
-				"id": "more.tags._type_md",
-				"url": "more.tags._type_md.html",
-				"label": "@type.md",
-				"name": "@type.md",
+				"id": "more.tags._type",
+				"url": "more.tags._type.html",
+				"label": "@type",
+				"name": "@type",
 				"kind": "more-file",
 				"basepath": "more/185.Tags/@type",
 				"parentID": "more.tags",

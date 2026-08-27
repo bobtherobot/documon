@@ -1272,7 +1272,7 @@ Example:
 	
 	@event foo
 
-Since events often ping a function, the @event block can contain @params, which are identical in nature to [@method](more.tags._method_md) param tags -- all the same rules apply.
+Since events often ping a function, the @event block can contain @params, which are identical in nature to [@method](more.tags._method) param tags -- all the same rules apply.
 
 Example:
 	
@@ -1328,7 +1328,7 @@ Declares that a class conforms to an interface.
 The value must be a fully qualified id — `package.Class` — matching a documented entity.
 `documon --check` reports targets that don't resolve.
 
-Unlike [@extends](more.tags._extends_md), `@implements` does **not** cross-fill the
+Unlike [@extends](more.tags._extends), `@implements` does **not** cross-fill the
 interface's members into this page. It is recorded and rendered as a link in the page's
 meta section, so a reader can follow it to the interface. Cross-filling is what
 `@extends` is for; if you want `Circle` to display `Drawable`'s members, extend it.
@@ -1437,13 +1437,13 @@ I've included a dash in front of the description simply for consistency sake, it
 
 # @module
 
-An alias for __[@class](more.tags._class_md)__. Feel free to mix and match within your code, just remember that Documon treats [@class](more.tags._class_md) and [@module](more.tags._module_md) the same.
+An alias for __[@class](more.tags._class)__. Feel free to mix and match within your code, just remember that Documon treats [@class](more.tags._class) and [@module](more.tags._module) the same.
 
 ---
 
 # @namespace
 
-An alias for __[@package](more.tags._package_md)__. Feel free to mix and match within your code, just remember that Documon treats [@package](more.tags._package_md) and [@namespace](more.tags._namespace_md) the same.
+An alias for __[@package](more.tags._package)__. Feel free to mix and match within your code, just remember that Documon treats [@package](more.tags._package) and [@namespace](more.tags._namespace) the same.
 
 ---
 
@@ -2265,11 +2265,9 @@ The resulting menu will reflect the directory structure, and the numbering will 
 	01.01 About.md
 	02.02 Install.md
 
-> IMPORTANT: number every prose file. A file with no numeric prefix keeps its `.md`
-> extension in both its menu label and its id -- `About.md` becomes the label "About.md"
-> and the id `more.about_md`, where `01.About.md` becomes "About" and `more.about`. The
-> prefix is what tells Documon where the sorting ends and the title begins, so without one
-> there is nothing to strip.
+Numbering is optional. `About.md` and `01.About.md` both display as "About" and both id as
+`more.about`; the number only decides where the page sorts. (Before v3.0.1 an unnumbered
+file kept its extension in both, showing up as "About.md" with the id `more.about_md`.)
 
 Numbering requires a number followed by a "dot"
 
@@ -2370,6 +2368,22 @@ If a DOCS-GO-HERE pointer is not used, the generated source code docs will appea
 
 
 
+
+### A page and a folder with the same name
+
+Name a file the same as a folder beside it and the file becomes that section's **index
+page** -- one menu entry that opens a page of its own *and* expands to the folder's
+contents:
+
+	- about.md          <-- the section's own page
+	+ about
+		- history.md
+		- team.md
+
+Both clean to the id `more.about`, and the pages inside the folder hang off it as
+`more.about.history` and `more.about.team`. This is reliable, not incidental: the file
+list is sorted, and "." sorts before "/", so `about.md` is always read before
+`about/anything`.
 
 ### Page ID's
 
@@ -3559,17 +3573,18 @@ A safe replacement for standard JSON parsing that mitigates errors.
 
 Splits the sorting prefix off a filename and returns the display name.
 
-"050.Quick Reference.md" becomes "Quick Reference". The prefix is only honoured when
-the character immediately before the delimiter is a digit, so an ordinary dotted name
-is left alone.
+"050.Quick Reference.md" becomes "Quick Reference". The prefix is only honoured when the
+character immediately before the delimiter is a digit, so an ordinary dotted name like
+"notanumber.Thing.md" keeps both of its segments.
 
-Note the asymmetry on the no-prefix path: it returns the filename **with** its
-extension, so "About.md" displays and ids as "About.md" / "about_md". Number your prose
-files. This is long-standing behaviour that page ids depend on -- changing it would
-rename every unnumbered page's URL -- so it is documented rather than fixed.
+The extension is dropped either way. It used to survive on the no-prefix path -- the
+early return handed back the raw `filename` rather than the `basename` computed three
+lines above it -- so an unnumbered "About.md" displayed in the menu as "About.md" and
+ids as `more.about_md`. Every page in a folder of unnumbered files carried a visible
+".md", and `llms.js` grew a `.replace(/\.md$/i, "")` to hide it again in the link index.
 
 - param filename {string} - The filename or folder name.
-- param amFolder {boolean} - True for a folder.
+- param amFolder {boolean} - True for a folder, which has no extension to strip.
 - returns {string} - The display name.
 
 ---
