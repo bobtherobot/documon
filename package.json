@@ -1,6 +1,6 @@
 {
   "name": "documon",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A documentation system for mortals. Use with any language. Zero dependencies, AI-agent friendly.",
   "main": "index.js",
   "bin": {
