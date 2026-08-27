@@ -429,7 +429,7 @@
 					"name": "blockId",
 					"type": null,
 					"access": "private",
-					"line": 344,
+					"line": 377,
 					"inherited": null,
 					"description": "Derives the id a comment block will be filed under, mirroring how `tag.js` builds ids.\n\nIds are scoped `package.container.member` -- the same shape as the generated filenames\n(`documon.dirutils.html`). A `@method` therefore inherits the `@class` or `@module`\ndeclared above it in the same file; without that scope every `run()` in the project\nwould look like a collision.",
 					"meta": [],
@@ -462,7 +462,7 @@
 					"name": "checkProseLinks",
 					"type": null,
 					"access": "private",
-					"line": 507,
+					"line": 541,
 					"inherited": null,
 					"description": "Validates the cross-references written in the \"more\" folder's markdown.\n\nProse pages are where most cross-linking actually happens, and a broken one is invisible\nuntil a reader clicks it -- the site intercepts the id, finds nothing, and does nothing.\n\nOnly dotted targets outside code blocks are resolved, against both the API ids and the\nprose ids. Folder ids count: a folder is a real menu node, even though no page file is\nwritten for it.",
 					"meta": [],
@@ -492,6 +492,14 @@
 							"children": []
 						},
 						{
+							"name": "packages",
+							"type": "object",
+							"description": "Roots of every package this run scanned.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
 							"name": "findings",
 							"type": "array",
 							"description": "Collector, appended to in place.",
@@ -508,7 +516,7 @@
 					"name": "codeLines",
 					"type": null,
 					"access": "private",
-					"line": 255,
+					"line": 288,
 					"inherited": null,
 					"description": "Marks the lines of a markdown document that are code rather than prose.\n\nThe manual is full of deliberately illustrative ids: a link written to the target\n\"package.Class.method\" is teaching the *shape* of a cross-reference and was never meant\nto resolve. Those live in code blocks, so code is skipped -- the same reason the comment\npass skips `@example`.\n\nBoth block forms count: fenced with ``` and indented with a tab or four spaces. Leading\nblockquote markers are stripped first, because the manual indents examples inside `>`\nquotes as well.\n\nErring toward \"this is code\" is deliberate. A missed broken link costs one stale\nreference; a false positive on every teaching example makes the rule worthless.",
 					"meta": [],
@@ -643,6 +651,39 @@
 					}
 				},
 				{
+					"id": "documon.check.isJudgeable",
+					"kind": "method",
+					"name": "isJudgeable",
+					"type": null,
+					"access": "private",
+					"line": 259,
+					"inherited": null,
+					"description": "Whether this run scanned enough source to judge a cross-reference.\n\n`--check` is routinely pointed at part of a project -- one folder, one file -- while the\nconfig still names the whole `more` folder. Every prose link into the API then resolves\nagainst a set of ids that was never going to contain them, and the manual lights up with\nfindings about source the run deliberately did not read. Running `documon --check -i test`\non this repository reported six broken links in `more/150.Templates.md`, all of them real\nids in `src/`.\n\nSo a target is only judged when its leading segment matches a package this run actually\nsaw. Prose ids are exempt: the `more` folder is always read in full, so `more.anything`\ncan always be resolved.\n\nThe cost is a missed typo in a package name -- `documonn.organizer` looks exactly like a\npackage that was not scanned. That is the right trade: a false positive here accuses the\nauthor of breaking a link that works.",
+					"meta": [],
+					"params": [
+						{
+							"name": "target",
+							"type": "string",
+							"description": "The link target.",
+							"optional": false,
+							"default": null,
+							"children": []
+						},
+						{
+							"name": "packages",
+							"type": "object",
+							"description": "Roots of every package seen this run.",
+							"optional": false,
+							"default": null,
+							"children": []
+						}
+					],
+					"returns": {
+						"type": "boolean",
+						"description": "True when a failure to resolve is meaningful."
+					}
+				},
+				{
 					"id": "documon.check.isPlaceholderText",
 					"kind": "method",
 					"name": "isPlaceholderText",
@@ -673,7 +714,7 @@
 					"name": "moreIds",
 					"type": null,
 					"access": "private",
-					"line": 291,
+					"line": 324,
 					"inherited": null,
 					"description": "Lists the ids of the prose pages the \"more\" folder will produce./**\nLists the ids of the prose pages the \"more\" folder will produce.\n\nThose pages are real link targets (`[the options](more.options)`), but they come\nfrom markdown, not comments, so the cross-reference pass has no way to know they\nexist. Without this, every link into the manual reads as broken.",
 					"meta": [],
@@ -698,7 +739,7 @@
 					"name": "print",
 					"type": null,
 					"access": "public",
-					"line": 987,
+					"line": 1026,
 					"inherited": null,
 					"description": "Prints a report for humans.",
 					"meta": [],
@@ -728,7 +769,7 @@
 					"name": "resolveExtends",
 					"type": null,
 					"access": "private",
-					"line": 584,
+					"line": 618,
 					"inherited": null,
 					"description": "Resolves an inheritance target the way the builder does.\n\n`organizer.js:applyInheritance()` accepts a bare class name for a parent in the same\npackage -- `@extends Base` inside `@package demo` means `demo.Base` -- and the manual\nteaches that short form. The validator used to compare the written target against the\nfully qualified ids only, so the documented short form was reported as an\n`unresolved-inheritance` **error** on input that built perfectly. That broke the\n`documon --check && documon` recipe for anyone who followed the docs.\n\nThe rule mirrors the builder exactly: a target with no dot at all is qualified with the\nblock's package. A dotted target is already an id and is looked up as written.",
 					"meta": [],
@@ -769,7 +810,7 @@
 					"name": "run",
 					"type": null,
 					"access": "public",
-					"line": 618,
+					"line": 652,
 					"inherited": null,
 					"description": "Runs the validator.",
 					"meta": [],
@@ -811,7 +852,7 @@
 					"name": "scanSymbols",
 					"type": null,
 					"access": "private",
-					"line": 460,
+					"line": 493,
 					"inherited": null,
 					"description": "A deliberately shallow symbol scan used only by the coverage advisory.\n\nThis never feeds the render path -- Documon still derives structure exclusively from\ncomments. It exists so an automated writer can be told \"you documented 4 of 11 exported\nthings\" instead of silently shipping a near-empty manual.",
 					"meta": [],
@@ -836,7 +877,7 @@
 					"name": "summarize",
 					"type": null,
 					"access": "private",
-					"line": 376,
+					"line": 409,
 					"inherited": null,
 					"description": "Reduces a parsed comment block to the facts the rules care about.",
 					"meta": [],

@@ -917,6 +917,14 @@ var MenuData = [
 														"inherits": 0
 													},
 													{
+														"id": "documon.check.isJudgeable",
+														"url": "documon.check.html#documon.check.isJudgeable",
+														"label": "isJudgeable",
+														"kind": "methods-item",
+														"access": "private",
+														"inherits": 0
+													},
+													{
 														"id": "documon.check.isPlaceholderText",
 														"url": "documon.check.html#documon.check.isPlaceholderText",
 														"label": "isPlaceholderText",

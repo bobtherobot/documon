@@ -266,6 +266,50 @@ exports.run = function(t){
 		"on the right line", proseBroken.length ? String(proseBroken[0].line) : "");
 
 	// ------------------------------------------------------------------
+	t.section("more: a partial --check does not accuse the manual");
+	// ------------------------------------------------------------------
+	// --check is routinely pointed at part of a project while the config still names the
+	// whole more folder. Every prose link into the API then resolves against ids the run
+	// was never going to collect. "documon --check -i test" on this repository reported six
+	// broken links in more/150.Templates.md, all of them real ids in src/.
+	//
+	// So a target is judged only when its leading segment is a package this run actually
+	// saw. Prose ids are always judged -- the more folder is always read in full.
+	var partial = t.project({
+		src : { "thing.js" : t.block(["A thing.", "@module thing", "@package app"]) },
+		more : {
+			"01.Page.md" : [
+				"# Page",
+				"",
+				"Resolves: [thing](app.thing)",
+				"",
+				"Typo inside a package we scanned: [oops](app.nosuchthing)",
+				"",
+				"A package this run never read: [other](vendor.Widget)",
+				"",
+				"A prose page that does not exist: [nope](more.nosuchpage)",
+				""
+			].join("\n")
+		}
+	});
+
+	var partialReport = t.check(["-i", partial.src, "-m", partial.more], partial.dir).report;
+	var partialBroken = t.findings(partialReport, "broken-link").map(function(f){
+		return f.message;
+	}).join(" | ");
+
+	t.ok(partialBroken.indexOf("app.nosuchthing") > -1,
+		"a typo inside a scanned package is still caught", partialBroken);
+	t.ok(partialBroken.indexOf("more.nosuchpage") > -1,
+		"and so is a bad prose id, always", partialBroken);
+	t.ok(partialBroken.indexOf("vendor.Widget") === -1,
+		"but a package this run never scanned is left alone", partialBroken);
+	t.ok(partialBroken.indexOf("app.thing") === -1,
+		"and a link that resolves says nothing", partialBroken);
+	t.ok(t.findings(partialReport, "broken-link").length === 2,
+		"exactly two findings, no more", partialBroken);
+
+	// ------------------------------------------------------------------
 	t.section("more: illustrative links in code blocks are not cross-references");
 	// ------------------------------------------------------------------
 	// The manual teaches the *shape* of an id with links that were never meant to resolve.

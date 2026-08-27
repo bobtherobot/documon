@@ -134,6 +134,14 @@
 		},
 		{
 			"@type": "TechArticle",
+			"name": "isJudgeable",
+			"identifier": "documon.check.isJudgeable",
+			"articleSection": "method",
+			"description": "Whether this run scanned enough source to judge a cross-reference. --check is routinely pointed at part of a project -- one folder, one file -- while the config still names the whole more folder. Every prose link into the API then resolves against a set of ids that was never going to contain them, and the manual lights up with findings about source the run deliberately did not read. Running documon --check -i test on this repository reported six broken links in more/150.Templates.md, all of them real ids in src/. So a target is only judged when its leading segment matches a package this run actually saw. Prose ids are exempt: the more folder is always read in full, so more.anything can always be resolved. The cost is a missed typo in a package name -- documonn.organizer looks exactly like a package that was not scanned. That is the right trade: a false positive here accuses the author of breaking a link that works.",
+			"url": "https://www.documon.net/documon.check.html#documon.check.isJudgeable"
+		},
+		{
+			"@type": "TechArticle",
 			"name": "isPlaceholderText",
 			"identifier": "documon.check.isPlaceholderText",
 			"articleSection": "method",
@@ -536,7 +544,7 @@ but genuinely have no Documon equivalent.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">344</span>
+						    		<span class="member-line-number">377</span>
 						    	</span>
 						    </h3>
 
@@ -654,12 +662,12 @@ would look like a collision.</p>
 
 							<h3 class="member-name clearfix">
 								<span class="member-name-left">
-						    		checkProseLinks (<span class="method-arguments">conf</span>, <span class="method-arguments">ids</span>, <span class="method-arguments">prose</span>, <span class="method-arguments">findings</span>) 
+						    		checkProseLinks (<span class="method-arguments">conf</span>, <span class="method-arguments">ids</span>, <span class="method-arguments">prose</span>, <span class="method-arguments">packages</span>, <span class="method-arguments">findings</span>) 
                                     <span class="flag private">private</span>  <!-- public private protected -->
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">507</span>
+						    		<span class="member-line-number">541</span>
 						    	</span>
 						    </h3>
 
@@ -788,6 +796,39 @@ written for it.</p>
                             
                                 <div class="member-block-left">
                                     
+                                    <span class="member-name">packages</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Roots of every package this run scanned.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
                                     <span class="member-name">findings</span>
                                     
                                 </div>
@@ -844,7 +885,7 @@ written for it.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">255</span>
+						    		<span class="member-line-number">288</span>
 						    	</span>
 						    </h3>
 
@@ -1355,6 +1396,137 @@ anchored: <code>assets/x.jpg</code> starts with neither "." nor "/" but is still
 
 							</div>
 						</div>
+				<a id="documon.check.isJudgeable" name="documon.check.isJudgeable"></a><a name="isJudgeable"></a>
+
+						<div class="member" data-access="private" >
+
+							<h3 class="member-name clearfix">
+								<span class="member-name-left">
+						    		isJudgeable (<span class="method-arguments">target</span>, <span class="method-arguments">packages</span>) 
+                                    <span class="flag private">private</span>  <!-- public private protected -->
+						    	</span>
+								<span class="member-name-right">
+						    		<span class="member-file">src/check.js</span>
+						    		<span class="member-line-number">259</span>
+						    	</span>
+						    </h3>
+
+
+						   	<div class="member-description">
+                                
+                                
+								
+								<p>Whether this run scanned enough source to judge a cross-reference.</p>
+<p><code>--check</code> is routinely pointed at part of a project -- one folder, one file -- while the<br />
+config still names the whole <code>more</code> folder. Every prose link into the API then resolves<br />
+against a set of ids that was never going to contain them, and the manual lights up with<br />
+findings about source the run deliberately did not read. Running <code>documon --check -i test</code><br />
+on this repository reported six broken links in <code>more/150.Templates.md</code>, all of them real<br />
+ids in <code>src/</code>.</p>
+<p>So a target is only judged when its leading segment matches a package this run actually<br />
+saw. Prose ids are exempt: the <code>more</code> folder is always read in full, so <code>more.anything</code><br />
+can always be resolved.</p>
+<p>The cost is a missed typo in a package name -- <code>documonn.organizer</code> looks exactly like a<br />
+package that was not scanned. That is the right trade: a false positive here accuses the<br />
+author of breaking a link that works.</p>
+
+					
+								
+			    	<div class="part-parameters">
+				    	
+				    	<h2 class="heading-part">Parameters</h2>
+				    	
+				    	<div class="member">
+                            <div class="member-block-group">
+
+							    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">target</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">string</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>The link target.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+                            <div class="member-block"  >
+                            
+                                <div class="member-block-left">
+                                    
+                                    <span class="member-name">packages</span>
+                                    
+                                </div>
+
+                                <div class="member-block-center">
+                                <span class="member-name-right">
+                                
+                                </span>
+                                    <div class="param-description">
+                                        
+							<span class="type">object</span>
+				
+                                        
+                                        
+                                        
+									
+							<div class="member-description">
+      				 		 	<p>Roots of every package seen this run.</p>
+       						 </div>
+       			
+						        	
+						        	
+					
+                                    </div>
+                                </div>
+
+
+                            </div>
+				    
+
+							</div>
+						</div>
+				
+					</div>
+			
+
+							    
+			       		 	<div class="heading-returns">Returns		
+						<span class="type">boolean</span>
+					</div>
+			      	     	<div class="member"><p>True when a failure to resolve is meaningful.</p></div>
+				
+
+					
+								
+
+							    
+
+							</div>
+						</div>
 				<a id="documon.check.isPlaceholderText" name="documon.check.isPlaceholderText"></a><a name="isPlaceholderText"></a>
 
 						<div class="member" data-access="private" >
@@ -1454,7 +1626,7 @@ where prose belongs, and the bracketed "[functionName description]" stub.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">291</span>
+						    		<span class="member-line-number">324</span>
 						    	</span>
 						    </h3>
 
@@ -1544,7 +1716,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">987</span>
+						    		<span class="member-line-number">1026</span>
 						    	</span>
 						    </h3>
 
@@ -1658,7 +1830,7 @@ exist. Without this, every link into the manual reads as broken.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">584</span>
+						    		<span class="member-line-number">618</span>
 						    	</span>
 						    </h3>
 
@@ -1818,7 +1990,7 @@ block's package. A dotted target is already an id and is looked up as written.</
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">618</span>
+						    		<span class="member-line-number">652</span>
 						    	</span>
 						    </h3>
 
@@ -1995,7 +2167,7 @@ block's package. A dotted target is already an id and is looked up as written.</
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">460</span>
+						    		<span class="member-line-number">493</span>
 						    	</span>
 						    </h3>
 
@@ -2084,7 +2256,7 @@ things" instead of silently shipping a near-empty manual.</p>
 						    	</span>
 								<span class="member-name-right">
 						    		<span class="member-file">src/check.js</span>
-						    		<span class="member-line-number">376</span>
+						    		<span class="member-line-number">409</span>
 						    	</span>
 						    </h3>
 

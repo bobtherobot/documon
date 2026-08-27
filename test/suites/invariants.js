@@ -498,4 +498,12 @@ exports.run = function(t){
 	var selfTests = t.check(["-i", path.join(t.ROOT, "test"), "-g", "fixtures"], t.ROOT);
 	t.ok(selfTests.report.counts.error === 0, "and neither does the test suite",
 		JSON.stringify(selfTests.report.findings.filter(function(f){ return f.level === "error"; })));
+
+	// Warnings too. This run reads the repository's documon.json, so it also validates the
+	// prose folder -- against `test/` rather than `src/`. That combination is exactly the
+	// partial-source case isJudgeable() exists for, and it caught a real mis-tag: run.js
+	// declared @package documon while every sibling declares @package test, which made the
+	// manual's links into the API look judgeable when this run had never read src/.
+	t.ok(selfTests.report.counts.warning === 0, "with no warnings either",
+		JSON.stringify(selfTests.report.findings.filter(function(f){ return f.level === "warning"; })));
 };

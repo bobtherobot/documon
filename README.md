@@ -163,6 +163,10 @@ Added:
   `@example` content is skipped: a manual teaches the shape of an id with links that were
   never meant to resolve. Every stale id in Documon's own manual survived because this
   pass did not exist.
+  A cross-reference is judged only when its leading segment names a package the run
+  actually scanned, so pointing `--check` at one folder while the config names the whole
+  `more` folder no longer reports the manual's links into the rest of the API as broken.
+  Prose ids are always judged; the `more` folder is always read in full.
 - New `placeholder-doc` rule: a literal `{type}`, a description that is just the word
   "description", or a `[name description]` stub. Nothing caught these before --
   `no-description` only fires on an empty block and `param-no-type` only on a missing

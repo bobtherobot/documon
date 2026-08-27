@@ -234,6 +234,39 @@ function isCrossRef(target){
 }
 
 /**
+ * Whether this run scanned enough source to judge a cross-reference.
+ *
+ * `--check` is routinely pointed at part of a project -- one folder, one file -- while the
+ * config still names the whole `more` folder. Every prose link into the API then resolves
+ * against a set of ids that was never going to contain them, and the manual lights up with
+ * findings about source the run deliberately did not read. Running `documon --check -i test`
+ * on this repository reported six broken links in `more/150.Templates.md`, all of them real
+ * ids in `src/`.
+ *
+ * So a target is only judged when its leading segment matches a package this run actually
+ * saw. Prose ids are exempt: the `more` folder is always read in full, so `more.anything`
+ * can always be resolved.
+ *
+ * The cost is a missed typo in a package name -- `documonn.organizer` looks exactly like a
+ * package that was not scanned. That is the right trade: a false positive here accuses the
+ * author of breaking a link that works.
+ *
+ * @method     isJudgeable
+ * @private
+ * @param      {string}   target   - The link target.
+ * @param      {object}   packages - Roots of every package seen this run.
+ * @return     {boolean}           - True when a failure to resolve is meaningful.
+ */
+function isJudgeable(target, packages){
+
+	if( target.indexOf("more.") === 0 ){
+		return true;
+	}
+
+	return !! packages[ target.split(".")[0] ];
+}
+
+/**
  * Marks the lines of a markdown document that are code rather than prose.
  *
  * The manual is full of deliberately illustrative ids: a link written to the target
@@ -503,9 +536,10 @@ function scanSymbols(source){
  * @param      {object}  conf     - The resolved configuration.
  * @param      {object}  ids      - Documented ids from the comment pass.
  * @param      {object}  prose    - Prose page ids, from [moreIds](#moreIds).
+ * @param      {object}  packages - Roots of every package this run scanned.
  * @param      {array}   findings - Collector, appended to in place.
  */
-function checkProseLinks(conf, ids, prose, findings){
+function checkProseLinks(conf, ids, prose, packages, findings){
 
 	if( ! conf.more ){
 		return;
@@ -547,7 +581,7 @@ function checkProseLinks(conf, ids, prose, findings){
 
 				var target = match[2];
 
-				if( ! isCrossRef(target) ){
+				if( ! isCrossRef(target) || ! isJudgeable(target, packages) ){
 					continue;
 				}
 
@@ -629,6 +663,7 @@ function run(conf, opts){
 	// `duplicate-id "toString" -- already declared at undefined:undefined`, and never
 	// stored the real id, so stats.entities came back 0.
 	var ids       = utils.dict();   // id -> first location
+	var packages  = utils.dict();   // leading segment of every package seen this run
 	var blocks    = [];
 	var linkRefs  = [];
 	var totalComments = 0;
@@ -681,6 +716,10 @@ function run(conf, opts){
 				currentPackage = info.package;
 			} else {
 				info.package = currentPackage;
+			}
+
+			if(info.package){
+				packages[ String(info.package).split(".")[0] ] = true;
 			}
 
 			// A @class/@module opens a new scope that later members in the file belong to.
@@ -886,7 +925,7 @@ function run(conf, opts){
 		var ref = linkRefs[l];
 		var target = ref.target;
 
-		if( ! isCrossRef(target) ){
+		if( ! isCrossRef(target) || ! isJudgeable(target, packages) ){
 			continue;
 		}
 
@@ -902,7 +941,7 @@ function run(conf, opts){
 	// stale id in Documon's own manual -- a tag page pointing at `more.tags.class` when the
 	// page is filed as `more.tags._class_md`, a guide pointing at a folder that moved --
 	// survived precisely because this pass did not exist.
-	checkProseLinks(conf, ids, prose, findings);
+	checkProseLinks(conf, ids, prose, packages, findings);
 
 	// ------------------------------------------------
 	// Pass 4: coverage advisory (opt-in, never affects output).

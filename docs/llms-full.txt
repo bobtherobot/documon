@@ -835,6 +835,23 @@ never meant to resolve.
 If your config file already sets `more`, you don't need the `-m` flag -- `--check` reads
 the same configuration a build does.
 
+### Checking part of a project
+
+A cross-reference is only judged when its leading segment names a package the run actually
+scanned. That matters when you point `--check` at one folder while your config still names
+the whole `more` folder: without it, every link from your manual into the rest of the API
+would be reported broken purely because the run never read that source.
+
+	documon --check -i ./src/parser -m ./more
+
+	# links to parser.* are checked
+	# links to renderer.* are left alone -- this run never read renderer/
+	# links to more.* are always checked; the more folder is always read in full
+
+The cost is that a typo in a *package* name reads as a package you didn't scan, and passes
+quietly. That is the better trade: the alternative accuses you of breaking links that
+work.
+
 ## Placeholders
 
 An unfilled stub is worse than no documentation, because it renders on the page exactly as
@@ -2206,11 +2223,13 @@ To incorporate "more" info:
 4. Point the ["more" option](more.options) to the folder containing your markdown docs.
 
 Below is an example directory structure, where we're using numbering to organize, and we've included sub-folders and the "DOCS-GO-HERE" pointer.
+
+> NOTE: The "DOCS-GO-HERE" is a literal operational keyword/filename that documon recognizes as a dummy file (empty file) so documon knows where to position the generated source documentation. In our example, we've used the numbering prefix "04." to position where the docs go. You can examine the documon source code and see that we positioned our "DOCS-GO-HERE.md" within a subfolder without any numbering prefix.
 	
 	- 01.About This Thing.md
 	- 02.Install This Thing.md
 	- 03.Using This Thing.md
-	- 04.DOCS-GO-HERE.md
+	- 04.DOCS-GO-HERE.md <--- literal filename includes literal words "DOCS-GO-HERE"
 	+ 04.Some Sub Folder
 		- 1.This is a long page title.md
 		- 2.And this has spaces.md
@@ -2226,7 +2245,7 @@ The resulting menu will reflect the directory structure, and the numbering will 
 	- About This Thing
 	- Install This Thing
 	- Using This Thing
-	+ packages <-------- the source file documentation
+	+ packages <-------- generated source file documentation "go here"
 	+ Some Sub Folder
 		- This is a long page title
 		- And this has spaces
@@ -2694,6 +2713,7 @@ written for it.
 - param conf {object} - The resolved configuration.
 - param ids {object} - Documented ids from the comment pass.
 - param prose {object} - Prose page ids, from [moreIds](#moreIds).
+- param packages {object} - Roots of every package this run scanned.
 - param findings {array} - Collector, appended to in place.
 
 ### codeLines (method) [private]
@@ -2745,6 +2765,29 @@ anchored: `assets/x.jpg` starts with neither "." nor "/" but is still plainly a 
 
 - param target {string} - The link target as written.
 - returns {boolean} - True when it should be resolved as an id.
+
+### isJudgeable (method) [private]
+
+Whether this run scanned enough source to judge a cross-reference.
+
+`--check` is routinely pointed at part of a project -- one folder, one file -- while the
+config still names the whole `more` folder. Every prose link into the API then resolves
+against a set of ids that was never going to contain them, and the manual lights up with
+findings about source the run deliberately did not read. Running `documon --check -i test`
+on this repository reported six broken links in `more/150.Templates.md`, all of them real
+ids in `src/`.
+
+So a target is only judged when its leading segment matches a package this run actually
+saw. Prose ids are exempt: the `more` folder is always read in full, so `more.anything`
+can always be resolved.
+
+The cost is a missed typo in a package name -- `documonn.organizer` looks exactly like a
+package that was not scanned. That is the right trade: a false positive here accuses the
+author of breaking a link that works.
+
+- param target {string} - The link target.
+- param packages {object} - Roots of every package seen this run.
+- returns {boolean} - True when a failure to resolve is meaningful.
 
 ### isPlaceholderText (method) [private]
 

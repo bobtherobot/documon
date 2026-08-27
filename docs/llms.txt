@@ -88,6 +88,7 @@ derived entirely from source-code comment tags.
 - [collect](https://www.documon.net/documon.check.html#documon.check.collect)
 - [finding](https://www.documon.net/documon.check.html#documon.check.finding)
 - [isCrossRef](https://www.documon.net/documon.check.html#documon.check.isCrossRef)
+- [isJudgeable](https://www.documon.net/documon.check.html#documon.check.isJudgeable)
 - [isPlaceholderText](https://www.documon.net/documon.check.html#documon.check.isPlaceholderText)
 - [moreIds](https://www.documon.net/documon.check.html#documon.check.moreIds)
 - [print](https://www.documon.net/documon.check.html#documon.check.print)

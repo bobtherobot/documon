@@ -16,8 +16,8 @@ www.documon.net
  * the harness from `test/helpers.js` and does nothing but assert. Exits non-zero when
  * any assertion fails, so CI and automated callers can rely on it.
  *
- * @module  test
- * @package documon
+ * @module  run
+ * @package test
  */
 
 var fs   = require('fs');
